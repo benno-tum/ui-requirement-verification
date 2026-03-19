@@ -1,0 +1,106 @@
+{
+  "requirements": [
+    {
+      "id": "REQ-01",
+      "type": "ui_element_value",
+      "text": "The system shall display a 'Find your trip by' section on the homepage.",
+      "evidence_steps": [
+        1
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-02",
+      "type": "ui_element_value",
+      "text": "The system shall provide an input field labeled 'Confirmation Number' within the 'Find your trip by' section.",
+      "evidence_steps": [
+        1
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-03",
+      "type": "ui_element_value",
+      "text": "The system shall provide an input field labeled 'First Name' within the 'Find your trip by' section.",
+      "evidence_steps": [
+        1
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-04",
+      "type": "ui_element_value",
+      "text": "The system shall provide an input field labeled 'Last Name' within the 'Find your trip by' section.",
+      "evidence_steps": [
+        1
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-05",
+      "type": "workflow_transition",
+      "text": "The system shall allow the user to input text into the 'Confirmation Number' field.",
+      "evidence_steps": [
+        1,
+        3
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-06",
+      "type": "ui_element_value",
+      "text": "The system shall display the entered value 'SFTBAO' in the 'Confirmation Number' field after user input.",
+      "evidence_steps": [
+        3
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-07",
+      "type": "workflow_transition",
+      "text": "The system shall allow the user to input text into the 'First Name' field.",
+      "evidence_steps": [
+        3,
+        5
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-08",
+      "type": "ui_element_value",
+      "text": "The system shall display the entered value 'Joe' in the 'First Name' field after user input.",
+      "evidence_steps": [
+        5
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-09",
+      "type": "workflow_transition",
+      "text": "The system shall allow the user to input text into the 'Last Name' field.",
+      "evidence_steps": [
+        5,
+        7
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-10",
+      "type": "ui_element_value",
+      "text": "The system shall display the entered value 'Lukeman' in the 'Last Name' field after user input.",
+      "evidence_steps": [
+        7
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-11",
+      "type": "ui_element_value",
+      "text": "The system shall display a red circular button to submit the trip search.",
+      "evidence_steps": [
+        1
+      ],
+      "confidence": "high"
+    }
+  ]
+}

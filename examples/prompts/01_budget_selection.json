@@ -1,0 +1,16 @@
+{
+  "selected_steps": [
+    1,
+    5,
+    10,
+    14
+  ],
+  "selected_files": [
+    "step_01.png",
+    "step_05.png",
+    "step_10.png",
+    "step_14.png"
+  ],
+  "image_max_side": 1024,
+  "model": "gemini-2.5-flash"
+}

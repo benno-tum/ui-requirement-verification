@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+
+# Secrets
+.env
+
+# IDE / OS
+.idea/
+.DS_Store
+
+# Local Python version file
+.python-version
+
+# Large local datasets and generated artifacts
+data/archive/
+data/raw/
+data/processed/
+data/generated/
+data_backup_before_cleanup/
+archive/
+
+# accidental nested leftovers
+data/data/
+data/report/
+
+# logs
+*.log

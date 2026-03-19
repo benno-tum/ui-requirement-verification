@@ -1,0 +1,104 @@
+{
+  "requirements": [
+    {
+      "id": "REQ-01",
+      "type": "ui_element_value",
+      "text": "The system shall provide an input field labeled 'Search for events, artists, venues...' on the homepage.",
+      "evidence_steps": [
+        1
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-02",
+      "type": "ui_element_value",
+      "text": "The system shall provide a 'Search' button on the homepage.",
+      "evidence_steps": [
+        1
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-03",
+      "type": "ui_element_value",
+      "text": "The system shall display the entered search term 'Wicked' in the 'Search for events, artists, venues...' input field.",
+      "evidence_steps": [
+        2
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-04",
+      "type": "workflow_transition",
+      "text": "Upon initiating a search, the system shall navigate to a dedicated search results page titled 'WICKED TICKETS'.",
+      "evidence_steps": [
+        2,
+        3
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-05",
+      "type": "ui_element_value",
+      "text": "The system shall display a list of upcoming events matching the search query, including the date, event name, venue, and a 'Tickets' button for each event.",
+      "evidence_steps": [
+        3
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-06",
+      "type": "ui_element_value",
+      "text": "The system shall provide filter tabs for 'TIMES', 'DAYS', 'VENUES', 'CATEGORIES', and 'MONTHS' on the search results page.",
+      "evidence_steps": [
+        3
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-07",
+      "type": "ui_element_value",
+      "text": "The system shall visually indicate the currently selected filter tab, such as 'MONTHS'.",
+      "evidence_steps": [
+        3
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-08",
+      "type": "ui_element_value",
+      "text": "The system shall provide a dropdown menu next to the 'MONTHS' filter tab for selecting date ranges.",
+      "evidence_steps": [
+        3
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-09",
+      "type": "ui_element_value",
+      "text": "When the date range dropdown is activated, the system shall display options including 'Next 3 days', 'Next 7 days', 'Next 14 days', 'Next 30 days', 'Next 60 days', 'Next 90 days', 'Next 120 days', 'Next 180 days', 'Next 365 days', 'This Month', 'Next Month', and 'Select Date Range'.",
+      "evidence_steps": [
+        4
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-10",
+      "type": "ui_element_value",
+      "text": "The system shall display the currently applied location filter, such as 'Columbus, OH', on the search results page.",
+      "evidence_steps": [
+        3
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "REQ-11",
+      "type": "ui_element_value",
+      "text": "The system shall provide pagination controls (e.g., page numbers 1, 2, 3, 4, Next) for navigating through the event listings.",
+      "evidence_steps": [
+        3
+      ],
+      "confidence": "high"
+    }
+  ]
+}
