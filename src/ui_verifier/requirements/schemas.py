@@ -89,7 +89,7 @@ class CandidateRequirement(RequirementBase):
     created_at: str = field(default_factory=_utc_now_iso)
 
     def __post_init__(self) -> None:
-        super().__post_init__()
+        RequirementBase.__post_init__(self)
         self.step_indices = _validate_step_indices(self.step_indices)
 
         if self.rationale is not None:
@@ -111,7 +111,7 @@ class CandidateRequirement(RequirementBase):
         self.created_at = _require_non_empty(self.created_at, "created_at")
 
     def to_dict(self) -> dict[str, Any]:
-        base = super().to_dict()
+        base = RequirementBase.to_dict(self)
         extra = _drop_none(
             {
                 "origin": self.origin.value,
@@ -157,7 +157,7 @@ class GoldRequirement(RequirementBase):
     created_at: str = field(default_factory=_utc_now_iso)
 
     def __post_init__(self) -> None:
-        super().__post_init__()
+        RequirementBase.__post_init__(self)
 
         if self.source_candidate_id is not None:
             self.source_candidate_id = self.source_candidate_id.strip() or None
@@ -171,7 +171,7 @@ class GoldRequirement(RequirementBase):
         self.created_at = _require_non_empty(self.created_at, "created_at")
 
     def to_dict(self) -> dict[str, Any]:
-        base = super().to_dict()
+        base = RequirementBase.to_dict(self)
         extra = _drop_none(
             {
                 "origin": self.origin.value,

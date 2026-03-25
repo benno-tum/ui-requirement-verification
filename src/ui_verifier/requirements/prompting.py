@@ -18,8 +18,16 @@ Website:
 Domain:
 {domain}
 
-Visible screenshots correspond to these step indices:
+The visible screenshots correspond to these REAL flow step indices:
 {selected_steps}
+
+Important:
+- The values in evidence_steps MUST use the real flow step indices listed above.
+- Do NOT renumber the screenshots as 1, 2, 3, ...
+- Example:
+  - if the visible screenshots are from steps [1, 5, 10, 14]
+  - then valid evidence_steps are values like [1], [5, 10], or [14]
+  - and invalid evidence_steps are values like [2], [3], or [4] unless those are real flow step indices listed above
 
 Your job:
 Generate candidate SOFTWARE REQUIREMENTS for the UI.
@@ -51,7 +59,7 @@ Return ONLY valid JSON in this format:
       "id": "REQ-01",
       "type": "ui_element_value | workflow_transition | conditional_behavior",
       "text": "The system shall ...",
-      "evidence_steps": [1, 2],
+      "evidence_steps": [1, 5],
       "confidence": "high | medium | low"
     }}
   ]
