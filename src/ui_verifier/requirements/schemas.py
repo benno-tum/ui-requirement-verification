@@ -35,6 +35,22 @@ def _drop_none(d: dict[str, Any]) -> dict[str, Any]:
     return {k: v for k, v in d.items() if v is not None}
 
 
+def _validate_manual_verification_label(value: str | None) -> str | None:
+    if value is None:
+        return None
+
+    if not isinstance(value, str):
+        raise TypeError("manual_verification_label must be a string or None")
+
+    normalized = value.strip().lower().replace("-", "_").replace(" ", "_")
+    allowed = {"fulfilled", "partially_fulfilled", "not_fulfilled", "abstain"}
+    if normalized not in allowed:
+        raise ValueError(
+            "manual_verification_label must be one of: fulfilled, partially_fulfilled, not_fulfilled, abstain"
+        )
+    return normalized
+
+
 class RequirementScope(str, Enum):
     SINGLE_SCREEN = "single_screen"
     MULTI_SCREEN = "multi_screen"
@@ -155,6 +171,8 @@ class GoldRequirement(RequirementBase):
     source_candidate_id: str | None = None
     annotation_notes: str | None = None
     annotated_by: str | None = None
+    manual_verification_label: str | None = None
+    manual_verification_notes: str | None = None
     created_at: str = field(default_factory=_utc_now_iso)
 
     def __post_init__(self) -> None:
@@ -170,6 +188,11 @@ class GoldRequirement(RequirementBase):
         if self.annotated_by is not None:
             self.annotated_by = self.annotated_by.strip() or None
 
+        self.manual_verification_label = _validate_manual_verification_label(self.manual_verification_label)
+
+        if self.manual_verification_notes is not None:
+            self.manual_verification_notes = self.manual_verification_notes.strip() or None
+
         self.created_at = _require_non_empty(self.created_at, "created_at")
 
     def to_dict(self) -> dict[str, Any]:
@@ -182,6 +205,8 @@ class GoldRequirement(RequirementBase):
                 "source_candidate_id": self.source_candidate_id,
                 "annotation_notes": self.annotation_notes,
                 "annotated_by": self.annotated_by,
+                "manual_verification_label": self.manual_verification_label,
+                "manual_verification_notes": self.manual_verification_notes,
                 "created_at": self.created_at,
             }
         )
@@ -203,6 +228,8 @@ class GoldRequirement(RequirementBase):
             source_candidate_id=data.get("source_candidate_id"),
             annotation_notes=data.get("annotation_notes"),
             annotated_by=data.get("annotated_by"),
+            manual_verification_label=data.get("manual_verification_label"),
+            manual_verification_notes=data.get("manual_verification_notes"),
             created_at=data.get("created_at", _utc_now_iso()),
         )
 

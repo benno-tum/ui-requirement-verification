@@ -21,6 +21,8 @@ export type FlowStep = {
   image_url: string
 }
 
+export type ManualVerdictLabel = '' | 'fulfilled' | 'partially_fulfilled' | 'not_fulfilled' | 'abstain'
+
 export type Requirement = {
   requirement_id: string
   flow_id: string
@@ -35,6 +37,9 @@ export type Requirement = {
   annotated_by?: string
   created_at?: string
   confidence?: number
+  rationale?: string
+  manual_verification_label?: Exclude<ManualVerdictLabel, ''>
+  manual_verification_notes?: string
 }
 
 export type EvidenceRef = {
@@ -57,6 +62,16 @@ export type VerificationRun = {
   verifier_name: string
   created_at: string
   verdicts: RequirementVerdict[]
+}
+
+export type RequirementPayload = {
+  edited_text?: string
+  edited_step_indices?: number[]
+  edited_tags?: string[]
+  annotation_notes?: string
+  annotated_by?: string
+  manual_verification_label?: Exclude<ManualVerdictLabel, ''>
+  manual_verification_notes?: string
 }
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL ?? 'http://127.0.0.1:8000'
@@ -92,8 +107,13 @@ export const api = {
   listCandidates: (flowId: string) => request<Requirement[]>(`/flows/${flowId}/candidates`),
   listGold: (flowId: string) => request<Requirement[]>(`/flows/${flowId}/gold`),
   getLatestVerification: (flowId: string) => request<VerificationRun>(`/flows/${flowId}/verification/latest`),
-  acceptCandidate: (flowId: string, requirementId: string, payload: { annotation_notes?: string; annotated_by?: string }) =>
+  acceptCandidate: (flowId: string, requirementId: string, payload: RequirementPayload) =>
     request<Requirement>(`/flows/${flowId}/candidates/${requirementId}/accept`, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
+  reviewCandidate: (flowId: string, requirementId: string, payload: RequirementPayload) =>
+    request<Requirement>(`/flows/${flowId}/candidates/${requirementId}/review`, {
       method: 'POST',
       body: JSON.stringify(payload),
     }),
@@ -106,6 +126,11 @@ export const api = {
     request<Requirement>(`/flows/${flowId}/candidates/${requirementId}/needs-review`, {
       method: 'POST',
       body: JSON.stringify({}),
+    }),
+  updateGoldRequirement: (flowId: string, requirementId: string, payload: RequirementPayload) =>
+    request<Requirement>(`/flows/${flowId}/gold/${requirementId}`, {
+      method: 'POST',
+      body: JSON.stringify(payload),
     }),
   verify: (payload: { flow_dir: string; max_images: number; dry_run: boolean }) =>
     request<VerificationRun | { status: string; flow_dir: string }>('/verify', {

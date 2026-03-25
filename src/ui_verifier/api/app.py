@@ -9,39 +9,26 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from ui_verifier.annotation.service import AnnotationService
-from ui_verifier.api.flow_catalog import BASE_DIR, FlowCatalog
+from ui_verifier.api.flow_catalog import FlowCatalog
 from ui_verifier.verification.service import VerificationService
 from ui_verifier.verification.storage import VerificationStorage
 
 
-app = FastAPI(title="UI Verifier API", version="0.2.0")
+app = FastAPI(title="UI Verifier API")
+annotation_service = AnnotationService()
+verification_service = VerificationService(annotation_service=annotation_service)
+verification_storage = VerificationStorage()
+flow_catalog = FlowCatalog(annotation_storage=annotation_service.storage, verification_storage=verification_storage)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:4173",
-        "http://127.0.0.1:4173",
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-    ],
+    allow_origins=["http://127.0.0.1:5173", "http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-annotation_service = AnnotationService()
-verification_storage = VerificationStorage()
-verification_service = VerificationService(annotation_service=annotation_service)
-flow_catalog = FlowCatalog(
-    annotation_storage=annotation_service.storage,
-    verification_storage=verification_storage,
-)
-
-processed_root = BASE_DIR / "data" / "processed"
-if processed_root.exists():
-    app.mount("/static", StaticFiles(directory=processed_root), name="static")
+app.mount("/static/flows", StaticFiles(directory=str(flow_catalog.flows_root)), name="flow_static")
 
 
 class AcceptCandidateRequest(BaseModel):
@@ -50,11 +37,31 @@ class AcceptCandidateRequest(BaseModel):
     edited_tags: list[str] | None = None
     annotation_notes: str | None = None
     annotated_by: str | None = None
+    manual_verification_label: str | None = None
+    manual_verification_notes: str | None = None
 
 
 class RejectCandidateRequest(BaseModel):
     reason: str | None = None
     annotated_by: str | None = None
+
+
+class UpdateCandidateRequest(BaseModel):
+    edited_text: str | None = None
+    edited_step_indices: list[int] | None = None
+    edited_tags: list[str] | None = None
+    annotation_notes: str | None = None
+    annotated_by: str | None = None
+
+
+class UpdateGoldRequirementRequest(BaseModel):
+    edited_text: str | None = None
+    edited_step_indices: list[int] | None = None
+    edited_tags: list[str] | None = None
+    annotation_notes: str | None = None
+    annotated_by: str | None = None
+    manual_verification_label: str | None = None
+    manual_verification_notes: str | None = None
 
 
 class VerifyFlowRequest(BaseModel):
@@ -137,7 +144,34 @@ def accept_candidate(
             edited_tags=body.edited_tags,
             annotation_notes=body.annotation_notes,
             annotated_by=body.annotated_by,
+            manual_verification_label=body.manual_verification_label,
+            manual_verification_notes=body.manual_verification_notes,
         )
+        return req.to_dict()
+    except (FileNotFoundError, KeyError) as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+
+
+@app.post("/flows/{flow_id}/candidates/{requirement_id}/review")
+def review_candidate(
+    flow_id: str,
+    requirement_id: str,
+    body: UpdateCandidateRequest,
+) -> dict[str, Any]:
+    try:
+        req = annotation_service.update_candidate(
+            flow_id,
+            requirement_id,
+            edited_text=body.edited_text,
+            edited_step_indices=body.edited_step_indices,
+            edited_tags=body.edited_tags,
+            annotation_notes=body.annotation_notes,
+            annotated_by=body.annotated_by,
+            review_status=None,
+        )
+        req = annotation_service.mark_needs_review(flow_id, requirement_id)
         return req.to_dict()
     except (FileNotFoundError, KeyError) as e:
         raise HTTPException(status_code=404, detail=str(e)) from e
@@ -171,6 +205,31 @@ def mark_candidate_needs_review(flow_id: str, requirement_id: str) -> dict[str, 
         return req.to_dict()
     except (FileNotFoundError, KeyError) as e:
         raise HTTPException(status_code=404, detail=str(e)) from e
+
+
+@app.post("/flows/{flow_id}/gold/{requirement_id}")
+def update_gold_requirement(
+    flow_id: str,
+    requirement_id: str,
+    body: UpdateGoldRequirementRequest,
+) -> dict[str, Any]:
+    try:
+        req = annotation_service.update_gold_requirement(
+            flow_id,
+            requirement_id,
+            edited_text=body.edited_text,
+            edited_step_indices=body.edited_step_indices,
+            edited_tags=body.edited_tags,
+            annotation_notes=body.annotation_notes,
+            annotated_by=body.annotated_by,
+            manual_verification_label=body.manual_verification_label,
+            manual_verification_notes=body.manual_verification_notes,
+        )
+        return req.to_dict()
+    except (FileNotFoundError, KeyError) as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
 
 
 @app.post("/verify")
