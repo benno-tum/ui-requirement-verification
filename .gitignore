@@ -31,3 +31,6 @@ data/report/
 
 # logs
 *.log
+# Frontend
+frontend/node_modules/
+frontend/dist/
