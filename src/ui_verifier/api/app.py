@@ -4,16 +4,44 @@ from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, Field
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
 
 from ui_verifier.annotation.service import AnnotationService
+from ui_verifier.api.flow_catalog import BASE_DIR, FlowCatalog
 from ui_verifier.verification.service import VerificationService
+from ui_verifier.verification.storage import VerificationStorage
 
 
-app = FastAPI(title="UI Verifier API", version="0.1.0")
+app = FastAPI(title="UI Verifier API", version="0.2.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:4173",
+        "http://127.0.0.1:4173",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 annotation_service = AnnotationService()
+verification_storage = VerificationStorage()
 verification_service = VerificationService(annotation_service=annotation_service)
+flow_catalog = FlowCatalog(
+    annotation_storage=annotation_service.storage,
+    verification_storage=verification_storage,
+)
+
+processed_root = BASE_DIR / "data" / "processed"
+if processed_root.exists():
+    app.mount("/static", StaticFiles(directory=processed_root), name="static")
 
 
 class AcceptCandidateRequest(BaseModel):
@@ -43,6 +71,31 @@ def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
+@app.get("/flows")
+def list_flows() -> list[dict[str, Any]]:
+    return flow_catalog.list_flows()
+
+
+@app.get("/flows/{flow_id}")
+def get_flow(flow_id: str) -> dict[str, Any]:
+    try:
+        return flow_catalog.get_flow(flow_id)
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+
+
+@app.get("/flows/{flow_id}/steps")
+def get_flow_steps(flow_id: str) -> list[dict[str, Any]]:
+    try:
+        return flow_catalog.get_flow_steps(flow_id)
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+
+
 @app.get("/flows/{flow_id}/candidates")
 def list_candidates(flow_id: str, only_pending: bool = False) -> list[dict[str, Any]]:
     try:
@@ -57,6 +110,14 @@ def list_gold_requirements(flow_id: str) -> list[dict[str, Any]]:
     try:
         reqs = annotation_service.list_gold_requirements(flow_id)
         return [r.to_dict() for r in reqs]
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+
+
+@app.get("/flows/{flow_id}/verification/latest")
+def get_latest_verification_run(flow_id: str) -> dict[str, Any]:
+    try:
+        return verification_storage.load_run(flow_id).to_dict()
     except FileNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e)) from e
 
