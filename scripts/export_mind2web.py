@@ -9,7 +9,7 @@ import argparse
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
-DEFAULT_OUT = BASE_DIR / "data" / "mind2web_export"
+DEFAULT_OUT = BASE_DIR / "data" / "processed" / "flows" / "mind2web"
 
 
 def safe_name(s: str) -> str:

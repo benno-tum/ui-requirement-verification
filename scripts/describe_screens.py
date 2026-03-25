@@ -9,7 +9,7 @@ from typing import List
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
-DEFAULT_FLOW_ROOT = BASE_DIR / "data" / "processed" / "mind2web_export"
+DEFAULT_FLOW_ROOT = BASE_DIR / "data" / "processed" / "flows" / "mind2web"
 DEFAULT_OUT_ROOT = BASE_DIR / "data" / "generated" / "screen_descriptions"
 
 

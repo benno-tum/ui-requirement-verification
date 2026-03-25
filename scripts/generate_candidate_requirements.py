@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parents[1]
-DEFAULT_INPUT_DIR = BASE_DIR / "data" / "mind2web_export"
+DEFAULT_INPUT_DIR = BASE_DIR / "data" / "processed" / "flows" / "mind2web"
 
 
 def load_json(path: Path):
