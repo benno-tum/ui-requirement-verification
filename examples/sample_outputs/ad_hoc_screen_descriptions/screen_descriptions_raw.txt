@@ -1,0 +1,43 @@
+{
+  "images": [
+    {
+      "image_id": "step_01",
+      "description": "The screenshot displays the Budget car rental homepage, featuring a prominent banner for a discount, a car rental search form, various promotional offers, and sections for AARP members and local rental savings.",
+      "visible_ui_elements": [
+        "Budget logo",
+        "Navigation links: Reservations, Deals, Cars & Services, Fastbreak, Locations",
+        "Utility links: Sign In, Register, Business Rentals, Car Sales, Customer Care",
+        "Banner with text: '$10 OFF A 3 DAY RENTAL when you spend $175 or more. Plus, save even more with pay now.'",
+        "Input field for 'Enter your pick-up location or zip code'",
+        "Date input field with calendar icon",
+        "Time input field with clock icon",
+        "Checkbox for 'Rent a Moving Truck'",
+        "Button: 'Select My Car'",
+        "Promotional text: 'LIMITED TIME! Get $10 OFF a 3 day rental of $175 or more PLUS save even more when you pay now. Book Today!'",
+        "Section title: 'Car rentals that fit your budget'",
+        "Promotional card: 'ROAD TRIP! 30% OFF + 10% BACK on an Amazon.com Gift Card'",
+        "Promotional card: 'Get our BEST Last Minute Deals!'",
+        "Link: 'Save Today'",
+        "Promotional card: 'Rent an SUV for as low as $69/day'",
+        "Link: 'View All Deals'",
+        "Feedback button",
+        "Section title: 'AARP Members'",
+        "Text: 'Perk up with exclusive deals and savings!'",
+        "Button: 'Learn More'",
+        "Section title: 'Save 10% on Already Low Rates at Your Local Car Rental Location'",
+        "Text: 'Head to the nearest Budget in your city, town, or neighborhood and save up to 10% on your car rental.'",
+        "Button: 'Find a Local Rental'",
+        "Footer section with columns: 'Popular Searches', 'Popular Rental Cars', 'Popular US Destinations', 'Budget Partners', 'Budget Support', 'Company Info'",
+        "Dropdown for language/country selection (two visible)",
+        "Social media icons: Twitter, Facebook, YouTube, LinkedIn, Instagram"
+      ],
+      "visible_values": [
+        "Date input field value: '04/06/2023'",
+        "Time input field value: 'noon'"
+      ],
+      "uncertainties": []
+    }
+  ],
+  "pairwise_changes": [],
+  "overall_summary": "The sequence displays the Budget car rental homepage, highlighting various rental deals and options, and providing a form for users to search for car rentals."
+}

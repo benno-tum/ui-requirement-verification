@@ -1,0 +1,12 @@
+{
+  "mode": "per_image",
+  "model": "gemini-2.5-flash",
+  "image_max_side": 1024,
+  "images": [
+    "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/mind2web_export/01_budget_91695df8-f256-47c9-8c37-06e8d0fc758f/step_01.png"
+  ],
+  "image_labels": [
+    "step_01"
+  ],
+  "task": null
+}

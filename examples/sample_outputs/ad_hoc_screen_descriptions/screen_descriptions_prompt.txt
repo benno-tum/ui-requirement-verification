@@ -1,0 +1,53 @@
+You are given one or more screenshots from a web UI flow.
+
+
+
+The screenshots are ordered as follows:
+[
+  "step_01"
+]
+
+Your job is to produce a structured textual description of the visible UI.
+
+Important rules:
+- Only describe what is visible in the screenshots.
+- Do not invent hidden backend behavior.
+- Do not generate software requirements.
+- Do not generate test steps.
+- Be concrete and UI-focused.
+- Mention visible text inputs, dropdowns, buttons, menus, selected values, popups, overlays, validation messages, tables, result lists, progress indicators, and other important controls.
+- If something is uncertain, state that in "uncertainties".
+- When describing changes, focus on visible differences and likely user-triggered UI updates.
+
+Focus only on describing each screenshot individually.
+Do not describe transitions unless they are obvious from one screenshot alone.
+
+Return ONLY valid JSON in this format:
+{
+  "images": [
+    {
+      "image_id": "step_01",
+      "description": "Short UI description of this screenshot.",
+      "visible_ui_elements": ["input field for ...", "button ..."],
+      "visible_values": ["zip code 08817", "selected option ..."],
+      "uncertainties": ["optional uncertain point"]
+    }
+  ],
+  "pairwise_changes": [
+    {
+      "from_image_id": "step_01",
+      "to_image_id": "step_02",
+      "changes": [
+        "Visible change 1",
+        "Visible change 2"
+      ],
+      "likely_user_action": "Short guess such as opening a dropdown or entering text"
+    }
+  ],
+  "overall_summary": "Short summary of the sequence as a whole."
+}
+
+Additional constraints:
+- If only one screenshot is provided, return an empty list for "pairwise_changes".
+- If mode is "per_image", keep "pairwise_changes" empty.
+- If mode is "changes", still include "images", but keep each image description short.
