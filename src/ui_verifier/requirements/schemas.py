@@ -151,6 +151,7 @@ class CandidateRequirement(RequirementBase):
 class GoldRequirement(RequirementBase):
     origin: RequirementOrigin = RequirementOrigin.HUMAN
     review_status: RequirementReviewStatus = RequirementReviewStatus.ACCEPTED
+    step_indices: list[int] = field(default_factory=list)
     source_candidate_id: str | None = None
     annotation_notes: str | None = None
     annotated_by: str | None = None
@@ -158,6 +159,7 @@ class GoldRequirement(RequirementBase):
 
     def __post_init__(self) -> None:
         RequirementBase.__post_init__(self)
+        self.step_indices = _validate_step_indices(self.step_indices)
 
         if self.source_candidate_id is not None:
             self.source_candidate_id = self.source_candidate_id.strip() or None
@@ -176,6 +178,7 @@ class GoldRequirement(RequirementBase):
             {
                 "origin": self.origin.value,
                 "review_status": self.review_status.value,
+                "step_indices": self.step_indices,
                 "source_candidate_id": self.source_candidate_id,
                 "annotation_notes": self.annotation_notes,
                 "annotated_by": self.annotated_by,
@@ -196,6 +199,7 @@ class GoldRequirement(RequirementBase):
             review_status=RequirementReviewStatus(
                 data.get("review_status", RequirementReviewStatus.ACCEPTED.value)
             ),
+            step_indices=list(data.get("step_indices", [])),
             source_candidate_id=data.get("source_candidate_id"),
             annotation_notes=data.get("annotation_notes"),
             annotated_by=data.get("annotated_by"),
