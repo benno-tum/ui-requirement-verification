@@ -238,7 +238,7 @@ def validate_candidate_consistency(
             )
 
 
-def process_flow(
+def generate_harvested_for_flow(
     flow_dir: Path,
     output_root: Path,
     steps_arg: str | None,
@@ -246,17 +246,15 @@ def process_flow(
     image_max_side: int,
     dry_run: bool,
     model_name: str,
-) -> None:
+) -> HarvestedRequirementFile | None:
     task_path = flow_dir / "task.json"
     if not task_path.exists():
-        print(f"[SKIP] No task.json in {flow_dir}")
-        return
+        raise FileNotFoundError(f"No task.json in {flow_dir}")
 
     task = load_json(task_path)
     step_paths = find_step_images(flow_dir)
     if not step_paths:
-        print(f"[SKIP] No step images in {flow_dir}")
-        return
+        raise FileNotFoundError(f"No step images in {flow_dir}")
 
     selected_paths = select_requirement_harvest_images(
         step_paths,
@@ -289,7 +287,7 @@ def process_flow(
         print(f"[DRY RUN] {flow_dir.name}")
         print("Selected steps:", selected_steps)
         print("Output dir:", out_dir)
-        return
+        return None
 
     image_bytes_list = [downscale_to_png_bytes(p, max_side=image_max_side) for p in selected_paths]
     raw_text = run_gemini(prompt, image_bytes_list, model_name=model_name)
@@ -312,11 +310,39 @@ def process_flow(
     harvest_path = out_dir / "harvested_requirements.json"
     harvest_file.save(harvest_path)
 
-    candidate_file = build_verification_candidates(harvest_file)
-    candidate_path = out_dir / "candidate_requirements.json"
-    candidate_file.save(candidate_path)
-
     print(f"[OK] {flow_dir.name} -> {harvest_path}")
+    return harvest_file
+
+
+def process_flow(
+    flow_dir: Path,
+    output_root: Path,
+    steps_arg: str | None,
+    max_images: int | None,
+    image_max_side: int,
+    dry_run: bool,
+    model_name: str,
+) -> None:
+    try:
+        harvest_file = generate_harvested_for_flow(
+            flow_dir=flow_dir,
+            output_root=output_root,
+            steps_arg=steps_arg,
+            max_images=max_images,
+            image_max_side=image_max_side,
+            dry_run=dry_run,
+            model_name=model_name,
+        )
+    except FileNotFoundError as exc:
+        print(f"[SKIP] {exc}")
+        return
+
+    if dry_run or harvest_file is None:
+        return
+
+    candidate_file = build_verification_candidates(harvest_file)
+    candidate_path = output_root / flow_dir.name / "candidate_requirements.json"
+    candidate_file.save(candidate_path)
     print(f"[OK] {flow_dir.name} -> {candidate_path}")
 
 

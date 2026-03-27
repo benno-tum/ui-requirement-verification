@@ -213,6 +213,25 @@ function App() {
     }
 
 
+    async function handleGenerateHarvestedRequirements() {
+        if (!selectedFlowId) {
+            return
+        }
+        setMessage('')
+        try {
+            const result = await api.generateHarvestedRequirements(selectedFlowId, {
+                max_images: maxImages,
+                image_max_side: 1024,
+                model_name: 'gemini-2.5-flash',
+            })
+            await loadFlowDetails(selectedFlowId)
+            setViewMode('harvested')
+            setMessage(`Generated ${result.harvested_count} harvested requirements.`)
+        } catch (error) {
+            setMessage(error instanceof Error ? error.message : 'Failed to generate harvested requirements')
+        }
+    }
+
     async function handleMaterializeCandidatesFromHarvested() {
         if (!selectedFlowId) {
             return
@@ -297,7 +316,7 @@ function App() {
                             <span>{flow.website ?? flow.dataset}</span>
                             <span>{flow.num_steps} steps</span>
                             <span>
-                {flow.gold_count}/{flow.candidate_count} gold
+                {flow.gold_count} gold · {flow.pending_candidate_count ?? flow.candidate_count} pending
               </span>
                         </button>
                     ))}
@@ -415,6 +434,7 @@ function App() {
                     <HarvestedPanel
                         harvested={harvested}
                         onJumpToStep={jumpToStep}
+                        onGenerate={() => void handleGenerateHarvestedRequirements()}
                         onMaterialize={() => void handleMaterializeCandidatesFromHarvested()}
                     />
                 )}
@@ -786,10 +806,12 @@ function OverviewPanel({
 function HarvestedPanel({
     harvested,
     onJumpToStep,
+    onGenerate,
     onMaterialize,
 }: {
     harvested: HarvestedRequirement[]
     onJumpToStep: (stepIndex: number) => void
+    onGenerate: () => void
     onMaterialize: () => void
 }) {
     return (
@@ -800,9 +822,14 @@ function HarvestedPanel({
                         <h3>Harvested requirement hypotheses</h3>
                         <span>{harvested.length} items</span>
                     </div>
-                    <button onClick={onMaterialize} disabled={harvested.length === 0}>
-                        Replace candidates from harvested
-                    </button>
+                    <div className="button-row">
+                        <button onClick={onGenerate}>
+                            Generate harvested requirements
+                        </button>
+                        <button onClick={onMaterialize} disabled={harvested.length === 0}>
+                            Replace candidates from harvested
+                        </button>
+                    </div>
                 </div>
                 <p className="inline-note">
                     These are the broader hypotheses produced from the UI flow before candidate normalization.

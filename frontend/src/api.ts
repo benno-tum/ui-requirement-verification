@@ -8,6 +8,7 @@ export type FlowSummary = {
   domain?: string | null
   confirmed_task?: string | null
   candidate_count: number
+  pending_candidate_count?: number
   gold_count: number
   has_verification_run: boolean
   task?: Record<string, unknown> | null
@@ -90,6 +91,12 @@ export type RebuildCandidatesResponse = {
   requirements: Requirement[]
 }
 
+export type GenerateHarvestedResponse = {
+  flow_id: string
+  harvested_count: number
+  requirements: HarvestedRequirement[]
+}
+
 export type VerificationRun = {
   dataset: string
   flow_id: string
@@ -139,6 +146,11 @@ export const api = {
   getFlow: (flowId: string) => request<FlowSummary>(`/flows/${flowId}`),
   getSteps: (flowId: string) => request<FlowStep[]>(`/flows/${flowId}/steps`),
   listHarvested: (flowId: string) => request<HarvestedRequirement[]>(`/flows/${flowId}/harvested`),
+  generateHarvestedRequirements: (flowId: string, payload?: { max_images?: number; image_max_side?: number; model_name?: string }) =>
+    request<GenerateHarvestedResponse>(`/flows/${flowId}/harvested/generate`, {
+      method: 'POST',
+      body: JSON.stringify(payload ?? {}),
+    }),
   listCandidates: (flowId: string) => request<Requirement[]>(`/flows/${flowId}/candidates`),
   rebuildCandidatesFromHarvested: (flowId: string) =>
     request<RebuildCandidatesResponse>(`/flows/${flowId}/candidates/rebuild-from-harvested`, {

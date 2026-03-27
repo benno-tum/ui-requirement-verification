@@ -10,6 +10,7 @@ from pydantic import BaseModel
 
 from ui_verifier.annotation.service import AnnotationService
 from ui_verifier.api.flow_catalog import FlowCatalog
+from ui_verifier.requirements.candidate_generation import generate_harvested_for_flow
 from ui_verifier.verification.service import VerificationService
 from ui_verifier.verification.storage import VerificationStorage
 
@@ -77,6 +78,12 @@ class VerifyFlowRequest(BaseModel):
     dry_run: bool = True
 
 
+class GenerateHarvestedRequest(BaseModel):
+    max_images: int | None = 6
+    image_max_side: int = 1024
+    model_name: str = "gemini-2.5-flash"
+
+
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
@@ -116,6 +123,37 @@ def list_harvested_requirements(flow_id: str) -> list[dict[str, Any]]:
         return [r.to_dict() for r in reqs]
     except FileNotFoundError:
         return []
+
+
+
+
+@app.post("/flows/{flow_id}/harvested/generate")
+def generate_harvested_requirements(
+    flow_id: str,
+    body: GenerateHarvestedRequest,
+) -> dict[str, Any]:
+    try:
+        _, flow_dir = flow_catalog.resolve_flow(flow_id)
+        harvest_file = generate_harvested_for_flow(
+            flow_dir=flow_dir,
+            output_root=annotation_service.storage.candidate_root,
+            steps_arg=None,
+            max_images=body.max_images,
+            image_max_side=body.image_max_side,
+            dry_run=False,
+            model_name=body.model_name,
+        )
+        if harvest_file is None:
+            raise ValueError("Harvest generation did not produce any requirements")
+        return {
+            "flow_id": flow_id,
+            "harvested_count": len(harvest_file.requirements),
+            "requirements": [r.to_dict() for r in harvest_file.requirements],
+        }
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
 
 
 @app.post("/flows/{flow_id}/candidates/rebuild-from-harvested")
