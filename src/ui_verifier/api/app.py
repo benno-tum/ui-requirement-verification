@@ -108,8 +108,8 @@ def list_candidates(flow_id: str, only_pending: bool = False) -> list[dict[str, 
     try:
         reqs = annotation_service.list_candidates(flow_id, only_pending=only_pending)
         return [r.to_dict() for r in reqs]
-    except FileNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e)) from e
+    except FileNotFoundError:
+        return []
 
 
 @app.get("/flows/{flow_id}/gold")
@@ -117,8 +117,8 @@ def list_gold_requirements(flow_id: str) -> list[dict[str, Any]]:
     try:
         reqs = annotation_service.list_gold_requirements(flow_id)
         return [r.to_dict() for r in reqs]
-    except FileNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e)) from e
+    except FileNotFoundError:
+        return []
 
 
 @app.get("/flows/{flow_id}/verification/latest")
