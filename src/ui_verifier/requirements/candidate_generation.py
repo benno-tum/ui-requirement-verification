@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 import argparse
 import json
-from typing import Any
+from typing import Any, TypeVar
 
 from dotenv import load_dotenv
 
@@ -11,16 +11,29 @@ from ui_verifier.common.flow_utils import (
     find_flow_dirs,
     find_step_images,
     parse_step_number,
-    select_images,
+    select_requirement_harvest_images,
 )
 from ui_verifier.common.image_utils import downscale_to_png_bytes
 from ui_verifier.common.json_utils import load_json, parse_json_response
+from ui_verifier.requirement_inspection.schemas import (
+    AnnotationConfidence,
+    NonEvaluableReason,
+    RequirementInspectionType,
+    UiEvaluability,
+    VisibleSubtype,
+)
 from ui_verifier.requirements.prompting import build_prompt
 from ui_verifier.requirements.gemini_client import run_gemini
 from ui_verifier.requirements.schemas import (
+    BenchmarkDecision,
+    CandidateOrigin,
     CandidateRequirement,
     CandidateRequirementFile,
+    HarvestedRequirement,
+    HarvestedRequirementFile,
+    RequirementReviewStatus,
     RequirementScope,
+    TaskRelevance,
 )
 
 
@@ -29,28 +42,18 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parents[3]
 DEFAULT_INPUT_DIR = BASE_DIR / "data" / "processed" / "flows" / "mind2web"
 DEFAULT_OUTPUT_ROOT = BASE_DIR / "data" / "generated" / "candidate_requirements"
+DATASET_NAME = "mind2web"
+
+EnumT = TypeVar("EnumT")
 
 
-def confidence_label_to_float(value: Any) -> float | None:
-    if value is None:
-        return None
-
-    if isinstance(value, (int, float)):
-        value = float(value)
-        if 0.0 <= value <= 1.0:
-            return value
-        return None
-
+def parse_confidence_label(value: Any) -> AnnotationConfidence:
     if not isinstance(value, str):
-        return None
-
-    normalized = value.strip().lower()
-    mapping = {
-        "high": 0.9,
-        "medium": 0.6,
-        "low": 0.3,
-    }
-    return mapping.get(normalized)
+        return AnnotationConfidence.MEDIUM
+    normalized = value.strip().upper()
+    if normalized in {"HIGH", "MEDIUM", "LOW"}:
+        return AnnotationConfidence(normalized)
+    return AnnotationConfidence.MEDIUM
 
 
 def infer_scope(step_indices: list[int]) -> RequirementScope:
@@ -59,68 +62,180 @@ def infer_scope(step_indices: list[int]) -> RequirementScope:
     return RequirementScope.MULTI_SCREEN
 
 
-def normalize_model_requirements(
+def _coerce_enum(value: Any, enum_type: type[EnumT], default: EnumT) -> EnumT:
+    if isinstance(value, enum_type):
+        return value
+    if isinstance(value, str):
+        normalized = value.strip()
+        if normalized:
+            try:
+                return enum_type(normalized)
+            except ValueError:
+                pass
+    return default
+
+
+def _normalize_evidence_steps(evidence_steps_raw: Any, allowed_steps: list[int]) -> list[int]:
+    allowed_step_set = set(allowed_steps)
+    if not isinstance(evidence_steps_raw, list):
+        return []
+
+    step_indices: list[int] = []
+    for step in evidence_steps_raw:
+        try:
+            step_int = int(step)
+        except (TypeError, ValueError):
+            continue
+        if step_int in allowed_step_set:
+            step_indices.append(step_int)
+    return sorted(set(step_indices))
+
+
+def normalize_model_harvest(
     parsed: dict[str, Any],
     flow_id: str,
     model_name: str,
     prompt_path: Path,
     allowed_steps: list[int],
-) -> CandidateRequirementFile:
+) -> HarvestedRequirementFile:
     raw_requirements = parsed.get("requirements", [])
     if not isinstance(raw_requirements, list):
         raise ValueError("Parsed model output must contain a list under 'requirements'.")
 
-    requirements: list[CandidateRequirement] = []
+    requirements: list[HarvestedRequirement] = []
 
     for i, item in enumerate(raw_requirements, start=1):
         if not isinstance(item, dict):
             continue
 
-        req_id = str(item.get("id") or f"REQ-{i:02d}").strip()
-        text = str(item.get("text") or "").strip()
-        if not text:
+        req_id = str(item.get("id") or f"HARV-{i:02d}").strip()
+        harvested_text = str(item.get("harvested_text") or item.get("text") or "").strip()
+        if not harvested_text:
             continue
 
-        evidence_steps_raw = item.get("evidence_steps", [])
-        if not isinstance(evidence_steps_raw, list):
-            evidence_steps_raw = []
+        step_indices = _normalize_evidence_steps(item.get("evidence_steps"), allowed_steps)
 
-        allowed_step_set = set(allowed_steps)
-
-        step_indices = []
-        for step in evidence_steps_raw:
-            try:
-                step_int = int(step)
-            except (TypeError, ValueError):
-                continue
-            if step_int in allowed_step_set:
-                step_indices.append(step_int)
-
-        step_indices = sorted(set(step_indices))
-
-        req_type = item.get("type")
-        tags = [str(req_type).strip()] if isinstance(req_type, str) and str(req_type).strip() else []
-
-        confidence = confidence_label_to_float(item.get("confidence"))
-
-        requirement = CandidateRequirement(
-            requirement_id=req_id,
+        requirement = HarvestedRequirement(
+            harvest_id=req_id,
             flow_id=flow_id,
-            text=text,
-            scope=infer_scope(step_indices),
-            tags=tags,
+            harvested_text=harvested_text,
+            requirement_type=_coerce_enum(
+                item.get("requirement_type"), RequirementInspectionType, RequirementInspectionType.UNCLEAR
+            ),
+            ui_evaluability=_coerce_enum(
+                item.get("ui_evaluability"), UiEvaluability, UiEvaluability.NOT_UI_VERIFIABLE
+            ),
+            non_evaluable_reason=_coerce_enum(
+                item.get("non_evaluable_reason"), NonEvaluableReason, NonEvaluableReason.NONE
+            ),
+            visible_subtype=_coerce_enum(
+                item.get("visible_subtype"), VisibleSubtype, VisibleSubtype.NONE
+            ),
+            task_relevance=_coerce_enum(
+                item.get("task_relevance"), TaskRelevance, TaskRelevance.MEDIUM
+            ),
             step_indices=step_indices,
+            rationale=item.get("rationale"),
+            visible_core_candidate=item.get("visible_core_candidate"),
             generation_model=model_name,
-            generation_prompt_path=str(prompt_path),
-            confidence=confidence,
+            generation_prompt_path=prompt_path.name,
+            confidence=parse_confidence_label(item.get("confidence")),
         )
         requirements.append(requirement)
 
-    return CandidateRequirementFile(
-        dataset="mind2web",
+    return HarvestedRequirementFile(
+        dataset=DATASET_NAME,
         flow_id=flow_id,
         requirements=requirements,
     )
+
+
+def build_verification_candidates(
+    harvest_file: HarvestedRequirementFile,
+) -> CandidateRequirementFile:
+    requirements: list[CandidateRequirement] = []
+
+    for idx, harvest in enumerate(harvest_file.requirements, start=1):
+        candidate_id = f"REQ-{idx:02d}"
+        candidate_text = harvest.harvested_text
+        candidate_origin = CandidateOrigin.DIRECT_FROM_HARVEST
+        benchmark_decision = BenchmarkDecision.DIRECT_INCLUDE
+        review_status = RequirementReviewStatus.CANDIDATE
+        ui_evaluability = harvest.ui_evaluability
+        non_evaluable_reason = harvest.non_evaluable_reason
+        excluded_reason: NonEvaluableReason | None = None
+
+        if harvest.ui_evaluability == UiEvaluability.PARTIALLY_UI_VERIFIABLE:
+            if harvest.visible_core_candidate:
+                candidate_text = harvest.visible_core_candidate
+                candidate_origin = CandidateOrigin.VISIBLE_CORE_REWRITE
+                benchmark_decision = BenchmarkDecision.REWRITE_TO_VISIBLE_CORE
+                ui_evaluability = UiEvaluability.UI_VERIFIABLE
+                non_evaluable_reason = NonEvaluableReason.NONE
+            else:
+                benchmark_decision = BenchmarkDecision.EXCLUDE_FROM_VERIFICATION_BENCHMARK
+                review_status = RequirementReviewStatus.REJECTED
+                excluded_reason = harvest.non_evaluable_reason
+        elif harvest.ui_evaluability == UiEvaluability.NOT_UI_VERIFIABLE:
+            benchmark_decision = BenchmarkDecision.EXCLUDE_FROM_VERIFICATION_BENCHMARK
+            review_status = RequirementReviewStatus.REJECTED
+            excluded_reason = harvest.non_evaluable_reason
+
+        requirement = CandidateRequirement(
+            requirement_id=candidate_id,
+            flow_id=harvest.flow_id,
+            text=candidate_text,
+            scope=infer_scope(harvest.step_indices),
+            tags=[],
+            step_indices=list(harvest.step_indices),
+            rationale=harvest.rationale,
+            generation_model=harvest.generation_model,
+            generation_prompt_path=harvest.generation_prompt_path,
+            confidence=harvest.confidence,
+            source_harvest_id=harvest.harvest_id,
+            candidate_origin=candidate_origin,
+            benchmark_decision=benchmark_decision,
+            parent_harvest_text=harvest.harvested_text if candidate_origin == CandidateOrigin.VISIBLE_CORE_REWRITE else None,
+            requirement_type=harvest.requirement_type,
+            ui_evaluability=ui_evaluability,
+            non_evaluable_reason=non_evaluable_reason,
+            visible_subtype=harvest.visible_subtype,
+            task_relevance=harvest.task_relevance,
+            excluded_reason=excluded_reason,
+            review_status=review_status,
+        )
+        requirements.append(requirement)
+
+    candidate_file = CandidateRequirementFile(
+        dataset=harvest_file.dataset,
+        flow_id=harvest_file.flow_id,
+        requirements=requirements,
+    )
+    validate_candidate_consistency(candidate_file, sorted({s for req in harvest_file.requirements for s in req.step_indices}))
+    return candidate_file
+
+
+def validate_candidate_consistency(
+    candidate_file: CandidateRequirementFile,
+    selected_steps: list[int],
+) -> None:
+    selected_step_set = set(selected_steps)
+    for requirement in candidate_file.requirements:
+        if not set(requirement.step_indices).issubset(selected_step_set):
+            raise ValueError(
+                f"Candidate {requirement.requirement_id} references steps outside the selected set: {requirement.step_indices} vs {selected_steps}"
+            )
+        if requirement.candidate_origin == CandidateOrigin.VISIBLE_CORE_REWRITE and not requirement.source_harvest_id:
+            raise ValueError(
+                f"Candidate {requirement.requirement_id} is a visible-core rewrite but has no source_harvest_id"
+            )
+        if (
+            requirement.benchmark_decision == BenchmarkDecision.EXCLUDE_FROM_VERIFICATION_BENCHMARK
+            and requirement.excluded_reason is None
+        ):
+            raise ValueError(
+                f"Candidate {requirement.requirement_id} is excluded but has no excluded_reason"
+            )
 
 
 def process_flow(
@@ -143,7 +258,11 @@ def process_flow(
         print(f"[SKIP] No step images in {flow_dir}")
         return
 
-    selected_paths = select_images(step_paths, steps_arg=steps_arg, max_images=max_images)
+    selected_paths = select_requirement_harvest_images(
+        step_paths,
+        steps_arg=steps_arg,
+        max_images=max_images,
+    )
     selected_steps = [parse_step_number(p) for p in selected_paths]
 
     prompt = build_prompt(task, selected_steps)
@@ -183,16 +302,22 @@ def process_flow(
         encoding="utf-8",
     )
 
-    candidate_file = normalize_model_requirements(
+    harvest_file = normalize_model_harvest(
         parsed=parsed,
         flow_id=flow_dir.name,
         model_name=model_name,
         prompt_path=out_prompt,
         allowed_steps=selected_steps,
     )
-    candidate_file.save(out_dir / "candidate_requirements.json")
+    harvest_path = out_dir / "harvested_requirements.json"
+    harvest_file.save(harvest_path)
 
-    print(f"[OK] {flow_dir.name} -> {out_dir / 'candidate_requirements.json'}")
+    candidate_file = build_verification_candidates(harvest_file)
+    candidate_path = out_dir / "candidate_requirements.json"
+    candidate_file.save(candidate_path)
+
+    print(f"[OK] {flow_dir.name} -> {harvest_path}")
+    print(f"[OK] {flow_dir.name} -> {candidate_path}")
 
 
 def main() -> None:
