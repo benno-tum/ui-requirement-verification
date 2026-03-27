@@ -52,6 +52,10 @@ class UpdateCandidateRequest(BaseModel):
     edited_tags: list[str] | None = None
     annotation_notes: str | None = None
     annotated_by: str | None = None
+    benchmark_decision: str | None = None
+    ui_evaluability: str | None = None
+    visible_subtype: str | None = None
+    requirement_type: str | None = None
 
 
 class UpdateGoldRequirementRequest(BaseModel):
@@ -102,6 +106,16 @@ def get_flow_steps(flow_id: str) -> list[dict[str, Any]]:
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e)) from e
 
+
+
+
+@app.get("/flows/{flow_id}/harvested")
+def list_harvested_requirements(flow_id: str) -> list[dict[str, Any]]:
+    try:
+        reqs = annotation_service.list_harvested(flow_id)
+        return [r.to_dict() for r in reqs]
+    except FileNotFoundError:
+        return []
 
 @app.get("/flows/{flow_id}/candidates")
 def list_candidates(flow_id: str, only_pending: bool = False) -> list[dict[str, Any]]:

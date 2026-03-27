@@ -2,7 +2,11 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from ui_verifier.requirements.schemas import CandidateRequirementFile, GoldRequirementFile
+from ui_verifier.requirements.schemas import (
+    CandidateRequirementFile,
+    GoldRequirementFile,
+    HarvestedRequirementFile,
+)
 
 
 BASE_DIR = Path(__file__).resolve().parents[3]
@@ -22,6 +26,9 @@ class AnnotationStorage:
     def candidate_dir(self, flow_id: str) -> Path:
         return self.candidate_root / flow_id
 
+    def harvested_file_path(self, flow_id: str) -> Path:
+        return self.candidate_dir(flow_id) / "harvested_requirements.json"
+
     def candidate_file_path(self, flow_id: str) -> Path:
         return self.candidate_dir(flow_id) / "candidate_requirements.json"
 
@@ -30,6 +37,17 @@ class AnnotationStorage:
 
     def gold_file_path(self, flow_id: str) -> Path:
         return self.gold_dir(flow_id) / "gold_requirements.json"
+
+    def load_harvested_file(self, flow_id: str) -> HarvestedRequirementFile:
+        path = self.harvested_file_path(flow_id)
+        if not path.exists():
+            raise FileNotFoundError(f"Harvested requirements not found: {path}")
+        return HarvestedRequirementFile.load(path)
+
+    def save_harvested_file(self, harvested_file: HarvestedRequirementFile) -> Path:
+        path = self.harvested_file_path(harvested_file.flow_id)
+        harvested_file.save(path)
+        return path
 
     def load_candidate_file(self, flow_id: str) -> CandidateRequirementFile:
         path = self.candidate_file_path(flow_id)

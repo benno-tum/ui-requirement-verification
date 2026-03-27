@@ -23,6 +23,24 @@ export type FlowStep = {
 
 export type ManualVerdictLabel = '' | 'fulfilled' | 'partially_fulfilled' | 'not_fulfilled' | 'abstain'
 
+export type HarvestedRequirement = {
+  harvest_id: string
+  flow_id: string
+  harvested_text: string
+  requirement_type: string
+  ui_evaluability: string
+  non_evaluable_reason: string
+  visible_subtype: string
+  task_relevance: string
+  step_indices: number[]
+  rationale?: string
+  visible_core_candidate?: string | null
+  generation_model?: string
+  generation_prompt_path?: string
+  confidence?: string
+  created_at?: string
+}
+
 export type Requirement = {
   requirement_id: string
   flow_id: string
@@ -33,10 +51,20 @@ export type Requirement = {
   review_status?: string
   step_indices: number[]
   source_candidate_id?: string
+  source_harvest_id?: string
+  candidate_origin?: string
+  benchmark_decision?: string
+  parent_harvest_text?: string
+  requirement_type?: string
+  ui_evaluability?: string
+  non_evaluable_reason?: string
+  visible_subtype?: string
+  task_relevance?: string
+  excluded_reason?: string | null
   annotation_notes?: string
   annotated_by?: string
   created_at?: string
-  confidence?: number
+  confidence?: string
   rationale?: string
   manual_verification_label?: Exclude<ManualVerdictLabel, ''>
   manual_verification_notes?: string
@@ -104,6 +132,7 @@ export const api = {
   listFlows: () => request<FlowSummary[]>('/flows'),
   getFlow: (flowId: string) => request<FlowSummary>(`/flows/${flowId}`),
   getSteps: (flowId: string) => request<FlowStep[]>(`/flows/${flowId}/steps`),
+  listHarvested: (flowId: string) => request<HarvestedRequirement[]>(`/flows/${flowId}/harvested`),
   listCandidates: (flowId: string) => request<Requirement[]>(`/flows/${flowId}/candidates`),
   listGold: (flowId: string) => request<Requirement[]>(`/flows/${flowId}/gold`),
   getLatestVerification: (flowId: string) => request<VerificationRun>(`/flows/${flowId}/verification/latest`),

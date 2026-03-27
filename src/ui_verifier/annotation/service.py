@@ -2,11 +2,18 @@ from __future__ import annotations
 
 from ui_verifier.annotation.storage import AnnotationStorage
 from ui_verifier.requirements.schemas import (
+    BenchmarkDecision,
     CandidateRequirement,
+    CandidateOrigin,
     GoldRequirement,
     GoldRequirementFile,
+    HarvestedRequirement,
+    NonEvaluableReason,
+    RequirementInspectionType,
     RequirementReviewStatus,
     RequirementScope,
+    UiEvaluability,
+    VisibleSubtype,
 )
 
 
@@ -19,6 +26,10 @@ def _infer_scope(step_indices: list[int]) -> RequirementScope:
 class AnnotationService:
     def __init__(self, storage: AnnotationStorage | None = None) -> None:
         self.storage = storage or AnnotationStorage()
+
+    def list_harvested(self, flow_id: str) -> list[HarvestedRequirement]:
+        harvest_file = self.storage.load_harvested_file(flow_id)
+        return harvest_file.requirements
 
     def list_candidates(self, flow_id: str, only_pending: bool = False) -> list[CandidateRequirement]:
         candidate_file = self.storage.load_candidate_file(flow_id)
@@ -56,6 +67,10 @@ class AnnotationService:
         annotation_notes: str | None = None,
         annotated_by: str | None = None,
         review_status: RequirementReviewStatus | None = None,
+        benchmark_decision: BenchmarkDecision | None = None,
+        ui_evaluability: UiEvaluability | None = None,
+        visible_subtype: VisibleSubtype | None = None,
+        requirement_type: RequirementInspectionType | None = None,
     ) -> CandidateRequirement:
         candidate_file = self.storage.load_candidate_file(flow_id)
         candidate = self._find_candidate(candidate_file.requirements, requirement_id)
@@ -73,6 +88,14 @@ class AnnotationService:
             candidate.origin = candidate.origin
         if review_status is not None:
             candidate.review_status = review_status
+        if benchmark_decision is not None:
+            candidate.benchmark_decision = benchmark_decision
+        if ui_evaluability is not None:
+            candidate.ui_evaluability = ui_evaluability
+        if visible_subtype is not None:
+            candidate.visible_subtype = visible_subtype
+        if requirement_type is not None:
+            candidate.requirement_type = requirement_type
 
         candidate.__post_init__()
         self.storage.save_candidate_file(candidate_file)
@@ -101,10 +124,16 @@ class AnnotationService:
         candidate_file = self.storage.load_candidate_file(flow_id)
         candidate = self._find_candidate(candidate_file.requirements, requirement_id)
 
+        if candidate.benchmark_decision == BenchmarkDecision.EXCLUDE_FROM_VERIFICATION_BENCHMARK:
+            raise ValueError(f"Candidate {requirement_id} is excluded from the verification benchmark")
+
         final_text = (edited_text or candidate.text).strip()
         final_step_indices = edited_step_indices if edited_step_indices is not None else list(candidate.step_indices)
         final_step_indices = sorted(set(int(x) for x in final_step_indices))
         final_tags = edited_tags if edited_tags is not None else list(candidate.tags)
+
+        if candidate.visible_subtype != VisibleSubtype.NONE and not final_step_indices:
+            raise ValueError("Gold requirements with visible evidence must keep at least one linked step")
 
         gold_requirement = GoldRequirement(
             requirement_id=candidate.requirement_id,
@@ -114,10 +143,14 @@ class AnnotationService:
             tags=final_tags,
             step_indices=final_step_indices,
             source_candidate_id=candidate.requirement_id,
+            source_harvest_id=candidate.source_harvest_id,
             annotation_notes=annotation_notes,
             annotated_by=annotated_by,
             manual_verification_label=manual_verification_label,
             manual_verification_notes=manual_verification_notes,
+            requirement_type=candidate.requirement_type,
+            ui_evaluability=candidate.ui_evaluability,
+            visible_subtype=candidate.visible_subtype,
         )
 
         gold_file = self.storage.load_gold_file(flow_id)
