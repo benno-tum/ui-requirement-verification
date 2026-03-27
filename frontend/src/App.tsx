@@ -6,13 +6,14 @@ import {
     type FlowSummary,
     type ManualVerdictLabel,
     type Requirement,
+    type HarvestedRequirement,
     type RequirementPayload,
     type RequirementVerdict,
     type VerificationRun,
 } from './api'
 
 type LoadState = 'idle' | 'loading' | 'error'
-type ViewMode = 'single' | 'multi' | 'overview' | 'verification'
+type ViewMode = 'single' | 'multi' | 'overview' | 'verification' | 'harvested'
 type EditorMode = 'candidate' | 'gold'
 
 type EditorState = {
@@ -35,6 +36,7 @@ const VIEW_TABS: Array<{ id: ViewMode; label: string }> = [
     {id: 'multi', label: 'Multi-screen review'},
     {id: 'overview', label: 'Overview'},
     {id: 'verification', label: 'Verification results'},
+    {id: 'harvested', label: 'Harvested'},
 ]
 
 function App() {
@@ -43,6 +45,7 @@ function App() {
     const [selectedFlowId, setSelectedFlowId] = useState<string>('')
     const [selectedFlow, setSelectedFlow] = useState<FlowSummary | null>(null)
     const [steps, setSteps] = useState<FlowStep[]>([])
+    const [harvested, setHarvested] = useState<HarvestedRequirement[]>([])
     const [candidates, setCandidates] = useState<Requirement[]>([])
     const [gold, setGold] = useState<Requirement[]>([])
     const [run, setRun] = useState<VerificationRun | null>(null)
@@ -95,6 +98,7 @@ function App() {
         setMessage('')
         setSelectedFlow(null)
         setSteps([])
+        setHarvested([])
         setCandidates([])
         setGold([])
         setRun(null)
@@ -103,8 +107,9 @@ function App() {
             const flow = await api.getFlow(flowId)
             setSelectedFlow(flow)
 
-            const [stepsResult, candidatesResult, goldResult, runResult] = await Promise.allSettled([
+            const [stepsResult, harvestedResult, candidatesResult, goldResult, runResult] = await Promise.allSettled([
                 api.getSteps(flowId),
+                api.listHarvested(flowId),
                 api.listCandidates(flowId),
                 api.listGold(flowId),
                 api.getLatestVerification(flowId),
@@ -112,6 +117,12 @@ function App() {
 
             if (stepsResult.status === 'fulfilled') {
                 setSteps(stepsResult.value)
+            }
+
+            if (harvestedResult.status === 'fulfilled') {
+                setHarvested(harvestedResult.value)
+            } else {
+                setHarvested([])
             }
 
             if (candidatesResult.status === 'fulfilled') {
@@ -198,6 +209,22 @@ function App() {
             await loadFlowDetails(selectedFlowId)
         } catch (error) {
             setMessage(error instanceof Error ? error.message : 'Failed to save requirement changes')
+        }
+    }
+
+
+    async function handleMaterializeCandidatesFromHarvested() {
+        if (!selectedFlowId) {
+            return
+        }
+        setMessage('')
+        try {
+            const result = await api.rebuildCandidatesFromHarvested(selectedFlowId)
+            await loadFlowDetails(selectedFlowId)
+            setViewMode('single')
+            setMessage(`Rebuilt ${result.candidate_count} candidate requirements from harvested items.`)
+        } catch (error) {
+            setMessage(error instanceof Error ? error.message : 'Failed to rebuild candidates from harvested requirements')
         }
     }
 
@@ -383,6 +410,14 @@ function App() {
 
                 {selectedFlow && viewMode === 'verification' &&
                     <VerificationPanel run={run} onJumpToStep={jumpToStep}/>}
+
+                {selectedFlow && viewMode === 'harvested' && (
+                    <HarvestedPanel
+                        harvested={harvested}
+                        onJumpToStep={jumpToStep}
+                        onMaterialize={() => void handleMaterializeCandidatesFromHarvested()}
+                    />
+                )}
 
                 <footer className="footer-note card">
                     <strong>{activeCandidates.length}</strong> candidate requirements still need manual review.
@@ -742,6 +777,69 @@ function OverviewPanel({
                         />
                     ))}
                 </div>
+            </section>
+        </section>
+    )
+}
+
+
+function HarvestedPanel({
+    harvested,
+    onJumpToStep,
+    onMaterialize,
+}: {
+    harvested: HarvestedRequirement[]
+    onJumpToStep: (stepIndex: number) => void
+    onMaterialize: () => void
+}) {
+    return (
+        <section className="content-grid">
+            <section className="card panel-wide">
+                <div className="panel-header">
+                    <div>
+                        <h3>Harvested requirement hypotheses</h3>
+                        <span>{harvested.length} items</span>
+                    </div>
+                    <button onClick={onMaterialize} disabled={harvested.length === 0}>
+                        Replace candidates from harvested
+                    </button>
+                </div>
+                <p className="inline-note">
+                    These are the broader hypotheses produced from the UI flow before candidate normalization.
+                </p>
+                {harvested.length > 0 ? (
+                    <div className="requirement-list compact-list">
+                        {harvested.map((item) => (
+                            <article key={item.harvest_id} className="requirement-card">
+                                <div className="requirement-header">
+                                    <strong>{item.harvest_id}</strong>
+                                    <div className="pill-row">
+                                        <span className={`status-pill ${item.ui_evaluability?.toLowerCase?.() ?? ''}`}>
+                                            {humanizeStatus(item.ui_evaluability)}
+                                        </span>
+                                        <span className="status-pill">{item.visible_subtype}</span>
+                                        <span className="status-pill">{item.task_relevance}</span>
+                                    </div>
+                                </div>
+                                <p>{item.harvested_text}</p>
+                                <div className="meta-block">
+                                    <span>Type: {item.requirement_type}</span>
+                                    <span>Confidence: {item.confidence ?? 'n/a'}</span>
+                                    <span>Steps: <StepChipList stepIndices={item.step_indices} onJumpToStep={onJumpToStep} /></span>
+                                </div>
+                                {item.visible_core_candidate && (
+                                    <p className="inline-note">Visible-core rewrite suggestion: {item.visible_core_candidate}</p>
+                                )}
+                                {item.non_evaluable_reason && item.non_evaluable_reason !== 'NONE' && (
+                                    <p className="inline-note">Limitation: {humanizeStatus(item.non_evaluable_reason)}</p>
+                                )}
+                                {item.rationale && <p className="inline-note">Rationale: {item.rationale}</p>}
+                            </article>
+                        ))}
+                    </div>
+                ) : (
+                    <p className="empty-text">No harvested requirements available for this flow yet.</p>
+                )}
             </section>
         </section>
     )

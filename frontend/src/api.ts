@@ -84,6 +84,12 @@ export type RequirementVerdict = {
   explanation?: string
 }
 
+export type RebuildCandidatesResponse = {
+  flow_id: string
+  candidate_count: number
+  requirements: Requirement[]
+}
+
 export type VerificationRun = {
   dataset: string
   flow_id: string
@@ -134,6 +140,11 @@ export const api = {
   getSteps: (flowId: string) => request<FlowStep[]>(`/flows/${flowId}/steps`),
   listHarvested: (flowId: string) => request<HarvestedRequirement[]>(`/flows/${flowId}/harvested`),
   listCandidates: (flowId: string) => request<Requirement[]>(`/flows/${flowId}/candidates`),
+  rebuildCandidatesFromHarvested: (flowId: string) =>
+    request<RebuildCandidatesResponse>(`/flows/${flowId}/candidates/rebuild-from-harvested`, {
+      method: 'POST',
+      body: JSON.stringify({}),
+    }),
   listGold: (flowId: string) => request<Requirement[]>(`/flows/${flowId}/gold`),
   getLatestVerification: (flowId: string) => request<VerificationRun>(`/flows/${flowId}/verification/latest`),
   acceptCandidate: (flowId: string, requirementId: string, payload: RequirementPayload) =>

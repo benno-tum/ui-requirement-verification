@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from ui_verifier.annotation.storage import AnnotationStorage
+from ui_verifier.requirements.candidate_generation import build_verification_candidates
 from ui_verifier.requirements.schemas import (
     BenchmarkDecision,
     CandidateRequirement,
@@ -30,6 +31,12 @@ class AnnotationService:
     def list_harvested(self, flow_id: str) -> list[HarvestedRequirement]:
         harvest_file = self.storage.load_harvested_file(flow_id)
         return harvest_file.requirements
+
+    def rebuild_candidates_from_harvested(self, flow_id: str) -> CandidateRequirementFile:
+        harvest_file = self.storage.load_harvested_file(flow_id)
+        candidate_file = build_verification_candidates(harvest_file)
+        self.storage.save_candidate_file(candidate_file)
+        return candidate_file
 
     def list_candidates(self, flow_id: str, only_pending: bool = False) -> list[CandidateRequirement]:
         candidate_file = self.storage.load_candidate_file(flow_id)

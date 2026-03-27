@@ -117,6 +117,22 @@ def list_harvested_requirements(flow_id: str) -> list[dict[str, Any]]:
     except FileNotFoundError:
         return []
 
+
+@app.post("/flows/{flow_id}/candidates/rebuild-from-harvested")
+def rebuild_candidates_from_harvested(flow_id: str) -> dict[str, Any]:
+    try:
+        candidate_file = annotation_service.rebuild_candidates_from_harvested(flow_id)
+        return {
+            "flow_id": flow_id,
+            "candidate_count": len(candidate_file.requirements),
+            "requirements": [r.to_dict() for r in candidate_file.requirements],
+        }
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+
+
 @app.get("/flows/{flow_id}/candidates")
 def list_candidates(flow_id: str, only_pending: bool = False) -> list[dict[str, Any]]:
     try:
