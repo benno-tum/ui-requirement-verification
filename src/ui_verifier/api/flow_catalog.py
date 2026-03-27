@@ -86,6 +86,7 @@ class FlowCatalog:
         step_paths = find_step_images(flow_dir)
         task = self._load_json(flow_dir / "task.json")
         candidate_count = self._safe_candidate_count(flow_id)
+        pending_candidate_count = self._safe_candidate_count(flow_id, only_pending=True)
         gold_count = self._safe_gold_count(flow_id)
         has_verification_run = self._has_verification_run(flow_id)
 
@@ -99,6 +100,7 @@ class FlowCatalog:
             "domain": task.get("domain") if isinstance(task, dict) else None,
             "confirmed_task": task.get("confirmed_task") if isinstance(task, dict) else None,
             "candidate_count": candidate_count,
+            "pending_candidate_count": pending_candidate_count,
             "gold_count": gold_count,
             "has_verification_run": has_verification_run,
         }
@@ -107,11 +109,17 @@ class FlowCatalog:
             summary["task"] = task
         return summary
 
-    def _safe_candidate_count(self, flow_id: str) -> int:
+    def _safe_candidate_count(self, flow_id: str, only_pending: bool = False) -> int:
         try:
-            return len(self.annotation_storage.load_candidate_file(flow_id).requirements)
+            requirements = self.annotation_storage.load_candidate_file(flow_id).requirements
         except FileNotFoundError:
             return 0
+
+        if not only_pending:
+            return len(requirements)
+
+        pending_statuses = {"candidate", "needs_review"}
+        return sum(1 for requirement in requirements if getattr(requirement.review_status, "value", requirement.review_status) in pending_statuses)
 
     def _safe_gold_count(self, flow_id: str) -> int:
         gold_file = self.annotation_storage.load_gold_file(flow_id)
