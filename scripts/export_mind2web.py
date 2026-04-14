@@ -1,11 +1,12 @@
 from datasets import load_dataset
 from pathlib import Path
 from collections import OrderedDict
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 import io
 import json
 import re
 import argparse
+from typing import Optional
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
@@ -38,6 +39,8 @@ def downscale_image(img: Image.Image, max_side: int) -> Image.Image:
 
 
 def load_pil_image(obj) -> Image.Image:
+    if obj is None:
+        raise TypeError("Screenshot is None")
     if hasattr(obj, "save"):
         return obj
     if isinstance(obj, dict) and obj.get("bytes") is not None:
@@ -53,32 +56,104 @@ def save_img(obj, path: Path, max_side: int):
     img.save(path, format="PNG", optimize=True)
 
 
+def read_allowed_ids(path: Optional[Path]) -> Optional[set[str]]:
+    if path is None:
+        return None
+    if not path.exists():
+        raise FileNotFoundError(f"Allowed IDs file not found: {path}")
+    ids = {
+        line.strip()
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip() and not line.strip().startswith("#")
+    }
+    return ids
+
+
+def flow_has_exportable_screens(rows: list[dict]) -> tuple[bool, str | None]:
+    for row in rows:
+        screenshot = row.get("screenshot")
+        if screenshot is None:
+            return False, "missing_screenshot"
+        try:
+            img = load_pil_image(screenshot)
+            _ = img.size
+        except (TypeError, OSError, UnidentifiedImageError, ValueError) as exc:
+            return False, f"unreadable_screenshot: {exc}"
+    return True, None
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--split", default="test_task")
     parser.add_argument("--max-flows", type=int, default=10)
     parser.add_argument("--max-side", type=int, default=1280)
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    parser.add_argument(
+        "--allowed-flows-file",
+        type=Path,
+        default=None,
+        help="Optional text file with one annotation_id per line. Only these flows are exported.",
+    )
+    parser.add_argument(
+        "--allowed-websites-file",
+        type=Path,
+        default=None,
+        help="Optional text file with one website per line. Only flows from these websites are exported.",
+    )
     args = parser.parse_args()
 
     out_dir = args.out
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    allowed_flows = read_allowed_ids(args.allowed_flows_file)
+    allowed_websites = read_allowed_ids(args.allowed_websites_file)
+
     print(f"Loading split={args.split} ...")
     ds = load_dataset("osunlp/Multimodal-Mind2Web", split=args.split)
 
-    flows = OrderedDict()
+    grouped = OrderedDict()
     for row in ds:
         ann = row["annotation_id"]
-        if ann not in flows:
-            if len(flows) >= args.max_flows:
-                break
-            flows[ann] = []
-        flows[ann].append(row)
+        grouped.setdefault(ann, []).append(row)
 
-    for i, (ann, rows) in enumerate(flows.items(), start=1):
+    selected_flows = OrderedDict()
+    skipped_by_filter = 0
+    for ann, rows in grouped.items():
         first = rows[0]
-        folder = out_dir / f"{i:02d}_{safe_name(first.get('website'))}_{safe_name(ann)}"
+        website = str(first.get("website") or "")
+
+        if allowed_flows is not None and ann not in allowed_flows:
+            skipped_by_filter += 1
+            continue
+        if allowed_websites is not None and website not in allowed_websites:
+            skipped_by_filter += 1
+            continue
+
+        selected_flows[ann] = rows
+        if args.max_flows and len(selected_flows) >= args.max_flows:
+            break
+
+    skipped_bad_screens = 0
+    exported = 0
+    skipped_manifest = []
+
+    for i, (ann, rows) in enumerate(selected_flows.items(), start=1):
+        ok, reason = flow_has_exportable_screens(rows)
+        if not ok:
+            skipped_bad_screens += 1
+            skipped_manifest.append(
+                {
+                    "annotation_id": ann,
+                    "website": rows[0].get("website"),
+                    "domain": rows[0].get("domain"),
+                    "reason": reason,
+                }
+            )
+            print(f"[SKIP] {ann} ({rows[0].get('website')}): {reason}")
+            continue
+
+        first = rows[0]
+        folder = out_dir / f"{exported + 1:02d}_{safe_name(first.get('website'))}_{safe_name(ann)}"
         folder.mkdir(parents=True, exist_ok=True)
 
         task_meta = {
@@ -89,6 +164,8 @@ def main():
             "num_steps": len(rows),
             "split": args.split,
             "max_side": args.max_side,
+            "allowed_flows_file": str(args.allowed_flows_file.relative_to(BASE_DIR)) if args.allowed_flows_file else None,
+            "allowed_websites_file": str(args.allowed_websites_file.relative_to(BASE_DIR)) if args.allowed_websites_file else None,
         }
         (folder / "task.json").write_text(
             json.dumps(task_meta, indent=2, ensure_ascii=False),
@@ -115,9 +192,33 @@ def main():
             encoding="utf-8"
         )
 
+        exported += 1
         print(f"[OK] {folder.name} with {len(rows)} steps")
 
+    export_summary = {
+        "split": args.split,
+        "max_flows": args.max_flows,
+        "max_side": args.max_side,
+        "allowed_flows_file": str(args.allowed_flows_file.relative_to(BASE_DIR)) if args.allowed_flows_file else None,
+        "allowed_websites_file": str(args.allowed_websites_file.relative_to(BASE_DIR)) if args.allowed_websites_file else None,
+        "num_grouped_flows": len(grouped),
+        "num_selected_flows": len(selected_flows),
+        "num_exported_flows": exported,
+        "num_skipped_by_filter": skipped_by_filter,
+        "num_skipped_bad_screens": skipped_bad_screens,
+        "skipped_bad_screen_flows": skipped_manifest,
+    }
+    (out_dir / "export_summary.json").write_text(
+        json.dumps(export_summary, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
     print(f"\nDone. Export folder: {out_dir.resolve()}")
+    print(f"  Grouped flows:         {len(grouped)}")
+    print(f"  Selected after filter: {len(selected_flows)}")
+    print(f"  Exported flows:        {exported}")
+    print(f"  Skipped by filter:     {skipped_by_filter}")
+    print(f"  Skipped bad screens:   {skipped_bad_screens}")
 
 
 if __name__ == "__main__":
