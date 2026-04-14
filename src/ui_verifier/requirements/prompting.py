@@ -34,6 +34,17 @@ Generate harvested requirement hypotheses from the visible UI flow.
 These are NOT final benchmark items.
 They are broader requirement hypotheses that will later be normalized into candidate verification items.
 
+Feature-first requirement framing:
+- The requirements should describe meaningful software features or capabilities, not the conceptual UI implementation.
+- The UI is evidence for the requirement, not the main subject of the requirement.
+- Focus on what functionality the system must provide to the user, as revealed through the flow.
+- Requirements may abstract beyond the exact visible widget layout when that yields a better feature-level requirement.
+- It is acceptable and important that not all generated requirements fully apply to the current flow.
+- The harvested set may include requirements that are clearly supported, only partly supported, or plausible requirement suggestions nearby variants for a similar system in the same domain would use.
+- Be as broad as possible within the plausible feature space suggested by the shown system, task, and UI flow.
+- Requirements from similar systems are acceptable when they are close variants or plausible additional features, but they should remain closely related to the shown domain and task.
+- Do not invent completely unrelated product capabilities.
+
 PURE-inspired prior you must respect:
 - In realistic requirements sets, many requirements are NOT fully UI-verifiable from screenshots alone.
 - Many others are only PARTIALLY_UI_VERIFIABLE because they contain a visible core plus hidden-state aspects.
@@ -41,7 +52,7 @@ PURE-inspired prior you must respect:
 - They often include broader workflow requirements and NFR-like expectations such as clarity, transparency, consistency, guidance, feedback, and configurability.
 - Therefore, do NOT collapse everything into tiny directly visible widget claims.
 - Treat screenshots as grounding evidence for broader product or workflow requirements, not merely as an inventory of visible controls.
-- Prefer broader, requirement-like statements when the screenshots support them.
+- Prefer broader, feature-level requirement statements when the screenshots support them.
 - Use PARTIALLY_UI_VERIFIABLE and NOT_UI_VERIFIABLE when that is the better classification.
 - If a broader requirement has a visible UI-observable core, keep the broader harvested_text and also provide a visible_core_candidate.
 
@@ -70,6 +81,7 @@ Avoid bad low-value items unless they are clearly task-critical:
 - "The system shall display a last name field"
 - "The system shall display a confirmation number field"
 - generic button or field presence with no broader verification value
+- conceptual UI implementation statements that only describe a specific widget layout
 - harvested items that simply restate one entered value from the task instance
 
 Before emitting a local widget requirement, ask:
@@ -100,6 +112,8 @@ Rules:
 - Use screenshots plus task context, but do not invent hidden backend behavior as visible fact.
 - The harvested_text should usually be broader than the exact visible widget state.
 - The screenshots should lightly anchor the requirement, not shrink it into a literal UI description.
+- Prefer requirements that would still make sense if the exact UI layout, label wording, or widget choice changed.
+- A requirement does not need to be fully satisfied by the current screenshots to be worth harvesting.
 - If something suggests a broader requirement whose full satisfaction depends on hidden state, classify it as PARTIALLY_UI_VERIFIABLE or NOT_UI_VERIFIABLE as appropriate.
 - If evidence is weak, omit the item or lower confidence.
 - It is acceptable to return fewer items if only a few strong items are supported.
@@ -172,6 +186,7 @@ Important principles:
 - However, do NOT create trivial field-by-field items unless they are independently meaningful.
 - Merge low-value local observations into one broader candidate when they belong to the same visible UI function.
 - Preserve the original semantic intent of the harvested item.
+- Keep the requirement focused on a feature or capability, not on a conceptual widget layout.
 - Prefer visible, reviewable verification units.
 - If the harvested item is only partially UI-verifiable, rewrite it to its visible core when that produces a good candidate.
 - Drop weak, redundant, overly speculative, or purely task-instance-specific items.
@@ -185,20 +200,22 @@ What makes a good candidate requirement:
 
 Rewrite policy:
 1. Keep strong broader items when they remain reviewable.
-2. Rewrite partially UI-verifiable harvested items into visible-core candidates when appropriate.
-3. Merge repetitive local field items into one candidate.
-4. Remove duplicates and near-duplicates.
-5. Remove claims that depend too strongly on example-specific data values.
-6. Prefer requirements about:
+2. Preserve feature-level wording when it remains visibly reviewable; do not automatically collapse to widget-level phrasing.
+3. Rewrite partially UI-verifiable harvested items into visible-core candidates when appropriate.
+4. Merge repetitive local field items into one candidate.
+5. Remove duplicates and near-duplicates.
+6. Remove claims that depend too strongly on example-specific data values.
+7. Prefer requirements about:
    - navigation outcomes
    - state carry-over
    - visible feedback
    - visible selection/configuration options
    - grouped information collection
-7. Avoid trivial candidates such as:
+8. Avoid trivial candidates such as:
    - The system shall display a first name field.
    - The system shall display a last name field.
    - The system shall display an email field.
+   - The system shall display a button, label, or dropdown when the real requirement is a broader feature.
    unless no better grouped candidate exists.
 
 Output requirements:
@@ -266,6 +283,8 @@ Your role in this pass:
 - Use the screenshots as grounding evidence.
 - Use the PURE-inspired prior entries as a top-down requirement prior.
 - Generate additional requirement hypotheses that improve realism, breadth, and coverage.
+- Focus on meaningful software capabilities rather than the exact conceptual UI implementation.
+- It is acceptable that some enrichment items are only partly supported or represent close variants from similar systems in the same domain.
 
 What to add if defensible from the flow:
 1. broader workflow or task-support requirements

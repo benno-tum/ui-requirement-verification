@@ -9,6 +9,7 @@ from ui_verifier.requirement_inspection.schemas import (
 )
 from ui_verifier.requirements.candidate_generation import (
     build_verification_candidates,
+    normalize_model_candidates,
     normalize_model_harvest,
 )
 from ui_verifier.requirements.schemas import (
@@ -90,15 +91,78 @@ def test_normalize_model_harvest_and_build_candidates(tmp_path: Path) -> None:
     assert direct.requirement_type == RequirementInspectionType.FR
     assert direct.visible_subtype == VisibleSubtype.TEXT_OR_ELEMENT_PRESENCE
 
-    rewrite = candidate_file.requirements[1]
-    assert rewrite.benchmark_decision == BenchmarkDecision.REWRITE_TO_VISIBLE_CORE
-    assert rewrite.candidate_origin == CandidateOrigin.VISIBLE_CORE_REWRITE
-    assert rewrite.text == "The system shall display a booking confirmation message after submission."
-    assert rewrite.parent_harvest_text == "The system shall send an email confirmation after booking."
-    assert rewrite.ui_evaluability == UiEvaluability.UI_VERIFIABLE
-    assert rewrite.non_evaluable_reason == NonEvaluableReason.NONE
+    partial = candidate_file.requirements[1]
+    assert partial.benchmark_decision == BenchmarkDecision.DIRECT_INCLUDE
+    assert partial.candidate_origin == CandidateOrigin.DIRECT_FROM_HARVEST
+    assert partial.text == "The system shall send an email confirmation after booking."
+    assert partial.parent_harvest_text is None
+    assert partial.ui_evaluability == UiEvaluability.PARTIALLY_UI_VERIFIABLE
+    assert partial.non_evaluable_reason == NonEvaluableReason.EXTERNAL_INTEGRATION
 
     excluded = candidate_file.requirements[2]
     assert excluded.benchmark_decision == BenchmarkDecision.EXCLUDE_FROM_VERIFICATION_BENCHMARK
     assert excluded.review_status == RequirementReviewStatus.REJECTED
     assert excluded.excluded_reason == NonEvaluableReason.BACKEND_HIDDEN_STATE
+
+
+
+def test_normalize_model_candidates_preserves_partial_direct_include(tmp_path: Path) -> None:
+    prompt_path = tmp_path / "gemini_prompt.txt"
+    prompt_path.write_text("prompt", encoding="utf-8")
+
+    harvest_file = normalize_model_harvest(
+        parsed={
+            "requirements": [
+                {
+                    "id": "HARV-01",
+                    "harvested_text": "The system shall allow users to set a preferred home store.",
+                    "requirement_type": "FR",
+                    "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+                    "non_evaluable_reason": "BACKEND_HIDDEN_STATE",
+                    "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+                    "task_relevance": "HIGH",
+                    "evidence_steps": [4],
+                    "confidence": "HIGH",
+                    "rationale": "The UI shows the action but not whether the preference persists.",
+                    "visible_core_candidate": "The system shall display a control to set a preferred home store.",
+                }
+            ]
+        },
+        flow_id="flow-2",
+        model_name="gemini-test",
+        prompt_path=prompt_path,
+        allowed_steps=[4],
+    )
+
+    parsed_candidates = {
+        "requirements": [
+            {
+                "id": "REQ-01",
+                "source_harvest_id": "HARV-01",
+                "candidate_text": "The system shall allow users to set a preferred home store.",
+                "requirement_type": "FR",
+                "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+                "non_evaluable_reason": "BACKEND_HIDDEN_STATE",
+                "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+                "benchmark_decision": "DIRECT_INCLUDE",
+                "candidate_origin": "DIRECT_FROM_HARVEST",
+                "normalization_notes": "Kept the broader feature because the persistence aspect is intentionally only partially visible.",
+            }
+        ]
+    }
+
+    candidate_file = normalize_model_candidates(
+        parsed=parsed_candidates,
+        harvest_file=harvest_file,
+        model_name="gemini-rewrite",
+        prompt_path=tmp_path / "candidate_rewrite_prompt.txt",
+    )
+
+    assert len(candidate_file.requirements) == 1
+    requirement = candidate_file.requirements[0]
+    assert requirement.benchmark_decision == BenchmarkDecision.DIRECT_INCLUDE
+    assert requirement.candidate_origin == CandidateOrigin.DIRECT_FROM_HARVEST
+    assert requirement.ui_evaluability == UiEvaluability.PARTIALLY_UI_VERIFIABLE
+    assert requirement.non_evaluable_reason == NonEvaluableReason.BACKEND_HIDDEN_STATE
+    assert requirement.parent_harvest_text is None
+    assert "intentionally only partially visible" in (requirement.rationale or "")

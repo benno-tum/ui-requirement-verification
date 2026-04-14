@@ -406,16 +406,14 @@ def build_verification_candidates(
         excluded_reason: NonEvaluableReason | None = None
 
         if harvest.ui_evaluability == UiEvaluability.PARTIALLY_UI_VERIFIABLE:
-            if harvest.visible_core_candidate:
-                candidate_text = harvest.visible_core_candidate
-                candidate_origin = CandidateOrigin.VISIBLE_CORE_REWRITE
-                benchmark_decision = BenchmarkDecision.REWRITE_TO_VISIBLE_CORE
-                ui_evaluability = UiEvaluability.UI_VERIFIABLE
-                non_evaluable_reason = NonEvaluableReason.NONE
-            else:
-                benchmark_decision = BenchmarkDecision.EXCLUDE_FROM_VERIFICATION_BENCHMARK
-                review_status = RequirementReviewStatus.REJECTED
-                excluded_reason = harvest.non_evaluable_reason
+            benchmark_decision = BenchmarkDecision.DIRECT_INCLUDE
+            candidate_origin = CandidateOrigin.DIRECT_FROM_HARVEST
+            ui_evaluability = UiEvaluability.PARTIALLY_UI_VERIFIABLE
+            non_evaluable_reason = (
+                harvest.non_evaluable_reason
+                if harvest.non_evaluable_reason != NonEvaluableReason.NONE
+                else NonEvaluableReason.BUSINESS_RULE_NOT_VISIBLE
+            )
         elif harvest.ui_evaluability == UiEvaluability.NOT_UI_VERIFIABLE:
             benchmark_decision = BenchmarkDecision.EXCLUDE_FROM_VERIFICATION_BENCHMARK
             review_status = RequirementReviewStatus.REJECTED
@@ -499,7 +497,7 @@ def normalize_model_candidates(
         ui_evaluability = _coerce_enum(
             item.get("ui_evaluability"),
             UiEvaluability,
-            UiEvaluability.UI_VERIFIABLE,
+            harvest.ui_evaluability if harvest.ui_evaluability != UiEvaluability.NOT_UI_VERIFIABLE else UiEvaluability.UI_VERIFIABLE,
         )
         visible_subtype = _coerce_enum(
             item.get("visible_subtype"),
@@ -511,6 +509,11 @@ def normalize_model_candidates(
             RequirementInspectionType,
             harvest.requirement_type,
         )
+        parsed_non_evaluable_reason = _coerce_enum(
+            item.get("non_evaluable_reason"),
+            NonEvaluableReason,
+            harvest.non_evaluable_reason,
+        )
 
         review_status = RequirementReviewStatus.CANDIDATE
         excluded_reason: NonEvaluableReason | None = None
@@ -520,14 +523,42 @@ def normalize_model_candidates(
             review_status = RequirementReviewStatus.REJECTED
             ui_evaluability = UiEvaluability.NOT_UI_VERIFIABLE
             visible_subtype = VisibleSubtype.NONE
-            excluded_reason = harvest.non_evaluable_reason
+            excluded_reason = parsed_non_evaluable_reason
+            if excluded_reason == NonEvaluableReason.NONE:
+                excluded_reason = harvest.non_evaluable_reason
             if excluded_reason == NonEvaluableReason.NONE:
                 excluded_reason = NonEvaluableReason.TOO_ABSTRACT
             non_evaluable_reason = excluded_reason
-        elif ui_evaluability == UiEvaluability.PARTIALLY_UI_VERIFIABLE:
-            benchmark_decision = BenchmarkDecision.REWRITE_TO_VISIBLE_CORE
+        elif benchmark_decision == BenchmarkDecision.REWRITE_TO_VISIBLE_CORE:
             candidate_origin = CandidateOrigin.VISIBLE_CORE_REWRITE
-            non_evaluable_reason = harvest.non_evaluable_reason if harvest.non_evaluable_reason != NonEvaluableReason.NONE else NonEvaluableReason.BUSINESS_RULE_NOT_VISIBLE
+            if ui_evaluability == UiEvaluability.NOT_UI_VERIFIABLE:
+                ui_evaluability = UiEvaluability.UI_VERIFIABLE
+            if ui_evaluability == UiEvaluability.PARTIALLY_UI_VERIFIABLE:
+                non_evaluable_reason = (
+                    parsed_non_evaluable_reason
+                    if parsed_non_evaluable_reason != NonEvaluableReason.NONE
+                    else (harvest.non_evaluable_reason if harvest.non_evaluable_reason != NonEvaluableReason.NONE else NonEvaluableReason.BUSINESS_RULE_NOT_VISIBLE)
+                )
+            else:
+                ui_evaluability = UiEvaluability.UI_VERIFIABLE
+                non_evaluable_reason = NonEvaluableReason.NONE
+        elif ui_evaluability == UiEvaluability.PARTIALLY_UI_VERIFIABLE:
+            benchmark_decision = BenchmarkDecision.DIRECT_INCLUDE
+            non_evaluable_reason = (
+                parsed_non_evaluable_reason
+                if parsed_non_evaluable_reason != NonEvaluableReason.NONE
+                else (harvest.non_evaluable_reason if harvest.non_evaluable_reason != NonEvaluableReason.NONE else NonEvaluableReason.BUSINESS_RULE_NOT_VISIBLE)
+            )
+        elif ui_evaluability == UiEvaluability.NOT_UI_VERIFIABLE:
+            benchmark_decision = BenchmarkDecision.EXCLUDE_FROM_VERIFICATION_BENCHMARK
+            review_status = RequirementReviewStatus.REJECTED
+            visible_subtype = VisibleSubtype.NONE
+            excluded_reason = (
+                parsed_non_evaluable_reason
+                if parsed_non_evaluable_reason != NonEvaluableReason.NONE
+                else (harvest.non_evaluable_reason if harvest.non_evaluable_reason != NonEvaluableReason.NONE else NonEvaluableReason.TOO_ABSTRACT)
+            )
+            non_evaluable_reason = excluded_reason
         else:
             ui_evaluability = UiEvaluability.UI_VERIFIABLE
             non_evaluable_reason = NonEvaluableReason.NONE
