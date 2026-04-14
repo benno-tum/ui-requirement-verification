@@ -80,8 +80,16 @@ class VerifyFlowRequest(BaseModel):
 
 class GenerateHarvestedRequest(BaseModel):
     max_images: int | None = 6
-    image_max_side: int = 1024
+    image_max_side: int = 1280
     model_name: str = "gemini-2.5-flash"
+    temperature: float = 0.7
+    hybrid_mode: bool = False
+    pure_prior_top_k: int = 6
+
+
+class RebuildCandidatesRequest(BaseModel):
+    candidate_model_name: str = "gemini-2.5-flash-lite"
+    allow_overwrite_with_gold: bool = False
 
 
 @app.get("/health")
@@ -142,6 +150,9 @@ def generate_harvested_requirements(
             image_max_side=body.image_max_side,
             dry_run=False,
             model_name=body.model_name,
+            temperature=body.temperature,
+            hybrid_mode=body.hybrid_mode,
+            pure_prior_top_k=body.pure_prior_top_k,
         )
         if harvest_file is None:
             raise ValueError("Harvest generation did not produce any requirements")
@@ -157,9 +168,16 @@ def generate_harvested_requirements(
 
 
 @app.post("/flows/{flow_id}/candidates/rebuild-from-harvested")
-def rebuild_candidates_from_harvested(flow_id: str) -> dict[str, Any]:
+def rebuild_candidates_from_harvested(
+    flow_id: str,
+    body: RebuildCandidatesRequest,
+) -> dict[str, Any]:
     try:
-        candidate_file = annotation_service.rebuild_candidates_from_harvested(flow_id)
+        candidate_file = annotation_service.rebuild_candidates_from_harvested(
+            flow_id,
+            candidate_model_name=body.candidate_model_name,
+            allow_overwrite_with_gold=body.allow_overwrite_with_gold,
+        )
         return {
             "flow_id": flow_id,
             "candidate_count": len(candidate_file.requirements),

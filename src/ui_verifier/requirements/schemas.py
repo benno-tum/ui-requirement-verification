@@ -144,6 +144,8 @@ class HarvestedRequirement:
     generation_prompt_path: str | None = None
     confidence: AnnotationConfidence = AnnotationConfidence.MEDIUM
     created_at: str = field(default_factory=_utc_now_iso)
+    source_strategy: str | None = None
+    prior_source_ids: list[str] = field(default_factory=list)
 
     def __post_init__(self) -> None:
         self.harvest_id = _require_non_empty(self.harvest_id, "harvest_id")
@@ -155,6 +157,8 @@ class HarvestedRequirement:
         self.generation_model = _normalize_optional_text(self.generation_model)
         self.generation_prompt_path = _normalize_optional_text(self.generation_prompt_path)
         self.created_at = _require_non_empty(self.created_at, "created_at")
+        self.source_strategy = _normalize_optional_text(self.source_strategy)
+        self.prior_source_ids = [str(x).strip() for x in self.prior_source_ids if str(x).strip()]
 
         if self.ui_evaluability == UiEvaluability.NOT_UI_VERIFIABLE:
             if self.visible_subtype != VisibleSubtype.NONE:
@@ -186,6 +190,8 @@ class HarvestedRequirement:
             "generation_prompt_path": self.generation_prompt_path,
             "confidence": self.confidence.value,
             "created_at": self.created_at,
+            "source_strategy": self.source_strategy,
+            "prior_source_ids": self.prior_source_ids,
         }
 
     @classmethod
@@ -214,6 +220,8 @@ class HarvestedRequirement:
             generation_prompt_path=data.get("generation_prompt_path"),
             confidence=AnnotationConfidence(data.get("confidence", AnnotationConfidence.MEDIUM.value)),
             created_at=data.get("created_at", _utc_now_iso()),
+            source_strategy=data.get("source_strategy"),
+            prior_source_ids=list(data.get("prior_source_ids", [])),
         )
 
 

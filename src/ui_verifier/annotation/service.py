@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from ui_verifier.annotation.storage import AnnotationStorage
-from ui_verifier.requirements.candidate_generation import build_verification_candidates
+from ui_verifier.requirements.candidate_generation import build_verification_candidates, rewrite_verification_candidates
 from ui_verifier.requirements.schemas import (
     BenchmarkDecision,
     CandidateRequirement,
@@ -32,9 +32,28 @@ class AnnotationService:
         harvest_file = self.storage.load_harvested_file(flow_id)
         return harvest_file.requirements
 
-    def rebuild_candidates_from_harvested(self, flow_id: str) -> CandidateRequirementFile:
+    def rebuild_candidates_from_harvested(
+        self,
+        flow_id: str,
+        *,
+        candidate_model_name: str = "gemini-2.5-flash-lite",
+        allow_overwrite_with_gold: bool = False,
+    ) -> CandidateRequirementFile:
+        gold_file = self.storage.load_gold_file(flow_id)
+        if gold_file is not None and gold_file.requirements and not allow_overwrite_with_gold:
+            raise ValueError(
+                f"Gold requirements already exist for flow {flow_id}. Rebuilding candidates may desynchronize candidate and gold sets."
+            )
+
         harvest_file = self.storage.load_harvested_file(flow_id)
-        candidate_file = build_verification_candidates(harvest_file)
+        try:
+            candidate_file = rewrite_verification_candidates(
+                harvest_file=harvest_file,
+                output_dir=self.storage.candidate_dir(flow_id),
+                model_name=candidate_model_name,
+            )
+        except Exception:
+            candidate_file = build_verification_candidates(harvest_file)
         self.storage.save_candidate_file(candidate_file)
         return candidate_file
 
