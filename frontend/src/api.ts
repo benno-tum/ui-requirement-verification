@@ -146,7 +146,7 @@ export const api = {
   getFlow: (flowId: string) => request<FlowSummary>(`/flows/${flowId}`),
   getSteps: (flowId: string) => request<FlowStep[]>(`/flows/${flowId}/steps`),
   listHarvested: (flowId: string) => request<HarvestedRequirement[]>(`/flows/${flowId}/harvested`),
-  generateHarvestedRequirements: (flowId: string, payload?: { max_images?: number; image_max_side?: number; model_name?: string }) =>
+  generateHarvestedRequirements: (flowId: string, payload?: { max_images?: number; image_max_side?: number; model_name?: string; temperature?: number }) =>
     request<GenerateHarvestedResponse>(`/flows/${flowId}/harvested/generate`, {
       method: 'POST',
       body: JSON.stringify(payload ?? {}),

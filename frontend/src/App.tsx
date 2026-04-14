@@ -54,6 +54,9 @@ function App() {
     const [annotatedBy, setAnnotatedBy] = useState<string>('benno')
     const [annotationNotes, setAnnotationNotes] = useState<string>('')
     const [maxImages, setMaxImages] = useState<number>(4)
+    const [harvestModel, setHarvestModel] = useState<string>('gemini-2.5-flash')
+    const [harvestTemperature, setHarvestTemperature] = useState<number>(0.7)
+    const [harvestImageMaxSide, setHarvestImageMaxSide] = useState<number>(1280)
     const [viewMode, setViewMode] = useState<ViewMode>('single')
     const [highlightedStep, setHighlightedStep] = useState<number | null>(null)
     const [zoomStep, setZoomStep] = useState<FlowStep | null>(null)
@@ -221,8 +224,9 @@ function App() {
         try {
             const result = await api.generateHarvestedRequirements(selectedFlowId, {
                 max_images: maxImages,
-                image_max_side: 1024,
-                model_name: 'gemini-2.5-flash',
+                image_max_side: harvestImageMaxSide,
+                model_name: harvestModel,
+                temperature: harvestTemperature,
             })
             await loadFlowDetails(selectedFlowId)
             setViewMode('harvested')
@@ -433,6 +437,12 @@ function App() {
                 {selectedFlow && viewMode === 'harvested' && (
                     <HarvestedPanel
                         harvested={harvested}
+                        harvestModel={harvestModel}
+                        harvestTemperature={harvestTemperature}
+                        harvestImageMaxSide={harvestImageMaxSide}
+                        onHarvestModelChange={setHarvestModel}
+                        onHarvestTemperatureChange={setHarvestTemperature}
+                        onHarvestImageMaxSideChange={setHarvestImageMaxSide}
                         onJumpToStep={jumpToStep}
                         onGenerate={() => void handleGenerateHarvestedRequirements()}
                         onMaterialize={() => void handleMaterializeCandidatesFromHarvested()}
@@ -805,11 +815,23 @@ function OverviewPanel({
 
 function HarvestedPanel({
     harvested,
+    harvestModel,
+    harvestTemperature,
+    harvestImageMaxSide,
+    onHarvestModelChange,
+    onHarvestTemperatureChange,
+    onHarvestImageMaxSideChange,
     onJumpToStep,
     onGenerate,
     onMaterialize,
 }: {
     harvested: HarvestedRequirement[]
+    harvestModel: string
+    harvestTemperature: number
+    harvestImageMaxSide: number
+    onHarvestModelChange: (value: string) => void
+    onHarvestTemperatureChange: (value: number) => void
+    onHarvestImageMaxSideChange: (value: number) => void
     onJumpToStep: (stepIndex: number) => void
     onGenerate: () => void
     onMaterialize: () => void
@@ -822,7 +844,39 @@ function HarvestedPanel({
                         <h3>Harvested requirement hypotheses</h3>
                         <span>{harvested.length} items</span>
                     </div>
-                    <div className="button-row">
+                    <div className="button-row wrap">
+                        <label>
+                            Harvest model
+                            <select
+                                value={harvestModel}
+                                onChange={(event) => onHarvestModelChange(event.target.value)}
+                            >
+                                <option value="gemini-2.5-flash">gemini-2.5-flash</option>
+                                <option value="gemini-2.5-flash-lite">gemini-2.5-flash-lite</option>
+                            </select>
+                        </label>
+                        <label>
+                            Harvest temperature
+                            <input
+                                type="number"
+                                min={0}
+                                max={1}
+                                step={0.1}
+                                value={harvestTemperature}
+                                onChange={(event) => onHarvestTemperatureChange(Number(event.target.value))}
+                            />
+                        </label>
+                        <label>
+                            Harvest image max side
+                            <input
+                                type="number"
+                                min={512}
+                                max={2048}
+                                step={128}
+                                value={harvestImageMaxSide}
+                                onChange={(event) => onHarvestImageMaxSideChange(Number(event.target.value) || 1280)}
+                            />
+                        </label>
                         <button onClick={onGenerate}>
                             Generate harvested requirements
                         </button>
