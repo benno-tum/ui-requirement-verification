@@ -31,3 +31,15 @@ data/report/
 
 # logs
 *.log
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Frontend build cache and TypeScript artifacts
+frontend/.vite/
+frontend/*.tsbuildinfo
+frontend/vite.config.js
+frontend/vite.config.d.ts
+frontend/vite.config.js.map
+frontend/vite.config.d.ts.map
