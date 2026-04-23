@@ -56,6 +56,12 @@ def save_img(obj, path: Path, max_side: int):
     img.save(path, format="PNG", optimize=True)
 
 
+def save_original_img(obj, path: Path):
+    img = load_pil_image(obj).convert("RGB")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    img.save(path, format="PNG", optimize=True)
+
+
 def read_allowed_ids(path: Optional[Path]) -> Optional[set[str]]:
     if path is None:
         return None
@@ -88,6 +94,12 @@ def main():
     parser.add_argument("--max-flows", type=int, default=10)
     parser.add_argument("--max-side", type=int, default=1280)
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    parser.add_argument(
+        "--save-original-screenshots",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Also save each screenshot without downscaling under flow_dir/original/. Enabled by default.",
+    )
     parser.add_argument(
         "--allowed-flows-file",
         type=Path,
@@ -176,6 +188,9 @@ def main():
         for j, row in enumerate(rows, start=1):
             img_path = folder / f"step_{j:02d}.png"
             save_img(row["screenshot"], img_path, max_side=args.max_side)
+            if args.save_original_screenshots:
+                original_img_path = folder / "original" / img_path.name
+                save_original_img(row["screenshot"], original_img_path)
 
             meta = {}
             for k, v in row.items():
