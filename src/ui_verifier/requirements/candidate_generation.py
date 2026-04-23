@@ -3,6 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 import argparse
 import json
+import shutil
+import subprocess
 from typing import Any, TypeVar
 import re
 
@@ -32,6 +34,7 @@ from ui_verifier.requirements.schemas import (
     CandidateRequirementFile,
     HarvestedRequirement,
     HarvestedRequirementFile,
+    GroundingScope,
     RequirementReviewStatus,
     RequirementScope,
     TaskRelevance,
@@ -47,6 +50,52 @@ PURE_PRIOR_POOL_PATH = BASE_DIR / "data" / "derived_requirement_priors" / "pure_
 DATASET_NAME = "mind2web"
 
 EnumT = TypeVar("EnumT")
+
+
+def _copy_prompt_to_clipboard(prompt: str) -> bool:
+    clipboard_commands = (["pbcopy"], ["wl-copy"], ["xclip", "-selection", "clipboard"])
+    for command in clipboard_commands:
+        try:
+            subprocess.run(command, input=prompt.encode("utf-8"), check=True)
+            return True
+        except (FileNotFoundError, subprocess.CalledProcessError):
+            continue
+    return False
+
+
+def _prepare_manual_bundle(
+    *,
+    out_dir: Path,
+    prompt: str,
+    task: dict[str, Any],
+    selected_steps: list[int],
+    selected_paths: list[Path],
+) -> Path:
+    bundle_dir = out_dir / "manual_harvest_bundle"
+    images_dir = bundle_dir / "images"
+    images_dir.mkdir(parents=True, exist_ok=True)
+
+    (bundle_dir / "prompt.txt").write_text(prompt, encoding="utf-8")
+    (bundle_dir / "task.json").write_text(json.dumps(task, indent=2, ensure_ascii=False), encoding="utf-8")
+    (bundle_dir / "selected_steps.json").write_text(
+        json.dumps({"selected_steps": selected_steps}, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    for path in selected_paths:
+        shutil.copy2(path, images_dir / path.name)
+
+    (bundle_dir / "README.md").write_text(
+        """# Manual harvest bundle
+
+1. Open `prompt.txt`.
+2. Upload all images from `images/` in their natural order.
+3. Run the prompt manually in ChatGPT or another model.
+4. Save the raw response to `manual_harvest_raw.txt`.
+5. Parse and copy the final JSON to `manual_harvest_parsed.json`, then move it to `harvested_requirements.json` after review.
+""",
+        encoding="utf-8",
+    )
+    return bundle_dir
 
 
 def parse_confidence_label(value: Any) -> AnnotationConfidence:
@@ -121,6 +170,9 @@ def normalize_model_harvest(
             harvest_id=req_id,
             flow_id=flow_id,
             harvested_text=harvested_text,
+            grounding_scope=_coerce_enum(
+                item.get("grounding_scope"), GroundingScope, GroundingScope.DIRECT_FLOW_GROUNDED
+            ),
             requirement_type=_coerce_enum(
                 item.get("requirement_type"), RequirementInspectionType, RequirementInspectionType.UNCLEAR
             ),
@@ -145,9 +197,16 @@ def normalize_model_harvest(
         )
         requirements.append(requirement)
 
+    capability_summary = parsed.get("capability_summary", [])
+    if not isinstance(capability_summary, list):
+        capability_summary = []
+    capability_summary = [str(x).strip() for x in capability_summary if str(x).strip()]
+
     return HarvestedRequirementFile(
         dataset=DATASET_NAME,
         flow_id=flow_id,
+        flow_overview=str(parsed.get("flow_overview") or "").strip() or None,
+        capability_summary=capability_summary,
         requirements=requirements,
     )
 
@@ -434,6 +493,7 @@ def build_verification_candidates(
             candidate_origin=candidate_origin,
             benchmark_decision=benchmark_decision,
             parent_harvest_text=harvest.harvested_text if candidate_origin == CandidateOrigin.VISIBLE_CORE_REWRITE else None,
+            grounding_scope=harvest.grounding_scope,
             requirement_type=harvest.requirement_type,
             ui_evaluability=ui_evaluability,
             non_evaluable_reason=non_evaluable_reason,
@@ -447,6 +507,8 @@ def build_verification_candidates(
     candidate_file = CandidateRequirementFile(
         dataset=harvest_file.dataset,
         flow_id=harvest_file.flow_id,
+        flow_overview=harvest_file.flow_overview,
+        capability_summary=list(harvest_file.capability_summary),
         requirements=requirements,
     )
     validate_candidate_consistency(candidate_file, sorted({s for req in harvest_file.requirements for s in req.step_indices}))
@@ -492,6 +554,10 @@ def normalize_model_candidates(
             item.get("benchmark_decision"),
             BenchmarkDecision,
             BenchmarkDecision.DIRECT_INCLUDE,
+        )
+
+        grounding_scope = _coerce_enum(
+            item.get("grounding_scope"), GroundingScope, harvest.grounding_scope
         )
 
         ui_evaluability = _coerce_enum(
@@ -582,6 +648,7 @@ def normalize_model_candidates(
             candidate_origin=candidate_origin,
             benchmark_decision=benchmark_decision,
             parent_harvest_text=harvest.harvested_text if candidate_origin == CandidateOrigin.VISIBLE_CORE_REWRITE else None,
+            grounding_scope=grounding_scope,
             requirement_type=requirement_type,
             ui_evaluability=ui_evaluability,
             non_evaluable_reason=non_evaluable_reason,
@@ -592,9 +659,17 @@ def normalize_model_candidates(
         )
         requirements.append(requirement)
 
+    flow_overview = str(parsed.get("flow_overview") or harvest_file.flow_overview or "").strip() or None
+    capability_summary = parsed.get("capability_summary", harvest_file.capability_summary)
+    if not isinstance(capability_summary, list):
+        capability_summary = list(harvest_file.capability_summary)
+    capability_summary = [str(x).strip() for x in capability_summary if str(x).strip()]
+
     candidate_file = CandidateRequirementFile(
         dataset=harvest_file.dataset,
         flow_id=harvest_file.flow_id,
+        flow_overview=flow_overview,
+        capability_summary=capability_summary,
         requirements=requirements,
     )
     validate_candidate_consistency(candidate_file, sorted({s for req in harvest_file.requirements for s in req.step_indices}))
@@ -605,7 +680,7 @@ def rewrite_verification_candidates(
     harvest_file: HarvestedRequirementFile,
     output_dir: Path,
     model_name: str,
-    temperature: float = 0.2,
+    temperature: float = 0.0,
 ) -> CandidateRequirementFile:
     prompt = build_candidate_rewrite_prompt(harvest_file.to_dict())
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -659,9 +734,12 @@ def generate_harvested_for_flow(
     image_max_side: int,
     dry_run: bool,
     model_name: str,
-    temperature: float = 0.6,
+    temperature: float = 0.0,
     hybrid_mode: bool = False,
     pure_prior_top_k: int = 6,
+    print_prompt: bool = False,
+    copy_prompt: bool = False,
+    prepare_manual_bundle: bool = False,
 ) -> HarvestedRequirementFile | None:
     task_path = flow_dir / "task.json"
     if not task_path.exists():
@@ -698,6 +776,28 @@ def generate_harvested_for_flow(
         json.dumps(selection_info, indent=2),
         encoding="utf-8",
     )
+
+    if print_prompt:
+        print("\n===== HARVEST PROMPT START =====\n")
+        print(prompt)
+        print("\n===== HARVEST PROMPT END =====\n")
+
+    if copy_prompt:
+        if _copy_prompt_to_clipboard(prompt):
+            print(f"[OK] Copied prompt to clipboard for {flow_dir.name}")
+        else:
+            print(f"[WARN] Could not copy prompt to clipboard for {flow_dir.name}")
+
+    if prepare_manual_bundle:
+        bundle_dir = _prepare_manual_bundle(
+            out_dir=out_dir,
+            prompt=prompt,
+            task=task,
+            selected_steps=selected_steps,
+            selected_paths=selected_paths,
+        )
+        print(f"[OK] {flow_dir.name} -> {bundle_dir}")
+        return None
 
     if dry_run:
         print(f"[DRY RUN] {flow_dir.name}")
@@ -765,39 +865,47 @@ def process_flow(
     model_name: str,
     candidate_model_name: str,
     harvest_temperature: float,
+    candidate_temperature: float,
     hybrid_mode: bool,
     pure_prior_top_k: int,
+    print_prompt: bool,
+    copy_prompt: bool,
+    prepare_manual_bundle: bool,
+    skip_candidate_rewrite: bool,
+    rewrite_existing_harvest: bool,
 ) -> None:
-    try:
-        harvest_file = generate_harvested_for_flow(
-            flow_dir=flow_dir,
-            output_root=output_root,
-            steps_arg=steps_arg,
-            max_images=max_images,
-            image_max_side=image_max_side,
-            dry_run=dry_run,
-            model_name=model_name,
-            temperature=harvest_temperature,
-            hybrid_mode=hybrid_mode,
-            pure_prior_top_k=pure_prior_top_k,
-        )
-    except FileNotFoundError as exc:
-        print(f"[SKIP] {exc}")
-        return
+    if rewrite_existing_harvest:
+        harvest_path = output_root / flow_dir.name / "harvested_requirements.json"
+        if not harvest_path.exists():
+            print(f"[SKIP] No harvested_requirements.json in {output_root / flow_dir.name}")
+            return
+        harvest_file = HarvestedRequirementFile.load(harvest_path)
+    else:
+        try:
+            harvest_file = generate_harvested_for_flow(
+                flow_dir=flow_dir,
+                output_root=output_root,
+                steps_arg=steps_arg,
+                max_images=max_images,
+                image_max_side=image_max_side,
+                dry_run=dry_run,
+                model_name=model_name,
+                temperature=harvest_temperature,
+                hybrid_mode=hybrid_mode,
+                pure_prior_top_k=pure_prior_top_k,
+                print_prompt=print_prompt,
+                copy_prompt=copy_prompt,
+                prepare_manual_bundle=prepare_manual_bundle,
+            )
+        except FileNotFoundError as exc:
+            print(f"[SKIP] {exc}")
+            return
 
-    if dry_run or harvest_file is None:
+    if dry_run or harvest_file is None or skip_candidate_rewrite:
         return
 
     candidate_path = output_root / flow_dir.name / "candidate_requirements.json"
-    try:
-        candidate_file = rewrite_verification_candidates(
-            harvest_file=harvest_file,
-            output_dir=output_root / flow_dir.name,
-            model_name=candidate_model_name,
-        )
-    except Exception as exc:
-        print(f"[WARN] Candidate rewrite failed for {flow_dir.name}: {exc}")
-        candidate_file = build_verification_candidates(harvest_file)
+    candidate_file = build_verification_candidates(harvest_file)
     candidate_file.save(candidate_path)
     print(f"[OK] {flow_dir.name} -> {candidate_path}")
 
@@ -809,13 +917,19 @@ def main() -> None:
     parser.add_argument("--flow-dir", type=Path, default=None, help="Process exactly one flow folder")
     parser.add_argument("--max-flows", type=int, default=3)
     parser.add_argument("--steps", type=str, default=None, help="Manual step selection, e.g. 1,4,7,10")
-    parser.add_argument("--max-images", type=int, default=4, help="Used if --steps is not given")
+    parser.add_argument("--max-images", type=int, default=None, help="Used if --steps is not given; default keeps all screenshots")
     parser.add_argument("--image-max-side", type=int, default=1280)
     parser.add_argument("--model", type=str, default="gemini-2.5-flash")
-    parser.add_argument("--harvest-temperature", type=float, default=0.7)
+    parser.add_argument("--harvest-temperature", type=float, default=0.0)
     parser.add_argument("--candidate-model", type=str, default="gemini-2.5-flash-lite")
+    parser.add_argument("--candidate-temperature", type=float, default=0.0)
     parser.add_argument("--hybrid-mode", action="store_true")
     parser.add_argument("--pure-prior-top-k", type=int, default=6)
+    parser.add_argument("--print-prompt", action="store_true")
+    parser.add_argument("--copy-prompt", action="store_true")
+    parser.add_argument("--prepare-manual-bundle", action="store_true")
+    parser.add_argument("--skip-candidate-rewrite", action="store_true")
+    parser.add_argument("--rewrite-existing-harvest", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
@@ -839,8 +953,14 @@ def main() -> None:
             model_name=args.model,
             candidate_model_name=args.candidate_model,
             harvest_temperature=args.harvest_temperature,
+            candidate_temperature=args.candidate_temperature,
             hybrid_mode=args.hybrid_mode,
             pure_prior_top_k=args.pure_prior_top_k,
+            print_prompt=args.print_prompt,
+            copy_prompt=args.copy_prompt,
+            prepare_manual_bundle=args.prepare_manual_bundle,
+            skip_candidate_rewrite=args.skip_candidate_rewrite,
+            rewrite_existing_harvest=args.rewrite_existing_harvest,
         )
 
 

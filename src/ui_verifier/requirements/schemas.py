@@ -103,6 +103,12 @@ class TaskRelevance(str, Enum):
     LOW = "LOW"
 
 
+class GroundingScope(str, Enum):
+    DIRECT_FLOW_GROUNDED = "DIRECT_FLOW_GROUNDED"
+    INDIRECT_FLOW_GROUNDED = "INDIRECT_FLOW_GROUNDED"
+    NEARBY_VARIANT = "NEARBY_VARIANT"
+
+
 @dataclass(slots=True)
 class RequirementBase:
     requirement_id: str
@@ -132,6 +138,7 @@ class HarvestedRequirement:
     harvest_id: str
     flow_id: str
     harvested_text: str
+    grounding_scope: GroundingScope = GroundingScope.DIRECT_FLOW_GROUNDED
     requirement_type: RequirementInspectionType = RequirementInspectionType.UNCLEAR
     ui_evaluability: UiEvaluability = UiEvaluability.NOT_UI_VERIFIABLE
     non_evaluable_reason: NonEvaluableReason = NonEvaluableReason.NONE
@@ -160,24 +167,15 @@ class HarvestedRequirement:
         self.source_strategy = _normalize_optional_text(self.source_strategy)
         self.prior_source_ids = [str(x).strip() for x in self.prior_source_ids if str(x).strip()]
 
-        if self.ui_evaluability == UiEvaluability.NOT_UI_VERIFIABLE:
-            if self.visible_subtype != VisibleSubtype.NONE:
-                raise ValueError("visible_subtype must be NONE for NOT_UI_VERIFIABLE harvested requirements")
-            if self.non_evaluable_reason == NonEvaluableReason.NONE:
-                raise ValueError("non_evaluable_reason must not be NONE for NOT_UI_VERIFIABLE harvested requirements")
-        else:
-            if self.visible_subtype == VisibleSubtype.NONE:
-                raise ValueError(
-                    "visible_subtype must be set for UI_VERIFIABLE or PARTIALLY_UI_VERIFIABLE harvested requirements"
-                )
-            if self.ui_evaluability == UiEvaluability.UI_VERIFIABLE and self.non_evaluable_reason != NonEvaluableReason.NONE:
-                raise ValueError("non_evaluable_reason must be NONE for UI_VERIFIABLE harvested requirements")
+        if self.ui_evaluability == UiEvaluability.UI_VERIFIABLE and self.non_evaluable_reason != NonEvaluableReason.NONE:
+            raise ValueError("non_evaluable_reason must be NONE for UI_VERIFIABLE harvested requirements")
 
     def to_dict(self) -> dict[str, Any]:
         return {
             "harvest_id": self.harvest_id,
             "flow_id": self.flow_id,
             "harvested_text": self.harvested_text,
+            "grounding_scope": self.grounding_scope.value,
             "requirement_type": self.requirement_type.value,
             "ui_evaluability": self.ui_evaluability.value,
             "non_evaluable_reason": self.non_evaluable_reason.value,
@@ -195,11 +193,26 @@ class HarvestedRequirement:
         }
 
     @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "HarvestedRequirement":
+    def from_dict(
+        cls,
+        data: dict[str, Any],
+        *,
+        default_flow_id: str | None = None,
+    ) -> "HarvestedRequirement":
+        harvest_id = data.get("harvest_id") or data.get("id")
+        flow_id = data.get("flow_id") or default_flow_id
+        if flow_id is None:
+            raise ValueError("HarvestedRequirement requires flow_id or default_flow_id")
+
+        step_indices = data.get("step_indices")
+        if step_indices is None:
+            step_indices = data.get("evidence_steps", [])
+
         return cls(
-            harvest_id=data["harvest_id"],
-            flow_id=data["flow_id"],
+            harvest_id=harvest_id,
+            flow_id=flow_id,
             harvested_text=data["harvested_text"],
+            grounding_scope=GroundingScope(data.get("grounding_scope", GroundingScope.DIRECT_FLOW_GROUNDED.value)),
             requirement_type=RequirementInspectionType(
                 data.get("requirement_type", RequirementInspectionType.UNCLEAR.value)
             ),
@@ -213,7 +226,7 @@ class HarvestedRequirement:
                 data.get("visible_subtype", VisibleSubtype.NONE.value)
             ),
             task_relevance=TaskRelevance(data.get("task_relevance", TaskRelevance.MEDIUM.value)),
-            step_indices=list(data.get("step_indices", [])),
+            step_indices=list(step_indices),
             rationale=data.get("rationale"),
             visible_core_candidate=data.get("visible_core_candidate"),
             generation_model=data.get("generation_model"),
@@ -239,6 +252,7 @@ class CandidateRequirement(RequirementBase):
     candidate_origin: CandidateOrigin = CandidateOrigin.DIRECT_FROM_HARVEST
     benchmark_decision: BenchmarkDecision = BenchmarkDecision.DIRECT_INCLUDE
     parent_harvest_text: str | None = None
+    grounding_scope: GroundingScope = GroundingScope.DIRECT_FLOW_GROUNDED
     requirement_type: RequirementInspectionType = RequirementInspectionType.UNCLEAR
     ui_evaluability: UiEvaluability = UiEvaluability.NOT_UI_VERIFIABLE
     non_evaluable_reason: NonEvaluableReason = NonEvaluableReason.NONE
@@ -279,6 +293,7 @@ class CandidateRequirement(RequirementBase):
                 "candidate_origin": self.candidate_origin.value,
                 "benchmark_decision": self.benchmark_decision.value,
                 "parent_harvest_text": self.parent_harvest_text,
+                "grounding_scope": self.grounding_scope.value,
                 "requirement_type": self.requirement_type.value,
                 "ui_evaluability": self.ui_evaluability.value,
                 "non_evaluable_reason": self.non_evaluable_reason.value,
@@ -316,6 +331,7 @@ class CandidateRequirement(RequirementBase):
                 data.get("benchmark_decision", BenchmarkDecision.DIRECT_INCLUDE.value)
             ),
             parent_harvest_text=data.get("parent_harvest_text"),
+            grounding_scope=GroundingScope(data.get("grounding_scope", GroundingScope.DIRECT_FLOW_GROUNDED.value)),
             requirement_type=RequirementInspectionType(
                 data.get("requirement_type", RequirementInspectionType.UNCLEAR.value)
             ),
@@ -418,10 +434,14 @@ class HarvestedRequirementFile:
     dataset: str
     flow_id: str
     requirements: list[HarvestedRequirement]
+    flow_overview: str | None = None
+    capability_summary: list[str] = field(default_factory=list)
 
     def __post_init__(self) -> None:
         self.dataset = _require_non_empty(self.dataset, "dataset")
         self.flow_id = _require_non_empty(self.flow_id, "flow_id")
+        self.flow_overview = _normalize_optional_text(self.flow_overview)
+        self.capability_summary = [str(x).strip() for x in self.capability_summary if str(x).strip()]
 
         for req in self.requirements:
             if req.flow_id != self.flow_id:
@@ -433,15 +453,34 @@ class HarvestedRequirementFile:
         return {
             "dataset": self.dataset,
             "flow_id": self.flow_id,
+            "flow_overview": self.flow_overview,
+            "capability_summary": self.capability_summary,
             "requirements": [r.to_dict() for r in self.requirements],
         }
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "HarvestedRequirementFile":
+        dataset = data.get("dataset", "mind2web")
+        flow_id = data.get("flow_id")
+        requirements_raw = list(data.get("requirements", []))
+
+        if flow_id is None and requirements_raw:
+            first_flow_id = requirements_raw[0].get("flow_id")
+            if first_flow_id:
+                flow_id = first_flow_id
+
+        if flow_id is None:
+            raise ValueError("HarvestedRequirementFile requires flow_id")
+
         return cls(
-            dataset=data["dataset"],
-            flow_id=data["flow_id"],
-            requirements=[HarvestedRequirement.from_dict(x) for x in data.get("requirements", [])],
+            dataset=dataset,
+            flow_id=flow_id,
+            flow_overview=data.get("flow_overview"),
+            capability_summary=list(data.get("capability_summary", [])),
+            requirements=[
+                HarvestedRequirement.from_dict(x, default_flow_id=flow_id)
+                for x in requirements_raw
+            ],
         )
 
     def save(self, path: str | Path) -> None:
@@ -451,7 +490,28 @@ class HarvestedRequirementFile:
 
     @classmethod
     def load(cls, path: str | Path) -> "HarvestedRequirementFile":
-        data = json.loads(Path(path).read_text(encoding="utf-8"))
+        path = Path(path)
+        raw = path.read_text(encoding="utf-8").strip()
+
+        if not raw:
+            return cls(
+                dataset="mind2web",
+                flow_id=path.parent.name,
+                requirements=[],
+            )
+
+        data = json.loads(raw)
+
+        if isinstance(data, list):
+            data = {
+                "dataset": "mind2web",
+                "flow_id": path.parent.name,
+                "requirements": data,
+            }
+        elif isinstance(data, dict) and "flow_id" not in data:
+            data = dict(data)
+            data["flow_id"] = path.parent.name
+
         return cls.from_dict(data)
 
 
@@ -460,10 +520,14 @@ class CandidateRequirementFile:
     dataset: str
     flow_id: str
     requirements: list[CandidateRequirement]
+    flow_overview: str | None = None
+    capability_summary: list[str] = field(default_factory=list)
 
     def __post_init__(self) -> None:
         self.dataset = _require_non_empty(self.dataset, "dataset")
         self.flow_id = _require_non_empty(self.flow_id, "flow_id")
+        self.flow_overview = _normalize_optional_text(self.flow_overview)
+        self.capability_summary = [str(x).strip() for x in self.capability_summary if str(x).strip()]
 
         for req in self.requirements:
             if req.flow_id != self.flow_id:
@@ -476,6 +540,8 @@ class CandidateRequirementFile:
         return {
             "dataset": self.dataset,
             "flow_id": self.flow_id,
+            "flow_overview": self.flow_overview,
+            "capability_summary": self.capability_summary,
             "requirements": [r.to_dict() for r in self.requirements],
         }
 
@@ -484,6 +550,8 @@ class CandidateRequirementFile:
         return cls(
             dataset=data["dataset"],
             flow_id=data["flow_id"],
+            flow_overview=data.get("flow_overview"),
+            capability_summary=list(data.get("capability_summary", [])),
             requirements=[CandidateRequirement.from_dict(x) for x in data.get("requirements", [])],
         )
 

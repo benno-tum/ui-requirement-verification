@@ -7,11 +7,13 @@ def test_harvest_prompt_encourages_broad_feature_level_requirements() -> None:
         [1, 5, 10],
     )
 
-    assert "meaningful software features or capabilities" in prompt
-    assert "The UI is evidence for the requirement, not the main subject of the requirement." in prompt
-    assert "It is acceptable that not all generated requirements fully apply to the current flow." in prompt
-    assert "Be as broad as possible within the plausible feature space suggested by the shown system, task, and UI flow." in prompt
-    assert "Requirements from similar systems are acceptable" in prompt
+    assert "comprehensive harvested requirement set" in prompt
+    assert "The UI is grounding evidence for the requirement, not the main subject of the requirement." in prompt
+    assert "Do NOT impose an artificial upper bound on the number of requirements." in prompt
+    assert "Requirement sets should not be dominated by tiny field-level widget claims." in prompt
+    assert "DIRECT_FLOW_GROUNDED" in prompt
+    assert "INDIRECT_FLOW_GROUNDED" in prompt
+    assert "NEARBY_VARIANT" in prompt
 
 
 def test_candidate_rewrite_prompt_preserves_feature_level_wording() -> None:
