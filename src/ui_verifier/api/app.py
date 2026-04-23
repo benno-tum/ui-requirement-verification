@@ -30,6 +30,7 @@ app.add_middleware(
 )
 
 app.mount("/static/flows", StaticFiles(directory=str(flow_catalog.flows_root)), name="flow_static")
+app.mount("/static/candidate_artifacts", StaticFiles(directory=str(annotation_service.storage.candidate_root)), name="candidate_artifact_static")
 
 
 class AcceptCandidateRequest(BaseModel):
@@ -316,6 +317,19 @@ def update_gold_requirement(
         raise HTTPException(status_code=404, detail=str(e)) from e
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e)) from e
+
+
+@app.delete("/flows/{flow_id}/gold/{requirement_id}")
+def delete_gold_requirement(flow_id: str, requirement_id: str) -> dict[str, Any]:
+    try:
+        req = annotation_service.delete_gold_requirement(flow_id, requirement_id)
+        return {
+            "requirement_id": req.requirement_id,
+            "flow_id": req.flow_id,
+            "deleted": True,
+        }
+    except (FileNotFoundError, KeyError) as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
 
 
 @app.post("/verify")

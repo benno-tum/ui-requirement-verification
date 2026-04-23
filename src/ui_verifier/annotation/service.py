@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from ui_verifier.annotation.storage import AnnotationStorage
-from ui_verifier.requirements.candidate_generation import build_verification_candidates, rewrite_verification_candidates
+from ui_verifier.requirements.candidate_generation import build_verification_candidates
 from ui_verifier.requirements.schemas import (
     BenchmarkDecision,
     CandidateRequirement,
@@ -14,7 +14,7 @@ from ui_verifier.requirements.schemas import (
     RequirementReviewStatus,
     RequirementScope,
     UiEvaluability,
-    VisibleSubtype,
+    VisibleSubtype, CandidateRequirementFile,
 )
 
 
@@ -46,14 +46,7 @@ class AnnotationService:
             )
 
         harvest_file = self.storage.load_harvested_file(flow_id)
-        try:
-            candidate_file = rewrite_verification_candidates(
-                harvest_file=harvest_file,
-                output_dir=self.storage.candidate_dir(flow_id),
-                model_name=candidate_model_name,
-            )
-        except Exception:
-            candidate_file = build_verification_candidates(harvest_file)
+        candidate_file = build_verification_candidates(harvest_file)
         self.storage.save_candidate_file(candidate_file)
         return candidate_file
 
@@ -172,7 +165,7 @@ class AnnotationService:
             source_harvest_id=candidate.source_harvest_id,
             annotation_notes=annotation_notes,
             annotated_by=annotated_by,
-            manual_verification_label=manual_verification_label,
+            manual_verification_label=manual_verification_label or "fulfilled",
             manual_verification_notes=manual_verification_notes,
             requirement_type=candidate.requirement_type,
             ui_evaluability=candidate.ui_evaluability,
@@ -238,6 +231,19 @@ class AnnotationService:
         gold_requirement.__post_init__()
         self.storage.save_gold_file(gold_file)
         return gold_requirement
+
+    def delete_gold_requirement(self, flow_id: str, requirement_id: str) -> GoldRequirement:
+        gold_file = self.storage.load_gold_file(flow_id)
+        if gold_file is None:
+            raise FileNotFoundError(f"Gold requirements not found for flow {flow_id}")
+
+        for idx, gold_requirement in enumerate(gold_file.requirements):
+            if gold_requirement.requirement_id == requirement_id:
+                del gold_file.requirements[idx]
+                self.storage.save_gold_file(gold_file)
+                return gold_requirement
+
+        raise KeyError(f"Gold requirement not found: {requirement_id}")
 
     @staticmethod
     def _find_candidate(requirements: list[CandidateRequirement], requirement_id: str) -> CandidateRequirement:

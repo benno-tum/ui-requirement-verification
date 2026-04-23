@@ -20,6 +20,12 @@ export type FlowStep = {
   step_index: number
   image_name: string
   image_url: string
+  preview_image_url?: string | null
+  original_image_url?: string | null
+  image_width?: number | null
+  image_height?: number | null
+  preview_image_width?: number | null
+  preview_image_height?: number | null
 }
 
 export type ManualVerdictLabel = '' | 'fulfilled' | 'partially_fulfilled' | 'not_fulfilled' | 'abstain'
@@ -183,6 +189,10 @@ export const api = {
     request<Requirement>(`/flows/${flowId}/gold/${requirementId}`, {
       method: 'POST',
       body: JSON.stringify(payload),
+    }),
+  deleteGoldRequirement: (flowId: string, requirementId: string) =>
+    request<{ flow_id: string; requirement_id: string; deleted: boolean }>(`/flows/${flowId}/gold/${requirementId}`, {
+      method: 'DELETE',
     }),
   verify: (payload: { flow_dir: string; max_images: number; dry_run: boolean }) =>
     request<VerificationRun | { status: string; flow_dir: string }>('/verify', {

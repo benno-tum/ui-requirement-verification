@@ -215,6 +215,26 @@ function App() {
         }
     }
 
+    async function handleDeleteGoldRequirement(requirement: Requirement) {
+        if (!selectedFlowId) {
+            return
+        }
+
+        const confirmed = window.confirm(`Delete gold requirement ${requirement.requirement_id}?`)
+        if (!confirmed) {
+            return
+        }
+
+        setMessage('')
+        try {
+            await api.deleteGoldRequirement(selectedFlowId, requirement.requirement_id)
+            await loadFlowDetails(selectedFlowId)
+            setMessage(`${requirement.requirement_id} gold requirement deleted.`)
+        } catch (error) {
+            setMessage(error instanceof Error ? error.message : 'Failed to delete gold requirement')
+        }
+    }
+
 
     async function handleGenerateHarvestedRequirements() {
         if (!selectedFlowId) {
@@ -427,6 +447,7 @@ function App() {
                         onEditCandidate={(requirement) => setEditor({mode: 'candidate', requirement})}
                         onReject={(requirement) => void handleCandidateAction('reject', requirement)}
                         onEditGold={(requirement) => setEditor({mode: 'gold', requirement})}
+                        onDeleteGold={(requirement) => void handleDeleteGoldRequirement(requirement)}
                         verdictMap={verdictMap}
                     />
                 )}
@@ -723,6 +744,7 @@ function OverviewPanel({
                            onEditCandidate,
                            onReject,
                            onEditGold,
+                           onDeleteGold,
                            verdictMap,
                        }: {
     steps: FlowStep[]
@@ -734,6 +756,7 @@ function OverviewPanel({
     onEditCandidate: (requirement: Requirement) => void
     onReject: (requirement: Requirement) => void
     onEditGold: (requirement: Requirement) => void
+    onDeleteGold: (requirement: Requirement) => void
     verdictMap: Map<string, RequirementVerdict>
 }) {
     return (
@@ -801,6 +824,9 @@ function OverviewPanel({
                                 <div className="button-row left wrap">
                                     <button className="secondary-button" onClick={() => onEditGold(requirement)}>
                                         Edit gold labels
+                                    </button>
+                                    <button className="danger-button" onClick={() => onDeleteGold(requirement)}>
+                                        Delete gold
                                     </button>
                                 </div>
                             }
@@ -1060,7 +1086,7 @@ function RequirementEditorModal({
         tags: requirement.tags.join(', '),
         annotationNotes: requirement.annotation_notes ?? requirement.rationale ?? '',
         annotatedBy: requirement.annotated_by ?? defaultAnnotatedBy,
-        manualVerificationLabel: requirement.manual_verification_label ?? '',
+        manualVerificationLabel: requirement.manual_verification_label ?? 'fulfilled',
         manualVerificationNotes: requirement.manual_verification_notes ?? '',
     }))
 
@@ -1148,7 +1174,6 @@ function RequirementEditorModal({
                                 setForm({...form, manualVerificationLabel: event.target.value as ManualVerdictLabel})
                             }
                         >
-                            <option value="">not set</option>
                             <option value="fulfilled">fulfilled</option>
                             <option value="partially_fulfilled">partially fulfilled</option>
                             <option value="not_fulfilled">not fulfilled</option>
@@ -1192,9 +1217,19 @@ function ImageLightbox({step, onClose}: { step: FlowStep; onClose: () => void })
                         <h3>Step {step.step_index}</h3>
                         <span>{step.image_name}</span>
                     </div>
-                    <button className="secondary-button" onClick={onClose}>
-                        Close
-                    </button>
+                    <div className="button-row wrap">
+                        <a
+                            className="link-button"
+                            href={resolveAssetUrl(step.original_image_url ?? step.image_url)}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Open image in new tab
+                        </a>
+                        <button className="secondary-button" onClick={onClose}>
+                            Close
+                        </button>
+                    </div>
                 </div>
                 <img className="lightbox-image" src={resolveAssetUrl(step.image_url)} alt={`Step ${step.step_index}`}/>
             </div>
