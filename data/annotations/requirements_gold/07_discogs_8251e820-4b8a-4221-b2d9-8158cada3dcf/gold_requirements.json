@@ -1,0 +1,260 @@
+{
+  "dataset": "mind2web",
+  "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+  "requirements": [
+    {
+      "requirement_id": "REQ-01",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "text": "The system shall expose contribution-related actions through a top-level navigation area.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2
+      ],
+      "source_candidate_id": "REQ-01",
+      "source_harvest_id": "HARV-01",
+      "annotation_notes": "The opened Explore menu contains a Contribute column with options such as Submission Guidelines and Submit a Release, showing that contribution actions are surfaced in primary navigation.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T13:01:15+00:00"
+    },
+    {
+      "requirement_id": "REQ-02",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "text": "The system shall allow users to navigate from the main site navigation to an overview page for release submission guidelines.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        3
+      ],
+      "source_candidate_id": "REQ-02",
+      "source_harvest_id": "HARV-02",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T13:27:42+00:00"
+    },
+    {
+      "requirement_id": "REQ-03",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "text": "The system shall provide a dedicated overview page that summarizes the rules and process for submitting releases.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3
+      ],
+      "source_candidate_id": "REQ-03",
+      "source_harvest_id": "HARV-03",
+      "annotation_notes": "The page title explicitly states Overview Of Submission Guidelines For Releases and the page contains introductory guideline content.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T13:28:36+00:00"
+    },
+    {
+      "requirement_id": "REQ-04",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "text": "The system shall organize release submission guidance into linked topic areas so users can drill down into specific rule sets.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3
+      ],
+      "source_candidate_id": "REQ-04",
+      "source_harvest_id": "HARV-04",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T13:29:38+00:00"
+    },
+    {
+      "requirement_id": "REQ-05",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "text": "The system shall provide a quick start guide for new contributors who are learning how to submit releases.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3
+      ],
+      "source_candidate_id": "REQ-05",
+      "source_harvest_id": "HARV-05",
+      "annotated_by": "benno",
+      "manual_verification_label": "partially_fulfilled",
+      "manual_verification_notes": "the Basic Guidelines are a different tutorial than the Quick Start Guide For New Contributors, which is a linked page missing in the UI",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T13:34:17+00:00"
+    },
+    {
+      "requirement_id": "REQ-06",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "text": "The system shall support discovery of contributor documentation from an authenticated user workspace.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1,
+        2
+      ],
+      "source_candidate_id": "REQ-06",
+      "source_harvest_id": "HARV-06",
+      "annotation_notes": "The flow starts on a logged-in dashboard and then uses top navigation to open contribution resources, suggesting contributor help is reachable from within the user workspace.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T13:37:43+00:00"
+    },
+    {
+      "requirement_id": "REQ-07",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "text": "The system shall provide a clear separation between learning submission rules and performing a release submission.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        3
+      ],
+      "source_candidate_id": "REQ-07",
+      "source_harvest_id": "HARV-07",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T13:37:57+00:00"
+    },
+    {
+      "requirement_id": "REQ-08",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "text": "The system shall expose submission-related work areas such as submissions and drafts for authenticated users.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1
+      ],
+      "source_candidate_id": "REQ-08",
+      "source_harvest_id": "HARV-08",
+      "annotation_notes": "The dashboard navigation includes tabs such as Submissions and Drafts, showing dedicated submission-related workspace areas.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T13:39:41+00:00"
+    },
+    {
+      "requirement_id": "REQ-09",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "text": "The system shall provide contextual location cues on documentation pages so users can understand where they are within the help hierarchy.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3
+      ],
+      "source_candidate_id": "REQ-09",
+      "source_harvest_id": "HARV-09",
+      "annotation_notes": "The guideline page shows breadcrumb-style context near the top, indicating the page's place within broader submission guidance content.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T13:40:42+00:00"
+    },
+    {
+      "requirement_id": "REQ-10",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "text": "The system shall present submission guidance in a scannable structure that helps contributors review rules efficiently.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3
+      ],
+      "source_candidate_id": "REQ-10",
+      "source_harvest_id": "HARV-10",
+      "annotation_notes": "The overview page uses section headings, bullet points, and grouped linked topics, which supports quick scanning and comprehension.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T13:41:27+00:00"
+    },
+    {
+      "requirement_id": "REQ-11",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "text": "The system shall preserve access to broader site navigation while users are exploring contribution help resources.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1,
+        2,
+        3
+      ],
+      "source_candidate_id": "REQ-11",
+      "source_harvest_id": "HARV-11",
+      "annotation_notes": "Both the dashboard and the guideline page retain prominent navigation or search affordances, suggesting help content remains integrated with broader site navigation rather than isolated.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "NFR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T13:42:02+00:00"
+    },
+    {
+      "requirement_id": "REQ-12",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "text": "The system shall help users continue from overview documentation into related articles when they need more detailed submission rules.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3
+      ],
+      "source_candidate_id": "REQ-12",
+      "source_harvest_id": "HARV-12",
+      "annotation_notes": "The overview page includes an Articles in this section list and many topic links, which implies a broader help system designed for continued navigation into detailed guidance.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T13:43:39+00:00"
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+{
+  "dataset": "mind2web",
+  "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+  "requirements": [
+    {
+      "requirement_id": "REQ-01",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall support discovery of local businesses or services using a searchable query and a geographic location.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-01",
+      "source_harvest_id": "HARV-01",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:57:23+00:00"
+    },
+    {
+      "requirement_id": "REQ-03",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall provide query autocomplete or quick-result suggestions while the user types a business or service term.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2
+      ],
+      "source_candidate_id": "REQ-03",
+      "source_harvest_id": "HARV-03",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:58:03+00:00"
+    },
+    {
+      "requirement_id": "REQ-04",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall provide location autocomplete or quick-location suggestions while the user edits the location field.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-04",
+      "source_harvest_id": "HARV-04",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:58:09+00:00"
+    },
+    {
+      "requirement_id": "REQ-05",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall resolve a typed location into a more specific canonical place label for search context.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-05",
+      "source_harvest_id": "HARV-05",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:58:43+00:00"
+    },
+    {
+      "requirement_id": "REQ-07",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall provide an explicit action to submit the current search criteria once the user has set the desired query and location.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-07",
+      "source_harvest_id": "HARV-07",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:59:35+00:00"
+    },
+    {
+      "requirement_id": "REQ-08",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall provide signed-in users with access to account-level sections such as favorites, coupons, profile, and settings.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-08",
+      "source_harvest_id": "HARV-08",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:59:44+00:00"
+    },
+    {
+      "requirement_id": "REQ-09",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall expose coupons as a user-facing discovery feature within the service.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1
+      ],
+      "source_candidate_id": "REQ-09",
+      "source_harvest_id": "HARV-09",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T11:00:29+00:00"
+    },
+    {
+      "requirement_id": "REQ-10",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall allow users to pursue coupon discovery for a searched business category within a chosen locality.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1,
+        2,
+        4
+      ],
+      "source_candidate_id": "REQ-10",
+      "source_harvest_id": "HARV-10",
+      "annotation_notes": "The task goal is coupon-oriented, the UI exposes a coupons section, and the flow configures a localized hair salon search. Together these cues support a plausible requirement that coupons can be sought in relation to a selected business category and place, even though the final coupon page is not shown.",
+      "annotated_by": "benno",
+      "manual_verification_label": "partially_fulfilled",
+      "manual_verification_notes": "coupon page is missing",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T11:06:54+00:00"
+    },
+    {
+      "requirement_id": "REQ-12",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall assist geographic disambiguation by presenting multiple matching locations, including city and neighborhood-level options, when a location is ambiguous.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-12",
+      "source_harvest_id": "HARV-12",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T11:09:21+00:00"
+    },
+    {
+      "requirement_id": "REQ-13",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall provide alternative category entry points for common local-business searches from the main discovery page.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-13",
+      "source_harvest_id": "HARV-13",
+      "annotation_notes": "The homepage shows shortcuts such as Find People, Restaurants, Auto Repair, Dentists, Veterinarians, and Attorneys, indicating support for multiple category-based discovery paths from the same entry point.",
+      "annotated_by": "benno",
+      "manual_verification_label": "partially_fulfilled",
+      "manual_verification_notes": "UI after pressing a alternative route is missing",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T11:11:01+00:00"
+    }
+  ]
+}

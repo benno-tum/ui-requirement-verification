@@ -1,0 +1,291 @@
+{
+  "dataset": "mind2web",
+  "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+  "requirements": [
+    {
+      "requirement_id": "REQ-01",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "text": "The system shall allow users to navigate from the main AMC site into a dedicated gift card area.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1,
+        2
+      ],
+      "source_candidate_id": "REQ-01",
+      "source_harvest_id": "HARV-01",
+      "annotation_notes": "The sequence moves from the main site into a gift card focused section, showing that gift cards are exposed as a navigable site feature rather than a hidden subpage.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T09:31:02+00:00"
+    },
+    {
+      "requirement_id": "REQ-02",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "text": "The system shall present a centralized gift card service area that groups major gift card related actions, like purchasing gift cards, checking balances, accessing terms and FAQs, and handling membership or corporate gift card options.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2
+      ],
+      "source_candidate_id": "REQ-02",
+      "source_harvest_id": "HARV-02",
+      "annotation_notes": "The gift card landing page groups balance checking, purchasing, memberships, and business ordering into one coherent area, which supports a hub style requirement.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T09:31:56+00:00"
+    },
+    {
+      "requirement_id": "REQ-03",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "text": "The system shall provide a dedicated workflow for checking gift card balance from the gift card section.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        3
+      ],
+      "source_candidate_id": "REQ-03",
+      "source_harvest_id": "HARV-03",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T09:38:34+00:00"
+    },
+    {
+      "requirement_id": "REQ-04",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "text": "The system shall collect a gift card number and PIN as the core inputs for a balance inquiry.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3,
+        4,
+        5
+      ],
+      "source_candidate_id": "REQ-04",
+      "source_harvest_id": "HARV-04",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T09:38:42+00:00"
+    },
+    {
+      "requirement_id": "REQ-05",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "text": "The system shall allow an authenticated user to optionally associate a gift card with their account during the balance check process.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3,
+        4,
+        5
+      ],
+      "source_candidate_id": "REQ-05",
+      "source_harvest_id": "HARV-05",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T09:38:54+00:00"
+    },
+    {
+      "requirement_id": "REQ-06",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "text": "The system shall preserve user entered balance check inputs across intermediate form interactions and validation states.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        4,
+        5
+      ],
+      "source_candidate_id": "REQ-06",
+      "source_harvest_id": "HARV-06",
+      "annotation_notes": "The entered gift card number remains visible when the user proceeds to fill the PIN and when validation feedback appears, indicating form state persistence.",
+      "annotated_by": "benno",
+      "manual_verification_label": "partially_fulfilled",
+      "manual_verification_notes": "the UI seems to be inconsistent. the rules for the red error text below the \"Gift Card Number\" field  is missing in first field indicating that it is shown after the \"Search\" button was pressed. the \"Search\" button however seems to be disabled on this screen (also on every other).  So this is not a realistic flow",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T09:42:31+00:00"
+    },
+    {
+      "requirement_id": "REQ-07",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "text": "The system shall validate gift card lookup inputs and provide inline error feedback when the entered card information does not meet format expectations.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        5
+      ],
+      "source_candidate_id": "REQ-07",
+      "source_harvest_id": "HARV-07",
+      "annotation_notes": "The final screenshot shows a specific inline validation message about minimum card number length, making visible input validation a strong requirement hypothesis.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T09:44:12+00:00"
+    },
+    {
+      "requirement_id": "REQ-08",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "text": "The system shall only accept valid gift card actions.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3,
+        4,
+        5
+      ],
+      "source_candidate_id": "REQ-08",
+      "source_harvest_id": "HARV-08",
+      "annotation_notes": "The flow shows validation before any balance result is reached and the search action remains visually subdued, which suggests invalid input should block or discourage submission even though the exact enforcement logic is not fully shown.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T09:49:39+00:00"
+    },
+    {
+      "requirement_id": "REQ-09",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "text": "The system shall return the remaining gift card balance after the user provides valid card credentials.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "source_candidate_id": "REQ-09",
+      "source_harvest_id": "HARV-09",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T09:59:06+00:00"
+    },
+    {
+      "requirement_id": "REQ-10",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "text": "The system shall provide alternative channels for balance inquiries in addition to the self service web form.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2
+      ],
+      "source_candidate_id": "REQ-10",
+      "source_harvest_id": "HARV-10",
+      "annotation_notes": "The gift card page mentions checking balance through the website, at a theatre, or by phone, indicating the product supports multiple access paths for the same user need.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T09:59:39+00:00"
+    },
+    {
+      "requirement_id": "REQ-11",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "text": "The system shall support adjacent gift card workflows such as gift card purchase and business ordering from the same gift card service area.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2
+      ],
+      "source_candidate_id": "REQ-11",
+      "source_harvest_id": "HARV-11",
+      "annotation_notes": "The gift card area visibly includes buy now, bulk gift cards, and package tickets options, showing the balance checker sits within a broader gift card feature set.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:03:26+00:00"
+    },
+    {
+      "requirement_id": "REQ-13",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "text": "The system shall provide clear on page guidance about what information is required to perform a gift card balance lookup.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3,
+        4,
+        5
+      ],
+      "source_candidate_id": "REQ-13",
+      "source_harvest_id": "HARV-13",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:04:32+00:00"
+    },
+    {
+      "requirement_id": "REQ-14",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "text": "The system shall retain signed in account context while the user navigates gift card related pages.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "source_candidate_id": "REQ-14",
+      "source_harvest_id": "HARV-14",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:05:41+00:00"
+    }
+  ]
+}

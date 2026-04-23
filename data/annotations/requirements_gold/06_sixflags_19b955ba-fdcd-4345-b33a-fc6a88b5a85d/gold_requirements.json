@@ -1,0 +1,311 @@
+{
+  "dataset": "mind2web",
+  "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+  "requirements": [
+    {
+      "requirement_id": "REQ-01",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall provide visible entry points into the careers experience from both general Six Flags pages and park-specific pages.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1,
+        2,
+        5
+      ],
+      "source_candidate_id": "REQ-01",
+      "source_harvest_id": "HARV-01",
+      "annotation_notes": "The sequence shows a general site, a jobs-focused page, and a White Water park page with hiring content, indicating multiple user-facing paths into job discovery.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "the entry point in the main web page is on the top menu under \"Jobs\" and not directly in the main page integrated",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-21T21:26:31+00:00"
+    },
+    {
+      "requirement_id": "REQ-02",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall support choosing a specific park to scope job discovery to a particular location.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-02",
+      "source_harvest_id": "HARV-02",
+      "annotation_notes": "Multiple screens show park selection as a central step, including a generic park chooser and a jobs page that becomes scoped to Six Flags White Water.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-21T21:27:54+00:00"
+    },
+    {
+      "requirement_id": "REQ-04",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall carry the selected park context into subsequent recruiting screens and park-specific job content.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        4,
+        5,
+        6
+      ],
+      "source_candidate_id": "REQ-04",
+      "source_harvest_id": "HARV-04",
+      "annotation_notes": "After park selection, later screens reference Six Flags White Water and then show a White Water Atlanta lifeguard posting, indicating location context persists across the flow.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-21T21:30:38+00:00"
+    },
+    {
+      "requirement_id": "REQ-07",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall provide an individual detail page for a specific job opening.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        6
+      ],
+      "source_candidate_id": "REQ-07",
+      "source_harvest_id": "HARV-07",
+      "annotation_notes": "The final screen is a dedicated role page for a Lifeguard position, showing that openings can be represented as standalone job-detail views.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-21T21:32:50+00:00"
+    },
+    {
+      "requirement_id": "REQ-05",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall let applicants browse opportunities by department or specialized team within a selected park.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        5
+      ],
+      "source_candidate_id": "REQ-05",
+      "source_harvest_id": "HARV-05",
+      "annotation_notes": "The White Water page exposes team-oriented job areas such as lifeguards, food and beverage, park services, admissions, security, retail, and more opportunities.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T12:31:19+00:00"
+    },
+    {
+      "requirement_id": "REQ-06",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall highlight featured or currently hiring roles on park recruiting pages to speed job discovery.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        5
+      ],
+      "source_candidate_id": "REQ-06",
+      "source_harvest_id": "HARV-06",
+      "annotation_notes": "The park page prominently promotes hiring content such as NOW HIRING LIFEGUARDS, category cards, and a mega hiring event, which suggests featured discovery support.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T12:31:46+00:00"
+    },
+    {
+      "requirement_id": "REQ-08",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall present core metadata for each opening, including role title, job category, requisition identifier, employment type, location, and posting information.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        6
+      ],
+      "source_candidate_id": "REQ-08",
+      "source_harvest_id": "HARV-08",
+      "annotation_notes": "The job detail page visibly includes structured opening information beyond the title, which supports a requirement around transparent job metadata.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T12:38:52+00:00"
+    },
+    {
+      "requirement_id": "REQ-09",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall present role responsibilities, qualification criteria, and compensation information to support application decisions.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        6
+      ],
+      "source_candidate_id": "REQ-09",
+      "source_harvest_id": "HARV-09",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T12:39:57+00:00"
+    },
+    {
+      "requirement_id": "REQ-10",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall provide a prominent action for starting an application from recruiting content and job-opening pages.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        5,
+        6
+      ],
+      "source_candidate_id": "REQ-10",
+      "source_harvest_id": "HARV-10",
+      "annotation_notes": "Apply Now calls to action are visible on the park recruiting page and again on the detailed opening page, supporting application initiation from multiple points.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T12:42:13+00:00"
+    },
+    {
+      "requirement_id": "REQ-11",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall support an application workflow that can be launched for a specific opening after the applicant has identified the relevant park and role.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        4,
+        5,
+        6
+      ],
+      "source_candidate_id": "REQ-11",
+      "source_harvest_id": "HARV-11",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T12:48:55+00:00"
+    },
+    {
+      "requirement_id": "REQ-12",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall communicate employment perks, benefits, or similar value propositions alongside job discovery content.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        4,
+        5,
+        6
+      ],
+      "source_candidate_id": "REQ-12",
+      "source_harvest_id": "HARV-12",
+      "annotation_notes": "Several screens include perks and benefits messaging or benefit bullets, but full truth of those claims depends on policies beyond screenshot evidence.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T12:51:47+00:00"
+    },
+    {
+      "requirement_id": "REQ-13",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall provide an alternative discovery path for corporate or non-park-specific careers.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-13",
+      "source_harvest_id": "HARV-13",
+      "annotation_notes": "The careers pages include a distinct View Corporate Careers action, indicating that applicants are not limited to a single park-based path.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T12:55:55+00:00"
+    },
+    {
+      "requirement_id": "REQ-15",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall support narrowing opportunities within a selected park through structured categories or similar organization rather than only a flat undifferentiated job list.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        5
+      ],
+      "source_candidate_id": "REQ-15",
+      "source_harvest_id": "HARV-15",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T12:59:01+00:00"
+    },
+    {
+      "requirement_id": "REQ-16",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall surface recruiting campaigns or hiring events associated with a park's employment opportunities.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        5
+      ],
+      "source_candidate_id": "REQ-16",
+      "source_harvest_id": "HARV-16",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-22T12:59:15+00:00"
+    }
+  ]
+}
