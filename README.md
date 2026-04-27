@@ -2,6 +2,18 @@
 
 Code and sample outputs for deriving and verifying UI-facing software requirements from screenshot flows.
 
+## Repository layout
+
+The repository now separates versioned requirement data from local flow data:
+
+- `data/annotations/requirements_candidate/`: versioned candidate requirement snapshots that should be committed
+- `data/annotations/requirements_gold/`: versioned gold requirement annotations
+- `data/annotations/flow_manifests/`: versioned allowlists for reproducible flow exports
+- `data/processed/flows/`: local screenshot flows, not committed
+- `data/generated/`: local generated artifacts, prompts, verification runs, and other working files, not committed
+
+If you clone the repo fresh, the requirements are present, but the screenshot flows are not. You must install or export the flows before the flow browser in the backend can show anything useful.
+
 ## Setup
 
 ### Prerequisites
@@ -48,6 +60,39 @@ GEMINI_API_KEY=your_api_key_here
 
 If you only want to browse existing flows and annotations locally, the backend can start without `GEMINI_API_KEY`. You only need it for generation and verification flows.
 
+## Install flow data
+
+The backend starts without preinstalled flows, but `/flows` will otherwise be empty because `data/processed/flows/` is intentionally not checked in.
+
+### Export the repository sample flows
+
+The checked-in requirement annotations correspond to the numbered Mind2Web sample flows `01_...` to `13_...`. Export exactly that sample set with:
+
+```bash
+python scripts/export_mind2web.py \
+  --split test_task \
+  --max-flows 0 \
+  --allowed-flows-file data/annotations/flow_manifests/mind2web_sample_annotation_ids.txt
+```
+
+This keeps the local flow install aligned with the committed requirement annotations and avoids downloading unrelated sample flows. The export script still scans the full Hugging Face split metadata, so seeing totals such as `177` grouped flows is expected; the allowlist then reduces the exported set to the repository sample.
+
+Optional: backfill original Mind2Web screenshots for the exported flows:
+
+```bash
+python scripts/backfill_mind2web_originals.py --flows-root data/processed/flows/mind2web
+```
+
+### Export a different local flow set
+
+If you want a larger or different local dataset, you can export arbitrary Mind2Web flows:
+
+```bash
+python scripts/export_mind2web.py --split test_task --max-flows 10
+```
+
+Those flows remain local-only unless you deliberately derive and commit requirement annotations for them.
+
 ## Backend
 
 Run the FastAPI server from the repository root:
@@ -92,23 +137,20 @@ Run the Python test suite from the repository root:
 pytest
 ```
 
-## Data and helper scripts
+## Data workflows
 
-- Processed sample flows already live under `data/processed/flows/`.
-- Candidate artifacts and verification outputs are written under `data/generated/`.
-- Gold annotations live under `data/annotations/requirements_gold/`.
+### Versioned requirement data
 
-Export a small Mind2Web sample:
+- Candidate requirement snapshots are read from `data/annotations/requirements_candidate/` when present.
+- Gold annotations are read from `data/annotations/requirements_gold/`.
+- Editing or rebuilding candidate requirements through the app writes the candidate JSON snapshots back into `data/annotations/requirements_candidate/`.
 
-```bash
-python scripts/export_mind2web.py --split test_task --max-flows 10
-```
+### Local generated artifacts
 
-Backfill original Mind2Web screenshots for existing exported flows:
+- Harvested requirements, prompt bundles, Gemini raw outputs, and verification runs are written under `data/generated/`.
+- These files are intentionally ignored by Git and are treated as local working state.
 
-```bash
-python scripts/backfill_mind2web_originals.py --flows-root data/processed/flows/mind2web
-```
+### CLI generation
 
 Generate harvested and candidate requirements for one flow from the CLI:
 

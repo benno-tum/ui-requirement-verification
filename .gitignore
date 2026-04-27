@@ -27,6 +27,8 @@ data_backup_before_cleanup/
 archive/
 tmp/
 
+# Versioned requirement annotations stay in data/annotations/.
+
 # accidental nested leftovers
 data/data/
 data/report/

@@ -15,6 +15,11 @@ from ui_verifier.verification.service import VerificationService
 from ui_verifier.verification.storage import VerificationStorage
 
 
+def _ensure_static_dir(path: Path) -> Path:
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
 app = FastAPI(title="UI Verifier API")
 annotation_service = AnnotationService()
 verification_service = VerificationService(annotation_service=annotation_service)
@@ -29,8 +34,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/static/flows", StaticFiles(directory=str(flow_catalog.flows_root)), name="flow_static")
-app.mount("/static/candidate_artifacts", StaticFiles(directory=str(annotation_service.storage.candidate_root)), name="candidate_artifact_static")
+app.mount("/static/flows", StaticFiles(directory=str(_ensure_static_dir(flow_catalog.flows_root))), name="flow_static")
+app.mount(
+    "/static/candidate_artifacts",
+    StaticFiles(directory=str(_ensure_static_dir(annotation_service.storage.candidate_root))),
+    name="candidate_artifact_static",
+)
 
 
 class AcceptCandidateRequest(BaseModel):
