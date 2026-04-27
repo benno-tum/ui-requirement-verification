@@ -60,6 +60,33 @@ GEMINI_API_KEY=your_api_key_here
 
 If you only want to browse existing flows and annotations locally, the backend can start without `GEMINI_API_KEY`. You only need it for generation and verification flows.
 
+## Quick start for a fresh clone
+
+Run these commands from the repository root:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+pip install -e ".[llm,data,dev]"
+python scripts/export_mind2web.py --split test_task --max-flows 0 --allowed-flows-file data/annotations/flow_manifests/mind2web_sample_annotation_ids.txt
+uvicorn ui_verifier.api.main:app --reload
+```
+
+In a second terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Expected result:
+
+- backend: `http://127.0.0.1:8000`
+- frontend: `http://127.0.0.1:5173`
+- API docs: `http://127.0.0.1:8000/docs`
+
 ## Install flow data
 
 The backend starts without preinstalled flows, but `/flows` will otherwise be empty because `data/processed/flows/` is intentionally not checked in.
@@ -69,11 +96,10 @@ The backend starts without preinstalled flows, but `/flows` will otherwise be em
 The checked-in requirement annotations correspond to the numbered Mind2Web sample flows `01_...` to `13_...`. Export exactly that sample set with:
 
 ```bash
-python scripts/export_mind2web.py \
-  --split test_task \
-  --max-flows 0 \
-  --allowed-flows-file data/annotations/flow_manifests/mind2web_sample_annotation_ids.txt
+python scripts/export_mind2web.py --split test_task --max-flows 0 --allowed-flows-file data/annotations/flow_manifests/mind2web_sample_annotation_ids.txt
 ```
+
+If you copy commands into an IDE run configuration or a shell manually, prefer the single-line command above. A trailing `\` only works as a shell line continuation when it is the final character on the line.
 
 This keeps the local flow install aligned with the committed requirement annotations and avoids downloading unrelated sample flows. The export script still scans the full Hugging Face split metadata, so seeing totals such as `177` grouped flows is expected; the allowlist then reduces the exported set to the repository sample.
 
@@ -129,6 +155,13 @@ npm run dev
 
 By default the frontend calls `http://127.0.0.1:8000`. To override this, set `VITE_API_BASE_URL`.
 
+If `npm run dev` fails with `vite: command not found`, you have not installed the frontend dependencies in that clone yet. Run:
+
+```bash
+cd frontend
+npm install
+```
+
 ## Tests
 
 Run the Python test suite from the repository root:
@@ -155,7 +188,14 @@ pytest
 Generate harvested and candidate requirements for one flow from the CLI:
 
 ```bash
-python scripts/generate_candidate_requirements.py \
-  --flow-dir data/processed/flows/mind2web/<flow_id> \
-  --max-images 6
+python scripts/generate_candidate_requirements.py --flow-dir data/processed/flows/mind2web/<flow_id> --max-images 6
 ```
+
+## Troubleshooting
+
+- `export_mind2web.py: error: unrecognized arguments: \\`
+  You passed a literal trailing backslash as an argument. Use the single-line command from the README, or make sure `\` is only used as a shell line continuation with no trailing characters after it.
+- `sh: vite: command not found`
+  Run `npm install` inside `frontend/` first.
+- Backend starts but `/flows` is empty
+  You have not exported the local flow data yet. Run the sample export command from `Install flow data`.
