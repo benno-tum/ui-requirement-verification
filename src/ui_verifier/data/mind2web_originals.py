@@ -5,7 +5,6 @@ import json
 from pathlib import Path
 from typing import Any
 
-from datasets import load_dataset
 from PIL import Image, UnidentifiedImageError
 
 from ui_verifier.common.flow_utils import find_step_images
@@ -42,6 +41,14 @@ def _load_task_meta(flow_dir: Path) -> dict[str, Any]:
 def _load_split(split: str):
     dataset = _DATASET_BY_SPLIT.get(split)
     if dataset is None:
+        try:
+            from datasets import load_dataset
+        except ImportError as exc:
+            raise RuntimeError(
+                "datasets is required to download or backfill original Mind2Web screenshots. "
+                "Install the optional data dependencies with `pip install -e '.[data]'`."
+            ) from exc
+
         dataset = load_dataset(DATASET_NAME, split=split)
         _DATASET_BY_SPLIT[split] = dataset
     return dataset

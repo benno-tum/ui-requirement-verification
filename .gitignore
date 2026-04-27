@@ -22,8 +22,10 @@ data/archive/
 data/raw/
 data/processed/
 data/generated/
+data.zip
 data_backup_before_cleanup/
 archive/
+tmp/
 
 # accidental nested leftovers
 data/data/

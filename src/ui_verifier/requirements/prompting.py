@@ -358,6 +358,211 @@ Return all strong, de-duplicated, reviewable candidate requirements.
 """.strip()
 
 
+def build_contrastive_from_gold_prompt(
+    task: dict,
+    gold_payload: dict,
+    *,
+    target_partially: int,
+    target_abstain: int,
+    target_not_fulfilled: int,
+) -> str:
+    confirmed_task = task.get("confirmed_task", "")
+    website = task.get("website", "")
+    domain = task.get("domain", "")
+    gold_json = json.dumps(gold_payload, indent=2, ensure_ascii=False)
+
+    return f"""
+You are given accepted gold requirements for a single ordered web UI flow.
+
+Task description:
+{confirmed_task}
+
+Website:
+{website}
+
+Domain:
+{domain}
+
+Your job:
+Generate additional contrastive candidate requirements for the same product and task space.
+
+These are NOT gold requirements.
+They are reviewable candidate requirements that will later be verified against the UI flow and then reviewed by a human.
+
+Core objective:
+Produce realistic new candidate requirements that stay close to the same software capability space as the accepted gold set, but increase coverage of requirements that are likely to end up as:
+- partially_fulfilled
+- abstain
+- not_fulfilled
+
+Important:
+- The target label is only a generation target, not truth.
+- You are not assigning final benchmark labels.
+- You are generating candidate requirements that are plausible for this system and useful for later verification and review.
+
+What you are given:
+- a task description
+- website and domain context
+- optional flow overview and capability summary
+- accepted gold requirements for this flow
+
+What you are NOT given:
+- screenshots
+- hidden system behavior
+- backend state
+- proof that a generated requirement is satisfied or violated
+
+Generation stance:
+- Stay in the same product, workflow, and feature space as the source gold requirements.
+- Use the gold requirements as your main anchor, not the exact UI wording.
+- Generate requirements that would still make sense if the exact layout or widget choices changed.
+- Prefer meaningful software capabilities, workflow support, consistency expectations, visible outcomes, and realistic nearby variants.
+- Avoid random speculation and avoid unrelated capabilities.
+- Avoid direct paraphrases of the source gold requirements.
+- Avoid tiny field-level requirements unless they are independently meaningful.
+- Avoid requirements that merely restate task-instance values such as one exact email address, one amount, one city, or one personal name.
+
+Main design goal:
+The new requirements should diversify the later verification label distribution while remaining realistic and useful.
+A good generated item should still feel like a requirement a human could plausibly have written for the same system.
+
+Controlled mutation families:
+Use only these mutation families.
+
+1. persistence_extension
+   - extends a visible flow requirement with persistence across later screens, later sessions, or remembered context
+
+2. external_effect_extension
+   - extends a visible action toward an external or downstream effect such as delivery, notification, export, or confirmation outside the visible flow
+
+3. policy_or_role_extension
+   - adds account, permission, ownership, authentication, or policy constraints that are plausible for the same feature space
+
+4. hidden_state_extension
+   - adds a realistic hidden-state or backend-dependent condition while keeping a visible user-facing core
+
+5. completeness_or_universal_quantifier
+   - strengthens a requirement toward completeness, coverage, all relevant items, or never/always style expectations
+   - use carefully and realistically
+
+6. missing_visible_step
+   - adds a plausible visible workflow phase that is not necessarily shown, such as review, edit, confirmation, comparison, progress guidance, or summary
+
+7. stronger_visible_constraint
+   - strengthens a visible expectation in a way that remains UI-observable, for example comparison support, clearer transparency, stronger carry-over, richer filtering, or additional visible feedback
+
+8. cross_screen_consistency_extension
+   - strengthens consistency across steps, such as carry-over, editable review, retained selections, synchronized summaries, or matching criteria and results
+
+9. nearby_capability_variant
+   - a disciplined close variant in the same service concept, used only when it remains tightly anchored to the existing gold set
+
+How mutation families relate to intended labels:
+- likely partially_fulfilled:
+  persistence_extension
+  external_effect_extension
+  policy_or_role_extension
+  hidden_state_extension
+
+- likely abstain:
+  hidden_state_extension
+  completeness_or_universal_quantifier
+  policy_or_role_extension
+
+- likely not_fulfilled:
+  missing_visible_step
+  stronger_visible_constraint
+  cross_screen_consistency_extension
+  nearby_capability_variant
+
+Requirement quality guidance:
+- Generate software requirements, not user goals, not test instructions, not business goals.
+- Use declarative style such as "The system shall ..."
+- Prefer feature-level or workflow-level statements over widget inventories.
+- Preserve realism and closeness to the same system.
+- Good items often describe workflow support, visible outcomes, consistency, feedback, transparency, or a realistic extension of an existing capability.
+- It is acceptable that some generated requirements are broader than what screenshots alone can fully settle.
+- Requirement quality matters more than hitting quotas with weak items.
+
+Negative guidance:
+Do NOT generate:
+- random capabilities from the wider domain that are not suggested by the source gold set
+- admin or back-office requirements unless clearly implied
+- implementation details or UI layout prescriptions with no broader verification value
+- trivial variants that differ only by one noun
+- exact copies or near-copies of the source gold text
+- requirements that are obviously absurd for the website or task
+
+Diversity guidance:
+- Spread the generated items across multiple source gold requirements when possible.
+- Use different mutation families.
+- Do not create a whole set of near-duplicates.
+- Return fewer items rather than weak filler.
+
+Classification guidance:
+Use these fields as best-effort metadata for later review.
+
+Allowed values:
+- intended_label: partially_fulfilled | abstain | not_fulfilled
+- mutation_family:
+  persistence_extension
+  external_effect_extension
+  policy_or_role_extension
+  hidden_state_extension
+  completeness_or_universal_quantifier
+  missing_visible_step
+  stronger_visible_constraint
+  cross_screen_consistency_extension
+  nearby_capability_variant
+- grounding_scope: DIRECT_FLOW_GROUNDED | INDIRECT_FLOW_GROUNDED | NEARBY_VARIANT
+- requirement_type: FR | NFR | UNCLEAR
+- ui_evaluability: UI_VERIFIABLE | PARTIALLY_UI_VERIFIABLE | NOT_UI_VERIFIABLE
+- non_evaluable_reason: NONE | BACKEND_HIDDEN_STATE | PERFORMANCE_TIMING | SECURITY_PRIVACY | EXTERNAL_INTEGRATION | TOO_ABSTRACT | BUSINESS_RULE_NOT_VISIBLE | DATA_CORRECTNESS_NOT_VISIBLE
+- visible_subtype: NONE | TEXT_OR_ELEMENT_PRESENCE | NAVIGATION_OUTCOME | STATE_CHANGE_ACROSS_SCREENS | VALIDATION_OR_FEEDBACK | CONTENT_UPDATE | LAYOUT_POSITION
+- confidence: HIGH | MEDIUM | LOW
+
+Quota guidance:
+Try to generate:
+- {target_partially} items targeting partially_fulfilled
+- {target_abstain} items targeting abstain
+- {target_not_fulfilled} items targeting not_fulfilled
+
+But do NOT pad with weak items just to hit the target.
+Return only strong, distinct, realistic candidates.
+
+Source material:
+{gold_json}
+
+Return ONLY valid JSON in this format:
+{{
+  "flow_overview": "Optional refined one-line description of the system or service represented by the flow.",
+  "capability_summary": [
+    "Short capability phrase 1",
+    "Short capability phrase 2"
+  ],
+  "requirements": [
+    {{
+      "id": "CONTR-01",
+      "candidate_text": "The system shall ...",
+      "source_gold_requirement_id": "REQ-03",
+      "source_gold_text": "The system shall ...",
+      "intended_label": "not_fulfilled",
+      "mutation_family": "missing_visible_step",
+      "grounding_scope": "INDIRECT_FLOW_GROUNDED",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "non_evaluable_reason": "NONE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "confidence": "MEDIUM",
+      "generation_rationale": "Why this is a realistic close variant of the source gold requirement and why it may diversify later verification outcomes."
+    }}
+  ]
+}}
+
+Return a strong, de-duplicated, reviewable contrastive candidate set grounded in the accepted gold requirements, task, website, and domain.
+""".strip()
+
+
 
 # Compatibility wrapper for older hybrid-mode call sites.
 def build_pure_prior_harvest_prompt(

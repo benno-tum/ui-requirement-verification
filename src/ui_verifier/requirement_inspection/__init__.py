@@ -29,12 +29,17 @@ from ui_verifier.requirement_inspection.pure_loader import (
     load_pure_documents_from_dir,
 )
 from ui_verifier.requirement_inspection.annotation_sheet import (
+    ANNOTATION_LABEL_FIELDNAMES,
     ANNOTATION_SHEET_FIELDNAMES,
+    PURE_CANDIDATE_ANNOTATION_SHEET_FIELDNAMES,
     RequirementStatement,
+    load_pure_requirement_candidates,
+    load_pure_requirement_candidates_jsonl,
     load_requirement_statements,
     load_requirement_statements_csv,
     load_requirement_statements_jsonl,
     write_blank_annotation_sheet,
+    write_blank_pure_candidate_annotation_sheet,
 )
 
 __all__ = [
@@ -60,10 +65,15 @@ __all__ = [
     "load_annotation_records_jsonl",
     "save_annotation_records_csv",
     "save_annotation_records_jsonl",
+    "ANNOTATION_LABEL_FIELDNAMES",
     "ANNOTATION_SHEET_FIELDNAMES",
+    "PURE_CANDIDATE_ANNOTATION_SHEET_FIELDNAMES",
     "RequirementStatement",
+    "load_pure_requirement_candidates",
+    "load_pure_requirement_candidates_jsonl",
     "load_requirement_statements",
     "load_requirement_statements_csv",
     "load_requirement_statements_jsonl",
     "write_blank_annotation_sheet",
+    "write_blank_pure_candidate_annotation_sheet",
 ]
