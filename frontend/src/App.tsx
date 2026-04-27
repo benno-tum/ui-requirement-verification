@@ -4,16 +4,13 @@ import {
     resolveAssetUrl,
     type FlowStep,
     type FlowSummary,
-    type ManualVerdictLabel,
     type Requirement,
     type HarvestedRequirement,
     type RequirementPayload,
-    type RequirementVerdict,
-    type VerificationRun,
 } from './api'
 
 type LoadState = 'idle' | 'loading' | 'error'
-type ViewMode = 'single' | 'multi' | 'overview' | 'verification' | 'harvested'
+type ViewMode = 'single' | 'multi' | 'overview' | 'harvested'
 type EditorMode = 'candidate' | 'gold'
 
 type EditorState = {
@@ -27,15 +24,12 @@ type RequirementFormState = {
     tags: string
     annotationNotes: string
     annotatedBy: string
-    manualVerificationLabel: ManualVerdictLabel
-    manualVerificationNotes: string
 }
 
 const VIEW_TABS: Array<{ id: ViewMode; label: string }> = [
     {id: 'single', label: 'Single-screen review'},
     {id: 'multi', label: 'Multi-screen review'},
     {id: 'overview', label: 'Overview'},
-    {id: 'verification', label: 'Verification results'},
     {id: 'harvested', label: 'Harvested'},
 ]
 
@@ -48,7 +42,6 @@ function App() {
     const [harvested, setHarvested] = useState<HarvestedRequirement[]>([])
     const [candidates, setCandidates] = useState<Requirement[]>([])
     const [gold, setGold] = useState<Requirement[]>([])
-    const [run, setRun] = useState<VerificationRun | null>(null)
     const [detailsState, setDetailsState] = useState<LoadState>('idle')
     const [message, setMessage] = useState<string>('')
     const [annotatedBy, setAnnotatedBy] = useState<string>('benno')
@@ -104,18 +97,16 @@ function App() {
         setHarvested([])
         setCandidates([])
         setGold([])
-        setRun(null)
 
         try {
             const flow = await api.getFlow(flowId)
             setSelectedFlow(flow)
 
-            const [stepsResult, harvestedResult, candidatesResult, goldResult, runResult] = await Promise.allSettled([
+            const [stepsResult, harvestedResult, candidatesResult, goldResult] = await Promise.allSettled([
                 api.getSteps(flowId),
                 api.listHarvested(flowId),
                 api.listCandidates(flowId),
                 api.listGold(flowId),
-                api.getLatestVerification(flowId),
             ])
 
             if (stepsResult.status === 'fulfilled') {
@@ -138,12 +129,6 @@ function App() {
                 setGold(goldResult.value)
             } else {
                 setGold([])
-            }
-
-            if (runResult.status === 'fulfilled') {
-                setRun(runResult.value)
-            } else {
-                setRun(null)
             }
 
             setDetailsState('idle')
@@ -271,29 +256,6 @@ function App() {
         }
     }
 
-    async function handleVerify(dryRun: boolean) {
-        if (!selectedFlow) {
-            return
-        }
-        setMessage('')
-        try {
-            const result = await api.verify({
-                flow_dir: selectedFlow.flow_dir,
-                max_images: maxImages,
-                dry_run: dryRun,
-            })
-            if ('verdicts' in result) {
-                setRun(result)
-                setMessage(`Verification completed for ${selectedFlow.flow_id}.`)
-            } else {
-                setMessage(`Dry run completed for ${selectedFlow.flow_id}.`)
-            }
-            await loadFlowDetails(selectedFlow.flow_id)
-        } catch (error) {
-            setMessage(error instanceof Error ? error.message : 'Verification failed')
-        }
-    }
-
     const activeCandidates = useMemo(
         () => candidates.filter((candidate) => candidate.review_status !== 'accepted' && candidate.review_status !== 'rejected'),
         [candidates],
@@ -314,14 +276,13 @@ function App() {
 
     const candidateGroupsByStep = useMemo(() => groupRequirementsBySingleStep(singleScreenCandidates), [singleScreenCandidates])
     const goldGroupsByStep = useMemo(() => groupRequirementsBySingleStep(singleScreenGold), [singleScreenGold])
-    const verdictMap = useMemo(() => new Map((run?.verdicts ?? []).map((verdict) => [verdict.requirement_id, verdict])), [run])
 
     return (
         <div className="app-shell">
             <aside className="sidebar">
                 <div className="sidebar-header">
                     <h1>UI Verifier</h1>
-                    <p>Annotation and verification workbench</p>
+                    <p>Annotation workbench</p>
                 </div>
 
                 <button className="secondary-button" onClick={() => void loadFlows()}>
@@ -354,12 +315,6 @@ function App() {
                             <h2>{selectedFlow?.flow_id ?? 'Select a flow'}</h2>
                             <p>{selectedFlow?.confirmed_task ?? 'No task loaded yet.'}</p>
                         </div>
-                        <div className="dual-status-explainer">
-                            <span className="mini-label">Dataset decision</span>
-                            <strong>candidate → gold</strong>
-                            <span className="mini-label">Verification verdict</span>
-                            <strong>fulfilled / partial / not fulfilled / abstain</strong>
-                        </div>
                     </div>
 
                     <div className="toolbar-grid">
@@ -382,10 +337,6 @@ function App() {
                                 onChange={(event) => setMaxImages(Number(event.target.value) || 1)}
                             />
                         </label>
-                        <div className="button-row">
-                            <button onClick={() => void handleVerify(true)}>Verify dry run</button>
-                            <button onClick={() => void handleVerify(false)}>Run verification</button>
-                        </div>
                     </div>
                 </section>
 
@@ -418,7 +369,6 @@ function App() {
                         onEditCandidate={(requirement) => setEditor({mode: 'candidate', requirement})}
                         onReject={(requirement) => void handleCandidateAction('reject', requirement)}
                         onEditGold={(requirement) => setEditor({mode: 'gold', requirement})}
-                        verdictMap={verdictMap}
                     />
                 )}
 
@@ -432,7 +382,6 @@ function App() {
                         onPromote={(requirement) => void handleCandidateAction('accept', requirement)}
                         onReject={(requirement) => void handleCandidateAction('reject', requirement)}
                         onEditGold={(requirement) => setEditor({mode: 'gold', requirement})}
-                        verdictMap={verdictMap}
                     />
                 )}
 
@@ -448,12 +397,8 @@ function App() {
                         onReject={(requirement) => void handleCandidateAction('reject', requirement)}
                         onEditGold={(requirement) => setEditor({mode: 'gold', requirement})}
                         onDeleteGold={(requirement) => void handleDeleteGoldRequirement(requirement)}
-                        verdictMap={verdictMap}
                     />
                 )}
-
-                {selectedFlow && viewMode === 'verification' &&
-                    <VerificationPanel run={run} onJumpToStep={jumpToStep}/>}
 
                 {selectedFlow && viewMode === 'harvested' && (
                     <HarvestedPanel
@@ -501,7 +446,6 @@ function SingleScreenReview({
                                 onEditCandidate,
                                 onReject,
                                 onEditGold,
-                                verdictMap,
                             }: {
     steps: FlowStep[]
     highlightedStep: number | null
@@ -513,7 +457,6 @@ function SingleScreenReview({
     onEditCandidate: (requirement: Requirement) => void
     onReject: (requirement: Requirement) => void
     onEditGold: (requirement: Requirement) => void
-    verdictMap: Map<string, RequirementVerdict>
 }) {
     return (
         <section className="stack-layout">
@@ -572,7 +515,6 @@ function SingleScreenReview({
                                                 key={requirement.requirement_id}
                                                 requirement={requirement}
                                                 onJumpToStep={onJumpToStep}
-                                                verdict={verdictMap.get(requirement.requirement_id)}
                                                 actions={
                                                     <div className="button-row left wrap">
                                                         <button onClick={() => onPromote(requirement)}>Promote to gold
@@ -608,7 +550,6 @@ function SingleScreenReview({
                                                 key={requirement.requirement_id}
                                                 requirement={requirement}
                                                 onJumpToStep={onJumpToStep}
-                                                verdict={verdictMap.get(requirement.requirement_id)}
                                                 actions={
                                                     <div className="button-row left wrap">
                                                         <button className="secondary-button"
@@ -641,7 +582,6 @@ function MultiScreenReview({
                                onPromote,
                                onReject,
                                onEditGold,
-                               verdictMap,
                            }: {
     steps: FlowStep[]
     candidates: Requirement[]
@@ -651,7 +591,6 @@ function MultiScreenReview({
     onPromote: (requirement: Requirement) => void
     onReject: (requirement: Requirement) => void
     onEditGold: (requirement: Requirement) => void
-    verdictMap: Map<string, RequirementVerdict>
 }) {
     return (
         <section className="content-grid">
@@ -682,7 +621,6 @@ function MultiScreenReview({
                                 key={requirement.requirement_id}
                                 requirement={requirement}
                                 onJumpToStep={onJumpToStep}
-                                verdict={verdictMap.get(requirement.requirement_id)}
                                 actions={
                                     <div className="button-row left wrap">
                                         <button onClick={() => onPromote(requirement)}>Promote to gold</button>
@@ -715,7 +653,6 @@ function MultiScreenReview({
                                 key={requirement.requirement_id}
                                 requirement={requirement}
                                 onJumpToStep={onJumpToStep}
-                                verdict={verdictMap.get(requirement.requirement_id)}
                                 actions={
                                     <div className="button-row left wrap">
                                         <button className="secondary-button" onClick={() => onEditGold(requirement)}>
@@ -745,7 +682,6 @@ function OverviewPanel({
                            onReject,
                            onEditGold,
                            onDeleteGold,
-                           verdictMap,
                        }: {
     steps: FlowStep[]
     activeCandidates: Requirement[]
@@ -757,7 +693,6 @@ function OverviewPanel({
     onReject: (requirement: Requirement) => void
     onEditGold: (requirement: Requirement) => void
     onDeleteGold: (requirement: Requirement) => void
-    verdictMap: Map<string, RequirementVerdict>
 }) {
     return (
         <section className="content-grid">
@@ -791,7 +726,6 @@ function OverviewPanel({
                             key={requirement.requirement_id}
                             requirement={requirement}
                             onJumpToStep={onJumpToStep}
-                            verdict={verdictMap.get(requirement.requirement_id)}
                             actions={
                                 <div className="button-row left wrap">
                                     <button onClick={() => onPromote(requirement)}>Promote to gold</button>
@@ -819,7 +753,6 @@ function OverviewPanel({
                             key={requirement.requirement_id}
                             requirement={requirement}
                             onJumpToStep={onJumpToStep}
-                            verdict={verdictMap.get(requirement.requirement_id)}
                             actions={
                                 <div className="button-row left wrap">
                                     <button className="secondary-button" onClick={() => onEditGold(requirement)}>
@@ -952,59 +885,14 @@ function HarvestedPanel({
     )
 }
 
-function VerificationPanel({run, onJumpToStep}: {
-    run: VerificationRun | null;
-    onJumpToStep: (stepIndex: number) => void
-}) {
-    return (
-        <section className="card panel-wide">
-            <div className="panel-header">
-                <h3>Latest verification run</h3>
-                <span>{run ? run.created_at : 'none'}</span>
-            </div>
-            {run ? (
-                <div className="requirement-list compact-list">
-                    {run.verdicts.map((verdict) => (
-                        <article key={verdict.requirement_id} className="requirement-card">
-                            <div className="requirement-header">
-                                <strong>{verdict.requirement_id}</strong>
-                                <span className={`status-pill ${verdict.label}`}>{humanizeStatus(verdict.label)}</span>
-                            </div>
-                            {verdict.explanation && <p>{verdict.explanation}</p>}
-                            {verdict.evidence.length > 0 && (
-                                <ul className="evidence-list">
-                                    {verdict.evidence.map((evidence, index) => (
-                                        <li key={`${verdict.requirement_id}-${index}`}>
-                                            <button className="link-button"
-                                                    onClick={() => onJumpToStep(evidence.step_index)}>
-                                                Step {evidence.step_index}
-                                            </button>
-                                            {' '}
-                                            {evidence.reason ?? evidence.evidence_type}
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </article>
-                    ))}
-                </div>
-            ) : (
-                <p>No verification run stored for this flow yet.</p>
-            )}
-        </section>
-    )
-}
-
 function RequirementCard({
                              requirement,
                              actions,
                              onJumpToStep,
-                             verdict,
                          }: {
     requirement: Requirement
     actions?: ReactNode
     onJumpToStep: (stepIndex: number) => void
-    verdict?: RequirementVerdict
 }) {
     return (
         <article className="requirement-card">
@@ -1013,18 +901,10 @@ function RequirementCard({
                 <div className="pill-row">
                     <span
                         className={`status-pill ${requirement.review_status ?? 'candidate'}`}>{humanizeStatus(requirement.review_status ?? 'candidate')}</span>
-                    {requirement.manual_verification_label && (
-                        <span
-                            className={`status-pill manual ${requirement.manual_verification_label}`}>manual: {humanizeStatus(requirement.manual_verification_label)}</span>
-                    )}
-                    {verdict &&
-                        <span className={`status-pill ${verdict.label}`}>run: {humanizeStatus(verdict.label)}</span>}
                 </div>
             </div>
             <p>{requirement.text}</p>
             <RequirementMeta requirement={requirement} onJumpToStep={onJumpToStep}/>
-            {requirement.manual_verification_notes &&
-                <p className="inline-note">Manual verdict notes: {requirement.manual_verification_notes}</p>}
             {actions}
         </article>
     )
@@ -1086,8 +966,6 @@ function RequirementEditorModal({
         tags: requirement.tags.join(', '),
         annotationNotes: requirement.annotation_notes ?? requirement.rationale ?? '',
         annotatedBy: requirement.annotated_by ?? defaultAnnotatedBy,
-        manualVerificationLabel: requirement.manual_verification_label ?? 'fulfilled',
-        manualVerificationNotes: requirement.manual_verification_notes ?? '',
     }))
 
     function toggleStep(stepIndex: number) {
@@ -1105,8 +983,6 @@ function RequirementEditorModal({
         edited_tags: parseTags(form.tags),
         annotation_notes: form.annotationNotes.trim() || undefined,
         annotated_by: form.annotatedBy.trim() || undefined,
-        manual_verification_label: form.manualVerificationLabel || undefined,
-        manual_verification_notes: form.manualVerificationNotes.trim() || undefined,
     }
 
     return (
@@ -1165,30 +1041,6 @@ function RequirementEditorModal({
                             })}
                         </div>
                     </fieldset>
-
-                    <label>
-                        Manual verification label
-                        <select
-                            value={form.manualVerificationLabel}
-                            onChange={(event) =>
-                                setForm({...form, manualVerificationLabel: event.target.value as ManualVerdictLabel})
-                            }
-                        >
-                            <option value="fulfilled">fulfilled</option>
-                            <option value="partially_fulfilled">partially fulfilled</option>
-                            <option value="not_fulfilled">not fulfilled</option>
-                            <option value="abstain">abstain</option>
-                        </select>
-                    </label>
-
-                    <label>
-                        Manual verification notes
-                        <textarea
-                            value={form.manualVerificationNotes}
-                            onChange={(event) => setForm({...form, manualVerificationNotes: event.target.value})}
-                            rows={3}
-                        />
-                    </label>
                 </div>
 
                 <div className="button-row wrap">
