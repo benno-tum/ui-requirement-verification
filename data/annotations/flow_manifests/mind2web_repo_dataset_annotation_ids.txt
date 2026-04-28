@@ -1,5 +1,6 @@
-# Repository sample flows with committed candidate and gold requirements.
-# These map to the numbered flow folders 01_... through 13_... under data/processed/flows/mind2web/ after export.
+# Canonical Mind2Web annotation IDs for the repository dataset.
+# Exporting with this manifest recreates the local flow set that matches the
+# versioned candidate and gold requirements committed in this repository.
 
 a52fcf7a-50aa-4256-8796-654b3dc3adac
 a2500e0b-9244-4f0e-b686-fa290c32b829

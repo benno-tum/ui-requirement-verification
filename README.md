@@ -1,6 +1,6 @@
 # UI Requirement Verification
 
-Code and sample outputs for deriving and verifying UI-facing software requirements from screenshot flows.
+Code and repository data for deriving and verifying UI-facing software requirements from screenshot flows.
 
 ## Repository layout
 
@@ -8,11 +8,12 @@ The repository now separates versioned requirement data from local flow data:
 
 - `data/annotations/requirements_candidate/`: versioned candidate requirement snapshots that should be committed
 - `data/annotations/requirements_gold/`: versioned gold requirement annotations
-- `data/annotations/flow_manifests/`: versioned allowlists for reproducible flow exports
+- `data/annotations/flow_manifests/`: versioned manifests for reproducible flow exports
 - `data/processed/flows/`: local screenshot flows, not committed
 - `data/generated/`: local generated artifacts, prompts, verification runs, and other working files, not committed
 
 If you clone the repo fresh, the requirements are present, but the screenshot flows are not. You must install or export the flows before the flow browser in the backend can show anything useful.
+The repository therefore defines one canonical local flow set that can be recreated from versioned manifests.
 
 ## Setup
 
@@ -69,7 +70,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 pip install -e ".[llm,data,dev]"
-python scripts/export_mind2web.py --split test_task --max-flows 0 --allowed-flows-file data/annotations/flow_manifests/mind2web_sample_annotation_ids.txt
+./scripts/update_repo_dataset.sh
 uvicorn ui_verifier.api.main:app --reload
 ```
 
@@ -91,17 +92,21 @@ Expected result:
 
 The backend starts without preinstalled flows, but `/flows` will otherwise be empty because `data/processed/flows/` is intentionally not checked in.
 
-### Export the repository sample flows
+### Export the repository dataset flows
 
-The checked-in requirement annotations correspond to the numbered Mind2Web sample flows `01_...` to `13_...`. Export exactly that sample set with:
+The checked-in requirement annotations correspond to the numbered Mind2Web repository dataset flows `01_...` to `13_...`. Recreate that local flow set with:
 
 ```bash
-python scripts/export_mind2web.py --split test_task --max-flows 0 --allowed-flows-file data/annotations/flow_manifests/mind2web_sample_annotation_ids.txt
+./scripts/update_repo_dataset.sh
 ```
 
-If you copy commands into an IDE run configuration or a shell manually, prefer the single-line command above. A trailing `\` only works as a shell line continuation when it is the final character on the line.
+This wrapper keeps the local flow install aligned with the committed requirement annotations and avoids downloading unrelated repository-external flows. Internally it calls:
 
-This keeps the local flow install aligned with the committed requirement annotations and avoids downloading unrelated sample flows. The export script still scans the full Hugging Face split metadata, so seeing totals such as `177` grouped flows is expected; the allowlist then reduces the exported set to the repository sample.
+```bash
+python scripts/export_mind2web.py --split test_task --max-flows 0 --allowed-flows-file data/annotations/flow_manifests/mind2web_repo_dataset_annotation_ids.txt
+```
+
+The export script still scans the full Hugging Face split metadata, so seeing totals such as `177` grouped flows is expected; the manifest then reduces the exported set to the repository dataset.
 
 The export already writes both:
 
@@ -122,7 +127,7 @@ If you want a larger or different local dataset, you can export arbitrary Mind2W
 python scripts/export_mind2web.py --split test_task --max-flows 10
 ```
 
-Those flows remain local-only unless you deliberately derive and commit requirement annotations for them.
+Those flows remain local-only unless you deliberately add them to the repository dataset manifest and commit their requirement annotations.
 
 ## Backend
 
@@ -199,10 +204,10 @@ python scripts/generate_candidate_requirements.py --flow-dir data/processed/flow
 ## Troubleshooting
 
 - `export_mind2web.py: error: unrecognized arguments: \\`
-  You passed a literal trailing backslash as an argument. Use the single-line command from the README, or make sure `\` is only used as a shell line continuation with no trailing characters after it.
+  You passed a literal trailing backslash as an argument. Use `./scripts/update_repo_dataset.sh`, or make sure `\` is only used as a shell line continuation with no trailing characters after it.
 - `ValueError: 'data/...' is not in the subpath of '...repo...'`
   Update to the current branch head and rerun the export. Older versions of `scripts/export_mind2web.py` mishandled relative allowlist paths.
 - `sh: vite: command not found`
   Run `npm install` inside `frontend/` first.
 - Backend starts but `/flows` is empty
-  You have not exported the local flow data yet. Run the sample export command from `Install flow data`.
+  You have not exported the local flow data yet. Run `./scripts/update_repo_dataset.sh`.
