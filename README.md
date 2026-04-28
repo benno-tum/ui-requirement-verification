@@ -103,7 +103,12 @@ If you copy commands into an IDE run configuration or a shell manually, prefer t
 
 This keeps the local flow install aligned with the committed requirement annotations and avoids downloading unrelated sample flows. The export script still scans the full Hugging Face split metadata, so seeing totals such as `177` grouped flows is expected; the allowlist then reduces the exported set to the repository sample.
 
-Optional: backfill original Mind2Web screenshots for the exported flows:
+The export already writes both:
+
+- downscaled screenshots as `step_XX.png`
+- original screenshots under `original/`
+
+So for a fresh export, no separate backfill step is needed. The backfill script is only useful for older exports that were created without original screenshots:
 
 ```bash
 python scripts/backfill_mind2web_originals.py --flows-root data/processed/flows/mind2web
@@ -195,6 +200,8 @@ python scripts/generate_candidate_requirements.py --flow-dir data/processed/flow
 
 - `export_mind2web.py: error: unrecognized arguments: \\`
   You passed a literal trailing backslash as an argument. Use the single-line command from the README, or make sure `\` is only used as a shell line continuation with no trailing characters after it.
+- `ValueError: 'data/...' is not in the subpath of '...repo...'`
+  Update to the current branch head and rerun the export. Older versions of `scripts/export_mind2web.py` mishandled relative allowlist paths.
 - `sh: vite: command not found`
   Run `npm install` inside `frontend/` first.
 - Backend starts but `/flows` is empty

@@ -6,6 +6,7 @@ import io
 import json
 import re
 import argparse
+import warnings
 from typing import Optional
 
 
@@ -23,6 +24,16 @@ def json_safe(value):
         return value
     except TypeError:
         return str(value)
+
+
+def path_for_metadata(path: Path | None) -> str | None:
+    if path is None:
+        return None
+    resolved = path.resolve()
+    try:
+        return str(resolved.relative_to(BASE_DIR))
+    except ValueError:
+        return str(resolved)
 
 
 def downscale_image(img: Image.Image, max_side: int) -> Image.Image:
@@ -117,6 +128,9 @@ def main():
     out_dir = args.out
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    # Mind2Web screenshots are trusted inputs and can exceed Pillow's conservative warning threshold.
+    warnings.simplefilter("ignore", Image.DecompressionBombWarning)
+
     allowed_flows = read_allowed_ids(args.allowed_flows_file)
     allowed_websites = read_allowed_ids(args.allowed_websites_file)
 
@@ -176,8 +190,8 @@ def main():
             "num_steps": len(rows),
             "split": args.split,
             "max_side": args.max_side,
-            "allowed_flows_file": str(args.allowed_flows_file.relative_to(BASE_DIR)) if args.allowed_flows_file else None,
-            "allowed_websites_file": str(args.allowed_websites_file.relative_to(BASE_DIR)) if args.allowed_websites_file else None,
+            "allowed_flows_file": path_for_metadata(args.allowed_flows_file),
+            "allowed_websites_file": path_for_metadata(args.allowed_websites_file),
         }
         (folder / "task.json").write_text(
             json.dumps(task_meta, indent=2, ensure_ascii=False),
@@ -214,8 +228,8 @@ def main():
         "split": args.split,
         "max_flows": args.max_flows,
         "max_side": args.max_side,
-        "allowed_flows_file": str(args.allowed_flows_file.relative_to(BASE_DIR)) if args.allowed_flows_file else None,
-        "allowed_websites_file": str(args.allowed_websites_file.relative_to(BASE_DIR)) if args.allowed_websites_file else None,
+        "allowed_flows_file": path_for_metadata(args.allowed_flows_file),
+        "allowed_websites_file": path_for_metadata(args.allowed_websites_file),
         "num_grouped_flows": len(grouped),
         "num_selected_flows": len(selected_flows),
         "num_exported_flows": exported,
