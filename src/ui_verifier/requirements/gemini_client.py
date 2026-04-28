@@ -4,7 +4,12 @@ from typing import List
 import os
 
 
-def run_gemini(prompt: str, image_bytes_list: List[bytes], model_name: str) -> str:
+def run_gemini(
+    prompt: str,
+    image_bytes_list: List[bytes],
+    model_name: str,
+    temperature: float = 0.2,
+) -> str:
     from google import genai
     from google.genai import types
 
@@ -22,7 +27,7 @@ def run_gemini(prompt: str, image_bytes_list: List[bytes], model_name: str) -> s
         model=model_name,
         contents=parts,
         config=types.GenerateContentConfig(
-            temperature=0.2,
+            temperature=temperature,
             response_mime_type="application/json",
         ),
     )

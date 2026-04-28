@@ -1,0 +1,136 @@
+{
+  "dataset": "mind2web",
+  "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+  "requirements": [
+    {
+      "requirement_id": "REQ-01",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall provide a clear mechanism for users to access the store locator functionality.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1,
+        2
+      ],
+      "source_candidate_id": "REQ-01",
+      "source_harvest_id": "HARV-01",
+      "annotation_notes": "Screenshot 2 clearly shows the 'Find a Store' page, indicating that this functionality is accessible. However, the complete navigation path from the initial homepage (Screenshot 1) to this page is not explicitly shown, making the full navigation process partially UI-verifiable.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NAVIGATION_OUTCOME",
+      "created_at": "2026-04-21T13:10:18+00:00"
+    },
+    {
+      "requirement_id": "REQ-02",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall allow users to search for store locations by specifying a geographic identifier such as a zip code, city, or state.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-02",
+      "source_harvest_id": "HARV-02",
+      "annotated_by": "benno",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "created_at": "2026-04-21T13:10:48+00:00"
+    },
+    {
+      "requirement_id": "REQ-03",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall display relevant store locations on both an interactive map and in a detailed list format, updating based on the user's search query.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-03",
+      "source_harvest_id": "HARV-03",
+      "annotated_by": "benno",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "CONTENT_UPDATE",
+      "created_at": "2026-04-21T13:11:07+00:00"
+    },
+    {
+      "requirement_id": "REQ-04",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall transparently display the operating hours for each listed store, including daily breakdown.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        4
+      ],
+      "source_candidate_id": "REQ-04",
+      "source_harvest_id": "HARV-04",
+      "annotation_notes": "Screenshots 2 and 4 clearly show detailed operating hours for each day of the week for all listed stores, directly addressing the task's requirement to find store hours.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "created_at": "2026-04-21T13:11:26+00:00"
+    },
+    {
+      "requirement_id": "REQ-05",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall provide a mechanism for users to select and designate a specific store as their preferred 'home store'.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-05",
+      "source_harvest_id": "HARV-05",
+      "annotation_notes": "Screenshots 2 and 4 show a prominent 'SET AS HOME STORE' button associated with each store listing, directly supporting the task. However, the actual effect of setting a home store (e.g., a confirmation message, persistence across sessions, or an update on the homepage) is not visible within the provided flow, making it partially UI-verifiable.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "created_at": "2026-04-21T13:12:28+00:00"
+    },
+    {
+      "requirement_id": "REQ-06",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall allow users to refine their store search by selecting a specific radius around the searched location.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-06",
+      "source_harvest_id": "HARV-06",
+      "annotated_by": "benno",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "created_at": "2026-04-21T13:13:09+00:00"
+    }
+  ]
+}

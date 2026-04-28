@@ -1,0 +1,17 @@
+# Canonical Mind2Web annotation IDs for the repository dataset.
+# Exporting with this manifest recreates the local flow set that matches the
+# versioned candidate and gold requirements committed in this repository.
+
+a52fcf7a-50aa-4256-8796-654b3dc3adac
+a2500e0b-9244-4f0e-b686-fa290c32b829
+c094948f-afc6-415c-968a-9e105e2db118
+18fc60d7-aa69-4c07-9bf1-64543eae52c9
+790ba0ec-4e7d-4df0-ac86-ea52b3a73532
+19b955ba-fdcd-4345-b33a-fc6a88b5a85d
+8251e820-4b8a-4221-b2d9-8158cada3dcf
+845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b
+925a2307-b2b7-4189-bf25-e3f463c24e1c
+ee1e95ab-4c5d-44c6-b302-783fd13a471e
+6cf8ca9c-672d-426e-ab6c-c865475edcd4
+c472a4fe-33a0-4b6f-8d42-adcc067ba4ed
+34c474ef-389c-421d-acbf-de5531437083

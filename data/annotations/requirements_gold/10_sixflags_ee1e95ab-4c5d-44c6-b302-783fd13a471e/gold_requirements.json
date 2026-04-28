@@ -1,0 +1,390 @@
+{
+  "dataset": "mind2web",
+  "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+  "requirements": [
+    {
+      "requirement_id": "REQ-01",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall let the user select a specific park so that subsequent ticketing and add-on content is localized to that park.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-01",
+      "source_harvest_id": "HARV-01",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:07:03+00:00"
+    },
+    {
+      "requirement_id": "REQ-02",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall present park-specific passes and in-park purchase options after a park has been selected.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3,
+        4,
+        5
+      ],
+      "source_candidate_id": "REQ-02",
+      "source_harvest_id": "HARV-02",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:08:41+00:00"
+    },
+    {
+      "requirement_id": "REQ-03",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall support navigation from a park homepage into add-on purchasing sections associated with tickets or passes.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        4,
+        5,
+        6
+      ],
+      "source_candidate_id": "REQ-03",
+      "source_harvest_id": "HARV-03",
+      "annotation_notes": "The sequence moves from the localized park page into a dedicated season add-ons view, showing that add-on shopping is reachable from the park-level browsing context.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:11:31+00:00"
+    },
+    {
+      "requirement_id": "REQ-04",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall present optional add-on plans with enough descriptive and pricing information for users to compare them before selection.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        6
+      ],
+      "source_candidate_id": "REQ-04",
+      "source_harvest_id": "HARV-04",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:11:44+00:00"
+    },
+    {
+      "requirement_id": "REQ-05",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall support category-based browsing of purchasable items within the ticketing and add-on shopping interface.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        6,
+        7
+      ],
+      "source_candidate_id": "REQ-05",
+      "source_harvest_id": "HARV-05",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:11:57+00:00"
+    },
+    {
+      "requirement_id": "REQ-06",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall allow the user to choose among multiple add-on variants within the selected park context.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        7
+      ],
+      "source_candidate_id": "REQ-06",
+      "source_harvest_id": "HARV-06",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:23:04+00:00"
+    },
+    {
+      "requirement_id": "REQ-15",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall present an itemized pre-checkout order summary including subtotal, fees, tax, and total.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        10
+      ],
+      "source_candidate_id": "REQ-15",
+      "source_harvest_id": "HARV-15",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:23:57+00:00"
+    },
+    {
+      "requirement_id": "REQ-07",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall provide a dedicated detail view for a selected add-on before it is added to the cart.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        7,
+        8
+      ],
+      "source_candidate_id": "REQ-07",
+      "source_harvest_id": "HARV-07",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:24:16+00:00"
+    },
+    {
+      "requirement_id": "REQ-08",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall disclose important product conditions such as eligibility, usage restrictions, or special purchase notes before the user commits to an add-on purchase.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        6,
+        8
+      ],
+      "source_candidate_id": "REQ-08",
+      "source_harvest_id": "HARV-08",
+      "annotation_notes": "The flow shows visible product notes such as membership-related conditions and ride restrictions. The disclosure is visible, while actual enforcement would depend on hidden logic.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:25:05+00:00"
+    },
+    {
+      "requirement_id": "REQ-09",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall allow the user to adjust add-on quantity before adding the selected item to the cart.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        8,
+        9
+      ],
+      "source_candidate_id": "REQ-09",
+      "source_harvest_id": "HARV-09",
+      "annotation_notes": "The add-on detail view includes quantity controls, and the next screen shows the quantity increased from one to two before cart addition.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:26:04+00:00"
+    },
+    {
+      "requirement_id": "REQ-11",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall let the user cancel an add-on configuration step without losing the broader shopping context.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        8,
+        9
+      ],
+      "source_candidate_id": "REQ-11",
+      "source_harvest_id": "HARV-11",
+      "annotation_notes": "A Back action is present inside the add-on configuration modal, suggesting the user can retreat without abandoning the overall purchasing flow.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:27:40+00:00"
+    },
+    {
+      "requirement_id": "REQ-12",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall add configured add-ons to the shopping cart and reflect the selected quantity in cart line items.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        9,
+        10
+      ],
+      "source_candidate_id": "REQ-12",
+      "source_harvest_id": "HARV-12",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:27:51+00:00"
+    },
+    {
+      "requirement_id": "REQ-13",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall support carts that combine admission products with optional add-ons in a single order review.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        10
+      ],
+      "source_candidate_id": "REQ-13",
+      "source_harvest_id": "HARV-13",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:28:32+00:00"
+    },
+    {
+      "requirement_id": "REQ-14",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall preserve the selected park context consistently across discovery, add-on selection, and cart review screens.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3,
+        6,
+        10
+      ],
+      "source_candidate_id": "REQ-14",
+      "source_harvest_id": "HARV-14",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "NFR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:28:49+00:00"
+    },
+    {
+      "requirement_id": "REQ-16",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall allow cart contents to be reviewed and modified before proceeding to checkout.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        10
+      ],
+      "source_candidate_id": "REQ-16",
+      "source_harvest_id": "HARV-16",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:29:30+00:00"
+    },
+    {
+      "requirement_id": "REQ-17",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall distinguish optional marketing consent from required purchase acknowledgements during the transition to checkout.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        10
+      ],
+      "source_candidate_id": "REQ-17",
+      "source_harvest_id": "HARV-17",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:29:58+00:00"
+    },
+    {
+      "requirement_id": "REQ-18",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall provide accessibility support such as a high-contrast viewing mode during the purchase workflow.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "source_candidate_id": "REQ-18",
+      "source_harvest_id": "HARV-18",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:30:16+00:00"
+    },
+    {
+      "requirement_id": "REQ-19",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall support selection of a digital or mobile ticket fulfillment option as part of the purchase flow.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        10
+      ],
+      "source_candidate_id": "REQ-19",
+      "source_harvest_id": "HARV-19",
+      "annotation_notes": "The task explicitly mentions choosing a digital ticket option, and the visible flow reaches cart review where delivery or fulfillment choices commonly appear, but the explicit control is not clearly shown in the provided screenshots.",
+      "annotated_by": "benno",
+      "manual_verification_label": "abstain",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:31:42+00:00"
+    }
+  ]
+}

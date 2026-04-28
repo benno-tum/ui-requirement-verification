@@ -22,8 +22,12 @@ data/archive/
 data/raw/
 data/processed/
 data/generated/
+data.zip
 data_backup_before_cleanup/
 archive/
+tmp/
+
+# Versioned requirement annotations stay in data/annotations/.
 
 # accidental nested leftovers
 data/data/

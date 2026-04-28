@@ -6,6 +6,7 @@ import io
 import json
 import re
 import argparse
+import warnings
 from typing import Optional
 
 
@@ -23,6 +24,16 @@ def json_safe(value):
         return value
     except TypeError:
         return str(value)
+
+
+def path_for_metadata(path: Path | None) -> str | None:
+    if path is None:
+        return None
+    resolved = path.resolve()
+    try:
+        return str(resolved.relative_to(BASE_DIR))
+    except ValueError:
+        return str(resolved)
 
 
 def downscale_image(img: Image.Image, max_side: int) -> Image.Image:
@@ -53,6 +64,12 @@ def load_pil_image(obj) -> Image.Image:
 def save_img(obj, path: Path, max_side: int):
     img = load_pil_image(obj)
     img = downscale_image(img, max_side=max_side)
+    img.save(path, format="PNG", optimize=True)
+
+
+def save_original_img(obj, path: Path):
+    img = load_pil_image(obj).convert("RGB")
+    path.parent.mkdir(parents=True, exist_ok=True)
     img.save(path, format="PNG", optimize=True)
 
 
@@ -89,6 +106,12 @@ def main():
     parser.add_argument("--max-side", type=int, default=1280)
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
     parser.add_argument(
+        "--save-original-screenshots",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Also save each screenshot without downscaling under flow_dir/original/. Enabled by default.",
+    )
+    parser.add_argument(
         "--allowed-flows-file",
         type=Path,
         default=None,
@@ -104,6 +127,9 @@ def main():
 
     out_dir = args.out
     out_dir.mkdir(parents=True, exist_ok=True)
+
+    # Mind2Web screenshots are trusted inputs and can exceed Pillow's conservative warning threshold.
+    warnings.simplefilter("ignore", Image.DecompressionBombWarning)
 
     allowed_flows = read_allowed_ids(args.allowed_flows_file)
     allowed_websites = read_allowed_ids(args.allowed_websites_file)
@@ -164,8 +190,8 @@ def main():
             "num_steps": len(rows),
             "split": args.split,
             "max_side": args.max_side,
-            "allowed_flows_file": str(args.allowed_flows_file.relative_to(BASE_DIR)) if args.allowed_flows_file else None,
-            "allowed_websites_file": str(args.allowed_websites_file.relative_to(BASE_DIR)) if args.allowed_websites_file else None,
+            "allowed_flows_file": path_for_metadata(args.allowed_flows_file),
+            "allowed_websites_file": path_for_metadata(args.allowed_websites_file),
         }
         (folder / "task.json").write_text(
             json.dumps(task_meta, indent=2, ensure_ascii=False),
@@ -176,6 +202,9 @@ def main():
         for j, row in enumerate(rows, start=1):
             img_path = folder / f"step_{j:02d}.png"
             save_img(row["screenshot"], img_path, max_side=args.max_side)
+            if args.save_original_screenshots:
+                original_img_path = folder / "original" / img_path.name
+                save_original_img(row["screenshot"], original_img_path)
 
             meta = {}
             for k, v in row.items():
@@ -199,8 +228,8 @@ def main():
         "split": args.split,
         "max_flows": args.max_flows,
         "max_side": args.max_side,
-        "allowed_flows_file": str(args.allowed_flows_file.relative_to(BASE_DIR)) if args.allowed_flows_file else None,
-        "allowed_websites_file": str(args.allowed_websites_file.relative_to(BASE_DIR)) if args.allowed_websites_file else None,
+        "allowed_flows_file": path_for_metadata(args.allowed_flows_file),
+        "allowed_websites_file": path_for_metadata(args.allowed_websites_file),
         "num_grouped_flows": len(grouped),
         "num_selected_flows": len(selected_flows),
         "num_exported_flows": exported,

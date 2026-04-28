@@ -1,0 +1,223 @@
+{
+  "dataset": "mind2web",
+  "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+  "requirements": [
+    {
+      "requirement_id": "REQ-01",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "text": "The system shall support discovery of books through homepage browsing sections and category navigation.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1
+      ],
+      "source_candidate_id": "REQ-01",
+      "source_harvest_id": "HARV-01",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:46:57+00:00"
+    },
+    {
+      "requirement_id": "REQ-02",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "text": "The system shall provide a dedicated advanced search workflow for finding books using structured search criteria.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1,
+        2
+      ],
+      "source_candidate_id": "REQ-02",
+      "source_harvest_id": "HARV-02",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:47:07+00:00"
+    },
+    {
+      "requirement_id": "REQ-03",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "text": "The system shall allow users to search for books using multiple bibliographic fields, including keyword, title, author, publisher, and ISBN.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2
+      ],
+      "source_candidate_id": "REQ-03",
+      "source_harvest_id": "HARV-03",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:47:13+00:00"
+    },
+    {
+      "requirement_id": "REQ-05",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "text": "The system shall allow users to constrain advanced search by language.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        4
+      ],
+      "source_candidate_id": "REQ-05",
+      "source_harvest_id": "HARV-05",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:47:29+00:00"
+    },
+    {
+      "requirement_id": "REQ-07",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "text": "The system shall provide an explicit action to submit configured advanced search criteria.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-07",
+      "source_harvest_id": "HARV-07",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:48:58+00:00"
+    },
+    {
+      "requirement_id": "REQ-08",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "text": "The system shall keep configured advanced search criteria visibly reflected in the search form before submission.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-08",
+      "source_harvest_id": "HARV-08",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:49:47+00:00"
+    },
+    {
+      "requirement_id": "REQ-09",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "text": "The system shall display books matching the submitted advanced search filters so the user can browse filtered results.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-09",
+      "source_harvest_id": "HARV-09",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:50:26+00:00"
+    },
+    {
+      "requirement_id": "REQ-10",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "text": "The system shall preserve global storefront context such as account access, order status, wishlist, cart, and locale controls while the user performs search tasks.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-10",
+      "source_harvest_id": "HARV-10",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:50:35+00:00"
+    },
+    {
+      "requirement_id": "REQ-11",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "text": "The system shall support user-selectable locale settings relevant to shopping, including interface language and currency, alongside product discovery features.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-11",
+      "source_harvest_id": "HARV-11",
+      "annotation_notes": "Language and currency controls are visible in the shared header across the flow, which grounds a storefront capability for locale-related preferences while searching or browsing.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:51:29+00:00"
+    },
+    {
+      "requirement_id": "REQ-12",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "text": "The system shall carry active advanced search filters forward into subsequent browsing views so users can understand the basis of the shown results.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-12",
+      "source_harvest_id": "HARV-12",
+      "annotation_notes": "The flow emphasizes explicit configuration of author and language before search, making it a disciplined and nearby inference that those active filters should remain understandable when results are shown, even though the results page is not visible here.",
+      "annotated_by": "benno",
+      "manual_verification_label": "abstain",
+      "manual_verification_notes": "missing screen with the results",
+      "requirement_type": "NFR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-04-23T10:53:04+00:00"
+    }
+  ]
+}

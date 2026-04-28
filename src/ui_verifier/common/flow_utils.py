@@ -59,3 +59,31 @@ def select_images(
         return choose_evenly_spaced(step_paths, max_images)
 
     return step_paths
+
+
+def select_requirement_harvest_images(
+    step_paths: List[Path],
+    steps_arg: str | None,
+    max_images: int | None,
+) -> List[Path]:
+    if steps_arg:
+        return select_images(step_paths, steps_arg=steps_arg, max_images=max_images)
+
+    if not step_paths:
+        return []
+
+    if max_images is None or max_images >= len(step_paths):
+        return step_paths
+
+    if max_images <= 1:
+        return [step_paths[0]]
+
+    selected: list[Path] = [step_paths[0], step_paths[-1]]
+    remaining = [p for p in step_paths[1:-1] if p not in selected]
+
+    slots_left = max_images - len(selected)
+    if slots_left > 0 and remaining:
+        selected.extend(choose_evenly_spaced(remaining, slots_left))
+
+    selected = sorted(set(selected), key=parse_step_number)
+    return selected[:max_images]
