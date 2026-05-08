@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Iterable
 
 from ui_verifier.requirement_inspection.pure_schemas import PureRequirementCandidate
+from ui_verifier.requirements.claim_decomposition import build_requirement_claims
 
 
 ANNOTATION_LABEL_FIELDNAMES = [
@@ -22,6 +23,7 @@ ANNOTATION_SHEET_FIELDNAMES = [
     "doc_id",
     "req_id",
     "requirement_text",
+    "claims_json",
     *ANNOTATION_LABEL_FIELDNAMES,
 ]
 
@@ -29,6 +31,7 @@ PURE_CANDIDATE_ANNOTATION_SHEET_FIELDNAMES = [
     "doc_id",
     "candidate_id",
     "requirement_text",
+    "claims_json",
     "context_text",
     "breadcrumb",
     "extraction_mode",
@@ -58,6 +61,11 @@ def _serialize_sequence(items: tuple[str, ...]) -> str:
     return json.dumps(list(items), ensure_ascii=False)
 
 
+def _serialize_claims(requirement_text: str, requirement_id: str) -> str:
+    claims = build_requirement_claims(requirement_text, requirement_id)
+    return json.dumps(claims, ensure_ascii=False)
+
+
 @dataclass(slots=True, frozen=True)
 class RequirementStatement:
     doc_id: str
@@ -78,6 +86,7 @@ class RequirementStatement:
             "doc_id": self.doc_id,
             "req_id": self.req_id,
             "requirement_text": self.requirement_text,
+            "claims_json": _serialize_claims(self.requirement_text, self.req_id),
             **_blank_annotation_labels(),
         }
 
@@ -189,6 +198,7 @@ def _pure_candidate_to_annotation_row(candidate: PureRequirementCandidate) -> di
         "doc_id": candidate.doc_id,
         "candidate_id": candidate.candidate_id,
         "requirement_text": candidate.requirement_text,
+        "claims_json": _serialize_claims(candidate.requirement_text, candidate.candidate_id),
         "context_text": candidate.context_text or "",
         "breadcrumb": _serialize_sequence(candidate.breadcrumb),
         "extraction_mode": candidate.extraction_mode.value,

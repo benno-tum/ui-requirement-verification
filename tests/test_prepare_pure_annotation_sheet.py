@@ -35,6 +35,8 @@ def test_write_blank_annotation_sheet(tmp_path: Path) -> None:
     assert len(rows) == 1
     assert rows[0]["doc_id"] == "pure_doc_001"
     assert rows[0]["req_id"] == "REQ-001"
+    assert "claims_json" in rows[0]
+    assert "confirmation message" in rows[0]["claims_json"]
     assert rows[0]["requirement_type"] == ""
     assert rows[0]["ui_evaluability"] == ""
     assert rows[0]["notes"] == ""
@@ -86,4 +88,5 @@ def test_prepare_pure_annotation_sheet_cli(tmp_path: Path) -> None:
 
     assert len(rows) == 2
     assert rows[1]["req_id"] == "REQ-002"
+    assert "encrypt user data" in rows[1]["claims_json"]
     assert rows[1]["ui_evaluability"] == ""

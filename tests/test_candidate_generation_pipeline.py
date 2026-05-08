@@ -90,6 +90,8 @@ def test_normalize_model_harvest_and_build_candidates(tmp_path: Path) -> None:
     assert direct.ui_evaluability == UiEvaluability.UI_VERIFIABLE
     assert direct.requirement_type == RequirementInspectionType.FR
     assert direct.visible_subtype == VisibleSubtype.TEXT_OR_ELEMENT_PRESENCE
+    assert direct.claims[0]["claim_id"] == "REQ-01-C1"
+    assert "pickup location" in direct.claims[0]["claim_text"]
 
     partial = candidate_file.requirements[1]
     assert partial.benchmark_decision == BenchmarkDecision.DIRECT_INCLUDE
@@ -98,6 +100,7 @@ def test_normalize_model_harvest_and_build_candidates(tmp_path: Path) -> None:
     assert partial.parent_harvest_text is None
     assert partial.ui_evaluability == UiEvaluability.PARTIALLY_UI_VERIFIABLE
     assert partial.non_evaluable_reason == NonEvaluableReason.EXTERNAL_INTEGRATION
+    assert partial.claims[0]["claim_type"] == "HIDDEN"
 
     excluded = candidate_file.requirements[2]
     assert excluded.benchmark_decision == BenchmarkDecision.EXCLUDE_FROM_VERIFICATION_BENCHMARK
@@ -166,3 +169,4 @@ def test_normalize_model_candidates_preserves_partial_direct_include(tmp_path: P
     assert requirement.non_evaluable_reason == NonEvaluableReason.BACKEND_HIDDEN_STATE
     assert requirement.parent_harvest_text is None
     assert "intentionally only partially visible" in (requirement.rationale or "")
+    assert requirement.claims[0]["claim_id"] == "REQ-01-C1"

@@ -18,6 +18,7 @@ from ui_verifier.common.flow_utils import (
 )
 from ui_verifier.common.image_utils import downscale_to_png_bytes
 from ui_verifier.common.json_utils import load_json, parse_json_response
+from ui_verifier.requirements.claim_decomposition import build_requirement_claims
 from ui_verifier.requirement_inspection.schemas import (
     AnnotationConfidence,
     NonEvaluableReason,
@@ -501,6 +502,7 @@ def build_verification_candidates(
             task_relevance=harvest.task_relevance,
             excluded_reason=excluded_reason,
             review_status=review_status,
+            claims=build_requirement_claims(candidate_text, candidate_id, include_evidence_steps=True),
         )
         requirements.append(requirement)
 
@@ -632,6 +634,9 @@ def normalize_model_candidates(
         normalization_notes = str(item.get("normalization_notes") or "").strip()
         rationale_parts = [part for part in [normalization_notes, harvest.rationale] if part]
         rationale = "\n\n".join(rationale_parts) or None
+        claims = item.get("claims")
+        if not isinstance(claims, list) or not claims:
+            claims = build_requirement_claims(candidate_text, candidate_id, include_evidence_steps=True)
 
         requirement = CandidateRequirement(
             requirement_id=candidate_id,
@@ -656,6 +661,7 @@ def normalize_model_candidates(
             task_relevance=harvest.task_relevance,
             excluded_reason=excluded_reason,
             review_status=review_status,
+            claims=list(claims),
         )
         requirements.append(requirement)
 

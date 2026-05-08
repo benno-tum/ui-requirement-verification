@@ -104,6 +104,8 @@ def test_write_blank_pure_candidate_annotation_sheet_preserves_context_columns(t
 
     assert rows[0]["doc_id"] == "doc-a.xml"
     assert rows[0]["candidate_id"] == "REQ-001"
+    assert "claims_json" in rows[0]
+    assert "confirmation message" in rows[0]["claims_json"]
     assert rows[0]["context_text"] == ""
     assert rows[0]["breadcrumb"] == ""
     assert rows[0]["local_label"] == ""
