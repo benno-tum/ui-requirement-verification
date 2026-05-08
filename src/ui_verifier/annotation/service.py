@@ -469,7 +469,7 @@ class AnnotationService:
     def delete_verification_gold_item(self, flow_id: str, requirement_id: str) -> tuple[VerificationGoldItem, bool]:
         verification_gold_file = self.storage.load_verification_gold_file(flow_id)
         if verification_gold_file is None:
-            raise FileNotFoundError(f"Verification gold not found for flow {flow_id}")
+            verification_gold_file = self.build_verification_gold_file(flow_id, include_candidates=True)
 
         deleted_item: VerificationGoldItem | None = None
         for idx, item in enumerate(verification_gold_file.items):
@@ -491,6 +491,18 @@ class AnnotationService:
                     del gold_file.requirements[idx]
                     self.storage.save_gold_file(gold_file)
                     deleted_gold = True
+                    break
+
+        try:
+            candidate_file = self.storage.load_candidate_file(flow_id)
+        except FileNotFoundError:
+            candidate_file = None
+
+        if candidate_file is not None:
+            for candidate in candidate_file.requirements:
+                if candidate.requirement_id == requirement_id:
+                    candidate.review_status = RequirementReviewStatus.REJECTED
+                    self.storage.save_candidate_file(candidate_file)
                     break
 
         return deleted_item, deleted_gold
@@ -538,6 +550,8 @@ class AnnotationService:
             existing_gold_ids = {item.requirement_id for item in merged_items}
             for candidate in candidate_file.requirements:
                 if candidate.requirement_id in existing_gold_ids:
+                    continue
+                if candidate.review_status in {RequirementReviewStatus.ACCEPTED, RequirementReviewStatus.REJECTED}:
                     continue
                 merged_items.append(
                     self._build_verification_item_from_candidate(
