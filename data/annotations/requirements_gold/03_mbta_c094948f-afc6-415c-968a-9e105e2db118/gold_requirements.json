@@ -349,6 +349,49 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-21T19:40:30+00:00"
+    },
+    {
+      "requirement_id": "REQ-09",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "text": "The system shall allow users to sort job listings by multiple criteria, including posting date, title, and salary.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        11,
+        12
+      ],
+      "source_candidate_id": "REQ-09",
+      "source_harvest_id": "HARV-09",
+      "annotation_notes": "The requested sort criteria are visibly available.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-05-07T12:42:32+00:00"
+    },
+    {
+      "requirement_id": "REQ-13",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "text": "The system shall present comprehensive job details before application, including salary, location, job type, job number, closing information, department, and full descriptive content.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        14
+      ],
+      "source_candidate_id": "REQ-13",
+      "source_harvest_id": "HARV-13",
+      "annotation_notes": "The required detail information is visible before application.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-05-07T12:47:22+00:00"
     }
   ]
 }

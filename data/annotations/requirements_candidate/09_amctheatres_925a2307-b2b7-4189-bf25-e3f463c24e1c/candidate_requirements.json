@@ -10,296 +10,20 @@
   ],
   "requirements": [
     {
-      "requirement_id": "REQ-01",
-      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
-      "text": "The system shall allow users to navigate from the main AMC site into a dedicated gift card area.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        1,
-        2
-      ],
-      "rationale": "The sequence moves from the main site into a gift card focused section, showing that gift cards are exposed as a navigable site feature rather than a hidden subpage.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T09:30:12+00:00",
-      "source_harvest_id": "HARV-01",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-02",
-      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
-      "text": "The system shall present a centralized gift card service area that groups major gift card related actions.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        2
-      ],
-      "rationale": "The gift card landing page groups balance checking, purchasing, memberships, and business ordering into one coherent area, which supports a hub style requirement.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T09:30:12+00:00",
-      "source_harvest_id": "HARV-02",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-03",
-      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
-      "text": "The system shall provide a dedicated workflow for checking gift card balance from the gift card section.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        2,
-        3
-      ],
-      "rationale": "A clear transition is shown from the gift card page to a specialized balance check page, indicating balance lookup is a first class workflow.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T09:30:12+00:00",
-      "source_harvest_id": "HARV-03",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-04",
-      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
-      "text": "The system shall collect a gift card number and PIN as the core inputs for a balance inquiry.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3,
-        4,
-        5
-      ],
-      "rationale": "The balance page explicitly asks for a gift card number and PIN, and later screens show those fields being populated during the lookup attempt.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T09:30:12+00:00",
-      "source_harvest_id": "HARV-04",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-05",
-      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
-      "text": "The system shall allow an authenticated user to optionally associate a gift card with their account during the balance check process.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3,
-        4,
-        5
-      ],
-      "rationale": "The form includes an 'Add gift card to my account' option while the page also shows a signed in user context, although the actual account linkage result is not shown.",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-23T09:30:12+00:00",
-      "source_harvest_id": "HARV-05",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-06",
-      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
-      "text": "The system shall preserve user entered balance check inputs across intermediate form interactions and validation states.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        4,
-        5
-      ],
-      "rationale": "The entered gift card number remains visible when the user proceeds to fill the PIN and when validation feedback appears, indicating form state persistence.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T09:30:12+00:00",
-      "source_harvest_id": "HARV-06",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-07",
-      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
-      "text": "The system shall validate gift card lookup inputs and provide inline error feedback when the entered card information does not meet format expectations.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        5
-      ],
-      "rationale": "The final screenshot shows a specific inline validation message about minimum card number length, making visible input validation a strong requirement hypothesis.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T09:30:12+00:00",
-      "source_harvest_id": "HARV-07",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-08",
-      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
-      "text": "The system shall prevent or clearly discourage submission of a balance inquiry while required input values are invalid.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3,
-        4,
-        5
-      ],
-      "rationale": "The flow shows validation before any balance result is reached and the search action remains visually subdued, which suggests invalid input should block or discourage submission even though the exact enforcement logic is not fully shown.",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-23T09:30:12+00:00",
-      "source_harvest_id": "HARV-08",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "INDIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-09",
-      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
-      "text": "The system shall return the remaining gift card balance after the user provides valid card credentials.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        2,
-        3,
-        4,
-        5
-      ],
-      "rationale": "The entire visible flow is explicitly framed around balance checking, so displaying the remaining balance is a natural core capability even though this attempt ends in validation instead of success.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T09:30:12+00:00",
-      "source_harvest_id": "HARV-09",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "INDIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-10",
-      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
-      "text": "The system shall provide alternative channels for balance inquiries in addition to the self service web form.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        2
-      ],
-      "rationale": "The gift card page mentions checking balance through the website, at a theatre, or by phone, indicating the product supports multiple access paths for the same user need.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T09:30:12+00:00",
-      "source_harvest_id": "HARV-10",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-11",
-      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
-      "text": "The system shall support adjacent gift card workflows such as gift card purchase and business ordering from the same gift card service area.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        2
-      ],
-      "rationale": "The gift card area visibly includes buy now, bulk gift cards, and package tickets options, showing the balance checker sits within a broader gift card feature set.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T09:30:12+00:00",
-      "source_harvest_id": "HARV-11",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "LOW"
-    },
-    {
       "requirement_id": "REQ-12",
       "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
       "text": "The system shall maintain consistent global navigation and branding across gift card related pages.",
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "rejected",
+      "review_status": "needs_review",
       "step_indices": [
         2,
         3,
         4,
         5
       ],
-      "rationale": "The header, branding, and major navigation remain stable between the gift card landing page and the balance check screens, supporting a consistency requirement.",
+      "rationale": "The shown gift-card related pages maintain consistent branding and global navigation.",
       "confidence": "HIGH",
       "created_at": "2026-04-23T09:30:12+00:00",
       "source_harvest_id": "HARV-12",
@@ -310,60 +34,50 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-13",
-      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
-      "text": "The system shall provide clear on page guidance about what information is required to perform a gift card balance lookup.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3,
-        4,
-        5
+      "task_relevance": "MEDIUM",
+      "verification_label": "FULFILLED",
+      "claims": [
+        {
+          "claim": "Global branding is maintained across gift card related content.",
+          "claim_id": "candidate-REQ-12-C1",
+          "claim_text": "Global branding is maintained across gift card related content.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "Global navigation is maintained across gift card related content.",
+          "claim_id": "candidate-REQ-12-C2",
+          "claim_text": "Global navigation is maintained across gift card related content.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "uncertainty_reasons": []
+        }
       ],
-      "rationale": "The balance check page includes a task specific title and instruction text telling the user to enter the gift card number and PIN below, which is visible guidance rather than hidden behavior.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T09:30:12+00:00",
-      "source_harvest_id": "HARV-13",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "NFR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-14",
-      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
-      "text": "The system shall retain signed in account context while the user navigates gift card related pages.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
+      "evidence_steps": [
         2,
         3,
         4,
         5
       ],
-      "rationale": "The signed in My AMC context remains visible on the gift card landing page and on the balance screens, indicating continuity of account state through the subflow.",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-23T09:30:12+00:00",
-      "source_harvest_id": "HARV-14",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
+      "uncertainty_reasons": [],
+      "evidence_note": "Steps 2 to 5 keep the AMC logo, My AMC context, Showtimes, and main navigation items in the header."
     },
     {
       "requirement_id": "CONTR-01",
@@ -376,14 +90,13 @@
         "mutation_family:persistence_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: partially_fulfilled\nMutation family: persistence_extension\nSource gold requirement: REQ-05\nSource gold text: The system shall allow an authenticated user to optionally associate a gift card with their account during the balance check process.\nGeneration rationale: This stays close to the visible add-to-account capability but extends it into later workflow persistence and a downstream reflected state. The visible core is realistic for the same feature space, yet the completion behavior is not clearly shown, which makes it a strong partially fulfilled candidate.",
+      "rationale": "The account-association option is supported, while persistence and completion reflection are not shown.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall allow an authenticated user to optionally associate a gift card with their account during the balance check process.",
@@ -392,7 +105,68 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "BACKEND_HIDDEN_STATE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "partially_fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "A gift card can be marked for association with a user account during balance inquiry.",
+          "claim_id": "candidate-CONTR-01-C1",
+          "claim_text": "A gift card can be marked for association with a user account during balance inquiry.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            3,
+            4,
+            5
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "A selected association decision is preserved through the remainder of the balance inquiry workflow.",
+          "claim_id": "candidate-CONTR-01-C2",
+          "claim_text": "A selected association decision is preserved through the remainder of the balance inquiry workflow.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            3,
+            4,
+            5
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        },
+        {
+          "claim": "The completed lookup reflects the selected account-association decision.",
+          "claim_id": "candidate-CONTR-01-C3",
+          "claim_text": "The completed lookup reflects the selected account-association decision.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "UNVERIFIED_SYSTEM_OUTCOME",
+            "NONTRIVIAL_HIDDEN_PROPERTY"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        3,
+        4,
+        5
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "UNVERIFIED_SYSTEM_OUTCOME",
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "evidence_note": "The add-to-account option is present, but it is not selected and no completed lookup or reflected association state is shown."
     },
     {
       "requirement_id": "CONTR-02",
@@ -405,14 +179,13 @@
         "mutation_family:hidden_state_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: partially_fulfilled\nMutation family: hidden_state_extension\nSource gold requirement: REQ-07\nSource gold text: The system shall validate gift card lookup inputs and provide inline error feedback when the entered card information does not meet format expectations.\nGeneration rationale: The source gold already shows visible format validation, so extending it to a second failure mode tied to backend lookup state is a disciplined nearby mutation. It remains realistic for a gift card checker and is likely to diversify outcomes because only one of the two feedback modes is visibly supported in the flow.",
+      "rationale": "One feedback class is visible, but the second failure mode and backend distinction are not shown.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall validate gift card lookup inputs and provide inline error feedback when the entered card information does not meet format expectations.",
@@ -421,7 +194,62 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "BACKEND_HIDDEN_STATE",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "partially_fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "Input format errors receive user-facing feedback.",
+          "claim_id": "candidate-CONTR-02-C1",
+          "claim_text": "Input format errors receive user-facing feedback.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            5
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "Lookup failures for well-formed but unrecognized gift cards receive user-facing feedback.",
+          "claim_id": "candidate-CONTR-02-C2",
+          "claim_text": "Lookup failures for well-formed but unrecognized gift cards receive user-facing feedback.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            5
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        },
+        {
+          "claim": "Well-formed unrecognized card failures are distinguished from other lookup failures.",
+          "claim_id": "candidate-CONTR-02-C3",
+          "claim_text": "Well-formed unrecognized card failures are distinguished from other lookup failures.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "UNVERIFIED_SYSTEM_OUTCOME",
+            "NONTRIVIAL_HIDDEN_PROPERTY"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        5
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "UNVERIFIED_SYSTEM_OUTCOME",
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "evidence_note": "Step 5 shows a format error only. The flow does not show a well-formed but unrecognized card lookup failure."
     },
     {
       "requirement_id": "CONTR-03",
@@ -434,14 +262,13 @@
         "mutation_family:policy_or_role_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: abstain\nMutation family: policy_or_role_extension\nSource gold requirement: REQ-05\nSource gold text: The system shall allow an authenticated user to optionally associate a gift card with their account during the balance check process.\nGeneration rationale: This is a realistic policy constraint for the same account-linking capability and keeps the visible user-facing core anchored to the existing flow. However, the exact permission rule for guests versus authenticated users is typically not fully observable from screenshots alone, making abstention plausible.",
+      "rationale": "The key signed-in versus guest-mode policy distinction cannot be reliably judged from this flow.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall allow an authenticated user to optionally associate a gift card with their account during the balance check process.",
@@ -450,7 +277,64 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "abstain",
+      "verification_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim": "Gift card attachment is shown in a signed-in account context.",
+          "claim_id": "candidate-CONTR-03-C1",
+          "claim_text": "Gift card attachment is shown in a signed-in account context.",
+          "claim_kind": "SUPPORTING_CONTEXT",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            3,
+            4,
+            5
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "A signed-in account is required before a gift card can be attached to a user profile.",
+          "claim_id": "candidate-CONTR-03-C2",
+          "claim_text": "A signed-in account is required before a gift card can be attached to a user profile.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "NONTRIVIAL_HIDDEN_PROPERTY",
+            "UNVERIFIED_SYSTEM_OUTCOME"
+          ]
+        },
+        {
+          "claim": "Balance checks can proceed in guest mode.",
+          "claim_id": "candidate-CONTR-03-C3",
+          "claim_text": "Balance checks can proceed in guest mode.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        3,
+        4,
+        5
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "evidence_note": "The screenshots show a signed-in user and the add-to-account option, but no guest-mode flow or sign-in enforcement boundary."
     },
     {
       "requirement_id": "CONTR-04",
@@ -463,14 +347,13 @@
         "mutation_family:completeness_or_universal_quantifier"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: abstain\nMutation family: completeness_or_universal_quantifier\nSource gold requirement: REQ-02\nSource gold text: The system shall present a centralized gift card service area that groups major gift card related actions, like purchasing gift cards, checking balances, accessing terms and FAQs, and handling membership or corporate gift card options.\nGeneration rationale: The gift card hub clearly groups several related actions, so a completeness-style strengthening is close to the accepted gold set. The universal wording around all supported paths and resources is realistic but hard to settle from the shown flow alone, which makes it useful as an abstain-oriented contrastive item.",
+      "rationale": "Several paths and resources are visible, but the all-supported-paths and all-help-resources parts remain ambiguous.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall present a centralized gift card service area that groups major gift card related actions, like purchasing gift cards, checking balances, accessing terms and FAQs, and handling membership or corporate gift card options.",
@@ -479,7 +362,63 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "TOO_ABSTRACT",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "abstain",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "Multiple gift card balance inquiry paths and help resources are discoverable from the centralized service area.",
+          "claim_id": "candidate-CONTR-04-C1",
+          "claim_text": "Multiple gift card balance inquiry paths and help resources are discoverable from the centralized service area.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            2
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "All supported gift card balance inquiry paths are discoverable from the centralized service area.",
+          "claim_id": "candidate-CONTR-04-C2",
+          "claim_text": "All supported gift card balance inquiry paths are discoverable from the centralized service area.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "AMBIGUOUS",
+          "evidence_steps": [
+            2
+          ],
+          "uncertainty_reasons": [
+            "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY"
+          ]
+        },
+        {
+          "claim": "All relevant help resources for gift card balance inquiries are discoverable from the centralized service area.",
+          "claim_id": "candidate-CONTR-04-C3",
+          "claim_text": "All relevant help resources for gift card balance inquiries are discoverable from the centralized service area.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "AMBIGUOUS",
+          "evidence_steps": [
+            2
+          ],
+          "uncertainty_reasons": [
+            "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
+            "FLOW_COVERAGE_GAP"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        2
+      ],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "evidence_note": "Step 2 shows balance checking, theatre and phone alternatives, terms, FAQs, and business order help. The universal completeness of all supported paths and all help resources cannot be established from the screenshot flow."
     },
     {
       "requirement_id": "CONTR-05",
@@ -492,14 +431,13 @@
         "mutation_family:missing_visible_step"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: not_fulfilled\nMutation family: missing_visible_step\nSource gold requirement: REQ-09\nSource gold text: The system shall return the remaining gift card balance after the user provides valid card credentials.\nGeneration rationale: This is a close workflow refinement of the existing balance-return requirement that asks for a distinct result state or summary rather than only an implied outcome. It is realistic for the same lookup flow and likely to land as not fulfilled because the provided sequence appears to stop at form entry and validation rather than a visible result presentation.",
+      "rationale": "The entry mechanism is supported, but the explicit result state is not shown. Because the flow ends with invalid input, this is missing evidence rather than visible contradiction.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall return the remaining gift card balance after the user provides valid card credentials.",
@@ -508,7 +446,67 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "not_fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "A balance inquiry entry form is provided.",
+          "claim_id": "candidate-CONTR-05-C1",
+          "claim_text": "A balance inquiry entry form is provided.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            3,
+            4,
+            5
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "A result state confirms which gift card was checked.",
+          "claim_id": "candidate-CONTR-05-C2",
+          "claim_text": "A result state confirms which gift card was checked.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            5
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        },
+        {
+          "claim": "The remaining balance is presented separately from the entry form.",
+          "claim_id": "candidate-CONTR-05-C3",
+          "claim_text": "The remaining balance is presented separately from the entry form.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            5
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "UNVERIFIED_SYSTEM_OUTCOME"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        3,
+        4,
+        5
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "evidence_note": "The final shown state in step 5 remains the entry form with inline validation feedback. No checked-card confirmation or balance value is shown."
     },
     {
       "requirement_id": "CONTR-06",
@@ -521,14 +519,13 @@
         "mutation_family:cross_screen_consistency_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: not_fulfilled\nMutation family: cross_screen_consistency_extension\nSource gold requirement: REQ-08\nSource gold text: The system shall only accept valid gift card actions.\nGeneration rationale: The source gold already concerns valid action handling, and this variant strengthens it into a clearer, fully visible consistency expectation between validation feedback and action affordance. It is tightly anchored to the observed form behavior and is a strong not fulfilled candidate because the accepted notes already suggest inconsistency between the error state and the apparent action state.",
+      "rationale": "The visible lookup action does not clearly track or explain whether the current input state is submittable, so the core observable claim is contradicted.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall only accept valid gift card actions.",
@@ -537,7 +534,48 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "not_fulfilled",
+      "verification_label": "NOT_FULFILLED",
+      "claims": [
+        {
+          "claim": "The current validation state changes as card information is entered.",
+          "claim_id": "candidate-CONTR-06-C1",
+          "claim_text": "The current validation state changes as card information is entered.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            3,
+            4,
+            5
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The balance lookup action communicates whether the current card information is submittable.",
+          "claim_id": "candidate-CONTR-06-C2",
+          "claim_text": "The balance lookup action communicates whether the current card information is submittable.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "CONTRADICTED",
+          "evidence_steps": [
+            3,
+            4,
+            5
+          ],
+          "uncertainty_reasons": []
+        }
+      ],
+      "evidence_steps": [
+        3,
+        4,
+        5
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "Across steps 3, 4, and 5 the Search action appears visually similar while the form moves from blank to partially filled to invalid with an error message."
     }
   ]
 }

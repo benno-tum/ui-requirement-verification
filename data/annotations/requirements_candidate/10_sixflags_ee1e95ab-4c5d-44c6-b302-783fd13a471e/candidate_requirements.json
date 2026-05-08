@@ -12,245 +12,18 @@
   ],
   "requirements": [
     {
-      "requirement_id": "REQ-01",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall let the user select a specific park so that subsequent ticketing and add-on content is localized to that park.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        1,
-        2,
-        3,
-        4
-      ],
-      "rationale": "The flow begins with a park chooser, shows browsing of park options, then a selected Six Flags America context that leads into park-specific pages.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-01",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-02",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall present park-specific passes and in-park purchase options after a park has been selected.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3,
-        4,
-        5
-      ],
-      "rationale": "After Six Flags America is chosen, the next screens show that park's homepage and its pass-related merchandising rather than a generic corporate landing page.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-02",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-03",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall support navigation from a park homepage into add-on purchasing sections associated with tickets or passes.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        4,
-        5,
-        6
-      ],
-      "rationale": "The sequence moves from the localized park page into a dedicated season add-ons view, showing that add-on shopping is reachable from the park-level browsing context.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-03",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-04",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall present optional add-on plans with enough descriptive and pricing information for users to compare them before selection.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        6
-      ],
-      "rationale": "The add-ons page shows multiple cards with titles, descriptions, and prices, which directly supports option comparison rather than blind selection.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-04",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "NFR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-05",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall support category-based browsing of purchasable items within the ticketing and add-on shopping interface.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        6,
-        7
-      ],
-      "rationale": "The purchase flow exposes category tabs such as daily tickets, season passes, dining, and promo, indicating structured browsing across product groups.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-05",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-06",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall allow the user to choose among multiple add-on variants within the selected park context.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        7
-      ],
-      "rationale": "The modal shows more than one go-kart-related product, demonstrating variant selection rather than a single fixed add-on path.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-06",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-07",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall provide a dedicated detail view for a selected add-on before it is added to the cart.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        7,
-        8
-      ],
-      "rationale": "After choosing a go-kart product from the variant list, the flow opens a detail/configuration view rather than adding it immediately without review.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-07",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-08",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall disclose important product conditions such as eligibility, usage restrictions, or special purchase notes before the user commits to an add-on purchase.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        6,
-        8
-      ],
-      "rationale": "The flow shows visible product notes such as membership-related conditions and ride restrictions. The disclosure is visible, while actual enforcement would depend on hidden logic.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-08",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-09",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall allow the user to adjust add-on quantity before adding the selected item to the cart.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        8,
-        9
-      ],
-      "rationale": "The add-on detail view includes quantity controls, and the next screen shows the quantity increased from one to two before cart addition.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-09",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
       "requirement_id": "REQ-10",
       "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
       "text": "The system shall provide visible feedback when the selected quantity changes so the pending purchase configuration remains clear.",
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "rejected",
+      "review_status": "needs_review",
       "step_indices": [
         8,
         9
       ],
-      "rationale": "The quantity value is visibly updated between consecutive configuration screens, which supports user clarity during configuration.",
+      "rationale": "The quantity change is reflected in the pending purchase configuration before cart addition.",
       "confidence": "HIGH",
       "created_at": "2026-04-23T10:06:31+00:00",
       "source_harvest_id": "HARV-10",
@@ -261,231 +34,44 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-11",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall let the user back out of an add-on configuration step without losing the broader shopping context.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
+      "task_relevance": "MEDIUM",
+      "verification_label": "FULFILLED",
+      "claims": [
+        {
+          "claim": "The system provides feedback when the selected quantity changes.",
+          "claim_id": "candidate-REQ-10-C1",
+          "claim_text": "The system provides feedback when the selected quantity changes.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            8,
+            9
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The pending purchase configuration remains clear after the selected quantity changes.",
+          "claim_id": "candidate-REQ-10-C2",
+          "claim_text": "The pending purchase configuration remains clear after the selected quantity changes.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            8,
+            9
+          ],
+          "uncertainty_reasons": []
+        }
+      ],
+      "evidence_steps": [
         8,
         9
       ],
-      "rationale": "A Back action is present inside the add-on configuration modal, suggesting the user can retreat without abandoning the overall purchasing flow.",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-11",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-12",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall add configured add-ons to the shopping cart and reflect the selected quantity in cart line items.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        9,
-        10
-      ],
-      "rationale": "The configuration shows quantity two, and the later cart summary includes the all-season go-kart pass with quantity two, demonstrating carry-through of the configured amount.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-12",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-13",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall support carts that combine admission products with optional add-ons in a single order review.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        10
-      ],
-      "rationale": "The cart contains both a one-day ticket and two all-season go-kart passes, showing that primary admission and add-ons can coexist in one basket.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-13",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-14",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall preserve the selected park context consistently across discovery, add-on selection, and cart review screens.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3,
-        6,
-        10
-      ],
-      "rationale": "The park chosen earlier is still reflected later in the park-specific add-on and cart experience. The visible consistency is clear, while some state handling remains hidden.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-14",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "NFR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-15",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall present an itemized pre-checkout order summary including subtotal, fees, tax, and total.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        10
-      ],
-      "rationale": "The cart overlay shows line items together with subtotal, processing fee, tax, and total, which is a concrete pricing-summary capability.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-15",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-16",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall allow cart contents to be reviewed and modified before proceeding to checkout.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        10
-      ],
-      "rationale": "The cart review step includes a visible Modify Cart action before checkout, showing that the order is not locked immediately upon first addition.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-16",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-17",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall distinguish optional marketing consent from required purchase acknowledgements during the transition to checkout.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        10
-      ],
-      "rationale": "The cart shows a separate promotional opt-in and a purchase-terms acknowledgement. The separation is visible, while mandatory enforcement would depend on hidden behavior.",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-17",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-18",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall provide accessibility support such as a high-contrast viewing mode during the purchase workflow.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        6,
-        7,
-        8,
-        9,
-        10
-      ],
-      "rationale": "A High Contrast Mode control is visible across purchase-related modal screens, grounding an accessibility-oriented requirement.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-18",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "NFR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "LOW"
-    },
-    {
-      "requirement_id": "REQ-19",
-      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
-      "text": "The system shall support selection of a digital or mobile ticket fulfillment option as part of the purchase flow.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        10
-      ],
-      "rationale": "The task explicitly mentions choosing a digital ticket option, and the visible flow reaches cart review where delivery or fulfillment choices commonly appear, but the explicit control is not clearly shown in the provided screenshots.",
-      "confidence": "LOW",
-      "created_at": "2026-04-23T10:06:31+00:00",
-      "source_harvest_id": "HARV-19",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "INDIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
+      "uncertainty_reasons": [],
+      "evidence_note": "Step 8 shows the pending configuration with quantity 1. Step 9 shows the same configuration with quantity 2."
     },
     {
       "requirement_id": "CONTR-01",
@@ -498,23 +84,63 @@
         "mutation_family:persistence_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: partially_fulfilled\nMutation family: persistence_extension\nSource gold requirement: REQ-19\nSource gold text: The system shall support selection of a digital or mobile ticket fulfillment option as part of the purchase flow.\nGeneration rationale: This is a close extension of the existing fulfillment-option capability that strengthens it into cross-step persistence. It remains realistic for ticketing flows and may be only partly observable if the visible sequence does not clearly show the selected fulfillment state on later screens.",
+      "rationale": "The screenshots do not establish the precondition or the cross-step preservation behavior required by the requirement.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall support selection of a digital or mobile ticket fulfillment option as part of the purchase flow.",
       "grounding_scope": "INDIRECT_FLOW_GROUNDED",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "partially_fulfilled",
+      "verification_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim": "A digital or mobile ticket fulfillment choice is selected by the user.",
+          "claim_id": "candidate-CONTR-01-C1",
+          "claim_text": "A digital or mobile ticket fulfillment choice is selected by the user.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            10
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        },
+        {
+          "claim": "The selected fulfillment choice is preserved across cart review and checkout transition unless changed by the user.",
+          "claim_id": "candidate-CONTR-01-C2",
+          "claim_text": "The selected fulfillment choice is preserved across cart review and checkout transition unless changed by the user.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            10
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        10
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "evidence_note": "No explicit digital or mobile fulfillment choice is shown, and the transition into checkout is not included."
     },
     {
       "requirement_id": "CONTR-02",
@@ -527,23 +153,48 @@
         "mutation_family:external_effect_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: partially_fulfilled\nMutation family: external_effect_extension\nSource gold requirement: REQ-19\nSource gold text: The system shall support selection of a digital or mobile ticket fulfillment option as part of the purchase flow.\nGeneration rationale: This extends the visible fulfillment choice into a realistic downstream effect without leaving the same feature space. The UI can plausibly show the intended delivery channel, while the actual external delivery behavior would remain outside direct screenshot verification.",
+      "rationale": "The flow does not provide enough evidence to verify or contradict delivery-channel indication before payment.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall support selection of a digital or mobile ticket fulfillment option as part of the purchase flow.",
       "grounding_scope": "INDIRECT_FLOW_GROUNDED",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "EXTERNAL_INTEGRATION",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "partially_fulfilled",
+      "verification_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim": "The system indicates the downstream delivery destination or channel for digital tickets before payment.",
+          "claim_id": "candidate-CONTR-02-C1",
+          "claim_text": "The system indicates the downstream delivery destination or channel for digital tickets before payment.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            10
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        10
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "evidence_note": "The pre-checkout cart is visible, but it does not show an email, mobile wallet, or other digital ticket delivery destination. Later checkout steps are not included."
     },
     {
       "requirement_id": "CONTR-03",
@@ -556,14 +207,13 @@
         "mutation_family:policy_or_role_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: abstain\nMutation family: policy_or_role_extension\nSource gold requirement: REQ-08\nSource gold text: The system shall disclose important product conditions such as eligibility, usage restrictions, or special purchase notes before the user commits to an add-on purchase.\nGeneration rationale: The accepted gold already shows visible restriction disclosure, so extending that into actual eligibility enforcement is a disciplined nearby mutation. It is useful because the explanatory UI may be visible while true enforcement depends on hidden account or cart state, making abstention plausible.",
+      "rationale": "The explanatory part is visible, while enforcement of eligibility policy is not verifiable from screenshots alone.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall disclose important product conditions such as eligibility, usage restrictions, or special purchase notes before the user commits to an add-on purchase.",
@@ -572,7 +222,48 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "BACKEND_HIDDEN_STATE",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "abstain",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "The purchase flow explains pass-ownership or eligibility policy for park add-ons.",
+          "claim_id": "candidate-CONTR-03-C1",
+          "claim_text": "The purchase flow explains pass-ownership or eligibility policy for park add-ons.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            6,
+            8
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The system enforces required pass-ownership or eligibility policy before checkout.",
+          "claim_id": "candidate-CONTR-03-C2",
+          "claim_text": "The system enforces required pass-ownership or eligibility policy before checkout.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "NONTRIVIAL_HIDDEN_PROPERTY",
+            "UNVERIFIED_SYSTEM_OUTCOME"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        6,
+        8
+      ],
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "evidence_note": "Steps 6 and 8 disclose membership availability and ride restrictions, but no policy enforcement behavior is demonstrated."
     },
     {
       "requirement_id": "CONTR-04",
@@ -585,14 +276,13 @@
         "mutation_family:completeness_or_universal_quantifier"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: abstain\nMutation family: completeness_or_universal_quantifier\nSource gold requirement: REQ-15\nSource gold text: The system shall present an itemized pre-checkout order summary including subtotal, fees, tax, and total.\nGeneration rationale: This is a realistic strengthening of the accepted pricing-summary requirement toward completeness. It remains close to the same checkout review capability, but the universal claim about all applicable charges is harder to settle from screenshots alone and can therefore diversify toward abstain.",
+      "rationale": "The visible monetary summary is supported, while the universal completeness claim is not settled by the screenshots.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall present an itemized pre-checkout order summary including subtotal, fees, tax, and total.",
@@ -601,7 +291,46 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
       "visible_subtype": "CONTENT_UPDATE",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "abstain",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "The pre-checkout charge disclosure includes monetary components for the selected park purchase.",
+          "claim_id": "candidate-CONTR-04-C1",
+          "claim_text": "The pre-checkout charge disclosure includes monetary components for the selected park purchase.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            10
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The disclosed monetary components cover all park-specific surcharges and fulfillment-related fees that can affect the final pre-checkout charge.",
+          "claim_id": "candidate-CONTR-04-C2",
+          "claim_text": "The disclosed monetary components cover all park-specific surcharges and fulfillment-related fees that can affect the final pre-checkout charge.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
+            "NONTRIVIAL_HIDDEN_PROPERTY"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        10
+      ],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "evidence_note": "Step 10 shows subtotal, processing fee, tax, and total, but cannot prove completeness for all possible park-specific surcharges or fulfillment-related fees."
     },
     {
       "requirement_id": "CONTR-05",
@@ -614,14 +343,13 @@
         "mutation_family:missing_visible_step"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: not_fulfilled\nMutation family: missing_visible_step\nSource gold requirement: REQ-16\nSource gold text: The system shall allow cart contents to be reviewed and modified before proceeding to checkout.\nGeneration rationale: This builds on the existing cart-review capability by inserting a plausible, more specific workflow phase centered on fulfillment confirmation. It is still natural for ticket commerce, but such a dedicated step is often absent from streamlined flows, making it a useful likely-not-fulfilled contrastive candidate.",
+      "rationale": "The shown pre-checkout review step visibly lacks the required fulfillment-method confirmation or change mechanism.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall allow cart contents to be reviewed and modified before proceeding to checkout.",
@@ -630,7 +358,42 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "NAVIGATION_OUTCOME",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "not_fulfilled",
+      "verification_label": "NOT_FULFILLED",
+      "claims": [
+        {
+          "claim": "The system provides a dedicated pre-checkout review step before payment.",
+          "claim_id": "candidate-CONTR-05-C1",
+          "claim_text": "The system provides a dedicated pre-checkout review step before payment.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            10
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The pre-checkout review step lets the user confirm or change the selected ticket fulfillment method before payment.",
+          "claim_id": "candidate-CONTR-05-C2",
+          "claim_text": "The pre-checkout review step lets the user confirm or change the selected ticket fulfillment method before payment.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "CONTRADICTED",
+          "evidence_steps": [
+            10
+          ],
+          "uncertainty_reasons": []
+        }
+      ],
+      "evidence_steps": [
+        10
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "Step 10 shows the relevant pre-checkout cart review, but no ticket fulfillment method confirmation or change control is present in that review step."
     },
     {
       "requirement_id": "CONTR-06",
@@ -643,14 +406,13 @@
         "mutation_family:cross_screen_consistency_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: not_fulfilled\nMutation family: cross_screen_consistency_extension\nSource gold requirement: REQ-14\nSource gold text: The system shall preserve the selected park context consistently across discovery, add-on selection, and cart review screens.\nGeneration rationale: This is a strong but realistic extension of the existing park-context consistency requirement into a richer multi-attribute consistency claim. It stays tightly anchored to the same shopping flow while increasing the chance of later not-fulfilled judgments if one of those attributes is not clearly carried through all visible stages.",
+      "rationale": "The synchronization requirement is supported for park context and quantity, but missing for ticket fulfillment.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall preserve the selected park context consistently across discovery, add-on selection, and cart review screens.",
@@ -659,7 +421,66 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "not_fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "The selected park context is synchronized between add-on configuration, cart line items, and order summary states.",
+          "claim_id": "candidate-CONTR-06-C1",
+          "claim_text": "The selected park context is synchronized between add-on configuration, cart line items, and order summary states.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            8,
+            9,
+            10
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The configured add-on quantity is synchronized between add-on configuration and cart line items.",
+          "claim_id": "candidate-CONTR-06-C2",
+          "claim_text": "The configured add-on quantity is synchronized between add-on configuration and cart line items.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            9,
+            10
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The chosen ticket fulfillment method is synchronized between add-on configuration, cart line items, and order summary states.",
+          "claim_id": "candidate-CONTR-06-C3",
+          "claim_text": "The chosen ticket fulfillment method is synchronized between add-on configuration, cart line items, and order summary states.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            8,
+            9,
+            10
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        8,
+        9,
+        10
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "evidence_note": "Park context and add-on quantity are carried through configuration and cart review, but no chosen ticket fulfillment method is visible in those states."
     }
   ]
 }

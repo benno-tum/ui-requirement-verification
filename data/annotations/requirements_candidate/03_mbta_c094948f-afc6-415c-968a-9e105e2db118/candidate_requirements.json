@@ -12,232 +12,17 @@
   ],
   "requirements": [
     {
-      "requirement_id": "REQ-01",
-      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
-      "text": "The system shall provide a dedicated careers area from which users can access job openings and related applicant resources.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        1,
-        2,
-        4
-      ],
-      "rationale": "The sequence starts on an MBTA Careers landing page and then moves into a dedicated Job Openings area, showing that the careers portal supports entry into the hiring workflow.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T13:30:20+00:00",
-      "source_harvest_id": "HARV-01",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-02",
-      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
-      "text": "The system shall allow users to browse a catalog of open job postings in a dedicated job listings view.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3,
-        4,
-        12,
-        13
-      ],
-      "rationale": "Multiple screenshots show a Job Openings page with a scrollable list of vacancies and a jobs found count, indicating a dedicated listings interface.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T13:30:20+00:00",
-      "source_harvest_id": "HARV-02",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-03",
-      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
-      "text": "The system shall support discoverability of job postings through keyword search over the listings catalog.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        4,
-        12,
-        13,
-        14
-      ],
-      "rationale": "A search field is persistently visible on the job openings page while the user browses filtered and unfiltered results.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T13:30:20+00:00",
-      "source_harvest_id": "HARV-03",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-04",
-      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
-      "text": "The system shall allow applicants to filter job openings by department.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3,
-        5,
-        6,
-        11
-      ],
-      "rationale": "The filter drawer exposes a Department facet and a department selection count becomes active after selection, showing department-based refinement.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T13:30:20+00:00",
-      "source_harvest_id": "HARV-04",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-05",
-      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
-      "text": "The system shall allow applicants to filter job openings by estimated annual salary range or threshold.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3,
-        7,
-        8,
-        10
-      ],
-      "rationale": "The filter flow includes an Estimated Annual Salary facet with selectable salary bands including a $100,000+ option.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T13:30:20+00:00",
-      "source_harvest_id": "HARV-05",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-06",
-      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
-      "text": "The system shall support combining multiple filter criteria to narrow job results.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        6,
-        8,
-        12,
-        13
-      ],
-      "rationale": "The filter panel shows more than one active facet at once, and the resulting listings are reduced to a small set after combined filtering.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T13:30:20+00:00",
-      "source_harvest_id": "HARV-06",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-07",
-      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
-      "text": "The system shall provide visible feedback about how many filters are active and which filter categories currently contain selections.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        6,
-        8,
-        12,
-        13
-      ],
-      "rationale": "Badges and counters are shown on the filter panel and on the main Filter control, making active refinement state visible to the user.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T13:30:20+00:00",
-      "source_harvest_id": "HARV-07",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "NFR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-08",
-      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
-      "text": "The system shall keep the displayed result set consistent with the selected filter criteria and the reported jobs found count.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        8,
-        12,
-        13,
-        14
-      ],
-      "rationale": "After the department and salary selections are active, the listings show three matching safety jobs with salaries above 100k, but full data correctness still depends on backend filtering logic.",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-21T13:30:20+00:00",
-      "source_harvest_id": "HARV-08",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "NFR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
       "requirement_id": "REQ-09",
       "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
       "text": "The system shall allow users to sort job listings by multiple criteria, including posting date, title, and salary.",
       "scope": "single_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "rejected",
+      "review_status": "accepted",
       "step_indices": [
         9
       ],
-      "rationale": "The sort drawer explicitly lists multiple ordering modes such as posting date, job title, and salary.",
+      "rationale": "The requested sort criteria are visibly available.",
       "confidence": "HIGH",
       "created_at": "2026-04-21T13:30:20+00:00",
       "source_harvest_id": "HARV-09",
@@ -248,85 +33,30 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-10",
-      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
-      "text": "The system shall expose posting recency and closing-status information in the job results so users can judge which openings are most recent or still open.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        4,
-        12,
-        13
+      "task_relevance": "HIGH",
+      "verification_label": "FULFILLED",
+      "claims": [
+        {
+          "claim": "The Sort panel exposes multiple sorting criteria, including posting date, job title, and salary.",
+          "claim_id": "candidate-REQ-09-C1",
+          "claim_text": "The Sort panel exposes multiple sorting criteria, including posting date, job title, and salary.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            11,
+            12
+          ],
+          "uncertainty_reasons": []
+        }
       ],
-      "rationale": "List entries display posting age and closing indicators such as 'Posted 2 weeks ago' and 'Closes in 14 hours', which support latest-opening review.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T13:30:20+00:00",
-      "source_harvest_id": "HARV-10",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-11",
-      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
-      "text": "The system shall present summary information for each job in list view, including title, compensation, department, and a brief description.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3,
-        4,
-        12,
-        13
+      "evidence_steps": [
+        11,
+        12
       ],
-      "rationale": "Each listing card includes the job title, salary, department, and summary text before the user opens a detail view.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T13:30:20+00:00",
-      "source_harvest_id": "HARV-11",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-12",
-      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
-      "text": "The system shall allow users to navigate from a job listing to a detailed view for an individual opening.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        13,
-        14
-      ],
-      "rationale": "The flow moves from a filtered job list to a detailed panel for a selected opening, showing list-to-detail navigation.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T13:30:20+00:00",
-      "source_harvest_id": "HARV-12",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
+      "uncertainty_reasons": [],
+      "evidence_note": "The sort panel lists Posting Date, Job Title, and Salary options."
     },
     {
       "requirement_id": "REQ-13",
@@ -335,11 +65,11 @@
       "scope": "single_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "rejected",
+      "review_status": "accepted",
       "step_indices": [
         14
       ],
-      "rationale": "The detail view exposes structured metadata and a long-form description for the selected role, supporting informed application decisions.",
+      "rationale": "The required detail information is visible before application.",
       "confidence": "HIGH",
       "created_at": "2026-04-21T13:30:20+00:00",
       "source_harvest_id": "HARV-13",
@@ -350,7 +80,28 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
+      "task_relevance": "HIGH",
+      "verification_label": "FULFILLED",
+      "claims": [
+        {
+          "claim": "The detailed job view shows salary, location, job type, job number, closing information, department, and descriptive content before application.",
+          "claim_id": "candidate-REQ-13-C1",
+          "claim_text": "The detailed job view shows salary, location, job type, job number, closing information, department, and descriptive content before application.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            14
+          ],
+          "uncertainty_reasons": []
+        }
+      ],
+      "evidence_steps": [
+        14
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "The detail flyout shows the requested metadata, Description content, and an Apply button."
     },
     {
       "requirement_id": "REQ-14",
@@ -359,11 +110,11 @@
       "scope": "single_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "rejected",
+      "review_status": "needs_review",
       "step_indices": [
         14
       ],
-      "rationale": "A prominent APPLY control is visible in the job detail panel, indicating that application initiation is supported from the detail page.",
+      "rationale": "The explicit application entry action is visible.",
       "confidence": "HIGH",
       "created_at": "2026-04-21T13:30:20+00:00",
       "source_harvest_id": "HARV-14",
@@ -374,7 +125,28 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
+      "task_relevance": "HIGH",
+      "verification_label": "FULFILLED",
+      "claims": [
+        {
+          "claim": "The detailed job view includes a visible Apply action.",
+          "claim_id": "candidate-REQ-14-C1",
+          "claim_text": "The detailed job view includes a visible Apply action.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            14
+          ],
+          "uncertainty_reasons": []
+        }
+      ],
+      "evidence_steps": [
+        14
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "The Safety Lead Investigator detail flyout has an Apply button."
     },
     {
       "requirement_id": "REQ-15",
@@ -383,11 +155,11 @@
       "scope": "single_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "rejected",
+      "review_status": "needs_review",
       "step_indices": [
         14
       ],
-      "rationale": "The apply action is clearly present, and the task context includes applying, but the subsequent submission steps are not shown in this screenshot sequence.",
+      "rationale": "The entry point is supported, but the downstream workflow is missing from the flow.",
       "confidence": "MEDIUM",
       "created_at": "2026-04-21T13:30:20+00:00",
       "source_harvest_id": "HARV-15",
@@ -398,86 +170,45 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
       "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-16",
-      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
-      "text": "The system shall preserve the applicant's current discovery context while moving between filtering, result inspection, and job detail viewing.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        8,
-        12,
-        13,
+      "task_relevance": "HIGH",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "The selected job detail view provides an Apply control.",
+          "claim_id": "candidate-REQ-15-C1",
+          "claim_text": "The selected job detail view provides an Apply control.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            14
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The downstream application workflow after Apply is not shown.",
+          "claim_id": "candidate-REQ-15-C2",
+          "claim_text": "The downstream application workflow after Apply is not shown.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            14
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        }
+      ],
+      "evidence_steps": [
         14
       ],
-      "rationale": "The filtered context leads into a selected job detail from the same narrowed result set, but persistence behavior across all navigation cases is only partially observable.",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-21T13:30:20+00:00",
-      "source_harvest_id": "HARV-16",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "NFR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-17",
-      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
-      "text": "The system shall support sharing or external dissemination of job postings from the listings or detail views.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        4,
-        12,
-        13,
-        14
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
       ],
-      "rationale": "Social and email style action icons are visible beside job entries and in the detail panel, suggesting posting-sharing functionality, though the behavior is not executed here.",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-21T13:30:20+00:00",
-      "source_harvest_id": "HARV-17",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "LOW"
-    },
-    {
-      "requirement_id": "REQ-18",
-      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
-      "text": "The system shall allow users to subscribe to job posting alerts for future openings.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        1,
-        2
-      ],
-      "rationale": "The careers landing page includes a dedicated Job Posting Alerts area, which strongly indicates an alert subscription capability even though the enrollment flow is not shown.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T13:30:20+00:00",
-      "source_harvest_id": "HARV-18",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "LOW"
+      "evidence_note": "Step 14 shows Apply, but no later application form or workflow is visible."
     },
     {
       "requirement_id": "CONTR-01",
@@ -490,14 +221,13 @@
         "mutation_family:persistence_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: partially_fulfilled\nMutation family: persistence_extension\nSource gold requirement: REQ-18\nSource gold text: The system shall allow users to subscribe to job posting alerts for future openings.\nGeneration rationale: This stays tightly anchored to the visible alert capability and the established search and filtering workflow, but extends it so the current discovery context is remembered and reused. That makes it realistic for the same product space while pushing evaluation toward partial fulfillment because the future matching and persistence behavior depend on hidden state.",
+      "rationale": "The general alert capability is supported, while current-context persistence is missing or hidden.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall allow users to subscribe to job posting alerts for future openings.",
@@ -506,7 +236,67 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "BACKEND_HIDDEN_STATE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "partially_fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "A general job-alert sign-up mechanism is visible.",
+          "claim_id": "candidate-CONTR-01-C1",
+          "claim_text": "A general job-alert sign-up mechanism is visible.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            1,
+            2
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "No job-alert creation control tied directly to the current filtered search context is shown.",
+          "claim_id": "candidate-CONTR-01-C2",
+          "claim_text": "No job-alert creation control tied directly to the current filtered search context is shown.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            11,
+            13
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        },
+        {
+          "claim": "Future delivery of matching openings without re-entering criteria depends on hidden persistence and notification behavior.",
+          "claim_id": "candidate-CONTR-01-C3",
+          "claim_text": "Future delivery of matching openings without re-entering criteria depends on hidden persistence and notification behavior.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "NONTRIVIAL_HIDDEN_PROPERTY",
+            "UNVERIFIED_SYSTEM_OUTCOME"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        11,
+        13
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "evidence_note": "General alert signup is visible, but save-current-search or alert-from-current-filter behavior is not visible."
     },
     {
       "requirement_id": "CONTR-02",
@@ -519,14 +309,13 @@
         "mutation_family:external_effect_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: partially_fulfilled\nMutation family: external_effect_extension\nSource gold requirement: REQ-17\nSource gold text: The system shall support sharing job postings through external channels such as social media and email.\nGeneration rationale: The gold set already grounds external sharing through visible share controls. This candidate adds a realistic downstream feedback expectation after invoking that capability, which is useful contrast because icon presence alone does not prove successful handoff to an external channel.",
+      "rationale": "Only the entry mechanism is supported; the required confirmation is missing.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall support sharing job postings through external channels such as social media and email.",
@@ -535,7 +324,57 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "EXTERNAL_INTEGRATION",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "partially_fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "Sharing-style controls are visible for job postings.",
+          "claim_id": "candidate-CONTR-02-C1",
+          "claim_text": "Sharing-style controls are visible for job postings.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            3,
+            6,
+            11,
+            13
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "No selected external sharing channel, compose surface, or visible handoff confirmation is shown.",
+          "claim_id": "candidate-CONTR-02-C2",
+          "claim_text": "No selected external sharing channel, compose surface, or visible handoff confirmation is shown.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            3,
+            6,
+            11,
+            13
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "UNVERIFIED_SYSTEM_OUTCOME"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        3,
+        6,
+        11,
+        13
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "evidence_note": "Sharing affordances are visible, but no sharing action or confirmation appears."
     },
     {
       "requirement_id": "CONTR-03",
@@ -548,14 +387,13 @@
         "mutation_family:completeness_or_universal_quantifier"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: abstain\nMutation family: completeness_or_universal_quantifier\nSource gold requirement: REQ-08\nSource gold text: The system shall keep the displayed result set consistent with the selected filter criteria and the reported jobs found count.\nGeneration rationale: This is a disciplined strengthening of the existing result-consistency requirement from local visible agreement to full-result correctness. It remains very plausible in the same workflow, but it is hard to settle from screenshots alone because universal correctness depends on unseen results and backend filtering behavior.",
+      "rationale": "Visible local consistency is supported, but the universal correctness claim cannot be fully proven.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall keep the displayed result set consistent with the selected filter criteria and the reported jobs found count.",
@@ -564,27 +402,67 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "DATA_CORRECTNESS_NOT_VISIBLE",
       "visible_subtype": "CONTENT_UPDATE",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "abstain",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "After filtering, the UI reports three jobs and displays three visible postings.",
+          "claim_id": "candidate-CONTR-03-C1",
+          "claim_text": "After filtering, the UI reports three jobs and displays three visible postings.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            9,
+            11,
+            13
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "Universal correctness across the complete result set depends on data correctness and filtering behavior not fully verifiable from screenshots.",
+          "claim_id": "candidate-CONTR-03-C2",
+          "claim_text": "Universal correctness across the complete result set depends on data correctness and filtering behavior not fully verifiable from screenshots.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "NONTRIVIAL_HIDDEN_PROPERTY"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        9,
+        11,
+        13
+      ],
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "evidence_note": "The UI shows Showing 1-3 of 3 jobs after filtering, but full correctness remains hidden."
     },
     {
       "requirement_id": "CONTR-04",
       "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
       "text": "The system shall allow public browsing of job listings and posting details, while requiring applicant authentication before entering the application workflow.",
-      "scope": "multi_screen",
+      "scope": "single_screen",
       "tags": [
         "contrastive",
         "intended_label:abstain",
         "mutation_family:policy_or_role_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: abstain\nMutation family: policy_or_role_extension\nSource gold requirement: REQ-01\nSource gold text: The system shall provide a dedicated careers area from which users can access job openings and related applicant resources.\nGeneration rationale: A careers portal commonly separates open browsing from authenticated applicant actions, so this is a realistic role and policy extension of the accepted careers-area requirement. It broadens coverage toward abstention because the flow shows discovery behavior but does not establish the authentication boundary for application entry.",
+      "rationale": "Public browsing is supported; the authentication policy before application is not verified.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall provide a dedicated careers area from which users can access job openings and related applicant resources.",
@@ -593,7 +471,52 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "SECURITY_PRIVACY",
       "visible_subtype": "NAVIGATION_OUTCOME",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "abstain",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "Public browsing of listings and posting details is visible without an authenticated session.",
+          "claim_id": "candidate-CONTR-04-C1",
+          "claim_text": "Public browsing of listings and posting details is visible without an authenticated session.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            3,
+            13,
+            14
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The screenshots do not show whether authentication is required after selecting Apply.",
+          "claim_id": "candidate-CONTR-04-C2",
+          "claim_text": "The screenshots do not show whether authentication is required after selecting Apply.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "UNVERIFIED_SYSTEM_OUTCOME",
+            "NONTRIVIAL_HIDDEN_PROPERTY"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        3,
+        13,
+        14
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "UNVERIFIED_SYSTEM_OUTCOME",
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "evidence_note": "Listings and details are browsable while Sign In is visible, but the post-Apply authentication boundary is not shown."
     },
     {
       "requirement_id": "CONTR-05",
@@ -606,14 +529,13 @@
         "mutation_family:missing_visible_step"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: not_fulfilled\nMutation family: missing_visible_step\nSource gold requirement: REQ-12\nSource gold text: The system shall allow users to navigate from a job listing to a detailed view for an individual opening.\nGeneration rationale: This is the most natural next visible phase after list-to-detail inspection and it is directly aligned with the task's apply objective. It is a strong contrastive candidate because the accepted gold set establishes detail viewing but does not by itself establish a visible application entry point.",
+      "rationale": "The requirement centers on the visible control, and that control is present.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall allow users to navigate from a job listing to a detailed view for an individual opening.",
@@ -622,7 +544,42 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "NAVIGATION_OUTCOME",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "not_fulfilled",
+      "verification_label": "FULFILLED",
+      "claims": [
+        {
+          "claim": "The detailed job view provides a visible Apply control for the selected opening.",
+          "claim_id": "candidate-CONTR-05-C1",
+          "claim_text": "The detailed job view provides a visible Apply control for the selected opening.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            14
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "Starting the application after pressing Apply is a routine dependency behind the visible control.",
+          "claim_id": "candidate-CONTR-05-C2",
+          "claim_text": "Starting the application after pressing Apply is a routine dependency behind the visible control.",
+          "claim_kind": "ROUTINE_DEPENDENCY",
+          "claim_type": "HIDDEN",
+          "importance": "SUPPORTING",
+          "status": "OUT_OF_SCOPE",
+          "evidence_steps": [
+            14
+          ],
+          "uncertainty_reasons": []
+        }
+      ],
+      "evidence_steps": [
+        14
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "The selected Safety Lead Investigator detail flyout includes an Apply button."
     },
     {
       "requirement_id": "CONTR-06",
@@ -635,14 +592,13 @@
         "mutation_family:stronger_visible_constraint"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: not_fulfilled\nMutation family: stronger_visible_constraint\nSource gold requirement: REQ-07\nSource gold text: The system shall provide visible feedback about how many filters are active and which filter categories currently contain selections.\nGeneration rationale: The gold requirement already grounds active-filter visibility, so a nearby stronger capability is direct criterion removal from the results context rather than merely showing counts or selected categories. This remains tightly within the same discovery workflow while likely increasing not-fulfilled coverage because the accepted evidence does not establish inline criterion removal and live result refresh from that action.",
+      "rationale": "A core observable part of the requirement is contradicted by the active-filter results view.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall provide visible feedback about how many filters are active and which filter categories currently contain selections.",
@@ -651,7 +607,49 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "CONTENT_UPDATE",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "not_fulfilled",
+      "verification_label": "NOT_FULFILLED",
+      "claims": [
+        {
+          "claim": "The active-filter results view shows only aggregate active-filter feedback and no individual active filter removal controls.",
+          "claim_id": "candidate-CONTR-06-C1",
+          "claim_text": "The active-filter results view shows only aggregate active-filter feedback and no individual active filter removal controls.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "CONTRADICTED",
+          "evidence_steps": [
+            11,
+            13
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "No individual criterion-removal action with immediate result refresh is shown.",
+          "claim_id": "candidate-CONTR-06-C2",
+          "claim_text": "No individual criterion-removal action with immediate result refresh is shown.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            11,
+            13
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        11,
+        13
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "evidence_note": "The results view shows an aggregate Filter count but no per-criterion remove controls."
     }
   ]
 }

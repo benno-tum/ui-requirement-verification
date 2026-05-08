@@ -12,158 +12,18 @@
   ],
   "requirements": [
     {
-      "requirement_id": "REQ-01",
-      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
-      "text": "The system shall support cruise discovery through a single search workflow that combines destination, departure port, departure month, and trip duration criteria.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9
-      ],
-      "rationale": "The ordered flow shows one search form being progressively configured across multiple criteria until a complete query is assembled.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:31:56+00:00",
-      "source_harvest_id": "HARV-01",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-02",
-      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
-      "text": "The system shall allow the user to select a cruise destination or region from a browseable set of sailing destinations.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        2,
-        3
-      ],
-      "rationale": "The destination selector expands into a panel of region options and the user chooses Alaska from that set.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:31:56+00:00",
-      "source_harvest_id": "HARV-02",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-03",
-      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
-      "text": "The system shall retain the selected destination in the search controls while the user configures the rest of the query.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9
-      ],
-      "rationale": "After Alaska is chosen, that value remains visible in the search form during the later port, date, and duration selection steps.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:31:56+00:00",
-      "source_harvest_id": "HARV-03",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-04",
-      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
-      "text": "The system shall allow the user to choose a sail-from location from a list of departure ports.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        4,
-        5
-      ],
-      "rationale": "The sail-from control expands into multiple departure locations and the flow selects San Francisco, CA.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:31:56+00:00",
-      "source_harvest_id": "HARV-04",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-05",
-      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
-      "text": "The system shall preserve the selected departure port while subsequent search criteria are edited.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        5,
-        6,
-        7,
-        8,
-        9
-      ],
-      "rationale": "Once San Francisco, CA is selected, it stays visible in the search controls during later date and duration configuration.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:31:56+00:00",
-      "source_harvest_id": "HARV-05",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
       "requirement_id": "REQ-06",
       "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
       "text": "The system shall allow users to select sailing dates at month and year granularity across multiple years.",
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "rejected",
+      "review_status": "needs_review",
       "step_indices": [
         6,
         7
       ],
-      "rationale": "The date selector opens a month grid organized by year, showing selectable months across 2023, 2024, and 2025.",
+      "rationale": "The date criterion is visibly selectable at month-year granularity across multiple years.",
       "confidence": "HIGH",
       "created_at": "2026-04-23T10:31:56+00:00",
       "source_harvest_id": "HARV-06",
@@ -174,200 +34,43 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-07",
-      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
-      "text": "The system shall keep the selected sailing month and year visible as part of the active search query.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        7,
-        8,
-        9
+      "task_relevance": "HIGH",
+      "verification_label": "FULFILLED",
+      "claims": [
+        {
+          "claim": "The system supports sailing-date selection at month and year granularity.",
+          "claim_id": "candidate-REQ-06-C1",
+          "claim_text": "The system supports sailing-date selection at month and year granularity.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            6,
+            7
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The system provides month-and-year options across multiple years.",
+          "claim_id": "candidate-REQ-06-C2",
+          "claim_text": "The system provides month-and-year options across multiple years.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            6
+          ],
+          "uncertainty_reasons": []
+        }
       ],
-      "rationale": "After June 2023 is selected, that value remains displayed in the date field during the remaining search configuration steps.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:31:56+00:00",
-      "source_harvest_id": "HARV-07",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-08",
-      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
-      "text": "The system shall allow cruise searches to be filtered by duration bands such as 2 to 5 days, 6 to 9 days, and 10 plus days.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        8,
-        9
-      ],
-      "rationale": "The duration control exposes multiple duration categories and the flow selects the 10 plus days option.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:31:56+00:00",
-      "source_harvest_id": "HARV-08",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-09",
-      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
-      "text": "The system shall provide a search action that the user can invoke after configuring cruise criteria.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        1,
-        2,
-        3,
-        4,
-        5,
+      "evidence_steps": [
         6,
-        7,
-        8,
-        9
+        7
       ],
-      "rationale": "A prominent Search Cruises action is visible throughout the flow and remains available after the query is configured.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:31:56+00:00",
-      "source_harvest_id": "HARV-09",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-10",
-      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
-      "text": "The system shall keep the currently configured search criteria visible together before search execution so the user can review the query state.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        5,
-        7,
-        9
-      ],
-      "rationale": "As selections accumulate, the search bar shows destination, port, date, and duration together, supporting visible review before submission.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:31:56+00:00",
-      "source_harvest_id": "HARV-10",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "NFR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-11",
-      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
-      "text": "The system shall provide clear visual feedback when a selector is expanded and when an option is currently active or selected.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9
-      ],
-      "rationale": "Expanded selectors are visibly highlighted and chosen options are marked through active styling and check-state indicators.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-23T10:31:56+00:00",
-      "source_harvest_id": "HARV-11",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "NFR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-12",
-      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
-      "text": "The system shall allow the user to revise any individual search criterion before submitting the search.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3,
-        5,
-        7,
-        9
-      ],
-      "rationale": "The search controls remain present and individually accessible after earlier selections, supporting stepwise refinement before execution.",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-23T10:31:56+00:00",
-      "source_harvest_id": "HARV-12",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-13",
-      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
-      "text": "The system shall return cruise results that reflect the combined selected destination, departure port, month, and duration after the search is submitted.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        5,
-        7,
-        9
-      ],
-      "rationale": "The visible flow is clearly constructing a search query for later execution, so results constrained by the chosen filters are strongly implied even though the result page is not shown.",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-23T10:31:56+00:00",
-      "source_harvest_id": "HARV-13",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "INDIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
+      "uncertainty_reasons": [],
+      "evidence_note": "Step 6 shows months grouped under multiple years, and step 7 shows a specific month-year choice selected."
     },
     {
       "requirement_id": "REQ-14",
@@ -376,14 +79,14 @@
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "rejected",
+      "review_status": "needs_review",
       "step_indices": [
         2,
         4,
         6,
         8
       ],
-      "rationale": "The selectable option panels imply inventory-backed search constraints, but screenshots alone cannot verify whether the offered options are actually correct or complete.",
+      "rationale": "The core availability claim cannot be reliably judged from the visible screenshots alone.",
       "confidence": "LOW",
       "created_at": "2026-04-23T10:31:56+00:00",
       "source_harvest_id": "HARV-14",
@@ -391,11 +94,53 @@
       "benchmark_decision": "EXCLUDE_FROM_VERIFICATION_BENCHMARK",
       "grounding_scope": "INDIRECT_FLOW_GROUNDED",
       "requirement_type": "FR",
-      "ui_evaluability": "NOT_UI_VERIFIABLE",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "NONE",
       "task_relevance": "MEDIUM",
-      "excluded_reason": "NONE"
+      "excluded_reason": "NONE",
+      "verification_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim": "The system presents itinerary options for destination, departure port, month, and duration choices.",
+          "claim_id": "candidate-REQ-14-C1",
+          "claim_text": "The system presents itinerary options for destination, departure port, month, and duration choices.",
+          "claim_kind": "SUPPORTING_CONTEXT",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            2,
+            4,
+            6,
+            8
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The presented itinerary options are genuinely searchable or available for the user's query context.",
+          "claim_id": "candidate-REQ-14-C2",
+          "claim_text": "The presented itinerary options are genuinely searchable or available for the user's query context.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "NONTRIVIAL_HIDDEN_PROPERTY"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "evidence_note": "The option lists are visible, but the screenshots do not expose inventory, availability, or searchability logic behind those options."
     },
     {
       "requirement_id": "CONTR-01",
@@ -408,23 +153,67 @@
         "mutation_family:persistence_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: partially_fulfilled\nMutation family: persistence_extension\nSource gold requirement: REQ-03\nSource gold text: The system shall retain the selected destination in the search controls while the user configures the rest of the query.\nGeneration rationale: This is a close persistence extension of the existing carry-over behavior for selected criteria, but it strengthens that behavior beyond the immediately visible configuration sequence into later return behavior within the same session. That makes it realistic for travel search while likely harder to settle fully from a short ordered screenshot flow.",
+      "rationale": "Current-flow retention is supported, while the later return condition is a flow coverage gap.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall retain the selected destination in the search controls while the user configures the rest of the query.",
       "grounding_scope": "INDIRECT_FLOW_GROUNDED",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "BACKEND_HIDDEN_STATE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "partially_fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "Already selected cruise search criteria can remain selected during the same browsing session.",
+          "claim_id": "candidate-CONTR-01-C1",
+          "claim_text": "Already selected cruise search criteria can remain selected during the same browsing session.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            3,
+            5,
+            7,
+            9
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "Already selected cruise search criteria are preserved after the user leaves the search flow and returns later in the same browsing session.",
+          "claim_id": "candidate-CONTR-01-C2",
+          "claim_text": "Already selected cruise search criteria are preserved after the user leaves the search flow and returns later in the same browsing session.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            9
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        3,
+        5,
+        7,
+        9
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "evidence_note": "The selected criteria persist during the visible in-flow configuration sequence, but no leave-and-return sequence is shown."
     },
     {
       "requirement_id": "CONTR-02",
@@ -437,14 +226,13 @@
         "mutation_family:hidden_state_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: partially_fulfilled\nMutation family: hidden_state_extension\nSource gold requirement: REQ-13\nSource gold text: The system shall return cruise results that reflect the combined selected destination, departure port, month, and duration after the search is submitted.\nGeneration rationale: This extends the result-reflects-query requirement with a realistic availability condition and no-results feedback, both common in cruise search. The visible core remains close to the original results behavior, but actual inventory correctness depends on hidden backend state, which makes partial fulfillment or uncertainty plausible.",
+      "rationale": "Filter setup is supported, while result availability correctness and no-match feedback are not verified.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall return cruise results that reflect the combined selected destination, departure port, month, and duration after the search is submitted.",
@@ -453,7 +241,62 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "BACKEND_HIDDEN_STATE",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "partially_fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "The combined destination, departure port, sailing month, and duration filters can be configured before search.",
+          "claim_id": "candidate-CONTR-02-C1",
+          "claim_text": "The combined destination, departure port, sailing month, and duration filters can be configured before search.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            9
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "Search results are limited to currently available sailings under the combined selected filters.",
+          "claim_id": "candidate-CONTR-02-C2",
+          "claim_text": "Search results are limited to currently available sailings under the combined selected filters.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "UNVERIFIED_SYSTEM_OUTCOME",
+            "NONTRIVIAL_HIDDEN_PROPERTY"
+          ]
+        },
+        {
+          "claim": "The system shows user-facing feedback when no matching cruises are available.",
+          "claim_id": "candidate-CONTR-02-C3",
+          "claim_text": "The system shows user-facing feedback when no matching cruises are available.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            9
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        9
+      ],
+      "uncertainty_reasons": [
+        "UNVERIFIED_SYSTEM_OUTCOME",
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "evidence_note": "The combined search criteria are visible before submission, but no submitted results or no-results state is shown."
     },
     {
       "requirement_id": "CONTR-03",
@@ -466,23 +309,62 @@
         "mutation_family:completeness_or_universal_quantifier"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: abstain\nMutation family: completeness_or_universal_quantifier\nSource gold requirement: REQ-13\nSource gold text: The system shall return cruise results that reflect the combined selected destination, departure port, month, and duration after the search is submitted.\nGeneration rationale: This is a disciplined completeness strengthening of the source gold requirement. It stays in the same search-results capability space, but it turns a plausible visible requirement into a universal coverage claim that ordered screenshots alone usually cannot prove, making abstention a realistic later outcome.",
+      "rationale": "The completeness of returned cruises cannot be judged from the screenshots.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall return cruise results that reflect the combined selected destination, departure port, month, and duration after the search is submitted.",
       "grounding_scope": "DIRECT_FLOW_GROUNDED",
       "requirement_type": "FR",
-      "ui_evaluability": "NOT_UI_VERIFIABLE",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "DATA_CORRECTNESS_NOT_VISIBLE",
       "visible_subtype": "CONTENT_UPDATE",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "abstain",
+      "verification_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim": "The configured cruise criteria are available before submission.",
+          "claim_id": "candidate-CONTR-03-C1",
+          "claim_text": "The configured cruise criteria are available before submission.",
+          "claim_kind": "SUPPORTING_CONTEXT",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            9
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "All eligible cruises satisfying the configured criteria are returned without omissions.",
+          "claim_id": "candidate-CONTR-03-C2",
+          "claim_text": "All eligible cruises satisfying the configured criteria are returned without omissions.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "UNVERIFIED_SYSTEM_OUTCOME",
+            "NONTRIVIAL_HIDDEN_PROPERTY"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        9
+      ],
+      "uncertainty_reasons": [
+        "UNVERIFIED_SYSTEM_OUTCOME",
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "evidence_note": "No results page, complete inventory reference, or post-search result set is shown."
     },
     {
       "requirement_id": "CONTR-04",
@@ -495,23 +377,80 @@
         "mutation_family:policy_or_role_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: abstain\nMutation family: policy_or_role_extension\nSource gold requirement: REQ-01\nSource gold text: The system shall support cruise discovery through a single search workflow that combines destination, departure port, departure month, and trip duration criteria.\nGeneration rationale: This adds a realistic account and access-policy constraint to the same core search workflow without drifting into unrelated admin behavior. It remains close to the user-facing cruise discovery feature, but it likely cannot be resolved from a single unauthenticated flow unless multiple account states are shown.",
+      "rationale": "The comparative requirement cannot be reliably judged without an anonymous-user state.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall support cruise discovery through a single search workflow that combines destination, departure port, departure month, and trip duration criteria.",
       "grounding_scope": "INDIRECT_FLOW_GROUNDED",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "SECURITY_PRIVACY",
       "visible_subtype": "NAVIGATION_OUTCOME",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "abstain",
+      "verification_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim": "Signed-in users have access to the cruise search criteria in the flow.",
+          "claim_id": "candidate-CONTR-04-C1",
+          "claim_text": "Signed-in users have access to the cruise search criteria in the flow.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            1,
+            9
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "Anonymous users have the same cruise search criteria and equivalent search behavior.",
+          "claim_id": "candidate-CONTR-04-C2",
+          "claim_text": "Anonymous users have the same cruise search criteria and equivalent search behavior.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            1,
+            9
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        },
+        {
+          "claim": "A policy restriction is communicated when anonymous and signed-in search behavior differs.",
+          "claim_id": "candidate-CONTR-04-C3",
+          "claim_text": "A policy restriction is communicated when anonymous and signed-in search behavior differs.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            1,
+            9
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        1,
+        9
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "evidence_note": "The screenshots show a signed-in context with cruise search controls, but no anonymous comparison state or policy-restriction state is shown."
     },
     {
       "requirement_id": "CONTR-05",
@@ -524,14 +463,13 @@
         "mutation_family:missing_visible_step"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: not_fulfilled\nMutation family: missing_visible_step\nSource gold requirement: REQ-10\nSource gold text: The system shall keep the currently configured search criteria visible together before search execution so the user can review the query state.\nGeneration rationale: This is a realistic strengthening of the existing reviewability requirement into an explicit workflow phase rather than merely keeping criteria visible inline. It stays tightly anchored to the same search configuration flow, but such a dedicated review step is often absent in streamlined travel search UIs, making not fulfilled plausible.",
+      "rationale": "The dedicated review-panel requirement is contradicted by the visible pre-search flow.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall keep the currently configured search criteria visible together before search execution so the user can review the query state.",
@@ -540,7 +478,84 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "not_fulfilled",
+      "verification_label": "NOT_FULFILLED",
+      "claims": [
+        {
+          "claim": "A dedicated pre-search review step or summary panel is provided before submitting the search.",
+          "claim_id": "candidate-CONTR-05-C1",
+          "claim_text": "A dedicated pre-search review step or summary panel is provided before submitting the search.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "CONTRADICTED",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The dedicated review step or summary panel lists all selected cruise criteria together.",
+          "claim_id": "candidate-CONTR-05-C2",
+          "claim_text": "The dedicated review step or summary panel lists all selected cruise criteria together.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "CONTRADICTED",
+          "evidence_steps": [
+            9
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The dedicated review step or summary panel allows editing of individual selected criteria before submission.",
+          "claim_id": "candidate-CONTR-05-C3",
+          "claim_text": "The dedicated review step or summary panel allows editing of individual selected criteria before submission.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "CONTRADICTED",
+          "evidence_steps": [
+            9
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The selected cruise criteria are available together before submission.",
+          "claim_id": "candidate-CONTR-05-C4",
+          "claim_text": "The selected cruise criteria are available together before submission.",
+          "claim_kind": "SUPPORTING_CONTEXT",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            9
+          ],
+          "uncertainty_reasons": []
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "The full visible pre-search sequence uses inline search controls. Step 9 shows all criteria together inline, but no separate review step or summary panel appears before the Search Cruises action."
     },
     {
       "requirement_id": "CONTR-06",
@@ -553,14 +568,13 @@
         "mutation_family:nearby_capability_variant"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: not_fulfilled\nMutation family: nearby_capability_variant\nSource gold requirement: REQ-08\nSource gold text: The system shall allow cruise searches to be filtered by duration bands such as 2 to 5 days, 6 to 9 days, and 10 plus days.\nGeneration rationale: This is a disciplined nearby variant of the duration-filtering capability that remains within the same cruise search feature space while changing the granularity of filtering. It is stronger than the accepted band-based requirement and is a plausible human-authored requirement for this task, while still likely to fall outside the shown capability.",
+      "rationale": "The opened duration selector provides visible counter-evidence against exact-day filtering.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall allow cruise searches to be filtered by duration bands such as 2 to 5 days, 6 to 9 days, and 10 plus days.",
@@ -569,7 +583,45 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "not_fulfilled",
+      "verification_label": "NOT_FULFILLED",
+      "claims": [
+        {
+          "claim": "The system supports broad duration-band filtering.",
+          "claim_id": "candidate-CONTR-06-C1",
+          "claim_text": "The system supports broad duration-band filtering.",
+          "claim_kind": "SUPPORTING_CONTEXT",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            8,
+            9
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The system allows filtering by an exact itinerary length in days in addition to broad duration bands.",
+          "claim_id": "candidate-CONTR-06-C2",
+          "claim_text": "The system allows filtering by an exact itinerary length in days in addition to broad duration bands.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "CONTRADICTED",
+          "evidence_steps": [
+            8,
+            9
+          ],
+          "uncertainty_reasons": []
+        }
+      ],
+      "evidence_steps": [
+        8,
+        9
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "The visible duration choices are broad bands only: 2-5 Days, 6-9 Days, and 10+ Days. No exact day-length option is shown in the open duration choices."
     }
   ]
 }

@@ -12,224 +12,20 @@
   ],
   "requirements": [
     {
-      "requirement_id": "REQ-01",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall allow users to select a specific park before entering a park-specific pass purchase flow.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        1,
-        2,
-        3
-      ],
-      "rationale": "The flow begins with a park selection experience and then shows Great Escape selected, which directly grounds park choice as an entry step for the later purchase flow.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-01",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-02",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall switch the user into park-specific browsing context after a park is selected.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3,
-        4
-      ],
-      "rationale": "After Great Escape is chosen, the next screen shows Great Escape branding and park-specific content, indicating a context change into the chosen park experience.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-02",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-03",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall provide a park-specific entry point for discovering available pass options.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        4,
-        5,
-        6
-      ],
-      "rationale": "The park page surfaces pass-related content and then leads into a dedicated Tickets and Passes page, grounding pass discovery as a supported action from the selected park context.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-03",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-04",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall present season pass tiers side by side with pricing and benefit information to support plan comparison.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        6
-      ],
-      "rationale": "The pass page shows multiple pass cards together, each with price and listed benefits, which directly supports comparison across available tiers.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-04",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-05",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall allow the user to initiate purchase of a specific pass tier from the comparison view.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        6,
-        7
-      ],
-      "rationale": "The Diamond pass is available as a selectable option in the comparison view, and the next screen shows Diamond pass purchase configuration, which grounds pass-specific purchase initiation.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-05",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-06",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall allow users to configure the quantity of passes being purchased.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        7
-      ],
-      "rationale": "The Diamond pass configuration screen includes quantity controls next to the selected pass, which directly suggests quantity configuration even though only one quantity state is shown.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-06",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-07",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall allow each purchased pass to be assigned to a named guest or passholder during checkout.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        8,
-        10,
-        12
-      ],
-      "rationale": "The checkout flow shows a guest or passholder card and then populates it with the entered person name, grounding pass assignment to an individual.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-07",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-08",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall collect personal information needed for passholder setup during checkout.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        8,
-        9,
-        10,
-        11,
-        12
-      ],
-      "rationale": "The flow clearly shows a personal information form being filled across several steps, including fields such as name, email, zip code, and age, which grounds structured passholder data capture.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-08",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
       "requirement_id": "REQ-09",
       "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
       "text": "The system shall preserve earlier user-entered personal information while the user completes the remaining required fields.",
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "accepted",
+      "review_status": "rejected",
       "step_indices": [
         9,
         10,
         11,
         12
       ],
-      "rationale": "Across successive form states, previously entered values remain visible while additional fields are filled, which directly grounds cross-step retention within the form.",
+      "rationale": "The visible form states support cross-step retention.",
       "confidence": "HIGH",
       "created_at": "2026-04-21T12:17:28+00:00",
       "source_harvest_id": "HARV-09",
@@ -240,59 +36,51 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-10",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall support copying previously entered passholder information into billing-related information where appropriate.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
+      "task_relevance": "MEDIUM",
+      "verification_label": "FULFILLED",
+      "claims": [
+        {
+          "claim": "Previously entered name information remains visible while later fields are completed.",
+          "claim_id": "candidate-REQ-09-C1",
+          "claim_text": "Previously entered name information remains visible while later fields are completed.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "Previously entered email and zip information remains visible while later fields are completed.",
+          "claim_id": "candidate-REQ-09-C2",
+          "claim_text": "Previously entered email and zip information remains visible while later fields are completed.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            12,
+            13,
+            14,
+            15
+          ],
+          "uncertainty_reasons": []
+        }
+      ],
+      "evidence_steps": [
+        11,
         12,
         13,
-        19
+        14,
+        15
       ],
-      "rationale": "The form exposes a Copy info to billing control, the control becomes selected, and a later agreement screen shows billing-related information, which supports a grounded but not fully end-to-end inference about data reuse.",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-10",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "INDIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-11",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall collect age or date-of-birth information when needed for pass purchase or financing eligibility.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        8,
-        12,
-        19
-      ],
-      "rationale": "An age field appears in the personal information step, and the later agreement step references date of birth, which grounds age-related data collection even though the underlying business rule is not fully visible.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-11",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
+      "uncertainty_reasons": [],
+      "evidence_note": "Earlier entered values remain visible while additional fields are filled."
     },
     {
       "requirement_id": "REQ-12",
@@ -307,7 +95,7 @@
         15,
         17
       ],
-      "rationale": "Later checkout screens continue to show the chosen Diamond pass and named guest, which directly grounds cross-step state consistency and context preservation.",
+      "rationale": "Selected pass and passholder context remain visibly consistent across later checkout stages.",
       "confidence": "HIGH",
       "created_at": "2026-04-21T12:17:28+00:00",
       "source_harvest_id": "HARV-12",
@@ -318,131 +106,50 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-13",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall allow users to configure optional dining-plan add-ons as part of a season pass purchase.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        15,
-        16
+      "task_relevance": "HIGH",
+      "verification_label": "FULFILLED",
+      "claims": [
+        {
+          "claim": "The selected pass remains visible as the 2023 Diamond Pass across checkout stages.",
+          "claim_id": "candidate-REQ-12-C1",
+          "claim_text": "The selected pass remains visible as the 2023 Diamond Pass across checkout stages.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            7,
+            8,
+            16,
+            18
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The named passholder remains visible across later checkout stages after being entered.",
+          "claim_id": "candidate-REQ-12-C2",
+          "claim_text": "The named passholder remains visible across later checkout stages after being entered.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            11,
+            16,
+            18
+          ],
+          "uncertainty_reasons": []
+        }
       ],
-      "rationale": "The checkout flow contains a dedicated add-on step for dining plans with selectable options, directly grounding add-on configuration within the purchase journey.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-13",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-14",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall present multiple dining-plan variants with pricing so the user can compare optional add-ons.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        15
-      ],
-      "rationale": "The add-on screen shows One Meal Dining Plan and Two Meal Dining Plan side by side with price information, directly supporting comparison among add-on variants.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-14",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-15",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall provide visible feedback when an add-on selection becomes active.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        15,
-        16
-      ],
-      "rationale": "The dining-plan step changes from an unselected to a selected state, which grounds the expectation of explicit UI feedback for active add-on choices.",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-15",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "NFR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-16",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall offer a choice between full payment and a flexible installment payment plan for pass purchases.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        17,
+      "evidence_steps": [
+        7,
+        8,
+        11,
+        16,
         18
       ],
-      "rationale": "The payment step explicitly presents two selectable options, one for flexible pay and one for paying in full, which directly grounds payment-method choice.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-16",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-17",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall display the installment schedule and payment amounts when a flexible payment plan is offered.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        17,
-        18
-      ],
-      "rationale": "The flexible pay screen includes a dated payment schedule with amounts and totals, which directly grounds schedule transparency even though actual billing execution is not visible.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-17",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
+      "uncertainty_reasons": [],
+      "evidence_note": "The checkout modal repeatedly shows the 2023 Diamond Pass and later the Jame Jones passholder context."
     },
     {
       "requirement_id": "REQ-18",
@@ -456,7 +163,7 @@
         17,
         18
       ],
-      "rationale": "The flexible pay option changes from unselected to selected between the two payment-plan states, directly grounding explicit selection feedback for financing choice.",
+      "rationale": "The active payment plan is visibly communicated by the selected radio state.",
       "confidence": "HIGH",
       "created_at": "2026-04-21T12:17:28+00:00",
       "source_harvest_id": "HARV-18",
@@ -467,167 +174,41 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-19",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall support stepwise progression through the checkout flow with consistent back and continue navigation controls.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        7,
-        8,
-        15,
-        17
+      "task_relevance": "HIGH",
+      "verification_label": "FULFILLED",
+      "claims": [
+        {
+          "claim": "The payment step shows selectable payment plan options.",
+          "claim_id": "candidate-REQ-18-C1",
+          "claim_text": "The payment step shows selectable payment plan options.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            18
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The chosen flexible payment plan is visibly marked as active.",
+          "claim_id": "candidate-REQ-18-C2",
+          "claim_text": "The chosen flexible payment plan is visibly marked as active.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            18
+          ],
+          "uncertainty_reasons": []
+        }
       ],
-      "rationale": "Multiple checkout stages show repeated back and continue or next controls, which grounds structured progression support across the purchase workflow.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-19",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "NFR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-20",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall require the user to review and consent to financing-related terms before completing a flexible payment agreement.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        19
+      "evidence_steps": [
+        18
       ],
-      "rationale": "A terms and conditions modal explicitly instructs the user to review the agreement, sign, and consent, which directly grounds agreement review as part of financing completion.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-20",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-21",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall collect billing and contact details needed to complete the payment agreement workflow.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        19
-      ],
-      "rationale": "Behind the terms modal, the agreement screen visibly includes buyer, mailing, contact, and date-of-birth related fields, which grounds billing and contact data capture for the agreement step.",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-21",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-22",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall present prices and option details transparently enough for users to compare pass tiers, add-ons, and payment choices during checkout.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        6,
-        7,
-        15,
-        17
-      ],
-      "rationale": "The flow repeatedly exposes prices, monthly payment messaging, add-on costs, and financing amounts across several stages, which grounds a broader transparency-oriented requirement about decision support.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T12:17:28+00:00",
-      "source_harvest_id": "HARV-22",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "NFR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "CONTR-01",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall retain the selected park context in later purchase and checkout screens so users can verify that they are still completing a pass purchase for the intended park.",
-      "scope": "multi_screen",
-      "tags": [
-        "contrastive",
-        "intended_label:partially_fulfilled",
-        "mutation_family:persistence_extension"
-      ],
-      "origin": "model",
-      "review_status": "candidate",
-      "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: partially_fulfilled\nMutation family: persistence_extension\nSource gold requirement: REQ-02\nSource gold text: The system shall switch the user into park-specific browsing context after a park is selected.\nGeneration rationale: This extends the accepted park-specific context requirement into later checkout continuity. It stays close to the same flow but asks for stronger cross-screen persistence that may only be partly visible or inconsistently surfaced.",
-      "generation_model": "contrastive_import_manual",
-      "generation_prompt_path": "data/generated/contrastive_import/staged/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/contrastive_candidate_requirements.json",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "parent_harvest_text": "The system shall switch the user into park-specific browsing context after a park is selected.",
-      "grounding_scope": "INDIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "CONTR-02",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall send a confirmation to the purchaser's contact address after checkout that summarizes the selected park, pass tier, add-ons, and payment arrangement.",
-      "scope": "multi_screen",
-      "tags": [
-        "contrastive",
-        "intended_label:partially_fulfilled",
-        "mutation_family:external_effect_extension"
-      ],
-      "origin": "model",
-      "review_status": "candidate",
-      "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: partially_fulfilled\nMutation family: external_effect_extension\nSource gold requirement: REQ-21\nSource gold text: The system shall collect billing and contact details needed to complete the payment agreement workflow.\nGeneration rationale: The flow already collects contact information during a purchase workflow, so a downstream confirmation is a realistic nearby requirement. It is useful contrast because the visible UI may support the setup for it without proving the external delivery effect.",
-      "generation_model": "contrastive_import_manual",
-      "generation_prompt_path": "data/generated/contrastive_import/staged/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/contrastive_candidate_requirements.json",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "parent_harvest_text": "The system shall collect billing and contact details needed to complete the payment agreement workflow.",
-      "grounding_scope": "INDIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "EXTERNAL_INTEGRATION",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
+      "uncertainty_reasons": [],
+      "evidence_note": "Step 18 shows the Flexible Pay Plan option with a selected indicator."
     },
     {
       "requirement_id": "CONTR-03",
@@ -640,14 +221,13 @@
         "mutation_family:policy_or_role_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "rejected",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: abstain\nMutation family: policy_or_role_extension\nSource gold requirement: REQ-11\nSource gold text: The system shall collect age or date-of-birth information when needed for pass purchase or financing eligibility.\nGeneration rationale: The accepted gold set already ties age or date-of-birth capture to financing eligibility, so an explicit policy-based rejection or ineligibility message is a disciplined extension. It is realistic but depends on business rules that may not be observable in the provided flow.",
+      "rationale": "The screenshots do not contain the condition needed to judge this requirement. Missing an ineligibility scenario is not enough for NOT_FULFILLED.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall collect age or date-of-birth information when needed for pass purchase or financing eligibility.",
@@ -656,7 +236,64 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "abstain",
+      "verification_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim": "The checkout flow collects age or date-of-birth related information that could support eligibility checks.",
+          "claim_id": "candidate-CONTR-03-C1",
+          "claim_text": "The checkout flow collects age or date-of-birth related information that could support eligibility checks.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            14,
+            19
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The flexible installment option is visibly unavailable due to eligibility.",
+          "claim_id": "candidate-CONTR-03-C2",
+          "claim_text": "The flexible installment option is visibly unavailable due to eligibility.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            18,
+            19
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        },
+        {
+          "claim": "The reason for unavailability is based on age or eligibility policy requirements.",
+          "claim_id": "candidate-CONTR-03-C3",
+          "claim_text": "The reason for unavailability is based on age or eligibility policy requirements.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "NONTRIVIAL_HIDDEN_PROPERTY"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        14,
+        18,
+        19
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "evidence_note": "The flow shows age-related fields and a flexible payment option, but it does not show an ineligible user state or an unavailable flexible-pay message."
     },
     {
       "requirement_id": "CONTR-04",
@@ -669,14 +306,13 @@
         "mutation_family:hidden_state_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "accepted",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: abstain\nMutation family: hidden_state_extension\nSource gold requirement: REQ-20\nSource gold text: The system shall require the user to review and consent to financing-related terms before completing a flexible payment agreement.\nGeneration rationale: A financing-related agreement flow plausibly implies a backend approval or eligibility step, while the visible core would be a user-facing status or outcome. This is useful contrast because the backend decision itself is hidden even if some UI feedback may exist.",
+      "rationale": "The approval behavior is hidden and the required user-facing status is not present in the screenshots.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall require the user to review and consent to financing-related terms before completing a flexible payment agreement.",
@@ -685,65 +321,64 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "BACKEND_HIDDEN_STATE",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "CONTR-05",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall provide a final editable review step before commitment where the purchaser can inspect and revise the selected park, pass tier, passholder details, dining add-ons, and payment choice.",
-      "scope": "multi_screen",
-      "tags": [
-        "contrastive",
-        "intended_label:not_fulfilled",
-        "mutation_family:missing_visible_step"
+      "task_relevance": "MEDIUM",
+      "intended_label": "abstain",
+      "verification_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim": "The flow reaches a flexible payment agreement area after the flexible payment option is selected.",
+          "claim_id": "candidate-CONTR-04-C1",
+          "claim_text": "The flow reaches a flexible payment agreement area after the flexible payment option is selected.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            18,
+            19
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The system performs a financing or approval check before finalization.",
+          "claim_id": "candidate-CONTR-04-C2",
+          "claim_text": "The system performs a financing or approval check before finalization.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "NONTRIVIAL_HIDDEN_PROPERTY",
+            "UNVERIFIED_SYSTEM_OUTCOME"
+          ]
+        },
+        {
+          "claim": "The UI presents a resulting approval or financing-check status to the user.",
+          "claim_id": "candidate-CONTR-04-C3",
+          "claim_text": "The UI presents a resulting approval or financing-check status to the user.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            19
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        }
       ],
-      "origin": "model",
-      "review_status": "candidate",
-      "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: not_fulfilled\nMutation family: missing_visible_step\nSource gold requirement: REQ-19\nSource gold text: The system shall support stepwise progression through the checkout flow with consistent back and continue navigation controls.\nGeneration rationale: A structured multi-step checkout often includes an explicit review-and-edit phase before commitment, especially when personal details, add-ons, and financing choices are involved. This stays tightly anchored to the existing flow but introduces a plausible visible step that may be absent.",
-      "generation_model": "contrastive_import_manual",
-      "generation_prompt_path": "data/generated/contrastive_import/staged/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/contrastive_candidate_requirements.json",
-      "confidence": "HIGH",
-      "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "parent_harvest_text": "The system shall support stepwise progression through the checkout flow with consistent back and continue navigation controls.",
-      "grounding_scope": "INDIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "CONTR-06",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall keep the checkout pricing summary synchronized with user choices so that changing an add-on or payment plan visibly updates the relevant one-time and recurring charges.",
-      "scope": "multi_screen",
-      "tags": [
-        "contrastive",
-        "intended_label:not_fulfilled",
-        "mutation_family:stronger_visible_constraint"
+      "evidence_steps": [
+        18,
+        19
       ],
-      "origin": "model",
-      "review_status": "candidate",
-      "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: not_fulfilled\nMutation family: stronger_visible_constraint\nSource gold requirement: REQ-17\nSource gold text: The system shall display the installment schedule and payment amounts when a flexible payment plan is offered.\nGeneration rationale: The gold set already establishes visible prices, add-on offers, and flexible payment amounts, so synchronized recalculation is a realistic stronger expectation in the same checkout space. It can diversify later review because the flow may show pricing information without clearly showing dynamic updates across choice changes.",
-      "generation_model": "contrastive_import_manual",
-      "generation_prompt_path": "data/generated/contrastive_import/staged/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/contrastive_candidate_requirements.json",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "parent_harvest_text": "The system shall display the installment schedule and payment amounts when a flexible payment plan is offered.",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "CONTENT_UPDATE",
-      "task_relevance": "MEDIUM"
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "UNVERIFIED_SYSTEM_OUTCOME",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "evidence_note": "Step 19 shows agreement-related terms, but no approval check result or financing status is visible."
     }
   ]
 }

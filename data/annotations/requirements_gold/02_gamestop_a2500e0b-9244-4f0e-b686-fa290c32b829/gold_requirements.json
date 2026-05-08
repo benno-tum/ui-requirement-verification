@@ -39,11 +39,13 @@
       ],
       "source_candidate_id": "REQ-02",
       "source_harvest_id": "HARV-02",
+      "annotation_notes": "The screenshots visibly support searching by zip code and applying the search.",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
-      "created_at": "2026-04-21T13:10:48+00:00"
+      "created_at": "2026-05-07T10:40:48+00:00"
     },
     {
       "requirement_id": "REQ-03",
@@ -131,6 +133,81 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "created_at": "2026-04-21T13:13:09+00:00"
+    },
+    {
+      "requirement_id": "CONTR-01",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall preserve a user's selected home store as the default store context on all pages and on a subsequent visit.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:partially_fulfilled",
+        "mutation_family:persistence_extension"
+      ],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        1,
+        2,
+        4
+      ],
+      "source_candidate_id": "CONTR-01",
+      "annotation_notes": "The current-flow context is supported, while subsequent-visit preservation depends on hidden persistence outside the screenshots.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "created_at": "2026-05-07T11:40:57+00:00"
+    },
+    {
+      "requirement_id": "CONTR-04",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall keep the searched location, selected radius, and resulting stores synchronized between the map view and the store list.",
+      "scope": "single_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:not_fulfilled",
+        "mutation_family:cross_screen_consistency_extension"
+      ],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        4
+      ],
+      "source_candidate_id": "CONTR-04",
+      "annotation_notes": "The visible counter-evidence contradicts full synchronization between the map context and every returned store in the list.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "created_at": "2026-05-07T12:24:43+00:00"
+    },
+    {
+      "requirement_id": "CONTR-05",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall show complete store detail coverage for each returned location, including address, phone contact, and operating hours.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:abstain",
+        "mutation_family:completeness_or_universal_quantifier"
+      ],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        4
+      ],
+      "source_candidate_id": "CONTR-05",
+      "annotation_notes": "The requirement is supported for visible complete cards but not fully verified for each returned location.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "created_at": "2026-05-07T12:27:55+00:00"
     }
   ]
 }

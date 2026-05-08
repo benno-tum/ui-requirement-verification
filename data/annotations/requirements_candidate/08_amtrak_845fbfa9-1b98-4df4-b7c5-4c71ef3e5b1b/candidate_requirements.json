@@ -11,165 +11,17 @@
   ],
   "requirements": [
     {
-      "requirement_id": "REQ-01",
-      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
-      "text": "The system shall expose major travel experience categories from the primary site navigation.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        1,
-        2
-      ],
-      "rationale": "The home page shows an Experience entry in the main navigation, and the next screen expands it into multiple experience categories. This directly supports a navigable experience taxonomy.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-22T13:43:45+00:00",
-      "source_harvest_id": "HARV-01",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-02",
-      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
-      "text": "The system shall allow users to navigate from general experience browsing into onboard travel information pages.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        2,
-        3
-      ],
-      "rationale": "The ordered flow moves from the expanded Experience navigation to an Onboard page. The sequence strongly suggests navigation into onboard content, even though the click itself is not shown.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-22T13:43:45+00:00",
-      "source_harvest_id": "HARV-02",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-03",
-      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
-      "text": "The system shall organize onboard information into distinct amenity and service categories so users can browse by topic.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3
-      ],
-      "rationale": "The Onboard page groups content into areas such as accommodations, dining, baggage, WiFi, pets, and bicycles. This is a direct visible content organization feature.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-22T13:43:45+00:00",
-      "source_harvest_id": "HARV-03",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-04",
-      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
-      "text": "The system shall provide dedicated detail pages for onboard dining information.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3,
-        4
-      ],
-      "rationale": "The flow shows an Onboard overview page followed by a specific Onboard Dining page with focused dining content. This supports dedicated dining detail views.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-22T13:43:45+00:00",
-      "source_harvest_id": "HARV-04",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-05",
-      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
-      "text": "The system shall support drill down within onboard dining into specific dining service types such as traditional dining, flexible dining, café dining, and Acela dining.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        4,
-        5
-      ],
-      "rationale": "The Onboard Dining page shows multiple dining subtypes, and the next screen lands on the Café subsection. The flow directly supports subtype navigation, though not every subtype is opened.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-22T13:43:45+00:00",
-      "source_harvest_id": "HARV-05",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-06",
-      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
-      "text": "The system shall provide a dedicated café service page that explains the scope and availability of café service.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        5
-      ],
-      "rationale": "The Café page contains descriptive text about café service, meal and beverage availability, and general availability across routes and times. This is directly visible on the page.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-22T13:43:45+00:00",
-      "source_harvest_id": "HARV-06",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
       "requirement_id": "REQ-07",
       "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
       "text": "The system shall present sample menu resources from the café service page.",
       "scope": "single_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "rejected",
+      "review_status": "needs_review",
       "step_indices": [
         5
       ],
-      "rationale": "The Café page contains a Sample Menus section with grouped links. This directly supports the availability of menu resources from that page.",
+      "rationale": "The Café page presents sample menu resources as requested.",
       "confidence": "HIGH",
       "created_at": "2026-04-22T13:43:45+00:00",
       "source_harvest_id": "HARV-07",
@@ -180,105 +32,28 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-08",
-      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
-      "text": "The system shall provide access to a national café menu.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
+      "task_relevance": "HIGH",
+      "verification_label": "FULFILLED",
+      "claims": [
+        {
+          "claim": "Sample menu resources are presented from the café service page.",
+          "claim_id": "candidate-REQ-07-C1",
+          "claim_text": "Sample menu resources are presented from the café service page.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            5
+          ],
+          "uncertainty_reasons": []
+        }
+      ],
+      "evidence_steps": [
         5
       ],
-      "rationale": "The Café page shows a National Café Menu link under the National grouping. The access point is visible, while the correctness of the linked destination is only partially verifiable from screenshots alone.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-22T13:43:45+00:00",
-      "source_harvest_id": "HARV-08",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-09",
-      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
-      "text": "The system shall provide route or region specific café menu resources in addition to a national menu.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        5
-      ],
-      "rationale": "The Café page lists multiple regional or route specific menu links next to the national option. The links are visible, but their downstream contents are not opened in the sequence.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-22T13:43:45+00:00",
-      "source_harvest_id": "HARV-09",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-10",
-      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
-      "text": "The system shall surface related dietary and food policy information alongside onboard dining content.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        4
-      ],
-      "rationale": "The Onboard Dining page includes sections for special dietary requirements, food facts, and personal food or beverages. The visible links support this capability, though their detailed content is not opened.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-22T13:43:45+00:00",
-      "source_harvest_id": "HARV-10",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-11",
-      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
-      "text": "The system shall support list to detail navigation from an onboard overview page to specific amenity pages.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3,
-        4,
-        5
-      ],
-      "rationale": "The flow begins with an overview style Onboard page and then moves into deeper dining pages. This suggests a browse and drill down pattern from overview content into focused detail views.",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-22T13:43:45+00:00",
-      "source_harvest_id": "HARV-11",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
+      "uncertainty_reasons": [],
+      "evidence_note": "Step 5 shows a Sample Menus section with National and Regional menu resources."
     },
     {
       "requirement_id": "REQ-12",
@@ -287,13 +62,13 @@
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "rejected",
+      "review_status": "needs_review",
       "step_indices": [
         3,
         4,
         5
       ],
-      "rationale": "Across the sequence, the left navigation persists and the active section changes from Onboard to Onboard Dining and then Café. This is a directly visible navigation feedback behavior.",
+      "rationale": "The visible navigation state preserves contextual wayfinding through the section and subsection hierarchy.",
       "confidence": "HIGH",
       "created_at": "2026-04-22T13:43:45+00:00",
       "source_harvest_id": "HARV-12",
@@ -304,60 +79,46 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-13",
-      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
-      "text": "The system shall present menu options for multiple onboard dining formats so travelers can distinguish among dining models before selecting a menu resource.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        4,
-        5
+      "task_relevance": "HIGH",
+      "verification_label": "FULFILLED",
+      "claims": [
+        {
+          "claim": "The current section is indicated as users navigate deeper into onboard content.",
+          "claim_id": "candidate-REQ-12-C1",
+          "claim_text": "The current section is indicated as users navigate deeper into onboard content.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            3,
+            4,
+            5
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The current subsection is indicated as users navigate deeper into onboard content.",
+          "claim_id": "candidate-REQ-12-C2",
+          "claim_text": "The current subsection is indicated as users navigate deeper into onboard content.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            4,
+            5
+          ],
+          "uncertainty_reasons": []
+        }
       ],
-      "rationale": "The Onboard Dining page names several dining formats and the Café page then exposes concrete menu resources. This supports the inference that the site helps users differentiate among dining models before following a specific menu path.",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-22T13:43:45+00:00",
-      "source_harvest_id": "HARV-13",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "INDIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-14",
-      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
-      "text": "The system shall make onboard dining information discoverable through the public site navigation without requiring the user to enter a booking flow first.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        1,
-        2,
+      "evidence_steps": [
         3,
         4,
         5
       ],
-      "rationale": "The sequence starts from public navigation and reaches dining information pages through browsing rather than a purchase or itinerary workflow. That makes public discoverability a grounded hypothesis.",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-22T13:43:45+00:00",
-      "source_harvest_id": "HARV-14",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "INDIRECT_FLOW_GROUNDED",
-      "requirement_type": "NFR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
+      "uncertainty_reasons": [],
+      "evidence_note": "The left navigation persists across the Onboard, Onboard Dining, and Café states. Onboard Dining and Café are highlighted as the flow moves deeper."
     },
     {
       "requirement_id": "CONTR-01",
@@ -370,14 +131,13 @@
         "mutation_family:external_effect_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: partially_fulfilled\nMutation family: external_effect_extension\nSource gold requirement: REQ-08\nSource gold text: The system shall provide access to a national café menu.\nGeneration rationale: This is a close extension of menu access into a downstream menu resource outcome. It stays tightly anchored to the visible menu-link capability while adding a realistic external-resource expectation that may only be partially settled from the flow.",
+      "rationale": "The access point is supported, while the dedicated independent viewing outcome is not shown.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall provide access to a national café menu.",
@@ -386,7 +146,63 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "EXTERNAL_INTEGRATION",
       "visible_subtype": "NAVIGATION_OUTCOME",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "partially_fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "Access to the national café menu is provided.",
+          "claim_id": "candidate-CONTR-01-C1",
+          "claim_text": "Access to the national café menu is provided.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            5
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "Travelers can open the national café menu in a dedicated resource.",
+          "claim_id": "candidate-CONTR-01-C2",
+          "claim_text": "Travelers can open the national café menu in a dedicated resource.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            5
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "UNVERIFIED_SYSTEM_OUTCOME"
+          ]
+        },
+        {
+          "claim": "The dedicated resource can be viewed independently of the surrounding café information page.",
+          "claim_id": "candidate-CONTR-01-C3",
+          "claim_text": "The dedicated resource can be viewed independently of the surrounding café information page.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            5
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        5
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "evidence_note": "Step 5 shows the National Café Menu link, but the flow does not show the menu resource being opened or viewed independently."
     },
     {
       "requirement_id": "CONTR-02",
@@ -399,14 +215,13 @@
         "mutation_family:policy_or_role_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: partially_fulfilled\nMutation family: policy_or_role_extension\nSource gold requirement: REQ-14\nSource gold text: The system shall make onboard dining information discoverable through the public site navigation without requiring the user to enter a booking flow first.\nGeneration rationale: The gold set already supports public discoverability outside booking. Extending that to no sign-in is a realistic nearby policy constraint for public travel information, but it introduces account-state assumptions that the visible flow may not fully prove.",
+      "rationale": "Public reachability and absence of a visible sign-in step are supported, but the no-account-ownership-check condition remains hidden.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall make onboard dining information discoverable through the public site navigation without requiring the user to enter a booking flow first.",
@@ -415,7 +230,71 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "SECURITY_PRIVACY",
       "visible_subtype": "NAVIGATION_OUTCOME",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "partially_fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "Onboard dining menu resources are reachable to public users.",
+          "claim_id": "candidate-CONTR-02-C1",
+          "claim_text": "Onboard dining menu resources are reachable to public users.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "Reachability of onboard dining menu resources does not require sign-in before access.",
+          "claim_id": "candidate-CONTR-02-C2",
+          "claim_text": "Reachability of onboard dining menu resources does not require sign-in before access.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "Reachability of onboard dining menu resources does not require account ownership checks.",
+          "claim_id": "candidate-CONTR-02-C3",
+          "claim_text": "Reachability of onboard dining menu resources does not require account ownership checks.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "NONTRIVIAL_HIDDEN_PROPERTY",
+            "UNVERIFIED_SYSTEM_OUTCOME"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "evidence_note": "Steps 1 to 5 reach the Café page and menu links through public navigation without a visible sign-in step. The linked menu resources themselves are not opened, and account-ownership-check behavior is not verifiable from the screenshots."
     },
     {
       "requirement_id": "CONTR-03",
@@ -428,14 +307,13 @@
         "mutation_family:hidden_state_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged block 6\nIntended label: abstain\nMutation family: hidden_state_extension\nSource gold requirement: REQ-09\nSource gold text: The system shall provide route or region specific café menu resources in addition to a national menu.\nGeneration rationale: This keeps the same menu-resource feature space but adds a plausible applicability rule driven by hidden route context. The visible core remains close to the gold requirement, yet the rule itself is likely unresolvable from screenshots alone.",
+      "rationale": "The national-menu portion is supported, while the route-applicability condition depends on context and logic not shown in the flow.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-24T12:04:43+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall provide route or region specific café menu resources in addition to a national menu.",
@@ -444,7 +322,46 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
       "visible_subtype": "CONTENT_UPDATE",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "abstain",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "Access to a general national café menu is preserved.",
+          "claim_id": "candidate-CONTR-03-C1",
+          "claim_text": "Access to a general national café menu is preserved.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            5
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "Route-specific café menu resources are surfaced only when applicable to the traveler's route or service context.",
+          "claim_id": "candidate-CONTR-03-C2",
+          "claim_text": "Route-specific café menu resources are surfaced only when applicable to the traveler's route or service context.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "SCOPE_OR_CONTEXT_AMBIGUITY",
+            "NONTRIVIAL_HIDDEN_PROPERTY"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        5
+      ],
+      "uncertainty_reasons": [
+        "SCOPE_OR_CONTEXT_AMBIGUITY",
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "evidence_note": "Step 5 preserves a National Café Menu and also lists Regional menu links. No traveler route or service context is shown, so applicability of the route-specific resources cannot be judged."
     },
     {
       "requirement_id": "CONTR-04",
@@ -457,23 +374,59 @@
         "mutation_family:completeness_or_universal_quantifier"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged block 6\nIntended label: abstain\nMutation family: completeness_or_universal_quantifier\nSource gold requirement: REQ-05\nSource gold text: The system shall support drill down within onboard dining into specific dining service types such as traditional dining, flexible dining, café dining, and Acela dining.\nGeneration rationale: The gold requirement already supports subtype drill down. Strengthening it to all shown dining types is realistic and reviewable, but the ordered flow only demonstrates one subtype path, so later verification would likely need to abstain.",
+      "rationale": "The requirement asks for corresponding detail or menu-entry resources. The visible dining entries and Café detail path support that mechanism for the presented types.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-24T12:04:43+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall support drill down within onboard dining into specific dining service types such as traditional dining, flexible dining, café dining, and Acela dining.",
       "grounding_scope": "DIRECT_FLOW_GROUNDED",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "abstain",
+      "verification_label": "FULFILLED",
+      "claims": [
+        {
+          "claim": "Dining service types are presented from the onboard dining page.",
+          "claim_id": "candidate-CONTR-04-C1",
+          "claim_text": "Dining service types are presented from the onboard dining page.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            4
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "Corresponding detail or menu-entry resources are provided for all presented dining service types.",
+          "claim_id": "candidate-CONTR-04-C2",
+          "claim_text": "Corresponding detail or menu-entry resources are provided for all presented dining service types.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            4,
+            5
+          ],
+          "uncertainty_reasons": []
+        }
+      ],
+      "evidence_steps": [
+        4,
+        5
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "Step 4 presents Traditional Dining, Flexible Dining, Café, and Acela Dining as dining service type entries. Step 5 demonstrates the Café detail path and menu-entry resources."
     },
     {
       "requirement_id": "CONTR-05",
@@ -486,14 +439,13 @@
         "mutation_family:missing_visible_step"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged block 6\nIntended label: not_fulfilled\nMutation family: missing_visible_step\nSource gold requirement: REQ-09\nSource gold text: The system shall provide route or region specific café menu resources in addition to a national menu.\nGeneration rationale: This is a disciplined workflow extension of the existing menu-resource branching capability. It adds a plausible explicit choice phase that is close to the same task space, yet such a separate step is often absent in compact informational pages.",
+      "rationale": "The visible Café menu-selection state clearly separates national and regional menu access before any menu resource is opened.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-24T12:04:43+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall provide route or region specific café menu resources in addition to a national menu.",
@@ -502,7 +454,42 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "not_fulfilled",
+      "verification_label": "FULFILLED",
+      "claims": [
+        {
+          "claim": "An intermediate menu selection step is presented before a menu resource is opened.",
+          "claim_id": "candidate-CONTR-05-C1",
+          "claim_text": "An intermediate menu selection step is presented before a menu resource is opened.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            5
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "National café menu access and route-specific menu access are clearly separated before a menu resource is opened.",
+          "claim_id": "candidate-CONTR-05-C2",
+          "claim_text": "National café menu access and route-specific menu access are clearly separated before a menu resource is opened.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            5
+          ],
+          "uncertainty_reasons": []
+        }
+      ],
+      "evidence_steps": [
+        5
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "Step 5 shows a Sample Menus area before any menu resource is opened, with a National grouping and a Regional grouping."
     },
     {
       "requirement_id": "CONTR-06",
@@ -515,14 +502,13 @@
         "mutation_family:cross_screen_consistency_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged block 6\nIntended label: not_fulfilled\nMutation family: cross_screen_consistency_extension\nSource gold requirement: REQ-13\nSource gold text: The system shall present menu options for multiple onboard dining formats so travelers can distinguish among dining models before selecting a menu resource.\nGeneration rationale: The gold item already relies on users distinguishing dining models across screens. Strengthening that into explicit terminology consistency is a realistic, UI-observable extension that could expose subtle mismatches across overview and detail states.",
+      "rationale": "Subtype naming is supported, while the full terminology-consistency claim remains ambiguous.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-24T12:04:43+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall present menu options for multiple onboard dining formats so travelers can distinguish among dining models before selecting a menu resource.",
@@ -531,7 +517,48 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "not_fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "Dining subtype naming is maintained from the onboard dining overview through café detail content.",
+          "claim_id": "candidate-CONTR-06-C1",
+          "claim_text": "Dining subtype naming is maintained from the onboard dining overview through café detail content.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            4,
+            5
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "Menu-resource terminology consistently supports matching the selected dining model to its menu links.",
+          "claim_id": "candidate-CONTR-06-C2",
+          "claim_text": "Menu-resource terminology consistently supports matching the selected dining model to its menu links.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "AMBIGUOUS",
+          "evidence_steps": [
+            5
+          ],
+          "uncertainty_reasons": [
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        4,
+        5
+      ],
+      "uncertainty_reasons": [
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "evidence_note": "The Café subtype name remains consistent from step 4 to step 5. Some menu links in step 5 are named by route or service, so the consistency of every menu-resource label with the Café model is interpretive."
     }
   ]
 }

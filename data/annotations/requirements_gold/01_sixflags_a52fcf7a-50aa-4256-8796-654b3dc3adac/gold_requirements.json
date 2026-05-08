@@ -18,13 +18,13 @@
       ],
       "source_candidate_id": "REQ-01",
       "source_harvest_id": "HARV-01",
-      "annotation_notes": "The flow begins with a park selection experience and then shows Great Escape selected, which directly grounds park choice as an entry step for the later purchase flow.",
+      "annotation_notes": "The visible flow supports park selection before entering the pass purchase context.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
-      "created_at": "2026-04-21T12:23:33+00:00"
+      "created_at": "2026-04-30T14:42:32+00:00"
     },
     {
       "requirement_id": "REQ-02",
@@ -36,16 +36,18 @@
       "review_status": "accepted",
       "step_indices": [
         3,
-        4
+        4,
+        6
       ],
       "source_candidate_id": "REQ-02",
       "source_harvest_id": "HARV-02",
+      "annotation_notes": "The screenshots show a park-specific context switch.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
-      "created_at": "2026-04-21T12:25:15+00:00"
+      "created_at": "2026-04-30T14:44:17+00:00"
     },
     {
       "requirement_id": "REQ-04",
@@ -60,12 +62,13 @@
       ],
       "source_candidate_id": "REQ-04",
       "source_harvest_id": "HARV-04",
+      "annotation_notes": "The comparison view supports plan comparison.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
-      "created_at": "2026-04-21T12:28:18+00:00"
+      "created_at": "2026-05-06T11:19:59+00:00"
     },
     {
       "requirement_id": "REQ-03",
@@ -77,17 +80,17 @@
       "review_status": "accepted",
       "step_indices": [
         4,
-        5,
         6
       ],
       "source_candidate_id": "REQ-03",
       "source_harvest_id": "HARV-03",
+      "annotation_notes": "The flow provides a park-specific entry into pass discovery.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
-      "created_at": "2026-04-21T12:28:42+00:00"
+      "created_at": "2026-04-30T14:47:06+00:00"
     },
     {
       "requirement_id": "REQ-05",
@@ -103,12 +106,13 @@
       ],
       "source_candidate_id": "REQ-05",
       "source_harvest_id": "HARV-05",
+      "annotation_notes": "A specific pass tier can be purchased from the comparison view.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
-      "created_at": "2026-04-21T12:29:12+00:00"
+      "created_at": "2026-05-06T12:24:01+00:00"
     },
     {
       "requirement_id": "REQ-06",
@@ -200,33 +204,6 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-21T12:43:28+00:00"
-    },
-    {
-      "requirement_id": "REQ-09",
-      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall preserve earlier user-entered personal information while the user completes the remaining required fields.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "human",
-      "review_status": "accepted",
-      "step_indices": [
-        14,
-        15,
-        16,
-        17,
-        18,
-        19
-      ],
-      "source_candidate_id": "REQ-09",
-      "source_harvest_id": "HARV-09",
-      "annotation_notes": "Across successive form states, previously entered values remain visible while additional fields are filled, which directly grounds cross-step retention within the form.",
-      "annotated_by": "benno",
-      "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "They are trivially preserved, since each input field stays present in the selected flow steps in the UI. Having this requirement is logically still correct, since the requirement comes before the UI. Better flow steps are the later ones, where the name isn't shown anymore, but preserved in hidden state.",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "visible_subtype": "NONE",
-      "created_at": "2026-04-21T12:45:23+00:00"
     },
     {
       "requirement_id": "REQ-10",
@@ -454,6 +431,122 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-21T13:07:02+00:00"
+    },
+    {
+      "requirement_id": "CONTR-01",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "text": "The system shall retain the selected park context in later purchase and checkout screens so users can verify that they are still completing a pass purchase for the intended park.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:partially_fulfilled",
+        "mutation_family:persistence_extension"
+      ],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3,
+        4,
+        6,
+        7,
+        8,
+        16,
+        18,
+        19
+      ],
+      "source_candidate_id": "CONTR-01",
+      "annotation_notes": "The requirement extends park context persistence into later checkout. Earlier context is supported, but later checkout visibility is only indirect or ambiguous.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "created_at": "2026-05-06T12:41:27+00:00"
+    },
+    {
+      "requirement_id": "CONTR-02",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "text": "The system shall send a confirmation to the purchaser's contact address after checkout that summarizes the selected park, pass tier, add-ons, and payment arrangement.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:partially_fulfilled",
+        "mutation_family:external_effect_extension"
+      ],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        7,
+        12,
+        17,
+        18,
+        19
+      ],
+      "source_candidate_id": "CONTR-02",
+      "annotation_notes": "Visible setup for a confirmation is present, but post-checkout delivery and summary outcome are not verified.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-05-06T12:42:45+00:00"
+    },
+    {
+      "requirement_id": "CONTR-05",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "text": "The system shall provide a final editable review step before commitment where the purchaser can inspect and revise the selected park, pass tier, passholder details, dining add-ons, and payment choice.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:not_fulfilled",
+        "mutation_family:missing_visible_step"
+      ],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        7,
+        8,
+        11,
+        16,
+        17,
+        18,
+        19
+      ],
+      "source_candidate_id": "CONTR-05",
+      "annotation_notes": "Some inspect-and-revise support is visible, but the stronger final review step is not visibly satisfied.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "created_at": "2026-05-07T10:09:15+00:00"
+    },
+    {
+      "requirement_id": "CONTR-06",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "text": "The system shall keep the checkout pricing summary synchronized with user choices so that changing an add-on or payment plan visibly updates the relevant one-time and recurring charges.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:not_fulfilled",
+        "mutation_family:stronger_visible_constraint"
+      ],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        7,
+        16,
+        17,
+        18
+      ],
+      "source_candidate_id": "CONTR-06",
+      "annotation_notes": "The flow supports price visibility and option selection, but the stronger dynamic synchronization behavior is not directly shown.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "CONTENT_UPDATE",
+      "created_at": "2026-05-07T10:11:05+00:00"
     }
   ]
 }

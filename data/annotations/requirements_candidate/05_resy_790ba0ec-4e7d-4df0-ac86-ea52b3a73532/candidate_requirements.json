@@ -12,125 +12,20 @@
   ],
   "requirements": [
     {
-      "requirement_id": "REQ-01",
-      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
-      "text": "The system shall provide a location-specific restaurant discovery experience for signed-in users.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        1,
-        2
-      ],
-      "rationale": "The opening screens show a Columbus-specific discovery page with restaurant listings and recommendation sections, which directly supports a location-aware browsing capability.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T20:31:59+00:00",
-      "source_harvest_id": "HARV-01",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "LOW"
-    },
-    {
-      "requirement_id": "REQ-02",
-      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
-      "text": "The system shall expose account actions through a global user menu.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        1,
-        2
-      ],
-      "rationale": "The sequence moves from the main page to an opened account dropdown that lists profile and other account destinations, directly showing this capability.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T20:31:59+00:00",
-      "source_harvest_id": "HARV-02",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-03",
-      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
-      "text": "The system shall allow authenticated users to navigate from the account menu to a dedicated profile settings area.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        2,
-        3
-      ],
-      "rationale": "The ordered flow clearly transitions from the account menu to the profile page, showing direct support for profile-settings navigation.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T20:31:59+00:00",
-      "source_harvest_id": "HARV-03",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-04",
-      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
-      "text": "The system shall present existing profile information in editable, prepopulated form.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9
-      ],
-      "rationale": "The profile form already contains values such as name, phone, and email before further edits are made, indicating editable prefilled account data.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T20:31:59+00:00",
-      "source_harvest_id": "HARV-04",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
       "requirement_id": "REQ-05",
       "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
       "text": "The system shall support entry of birthday information using structured month, day, and year controls.",
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "rejected",
+      "review_status": "needs_review",
       "step_indices": [
         3,
         4,
         5,
         6
       ],
-      "rationale": "The birthday area progresses from placeholders to selected month, day, and year values across successive screenshots, directly demonstrating structured date entry.",
+      "rationale": "The birthday entry is structured into the required components and can be completed.",
       "confidence": "HIGH",
       "created_at": "2026-04-21T20:31:59+00:00",
       "source_harvest_id": "HARV-05",
@@ -141,134 +36,34 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-06",
-      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
-      "text": "The system shall allow users to add or edit a short personal bio in their profile.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        6,
-        7
+      "task_relevance": "HIGH",
+      "verification_label": "FULFILLED",
+      "claims": [
+        {
+          "claim": "The system supports entry of birthday information using structured month, day, and year controls.",
+          "claim_id": "candidate-REQ-05-C1",
+          "claim_text": "The system supports entry of birthday information using structured month, day, and year controls.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "uncertainty_reasons": []
+        }
       ],
-      "rationale": "The short-bio field is visible and then populated with user-entered text, directly showing support for short free-text profile notes.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T20:31:59+00:00",
-      "source_harvest_id": "HARV-06",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-07",
-      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
-      "text": "The system shall allow users to record allergies and dietary restrictions as profile preferences.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
+      "evidence_steps": [
         3,
-        8,
-        9
+        4,
+        5,
+        6
       ],
-      "rationale": "The profile page includes a dedicated allergies and restrictions section with selectable options, which directly grounds this profile-preference capability.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T20:31:59+00:00",
-      "source_harvest_id": "HARV-07",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-08",
-      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
-      "text": "The system shall support selecting multiple allergy or restriction tags within the same profile.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        8,
-        9
-      ],
-      "rationale": "The flow first shows Dairy selected and then shows Dairy together with Peanuts, demonstrating multi-selection rather than a single exclusive choice.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T20:31:59+00:00",
-      "source_harvest_id": "HARV-08",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-09",
-      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
-      "text": "The system shall provide visible information on which dietary preference is activated.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        8,
-        9
-      ],
-      "rationale": "Selected tags change visual state, making active choices distinguishable from inactive ones, which is a visible usability and clarity property of the form.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T20:31:59+00:00",
-      "source_harvest_id": "HARV-09",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "NFR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-10",
-      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
-      "text": "The system shall allow users to add an explanatory note alongside allergies and dietary restrictions.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3,
-        8,
-        9
-      ],
-      "rationale": "A dedicated text area for allergy and restriction notes is visible throughout the profile workflow, indicating support for supplementary dietary context.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T20:31:59+00:00",
-      "source_harvest_id": "HARV-10",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
+      "uncertainty_reasons": [],
+      "evidence_note": "The birthday area is split into month, day, and year entries, and steps 4 to 6 show each part being populated."
     },
     {
       "requirement_id": "REQ-11",
@@ -277,7 +72,7 @@
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "rejected",
+      "review_status": "needs_review",
       "step_indices": [
         3,
         4,
@@ -287,7 +82,7 @@
         8,
         9
       ],
-      "rationale": "A prominent Save button is consistently present at the end of the form, but the sequence does not show the post-save outcome or confirmation.",
+      "rationale": "The save mechanism is visible; successful commitment is not verified.",
       "confidence": "MEDIUM",
       "created_at": "2026-04-21T20:31:59+00:00",
       "source_harvest_id": "HARV-11",
@@ -298,58 +93,47 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
       "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
-    },
-    {
-      "requirement_id": "REQ-12",
-      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
-      "text": "The system shall communicate how profile information is used in the reservation context.",
-      "scope": "single_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
-        3
+      "task_relevance": "HIGH",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "The system provides a save action for profile changes.",
+          "claim_id": "candidate-REQ-11-C1",
+          "claim_text": "The system provides a save action for profile changes.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            3,
+            7,
+            9
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The save action commits profile changes.",
+          "claim_id": "candidate-REQ-11-C2",
+          "claim_text": "The save action commits profile changes.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "UNVERIFIED_SYSTEM_OUTCOME"
+          ]
+        }
       ],
-      "rationale": "The profile page includes explanatory text stating that information is shared with restaurants a user reserves, which directly shows visible usage guidance.",
-      "confidence": "HIGH",
-      "created_at": "2026-04-21T20:31:59+00:00",
-      "source_harvest_id": "HARV-12",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "DIRECT_FLOW_GROUNDED",
-      "requirement_type": "NFR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "non_evaluable_reason": "NONE",
-      "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
-    },
-    {
-      "requirement_id": "REQ-13",
-      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
-      "text": "The system shall let users maintain reusable dining preferences that can inform future reservations.",
-      "scope": "multi_screen",
-      "tags": [],
-      "origin": "model",
-      "review_status": "accepted",
-      "step_indices": [
+      "evidence_steps": [
         3,
         7,
-        8,
         9
       ],
-      "rationale": "The page framing and explanatory text imply that the stored profile is meant to be reused when dining or reserving, but the later reservation-time application is not shown end to end.",
-      "confidence": "MEDIUM",
-      "created_at": "2026-04-21T20:31:59+00:00",
-      "source_harvest_id": "HARV-13",
-      "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "DIRECT_INCLUDE",
-      "grounding_scope": "INDIRECT_FLOW_GROUNDED",
-      "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
-      "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
-      "visible_subtype": "NONE",
-      "task_relevance": "HIGH"
+      "uncertainty_reasons": [
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "evidence_note": "A Save action is visible while profile changes are present, but the screenshots do not show a post-save state or stored outcome."
     },
     {
       "requirement_id": "REQ-14",
@@ -358,7 +142,7 @@
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "rejected",
+      "review_status": "needs_review",
       "step_indices": [
         3,
         4,
@@ -368,7 +152,7 @@
         8,
         9
       ],
-      "rationale": "A persistent left-side account navigation remains visible throughout the editing flow, supporting section awareness and movement across settings areas.",
+      "rationale": "The profile can be edited while account-section navigation remains available.",
       "confidence": "HIGH",
       "created_at": "2026-04-21T20:31:59+00:00",
       "source_harvest_id": "HARV-14",
@@ -379,7 +163,40 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "verification_label": "FULFILLED",
+      "claims": [
+        {
+          "claim": "Account-section navigation remains available while profile settings are edited.",
+          "claim_id": "candidate-REQ-14-C1",
+          "claim_text": "Account-section navigation remains available while profile settings are edited.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "uncertainty_reasons": []
+        }
+      ],
+      "evidence_steps": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "The left account navigation remains present across the profile editing steps."
     },
     {
       "requirement_id": "CONTR-01",
@@ -392,14 +209,13 @@
         "mutation_family:persistence_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: partially_fulfilled\nMutation family: persistence_extension\nSource gold requirement: REQ-13\nSource gold text: The system shall let users maintain reusable dining preferences that can inform future reservations.\nGeneration rationale: This is a close extension of reusable profile preferences into later revisit persistence. The flow strongly suggests editing and saving, but persistence across a later revisit is not directly established by the accepted gold evidence.",
+      "rationale": "Entry is supported, but later-return preservation depends on unshown persistence.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall let users maintain reusable dining preferences that can inform future reservations.",
@@ -408,7 +224,50 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "BACKEND_HIDDEN_STATE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "partially_fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "Users can enter dining preferences and dietary notes.",
+          "claim_id": "candidate-CONTR-01-C1",
+          "claim_text": "Users can enter dining preferences and dietary notes.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            7,
+            8,
+            9
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "Saved dining preferences and dietary notes are preserved when the user later returns to the profile settings area.",
+          "claim_id": "candidate-CONTR-01-C2",
+          "claim_text": "Saved dining preferences and dietary notes are preserved when the user later returns to the profile settings area.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "UNVERIFIED_SYSTEM_OUTCOME",
+            "NONTRIVIAL_HIDDEN_PROPERTY"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        7,
+        8,
+        9
+      ],
+      "uncertainty_reasons": [
+        "UNVERIFIED_SYSTEM_OUTCOME",
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "evidence_note": "The flow shows dining-related preference editing and a note area, but it does not show saving followed by a later return to profile settings."
     },
     {
       "requirement_id": "CONTR-02",
@@ -421,14 +280,13 @@
         "mutation_family:external_effect_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: partially_fulfilled\nMutation family: external_effect_extension\nSource gold requirement: REQ-10\nSource gold text: The system shall allow users to add an explanatory note alongside allergies and dietary restrictions.\nGeneration rationale: The gold set already shows profile dietary data and visible explanation about reservation use. Extending that into downstream restaurant-facing delivery is realistic, but the actual external effect is not shown end to end in the flow.",
+      "rationale": "The profile-side setup is visible, while the actual reservation-side handoff is hidden.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall allow users to add an explanatory note alongside allergies and dietary restrictions.",
@@ -437,7 +295,50 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "EXTERNAL_INTEGRATION",
       "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "partially_fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim": "Users can save allergy selections and dietary notes.",
+          "claim_id": "candidate-CONTR-02-C1",
+          "claim_text": "Users can save allergy selections and dietary notes.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            3,
+            8,
+            9
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "Saved allergy selections and dietary notes are passed into restaurant-facing reservation information.",
+          "claim_id": "candidate-CONTR-02-C2",
+          "claim_text": "Saved allergy selections and dietary notes are passed into restaurant-facing reservation information.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "UNVERIFIED_SYSTEM_OUTCOME",
+            "NONTRIVIAL_HIDDEN_PROPERTY"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        3,
+        8,
+        9
+      ],
+      "uncertainty_reasons": [
+        "UNVERIFIED_SYSTEM_OUTCOME",
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "evidence_note": "The profile supports allergy selections and note entry, and explanatory text references restaurant reservation use. The flow does not show restaurant-facing transfer."
     },
     {
       "requirement_id": "CONTR-03",
@@ -450,14 +351,13 @@
         "mutation_family:policy_or_role_extension"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: abstain\nMutation family: policy_or_role_extension\nSource gold requirement: REQ-03\nSource gold text: The system shall allow authenticated users to navigate to a dedicated profile settings area.\nGeneration rationale: This is a realistic account-policy strengthening of the existing signed-in profile navigation capability. The visible flow supports authenticated access, but ownership and enforcement rules are not fully verifiable from screenshots alone.",
+      "rationale": "The central owner-only access rule cannot be judged from the captured flow.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall allow authenticated users to navigate to a dedicated profile settings area.",
@@ -466,7 +366,48 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "SECURITY_PRIVACY",
       "visible_subtype": "NAVIGATION_OUTCOME",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "abstain",
+      "verification_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim": "Editable profile settings are accessible in an authenticated session.",
+          "claim_id": "candidate-CONTR-03-C1",
+          "claim_text": "Editable profile settings are accessible in an authenticated session.",
+          "claim_kind": "SUPPORTING_CONTEXT",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            2,
+            3
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "Access to editable profile settings is limited to the authenticated account owner.",
+          "claim_id": "candidate-CONTR-03-C2",
+          "claim_text": "Access to editable profile settings is limited to the authenticated account owner.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "NONTRIVIAL_HIDDEN_PROPERTY",
+            "UNVERIFIED_SYSTEM_OUTCOME"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        2,
+        3
+      ],
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "evidence_note": "The screenshots show profile access in a signed-in session, but they do not test another user, unauthenticated access, or authorization enforcement."
     },
     {
       "requirement_id": "CONTR-04",
@@ -479,23 +420,65 @@
         "mutation_family:completeness_or_universal_quantifier"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: abstain\nMutation family: completeness_or_universal_quantifier\nSource gold requirement: REQ-13\nSource gold text: The system shall let users maintain reusable dining preferences that can inform future reservations.\nGeneration rationale: This strengthens the reuse concept into an always and every reservation guarantee. That kind of universal coverage claim is plausible product behavior, but it goes beyond what a single profile-editing flow can settle.",
+      "rationale": "The universal future-application requirement is not verifiable from these screenshots.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall let users maintain reusable dining preferences that can inform future reservations.",
       "grounding_scope": "INDIRECT_FLOW_GROUNDED",
       "requirement_type": "FR",
-      "ui_evaluability": "NOT_UI_VERIFIABLE",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "non_evaluable_reason": "BUSINESS_RULE_NOT_VISIBLE",
       "visible_subtype": "NONE",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "abstain",
+      "verification_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim": "Profile dining preferences can be edited.",
+          "claim_id": "candidate-CONTR-04-C1",
+          "claim_text": "Profile dining preferences can be edited.",
+          "claim_kind": "SUPPORTING_CONTEXT",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            7,
+            8,
+            9
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "All saved profile dining preferences are applied consistently to every future reservation made from the account.",
+          "claim_id": "candidate-CONTR-04-C2",
+          "claim_text": "All saved profile dining preferences are applied consistently to every future reservation made from the account.",
+          "claim_kind": "HIDDEN_CORE",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "status": "HIDDEN",
+          "evidence_steps": [],
+          "uncertainty_reasons": [
+            "NONTRIVIAL_HIDDEN_PROPERTY",
+            "UNVERIFIED_SYSTEM_OUTCOME"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        7,
+        8,
+        9
+      ],
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "evidence_note": "The flow shows profile dining preference editing, but no future reservations or consistency checks are shown."
     },
     {
       "requirement_id": "CONTR-05",
@@ -508,14 +491,13 @@
         "mutation_family:missing_visible_step"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: not_fulfilled\nMutation family: missing_visible_step\nSource gold requirement: REQ-04\nSource gold text: The system shall present existing profile information in editable, prepopulated form.\nGeneration rationale: A save confirmation is a very plausible adjacent workflow phase for profile editing, especially when personal preferences are changed. It stays tightly in scope but is stronger than the accepted gold set and is likely absent from the visible evidence.",
+      "rationale": "Because the post-save condition is not exercised, the flow is insufficient for a reliable positive or negative decision.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/contrastive_candidate_requirements.json",
       "confidence": "HIGH",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall present existing profile information in editable, prepopulated form.",
@@ -524,7 +506,48 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "not_fulfilled",
+      "verification_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim": "The system presents an explicit post-save confirmation after profile edits are saved.",
+          "claim_id": "candidate-CONTR-05-C1",
+          "claim_text": "The system presents an explicit post-save confirmation after profile edits are saved.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            9
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        },
+        {
+          "claim": "The post-save confirmation or summary indicates that profile edits were stored.",
+          "claim_id": "candidate-CONTR-05-C2",
+          "claim_text": "The post-save confirmation or summary indicates that profile edits were stored.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            9
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        9
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "evidence_note": "The final relevant screenshot shows edited profile values and a Save action, but it does not show a save attempt or post-save state."
     },
     {
       "requirement_id": "CONTR-06",
@@ -537,14 +560,13 @@
         "mutation_family:stronger_visible_constraint"
       ],
       "origin": "model",
-      "review_status": "candidate",
+      "review_status": "needs_review",
       "step_indices": [],
-      "rationale": "Contrastive import from staged bundle\nIntended label: not_fulfilled\nMutation family: stronger_visible_constraint\nSource gold requirement: REQ-06\nSource gold text: The system shall allow users to add or edit a short personal bio in their profile.\nGeneration rationale: This is a realistic usability strengthening for a multi-field profile editor that includes free-text edits and preference changes. It remains visibly testable, but the accepted gold flow does not suggest such protective feedback.",
+      "rationale": "The warning condition is not exercised, so the requirement cannot be judged.",
       "generation_model": "contrastive_import_manual",
       "generation_prompt_path": "data/generated/contrastive_import/staged/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/contrastive_candidate_requirements.json",
       "confidence": "MEDIUM",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "source_harvest_id": null,
       "candidate_origin": "DIRECT_FROM_HARVEST",
       "benchmark_decision": "DIRECT_INCLUDE",
       "parent_harvest_text": "The system shall allow users to add or edit a short personal bio in their profile.",
@@ -553,7 +575,56 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
-      "task_relevance": "MEDIUM"
+      "task_relevance": "MEDIUM",
+      "intended_label": "not_fulfilled",
+      "verification_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim": "Users can create unsaved profile changes.",
+          "claim_id": "candidate-CONTR-06-C1",
+          "claim_text": "Users can create unsaved profile changes.",
+          "claim_kind": "SUPPORTING_CONTEXT",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "status": "SUPPORTED",
+          "evidence_steps": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "uncertainty_reasons": []
+        },
+        {
+          "claim": "The system warns users about unsaved profile changes before they leave the editing flow.",
+          "claim_id": "candidate-CONTR-06-C2",
+          "claim_text": "The system warns users about unsaved profile changes before they leave the editing flow.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "evidence_steps": [
+            9
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP"
+          ]
+        }
+      ],
+      "evidence_steps": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "evidence_note": "The flow shows profile edits, but it does not show the user attempting to leave the editing flow before saving."
     }
   ]
 }
