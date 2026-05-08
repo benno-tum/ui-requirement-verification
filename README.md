@@ -29,6 +29,8 @@ python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 pip install -e ".[llm,data,dev]"
+
+# This export scans the Mind2Web split and can take a few minutes.
 python scripts/export_mind2web.py --split test_task --max-flows 0 --allowed-flows-file data/annotations/flow_manifests/mind2web_repo_dataset_annotation_ids.txt
 uvicorn ui_verifier.api.main:app --reload
 ```
