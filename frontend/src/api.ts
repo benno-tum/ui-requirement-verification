@@ -10,6 +10,7 @@ export type FlowSummary = {
   candidate_count: number
   pending_candidate_count?: number
   gold_count: number
+  verification_gold_count?: number
   has_verification_run: boolean
   task?: Record<string, unknown> | null
 }
@@ -26,6 +27,10 @@ export type FlowStep = {
   image_height?: number | null
   preview_image_width?: number | null
   preview_image_height?: number | null
+  artifact_kind?: string | null
+  artifact_label?: string | null
+  artifact_page?: number | null
+  artifact_context?: string | null
 }
 
 export type ManualVerdictLabel = '' | 'fulfilled' | 'partially_fulfilled' | 'not_fulfilled' | 'abstain'
@@ -68,6 +73,7 @@ export type Requirement = {
   visible_subtype?: string
   task_relevance?: string
   excluded_reason?: string | null
+  intended_label?: 'fulfilled' | 'partially_fulfilled' | 'not_fulfilled' | 'abstain' | null
   annotation_notes?: string
   annotated_by?: string
   created_at?: string
@@ -75,6 +81,11 @@ export type Requirement = {
   rationale?: string
   manual_verification_label?: Exclude<ManualVerdictLabel, ''>
   manual_verification_notes?: string
+  verification_label?: string | null
+  uncertainty_reasons?: string[]
+  claims?: VerificationClaim[]
+  evidence_steps?: number[]
+  evidence_note?: string | null
 }
 
 export type EvidenceRef = {
@@ -91,6 +102,50 @@ export type RequirementVerdict = {
   explanation?: string
 }
 
+export type VerificationClaim = {
+  claim_id?: string | null
+  claim: string
+  claim_text?: string
+  claim_kind?: string | null
+  status: string
+  claim_type?: string
+  importance?: string
+  evidence_steps?: number[]
+  uncertainty_reasons?: string[]
+  note?: string
+}
+
+export type VerificationGoldItem = {
+  requirement_id: string
+  flow_id: string
+  text: string
+  scope: string
+  tags: string[]
+  source_type?: string | null
+  source_id?: string | null
+  source_candidate_id?: string | null
+  source_harvest_id?: string | null
+  step_indices: number[]
+  requirement_type?: string | null
+  ui_evaluability?: string | null
+  visible_subtype?: string | null
+  annotation_notes?: string | null
+  annotated_by?: string | null
+  manual_verification_label?: string | null
+  manual_verification_notes?: string | null
+  intended_label?: string | null
+  verification_label?: string | null
+  uncertainty_reasons: string[]
+  notes: string[]
+  claims: VerificationClaim[]
+  evidence_steps: number[]
+  evidence_note?: string | null
+  rationale?: string | null
+  review_status: string
+  created_at?: string
+  updated_at?: string | null
+}
+
 export type RebuildCandidatesResponse = {
   flow_id: string
   candidate_count: number
@@ -101,6 +156,19 @@ export type GenerateHarvestedResponse = {
   flow_id: string
   harvested_count: number
   requirements: HarvestedRequirement[]
+}
+
+export type RephraseClaimPayload = {
+  requirement_text: string
+  claim_text: string
+  feedback: string
+  claim_status?: string
+  claim_type?: string
+  importance?: string
+}
+
+export type RephraseClaimResponse = {
+  claim_text: string
 }
 
 export type VerificationRun = {
@@ -119,9 +187,43 @@ export type RequirementPayload = {
   annotated_by?: string
   manual_verification_label?: Exclude<ManualVerdictLabel, ''>
   manual_verification_notes?: string
+  verification_label?: string
+  ui_evaluability?: string
+  uncertainty_reasons?: string[]
+  claims?: VerificationClaim[]
+  evidence_steps?: number[]
+  evidence_note?: string
+  rationale?: string
+  review_status?: string
+}
+
+export type VerificationGoldPayload = {
+  edited_text?: string
+  edited_step_indices?: number[]
+  edited_tags?: string[]
+  annotation_notes?: string
+  annotated_by?: string
+  review_status?: string
+  verification_label?: string
+  ui_evaluability?: string
+  uncertainty_reasons?: string[]
+  claims?: VerificationClaim[]
+  evidence_steps?: number[]
+  evidence_note?: string
+  rationale?: string
 }
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL ?? 'http://127.0.0.1:8000'
+
+export class ApiError extends Error {
+  status: number
+
+  constructor(message: string, status: number) {
+    super(message)
+    this.name = 'ApiError'
+    this.status = status
+  }
+}
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API_BASE}${path}`, {
@@ -134,7 +236,16 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 
   if (!response.ok) {
     const text = await response.text()
-    throw new Error(text || `Request failed: ${response.status}`)
+    let message = text
+    try {
+      const parsed = JSON.parse(text) as {detail?: unknown}
+      if (typeof parsed.detail === 'string') {
+        message = parsed.detail
+      }
+    } catch {
+      // Keep the raw response text.
+    }
+    throw new ApiError(message || `Request failed: ${response.status}`, response.status)
   }
 
   return (await response.json()) as T
@@ -164,6 +275,7 @@ export const api = {
       body: JSON.stringify({}),
     }),
   listGold: (flowId: string) => request<Requirement[]>(`/flows/${flowId}/gold`),
+  listVerificationGold: (flowId: string) => request<VerificationGoldItem[]>(`/flows/${flowId}/verification-gold`),
   getLatestVerification: (flowId: string) => request<VerificationRun>(`/flows/${flowId}/verification/latest`),
   acceptCandidate: (flowId: string, requirementId: string, payload: RequirementPayload) =>
     request<Requirement>(`/flows/${flowId}/candidates/${requirementId}/accept`, {
@@ -190,9 +302,26 @@ export const api = {
       method: 'POST',
       body: JSON.stringify(payload),
     }),
+  updateVerificationGold: (flowId: string, requirementId: string, payload: VerificationGoldPayload) =>
+    request<VerificationGoldItem>(`/flows/${flowId}/verification-gold/${requirementId}`, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
   deleteGoldRequirement: (flowId: string, requirementId: string) =>
     request<{ flow_id: string; requirement_id: string; deleted: boolean }>(`/flows/${flowId}/gold/${requirementId}`, {
       method: 'DELETE',
+    }),
+  deleteVerificationGold: (flowId: string, requirementId: string) =>
+    request<{ flow_id: string; requirement_id: string; deleted: boolean; deleted_gold_requirement: boolean }>(
+      `/flows/${flowId}/verification-gold/${requirementId}`,
+      {
+        method: 'DELETE',
+      },
+    ),
+  rephraseClaim: (payload: RephraseClaimPayload) =>
+    request<RephraseClaimResponse>('/tools/rephrase-claim', {
+      method: 'POST',
+      body: JSON.stringify(payload),
     }),
   verify: (payload: { flow_dir: string; max_images: number; dry_run: boolean }) =>
     request<VerificationRun | { status: string; flow_dir: string }>('/verify', {

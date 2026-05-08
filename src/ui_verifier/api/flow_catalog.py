@@ -35,7 +35,10 @@ class FlowCatalog:
 
         for dataset_dir in sorted(p for p in self.flows_root.iterdir() if p.is_dir()):
             for flow_dir in find_flow_dirs(dataset_dir):
-                flows.append(self._build_flow_summary(dataset_dir.name, flow_dir))
+                summary = self._build_flow_summary(dataset_dir.name, flow_dir)
+                if dataset_dir.name == "pure" and summary["num_steps"] == 0:
+                    continue
+                flows.append(summary)
         return flows
 
     def get_flow(self, flow_id: str) -> dict[str, Any]:
@@ -64,6 +67,7 @@ class FlowCatalog:
                     "image_height": preferred_meta[1],
                     "preview_image_width": preview_meta[0],
                     "preview_image_height": preview_meta[1],
+                    **self._pure_artifact_step_meta(dataset, flow_id, step_path.name),
                 }
             )
         return steps
@@ -118,6 +122,7 @@ class FlowCatalog:
         candidate_count = self._safe_candidate_count(flow_id)
         pending_candidate_count = self._safe_candidate_count(flow_id, only_pending=True)
         gold_count = self._safe_gold_count(flow_id)
+        verification_gold_count = self._safe_verification_gold_count(flow_id)
         has_verification_run = self._has_verification_run(flow_id)
 
         summary: dict[str, Any] = {
@@ -132,6 +137,7 @@ class FlowCatalog:
             "candidate_count": candidate_count,
             "pending_candidate_count": pending_candidate_count,
             "gold_count": gold_count,
+            "verification_gold_count": verification_gold_count,
             "has_verification_run": has_verification_run,
         }
 
@@ -154,6 +160,10 @@ class FlowCatalog:
     def _safe_gold_count(self, flow_id: str) -> int:
         gold_file = self.annotation_storage.load_gold_file(flow_id)
         return 0 if gold_file is None else len(gold_file.requirements)
+
+    def _safe_verification_gold_count(self, flow_id: str) -> int:
+        verification_gold_file = self.annotation_storage.load_verification_gold_file(flow_id)
+        return 0 if verification_gold_file is None else len(verification_gold_file.items)
 
     def _has_verification_run(self, flow_id: str) -> bool:
         return self.verification_storage.run_file_path(flow_id).exists()
@@ -227,3 +237,23 @@ class FlowCatalog:
         except ValueError:
             relative_to_candidate_dir = asset_path.relative_to(self.annotation_storage.candidate_dir(flow_id))
             return self.candidate_asset_url(flow_id, relative_to_candidate_dir.as_posix())
+
+    def _pure_artifact_step_meta(self, dataset: str, flow_id: str, image_name: str) -> dict[str, Any]:
+        if dataset != "pure":
+            return {}
+        manifest_path = BASE_DIR / "data" / "generated" / "pure_ui_dataset" / flow_id / "artifact_manifest.json"
+        if not manifest_path.exists():
+            return {"artifact_kind": "gui", "artifact_label": "GUI artifact"}
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except Exception:
+            return {"artifact_kind": "gui", "artifact_label": "GUI artifact"}
+        for artifact in manifest.get("artifacts", []):
+            if artifact.get("image_name") == image_name:
+                return {
+                    "artifact_kind": artifact.get("kind") or "gui",
+                    "artifact_label": "GUI artifact",
+                    "artifact_page": artifact.get("page"),
+                    "artifact_context": artifact.get("context_text"),
+                }
+        return {"artifact_kind": "gui", "artifact_label": "GUI artifact"}

@@ -10,7 +10,12 @@ from pydantic import BaseModel
 
 from ui_verifier.annotation.service import AnnotationService
 from ui_verifier.api.flow_catalog import FlowCatalog
+from ui_verifier.requirement_inspection.schemas import UiEvaluability
 from ui_verifier.requirements.candidate_generation import generate_harvested_for_flow
+from ui_verifier.requirements.gemini_client import run_gemini
+from ui_verifier.requirements.schemas import RequirementReviewStatus
+from ui_verifier.common.json_utils import parse_json_response
+from ui_verifier.verification.schemas import UIEvaluability, VerificationLabel
 from ui_verifier.verification.service import VerificationService
 from ui_verifier.verification.storage import VerificationStorage
 
@@ -48,6 +53,14 @@ class AcceptCandidateRequest(BaseModel):
     edited_tags: list[str] | None = None
     annotation_notes: str | None = None
     annotated_by: str | None = None
+    review_status: str | None = None
+    verification_label: str | None = None
+    ui_evaluability: str | None = None
+    uncertainty_reasons: list[str] | None = None
+    claims: list[dict[str, Any]] | None = None
+    evidence_steps: list[int] | None = None
+    evidence_note: str | None = None
+    rationale: str | None = None
     manual_verification_label: str | None = None
     manual_verification_notes: str | None = None
 
@@ -63,6 +76,14 @@ class UpdateCandidateRequest(BaseModel):
     edited_tags: list[str] | None = None
     annotation_notes: str | None = None
     annotated_by: str | None = None
+    review_status: str | None = None
+    verification_label: str | None = None
+    ui_evaluability: str | None = None
+    uncertainty_reasons: list[str] | None = None
+    claims: list[dict[str, Any]] | None = None
+    evidence_steps: list[int] | None = None
+    evidence_note: str | None = None
+    rationale: str | None = None
     benchmark_decision: str | None = None
     ui_evaluability: str | None = None
     visible_subtype: str | None = None
@@ -77,6 +98,22 @@ class UpdateGoldRequirementRequest(BaseModel):
     annotated_by: str | None = None
     manual_verification_label: str | None = None
     manual_verification_notes: str | None = None
+
+
+class UpdateVerificationGoldRequest(BaseModel):
+    edited_text: str | None = None
+    edited_step_indices: list[int] | None = None
+    edited_tags: list[str] | None = None
+    annotation_notes: str | None = None
+    annotated_by: str | None = None
+    review_status: str | None = None
+    verification_label: str | None = None
+    ui_evaluability: str | None = None
+    uncertainty_reasons: list[str] | None = None
+    claims: list[dict[str, Any]] | None = None
+    evidence_steps: list[int] | None = None
+    evidence_note: str | None = None
+    rationale: str | None = None
 
 
 class VerifyFlowRequest(BaseModel):
@@ -100,6 +137,46 @@ class GenerateHarvestedRequest(BaseModel):
 class RebuildCandidatesRequest(BaseModel):
     candidate_model_name: str = "gemini-2.5-flash-lite"
     allow_overwrite_with_gold: bool = False
+
+
+class RephraseClaimRequest(BaseModel):
+    requirement_text: str
+    claim_text: str
+    feedback: str
+    claim_status: str | None = None
+    claim_type: str | None = None
+    importance: str | None = None
+    model_name: str = "gemini-2.5-flash-lite"
+    temperature: float = 0.1
+
+
+def _build_claim_rephrase_prompt(body: RephraseClaimRequest) -> str:
+    return f"""Rewrite one UI verification claim.
+
+Requirement:
+{body.requirement_text.strip()}
+
+Current bad claim:
+{body.claim_text.strip()}
+
+Reviewer feedback about what is wrong or what the new claim should include:
+{body.feedback.strip()}
+
+Current claim metadata:
+status: {body.claim_status or "not set"}
+claim_type: {body.claim_type or "not set"}
+importance: {body.importance or "not set"}
+
+Rules:
+- Return a replacement claim only.
+- The claim must be an atomic English sentence.
+- Keep it checkable from ordered UI screenshots when possible.
+- Do not add rationale, notes, evidence, labels, or markdown.
+- Do not mention that this is a rewrite.
+- Do not preserve wording the reviewer explicitly said is wrong.
+
+Return JSON only:
+{{"claim_text": "<replacement claim>"}}"""
 
 
 @app.get("/health")
@@ -217,6 +294,15 @@ def list_gold_requirements(flow_id: str) -> list[dict[str, Any]]:
         return []
 
 
+@app.get("/flows/{flow_id}/verification-gold")
+def list_verification_gold(flow_id: str) -> list[dict[str, Any]]:
+    try:
+        items = annotation_service.list_verification_gold(flow_id)
+        return [item.to_dict() for item in items]
+    except FileNotFoundError:
+        return []
+
+
 @app.get("/flows/{flow_id}/verification/latest")
 def get_latest_verification_run(flow_id: str) -> dict[str, Any]:
     try:
@@ -240,6 +326,14 @@ def accept_candidate(
             edited_tags=body.edited_tags,
             annotation_notes=body.annotation_notes,
             annotated_by=body.annotated_by,
+            review_status=body.review_status,
+            verification_label=VerificationLabel(body.verification_label) if body.verification_label else None,
+            ui_evaluability=UiEvaluability(body.ui_evaluability) if body.ui_evaluability else None,
+            uncertainty_reasons=body.uncertainty_reasons,
+            claims=body.claims,
+            evidence_steps=body.evidence_steps,
+            evidence_note=body.evidence_note,
+            rationale=body.rationale,
             manual_verification_label=body.manual_verification_label,
             manual_verification_notes=body.manual_verification_notes,
         )
@@ -261,11 +355,18 @@ def review_candidate(
             flow_id,
             requirement_id,
             edited_text=body.edited_text,
-            edited_step_indices=body.edited_step_indices,
+            edited_step_indices=body.evidence_steps if body.evidence_steps is not None else body.edited_step_indices,
             edited_tags=body.edited_tags,
             annotation_notes=body.annotation_notes,
             annotated_by=body.annotated_by,
-            review_status=None,
+            review_status=RequirementReviewStatus(body.review_status) if body.review_status else None,
+            ui_evaluability=UiEvaluability(body.ui_evaluability) if body.ui_evaluability else None,
+            verification_label=body.verification_label,
+            uncertainty_reasons=body.uncertainty_reasons,
+            claims=body.claims,
+            evidence_steps=body.evidence_steps,
+            evidence_note=body.evidence_note,
+            rationale=body.rationale,
         )
         req = annotation_service.mark_needs_review(flow_id, requirement_id)
         return req.to_dict()
@@ -328,6 +429,43 @@ def update_gold_requirement(
         raise HTTPException(status_code=400, detail=str(e)) from e
 
 
+@app.post("/flows/{flow_id}/verification-gold/{requirement_id}")
+def update_verification_gold_item(
+    flow_id: str,
+    requirement_id: str,
+    body: UpdateVerificationGoldRequest,
+) -> dict[str, Any]:
+    try:
+        verification_label = (
+            VerificationLabel(body.verification_label.strip().upper()) if body.verification_label else None
+        )
+        ui_evaluability = (
+            UIEvaluability(body.ui_evaluability.strip().upper()) if body.ui_evaluability else None
+        )
+        item = annotation_service.update_verification_gold_item(
+            flow_id,
+            requirement_id,
+            edited_text=body.edited_text,
+            edited_step_indices=body.edited_step_indices,
+            edited_tags=body.edited_tags,
+            annotation_notes=body.annotation_notes,
+            annotated_by=body.annotated_by,
+            review_status=body.review_status,
+            verification_label=verification_label,
+            ui_evaluability=ui_evaluability,
+            uncertainty_reasons=body.uncertainty_reasons,
+            claims=body.claims,
+            evidence_steps=body.evidence_steps,
+            evidence_note=body.evidence_note,
+            rationale=body.rationale,
+        )
+        return item.to_dict()
+    except (FileNotFoundError, KeyError) as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+
+
 @app.delete("/flows/{flow_id}/gold/{requirement_id}")
 def delete_gold_requirement(flow_id: str, requirement_id: str) -> dict[str, Any]:
     try:
@@ -339,6 +477,40 @@ def delete_gold_requirement(flow_id: str, requirement_id: str) -> dict[str, Any]
         }
     except (FileNotFoundError, KeyError) as e:
         raise HTTPException(status_code=404, detail=str(e)) from e
+
+
+@app.delete("/flows/{flow_id}/verification-gold/{requirement_id}")
+def delete_verification_gold_item(flow_id: str, requirement_id: str) -> dict[str, Any]:
+    try:
+        item, deleted_gold = annotation_service.delete_verification_gold_item(flow_id, requirement_id)
+        return {
+            "requirement_id": item.requirement_id,
+            "flow_id": item.flow_id,
+            "deleted": True,
+            "deleted_gold_requirement": deleted_gold,
+        }
+    except (FileNotFoundError, KeyError) as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+
+
+@app.post("/tools/rephrase-claim")
+def rephrase_claim(body: RephraseClaimRequest) -> dict[str, str]:
+    try:
+        raw_text = run_gemini(
+            _build_claim_rephrase_prompt(body),
+            [],
+            model_name=body.model_name,
+            temperature=body.temperature,
+        )
+        parsed = parse_json_response(raw_text)
+        claim_text = str(parsed.get("claim_text") or parsed.get("claim") or "").strip()
+        if not claim_text:
+            raise ValueError("Model response did not contain claim_text.")
+        return {"claim_text": claim_text}
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e)) from e
 
 
 @app.post("/verify")

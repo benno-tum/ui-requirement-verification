@@ -18,6 +18,14 @@ def parse_json_response(text: str) -> Any:
     except json.JSONDecodeError:
         pass
 
+    decoder = json.JSONDecoder()
+    for match in re.finditer(r"[\{\[]", text):
+        try:
+            parsed, _ = decoder.raw_decode(text[match.start() :])
+            return parsed
+        except json.JSONDecodeError:
+            continue
+
     m = re.search(r"```json\s*(\{.*\})\s*```", text, flags=re.DOTALL)
     if m:
         return json.loads(m.group(1))

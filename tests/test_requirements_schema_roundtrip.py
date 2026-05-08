@@ -60,6 +60,7 @@ def test_candidate_requirement_file_roundtrip_with_new_fields(tmp_path: Path) ->
                 step_indices=[3],
                 confidence=AnnotationConfidence.MEDIUM,
                 source_harvest_id="HARV-01",
+                tags=["contrastive", "intended_label:not_fulfilled"],
                 candidate_origin=CandidateOrigin.DIRECT_FROM_HARVEST,
                 benchmark_decision=BenchmarkDecision.DIRECT_INCLUDE,
                 requirement_type=RequirementInspectionType.FR,
@@ -77,3 +78,4 @@ def test_candidate_requirement_file_roundtrip_with_new_fields(tmp_path: Path) ->
     loaded = CandidateRequirementFile.load(path)
 
     assert loaded.to_dict() == candidate_file.to_dict()
+    assert loaded.requirements[0].intended_label == "not_fulfilled"

@@ -7,12 +7,14 @@ from ui_verifier.requirements.schemas import (
     GoldRequirementFile,
     HarvestedRequirementFile,
 )
+from ui_verifier.verification.schemas import VerificationGoldFile
 
 
 BASE_DIR = Path(__file__).resolve().parents[3]
 DEFAULT_GENERATED_CANDIDATE_ROOT = BASE_DIR / "data" / "generated" / "candidate_requirements"
 DEFAULT_VERSIONED_CANDIDATE_ROOT = BASE_DIR / "data" / "annotations" / "requirements_candidate"
 DEFAULT_GOLD_ROOT = BASE_DIR / "data" / "annotations" / "requirements_gold"
+DEFAULT_VERIFICATION_GOLD_ROOT = BASE_DIR / "data" / "annotations" / "verification_gold"
 
 
 class AnnotationStorage:
@@ -21,11 +23,13 @@ class AnnotationStorage:
         candidate_root: Path | None = None,
         versioned_candidate_root: Path | None = None,
         gold_root: Path | None = None,
+        verification_gold_root: Path | None = None,
     ) -> None:
         # Generated artifacts stay local. Reviewed candidate requirement snapshots are versioned separately.
         self.candidate_root = candidate_root or DEFAULT_GENERATED_CANDIDATE_ROOT
         self.versioned_candidate_root = versioned_candidate_root or DEFAULT_VERSIONED_CANDIDATE_ROOT
         self.gold_root = gold_root or DEFAULT_GOLD_ROOT
+        self.verification_gold_root = verification_gold_root or DEFAULT_VERIFICATION_GOLD_ROOT
 
     def generated_candidate_dir(self, flow_id: str) -> Path:
         return self.candidate_root / flow_id
@@ -56,6 +60,12 @@ class AnnotationStorage:
 
     def gold_file_path(self, flow_id: str) -> Path:
         return self.gold_dir(flow_id) / "gold_requirements.json"
+
+    def verification_gold_dir(self, flow_id: str) -> Path:
+        return self.verification_gold_root / flow_id
+
+    def verification_gold_file_path(self, flow_id: str) -> Path:
+        return self.verification_gold_dir(flow_id) / "verification_gold.json"
 
     def load_harvested_file(self, flow_id: str) -> HarvestedRequirementFile:
         path = self.harvested_file_path(flow_id)
@@ -88,4 +98,15 @@ class AnnotationStorage:
     def save_gold_file(self, gold_file: GoldRequirementFile) -> Path:
         path = self.gold_file_path(gold_file.flow_id)
         gold_file.save(path)
+        return path
+
+    def load_verification_gold_file(self, flow_id: str) -> VerificationGoldFile | None:
+        path = self.verification_gold_file_path(flow_id)
+        if not path.exists():
+            return None
+        return VerificationGoldFile.load(path)
+
+    def save_verification_gold_file(self, verification_gold_file: VerificationGoldFile) -> Path:
+        path = self.verification_gold_file_path(verification_gold_file.flow_id)
+        verification_gold_file.save(path)
         return path

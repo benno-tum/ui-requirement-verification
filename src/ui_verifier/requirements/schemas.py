@@ -68,6 +68,25 @@ def _validate_manual_verification_label(value: str | None) -> str | None:
     return normalized
 
 
+def _extract_intended_label(tags: list[str], explicit_value: str | None = None) -> str | None:
+    candidate_values: list[str] = []
+    if explicit_value is not None:
+        candidate_values.append(explicit_value)
+    candidate_values.extend(tags)
+
+    for value in candidate_values:
+        if not isinstance(value, str):
+            continue
+        raw = value
+        if value.startswith("intended_label:"):
+            _, raw = value.split(":", 1)
+
+        normalized = raw.strip().lower().replace("-", "_").replace(" ", "_")
+        if normalized in {"fulfilled", "partially_fulfilled", "not_fulfilled", "abstain"}:
+            return normalized
+    return None
+
+
 class RequirementScope(str, Enum):
     SINGLE_SCREEN = "single_screen"
     MULTI_SCREEN = "multi_screen"
@@ -259,16 +278,27 @@ class CandidateRequirement(RequirementBase):
     visible_subtype: VisibleSubtype = VisibleSubtype.NONE
     task_relevance: TaskRelevance = TaskRelevance.MEDIUM
     excluded_reason: NonEvaluableReason | None = None
+    intended_label: str | None = None
+    verification_label: str | None = None
+    claims: list[dict[str, Any]] = field(default_factory=list)
+    evidence_steps: list[int] = field(default_factory=list)
+    uncertainty_reasons: list[str] = field(default_factory=list)
+    evidence_note: str | None = None
 
     def __post_init__(self) -> None:
         RequirementBase.__post_init__(self)
         self.step_indices = _validate_step_indices(self.step_indices)
+        self.evidence_steps = _validate_step_indices(self.evidence_steps)
         self.rationale = _normalize_optional_text(self.rationale)
         self.generation_model = _normalize_optional_text(self.generation_model)
         self.generation_prompt_path = _normalize_optional_text(self.generation_prompt_path)
         self.source_harvest_id = _normalize_optional_text(self.source_harvest_id)
         self.parent_harvest_text = _normalize_optional_text(self.parent_harvest_text)
         self.created_at = _require_non_empty(self.created_at, "created_at")
+        self.intended_label = _extract_intended_label(self.tags, self.intended_label)
+        self.verification_label = _validate_manual_verification_label(self.verification_label)
+        self.uncertainty_reasons = [str(x).strip().upper() for x in self.uncertainty_reasons if str(x).strip()]
+        self.evidence_note = _normalize_optional_text(self.evidence_note)
 
         if self.confidence is not None and not isinstance(self.confidence, AnnotationConfidence):
             self.confidence = AnnotationConfidence(str(self.confidence).upper())
@@ -300,6 +330,12 @@ class CandidateRequirement(RequirementBase):
                 "visible_subtype": self.visible_subtype.value,
                 "task_relevance": self.task_relevance.value,
                 "excluded_reason": self.excluded_reason.value if self.excluded_reason else None,
+                "intended_label": self.intended_label,
+                "verification_label": self.verification_label.upper() if self.verification_label else None,
+                "claims": self.claims,
+                "evidence_steps": self.evidence_steps,
+                "uncertainty_reasons": self.uncertainty_reasons,
+                "evidence_note": self.evidence_note,
             }
         )
         return {**base, **extra}
@@ -346,6 +382,12 @@ class CandidateRequirement(RequirementBase):
             ),
             task_relevance=TaskRelevance(data.get("task_relevance", TaskRelevance.MEDIUM.value)),
             excluded_reason=NonEvaluableReason(data["excluded_reason"]) if data.get("excluded_reason") else None,
+            intended_label=data.get("intended_label"),
+            verification_label=data.get("verification_label"),
+            claims=list(data.get("claims", [])),
+            evidence_steps=list(data.get("evidence_steps", [])),
+            uncertainty_reasons=list(data.get("uncertainty_reasons", [])),
+            evidence_note=data.get("evidence_note"),
         )
 
 
