@@ -49,7 +49,7 @@ class FlowCatalog:
         dataset, flow_dir = self.resolve_flow(flow_id)
         self._maybe_backfill_original_step_images(dataset, flow_id, flow_dir)
         steps: list[dict[str, Any]] = []
-        for step_path in find_step_images(flow_dir):
+        for step_path in self._visible_step_paths(dataset, flow_id, flow_dir):
             step_index = parse_step_number(step_path)
             preview_meta = self._read_image_meta(step_path)
             preferred_path = self._preferred_step_image_path(flow_dir, flow_id, step_path)
@@ -117,7 +117,7 @@ class FlowCatalog:
         include_task: bool = False,
     ) -> dict[str, Any]:
         flow_id = flow_dir.name
-        step_paths = find_step_images(flow_dir)
+        step_paths = self._visible_step_paths(dataset, flow_id, flow_dir)
         task = self._load_json(flow_dir / "task.json")
         candidate_count = self._safe_candidate_count(flow_id)
         pending_candidate_count = self._safe_candidate_count(flow_id, only_pending=True)
@@ -173,6 +173,22 @@ class FlowCatalog:
         if not path.exists():
             return None
         return json.loads(path.read_text(encoding="utf-8"))
+
+    def _visible_step_paths(self, dataset: str, flow_id: str, flow_dir: Path) -> list[Path]:
+        step_paths = find_step_images(flow_dir)
+        if dataset != "pure":
+            return step_paths
+        return [
+            step_path
+            for step_path in step_paths
+            if self._is_pure_artifact_visible(flow_id, step_path.name)
+        ]
+
+    def _is_pure_artifact_visible(self, flow_id: str, image_name: str) -> bool:
+        artifact = self._pure_artifact_by_image(flow_id, image_name)
+        if artifact is None:
+            return True
+        return bool(artifact.get("usable_for_requirement_evidence", True))
 
 
     def _preferred_step_image_path(self, flow_dir: Path, flow_id: str, step_path: Path) -> Path:
@@ -241,19 +257,42 @@ class FlowCatalog:
     def _pure_artifact_step_meta(self, dataset: str, flow_id: str, image_name: str) -> dict[str, Any]:
         if dataset != "pure":
             return {}
+        artifact = self._pure_artifact_by_image(flow_id, image_name)
+        if artifact is None:
+            return {"artifact_kind": "gui", "artifact_label": "GUI artifact"}
+        label = artifact.get("classification_label")
+        usable = artifact.get("usable_for_requirement_evidence", True)
+        return {
+            "artifact_kind": "gui" if usable else "non_gui",
+            "artifact_label": self._pure_artifact_label(label, usable),
+            "artifact_page": artifact.get("page"),
+            "artifact_context": artifact.get("context_text"),
+        }
+
+    def _pure_artifact_by_image(self, flow_id: str, image_name: str) -> dict[str, Any] | None:
+        manifest = self._pure_artifact_manifest(flow_id)
+        if not isinstance(manifest, dict):
+            return None
+        for artifact in manifest.get("artifacts", []):
+            if isinstance(artifact, dict) and artifact.get("image_name") == image_name:
+                return artifact
+        return None
+
+    @staticmethod
+    def _pure_artifact_label(classification_label: object, usable: object) -> str:
+        if usable is False:
+            if isinstance(classification_label, str) and classification_label.strip():
+                return classification_label.replace("_", " ").title()
+            return "Non-GUI artifact"
+        if isinstance(classification_label, str) and classification_label.strip():
+            return classification_label.replace("_", " ").title()
+        return "GUI artifact"
+
+    def _pure_artifact_manifest(self, flow_id: str) -> dict[str, Any] | None:
         manifest_path = BASE_DIR / "data" / "generated" / "pure_ui_dataset" / flow_id / "artifact_manifest.json"
         if not manifest_path.exists():
-            return {"artifact_kind": "gui", "artifact_label": "GUI artifact"}
+            return None
         try:
-            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            return json.loads(manifest_path.read_text(encoding="utf-8"))
         except Exception:
-            return {"artifact_kind": "gui", "artifact_label": "GUI artifact"}
-        for artifact in manifest.get("artifacts", []):
-            if artifact.get("image_name") == image_name:
-                return {
-                    "artifact_kind": artifact.get("kind") or "gui",
-                    "artifact_label": "GUI artifact",
-                    "artifact_page": artifact.get("page"),
-                    "artifact_context": artifact.get("context_text"),
-                }
-        return {"artifact_kind": "gui", "artifact_label": "GUI artifact"}
+            return None

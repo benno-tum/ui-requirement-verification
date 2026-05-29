@@ -179,6 +179,45 @@ export type VerificationRun = {
   verdicts: RequirementVerdict[]
 }
 
+export type DemoEvidenceItem = {
+  step_index: number
+  screenshot_path: string
+  visible_observation: string
+  confidence?: number | null
+  source?: string | null
+}
+
+export type DemoClaimResult = {
+  claim_id: string
+  requirement_id: string
+  claim_text: string
+  status: string
+  is_core: boolean
+  is_observable: boolean
+  evidence: DemoEvidenceItem[]
+  uncertainty_reasons: string[]
+  confidence?: number | null
+  rationale: string
+}
+
+export type DemoRequirementResult = {
+  requirement_id: string
+  requirement_text: string
+  ui_evaluability: string
+  final_label: string
+  claims: DemoClaimResult[]
+  evidence: DemoEvidenceItem[]
+  uncertainty_reasons: string[]
+  rationale: string
+  metadata: Record<string, unknown>
+}
+
+export type DemoVerificationRun = {
+  flow_id: string
+  results: DemoRequirementResult[]
+  metadata: Record<string, unknown>
+}
+
 export type RequirementPayload = {
   edited_text?: string
   edited_step_indices?: number[]
@@ -277,6 +316,7 @@ export const api = {
   listGold: (flowId: string) => request<Requirement[]>(`/flows/${flowId}/gold`),
   listVerificationGold: (flowId: string) => request<VerificationGoldItem[]>(`/flows/${flowId}/verification-gold`),
   getLatestVerification: (flowId: string) => request<VerificationRun>(`/flows/${flowId}/verification/latest`),
+  getLatestDemoVerification: (flowId: string) => request<DemoVerificationRun>(`/flows/${flowId}/demo-verification/latest`),
   acceptCandidate: (flowId: string, requirementId: string, payload: RequirementPayload) =>
     request<Requirement>(`/flows/${flowId}/candidates/${requirementId}/accept`, {
       method: 'POST',

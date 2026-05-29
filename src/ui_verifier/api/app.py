@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any
 
@@ -30,6 +31,7 @@ annotation_service = AnnotationService()
 verification_service = VerificationService(annotation_service=annotation_service)
 verification_storage = VerificationStorage()
 flow_catalog = FlowCatalog(annotation_storage=annotation_service.storage, verification_storage=verification_storage)
+DEMO_VERIFICATION_ROOT = Path(__file__).resolve().parents[3] / "data" / "generated" / "demo_verification"
 
 app.add_middleware(
     CORSMiddleware,
@@ -309,6 +311,20 @@ def get_latest_verification_run(flow_id: str) -> dict[str, Any]:
         return verification_storage.load_run(flow_id).to_dict()
     except FileNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e)) from e
+
+
+@app.get("/flows/{flow_id}/demo-verification/latest")
+def get_latest_demo_verification_run(flow_id: str) -> dict[str, Any]:
+    path = DEMO_VERIFICATION_ROOT / f"{flow_id}.json"
+    if not path.exists():
+        raise HTTPException(status_code=404, detail=f"Demo verification run not found: {path}")
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as e:
+        raise HTTPException(status_code=500, detail=f"Invalid demo verification JSON: {path}") from e
+    if not isinstance(data, dict):
+        raise HTTPException(status_code=500, detail=f"Demo verification JSON must be an object: {path}")
+    return data
 
 
 @app.post("/flows/{flow_id}/candidates/{requirement_id}/accept")

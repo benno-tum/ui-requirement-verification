@@ -3,6 +3,7 @@ import {
   ApiError,
   api,
   resolveAssetUrl,
+  type DemoVerificationRun,
   type FlowStep,
   type FlowSummary,
   type HarvestedRequirement,
@@ -14,7 +15,7 @@ import {
 } from './api'
 
 type LoadState = 'idle' | 'loading' | 'error'
-type ViewMode = 'single' | 'multi' | 'overview' | 'harvested'
+type ViewMode = 'single' | 'multi' | 'overview' | 'harvested' | 'demo'
 type EditorMode = 'candidate' | 'verification_gold'
 type RequirementLike = Requirement | VerificationGoldItem
 
@@ -55,6 +56,7 @@ const VIEW_TABS: Array<{id: ViewMode; label: string}> = [
   {id: 'multi', label: 'Multi-screen review'},
   {id: 'overview', label: 'Overview'},
   {id: 'harvested', label: 'Harvested'},
+  {id: 'demo', label: 'Demo run'},
 ]
 
 const VERIFICATION_LABELS = ['FULFILLED', 'PARTIALLY_FULFILLED', 'NOT_FULFILLED', 'ABSTAIN']
@@ -82,6 +84,7 @@ function App() {
   const [harvested, setHarvested] = useState<HarvestedRequirement[]>([])
   const [candidates, setCandidates] = useState<Requirement[]>([])
   const [verificationGold, setVerificationGold] = useState<VerificationGoldItem[]>([])
+  const [demoRun, setDemoRun] = useState<DemoVerificationRun | null>(null)
   const [detailsState, setDetailsState] = useState<LoadState>('idle')
   const [message, setMessage] = useState<string>('')
   const [annotatedBy, setAnnotatedBy] = useState<string>('benno')
@@ -143,16 +146,18 @@ function App() {
     setHarvested([])
     setCandidates([])
     setVerificationGold([])
+    setDemoRun(null)
 
     try {
       const flow = await api.getFlow(flowId)
       setSelectedFlow(flow)
 
-      const [stepsResult, harvestedResult, candidatesResult, verificationGoldResult] = await Promise.allSettled([
+      const [stepsResult, harvestedResult, candidatesResult, verificationGoldResult, demoRunResult] = await Promise.allSettled([
         api.getSteps(flowId),
         api.listHarvested(flowId),
         api.listCandidates(flowId),
         api.listVerificationGold(flowId),
+        api.getLatestDemoVerification(flowId),
       ])
 
       if (stepsResult.status === 'fulfilled') {
@@ -166,6 +171,9 @@ function App() {
       }
       if (verificationGoldResult.status === 'fulfilled') {
         setVerificationGold(verificationGoldResult.value)
+      }
+      if (demoRunResult.status === 'fulfilled') {
+        setDemoRun(demoRunResult.value)
       }
 
       setDetailsState('idle')
@@ -533,6 +541,13 @@ function App() {
             onJumpToStep={jumpToStep}
             onGenerate={() => void handleGenerateHarvestedRequirements()}
             onMaterialize={() => void handleMaterializeCandidatesFromHarvested()}
+          />
+        )}
+
+        {selectedFlow && viewMode === 'demo' && (
+          <DemoRunPanel
+            demoRun={demoRun}
+            onJumpToStep={jumpToStep}
           />
         )}
 
@@ -1055,6 +1070,157 @@ function HarvestedPanel({
       </section>
     </section>
   )
+}
+
+function DemoRunPanel({
+  demoRun,
+  onJumpToStep,
+}: {
+  demoRun: DemoVerificationRun | null
+  onJumpToStep: (stepIndex: number) => void
+}) {
+  if (!demoRun) {
+    return (
+      <section className="card">
+        <div className="panel-header">
+          <h3>Demo run</h3>
+          <span>No generated demo verification output exists for this flow yet.</span>
+        </div>
+        <p className="inline-note">Run the CLI command from the repository root, then refresh this page:</p>
+        <pre className="code-block">PYTHONPATH=src:. python scripts/run_demo_verification.py --flow-id &lt;flow_id&gt;</pre>
+      </section>
+    )
+  }
+
+  const metadata = demoRun.metadata
+  const labelDistribution = (metadata.label_distribution ?? {}) as Record<string, number>
+  const claimStatusDistribution = (metadata.claim_status_distribution ?? {}) as Record<string, number>
+  const referenceComparison = (metadata.reference_comparison ?? {}) as {
+    summary?: Record<string, unknown>
+    items?: Array<Record<string, unknown>>
+  }
+  const comparisonSummary = referenceComparison.summary ?? {}
+  const comparisonRows = [...(referenceComparison.items ?? [])].sort((a, b) => {
+    const aMatch = a.matches_reference === false ? 0 : 1
+    const bMatch = b.matches_reference === false ? 0 : 1
+    if (aMatch !== bMatch) {
+      return aMatch - bMatch
+    }
+    return String(a.requirement_id ?? '').localeCompare(String(b.requirement_id ?? ''), undefined, {numeric: true})
+  })
+
+  return (
+    <section className="stack-layout">
+      <section className="card">
+        <div className="panel-header">
+          <h3>Demo verification run</h3>
+          <span>{demoRun.flow_id}</span>
+        </div>
+        <div className="metric-grid">
+          <Metric label="Requirements" value={String(metadata.requirements_count ?? demoRun.results.length)} />
+          <Metric label="Claims" value={String(metadata.claim_count ?? demoRun.results.reduce((sum, result) => sum + result.claims.length, 0))} />
+          <Metric label="Retriever" value={String(metadata.selected_retriever ?? metadata.retriever ?? 'unknown')} />
+          <Metric label="Verifier" value={String(metadata.verifier ?? 'unknown')} />
+          <Metric label="Reference matches" value={`${comparisonSummary.matches ?? 'n/a'} / ${comparisonSummary.compared_items ?? 'n/a'}`} />
+          <Metric label="Reference accuracy" value={comparisonSummary.accuracy_on_matched_ids === undefined ? 'n/a' : String(comparisonSummary.accuracy_on_matched_ids)} />
+        </div>
+        <div className="meta-block">
+          <span>Labels: {formatDistribution(labelDistribution)}</span>
+          <span>Claim statuses: {formatDistribution(claimStatusDistribution)}</span>
+          <span>Screen source mode: {String(metadata.screen_source_mode ?? 'current')}</span>
+          <span>Raw HTML used: {String(metadata.raw_html_used ?? 'unknown')}</span>
+          <span>Screenshot images used: {String(metadata.screenshot_images_used ?? 'unknown')}</span>
+          <span>OCR: {String(((metadata.ocr ?? {}) as Record<string, unknown>).status ?? 'unknown')}</span>
+          <span>Gemini/MLLM verifier used: {String(metadata.gemini_mllm_verifier_used ?? false)}</span>
+        </div>
+      </section>
+
+      <section className="card">
+        <div className="panel-header">
+          <h3>Reviewed-label comparison</h3>
+          <span>Rows with disagreement are listed first.</span>
+        </div>
+        {comparisonRows.length > 0 ? (
+          <div className="demo-table">
+            <div className="demo-table-header">
+              <span>Requirement</span>
+              <span>Prediction</span>
+              <span>Reviewed</span>
+              <span>Evidence</span>
+            </div>
+            {comparisonRows.map((row) => (
+              <div key={String(row.requirement_id)} className="demo-table-row">
+                <strong>{String(row.requirement_id)}</strong>
+                <span className={`status-pill ${statusClass(String(row.predicted_label ?? 'unknown'))}`}>{humanizeStatus(String(row.predicted_label ?? 'unknown'))}</span>
+                <span className={`status-pill ${statusClass(String(row.reference_label ?? 'unknown'))}`}>{humanizeStatus(String(row.reference_label ?? 'unknown'))}</span>
+                <span>
+                  <StepChipList stepIndices={(row.predicted_evidence_steps ?? []) as number[]} onJumpToStep={onJumpToStep} />
+                </span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="empty-text">No reviewed reference comparison was available.</p>
+        )}
+      </section>
+
+      <section className="card">
+        <div className="panel-header">
+          <h3>Requirement decisions</h3>
+          <span>Each decision includes claim-level evidence.</span>
+        </div>
+        <div className="requirement-list">
+          {demoRun.results.map((result) => (
+            <article key={result.requirement_id} className="requirement-card">
+              <div className="requirement-header">
+                <strong>{result.requirement_id}</strong>
+                <div className="pill-row">
+                  <span className={`status-pill ${statusClass(result.final_label)}`}>{humanizeStatus(result.final_label)}</span>
+                  <span className={`status-pill ${statusClass(result.ui_evaluability)}`}>{humanizeStatus(result.ui_evaluability)}</span>
+                </div>
+              </div>
+              <p>{result.requirement_text}</p>
+              <div className="meta-block">
+                <span>Evidence steps: <StepChipList stepIndices={uniqueEvidenceSteps(result.evidence)} onJumpToStep={onJumpToStep} /></span>
+                <span>Uncertainty: {result.uncertainty_reasons.map(humanizeStatus).join(', ') || 'none'}</span>
+              </div>
+              <p className="inline-note">Rationale: {result.rationale}</p>
+              <div className="claim-summary">
+                {result.claims.map((claim) => (
+                  <div key={claim.claim_id} className="claim-summary-row">
+                    <span className={`status-pill ${statusClass(claim.status)}`}>{humanizeStatus(claim.status)}</span>
+                    <span>{claim.claim_text}</span>
+                    <span className="mini-label">steps <StepChipList stepIndices={uniqueEvidenceSteps(claim.evidence)} onJumpToStep={onJumpToStep} /></span>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </section>
+  )
+}
+
+function Metric({label, value}: {label: string; value: string}) {
+  return (
+    <div className="metric-tile">
+      <span>{label}</span>
+      <strong>{value}</strong>
+    </div>
+  )
+}
+
+function formatDistribution(distribution: Record<string, number>): string {
+  const entries = Object.entries(distribution)
+  if (entries.length === 0) {
+    return 'none'
+  }
+  return entries.map(([key, value]) => `${humanizeStatus(key)}: ${value}`).join(', ')
+}
+
+function uniqueEvidenceSteps(evidence: {step_index: number}[]): number[] {
+  return [...new Set(evidence.map((item) => item.step_index))].sort((a, b) => a - b)
 }
 
 function RequirementCard({

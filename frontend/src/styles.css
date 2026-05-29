@@ -193,6 +193,39 @@ textarea {
   border-color: #0f172a;
 }
 
+.code-block {
+  margin: 0;
+  padding: 0.85rem;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #dbe2ec;
+  overflow-x: auto;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+}
+
+.metric-tile {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.75rem;
+  border: 1px solid #dbe2ec;
+  border-radius: 14px;
+  background: #f8fafc;
+}
+
+.metric-tile span {
+  color: #5b6472;
+  font-size: 0.88rem;
+}
+
+.metric-tile strong {
+  font-size: 1.15rem;
+}
+
 .message {
   background: #eef2ff;
   border-color: #c7d2fe;
@@ -341,7 +374,8 @@ textarea {
 }
 
 .status-pill.accepted,
-.status-pill.fulfilled {
+.status-pill.fulfilled,
+.status-pill.supported {
   background: #dcfce7;
   border-color: #86efac;
 }
@@ -360,9 +394,43 @@ textarea {
 }
 
 .status-pill.partially_fulfilled,
+.status-pill.partially_supported,
 .status-pill.manual {
   background: #e0f2fe;
   border-color: #7dd3fc;
+}
+
+.status-pill.hidden,
+.status-pill.missing,
+.status-pill.ambiguous {
+  background: #fef3c7;
+  border-color: #facc15;
+}
+
+.demo-table {
+  display: grid;
+  border: 1px solid #dbe2ec;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.demo-table-header,
+.demo-table-row {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.8fr) minmax(120px, 0.8fr) minmax(120px, 0.8fr) minmax(180px, 1.4fr);
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.65rem 0.75rem;
+}
+
+.demo-table-header {
+  background: #f8fafc;
+  font-weight: 700;
+  color: #475569;
+}
+
+.demo-table-row + .demo-table-row {
+  border-top: 1px solid #dbe2ec;
 }
 
 .meta-block {

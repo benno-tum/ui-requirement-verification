@@ -14,11 +14,14 @@ from ui_verifier.requirements.schemas import (
     CandidateOrigin,
     CandidateRequirement,
     CandidateRequirementFile,
+    GoldRequirement,
+    GoldRequirementFile,
     RequirementReviewStatus,
     RequirementScope,
     TaskRelevance,
 )
 from ui_verifier.verification.schemas import VerificationGoldFile, VerificationGoldItem, VerificationLabel
+from scripts.backfill_verification_claim_suggestions import backfill_verification_claim_suggestions
 
 
 def _candidate_file(flow_id: str, text: str) -> CandidateRequirementFile:
@@ -117,6 +120,168 @@ def test_save_and_load_verification_gold_file(tmp_path: Path) -> None:
     assert saved_path == storage.verification_gold_dir("flow-1") / "verification_gold.json"
     assert loaded is not None
     assert loaded.to_dict() == verification_gold_file.to_dict()
+
+
+def test_backfill_verification_claim_suggestions_materializes_gold_claims(tmp_path: Path) -> None:
+    storage = AnnotationStorage(
+        candidate_root=tmp_path / "generated" / "candidate_requirements",
+        versioned_candidate_root=tmp_path / "annotations" / "requirements_candidate",
+        gold_root=tmp_path / "annotations" / "requirements_gold",
+        verification_gold_root=tmp_path / "annotations" / "verification_gold",
+    )
+    flow_id = "flow-1"
+    gold_file = GoldRequirementFile(
+        dataset="mind2web",
+        flow_id=flow_id,
+        requirements=[
+            GoldRequirement(
+                requirement_id="REQ-01",
+                flow_id=flow_id,
+                text="The system shall allow shoppers to filter products by size and color.",
+                scope=RequirementScope.SINGLE_SCREEN,
+                step_indices=[1],
+                manual_verification_label="fulfilled",
+            )
+        ],
+    )
+    storage.save_gold_file(gold_file)
+    service = AnnotationService(storage=storage)
+
+    summary = backfill_verification_claim_suggestions(service, flow_id, include_candidates=False)
+    loaded = storage.load_verification_gold_file(flow_id)
+
+    assert summary.items_updated == 1
+    assert summary.claims_written == 1
+    assert loaded is not None
+    assert loaded.items[0].claims[0].claim == "The system allows shoppers to filter products by size and color."
+    assert loaded.items[0].claims[0].status.value == "MISSING"
+    assert loaded.items[0].review_status == "needs_review"
+
+
+def test_backfill_verification_claim_suggestions_keeps_existing_claims(tmp_path: Path) -> None:
+    storage = AnnotationStorage(
+        candidate_root=tmp_path / "generated" / "candidate_requirements",
+        versioned_candidate_root=tmp_path / "annotations" / "requirements_candidate",
+        gold_root=tmp_path / "annotations" / "requirements_gold",
+        verification_gold_root=tmp_path / "annotations" / "verification_gold",
+    )
+    flow_id = "flow-1"
+    gold_file = GoldRequirementFile(
+        dataset="mind2web",
+        flow_id=flow_id,
+        requirements=[
+            GoldRequirement(
+                requirement_id="REQ-01",
+                flow_id=flow_id,
+                text="The system shall show a confirmation banner.",
+                scope=RequirementScope.SINGLE_SCREEN,
+                step_indices=[1],
+                manual_verification_label="fulfilled",
+            )
+        ],
+    )
+    existing = VerificationGoldFile(
+        dataset="mind2web",
+        flow_id=flow_id,
+        items=[
+            VerificationGoldItem(
+                requirement_id="REQ-01",
+                flow_id=flow_id,
+                text="The system shall show a confirmation banner.",
+                step_indices=[1],
+                verification_label="FULFILLED",
+                ui_evaluability="UI_VERIFIABLE",
+                evidence_steps=[1],
+                claims=[
+                    {
+                        "claim": "A reviewed confirmation banner claim.",
+                        "status": "SUPPORTED",
+                        "evidence_steps": [1],
+                    }
+                ],
+            )
+        ],
+    )
+    storage.save_gold_file(gold_file)
+    storage.save_verification_gold_file(existing)
+    service = AnnotationService(storage=storage)
+
+    summary = backfill_verification_claim_suggestions(service, flow_id, include_candidates=False)
+    loaded = storage.load_verification_gold_file(flow_id)
+
+    assert summary.items_updated == 0
+    assert summary.claims_written == 0
+    assert loaded is not None
+    assert loaded.items[0].claims[0].claim == "A reviewed confirmation banner claim."
+
+
+def test_backfill_verification_claim_suggestions_replaces_trivial_copied_claim(tmp_path: Path) -> None:
+    storage = AnnotationStorage(
+        candidate_root=tmp_path / "generated" / "candidate_requirements",
+        versioned_candidate_root=tmp_path / "annotations" / "requirements_candidate",
+        gold_root=tmp_path / "annotations" / "requirements_gold",
+        verification_gold_root=tmp_path / "annotations" / "verification_gold",
+    )
+    flow_id = "flow-1"
+    requirement_text = (
+        "The system shall retain the selected park context in later purchase and checkout screens "
+        "so users can verify that they are still completing a pass purchase for the intended park."
+    )
+    gold_file = GoldRequirementFile(
+        dataset="mind2web",
+        flow_id=flow_id,
+        requirements=[
+            GoldRequirement(
+                requirement_id="CONTR-01",
+                flow_id=flow_id,
+                text=requirement_text,
+                scope=RequirementScope.MULTI_SCREEN,
+                step_indices=[1, 2],
+                manual_verification_label="partially_fulfilled",
+            )
+        ],
+    )
+    existing = VerificationGoldFile(
+        dataset="mind2web",
+        flow_id=flow_id,
+        items=[
+            VerificationGoldItem(
+                requirement_id="CONTR-01",
+                flow_id=flow_id,
+                text=requirement_text,
+                step_indices=[1, 2],
+                verification_label="PARTIALLY_FULFILLED",
+                ui_evaluability="UI_VERIFIABLE",
+                evidence_steps=[1, 2],
+                claims=[
+                    {
+                        "claim": requirement_text,
+                        "status": "MISSING",
+                    }
+                ],
+            )
+        ],
+    )
+    storage.save_gold_file(gold_file)
+    storage.save_verification_gold_file(existing)
+    service = AnnotationService(storage=storage)
+
+    summary = backfill_verification_claim_suggestions(
+        service,
+        flow_id,
+        include_candidates=False,
+        replace_trivial_copied=True,
+    )
+    loaded = storage.load_verification_gold_file(flow_id)
+
+    assert summary.items_updated == 1
+    assert summary.claims_written == 3
+    assert loaded is not None
+    assert [claim.claim for claim in loaded.items[0].claims] == [
+        "The system retains the selected park context in later purchase screens.",
+        "The system retains the selected park context in checkout screens.",
+        "Users can verify that they are still completing a pass purchase for the intended park.",
+    ]
 
 
 def test_delete_materialized_candidate_verification_item_rejects_candidate(tmp_path: Path) -> None:
