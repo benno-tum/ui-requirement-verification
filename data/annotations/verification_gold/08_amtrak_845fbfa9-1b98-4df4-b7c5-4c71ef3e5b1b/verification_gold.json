@@ -1,0 +1,1419 @@
+{
+  "dataset": "mind2web",
+  "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+  "items": [
+    {
+      "requirement_id": "REQ-01",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall expose major travel experience categories from the primary site navigation.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-01",
+      "source_candidate_id": "REQ-01",
+      "source_harvest_id": "HARV-01",
+      "step_indices": [
+        1,
+        2
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The primary navigation exposes a travel experience entry.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2
+          ],
+          "note": null
+        },
+        {
+          "claim": "The expanded experience navigation shows major experience categories such as Why Amtrak, Before You Go, At the Station, and Onboard.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T13:44:38+00:00",
+      "evidence_note": "The Experience item is visible in the top navigation and step 2 shows the expanded category menu.",
+      "rationale": "The visible primary navigation exposes broad travel experience categories."
+    },
+    {
+      "requirement_id": "REQ-02",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall allow users to navigate from general experience browsing into onboard travel information pages.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-02",
+      "source_candidate_id": "REQ-02",
+      "source_harvest_id": "HARV-02",
+      "step_indices": [
+        2,
+        3
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The ordered flow moves from the expanded Experience navigation to an Onboard page. The sequence strongly suggests navigation into onboard content, even though the click itself is not shown.",
+      "annotated_by": "benno",
+      "manual_verification_label": "abstain",
+      "manual_verification_notes": "I can't spot the navigation link",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The experience navigation includes an Onboard category as a general browsing path.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "note": null
+        },
+        {
+          "claim": "The flow reaches an Onboard travel information page after the general experience navigation state.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        2,
+        3
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 2 shows Onboard in the expanded Experience menu, and step 3 shows the Onboard page.",
+      "rationale": "The ordered screenshots visibly support navigation from general experience browsing into onboard information.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T13:48:06+00:00"
+    },
+    {
+      "requirement_id": "REQ-03",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall organize onboard information into distinct amenity and service categories so users can browse by topic.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-03",
+      "source_candidate_id": "REQ-03",
+      "source_harvest_id": "HARV-03",
+      "step_indices": [
+        3
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Onboard page presents distinct amenity and service categories.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "note": null
+        },
+        {
+          "claim": "The categories are browseable by topic through page sections or navigation entries.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            4,
+            5
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        3,
+        4,
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T13:48:47+00:00",
+      "evidence_note": "The Onboard page and left navigation group topics such as accommodations, dining, baggage, WiFi, pets, and bicycles.",
+      "rationale": "The visible page structure supports topic-based browsing of onboard information."
+    },
+    {
+      "requirement_id": "REQ-04",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall provide dedicated detail pages for onboard dining information.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-04",
+      "source_candidate_id": "REQ-04",
+      "source_harvest_id": "HARV-04",
+      "step_indices": [
+        3,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "A dedicated Onboard Dining detail page is visible.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The dining page contains focused onboard dining content rather than only a generic overview.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T13:49:03+00:00",
+      "evidence_note": "Step 4 is titled Onboard Dining and contains dining-specific sections and links.",
+      "rationale": "A focused onboard dining detail page is visible in the flow."
+    },
+    {
+      "requirement_id": "REQ-10",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall surface related dietary and food policy information alongside onboard dining content.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-10",
+      "source_candidate_id": "REQ-10",
+      "source_harvest_id": "HARV-10",
+      "step_indices": [
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Onboard Dining page surfaces dietary guidance or special dietary requirement information.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The Onboard Dining page surfaces related food policy or food information links alongside the dining content.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T13:50:06+00:00",
+      "evidence_note": "Step 4 shows Special Diets & Guidelines, Personal Food, Beverages and Medication, Meal Service for Customers with Disabilities, and Amtrak Food Facts.",
+      "rationale": "Related dietary and food information is visibly placed on the onboard dining page."
+    },
+    {
+      "requirement_id": "REQ-05",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall support drill down within onboard dining into specific dining service types such as traditional dining, flexible dining, café dining, and Acela dining.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-05",
+      "source_candidate_id": "REQ-05",
+      "source_harvest_id": "HARV-05",
+      "step_indices": [
+        4,
+        5
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The Onboard Dining page shows multiple dining subtypes, and the next screen lands on the Café subsection. The flow directly supports subtype navigation, though not every subtype is opened.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Onboard Dining page presents specific dining service type entries.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The flow demonstrates drill down from onboard dining into a specific dining service type.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            5
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        4,
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 4 lists Traditional Dining, Flexible Dining, Café, and Acela Dining, and step 5 shows the Café detail page.",
+      "rationale": "Visible dining subtype entries and the subsequent Café page support the drill-down mechanism.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T13:57:38+00:00"
+    },
+    {
+      "requirement_id": "REQ-06",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall provide a dedicated café service page that explains the scope and availability of café service.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-06",
+      "source_candidate_id": "REQ-06",
+      "source_harvest_id": "HARV-06",
+      "step_indices": [
+        5
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The Café page contains descriptive text about café service, meal and beverage availability, and general availability across routes and times. This is directly visible on the page.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "A dedicated Café page is visible.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        },
+        {
+          "claim": "The Café page explains the scope and availability of café service.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 5 states that most Amtrak routes offer Café service, with meals, snacks, and beverages available from early morning until late at night.",
+      "rationale": "The visible Café page provides both a dedicated location and explanatory availability text.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T13:58:09+00:00"
+    },
+    {
+      "requirement_id": "REQ-08",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall provide access to a national café menu.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-08",
+      "source_candidate_id": "REQ-08",
+      "source_harvest_id": "HARV-08",
+      "step_indices": [
+        5
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Café page includes a National Café Menu access point.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T13:58:56+00:00",
+      "evidence_note": "Step 5 shows a National grouping with a visible National Café Menu link.",
+      "rationale": "The requirement asks for access, and the access link is visible."
+    },
+    {
+      "requirement_id": "REQ-09",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall provide route or region specific café menu resources in addition to a national menu.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-09",
+      "source_candidate_id": "REQ-09",
+      "source_harvest_id": "HARV-09",
+      "step_indices": [
+        5
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Café page provides a national café menu resource.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        },
+        {
+          "claim": "The Café page provides route or region specific menu resources in addition to the national menu.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T13:59:10+00:00",
+      "evidence_note": "Step 5 shows National Café Menu and a Regional list with multiple route or region menu links.",
+      "rationale": "Both national and regional menu resources are visibly listed."
+    },
+    {
+      "requirement_id": "REQ-11",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall support list to detail navigation from an onboard overview page to specific amenity pages.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-11",
+      "source_candidate_id": "REQ-11",
+      "source_harvest_id": "HARV-11",
+      "step_indices": [
+        3,
+        4,
+        5
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The flow begins with an overview style Onboard page and then moves into deeper dining pages. This suggests a browse and drill down pattern from overview content into focused detail views.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "great requirement",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Onboard overview page presents a list of specific amenity or service topics.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "note": null
+        },
+        {
+          "claim": "The flow reaches specific amenity detail pages after the overview page.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            5
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        3,
+        4,
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 3 shows onboard amenity topics, step 4 shows Onboard Dining, and step 5 shows Café.",
+      "rationale": "The ordered flow visibly supports overview-to-detail navigation for onboard amenities.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T14:02:13+00:00"
+    },
+    {
+      "requirement_id": "REQ-13",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall present menu options for multiple onboard dining formats so travelers can distinguish among dining models before selecting a menu resource.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-13",
+      "source_candidate_id": "REQ-13",
+      "source_harvest_id": "HARV-13",
+      "step_indices": [
+        4,
+        5
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The Onboard Dining page names several dining formats and the Café page then exposes concrete menu resources. This supports the inference that the site helps users differentiate among dining models before following a specific menu path.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Onboard Dining page presents multiple dining format options.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The flow shows menu resources only after the user has reached a specific dining format page.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            5
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        4,
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 4 lists Traditional Dining, Flexible Dining, Café, and Acela Dining. Step 5 then shows menu resources on the Café page.",
+      "rationale": "The visible flow separates dining format selection from the later café menu resource list.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T14:05:06+00:00"
+    },
+    {
+      "requirement_id": "REQ-14",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall make onboard dining information discoverable through the public site navigation without requiring the user to enter a booking flow first.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-14",
+      "source_candidate_id": "REQ-14",
+      "source_harvest_id": "HARV-14",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The sequence starts from public navigation and reaches dining information pages through browsing rather than a purchase or itinerary workflow. That makes public discoverability a grounded hypothesis.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "requires giving evidence of absence in verification! -> brutal requirement",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Onboard dining information is reachable from public site navigation.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The shown path does not require entering a booking or checkout flow before reaching onboard dining information.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The flow starts on the public homepage navigation and reaches Onboard Dining without using the booking form.",
+      "rationale": "The visible sequence supports public discoverability outside a booking flow.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-23T09:29:51+00:00"
+    },
+    {
+      "requirement_id": "REQ-07",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall present sample menu resources from the café service page.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_candidate",
+      "source_id": "REQ-07",
+      "source_candidate_id": "REQ-07",
+      "source_harvest_id": "HARV-07",
+      "step_indices": [
+        5
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Café service page includes a Sample Menus section.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        },
+        {
+          "claim": "The Sample Menus section presents menu resource links.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 5 shows a Sample Menus section with National and Regional menu links.",
+      "rationale": "Sample menu resources are visibly presented from the Café page.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T13:43:45+00:00"
+    },
+    {
+      "requirement_id": "REQ-12",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall preserve contextual wayfinding by indicating the current section and subsection as users navigate deeper into onboard content.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_candidate",
+      "source_id": "REQ-12",
+      "source_candidate_id": "REQ-12",
+      "source_harvest_id": "HARV-12",
+      "step_indices": [
+        3,
+        4,
+        5
+      ],
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The current section is indicated as users navigate deeper into onboard content.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            4,
+            5
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The current subsection is indicated as users navigate deeper into onboard content.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            5
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        3,
+        4,
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The left navigation persists across the Onboard, Onboard Dining, and Café states. Onboard Dining and Café are highlighted as the flow moves deeper.",
+      "rationale": "The visible navigation state preserves contextual wayfinding through the section and subsection hierarchy.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T13:43:45+00:00"
+    },
+    {
+      "requirement_id": "CONTR-01",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall allow travelers to open the national café menu in a dedicated resource that can be viewed independently of the surrounding café information page.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:partially_fulfilled",
+        "mutation_family:external_effect_extension"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-01",
+      "source_candidate_id": "CONTR-01",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NAVIGATION_OUTCOME",
+      "intended_label": "PARTIALLY_FULFILLED",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Access to the national café menu is provided.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Travelers can open the national café menu in a dedicated resource.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The dedicated resource can be viewed independently of the surrounding café information page.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 5 shows the National Café Menu link, but the flow does not show the menu resource being opened or viewed independently.",
+      "rationale": "The access point is supported, while the dedicated independent viewing outcome is not shown.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    },
+    {
+      "requirement_id": "CONTR-02",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall make onboard dining menu resources reachable to public users without requiring sign-in or account ownership checks.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:partially_fulfilled",
+        "mutation_family:policy_or_role_extension"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-02",
+      "source_candidate_id": "CONTR-02",
+      "step_indices": [],
+      "requirement_type": "NFR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NAVIGATION_OUTCOME",
+      "intended_label": "PARTIALLY_FULFILLED",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Onboard dining menu resources are reachable to public users.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Reachability of onboard dining menu resources does not require sign-in before access.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Reachability of onboard dining menu resources does not require account ownership checks.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": []
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 1 to 5 reach the Café page and menu links through public navigation without a visible sign-in step. The linked menu resources themselves are not opened, and account-ownership-check behavior is not verifiable from the screenshots.",
+      "rationale": "Public reachability and absence of a visible sign-in step are supported, but the no-account-ownership-check condition remains hidden.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    },
+    {
+      "requirement_id": "CONTR-03",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall surface route-specific café menu resources only when they are applicable to the traveler's route or service context, while still preserving access to a general national menu.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:abstain",
+        "mutation_family:hidden_state_extension"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-03",
+      "source_candidate_id": "CONTR-03",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "CONTENT_UPDATE",
+      "intended_label": "ABSTAIN",
+      "verification_label": "ABSTAIN",
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "SCOPE_OR_CONTEXT_AMBIGUITY"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Café page preserves access to a general national menu.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        },
+        {
+          "claim": "Route-specific café menu resources are surfaced only when applicable to the traveler's route or service context.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The national and regional menu links are visible, but no traveler route or service context is shown.",
+      "rationale": "The central applicability rule cannot be judged from the screenshots because the flow does not expose route context or applicability logic.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-24T12:04:43+00:00"
+    },
+    {
+      "requirement_id": "CONTR-04",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall provide corresponding detail or menu-entry resources for all dining service types presented from the onboard dining page.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:abstain",
+        "mutation_family:completeness_or_universal_quantifier"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-04",
+      "source_candidate_id": "CONTR-04",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "intended_label": "ABSTAIN",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Onboard Dining page presents multiple dining service types.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The flow shows a corresponding detail or menu-entry resource for the Café dining service type.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        },
+        {
+          "claim": "Corresponding detail or menu-entry resources are verified for all dining service types presented from the onboard dining page.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            5
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        4,
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The Café path is shown, but the flow does not open Traditional Dining, Flexible Dining, or Acela Dining detail pages.",
+      "rationale": "The requirement is partly supported by visible dining types and the Café detail page, but the universal all-types condition is not fully demonstrated.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-24T12:04:43+00:00"
+    },
+    {
+      "requirement_id": "CONTR-05",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall present an intermediate menu selection step that clearly separates national café menu access from route-specific menu access before the user opens a menu resource.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:not_fulfilled",
+        "mutation_family:missing_visible_step"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-05",
+      "source_candidate_id": "CONTR-05",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "intended_label": "NOT_FULFILLED",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "An intermediate menu selection step is presented before a menu resource is opened.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "National café menu access and route-specific menu access are clearly separated before a menu resource is opened.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 5 shows a Sample Menus area before any menu resource is opened, with a National grouping and a Regional grouping.",
+      "rationale": "The visible Café menu-selection state clearly separates national and regional menu access before any menu resource is opened.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-24T12:04:43+00:00"
+    },
+    {
+      "requirement_id": "CONTR-06",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall maintain consistent dining subtype naming and menu-resource terminology from the onboard dining overview through the café detail page so users can easily match the selected dining model to its menu links.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:not_fulfilled",
+        "mutation_family:cross_screen_consistency_extension"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-06",
+      "source_candidate_id": "CONTR-06",
+      "step_indices": [],
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "intended_label": "NOT_FULFILLED",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Dining subtype naming is maintained from the onboard dining overview through café detail content.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            5
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Menu-resource terminology consistently supports matching the selected dining model to its menu links.",
+          "status": "AMBIGUOUS",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        4,
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The Café subtype name remains consistent from step 4 to step 5. Some menu links in step 5 are named by route or service, so the consistency of every menu-resource label with the Café model is interpretive.",
+      "rationale": "Subtype naming is supported, while the full terminology-consistency claim remains ambiguous.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-24T12:04:43+00:00"
+    }
+  ]
+}

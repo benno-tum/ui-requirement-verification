@@ -1,0 +1,1590 @@
+{
+  "dataset": "mind2web",
+  "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+  "items": [
+    {
+      "requirement_id": "REQ-01",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall provide visible entry points into the careers experience from both general Six Flags pages and park-specific pages.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-01",
+      "source_candidate_id": "REQ-01",
+      "source_harvest_id": "HARV-01",
+      "step_indices": [
+        1,
+        2,
+        5
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The sequence shows a general site, a jobs-focused page, and a White Water park page with hiring content, indicating multiple user-facing paths into job discovery.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "the entry point in the main web page is on the top menu under \"Jobs\" and not directly in the main page integrated",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "A general Six Flags page exposes a visible entry point into the careers or jobs area.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "note": null
+        },
+        {
+          "claim": "A park-specific page exposes recruiting or application entry points.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        1,
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 1 shows a Jobs navigation item. Step 5 shows White Water recruiting content with Apply Now actions.",
+      "rationale": "Visible entry points into careers are present on both the general Six Flags page and the park-specific recruiting page.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T21:26:31+00:00"
+    },
+    {
+      "requirement_id": "REQ-02",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall support choosing a specific park to scope job discovery to a particular location.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-02",
+      "source_candidate_id": "REQ-02",
+      "source_harvest_id": "HARV-02",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "Multiple screens show park selection as a central step, including a generic park chooser and a jobs page that becomes scoped to Six Flags White Water.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The jobs experience provides a visible mechanism for choosing a park.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            3
+          ],
+          "note": null
+        },
+        {
+          "claim": "The chosen park is reflected before continuing into park-scoped recruiting content.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        2,
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The selector opens a park list and later shows Six Flags White Water, Atlanta, GA as selected.",
+      "rationale": "The screenshots show both the park selection mechanism and the selected park state.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T21:27:54+00:00"
+    },
+    {
+      "requirement_id": "REQ-04",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall carry the selected park context into subsequent recruiting screens and park-specific job content.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-04",
+      "source_candidate_id": "REQ-04",
+      "source_harvest_id": "HARV-04",
+      "step_indices": [
+        4,
+        5,
+        6
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "After park selection, later screens reference Six Flags White Water and then show a White Water Atlanta lifeguard posting, indicating location context persists across the flow.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The selected park context is shown as Six Flags White Water before continuing.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "Later recruiting and job-detail screens preserve the White Water context.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5,
+            6
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        4,
+        5,
+        6
+      ],
+      "evidence_units": [
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "White Water appears in the selected park field, the park recruiting page, and the Lifeguard job location.",
+      "rationale": "The selected park context is visibly carried through later screens.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T21:30:38+00:00"
+    },
+    {
+      "requirement_id": "REQ-07",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall provide an individual detail page for a specific job opening.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-07",
+      "source_candidate_id": "REQ-07",
+      "source_harvest_id": "HARV-07",
+      "step_indices": [
+        6
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The final screen is a dedicated role page for a Lifeguard position, showing that openings can be represented as standalone job-detail views.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The flow reaches a standalone page for one specific job opening.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6
+          ],
+          "note": null
+        },
+        {
+          "claim": "The page is dedicated to a Lifeguard opening rather than a generic job overview.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        6
+      ],
+      "evidence_units": [
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 6 is titled Lifeguard - up to $13/hour and contains job-specific details.",
+      "rationale": "A specific individual job detail page is visible.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T21:32:50+00:00"
+    },
+    {
+      "requirement_id": "REQ-05",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall let applicants browse opportunities by department or specialized team within a selected park.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-05",
+      "source_candidate_id": "REQ-05",
+      "source_harvest_id": "HARV-05",
+      "step_indices": [
+        5
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The White Water page exposes team-oriented job areas such as lifeguards, food and beverage, park services, admissions, security, retail, and more opportunities.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The selected park recruiting page exposes department or team-based opportunity areas.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        },
+        {
+          "claim": "The visible opportunity areas include multiple teams rather than a single undifferentiated list.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 5 shows Food & Beverage, Lifeguards, Retail, Security, Admissions, Park Services, and More Opportunities cards.",
+      "rationale": "The park recruiting page visibly supports browsing by team or department.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T12:31:19+00:00"
+    },
+    {
+      "requirement_id": "REQ-06",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall highlight featured or currently hiring roles on park recruiting pages to speed job discovery.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-06",
+      "source_candidate_id": "REQ-06",
+      "source_harvest_id": "HARV-06",
+      "step_indices": [
+        5
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The park page prominently promotes hiring content such as NOW HIRING LIFEGUARDS, category cards, and a mega hiring event, which suggests featured discovery support.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The park recruiting page prominently highlights currently hiring or featured role content.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        },
+        {
+          "claim": "The highlighted hiring content includes visible actions that support faster job discovery.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 5 includes a Now Hiring Lifeguards panel and multiple Apply Now actions.",
+      "rationale": "Featured hiring content is visibly emphasized on the park recruiting page.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T12:31:46+00:00"
+    },
+    {
+      "requirement_id": "REQ-08",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall present core metadata for each opening, including role title, job category, requisition identifier, employment type, location, and posting information.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-08",
+      "source_candidate_id": "REQ-08",
+      "source_harvest_id": "HARV-08",
+      "step_indices": [
+        6
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The job detail page visibly includes structured opening information beyond the title, which supports a requirement around transparent job metadata.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The job detail page displays role title, job category, and requisition identifier.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6
+          ],
+          "note": null
+        },
+        {
+          "claim": "The job detail page displays employment type, location, and posting information.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        6
+      ],
+      "evidence_units": [
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 6 shows Lifeguard - up to $13/hour, Job Category: In Park, a requisition number, Part-Time, White Water Atlanta location, and a posted date.",
+      "rationale": "The visible job page presents the requested core metadata fields.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T12:38:52+00:00"
+    },
+    {
+      "requirement_id": "REQ-09",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall present role responsibilities, qualification criteria, and compensation information to support application decisions.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-09",
+      "source_candidate_id": "REQ-09",
+      "source_harvest_id": "HARV-09",
+      "step_indices": [
+        6
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The job detail page presents role responsibilities and qualification criteria.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6
+          ],
+          "note": null
+        },
+        {
+          "claim": "The job detail page presents compensation information.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        6
+      ],
+      "evidence_units": [
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T12:39:57+00:00",
+      "evidence_note": "Step 6 includes What You Will Be Doing, How You Will Do It, What You Will Need, and payrate information.",
+      "rationale": "The job page visibly provides application decision-support information."
+    },
+    {
+      "requirement_id": "REQ-10",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall provide a prominent action for starting an application from recruiting content and job-opening pages.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-10",
+      "source_candidate_id": "REQ-10",
+      "source_harvest_id": "HARV-10",
+      "step_indices": [
+        5,
+        6
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "Apply Now calls to action are visible on the park recruiting page and again on the detailed opening page, supporting application initiation from multiple points.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The park recruiting page provides prominent Apply Now actions.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        },
+        {
+          "claim": "The specific job-opening page provides a prominent Apply now action.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        5,
+        6
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Apply Now actions are visible on the park recruiting page and the Lifeguard job detail page.",
+      "rationale": "The flow provides clear application-start actions from both recruiting content and the job page.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T12:42:13+00:00"
+    },
+    {
+      "requirement_id": "REQ-11",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall support an application workflow that can be launched for a specific opening after the applicant has identified the relevant park and role.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-11",
+      "source_candidate_id": "REQ-11",
+      "source_harvest_id": "HARV-11",
+      "step_indices": [
+        4,
+        5,
+        6
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The applicant identifies a relevant park and reaches a specific role page.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            5,
+            6
+          ],
+          "note": null
+        },
+        {
+          "claim": "The actual downstream application workflow or application form is shown after launch.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        4,
+        5,
+        6
+      ],
+      "evidence_units": [
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T12:48:55+00:00",
+      "evidence_note": "The flow shows park selection, role discovery, and an Apply now action, but not a launched application workflow.",
+      "rationale": "The visible setup for launching an application is present, but the captured flow stops before a confirmed application-start page or form."
+    },
+    {
+      "requirement_id": "REQ-12",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall communicate employment perks, benefits, or similar value propositions alongside job discovery content.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-12",
+      "source_candidate_id": "REQ-12",
+      "source_harvest_id": "HARV-12",
+      "step_indices": [
+        2,
+        4,
+        5,
+        6
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "Several screens include perks and benefits messaging or benefit bullets, but full truth of those claims depends on policies beyond screenshot evidence.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Recruiting pages communicate perks, benefits, or value propositions near job discovery content.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            4,
+            5,
+            6
+          ],
+          "note": null
+        },
+        {
+          "claim": "The stated perks and benefits are actual employment benefits under current policy.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        2,
+        4,
+        5,
+        6
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Visible benefit messaging is present, but the truth or policy status of the benefit claims cannot be verified from screenshots.",
+      "rationale": "The communication aspect is supported, while the real-world validity of the perks is hidden.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T12:51:47+00:00"
+    },
+    {
+      "requirement_id": "REQ-13",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall provide an alternative discovery path for corporate or non-park-specific careers.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-13",
+      "source_candidate_id": "REQ-13",
+      "source_harvest_id": "HARV-13",
+      "step_indices": [
+        3,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The careers pages include a distinct View Corporate Careers action, indicating that applicants are not limited to a single park-based path.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The careers page provides a distinct path for corporate or non-park-specific careers.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The alternative path is visually separate from the park-selection path.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        2,
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The View Corporate Careers button is visible below the park selector.",
+      "rationale": "The visible UI offers an alternative career discovery path outside a single park.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T12:55:55+00:00"
+    },
+    {
+      "requirement_id": "REQ-15",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall support narrowing opportunities within a selected park through structured categories or similar organization rather than only a flat undifferentiated job list.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-15",
+      "source_candidate_id": "REQ-15",
+      "source_harvest_id": "HARV-15",
+      "step_indices": [
+        5
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The selected park page organizes opportunities through structured categories or team cards.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        },
+        {
+          "claim": "The visible organization is not only a flat undifferentiated job list.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T12:59:01+00:00",
+      "evidence_note": "Step 5 shows structured opportunity areas such as Food & Beverage, Lifeguards, Retail, Security, Admissions, and More Opportunities.",
+      "rationale": "The park page visibly supports narrowing by structured opportunity areas."
+    },
+    {
+      "requirement_id": "REQ-16",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall surface recruiting campaigns or hiring events associated with a park's employment opportunities.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-16",
+      "source_candidate_id": "REQ-16",
+      "source_harvest_id": "HARV-16",
+      "step_indices": [
+        5
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The selected park recruiting page surfaces a recruiting campaign or hiring event.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        },
+        {
+          "claim": "The hiring event is associated with the park employment page content.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-22T12:59:15+00:00",
+      "evidence_note": "Step 5 shows a Mega Hiring Event section within the Six Flags White Water recruiting page.",
+      "rationale": "The visible park recruiting page includes event-style hiring campaign content."
+    },
+    {
+      "requirement_id": "REQ-03",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall present available parks in a browsable location list that helps applicants find the correct property.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_candidate",
+      "source_id": "REQ-03",
+      "source_candidate_id": "REQ-03",
+      "source_harvest_id": "HARV-03",
+      "step_indices": [
+        3
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Available parks are presented in a browsable location list.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The browsable location list helps applicants find the correct property.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 3 shows a browsable park list grouped by location. Step 4 shows a selected park after using that discovery mechanism.",
+      "rationale": "The flow demonstrates list-based park discovery and selection.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T21:22:47+00:00"
+    },
+    {
+      "requirement_id": "REQ-14",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall make the recruiting flow understandable through consistent labeling of park, team, and role context across screens.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_candidate",
+      "source_id": "REQ-14",
+      "source_candidate_id": "REQ-14",
+      "source_harvest_id": "HARV-14",
+      "step_indices": [
+        4,
+        5,
+        6
+      ],
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The recruiting flow uses consistent park-context labeling across screens.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            5,
+            6
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The recruiting flow uses team-context labeling across screens.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The recruiting flow uses role-context labeling across screens.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5,
+            6
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        4,
+        5,
+        6
+      ],
+      "evidence_units": [
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The flow repeatedly shows White Water park context, team cards, and a Lifeguard role detail page.",
+      "rationale": "The observed labels keep park, team, and role context coherent across the recruiting path.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T21:22:47+00:00"
+    },
+    {
+      "requirement_id": "CONTR-01",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall keep the selected park context attached when an applicant proceeds from recruiting content into the application-start flow for a specific opening.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:partially_fulfilled",
+        "mutation_family:persistence_extension"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-01",
+      "source_candidate_id": "CONTR-01",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "intended_label": "PARTIALLY_FULFILLED",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The selected park context remains attached when an applicant proceeds from recruiting content to a specific opening.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            5,
+            6
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The selected park context remains attached inside the application-start flow for the specific opening.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6
+          ],
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        4,
+        5,
+        6
+      ],
+      "evidence_units": [
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The flow preserves the park context through the job detail page, but it does not show the application-start flow after Apply now.",
+      "rationale": "Context attachment is supported up to the chosen opening, while the application-start portion is not captured.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    },
+    {
+      "requirement_id": "CONTR-02",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall provide a visible handoff into the application process for the chosen role, such as a dedicated application page or explicit confirmation that the selected opening is being applied to.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:partially_fulfilled",
+        "mutation_family:external_effect_extension"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-02",
+      "source_candidate_id": "CONTR-02",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NAVIGATION_OUTCOME",
+      "intended_label": "PARTIALLY_FULFILLED",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The chosen role has an entry action into the application process.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6
+          ],
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The visible handoff provides a dedicated application page or explicit confirmation that the selected opening is being applied to.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6
+          ],
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        6
+      ],
+      "evidence_units": [
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 6 shows an Apply now action for the chosen role, but no downstream application page or confirmation is shown.",
+      "rationale": "The application entry action is supported, but the handoff outcome is not visible.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    },
+    {
+      "requirement_id": "CONTR-03",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall let applicants drill into every visible department or team area on a selected park recruiting page to reach openings or recruiting details for that area.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:abstain",
+        "mutation_family:completeness_or_universal_quantifier"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-03",
+      "source_candidate_id": "CONTR-03",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NAVIGATION_OUTCOME",
+      "intended_label": "ABSTAIN",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Applicants can drill into at least one department or team area on a selected park recruiting page.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5,
+            6
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Applicants can drill into every visible department or team area on a selected park recruiting page.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Drilling into those areas reaches openings or recruiting details for that area.",
+          "status": "AMBIGUOUS",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5,
+            6
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        5,
+        6
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The park recruiting page shows multiple team areas with Apply Now actions, and the flow reaches a Lifeguard opening. The flow does not test every visible team area.",
+      "rationale": "The observed drill-in path is supported for one area, but the universal every-area requirement is not fully covered.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    },
+    {
+      "requirement_id": "CONTR-04",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall mark roles as featured or hiring only when those openings are still actively accepting applications.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:abstain",
+        "mutation_family:hidden_state_extension"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-04",
+      "source_candidate_id": "CONTR-04",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "intended_label": "ABSTAIN",
+      "verification_label": "ABSTAIN",
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Roles are marked as featured or hiring.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "evidence_steps": [
+            5,
+            6
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Roles are marked as featured or hiring only when those openings are still actively accepting applications.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": []
+        }
+      ],
+      "evidence_steps": [
+        5,
+        6
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The flow shows hiring labels and Apply Now actions, but it does not verify whether the openings are still actively accepting applications.",
+      "rationale": "The core only-when correctness condition depends on non-visible job availability or application status.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    },
+    {
+      "requirement_id": "CONTR-05",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall provide a review step that summarizes the selected park and opening before the applicant commits to starting the application.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:not_fulfilled",
+        "mutation_family:missing_visible_step"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-05",
+      "source_candidate_id": "CONTR-05",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "intended_label": "NOT_FULFILLED",
+      "verification_label": "NOT_FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "A review step summarizes the selected park and opening before the applicant commits to starting the application.",
+          "status": "CONTRADICTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5,
+            6
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The applicant can commit to starting the application.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "evidence_steps": [
+            5,
+            6
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        5,
+        6
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 5 and 6 show direct Apply Now or Apply now actions with no intervening review summary visible before those actions.",
+      "rationale": "The relevant pre-application screens visibly lack the required review summary.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    },
+    {
+      "requirement_id": "CONTR-06",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall provide direct in-page filtering or refinement within a selected park's opportunities, such as narrowing visible openings by department, job type, or similar criteria instead of relying only on static category entry points.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:not_fulfilled",
+        "mutation_family:stronger_visible_constraint"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-06",
+      "source_candidate_id": "CONTR-06",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "CONTENT_UPDATE",
+      "intended_label": "NOT_FULFILLED",
+      "verification_label": "NOT_FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "A selected park's opportunities provide direct in-page filtering or refinement.",
+          "status": "CONTRADICTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Opportunities can be narrowed by department, job type, or similar criteria through direct in-page filtering or refinement.",
+          "status": "CONTRADICTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Narrowing opportunities does not rely only on static category entry points.",
+          "status": "CONTRADICTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        5
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 5 shows static team/category cards and Apply Now actions, but no filter input, refinement control, department filter, or job-type filter.",
+      "rationale": "The shown park recruiting page visibly contradicts the stronger direct in-page filtering requirement.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    }
+  ]
+}

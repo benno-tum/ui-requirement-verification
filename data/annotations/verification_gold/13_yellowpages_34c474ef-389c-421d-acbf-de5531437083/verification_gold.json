@@ -1,0 +1,1713 @@
+{
+  "dataset": "mind2web",
+  "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+  "items": [
+    {
+      "requirement_id": "REQ-01",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall support discovery of local businesses or services using a searchable query and a geographic location.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-01",
+      "source_candidate_id": "REQ-01",
+      "source_harvest_id": "HARV-01",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The main page provides a local business search form with a service or business query field and a geographic location field.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "note": null
+        },
+        {
+          "claim": "The flow shows the user setting a business or service query and a geographic location together in the search form.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            3,
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-23T10:57:23+00:00",
+      "evidence_note": "The UI shows a two-field search form and the entered query 'hair salon' with San Diego location context.",
+      "rationale": "All visible core claims for searchable local discovery are supported by the search form and entered search context."
+    },
+    {
+      "requirement_id": "REQ-03",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall provide query autocomplete or quick-result suggestions while the user types a business or service term.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-03",
+      "source_candidate_id": "REQ-03",
+      "source_harvest_id": "HARV-03",
+      "step_indices": [
+        2
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "When the user types a business or service term, the interface displays query suggestions or quick results related to that term.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        2
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-23T10:58:03+00:00",
+      "evidence_note": "After 'hair salon' is entered, a quick-results panel appears with related suggestions.",
+      "rationale": "The autocomplete or quick-result behavior is directly visible while the query field contains the typed service term."
+    },
+    {
+      "requirement_id": "REQ-04",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall provide location autocomplete or quick-location suggestions while the user edits the location field.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-04",
+      "source_candidate_id": "REQ-04",
+      "source_harvest_id": "HARV-04",
+      "step_indices": [
+        3,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "When the user edits the location field, the interface displays quick-location suggestions matching the typed location text.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-23T10:58:09+00:00",
+      "evidence_note": "The location field shows San Diego input and a quick-location dropdown with multiple San Diego-related places.",
+      "rationale": "The visible dropdown directly supports location autocomplete or quick-location suggestions."
+    },
+    {
+      "requirement_id": "REQ-05",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall resolve a typed location into a more specific canonical place label for search context.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-05",
+      "source_candidate_id": "REQ-05",
+      "source_harvest_id": "HARV-05",
+      "step_indices": [
+        3,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The flow shows a typed or partial San Diego location being represented as a more specific canonical place label.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-23T10:58:43+00:00",
+      "evidence_note": "The location field changes from 'San Diego' to 'San Diego, CA'.",
+      "rationale": "The visible search context shows a more specific location label after location editing."
+    },
+    {
+      "requirement_id": "REQ-07",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall provide an explicit action to submit the current search criteria once the user has set the desired query and location.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-07",
+      "source_candidate_id": "REQ-07",
+      "source_harvest_id": "HARV-07",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "After the query and location are set, the interface provides an explicit search submission control.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-23T10:59:35+00:00",
+      "evidence_note": "The 'Find' button is visible next to the filled query and location fields.",
+      "rationale": "The visible 'Find' action satisfies the requirement for an explicit search submission mechanism."
+    },
+    {
+      "requirement_id": "REQ-08",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall provide signed-in users with access to account-level sections such as favorites, coupons, profile, and settings.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-08",
+      "source_candidate_id": "REQ-08",
+      "source_harvest_id": "HARV-08",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The interface shows a signed-in account area for the current user.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "note": null
+        },
+        {
+          "claim": "The signed-in account area provides access entries for favorites, coupons, profile, and settings.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        1
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-23T10:59:44+00:00",
+      "evidence_note": "The right-side account panel says 'Hi James S.' and lists Favorites, Coupons, Profile, and Settings.",
+      "rationale": "The visible signed-in menu provides the requested account-level sections."
+    },
+    {
+      "requirement_id": "REQ-09",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall expose coupons as a user-facing discovery feature within the service.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-09",
+      "source_candidate_id": "REQ-09",
+      "source_harvest_id": "HARV-09",
+      "step_indices": [
+        1
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The interface exposes a user-facing Coupons entry point.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "note": null
+        },
+        {
+          "claim": "The flow shows coupon discovery content or coupon results inside the service.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-23T11:00:29+00:00",
+      "evidence_note": "A Coupons entry is visible in the signed-in account panel, but no coupon listing or coupon discovery page is shown.",
+      "rationale": "The visible entry point supports the feature exposure, while the actual discovery content is not visible in this screenshot flow."
+    },
+    {
+      "requirement_id": "REQ-10",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall allow users to pursue coupon discovery for a searched business category within a chosen locality.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-10",
+      "source_candidate_id": "REQ-10",
+      "source_harvest_id": "HARV-10",
+      "step_indices": [
+        1,
+        2,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The task goal is coupon-oriented, the UI exposes a coupons section, and the flow configures a localized hair salon search. Together these cues support a plausible requirement that coupons can be sought in relation to a selected business category and place, even though the final coupon page is not shown.",
+      "annotated_by": "benno",
+      "manual_verification_label": "partially_fulfilled",
+      "manual_verification_notes": "coupon page is missing",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The flow shows a business category search context configured with a chosen locality.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The interface exposes coupons as a possible user-facing area.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "note": null
+        },
+        {
+          "claim": "The flow shows coupon discovery results or a coupon path specifically for the selected category and locality.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The flow configures 'hair salon' with 'San Diego, CA' and shows a Coupons entry, but it does not show coupon results for that search.",
+      "rationale": "The visible setup and coupon entry support part of the requirement, but the category-and-locality-specific coupon discovery outcome is not shown.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-23T11:06:54+00:00"
+    },
+    {
+      "requirement_id": "REQ-12",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall assist geographic disambiguation by presenting multiple matching locations, including city and neighborhood-level options, when a location is ambiguous.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-12",
+      "source_candidate_id": "REQ-12",
+      "source_harvest_id": "HARV-12",
+      "step_indices": [
+        3,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "When the San Diego location text is entered, the interface presents multiple matching location options.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The location suggestions include both city-level and neighborhood or area-level San Diego options.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-23T11:09:21+00:00",
+      "evidence_note": "The dropdown includes city-level entries such as San Diego, CA and San Diego, TX, plus area entries such as Mission Hills, Serra Mesa, Downtown, and other San Diego neighborhoods.",
+      "rationale": "The visible quick-location list supports geographic disambiguation with multiple city and neighborhood-level options."
+    },
+    {
+      "requirement_id": "REQ-13",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall provide alternative category entry points for common local-business searches from the main discovery page.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-13",
+      "source_candidate_id": "REQ-13",
+      "source_harvest_id": "HARV-13",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The homepage shows shortcuts such as Find People, Restaurants, Auto Repair, Dentists, Veterinarians, and Attorneys, indicating support for multiple category-based discovery paths from the same entry point.",
+      "annotated_by": "benno",
+      "manual_verification_label": "partially_fulfilled",
+      "manual_verification_notes": "UI after pressing a alternative route is missing",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The main discovery page provides category shortcuts for common local-business searches.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        1
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The page shows shortcuts such as Find People, Restaurants, Auto Repair, Dentists, Veterinarians, and Attorneys.",
+      "rationale": "The visible category shortcuts provide alternative entry points from the main page.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-23T11:11:01+00:00"
+    },
+    {
+      "requirement_id": "REQ-02",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall provide a unified search workflow in which the user can set both service type and location before launching a search.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_candidate",
+      "source_id": "REQ-02",
+      "source_candidate_id": "REQ-02",
+      "source_harvest_id": "HARV-02",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Users can set both service type and location before launching a search.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            3,
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The system provides a search launch action after service type and location are set.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        2,
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 2 to 4 show the service type and location being set in the same search workflow, with a Find action still present.",
+      "rationale": "The flow supports setting both criteria before launching the search.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-23T10:56:54+00:00"
+    },
+    {
+      "requirement_id": "REQ-06",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall support searching for service categories such as hair salons within a selected city.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_candidate",
+      "source_id": "REQ-06",
+      "source_candidate_id": "REQ-06",
+      "source_harvest_id": "HARV-06",
+      "step_indices": [
+        2,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Users can configure a hair salon search within a selected city.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            3,
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Users can launch the configured hair salon search.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Search results for hair salons within the selected city are returned after launch.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        2,
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The flow configures a hair salon search in San Diego, CA and shows the Find action, but no result page is shown after submission.",
+      "rationale": "Search configuration and launch mechanism are supported, while the returned-results outcome is not covered.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-23T10:56:54+00:00"
+    },
+    {
+      "requirement_id": "REQ-11",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall maintain consistency of user-entered search context across sequential edits so that the chosen query and location remain visible together before submission.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_candidate",
+      "source_id": "REQ-11",
+      "source_candidate_id": "REQ-11",
+      "source_harvest_id": "HARV-11",
+      "step_indices": [
+        2,
+        3,
+        4
+      ],
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The chosen query is maintained across sequential search-context edits.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            3,
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The chosen query and location remain visible together before submission.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        2,
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The hair salon query remains present while the location is edited, and step 4 shows hair salon with San Diego, CA together before search submission.",
+      "rationale": "The visible form state preserves the search context across sequential edits.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-23T10:56:54+00:00"
+    },
+    {
+      "requirement_id": "CONTR-01",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall allow signed-in users to save coupon discoveries to favorites and revisit them from account-level areas in later use.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:partially_fulfilled",
+        "mutation_family:persistence_extension"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-01",
+      "source_candidate_id": "CONTR-01",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "intended_label": "PARTIALLY_FULFILLED",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "UNVERIFIED_SYSTEM_OUTCOME",
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Account-level areas for favorites and coupons are available to signed-in users.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Signed-in users can save coupon discoveries to favorites.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Saved coupon discoveries can be revisited from account-level areas in later use.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": []
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Favorites and Coupons are visible in the account area, but no coupon discovery, save action, saved coupon, or later revisit state is shown.",
+      "rationale": "The relevant account areas are visible, while saving and later-use persistence are not verified.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    },
+    {
+      "requirement_id": "CONTR-02",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall let users open a discovered coupon into a redeemable detail or outbound handoff that provides merchant-facing usage instructions.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:partially_fulfilled",
+        "mutation_family:external_effect_extension"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-02",
+      "source_candidate_id": "CONTR-02",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NAVIGATION_OUTCOME",
+      "intended_label": "PARTIALLY_FULFILLED",
+      "verification_label": "ABSTAIN",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Coupon-related functionality is exposed as service context.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "evidence_steps": [
+            1
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Users can open a discovered coupon.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "An opened coupon provides redeemable detail or outbound handoff.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The redeemable detail or outbound handoff provides merchant-facing usage instructions.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The flow shows only a Coupons entry. It does not show a discovered coupon, an opened coupon, redemption details, merchant-facing instructions, or an outbound handoff.",
+      "rationale": "The screenshots do not contain the coupon discovery state needed to evaluate this requirement reliably.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    },
+    {
+      "requirement_id": "CONTR-03",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall surface only currently valid coupon offers that match the active business category and resolved locality.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:abstain",
+        "mutation_family:hidden_state_extension"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-03",
+      "source_candidate_id": "CONTR-03",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "CONTENT_UPDATE",
+      "intended_label": "ABSTAIN",
+      "verification_label": "ABSTAIN",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "An active business category and resolved locality are available as search context.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "evidence_steps": [
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The system surfaces coupon offers for the active business category and resolved locality.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Only currently valid coupon offers are surfaced.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": []
+        },
+        {
+          "claim": "Only coupon offers matching the active business category and resolved locality are surfaced.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": []
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The search context is visible, but no coupon offers are shown. Offer validity and match correctness cannot be verified from the screenshots.",
+      "rationale": "The core coupon-offer behavior is not present in the flow, so a reliable positive or negative verdict is not possible.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    },
+    {
+      "requirement_id": "CONTR-04",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall present complete geographic disambiguation coverage for ambiguous location input, including all relevant city and neighborhood matches before the user commits the search.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:abstain",
+        "mutation_family:completeness_or_universal_quantifier"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-04",
+      "source_candidate_id": "CONTR-04",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "intended_label": "ABSTAIN",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The system presents city-level matches for ambiguous location input before search commitment.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The system presents neighborhood-level matches for ambiguous location input before search commitment.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The geographic disambiguation coverage includes all relevant city and neighborhood matches.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": []
+        }
+      ],
+      "evidence_steps": [
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The flow shows many San Diego-related city and neighborhood or area suggestions, but completeness over all relevant matches cannot be established from screenshots alone.",
+      "rationale": "The visible disambiguation behavior is supported, while the strengthened completeness obligation is not fully verifiable.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    },
+    {
+      "requirement_id": "CONTR-05",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall present a dedicated coupon results or review step after search submission that summarizes matching offers for the selected business category and locality.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:not_fulfilled",
+        "mutation_family:missing_visible_step"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-05",
+      "source_candidate_id": "CONTR-05",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NAVIGATION_OUTCOME",
+      "intended_label": "NOT_FULFILLED",
+      "verification_label": "ABSTAIN",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The selected business category and locality are available before submission.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "evidence_steps": [
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Search submission occurs after the selected business category and locality are set.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "A dedicated coupon results or review step is presented after search submission.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The coupon results or review step summarizes matching offers for the selected business category and locality.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 4 shows the configured search context, but the flow does not show the search being submitted or any later coupon results or review step.",
+      "rationale": "Missing a post-submission state is not visible counter-evidence, so the safest label is abstain.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    },
+    {
+      "requirement_id": "CONTR-06",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall carry the resolved canonical location label and active search term forward onto later coupon discovery views so users can confirm or revise the current search context.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:not_fulfilled",
+        "mutation_family:cross_screen_consistency_extension"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-06",
+      "source_candidate_id": "CONTR-06",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "intended_label": "NOT_FULFILLED",
+      "verification_label": "ABSTAIN",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The active search term and resolved canonical location label are available together before submission.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "evidence_steps": [
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The resolved canonical location label and active search term are carried forward onto later coupon discovery views.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Users can confirm the current search context on later coupon discovery views.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Users can revise the current search context on later coupon discovery views.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The active search term and resolved location are visible before submission, but the flow contains no later coupon discovery view.",
+      "rationale": "There is not enough visible evidence to judge whether the context is carried forward or revisable later.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    }
+  ]
+}

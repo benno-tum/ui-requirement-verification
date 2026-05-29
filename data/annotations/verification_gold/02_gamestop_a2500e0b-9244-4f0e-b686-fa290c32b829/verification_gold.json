@@ -1,0 +1,676 @@
+{
+  "dataset": "mind2web",
+  "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+  "items": [
+    {
+      "requirement_id": "REQ-01",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall provide a clear mechanism for users to access the store locator functionality.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-01",
+      "source_candidate_id": "REQ-01",
+      "source_harvest_id": "HARV-01",
+      "step_indices": [
+        1,
+        2
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NAVIGATION_OUTCOME",
+      "annotation_notes": "Screenshot 2 clearly shows the 'Find a Store' page, indicating that this functionality is accessible. However, the complete navigation path from the initial homepage (Screenshot 1) to this page is not explicitly shown, making the full navigation process partially UI-verifiable.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The store locator page is visible in the flow and exposes the store locator functionality.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "note": null
+        },
+        {
+          "claim": "The screenshots show a clear access affordance or navigation action from the homepage into the store locator.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 2 shows the Find A Store page with the locator UI. Step 1 does not visibly show the navigation action or a clearly labeled affordance used to enter that page.",
+      "rationale": "The locator functionality is visible, but the access mechanism from the preceding homepage state is not fully shown in the ordered screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T13:10:18+00:00"
+    },
+    {
+      "requirement_id": "REQ-02",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall allow users to search for store locations by specifying a geographic identifier such as a zip code, city, or state.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-02",
+      "source_candidate_id": "REQ-02",
+      "source_harvest_id": "HARV-02",
+      "step_indices": [
+        2,
+        3,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "annotation_notes": "The screenshots visibly support searching by zip code and applying the search.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The store locator provides a search field for city, state, or zip code.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The flow shows the zip code 90028 entered as the geographic identifier.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The visible results update after the geographic identifier is used.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        2,
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 2 to 4 show a city/state/zip search field, the entered value 90028, and a changed result context after the search.",
+      "rationale": "The UI visibly supports searching by a geographic identifier and the flow shows the search being applied.",
+      "review_status": "needs_review",
+      "created_at": "2026-05-07T10:40:48+00:00"
+    },
+    {
+      "requirement_id": "REQ-03",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall display relevant store locations on both an interactive map and in a detailed list format, updating based on the user's search query.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-03",
+      "source_candidate_id": "REQ-03",
+      "source_harvest_id": "HARV-03",
+      "step_indices": [
+        2,
+        3,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "CONTENT_UPDATE",
+      "annotated_by": "benno",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The store locator displays store results on an interactive map and in a detailed list format.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The map and listed stores visibly change from the initial Columbus area context to a Los Angeles area context after the 90028 search.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            3,
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        2,
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T13:11:07+00:00",
+      "verification_label": "FULFILLED",
+      "evidence_note": "Steps 2 and 4 show both a map and store cards. Step 4 shows Los Angeles area map content and Los Angeles area stores after 90028 is entered.",
+      "rationale": "The screenshots visibly support both result representations and a content update tied to the user's search query."
+    },
+    {
+      "requirement_id": "REQ-04",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall transparently display the operating hours for each listed store, including daily breakdown.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-04",
+      "source_candidate_id": "REQ-04",
+      "source_harvest_id": "HARV-04",
+      "step_indices": [
+        2,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Screenshots 2 and 4 clearly show detailed operating hours for each day of the week for all listed stores, directly addressing the task's requirement to find store hours.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The visible store result cards include an operating hours section.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The visible operating hours are broken down by individual days of the week.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        2,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 2 and 4 show store cards with an HOURS section and daily rows such as Sun, Mon, Tue, Wed, Thu, Fri, and Sat.",
+      "rationale": "The visible store listings transparently display daily operating hours.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T13:11:26+00:00"
+    },
+    {
+      "requirement_id": "REQ-05",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall provide a mechanism for users to select and designate a specific store as their preferred 'home store'.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-05",
+      "source_candidate_id": "REQ-05",
+      "source_harvest_id": "HARV-05",
+      "step_indices": [
+        2,
+        3,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Screenshots 2 and 4 show a prominent 'SET AS HOME STORE' button associated with each store listing, directly supporting the task. However, the actual effect of setting a home store (e.g., a confirmation message, persistence across sessions, or an update on the homepage) is not visible within the provided flow, making it partially UI-verifiable.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Store result cards provide a visible Set As Home Store mechanism for selectable stores.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The results view can visibly mark a store as the current Home Store.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The internal account or persistence effect behind the home-store preference is outside the visible UI target for this mechanism requirement.",
+          "status": "OUT_OF_SCOPE",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "evidence_steps": [],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        2,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 2 and 4 show Set As Home Store buttons on store cards and a Home Store marker for the current preferred store. ROUTINE_SYSTEM_DEPENDENCY.",
+      "rationale": "The requirement asks for a mechanism, and the visible buttons plus Home Store status provide that mechanism and visible designation state.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T13:12:28+00:00"
+    },
+    {
+      "requirement_id": "REQ-06",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall allow users to refine their store search by selecting a specific radius around the searched location.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-06",
+      "source_candidate_id": "REQ-06",
+      "source_harvest_id": "HARV-06",
+      "step_indices": [
+        2,
+        3,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotated_by": "benno",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The store locator provides a radius selector next to the store search field.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            3,
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "A specific radius value, 15 Miles, is visibly selected while the search is performed.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            3,
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        2,
+        3,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T13:13:09+00:00",
+      "verification_label": "FULFILLED",
+      "evidence_note": "Steps 2 to 4 show a RADIUS dropdown with 15 Miles selected beside the geographic search field.",
+      "rationale": "The UI visibly provides a radius refinement mechanism and a selected radius value."
+    },
+    {
+      "requirement_id": "CONTR-01",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall preserve a user's selected home store as the default store context on all pages and on a subsequent visit.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:partially_fulfilled",
+        "mutation_family:persistence_extension"
+      ],
+      "source_type": "requirements_gold",
+      "source_id": "CONTR-01",
+      "source_candidate_id": "CONTR-01",
+      "step_indices": [
+        1,
+        2,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "annotation_notes": "The current-flow context is supported, while subsequent-visit preservation depends on hidden persistence outside the screenshots.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "intended_label": "PARTIALLY_FULFILLED",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The selected home store is visible as the active store context in the current flow.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The same home store status remains visible after navigating within the locator flow and after the 90028 search results appear.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The selected home store is preserved on a subsequent visit beyond the current screenshot flow.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 1, 2, and 4 show Polaris Fashion Place Mall as the visible home/default store context, but no subsequent visit or long-term persistence is shown.",
+      "rationale": "The current-flow context is supported, while subsequent-visit preservation depends on hidden persistence outside the screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-05-07T11:40:57+00:00"
+    },
+    {
+      "requirement_id": "CONTR-04",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall keep the searched location, selected radius, and resulting stores synchronized between the map view and the store list.",
+      "scope": "single_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:not_fulfilled",
+        "mutation_family:cross_screen_consistency_extension"
+      ],
+      "source_type": "requirements_gold",
+      "source_id": "CONTR-04",
+      "source_candidate_id": "CONTR-04",
+      "step_indices": [
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "annotation_notes": "The visible counter-evidence contradicts full synchronization between the map context and every returned store in the list.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "intended_label": "NOT_FULFILLED",
+      "verification_label": "NOT_FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The searched location 90028 and selected radius 15 Miles remain visible with the results.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The map view updates to the Los Angeles area after the 90028 search.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "All visible returned store results are synchronized with the searched Los Angeles map context.",
+          "status": "CONTRADICTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 4 shows a Los Angeles map for 90028, but the first visible result remains Polaris Fashion Place Mall in Columbus, Ohio, while other results are Los Angeles area stores.",
+      "rationale": "The visible counter-evidence contradicts full synchronization between the map context and every returned store in the list.",
+      "review_status": "needs_review",
+      "created_at": "2026-05-07T12:24:43+00:00"
+    },
+    {
+      "requirement_id": "CONTR-05",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "text": "The system shall show complete store detail coverage for each returned location, including address, phone contact, and operating hours.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:abstain",
+        "mutation_family:completeness_or_universal_quantifier"
+      ],
+      "source_type": "requirements_gold",
+      "source_id": "CONTR-05",
+      "source_candidate_id": "CONTR-05",
+      "step_indices": [
+        2,
+        4
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "The requirement is supported for visible complete cards but not fully verified for each returned location.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "intended_label": "ABSTAIN",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Fully visible store cards show address information, phone contact, and operating hours.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2,
+            4
+          ],
+          "note": null
+        },
+        {
+          "claim": "The screenshots prove complete detail coverage for every returned location in the result set.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        2,
+        4
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Visible full store cards include address, phone, and hours. The universal claim for every returned location is not fully settled because not all returned result cards are fully visible.",
+      "rationale": "The requirement is supported for visible complete cards but not fully verified for each returned location.",
+      "review_status": "needs_review",
+      "created_at": "2026-05-07T12:27:55+00:00"
+    }
+  ]
+}

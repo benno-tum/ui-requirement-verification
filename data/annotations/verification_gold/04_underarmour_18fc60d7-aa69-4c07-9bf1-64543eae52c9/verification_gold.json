@@ -1,0 +1,1817 @@
+{
+  "dataset": "mind2web",
+  "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+  "items": [
+    {
+      "requirement_id": "REQ-01",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall allow shoppers to navigate from the main storefront into a dedicated gift-card area.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-01",
+      "source_candidate_id": "REQ-01",
+      "source_harvest_id": "HARV-01",
+      "step_indices": [
+        1,
+        2
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The flow starts on the general retail homepage and then shows a dedicated UA Gift Cards page, indicating supported navigation from the storefront into the gift-card experience.",
+      "annotated_by": "benno",
+      "manual_verification_label": "partially_fulfilled",
+      "manual_verification_notes": "the navigation is not really fulfilled, since the \"Gift Cards\" link is only very small in the footer",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The flow begins from the main Under Armour storefront.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "evidence_steps": [
+            1
+          ],
+          "note": null
+        },
+        {
+          "claim": "The flow reaches a dedicated UA Gift Cards area.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 2 shows the dedicated UA Gift Cards page after the main storefront in step 1.",
+      "rationale": "The ordered flow visibly moves from the storefront into a gift-card area.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T20:10:32+00:00"
+    },
+    {
+      "requirement_id": "REQ-02",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall provide a gift-card section that supports both gift-card purchasing and gift-card balance inquiry.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-02",
+      "source_candidate_id": "REQ-02",
+      "source_harvest_id": "HARV-02",
+      "step_indices": [
+        2
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The gift-card landing page presents purchasable gift-card options and a separate balance-check form, showing both capabilities in one area.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The gift-card section presents purchasable gift-card options.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "note": null
+        },
+        {
+          "claim": "The gift-card section provides a visible balance inquiry form.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        2
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 2 shows UA Gift Cards and UA eGift Cards, plus a Check Your Balance section with card number, PIN, and View Balance controls.",
+      "rationale": "Both purchase discovery and balance inquiry mechanisms are visible on the gift-card page.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T20:11:07+00:00"
+    },
+    {
+      "requirement_id": "REQ-03",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall distinguish between physical gift cards and eGift cards as separate gift-card purchase modalities.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-03",
+      "source_candidate_id": "REQ-03",
+      "source_harvest_id": "HARV-03",
+      "step_indices": [
+        2,
+        3
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The landing page shows UA Gift Cards and UA eGift Cards as different options, and the next screen opens a specific eGift Card product page.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The gift-card page presents physical UA Gift Cards and UA eGift Cards as separate options.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        2
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 2 shows two separate tiles labeled UA Gift Cards and UA eGift Cards.",
+      "rationale": "The UI visibly separates the two gift-card modalities.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T20:11:49+00:00"
+    },
+    {
+      "requirement_id": "REQ-04",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall support navigation from a gift-card discovery page to a detailed purchase page for a selected eGift card product.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-04",
+      "source_candidate_id": "REQ-04",
+      "source_harvest_id": "HARV-04",
+      "step_indices": [
+        2,
+        3
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The flow shows an eGift card option on the gift-card discovery page.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "note": null
+        },
+        {
+          "claim": "The flow reaches a detailed UA eGift Card purchase page after the discovery page.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        2,
+        3
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T20:12:33+00:00",
+      "evidence_note": "Step 2 shows the UA eGift Cards option, and step 3 shows the UA eGift Card product-detail page with purchase form fields.",
+      "rationale": "The visible sequence supports discovery-to-detail navigation for the selected eGift card product."
+    },
+    {
+      "requirement_id": "REQ-05",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall allow a shopper to configure an eGift card purchase by entering recipient details, sender details, denomination, delivery date, and a personal message before purchase.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-05",
+      "source_candidate_id": "REQ-05",
+      "source_harvest_id": "HARV-05",
+      "step_indices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "Across the ordered screenshots, the eGift card form is progressively filled with recipient name, recipient email, sender email, amount, delivery date, and message.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The eGift card purchase page provides fields for recipient details, sender details, amount, delivery date, and message.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "note": null
+        },
+        {
+          "claim": "The shopper-entered configuration values are visible in the form before purchase submission.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            5,
+            6,
+            7,
+            9
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 7,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 8,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 9,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The form shows recipient name, recipient email, from, amount, delivery date, and message fields. Later steps show John, [abc@test.com](mailto:abc@test.com), [buckeye.foobar@gmail.com](mailto:buckeye.foobar@gmail.com), $100, and gift card.",
+      "rationale": "The visible form and populated values support the required eGift card configuration capability.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T20:15:38+00:00"
+    },
+    {
+      "requirement_id": "REQ-06",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall support choosing an eGift card amount within a visible and fixed allowed denomination range.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-06",
+      "source_candidate_id": "REQ-06",
+      "source_harvest_id": "HARV-06",
+      "step_indices": [
+        3,
+        7,
+        8,
+        9
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The product page displays a $10.00 to $500.00 range and later shows a $100 amount entry, but screenshots alone do not prove full range enforcement.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The eGift card page displays a visible amount range.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "note": null
+        },
+        {
+          "claim": "The shopper can enter an amount within the displayed range.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            7
+          ],
+          "note": null
+        },
+        {
+          "claim": "The allowed denomination range is fixed and enforced by the system.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        3,
+        7
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 7,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 8,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 9,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The page shows $10.00 to $500.00 and the amount field later contains $100, but range enforcement is not visibly tested.",
+      "rationale": "The visible amount entry and range are supported, while the fixed business rule and enforcement remain hidden.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T20:16:29+00:00"
+    },
+    {
+      "requirement_id": "REQ-07",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall support scheduling eGift card delivery for a selected date rather than only immediate sending.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-07",
+      "source_candidate_id": "REQ-07",
+      "source_harvest_id": "HARV-07",
+      "step_indices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The eGift card form provides a delivery date field instead of only immediate delivery.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "note": null
+        },
+        {
+          "claim": "The page text indicates that a custom delivery date can be scheduled.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "note": null
+        },
+        {
+          "claim": "The system will actually send the eGift card on the selected date.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        3
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 7,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 8,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 9,
+          "evidence_type": "screen"
+        }
+      ],
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T20:17:17+00:00",
+      "evidence_note": "A delivery date field and scheduling text are visible, but actual scheduled delivery is not confirmed by the screenshots.",
+      "rationale": "The UI supports date selection, but the downstream delivery outcome is not visible."
+    },
+    {
+      "requirement_id": "REQ-08",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall allow a shopper to include a personalized message with the eGift card.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-08",
+      "source_candidate_id": "REQ-08",
+      "source_harvest_id": "HARV-08",
+      "step_indices": [
+        3,
+        9
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The message field is visible on the product page and later contains the entered text \"gift card,\" directly showing support for personalized messaging.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The eGift card form includes a message field.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "note": null
+        },
+        {
+          "claim": "A personalized message is visibly entered before submission.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            9
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        3,
+        9
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 9,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 9 shows the message field containing gift card.",
+      "rationale": "The visible form supports personalized message entry.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T20:17:43+00:00"
+    },
+    {
+      "requirement_id": "REQ-09",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall provide an action for the configured eGift card on the product-detail page to get to the shopping cart.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-09",
+      "source_candidate_id": "REQ-09",
+      "source_harvest_id": "HARV-09",
+      "step_indices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "A prominent Add to Bag button remains available throughout the configuration flow, indicating that the product can be submitted to the shopping bag from this page.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Add to bag -> shopping cart (less UI artifacts, naming part of UI design)",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The eGift card product-detail page provides an Add to Bag action.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            9
+          ],
+          "note": null
+        },
+        {
+          "claim": "The Add to Bag action remains available after the eGift card fields are configured.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            9
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        3,
+        9
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 7,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 8,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 9,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The product-detail page shows a prominent Add to Bag button while the configured fields are visible.",
+      "rationale": "The requirement asks for an action, and the visible product page provides that action.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T20:19:39+00:00"
+    },
+    {
+      "requirement_id": "REQ-11",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall present key gift-card fulfillment and usage information, including delivery timing, redemption channels, fees or expiration status, and discount restrictions.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-11",
+      "source_candidate_id": "REQ-11",
+      "source_harvest_id": "HARV-11",
+      "step_indices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The product page includes descriptive text and bullet points about email delivery timing, redemption locations, no fees or expiration dates, and ineligible discounts, though screenshots do not verify the backend truth of those claims.",
+      "annotated_by": "benno",
+      "manual_verification_label": "partially_fulfilled",
+      "manual_verification_notes": "PF: the delivery date is set by the user and not a displayed timing by the website",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The page presents visible fulfillment and usage text covering delivery timing, redemption channels, fees or expiration, and discount restrictions.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "note": null
+        },
+        {
+          "claim": "The stated fulfillment and usage policies are actually true and enforced outside the UI.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        3
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 7,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 8,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 9,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The DNA section includes delivery timing, scheduling, redemption channels, no fees or expiration dates, and discount restriction text. The screenshots do not verify the truth of those policy statements.",
+      "rationale": "The visible presentation is supported, but policy correctness and enforcement are not visible.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T20:23:30+00:00"
+    },
+    {
+      "requirement_id": "REQ-13",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall allow customers to check the balance of an existing gift card by entering the card number and PIN.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-13",
+      "source_candidate_id": "REQ-13",
+      "source_harvest_id": "HARV-13",
+      "step_indices": [
+        2
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The gift-card landing page includes a Check Your Balance section with fields for card number and PIN and a View Balance action.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The gift-card page provides fields for card number and PIN.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "note": null
+        },
+        {
+          "claim": "The gift-card page provides a visible action to view the balance.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        2
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 2 shows Check Your Balance, Enter Card Number, Enter PIN, and View Balance.",
+      "rationale": "The visible UI provides the required balance-check mechanism.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T20:25:43+00:00"
+    },
+    {
+      "requirement_id": "REQ-15",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall add the configured eGift card to the shopper's ongoing cart or bag session after confirmation so it can continue into downstream checkout.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-15",
+      "source_candidate_id": "REQ-15",
+      "source_harvest_id": "HARV-15",
+      "step_indices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The visible flow ends with a completed purchase form and an Add to Bag action, which strongly implies downstream bag state, but the actual bag update is not shown.",
+      "annotated_by": "benno",
+      "manual_verification_notes": "added: \"after confirmation\"\nsystem has to be instructed to do so",
+      "uncertainty_reasons": [
+        "UNVERIFIED_SYSTEM_OUTCOME",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The configured eGift card form provides an Add to Bag action.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            9
+          ],
+          "note": null
+        },
+        {
+          "claim": "The configured eGift card is actually added to the ongoing bag session after confirmation.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "note": null
+        },
+        {
+          "claim": "The flow shows downstream checkout continuation after the configured eGift card is accepted.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            9
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        9
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 7,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 8,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 9,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The completed form and Add to Bag action are visible, but no bag update, cart page, or checkout continuation is shown.",
+      "rationale": "The visible submission mechanism is supported, but the required cart outcome is not visible.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T20:28:24+00:00",
+      "verification_label": "PARTIALLY_FULFILLED"
+    },
+    {
+      "requirement_id": "REQ-16",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall validate that required eGift card purchase information is present before accepting the item for purchase.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_gold",
+      "source_id": "REQ-16",
+      "source_candidate_id": "REQ-16",
+      "source_harvest_id": "HARV-16",
+      "step_indices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "The page is structured as a multi-field purchase form leading to Add to Bag, so required-field validation is a disciplined inference, even though no explicit error or success state is shown.",
+      "annotated_by": "benno",
+      "manual_verification_label": "not_fulfilled",
+      "manual_verification_notes": "the UI doesn't show different colors in the \"Add to Bag\" button, so it implies that the button wasn't turned of. We don't see a screen where the button was pressed beforehand but if an error occurs here that would also be fine.",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The eGift card purchase page presents structured fields for the information needed before purchase.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            9
+          ],
+          "note": null
+        },
+        {
+          "claim": "The system validates required information before accepting the item.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "note": null
+        },
+        {
+          "claim": "The flow shows validation feedback or an acceptance state after attempting to add the item.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            9
+          ],
+          "note": null
+        }
+      ],
+      "evidence_steps": [
+        3,
+        9
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 7,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 8,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 9,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The required information fields and Add to Bag button are visible, but no validation attempt, error feedback, or accepted state is shown.",
+      "rationale": "The form structure is visible, but validation behavior is not demonstrated.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T20:31:44+00:00"
+    },
+    {
+      "requirement_id": "REQ-10",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall preserve previously entered gift-card configuration data while the shopper continues completing later fields.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_candidate",
+      "source_id": "REQ-10",
+      "source_candidate_id": "REQ-10",
+      "source_harvest_id": "HARV-10",
+      "step_indices": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Previously entered recipient details are preserved while the shopper completes later configuration data.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            5,
+            6,
+            7,
+            9
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Previously entered sender and amount details are preserved while the shopper completes later configuration data.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6,
+            7,
+            9
+          ],
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "evidence_units": [
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 7,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 9,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 4 to 9 retain earlier entered values while additional values are completed.",
+      "rationale": "The ordered screenshots support preservation of earlier configuration data during later entry.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T19:44:49+00:00"
+    },
+    {
+      "requirement_id": "REQ-12",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall present the selected gift-card product with clear identifying and pricing information on its purchase page.",
+      "scope": "single_screen",
+      "tags": [],
+      "source_type": "requirements_candidate",
+      "source_id": "REQ-12",
+      "source_candidate_id": "REQ-12",
+      "source_harvest_id": "HARV-12",
+      "step_indices": [
+        3
+      ],
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The selected gift-card product is clearly identified on its purchase page.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The selected gift-card product has pricing information on its purchase page.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        3
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 3 shows the UA eGift Card title, product image, and $10.00 to $500.00 amount range.",
+      "rationale": "The purchase page clearly identifies the selected product and presents pricing information.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T19:44:49+00:00"
+    },
+    {
+      "requirement_id": "REQ-14",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall keep the standard shopping-site shell, including category navigation and bag access, available throughout the gift-card flow.",
+      "scope": "multi_screen",
+      "tags": [],
+      "source_type": "requirements_candidate",
+      "source_id": "REQ-14",
+      "source_candidate_id": "REQ-14",
+      "source_harvest_id": "HARV-14",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The standard shopping-site shell remains available throughout the gift-card flow.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            9
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Category navigation and bag access remain available throughout the gift-card flow.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3,
+            9
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        3,
+        9
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 9,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The Under Armour header, category navigation, search, and bag icon remain present across the shown storefront, gift-card area, and eGift card product states.",
+      "rationale": "The standard shopping-site shell and bag access are retained throughout the captured gift-card flow.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-21T19:44:49+00:00"
+    },
+    {
+      "requirement_id": "CONTR-02",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall provide the purchaser with a confirmation outside the product page flow that reflects the configured eGift card recipient, amount, and scheduled delivery details after the gift card is accepted for purchase progression.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:partially_fulfilled",
+        "mutation_family:external_effect_extension"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-02",
+      "source_candidate_id": "CONTR-02",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "intended_label": "PARTIALLY_FULFILLED",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The configured eGift card includes recipient, amount, and scheduled delivery details before purchase progression.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            7,
+            9
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The purchaser receives a confirmation outside the product page flow after the gift card is accepted for purchase progression.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            9
+          ],
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The confirmation reflects the configured recipient, amount, and scheduled delivery details.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            9
+          ],
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The gift card is accepted for purchase progression.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": []
+        }
+      ],
+      "evidence_steps": [
+        3,
+        7,
+        9
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 7,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 9,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The configured recipient, amount, and scheduling context are visible before submission, but no outside confirmation or accepted purchase progression is shown.",
+      "rationale": "Configuration details are supported, while the post-acceptance confirmation and acceptance outcome are not shown.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    },
+    {
+      "requirement_id": "CONTR-03",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall restrict scheduled eGift card delivery to valid future dates and provide user-facing feedback when an unavailable date is chosen.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:abstain",
+        "mutation_family:hidden_state_extension"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-03",
+      "source_candidate_id": "CONTR-03",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "VALIDATION_OR_FEEDBACK",
+      "intended_label": "ABSTAIN",
+      "verification_label": "ABSTAIN",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The system supports scheduled eGift card delivery.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "evidence_steps": [
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "Scheduled eGift card delivery is restricted to valid future dates.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": []
+        },
+        {
+          "claim": "The system provides user-facing feedback when an unavailable date is chosen.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            9
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        3,
+        9
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 9,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 3 shows delivery-date scheduling support, but the flow does not show an unavailable date being chosen or any resulting feedback.",
+      "rationale": "The condition needed to evaluate the restriction and feedback behavior is not exercised in the screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    },
+    {
+      "requirement_id": "CONTR-04",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall make all supported eGift card denominations visibly available within the purchase flow rather than exposing only a partial subset of purchasable amounts.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:abstain",
+        "mutation_family:completeness_or_universal_quantifier"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-04",
+      "source_candidate_id": "CONTR-04",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "intended_label": "ABSTAIN",
+      "verification_label": "ABSTAIN",
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The purchase flow exposes purchasable eGift card amounts.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "evidence_steps": [
+            3,
+            7
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "All supported eGift card denominations are available within the purchase flow.",
+          "status": "AMBIGUOUS",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            7
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The exposed denominations are complete rather than a partial subset of purchasable amounts.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": []
+        }
+      ],
+      "evidence_steps": [
+        3,
+        7
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 7,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 3 and 7 show an amount range and an entered amount, but the screenshots do not establish the complete set of supported denominations.",
+      "rationale": "The available amount mechanism is visible, but the universal completeness claim cannot be reliably judged.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    },
+    {
+      "requirement_id": "CONTR-05",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall provide a pre-submission review state for the configured eGift card that summarizes recipient details, sender details, amount, delivery date, and message, with an option to edit before finalizing the purchase action.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:not_fulfilled",
+        "mutation_family:missing_visible_step"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-05",
+      "source_candidate_id": "CONTR-05",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "intended_label": "NOT_FULFILLED",
+      "verification_label": "NOT_FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The system provides a pre-submission review state for the configured eGift card.",
+          "status": "CONTRADICTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            9
+          ],
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The pre-submission review state summarizes recipient details, sender details, amount, delivery date, and message.",
+          "status": "CONTRADICTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            9
+          ],
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The pre-submission review state provides an option to edit before finalizing the purchase action.",
+          "status": "CONTRADICTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            9
+          ],
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        9
+      ],
+      "evidence_units": [
+        {
+          "step_index": 9,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 9 shows the configured product form with a direct Add to Bag action, but no separate review state, summary, or edit-before-finalizing option.",
+      "rationale": "The relevant final configured state is shown and visibly lacks the required pre-submission review behavior.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    },
+    {
+      "requirement_id": "CONTR-06",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall display a synchronized purchase summary on the eGift card purchase page that visibly updates the currently selected amount and entered delivery details as the shopper configures the card.",
+      "scope": "multi_screen",
+      "tags": [
+        "contrastive",
+        "intended_label:not_fulfilled",
+        "mutation_family:stronger_visible_constraint"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "CONTR-06",
+      "source_candidate_id": "CONTR-06",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "CONTENT_UPDATE",
+      "intended_label": "NOT_FULFILLED",
+      "verification_label": "NOT_FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The eGift card purchase page displays a synchronized purchase summary.",
+          "status": "CONTRADICTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            7,
+            9
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The purchase summary updates the currently selected amount as the shopper configures the card.",
+          "status": "CONTRADICTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            7,
+            9
+          ],
+          "evidence_units": [
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
+        },
+        {
+          "claim": "The purchase summary updates the entered delivery details as the shopper configures the card.",
+          "status": "CONTRADICTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            9
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        3,
+        7,
+        9
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 7,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 9,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 3, 7, and 9 show the form state changing, but no synchronized purchase summary is shown on the product page.",
+      "rationale": "The product page states shown in the flow contradict the required synchronized purchase summary.",
+      "review_status": "needs_review",
+      "created_at": "2026-04-27T10:47:28+00:00"
+    }
+  ]
+}
