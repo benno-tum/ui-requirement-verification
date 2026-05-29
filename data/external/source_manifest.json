@@ -1,0 +1,16 @@
+{
+  "promise_exp": {
+    "url": "https://raw.githubusercontent.com/AleksandarMitrevski/se-requirements-classification/master/0-datasets/PROMISE_exp/PROMISE_exp.arff",
+    "source_page": "https://github.com/AleksandarMitrevski/se-requirements-classification",
+    "path": "data/external/promise_exp/PROMISE_exp.arff",
+    "bytes": 115622,
+    "note": "PROMISE_exp ARFF dataset. This is not the missing Promise+.arff file; it is a public expanded PROMISE dataset suitable for external decomposer checks."
+  },
+  "user_stories_neodataset": {
+    "url": "https://huggingface.co/datasets/giseldo/neodataset/resolve/main/issues.csv",
+    "source_page": "https://huggingface.co/datasets/giseldo/neodataset",
+    "path": "data/external/user_stories/neodataset_issues.csv",
+    "bytes": 21914131,
+    "note": "NeoDataset user-story/issues CSV from Hugging Face."
+  }
+}

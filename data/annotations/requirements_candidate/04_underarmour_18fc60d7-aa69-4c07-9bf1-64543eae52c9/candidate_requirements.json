@@ -228,7 +228,7 @@
         "mutation_family:persistence_extension"
       ],
       "origin": "model",
-      "review_status": "needs_review",
+      "review_status": "rejected",
       "step_indices": [],
       "rationale": "The captured sequence supports retention of previously entered configuration details through later configuration steps.",
       "generation_model": "contrastive_import_manual",
