@@ -6,6 +6,7 @@ import re
 from typing import Any
 
 from ui_verifier.common.json_utils import parse_json_response
+from ui_verifier.model_config import model_name_for, provider_for, temperature_for
 from ui_verifier.requirements.claim_decomposition import decompose_requirement_claim_texts
 from ui_verifier.verification_pipeline.schemas import (
     RequirementClaim,
@@ -157,9 +158,16 @@ Return this JSON shape:
 
 
 class GeminiClaimDecomposer(ClaimDecomposer):
-    """Optional fast LLM fallback using the repo's existing Gemini wrapper."""
+    """Optional provider-aware text LLM fallback for weak heuristic decompositions."""
 
-    def __init__(self, *, model_name: str = "gemini-2.5-flash-lite", temperature: float = 0.0) -> None:
+    def __init__(
+        self,
+        *,
+        provider: str | None = None,
+        model_name: str = model_name_for("pipeline_claim_fallback"),
+        temperature: float = temperature_for("pipeline_claim_fallback"),
+    ) -> None:
+        self.provider = provider or provider_for("pipeline_claim_fallback")
         self.model_name = model_name
         self.temperature = temperature
 
@@ -167,10 +175,16 @@ class GeminiClaimDecomposer(ClaimDecomposer):
         if not requirements:
             return {}
 
-        from ui_verifier.requirements.gemini_client import run_gemini
+        from ui_verifier.requirements.llm_client import run_text_json_llm
 
         prompt = _build_llm_decomposition_prompt(requirements, max_claims=max_claims)
-        raw = run_gemini(prompt, [], model_name=self.model_name, temperature=self.temperature)
+        raw = run_text_json_llm(
+            prompt,
+            role="pipeline_claim_fallback",
+            provider=self.provider,
+            model_name=self.model_name,
+            temperature=self.temperature,
+        )
         parsed = parse_json_response(raw)
         return _parse_llm_decomposition_response(parsed, requirements, max_claims=max_claims)
 

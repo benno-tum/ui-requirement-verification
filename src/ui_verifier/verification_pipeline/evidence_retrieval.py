@@ -1,11 +1,14 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+import json
 from pathlib import Path
 import math
 import re
 from typing import Any
 
+from ui_verifier.common.json_utils import parse_json_response
+from ui_verifier.model_config import model_name_for, provider_for, temperature_for
 from ui_verifier.verification_pipeline.schemas import (
     EvidenceItem,
     RequirementClaim,
@@ -304,11 +307,160 @@ class EmbeddingEvidenceRetriever(EvidenceRetriever):
         return [_as_float_vector(vector) for vector in vectors]
 
 
+class TextLLMEvidenceRetriever(EvidenceRetriever):
+    """Text-only LLM reranker over extracted screen representations.
+
+    This does not inspect image pixels. It ranks the same screen text/OCR/summary
+    documents used by lexical and TF-IDF retrieval, then the downstream verifier
+    can inspect the screenshots for the selected steps.
+    """
+
+    def __init__(
+        self,
+        *,
+        top_k: int = 3,
+        provider: str | None = None,
+        model_name: str | None = None,
+        temperature: float | None = None,
+        fallback: EvidenceRetriever | None = None,
+    ) -> None:
+        super().__init__(top_k=top_k)
+        self.provider = provider or provider_for("evidence_retrieval")
+        self.model_name = model_name or model_name_for("evidence_retrieval")
+        self.temperature = temperature_for("evidence_retrieval") if temperature is None else temperature
+        self.fallback = fallback or TfidfEvidenceRetriever(top_k=top_k)
+
+    def retrieve(
+        self,
+        claims: list[RequirementClaim],
+        screens: list[ScreenRepresentation],
+    ) -> dict[str, list[EvidenceItem]]:
+        screen_docs = [_screen_document(screen) for screen in screens]
+        if not claims or not any(screen_docs):
+            return self.fallback.retrieve(claims, screens)
+
+        try:
+            rankings = self._rank_claims(claims, screens, screen_docs)
+        except Exception:
+            return self.fallback.retrieve(claims, screens)
+
+        results: dict[str, list[EvidenceItem]] = {}
+        for claim in claims:
+            ranked = rankings.get(claim.claim_id, [])
+            results[claim.claim_id] = [
+                _make_evidence(claim, screen, score=score, source="llm_text_rerank")
+                for score, screen in ranked[: self.top_k]
+                if score > 0.0
+            ]
+
+        if not any(results.values()):
+            return self.fallback.retrieve(claims, screens)
+        return results
+
+    def _rank_claims(
+        self,
+        claims: list[RequirementClaim],
+        screens: list[ScreenRepresentation],
+        screen_docs: list[str],
+    ) -> dict[str, list[tuple[float, ScreenRepresentation]]]:
+        from ui_verifier.requirements.llm_client import run_text_json_llm
+
+        prompt = self._prompt(claims, screens, screen_docs)
+        raw = run_text_json_llm(
+            prompt,
+            role="evidence_retrieval",
+            provider=self.provider,
+            model_name=self.model_name,
+            temperature=self.temperature,
+        )
+        parsed = parse_json_response(raw)
+        items = parsed.get("claims") if isinstance(parsed, dict) else None
+        if not isinstance(items, list):
+            raise ValueError("LLM retrieval response did not contain claim rankings.")
+
+        by_step = {screen.step_index: screen for screen in screens}
+        allowed_claim_ids = {claim.claim_id for claim in claims}
+        results: dict[str, list[tuple[float, ScreenRepresentation]]] = {}
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            claim_id = str(item.get("claim_id") or "")
+            if claim_id not in allowed_claim_ids:
+                continue
+            rankings = item.get("rankings")
+            if not isinstance(rankings, list):
+                continue
+            scored: list[tuple[float, ScreenRepresentation]] = []
+            for ranking in rankings:
+                if not isinstance(ranking, dict):
+                    continue
+                try:
+                    step_index = int(ranking.get("step_index"))
+                    score = float(ranking.get("score"))
+                except (TypeError, ValueError):
+                    continue
+                screen = by_step.get(step_index)
+                if screen is None:
+                    continue
+                scored.append((max(0.0, min(1.0, score)), screen))
+            scored.sort(key=lambda item: (-item[0], item[1].step_index))
+            results[claim_id] = scored
+        return results
+
+    def _prompt(self, claims: list[RequirementClaim], screens: list[ScreenRepresentation], screen_docs: list[str]) -> str:
+        claim_payload = [
+            {
+                "claim_id": claim.claim_id,
+                "requirement_id": claim.requirement_id,
+                "claim_text": claim.claim_text,
+            }
+            for claim in claims
+        ]
+        screen_payload = [
+            {
+                "step_index": screen.step_index,
+                "screen_text": _truncate(document, max_chars=900),
+                "sources": screen.sources,
+                "image_size": [screen.image_width, screen.image_height],
+            }
+            for screen, document in zip(screens, screen_docs, strict=False)
+        ]
+        payload = {
+            "claims": claim_payload,
+            "screens": screen_payload,
+            "top_k": self.top_k,
+        }
+        return f"""
+Rank screenshot steps for verifying UI claims.
+
+Use only the provided extracted screen text/OCR/summary. Do not assume image details not present in the text.
+Return the most relevant steps for screenshot verification. Give score 0.0 when a step is not useful.
+
+Input JSON:
+{json.dumps(payload, indent=2, ensure_ascii=False)}
+
+Return JSON only:
+{{
+  "claims": [
+    {{
+      "claim_id": "claim id from input",
+      "rankings": [
+        {{"step_index": 1, "score": 0.0, "reason": "short text-only reason"}}
+      ]
+    }}
+  ]
+}}
+""".strip()
+
+
 def build_evidence_retriever(
     retriever: str,
     *,
     top_k: int = 3,
     embedding_model_path: str | None = None,
+    llm_provider: str | None = None,
+    llm_model_name: str | None = None,
+    llm_temperature: float | None = None,
 ) -> EvidenceRetriever:
     normalized = retriever.strip().lower()
     if normalized == "lexical":
@@ -317,4 +469,11 @@ def build_evidence_retriever(
         return TfidfEvidenceRetriever(top_k=top_k)
     if normalized == "embedding":
         return EmbeddingEvidenceRetriever(top_k=top_k, model_name_or_path=embedding_model_path)
-    raise ValueError("retriever must be one of: lexical, tfidf, embedding")
+    if normalized == "llm":
+        return TextLLMEvidenceRetriever(
+            top_k=top_k,
+            provider=llm_provider,
+            model_name=llm_model_name,
+            temperature=llm_temperature,
+        )
+    raise ValueError("retriever must be one of: lexical, tfidf, embedding, llm")

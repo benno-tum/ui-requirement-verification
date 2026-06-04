@@ -25,8 +25,9 @@ flowchart LR
 - `schemas.py`: Pydantic v2 models for screenshots, screen representations, requirements, claims, evidence, claim results, requirement results, and pipeline input/output.
 - `screen_understanding.py`: Loads image metadata, preserves `step_index`, reads optional OCR or summary sidecars, extracts already available text from Mind2Web `steps.json` HTML, and returns `ScreenRepresentation`.
 - `requirement_understanding.py`: Heuristic UI evaluability classifier and claim decomposition wrapper. It reuses the existing `ui_verifier.requirements.claim_decomposition` code.
-- `evidence_retrieval.py`: Strategy-based retrieval with lexical default, optional TF-IDF if `sklearn` is installed, and optional local embedding retrieval if `sentence-transformers` and a local model path are available.
+- `evidence_retrieval.py`: Strategy-based retrieval with lexical default, optional TF-IDF if `sklearn` is installed, optional local text embedding retrieval if `sentence-transformers` and a local model path are available, and optional text-only LLM reranking over extracted screen text.
 - `claim_verification.py`: Rule-based placeholder verifier. It supports strong, weak, missing, and hidden evidence cases but does not invent contradictions.
+- `gemini_image_claim_verifier.py`: Optional screenshot-grounded Gemini verifier for claim status decisions after retrieval selects candidate evidence steps.
 - `label_aggregation.py`: Deterministic label gates enforcing the evidence-first policy.
 - `pipeline.py`: Dependency-injected orchestration so Gemini, OCR, retrieval, and fine-tuned components can be swapped in later.
 
@@ -41,20 +42,41 @@ python scripts/run_verification_pipeline.py \
   --top-k 3
 ```
 
-`--retriever` supports `lexical`, `tfidf`, and `embedding`. TF-IDF and embedding retrieval fall back safely when optional libraries or local models are unavailable.
+`--retriever` supports `lexical`, `tfidf`, `embedding`, and `llm`. TF-IDF and embedding retrieval fall back safely when optional libraries or local models are unavailable. The LLM retriever is text-only: it ranks claims against extracted screen text, OCR, and summaries, then passes selected screenshots to the verifier.
 
-Claim decomposition is heuristic by default. To use a fast optional LLM fallback only for requirements where heuristic decomposition looks weak, pass:
+Claim decomposition is rules-first with an LLM fallback enabled by default. The fallback is only used for requirements where heuristic decomposition looks weak:
 
 ```bash
 python scripts/run_verification_pipeline.py \
   --flow-dir data/processed/flows/mind2web/<flow_id> \
   --requirements requirements.json \
   --out data/generated/verification_pipeline/<flow_id>.json \
-  --llm-claim-fallback \
-  --claim-model gemini-2.5-flash-lite
+  --claim-provider deepseek \
+  --claim-model deepseek-chat
 ```
 
-The fallback reuses the existing Gemini wrapper and sends failed decomposition cases in one batch. It is never required for tests or offline execution.
+The fallback sends failed decomposition cases in one batch. To force fully deterministic/offline decomposition, pass `--no-llm-claim-fallback`.
+
+Screenshot-grounded claim verification can be enabled with Gemini:
+
+```bash
+python scripts/run_verification_pipeline.py \
+  --flow-dir data/processed/flows/mind2web/<flow_id> \
+  --requirements requirements.json \
+  --out data/generated/verification_pipeline/<flow_id>.json \
+  --retriever llm \
+  --top-k 4 \
+  --claim-provider deepseek \
+  --claim-model deepseek-chat \
+  --retriever-provider deepseek \
+  --retriever-model deepseek-chat \
+  --verifier gemini-image \
+  --verifier-model gemini-2.5-flash-lite \
+  --max-verifier-images 4 \
+  --max-gemini-api-calls 24
+```
+
+`--top-k` controls how many candidate evidence steps each claim can receive from retrieval. `--max-verifier-images` controls how many of those selected screenshots are attached per claim to the image verifier. They are related but not the same parameter.
 
 ## Input Example
 
@@ -134,6 +156,9 @@ Optional TF-IDF and embedding retrievers use guarded imports only. They do not m
 - OCR is sidecar-only unless a future component is injected.
 - Lexical retrieval is a deterministic fallback, not a semantic verifier.
 - The rule-based claim verifier does not detect contradictions.
+- The LLM retriever is text-only and depends on extracted text quality; it does not inspect screenshot pixels.
+- The Gemini image verifier currently sends original PNG bytes without downscaling in this production path.
+- Image verification is claim-level and can fall back to the deterministic verifier when the API call cap is reached.
 - Bounding boxes are supported in the schema but not localized yet.
 - Screen summaries are placeholders unless sidecar or HTML text exists.
 

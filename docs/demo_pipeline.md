@@ -106,12 +106,12 @@ Atomic requirements fall back to exactly one claim, so the demo does not depend 
 
 ## Gemini / MLLM
 
-The demo path is deterministic by default and does not require an API key.
+The demo path uses rules-first claim decomposition with Gemini fallback enabled by default when `GEMINI_API_KEY` is available.
 The current command does not use a Gemini vision verifier; output metadata records `gemini_mllm_verifier_used: false`.
-The optional existing text-only claim-decomposition fallback can be requested with:
+To force deterministic claim decomposition without Gemini, pass:
 
 ```bash
-PYTHONPATH=src:. python scripts/run_demo_verification.py --flow-id 03_mbta --llm-claim-fallback
+PYTHONPATH=src:. python scripts/run_demo_verification.py --flow-id 03_mbta --no-llm-claim-fallback
 ```
 
 If `GEMINI_API_KEY` is missing, the script falls back to deterministic claim decomposition.

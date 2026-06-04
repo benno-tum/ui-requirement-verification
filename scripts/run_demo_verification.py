@@ -28,6 +28,7 @@ if str(BASE_DIR) not in sys.path:
 from scripts.generate_ocr_sidecars import OcrRunSummary, generate_ocr_sidecars
 from scripts.run_verification_pipeline import _load_steps_metadata, load_requirements
 from ui_verifier.common.flow_utils import find_step_images, parse_step_number
+from ui_verifier.model_config import model_name_for, temperature_for
 from ui_verifier.common.json_utils import parse_json_response
 from ui_verifier.verification_pipeline.claim_verification import ClaimVerifier
 from ui_verifier.verification_pipeline.evidence_retrieval import build_evidence_retriever
@@ -276,8 +277,8 @@ class GeminiImageClaimVerifier:
         flow_id: str,
         screenshot_steps: list[ScreenshotStep],
         cache_path: Path,
-        model_name: str = "gemini-2.5-flash-lite",
-        temperature: float = 0.0,
+        model_name: str = model_name_for("demo_image_verifier"),
+        temperature: float = temperature_for("demo_image_verifier"),
         max_images_per_claim: int = 6,
         max_retries: int = 0,
         max_api_calls: int | None = 10,
@@ -1314,8 +1315,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--top-k", type=int, default=3)
     parser.add_argument("--screen-source", choices=["current", "image-only"], default="current")
     parser.add_argument("--verifier", choices=["deterministic", "gemini-image"], default="deterministic")
-    parser.add_argument("--verifier-model", default="gemini-2.5-flash-lite")
-    parser.add_argument("--verifier-temperature", type=float, default=0.0)
+    parser.add_argument("--verifier-model", default=model_name_for("demo_image_verifier"))
+    parser.add_argument("--verifier-temperature", type=float, default=temperature_for("demo_image_verifier"))
     parser.add_argument("--max-verifier-images", type=int, default=6)
     parser.add_argument("--gemini-max-retries", type=int, default=0)
     parser.add_argument(
@@ -1326,8 +1327,20 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--ocr", choices=["missing", "force", "never"], default="missing")
     parser.add_argument("--tesseract-cmd", default="tesseract")
-    parser.add_argument("--llm-claim-fallback", action="store_true")
-    parser.add_argument("--claim-model", default="gemini-2.5-flash-lite")
+    parser.add_argument(
+        "--llm-claim-fallback",
+        dest="llm_claim_fallback",
+        action="store_true",
+        default=True,
+        help="Use Gemini as the default fallback for weak claim decompositions.",
+    )
+    parser.add_argument(
+        "--no-llm-claim-fallback",
+        dest="llm_claim_fallback",
+        action="store_false",
+        help="Use only deterministic rule-based claim decomposition.",
+    )
+    parser.add_argument("--claim-model", default=model_name_for("pipeline_claim_fallback"))
     parser.add_argument("--no-report", action="store_true", help="Do not write a Markdown summary next to the JSON")
     parser.add_argument("--no-artifacts", action="store_true", help="Do not write stage-by-stage artifact files")
     parser.add_argument("--no-package", action="store_true", help="Do not create a zip package of JSON, report, and artifacts")
