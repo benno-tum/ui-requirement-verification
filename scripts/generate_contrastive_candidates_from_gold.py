@@ -3,6 +3,8 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
+from ui_verifier.model_config import model_name_for, temperature_for
+
 from ui_verifier.requirements.contrastive_generation import (
     DEFAULT_CONTEXT_ROOT,
     DEFAULT_FLOW_ROOT,
@@ -31,8 +33,8 @@ def main() -> None:
     parser.add_argument("--target-partially", type=int, default=5)
     parser.add_argument("--target-abstain", type=int, default=5)
     parser.add_argument("--target-not-fulfilled", type=int, default=5)
-    parser.add_argument("--model", type=str, default="manual-chatgpt")
-    parser.add_argument("--temperature", type=float, default=0.2)
+    parser.add_argument("--model", type=str, default=model_name_for("contrastive_generation"))
+    parser.add_argument("--temperature", type=float, default=temperature_for("contrastive_generation"))
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--prepare-manual-bundle", action="store_true")
     parser.add_argument("--print-prompt", action="store_true")

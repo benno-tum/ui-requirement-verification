@@ -77,7 +77,7 @@ def test_prepare_manual_bundle_writes_expected_files(tmp_path: Path) -> None:
         prompt="prompt body",
         task=task,
         gold_file=gold_file,
-        model_name="manual-chatgpt",
+        model_name="user-provided-model",
         temperature=0.3,
         target_partially=5,
         target_abstain=4,
@@ -92,7 +92,7 @@ def test_prepare_manual_bundle_writes_expected_files(tmp_path: Path) -> None:
         encoding="utf-8"
     )
     context = json.loads((bundle_dir / "generation_context.json").read_text(encoding="utf-8"))
-    assert context["model"] == "manual-chatgpt"
+    assert context["model"] == "user-provided-model"
     assert context["temperature"] == 0.3
 
 
@@ -163,7 +163,7 @@ def test_normalize_model_contrastive_filters_duplicates_and_paraphrases(tmp_path
     contrastive_file = normalize_model_contrastive_candidates(
         parsed=parsed,
         gold_file=gold_file,
-        model_name="manual-chatgpt",
+        model_name="user-provided-model",
         prompt_path=prompt_path,
         output_dir=output_dir,
         generation_temperature=0.2,
@@ -252,7 +252,7 @@ def test_parse_existing_response_saves_contrastive_candidates(tmp_path: Path) ->
     contrastive_file = parse_existing_response(
         flow_id=flow_id,
         raw_response_path=raw_response_path,
-        model_name="manual-chatgpt",
+        model_name="user-provided-model",
         generation_temperature=0.25,
         gold_root=gold_root,
         flow_root=flow_root,
@@ -264,7 +264,7 @@ def test_parse_existing_response_saves_contrastive_candidates(tmp_path: Path) ->
     assert saved_path.exists()
     saved = json.loads(saved_path.read_text(encoding="utf-8"))
     assert saved["flow_overview"] == "Harvested overview"
-    assert saved["generation_model"] == "manual-chatgpt"
+    assert saved["generation_model"] == "user-provided-model"
     assert saved["generation_temperature"] == 0.25
     assert len(saved["requirements"]) == 1
     assert saved["requirements"][0]["review_status"] == "candidate"

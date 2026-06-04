@@ -7,6 +7,8 @@ import os
 import re
 from typing import List
 
+from ui_verifier.model_config import model_name_for
+
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 DEFAULT_FLOW_ROOT = BASE_DIR / "data" / "processed" / "flows" / "mind2web"
@@ -177,6 +179,7 @@ Additional constraints:
 def run_gemini(prompt: str, image_bytes_list: List[bytes], model_name: str) -> str:
     from google import genai
     from google.genai import types
+    from ui_verifier.requirements.gemini_usage import extract_usage_metadata, record_gemini_usage
 
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
@@ -197,6 +200,12 @@ def run_gemini(prompt: str, image_bytes_list: List[bytes], model_name: str) -> s
         ),
     )
 
+    record_gemini_usage(
+        model_name=model_name,
+        usage=extract_usage_metadata(response),
+        image_count=len(image_bytes_list),
+    )
+
     return response.text
 
 
@@ -212,7 +221,7 @@ def main():
     parser.add_argument("--max-images", type=int, default=None, help="Only used with --flow-dir if --steps is not given")
     parser.add_argument("--mode", choices=["per_image", "changes", "both"], default="both")
     parser.add_argument("--image-max-side", type=int, default=1024)
-    parser.add_argument("--model", type=str, default="gemini-2.5-flash")
+    parser.add_argument("--model", type=str, default=model_name_for("screen_description"))
     parser.add_argument("--task", type=str, default=None, help="Optional task text")
     parser.add_argument("--out-file", type=Path, default=None, help="Explicit output JSON path")
     parser.add_argument("--dry-run", action="store_true")

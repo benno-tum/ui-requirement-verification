@@ -663,7 +663,7 @@ def prepare_bundle_for_flow(
     target_partially: int = 5,
     target_abstain: int = 5,
     target_not_fulfilled: int = 5,
-    model_name: str = "manual-chatgpt",
+    model_name: str = "user-provided-model",
     temperature: float = 0.2,
 ) -> tuple[Path, str]:
     prompt, task, gold_file, _ = build_prompt_for_flow(

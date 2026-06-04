@@ -18,6 +18,7 @@ from ui_verifier.common.flow_utils import (
 )
 from ui_verifier.common.image_utils import downscale_to_png_bytes
 from ui_verifier.common.json_utils import load_json, parse_json_response
+from ui_verifier.model_config import model_name_for, temperature_for
 from ui_verifier.requirements.claim_decomposition import build_requirement_claims
 from ui_verifier.requirement_inspection.schemas import (
     AnnotationConfidence,
@@ -925,10 +926,10 @@ def main() -> None:
     parser.add_argument("--steps", type=str, default=None, help="Manual step selection, e.g. 1,4,7,10")
     parser.add_argument("--max-images", type=int, default=None, help="Used if --steps is not given; default keeps all screenshots")
     parser.add_argument("--image-max-side", type=int, default=1280)
-    parser.add_argument("--model", type=str, default="gemini-2.5-flash")
-    parser.add_argument("--harvest-temperature", type=float, default=0.0)
-    parser.add_argument("--candidate-model", type=str, default="gemini-2.5-flash-lite")
-    parser.add_argument("--candidate-temperature", type=float, default=0.0)
+    parser.add_argument("--model", type=str, default=model_name_for("requirement_harvest"))
+    parser.add_argument("--harvest-temperature", type=float, default=temperature_for("requirement_harvest"))
+    parser.add_argument("--candidate-model", type=str, default=model_name_for("candidate_rewrite"))
+    parser.add_argument("--candidate-temperature", type=float, default=temperature_for("candidate_rewrite"))
     parser.add_argument("--hybrid-mode", action="store_true")
     parser.add_argument("--pure-prior-top-k", type=int, default=6)
     parser.add_argument("--print-prompt", action="store_true")

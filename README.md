@@ -43,7 +43,7 @@ npm install
 npm run dev
 ```
 
-Optional for generation and verification with Gemini:
+Optional for generation and verification with Gemini and text-only DeepSeek experiments:
 
 ```bash
 cp .env.example .env
@@ -52,8 +52,36 @@ cp .env.example .env
 Add:
 
 ```bash
-GEMINI_API_KEY=your_api_key_here
+GEMINI_API_KEY=your_gemini_api_key_here
+GEMINI_EUR_PER_USD=0.92
+DEEPSEEK_API_KEY=your_deepseek_api_key_here
 ```
+
+Gemini API calls through the repository wrapper are logged locally under
+`data/generated/gemini_usage/`. The app exposes the aggregate via:
+
+```text
+GET http://127.0.0.1:8000/gemini-usage
+```
+
+The log stores token counts, model name, image count, estimated USD cost, and
+estimated EUR cost if `GEMINI_EUR_PER_USD` is set. Treat this as a local estimate;
+Google Billing remains the source of truth for taxes, currency conversion, credits,
+and final charges.
+
+Model defaults are role-based and configured in `configs/models.json`. Override the
+whole file with `UI_VERIFIER_MODEL_CONFIG` or a single role with variables such as
+`UI_VERIFIER_CLAIM_DECOMPOSITION_PROVIDER`,
+`UI_VERIFIER_CLAIM_DECOMPOSITION_MODEL`, and
+`UI_VERIFIER_CLAIM_DECOMPOSITION_TEMPERATURE`. The backend exposes the active
+resolved values via:
+
+```text
+GET http://127.0.0.1:8000/model-config
+```
+
+See `docs/model_configuration.md` for recommended model choices and evaluation
+override examples.
 
 URLs:
 

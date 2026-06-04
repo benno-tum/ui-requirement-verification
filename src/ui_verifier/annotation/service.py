@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from ui_verifier.annotation.storage import AnnotationStorage
+from ui_verifier.model_config import model_name_for
 from ui_verifier.requirements.candidate_generation import build_verification_candidates
 from ui_verifier.requirements.schemas import (
     BenchmarkDecision,
@@ -84,7 +85,7 @@ class AnnotationService:
         self,
         flow_id: str,
         *,
-        candidate_model_name: str = "gemini-2.5-flash-lite",
+        candidate_model_name: str = model_name_for("candidate_rewrite"),
         allow_overwrite_with_gold: bool = False,
     ) -> CandidateRequirementFile:
         gold_file = self.storage.load_gold_file(flow_id)

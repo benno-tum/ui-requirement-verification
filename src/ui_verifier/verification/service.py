@@ -5,6 +5,7 @@ import json
 from typing import Any
 
 from ui_verifier.annotation.service import AnnotationService
+from ui_verifier.model_config import model_name_for
 from ui_verifier.common.flow_utils import (
     find_step_images,
     parse_step_number,
@@ -118,7 +119,7 @@ class VerificationService:
         steps_arg: str | None = None,
         max_images: int | None = 4,
         image_max_side: int = 1024,
-        model_name: str = "gemini-2.5-flash",
+        model_name: str = model_name_for("verification"),
         dry_run: bool = False,
     ) -> VerificationRun | None:
         flow_id = flow_dir.name
