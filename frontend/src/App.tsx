@@ -3,7 +3,7 @@ import {
   ApiError,
   api,
   resolveAssetUrl,
-  type DemoVerificationRun,
+  type PipelineVerificationRun,
   type FlowStep,
   type FlowSummary,
   type HarvestedRequirement,
@@ -15,7 +15,7 @@ import {
 } from './api'
 
 type LoadState = 'idle' | 'loading' | 'error'
-type ViewMode = 'single' | 'multi' | 'overview' | 'harvested' | 'demo'
+type ViewMode = 'single' | 'multi' | 'overview' | 'harvested' | 'verification'
 type EditorMode = 'candidate' | 'verification_gold'
 type RequirementLike = Requirement | VerificationGoldItem
 
@@ -33,6 +33,14 @@ type ClaimFormState = {
   evidenceSteps: number[]
   note: string
   uncertaintyReasons: string[]
+}
+
+type PipelineResult = PipelineVerificationRun['results'][number]
+type PipelineClaim = PipelineResult['claims'][number]
+type ClaimAlignment = {
+  goldClaim: VerificationClaim | null
+  predictedClaim: PipelineClaim | null
+  score: number
 }
 
 type RequirementFormState = {
@@ -56,7 +64,7 @@ const VIEW_TABS: Array<{id: ViewMode; label: string}> = [
   {id: 'multi', label: 'Multi-screen review'},
   {id: 'overview', label: 'Overview'},
   {id: 'harvested', label: 'Harvested'},
-  {id: 'demo', label: 'Demo run'},
+  {id: 'verification', label: 'Verification run'},
 ]
 
 const VERIFICATION_LABELS = ['FULFILLED', 'PARTIALLY_FULFILLED', 'NOT_FULFILLED', 'ABSTAIN']
@@ -84,7 +92,7 @@ function App() {
   const [harvested, setHarvested] = useState<HarvestedRequirement[]>([])
   const [candidates, setCandidates] = useState<Requirement[]>([])
   const [verificationGold, setVerificationGold] = useState<VerificationGoldItem[]>([])
-  const [demoRun, setDemoRun] = useState<DemoVerificationRun | null>(null)
+  const [pipelineRun, setPipelineRun] = useState<PipelineVerificationRun | null>(null)
   const [detailsState, setDetailsState] = useState<LoadState>('idle')
   const [message, setMessage] = useState<string>('')
   const [annotatedBy, setAnnotatedBy] = useState<string>('benno')
@@ -146,18 +154,18 @@ function App() {
     setHarvested([])
     setCandidates([])
     setVerificationGold([])
-    setDemoRun(null)
+    setPipelineRun(null)
 
     try {
       const flow = await api.getFlow(flowId)
       setSelectedFlow(flow)
 
-      const [stepsResult, harvestedResult, candidatesResult, verificationGoldResult, demoRunResult] = await Promise.allSettled([
+      const [stepsResult, harvestedResult, candidatesResult, verificationGoldResult, pipelineRunResult] = await Promise.allSettled([
         api.getSteps(flowId),
         api.listHarvested(flowId),
         api.listCandidates(flowId),
         api.listVerificationGold(flowId),
-        api.getLatestDemoVerification(flowId),
+        api.getLatestPipelineVerification(flowId),
       ])
 
       if (stepsResult.status === 'fulfilled') {
@@ -172,8 +180,8 @@ function App() {
       if (verificationGoldResult.status === 'fulfilled') {
         setVerificationGold(verificationGoldResult.value)
       }
-      if (demoRunResult.status === 'fulfilled') {
-        setDemoRun(demoRunResult.value)
+      if (pipelineRunResult.status === 'fulfilled') {
+        setPipelineRun(pipelineRunResult.value)
       }
 
       setDetailsState('idle')
@@ -544,9 +552,10 @@ function App() {
           />
         )}
 
-        {selectedFlow && viewMode === 'demo' && (
-          <DemoRunPanel
-            demoRun={demoRun}
+        {selectedFlow && viewMode === 'verification' && (
+          <VerificationRunPanel
+            pipelineRun={pipelineRun}
+            verificationGold={verificationGold}
             onJumpToStep={jumpToStep}
           />
         )}
@@ -1072,29 +1081,37 @@ function HarvestedPanel({
   )
 }
 
-function DemoRunPanel({
-  demoRun,
+function VerificationRunPanel({
+  pipelineRun,
+  verificationGold,
   onJumpToStep,
 }: {
-  demoRun: DemoVerificationRun | null
+  pipelineRun: PipelineVerificationRun | null
+  verificationGold: VerificationGoldItem[]
   onJumpToStep: (stepIndex: number) => void
 }) {
-  if (!demoRun) {
+  const [selectedRequirementId, setSelectedRequirementId] = useState<string | null>(null)
+  const goldById = useMemo(() => new Map(verificationGold.map((item) => [item.requirement_id, item])), [verificationGold])
+  const resultById = useMemo(() => new Map((pipelineRun?.results ?? []).map((result) => [result.requirement_id, result])), [pipelineRun])
+  const selectedResult = selectedRequirementId ? resultById.get(selectedRequirementId) ?? null : null
+  const selectedGold = selectedRequirementId ? goldById.get(selectedRequirementId) ?? null : null
+
+  if (!pipelineRun) {
     return (
       <section className="card">
         <div className="panel-header">
-          <h3>Demo run</h3>
-          <span>No generated demo verification output exists for this flow yet.</span>
+          <h3>Verification run</h3>
+          <span>No generated verification pipeline output exists for this flow yet.</span>
         </div>
         <p className="inline-note">Run the CLI command from the repository root, then refresh this page:</p>
-        <pre className="code-block">PYTHONPATH=src:. python scripts/run_demo_verification.py --flow-id &lt;flow_id&gt;</pre>
+        <pre className="code-block">PYTHONPATH=src python scripts/run_verification_pipeline.py --flow-dir data/processed/flows/mind2web/&lt;flow_id&gt; --requirements data/annotations/verification_gold/&lt;flow_id&gt;/verification_gold.json --out data/generated/verification_pipeline/&lt;flow_id&gt;.json</pre>
       </section>
     )
   }
 
-  const metadata = demoRun.metadata
-  const labelDistribution = (metadata.label_distribution ?? {}) as Record<string, number>
-  const claimStatusDistribution = (metadata.claim_status_distribution ?? {}) as Record<string, number>
+  const metadata = pipelineRun.metadata
+  const labelDistribution = (metadata.label_distribution ?? labelDistributionForResults(pipelineRun.results)) as Record<string, number>
+  const claimStatusDistribution = (metadata.claim_status_distribution ?? claimStatusDistributionForResults(pipelineRun.results)) as Record<string, number>
   const referenceComparison = (metadata.reference_comparison ?? {}) as {
     summary?: Record<string, unknown>
     items?: Array<Record<string, unknown>>
@@ -1113,51 +1130,88 @@ function DemoRunPanel({
     <section className="stack-layout">
       <section className="card">
         <div className="panel-header">
-          <h3>Demo verification run</h3>
-          <span>{demoRun.flow_id}</span>
+          <h3>Verification pipeline run</h3>
+          <span>{pipelineRun.flow_id}</span>
         </div>
         <div className="metric-grid">
-          <Metric label="Requirements" value={String(metadata.requirements_count ?? demoRun.results.length)} />
-          <Metric label="Claims" value={String(metadata.claim_count ?? demoRun.results.reduce((sum, result) => sum + result.claims.length, 0))} />
-          <Metric label="Retriever" value={String(metadata.selected_retriever ?? metadata.retriever ?? 'unknown')} />
-          <Metric label="Verifier" value={String(metadata.verifier ?? 'unknown')} />
+          <Metric label="Requirements" value={String(metadata.requirements_count ?? pipelineRun.results.length)} />
+          <Metric label="Claims" value={String(metadata.claim_count ?? pipelineRun.results.reduce((sum, result) => sum + result.claims.length, 0))} />
+          <Metric label="Retriever" value={String(metadata.selected_retriever ?? metadata.retriever ?? metadata.requested_retriever ?? 'unknown')} />
+          <Metric label="Claim model" value={String(metadata.claim_model ?? 'rule-based')} />
+          <Metric label="Verifier" value={String(metadata.verifier ?? 'deterministic')} />
+          <Metric label="Verifier model" value={String(metadata.verifier_model ?? 'rule-based')} />
           <Metric label="Reference matches" value={`${comparisonSummary.matches ?? 'n/a'} / ${comparisonSummary.compared_items ?? 'n/a'}`} />
-          <Metric label="Reference accuracy" value={comparisonSummary.accuracy_on_matched_ids === undefined ? 'n/a' : String(comparisonSummary.accuracy_on_matched_ids)} />
+          <Metric label="Reference accuracy" value={formatMetricValue(comparisonSummary.accuracy_on_matched_ids)} />
         </div>
         <div className="meta-block">
           <span>Labels: {formatDistribution(labelDistribution)}</span>
           <span>Claim statuses: {formatDistribution(claimStatusDistribution)}</span>
-          <span>Screen source mode: {String(metadata.screen_source_mode ?? 'current')}</span>
-          <span>Raw HTML used: {String(metadata.raw_html_used ?? 'unknown')}</span>
-          <span>Screenshot images used: {String(metadata.screenshot_images_used ?? 'unknown')}</span>
-          <span>OCR: {String(((metadata.ocr ?? {}) as Record<string, unknown>).status ?? 'unknown')}</span>
-          <span>Gemini/MLLM verifier used: {String(metadata.gemini_mllm_verifier_used ?? false)}</span>
+          <span>Run source: {String(metadata.run_source ?? metadata.pipeline ?? 'verification_pipeline')}</span>
+          <span>Run path: {String(metadata.run_path ?? 'unknown')}</span>
+          <span>Requirements: {String(metadata.requirements_path ?? 'unknown')}</span>
+          <span>Claim provider: {String(metadata.claim_provider ?? 'rule_based')}</span>
+          <span>Top-k: {String(metadata.top_k ?? 'unknown')}</span>
         </div>
       </section>
 
       <section className="card">
         <div className="panel-header">
           <h3>Reviewed-label comparison</h3>
-          <span>Rows with disagreement are listed first.</span>
+          <span>Rows with disagreement are listed first. This compares the latest pipeline run to verification gold.</span>
         </div>
         {comparisonRows.length > 0 ? (
-          <div className="demo-table">
+          <div className="demo-table review-comparison-table">
             <div className="demo-table-header">
               <span>Requirement</span>
               <span>Prediction</span>
               <span>Reviewed</span>
+              <span>Ambiguity</span>
+              <span>Claim composition</span>
               <span>Evidence</span>
             </div>
-            {comparisonRows.map((row) => (
-              <div key={String(row.requirement_id)} className="demo-table-row">
-                <strong>{String(row.requirement_id)}</strong>
-                <span className={`status-pill ${statusClass(String(row.predicted_label ?? 'unknown'))}`}>{humanizeStatus(String(row.predicted_label ?? 'unknown'))}</span>
-                <span className={`status-pill ${statusClass(String(row.reference_label ?? 'unknown'))}`}>{humanizeStatus(String(row.reference_label ?? 'unknown'))}</span>
-                <span>
-                  <StepChipList stepIndices={(row.predicted_evidence_steps ?? []) as number[]} onJumpToStep={onJumpToStep} />
-                </span>
-              </div>
-            ))}
+            {comparisonRows.map((row) => {
+              const requirementId = String(row.requirement_id)
+              const result = resultById.get(requirementId)
+              const goldItem = goldById.get(requirementId)
+              return (
+                <div
+                  key={requirementId}
+                  className="demo-table-row comparison-row-button"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => setSelectedRequirementId(requirementId)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault()
+                      setSelectedRequirementId(requirementId)
+                    }
+                  }}
+                >
+                  <strong>{requirementId}</strong>
+                  <span className={`status-pill ${statusClass(String(row.predicted_label ?? 'unknown'))}`}>{humanizeStatus(String(row.predicted_label ?? 'unknown'))}</span>
+                  <span className={`status-pill ${statusClass(String(row.reference_label ?? 'unknown'))}`}>{humanizeStatus(String(row.reference_label ?? 'unknown'))}</span>
+                  <span className="review-mini-stack">
+                    <strong>Manual</strong>
+                    <span title={formatReasons(goldItem?.uncertainty_reasons ?? [])}>{formatReasons(goldItem?.uncertainty_reasons ?? [])}</span>
+                    <strong>Pipeline</strong>
+                    <span title={formatReasons(result?.uncertainty_reasons ?? [])}>{formatReasons(result?.uncertainty_reasons ?? [])}</span>
+                  </span>
+                  <span className="review-mini-stack">
+                    <strong>Manual</strong>
+                    <span title={formatDistribution(claimStatusDistributionForGoldClaims(goldItem?.claims ?? []))}>
+                      {formatCompactDistribution(claimStatusDistributionForGoldClaims(goldItem?.claims ?? []))}
+                    </span>
+                    <strong>Pipeline</strong>
+                    <span title={formatDistribution(claimStatusDistributionForPipelineClaims(result?.claims ?? []))}>
+                      {formatCompactDistribution(claimStatusDistributionForPipelineClaims(result?.claims ?? []))}
+                    </span>
+                  </span>
+                  <span>
+                    <StepChipList stepIndices={(row.predicted_evidence_steps ?? []) as number[]} onJumpToStep={onJumpToStep} />
+                  </span>
+                </div>
+              )
+            })}
           </div>
         ) : (
           <p className="empty-text">No reviewed reference comparison was available.</p>
@@ -1170,7 +1224,7 @@ function DemoRunPanel({
           <span>Each decision includes claim-level evidence.</span>
         </div>
         <div className="requirement-list">
-          {demoRun.results.map((result) => (
+          {pipelineRun.results.map((result) => (
             <article key={result.requirement_id} className="requirement-card">
               <div className="requirement-header">
                 <strong>{result.requirement_id}</strong>
@@ -1194,11 +1248,278 @@ function DemoRunPanel({
                   </div>
                 ))}
               </div>
+              <div className="button-row left">
+                <button className="secondary-button" onClick={() => setSelectedRequirementId(result.requirement_id)}>
+                  Inspect manual vs pipeline
+                </button>
+              </div>
             </article>
           ))}
         </div>
       </section>
+      {selectedResult && (
+        <VerificationComparisonModal
+          result={selectedResult}
+          gold={selectedGold}
+          onClose={() => setSelectedRequirementId(null)}
+          onJumpToStep={onJumpToStep}
+        />
+      )}
     </section>
+  )
+}
+
+function VerificationComparisonModal({
+  result,
+  gold,
+  onClose,
+  onJumpToStep,
+}: {
+  result: PipelineResult
+  gold: VerificationGoldItem | null
+  onClose: () => void
+  onJumpToStep: (stepIndex: number) => void
+}) {
+  const goldLabel = normalizeDisplayValue(gold?.verification_label)
+  const predictedLabel = normalizeDisplayValue(result.final_label)
+  const labelMismatch = goldLabel !== 'unknown' && goldLabel !== predictedLabel
+  const falseFulfillment = predictedLabel === 'FULFILLED' && goldLabel !== 'FULFILLED' && goldLabel !== 'unknown'
+  const predictedEvidenceSteps = uniqueEvidenceSteps(result.evidence)
+  const goldEvidenceSteps = gold?.evidence_steps ?? []
+  const evidenceOverlap = intersectNumbers(goldEvidenceSteps, predictedEvidenceSteps)
+  const alignments = alignClaims(gold?.claims ?? [], result.claims)
+  const manualClaimDistribution = claimStatusDistributionForGoldClaims(gold?.claims ?? [])
+  const pipelineClaimDistribution = claimStatusDistributionForPipelineClaims(result.claims)
+  const rootFindings = comparisonFindings({
+    gold,
+    result,
+    goldLabel,
+    predictedLabel,
+    falseFulfillment,
+    labelMismatch,
+    evidenceOverlap,
+    alignments,
+  })
+
+  return (
+    <div className="modal-backdrop" onClick={onClose}>
+      <div className="modal-card comparison-modal-card" onClick={(event) => event.stopPropagation()}>
+        <div className="panel-header align-start">
+          <div>
+            <h3>Manual vs pipeline comparison</h3>
+            <span>{result.requirement_id}</span>
+          </div>
+          <button className="secondary-button" onClick={onClose}>
+            Close
+          </button>
+        </div>
+
+        <section className={falseFulfillment ? 'comparison-hero high-risk' : 'comparison-hero'}>
+          <div>
+            <span className="mini-label">Requirement</span>
+            <p>{gold?.text ?? result.requirement_text}</p>
+          </div>
+          <div className="comparison-verdict-strip">
+            <div>
+              <span>Manual benchmark</span>
+              <strong className={`status-pill ${statusClass(goldLabel)}`}>{humanizeStatus(goldLabel)}</strong>
+            </div>
+            <div>
+              <span>Pipeline decision</span>
+              <strong className={`status-pill ${statusClass(predictedLabel)}`}>{humanizeStatus(predictedLabel)}</strong>
+            </div>
+            <div>
+              <span>Risk</span>
+              <strong>{falseFulfillment ? 'False fulfillment' : labelMismatch ? 'Label mismatch' : 'Label aligned'}</strong>
+            </div>
+          </div>
+        </section>
+
+        <section className="comparison-section">
+          <div className="panel-header">
+            <h4>Final label and claim composition</h4>
+            <span>The pipeline label is produced by the aggregation step, not by copying one claim.</span>
+          </div>
+          <div className="composition-grid">
+            <article className="composition-card">
+              <span className="mini-label">Manual final label</span>
+              <strong className={`status-pill ${statusClass(goldLabel)}`}>{humanizeStatus(goldLabel)}</strong>
+              <p>Claim labels: {formatDistribution(manualClaimDistribution)}</p>
+              <p>Ambiguity: {formatReasons(gold?.uncertainty_reasons ?? [])}</p>
+            </article>
+            <article className="composition-card">
+              <span className="mini-label">Pipeline final label</span>
+              <strong className={`status-pill ${statusClass(predictedLabel)}`}>{humanizeStatus(predictedLabel)}</strong>
+              <p>Claim labels: {formatDistribution(pipelineClaimDistribution)}</p>
+              <p>Ambiguity: {formatReasons(result.uncertainty_reasons)}</p>
+            </article>
+            <article className="composition-card aggregation-card">
+              <span className="mini-label">Aggregation rule</span>
+              <p>
+                Contradicted central observable claims become not fulfilled. Supported or partially supported central observable claims can become fulfilled.
+                Mixed supported and missing, hidden, or ambiguous important claims become partially fulfilled. Missing evidence or non-UI-verifiable requirements abstain.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section className="comparison-grid">
+          <ComparisonColumn
+            title="Manual benchmark"
+            label={goldLabel}
+            uiEvaluability={gold?.ui_evaluability}
+            uncertaintyReasons={gold?.uncertainty_reasons ?? []}
+            evidenceSteps={goldEvidenceSteps}
+            rationale={gold?.rationale}
+            evidenceNote={gold?.evidence_note}
+            onJumpToStep={onJumpToStep}
+          />
+          <ComparisonColumn
+            title="Pipeline output"
+            label={predictedLabel}
+            uiEvaluability={result.ui_evaluability}
+            uncertaintyReasons={result.uncertainty_reasons}
+            evidenceSteps={predictedEvidenceSteps}
+            rationale={result.rationale}
+            evidenceNote={undefined}
+            onJumpToStep={onJumpToStep}
+          />
+        </section>
+
+        <section className="comparison-section">
+          <div className="panel-header">
+            <h4>Why the decision differs</h4>
+            <span>Evidence overlap: {evidenceOverlap.length > 0 ? evidenceOverlap.join(', ') : 'none'}</span>
+          </div>
+          <div className="finding-list">
+            {rootFindings.map((finding) => (
+              <div key={finding} className="finding-card">
+                {finding}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <details className="comparison-section expandable-section">
+          <summary className="expandable-summary">
+            <h4>Claim alignment</h4>
+            <span>Manual claims are aligned to pipeline claims by token overlap.</span>
+          </summary>
+          <div className="claim-alignment-list expandable-body">
+            {alignments.map((alignment, index) => (
+              <ClaimAlignmentRow
+                key={`${result.requirement_id}-alignment-${index}`}
+                alignment={alignment}
+                onJumpToStep={onJumpToStep}
+              />
+            ))}
+          </div>
+        </details>
+      </div>
+    </div>
+  )
+}
+
+function ComparisonColumn({
+  title,
+  label,
+  uiEvaluability,
+  uncertaintyReasons,
+  evidenceSteps,
+  rationale,
+  evidenceNote,
+  onJumpToStep,
+}: {
+  title: string
+  label: string
+  uiEvaluability?: string | null
+  uncertaintyReasons: string[]
+  evidenceSteps: number[]
+  rationale?: string | null
+  evidenceNote?: string | null
+  onJumpToStep: (stepIndex: number) => void
+}) {
+  return (
+    <article className="comparison-column">
+      <div className="comparison-column-header">
+        <h4>{title}</h4>
+        <span className={`status-pill ${statusClass(label)}`}>{humanizeStatus(label)}</span>
+      </div>
+      <div className="meta-block">
+        <span>UI evaluability: {uiEvaluability ? humanizeStatus(uiEvaluability) : 'unknown'}</span>
+        <span>Ambiguity: {uncertaintyReasons.length > 0 ? uncertaintyReasons.map(humanizeStatus).join(', ') : 'none'}</span>
+        <span>Evidence: <StepChipList stepIndices={evidenceSteps} onJumpToStep={onJumpToStep} /></span>
+      </div>
+      {evidenceNote && <p className="inline-note">Evidence note: {evidenceNote}</p>}
+      {rationale && <p className="inline-note">Rationale: {rationale}</p>}
+    </article>
+  )
+}
+
+function ClaimAlignmentRow({
+  alignment,
+  onJumpToStep,
+}: {
+  alignment: ClaimAlignment
+  onJumpToStep: (stepIndex: number) => void
+}) {
+  const goldClaim = alignment.goldClaim
+  const predictedClaim = alignment.predictedClaim
+  const statusMismatch = normalizeDisplayValue(goldClaim?.status) !== normalizeDisplayValue(predictedClaim?.status)
+  return (
+    <article className={statusMismatch ? 'claim-alignment-row status-mismatch' : 'claim-alignment-row'}>
+      <div className="alignment-score">
+        <span>match</span>
+        <strong>{alignment.score.toFixed(2)}</strong>
+      </div>
+      <div className="aligned-claim manual">
+        <div className="comparison-column-header">
+          <strong>Manual claim</strong>
+          {goldClaim?.status && <span className={`status-pill ${statusClass(goldClaim.status)}`}>{humanizeStatus(goldClaim.status)}</span>}
+        </div>
+        <p>{goldClaim ? goldClaim.claim_text ?? goldClaim.claim : 'No matched manual claim.'}</p>
+        {goldClaim && (
+          <div className="meta-block">
+            <span>Type: {goldClaim.claim_type ? humanizeStatus(goldClaim.claim_type) : 'unknown'}</span>
+            <span>Importance: {goldClaim.importance ? humanizeStatus(goldClaim.importance) : 'unknown'}</span>
+            <span>Evidence: <StepChipList stepIndices={goldClaim.evidence_steps ?? []} onJumpToStep={onJumpToStep} /></span>
+            {goldClaim.uncertainty_reasons && goldClaim.uncertainty_reasons.length > 0 && (
+              <span>Ambiguity: {goldClaim.uncertainty_reasons.map(humanizeStatus).join(', ')}</span>
+            )}
+          </div>
+        )}
+        {goldClaim?.note && <p className="inline-note">{goldClaim.note}</p>}
+      </div>
+      <div className="aligned-claim predicted">
+        <div className="comparison-column-header">
+          <strong>Pipeline claim</strong>
+          {predictedClaim?.status && <span className={`status-pill ${statusClass(predictedClaim.status)}`}>{humanizeStatus(predictedClaim.status)}</span>}
+        </div>
+        <p>{predictedClaim?.claim_text ?? 'No matched pipeline claim.'}</p>
+        {predictedClaim && (
+          <>
+            <div className="meta-block">
+              <span>Core: {String(predictedClaim.is_core)}</span>
+              <span>Observable: {String(predictedClaim.is_observable)}</span>
+              <span>Confidence: {predictedClaim.confidence === null || predictedClaim.confidence === undefined ? 'unknown' : predictedClaim.confidence.toFixed(3)}</span>
+              <span>Evidence: <StepChipList stepIndices={uniqueEvidenceSteps(predictedClaim.evidence)} onJumpToStep={onJumpToStep} /></span>
+              {predictedClaim.uncertainty_reasons.length > 0 && (
+                <span>Ambiguity: {predictedClaim.uncertainty_reasons.map(humanizeStatus).join(', ')}</span>
+              )}
+            </div>
+            <p className="inline-note">Rationale: {predictedClaim.rationale}</p>
+            <div className="evidence-snippet-list">
+              {predictedClaim.evidence.slice(0, 3).map((evidence) => (
+                <button key={`${predictedClaim.claim_id}-${evidence.step_index}`} className="evidence-snippet" onClick={() => onJumpToStep(evidence.step_index)}>
+                  <strong>Step {evidence.step_index}</strong>
+                  <span>{truncateText(evidence.visible_observation, 260)}</span>
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </article>
   )
 }
 
@@ -1206,9 +1527,16 @@ function Metric({label, value}: {label: string; value: string}) {
   return (
     <div className="metric-tile">
       <span>{label}</span>
-      <strong>{value}</strong>
+      <strong title={value}>{value}</strong>
     </div>
   )
+}
+
+function formatMetricValue(value: unknown): string {
+  if (typeof value !== 'number') {
+    return value === undefined || value === null ? 'n/a' : String(value)
+  }
+  return Number.isInteger(value) ? String(value) : value.toFixed(3)
 }
 
 function formatDistribution(distribution: Record<string, number>): string {
@@ -1217,6 +1545,197 @@ function formatDistribution(distribution: Record<string, number>): string {
     return 'none'
   }
   return entries.map(([key, value]) => `${humanizeStatus(key)}: ${value}`).join(', ')
+}
+
+function formatCompactDistribution(distribution: Record<string, number>): string {
+  const entries = Object.entries(distribution)
+  if (entries.length === 0) {
+    return 'none'
+  }
+  return entries.map(([key, value]) => `${humanizeStatus(key)} ${value}`).join(' · ')
+}
+
+function formatReasons(reasons: string[]): string {
+  return reasons.length > 0 ? reasons.map(humanizeStatus).join(', ') : 'none'
+}
+
+function labelDistributionForResults(results: PipelineVerificationRun['results']): Record<string, number> {
+  return results.reduce<Record<string, number>>((distribution, result) => {
+    distribution[result.final_label] = (distribution[result.final_label] ?? 0) + 1
+    return distribution
+  }, {})
+}
+
+function claimStatusDistributionForResults(results: PipelineVerificationRun['results']): Record<string, number> {
+  return results.reduce<Record<string, number>>((distribution, result) => {
+    mergeDistribution(distribution, claimStatusDistributionForPipelineClaims(result.claims))
+    return distribution
+  }, {})
+}
+
+function claimStatusDistributionForPipelineClaims(claims: PipelineClaim[]): Record<string, number> {
+  return statusDistribution(claims.map((claim) => claim.status))
+}
+
+function claimStatusDistributionForGoldClaims(claims: VerificationClaim[]): Record<string, number> {
+  return statusDistribution(claims.map((claim) => claim.status))
+}
+
+function statusDistribution(values: Array<string | null | undefined>): Record<string, number> {
+  return values.reduce<Record<string, number>>((distribution, value) => {
+    const normalized = normalizeDisplayValue(value)
+    if (normalized !== 'unknown') {
+      distribution[normalized] = (distribution[normalized] ?? 0) + 1
+    }
+    return distribution
+  }, {})
+}
+
+function mergeDistribution(target: Record<string, number>, source: Record<string, number>) {
+  for (const [key, value] of Object.entries(source)) {
+    target[key] = (target[key] ?? 0) + value
+  }
+}
+
+function normalizeDisplayValue(value: unknown): string {
+  return typeof value === 'string' && value.trim() ? value.trim().toUpperCase().replace(/-/g, '_').replace(/ /g, '_') : 'unknown'
+}
+
+function intersectNumbers(left: number[], right: number[]): number[] {
+  const rightSet = new Set(right)
+  return left.filter((value) => rightSet.has(value))
+}
+
+function alignClaims(goldClaims: VerificationClaim[], predictedClaims: PipelineClaim[]): ClaimAlignment[] {
+  const usedPredictions = new Set<number>()
+  const alignments: ClaimAlignment[] = []
+
+  for (const goldClaim of goldClaims) {
+    let bestIndex = -1
+    let bestScore = 0
+    predictedClaims.forEach((predictedClaim, index) => {
+      if (usedPredictions.has(index)) {
+        return
+      }
+      const score = tokenF1(goldClaim.claim_text ?? goldClaim.claim, predictedClaim.claim_text)
+      if (score > bestScore) {
+        bestScore = score
+        bestIndex = index
+      }
+    })
+    if (bestIndex >= 0 && bestScore >= 0.15) {
+      usedPredictions.add(bestIndex)
+      alignments.push({goldClaim, predictedClaim: predictedClaims[bestIndex], score: bestScore})
+    } else {
+      alignments.push({goldClaim, predictedClaim: null, score: 0})
+    }
+  }
+
+  predictedClaims.forEach((predictedClaim, index) => {
+    if (!usedPredictions.has(index)) {
+      alignments.push({goldClaim: null, predictedClaim, score: 0})
+    }
+  })
+
+  return alignments
+}
+
+function tokenF1(left: string, right: string): number {
+  const leftTokens = tokenize(left)
+  const rightTokens = tokenize(right)
+  if (leftTokens.length === 0 || rightTokens.length === 0) {
+    return 0
+  }
+  const rightSet = new Set(rightTokens)
+  const overlap = leftTokens.filter((token) => rightSet.has(token)).length
+  if (overlap === 0) {
+    return 0
+  }
+  const precision = overlap / rightTokens.length
+  const recall = overlap / leftTokens.length
+  return (2 * precision * recall) / (precision + recall)
+}
+
+function tokenize(value: string): string[] {
+  return value.toLowerCase().match(/[a-z0-9]+/g) ?? []
+}
+
+function comparisonFindings({
+  gold,
+  result,
+  goldLabel,
+  predictedLabel,
+  falseFulfillment,
+  labelMismatch,
+  evidenceOverlap,
+  alignments,
+}: {
+  gold: VerificationGoldItem | null
+  result: PipelineResult
+  goldLabel: string
+  predictedLabel: string
+  falseFulfillment: boolean
+  labelMismatch: boolean
+  evidenceOverlap: number[]
+  alignments: ClaimAlignment[]
+}): string[] {
+  const findings: string[] = []
+  if (!gold) {
+    findings.push('No manual verification benchmark item was found for this pipeline result.')
+    return findings
+  }
+  if (falseFulfillment) {
+    findings.push(`Safety issue: the pipeline predicted ${humanizeStatus(predictedLabel)} while the manual benchmark is ${humanizeStatus(goldLabel)}.`)
+  } else if (labelMismatch) {
+    findings.push(`Label mismatch: manual benchmark is ${humanizeStatus(goldLabel)}, pipeline is ${humanizeStatus(predictedLabel)}.`)
+  } else {
+    findings.push('Requirement-level label matches the manual benchmark.')
+  }
+
+  if (normalizeDisplayValue(gold.ui_evaluability) !== normalizeDisplayValue(result.ui_evaluability)) {
+    findings.push(`UI evaluability differs: manual is ${humanizeStatus(normalizeDisplayValue(gold.ui_evaluability))}, pipeline is ${humanizeStatus(result.ui_evaluability)}.`)
+  }
+
+  const goldUncertainty = new Set((gold.uncertainty_reasons ?? []).map(normalizeDisplayValue))
+  const predictedUncertainty = new Set(result.uncertainty_reasons.map(normalizeDisplayValue))
+  const missingUncertainty = [...goldUncertainty].filter((reason) => !predictedUncertainty.has(reason))
+  if (missingUncertainty.length > 0) {
+    findings.push(`Pipeline missed manual ambiguity reasons: ${missingUncertainty.map(humanizeStatus).join(', ')}.`)
+  }
+
+  const goldBlockingClaims = (gold.claims ?? []).filter((claim) =>
+    ['CONTRADICTED', 'MISSING', 'HIDDEN', 'AMBIGUOUS', 'OUT_OF_SCOPE', 'PARTIALLY_SUPPORTED'].includes(normalizeDisplayValue(claim.status)),
+  )
+  const predictedSupportedCount = result.claims.filter((claim) => normalizeDisplayValue(claim.status) === 'SUPPORTED').length
+  if (goldBlockingClaims.length > 0 && predictedSupportedCount === result.claims.length) {
+    findings.push('Manual benchmark contains blocking or incomplete claims, but every pipeline claim is marked supported.')
+  }
+
+  const statusMismatches = alignments.filter(
+    (alignment) =>
+      alignment.goldClaim &&
+      alignment.predictedClaim &&
+      normalizeDisplayValue(alignment.goldClaim.status) !== normalizeDisplayValue(alignment.predictedClaim.status),
+  )
+  if (statusMismatches.length > 0) {
+    findings.push(`${statusMismatches.length} aligned claim(s) have different manual and pipeline statuses.`)
+  }
+
+  if (evidenceOverlap.length === 0 && gold.evidence_steps.length > 0) {
+    findings.push('Pipeline evidence does not overlap with manual evidence steps.')
+  }
+
+  if (findings.length === 0) {
+    findings.push('No obvious disagreement root was detected from labels, ambiguity, claim status, or evidence overlap.')
+  }
+  return findings
+}
+
+function truncateText(value: string, maxLength: number): string {
+  if (value.length <= maxLength) {
+    return value
+  }
+  return `${value.slice(0, maxLength).trim()}...`
 }
 
 function uniqueEvidenceSteps(evidence: {step_index: number}[]): number[] {

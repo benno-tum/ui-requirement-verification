@@ -179,7 +179,7 @@ export type VerificationRun = {
   verdicts: RequirementVerdict[]
 }
 
-export type DemoEvidenceItem = {
+export type PipelineEvidenceItem = {
   step_index: number
   screenshot_path: string
   visible_observation: string
@@ -187,34 +187,34 @@ export type DemoEvidenceItem = {
   source?: string | null
 }
 
-export type DemoClaimResult = {
+export type PipelineClaimResult = {
   claim_id: string
   requirement_id: string
   claim_text: string
   status: string
   is_core: boolean
   is_observable: boolean
-  evidence: DemoEvidenceItem[]
+  evidence: PipelineEvidenceItem[]
   uncertainty_reasons: string[]
   confidence?: number | null
   rationale: string
 }
 
-export type DemoRequirementResult = {
+export type PipelineRequirementResult = {
   requirement_id: string
   requirement_text: string
   ui_evaluability: string
   final_label: string
-  claims: DemoClaimResult[]
-  evidence: DemoEvidenceItem[]
+  claims: PipelineClaimResult[]
+  evidence: PipelineEvidenceItem[]
   uncertainty_reasons: string[]
   rationale: string
   metadata: Record<string, unknown>
 }
 
-export type DemoVerificationRun = {
+export type PipelineVerificationRun = {
   flow_id: string
-  results: DemoRequirementResult[]
+  results: PipelineRequirementResult[]
   metadata: Record<string, unknown>
 }
 
@@ -316,7 +316,7 @@ export const api = {
   listGold: (flowId: string) => request<Requirement[]>(`/flows/${flowId}/gold`),
   listVerificationGold: (flowId: string) => request<VerificationGoldItem[]>(`/flows/${flowId}/verification-gold`),
   getLatestVerification: (flowId: string) => request<VerificationRun>(`/flows/${flowId}/verification/latest`),
-  getLatestDemoVerification: (flowId: string) => request<DemoVerificationRun>(`/flows/${flowId}/demo-verification/latest`),
+  getLatestPipelineVerification: (flowId: string) => request<PipelineVerificationRun>(`/flows/${flowId}/verification-pipeline/latest`),
   acceptCandidate: (flowId: string, requirementId: string, payload: RequirementPayload) =>
     request<Requirement>(`/flows/${flowId}/candidates/${requirementId}/accept`, {
       method: 'POST',

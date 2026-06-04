@@ -215,6 +215,7 @@ textarea {
   border: 1px solid #dbe2ec;
   border-radius: 14px;
   background: #f8fafc;
+  min-width: 0;
 }
 
 .metric-tile span {
@@ -224,6 +225,10 @@ textarea {
 
 .metric-tile strong {
   font-size: 1.15rem;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .message {
@@ -433,6 +438,60 @@ textarea {
   border-top: 1px solid #dbe2ec;
 }
 
+.review-comparison-table {
+  overflow-x: auto;
+}
+
+.review-comparison-table .demo-table-header,
+.review-comparison-table .demo-table-row {
+  grid-template-columns:
+    minmax(100px, 0.55fr)
+    minmax(125px, 0.75fr)
+    minmax(125px, 0.75fr)
+    minmax(190px, 1.1fr)
+    minmax(220px, 1.25fr)
+    minmax(150px, 0.9fr);
+  min-width: 1040px;
+}
+
+.review-mini-stack {
+  display: grid;
+  gap: 0.16rem;
+  min-width: 0;
+  color: #475569;
+  font-size: 0.84rem;
+}
+
+.review-mini-stack strong {
+  color: #0f172a;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.review-mini-stack span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.comparison-row-button {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: #fff;
+  color: inherit;
+  cursor: pointer;
+}
+
+.comparison-row-button:hover,
+.comparison-row-button:focus {
+  background: #f8fafc;
+  outline: none;
+}
+
 .meta-block {
   display: grid;
   gap: 0.35rem;
@@ -529,6 +588,240 @@ textarea {
   border-radius: 24px;
   padding: 1rem;
   box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
+}
+
+.comparison-modal-card {
+  width: min(1280px, 100%);
+  padding: 1.15rem;
+}
+
+.comparison-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.9fr);
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 20px;
+  border: 1px solid #dbe2ec;
+  background:
+    radial-gradient(circle at top left, rgba(125, 211, 252, 0.22), transparent 32%),
+    #f8fafc;
+}
+
+.comparison-hero.high-risk {
+  border-color: #fca5a5;
+  background:
+    radial-gradient(circle at top left, rgba(252, 165, 165, 0.34), transparent 34%),
+    #fff7ed;
+}
+
+.comparison-hero p {
+  margin: 0.3rem 0 0;
+  font-size: 1.02rem;
+  line-height: 1.45;
+}
+
+.comparison-verdict-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.comparison-verdict-strip > div {
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+  padding: 0.75rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid #e2e8f0;
+}
+
+.comparison-verdict-strip span {
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.comparison-column,
+.comparison-section {
+  border: 1px solid #dbe2ec;
+  border-radius: 18px;
+  padding: 0.95rem;
+  background: #fff;
+}
+
+.comparison-column-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin-bottom: 0.65rem;
+}
+
+.comparison-column-header h4,
+.comparison-column-header strong {
+  margin: 0;
+}
+
+.comparison-section {
+  margin-top: 1rem;
+}
+
+.composition-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.composition-card {
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+  padding: 0.85rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #f8fafc;
+}
+
+.composition-card p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.42;
+}
+
+.aggregation-card {
+  background:
+    radial-gradient(circle at top right, rgba(14, 165, 233, 0.16), transparent 38%),
+    #fff;
+}
+
+.expandable-section {
+  padding: 0;
+  overflow: hidden;
+}
+
+.expandable-summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.95rem;
+  cursor: pointer;
+}
+
+.expandable-summary h4 {
+  margin: 0;
+}
+
+.expandable-summary span {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.expandable-section[open] .expandable-summary {
+  border-bottom: 1px solid #dbe2ec;
+}
+
+.expandable-body {
+  padding: 0.95rem;
+}
+
+.finding-list {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.finding-card {
+  padding: 0.75rem 0.85rem;
+  border-radius: 14px;
+  border: 1px solid #fed7aa;
+  background: #fff7ed;
+  color: #7c2d12;
+}
+
+.claim-alignment-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.claim-alignment-row {
+  display: grid;
+  grid-template-columns: 86px repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  padding: 0.85rem;
+  border: 1px solid #dbe2ec;
+  border-radius: 18px;
+  background: #fcfdff;
+}
+
+.claim-alignment-row.status-mismatch {
+  border-color: #fca5a5;
+  background: #fff7f7;
+}
+
+.alignment-score {
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: 0.2rem;
+  padding: 0.6rem;
+  border-radius: 14px;
+  background: #f1f5f9;
+  color: #475569;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.alignment-score strong {
+  font-size: 1.15rem;
+  color: #0f172a;
+}
+
+.aligned-claim {
+  display: grid;
+  gap: 0.55rem;
+  align-content: start;
+  min-width: 0;
+}
+
+.aligned-claim p {
+  margin: 0;
+  line-height: 1.42;
+}
+
+.evidence-snippet-list {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.evidence-snippet {
+  display: grid;
+  gap: 0.25rem;
+  width: 100%;
+  padding: 0.65rem;
+  border: 1px solid #dbe2ec;
+  border-radius: 12px;
+  background: #fff;
+  color: #334155;
+  text-align: left;
+}
+
+.evidence-snippet:hover,
+.evidence-snippet:focus {
+  border-color: #7dd3fc;
+  background: #f0f9ff;
 }
 
 .lightbox-card {
@@ -711,6 +1004,11 @@ textarea {
   .toolbar-grid,
   .content-grid,
   .step-linked-grid,
+  .comparison-hero,
+  .comparison-grid,
+  .composition-grid,
+  .comparison-verdict-strip,
+  .claim-alignment-row,
   .editor-two-col,
   .claim-advanced-row,
   .claim-editor-row {

@@ -10,10 +10,12 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from ui_verifier.annotation.service import AnnotationService
+from ui_verifier.model_config import all_model_role_configs, model_config_path, model_name_for, temperature_for
 from ui_verifier.api.flow_catalog import FlowCatalog
 from ui_verifier.requirement_inspection.schemas import UiEvaluability
 from ui_verifier.requirements.candidate_generation import generate_harvested_for_flow
 from ui_verifier.requirements.gemini_client import run_gemini
+from ui_verifier.requirements.gemini_usage import read_usage_summary, usage_log_path, usage_summary_path
 from ui_verifier.requirements.schemas import RequirementReviewStatus
 from ui_verifier.common.json_utils import parse_json_response
 from ui_verifier.verification.schemas import UIEvaluability, VerificationLabel
@@ -32,6 +34,7 @@ verification_service = VerificationService(annotation_service=annotation_service
 verification_storage = VerificationStorage()
 flow_catalog = FlowCatalog(annotation_storage=annotation_service.storage, verification_storage=verification_storage)
 DEMO_VERIFICATION_ROOT = Path(__file__).resolve().parents[3] / "data" / "generated" / "demo_verification"
+VERIFICATION_PIPELINE_ROOT = Path(__file__).resolve().parents[3] / "data" / "generated" / "verification_pipeline"
 
 app.add_middleware(
     CORSMiddleware,
@@ -123,21 +126,21 @@ class VerifyFlowRequest(BaseModel):
     steps: str | None = None
     max_images: int | None = 4
     image_max_side: int = 1024
-    model_name: str = "gemini-2.5-flash"
+    model_name: str = model_name_for("verification")
     dry_run: bool = True
 
 
 class GenerateHarvestedRequest(BaseModel):
     max_images: int | None = 6
     image_max_side: int = 1280
-    model_name: str = "gemini-2.5-flash"
-    temperature: float = 0.7
+    model_name: str = model_name_for("api_requirement_harvest")
+    temperature: float = temperature_for("api_requirement_harvest")
     hybrid_mode: bool = False
     pure_prior_top_k: int = 6
 
 
 class RebuildCandidatesRequest(BaseModel):
-    candidate_model_name: str = "gemini-2.5-flash-lite"
+    candidate_model_name: str = model_name_for("candidate_rewrite")
     allow_overwrite_with_gold: bool = False
 
 
@@ -148,8 +151,8 @@ class RephraseClaimRequest(BaseModel):
     claim_status: str | None = None
     claim_type: str | None = None
     importance: str | None = None
-    model_name: str = "gemini-2.5-flash-lite"
-    temperature: float = 0.1
+    model_name: str = model_name_for("claim_rephrase")
+    temperature: float = temperature_for("claim_rephrase")
 
 
 def _build_claim_rephrase_prompt(body: RephraseClaimRequest) -> str:
@@ -184,6 +187,24 @@ Return JSON only:
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
+
+@app.get("/gemini-usage")
+def gemini_usage() -> dict[str, Any]:
+    summary = read_usage_summary()
+    return {
+        **summary,
+        "usage_log_path": str(usage_log_path()),
+        "usage_summary_path": str(usage_summary_path()),
+    }
+
+
+@app.get("/model-config")
+def model_config() -> dict[str, Any]:
+    return {
+        "config_path": str(model_config_path()),
+        "roles": all_model_role_configs(),
+    }
 
 
 @app.get("/flows")
@@ -325,6 +346,117 @@ def get_latest_demo_verification_run(flow_id: str) -> dict[str, Any]:
     if not isinstance(data, dict):
         raise HTTPException(status_code=500, detail=f"Demo verification JSON must be an object: {path}")
     return data
+
+
+def _result_evidence_steps(result: dict[str, Any]) -> list[int]:
+    steps: list[int] = []
+    seen: set[int] = set()
+    for item in result.get("evidence", []):
+        if not isinstance(item, dict):
+            continue
+        try:
+            step = int(item.get("step_index"))
+        except (TypeError, ValueError):
+            continue
+        if step >= 0 and step not in seen:
+            seen.add(step)
+            steps.append(step)
+    return steps
+
+
+def _verification_pipeline_summary(flow_id: str, data: dict[str, Any], path: Path) -> None:
+    results = data.get("results") if isinstance(data.get("results"), list) else []
+    metadata = data.setdefault("metadata", {})
+    if not isinstance(metadata, dict):
+        return
+
+    label_distribution: dict[str, int] = {}
+    claim_status_distribution: dict[str, int] = {}
+    claim_count = 0
+    for result in results:
+        if not isinstance(result, dict):
+            continue
+        label = str(result.get("final_label") or "UNKNOWN")
+        label_distribution[label] = label_distribution.get(label, 0) + 1
+        claims = result.get("claims") if isinstance(result.get("claims"), list) else []
+        claim_count += len(claims)
+        for claim in claims:
+            if not isinstance(claim, dict):
+                continue
+            status = str(claim.get("status") or "UNKNOWN")
+            claim_status_distribution[status] = claim_status_distribution.get(status, 0) + 1
+
+    metadata.setdefault("run_path", str(path))
+    metadata.setdefault("run_source", "verification_pipeline")
+    metadata.setdefault("run_mtime", path.stat().st_mtime)
+    metadata.setdefault("requirements_count", len(results))
+    metadata.setdefault("claim_count", claim_count)
+    metadata.setdefault("label_distribution", label_distribution)
+    metadata.setdefault("claim_status_distribution", claim_status_distribution)
+
+    if "reference_comparison" in metadata:
+        return
+
+    try:
+        reference_items = annotation_service.list_verification_gold(flow_id)
+    except FileNotFoundError:
+        return
+
+    reference_by_id = {item.requirement_id: item for item in reference_items}
+    comparison_items: list[dict[str, Any]] = []
+    matches = 0
+    compared = 0
+    for result in results:
+        if not isinstance(result, dict):
+            continue
+        requirement_id = str(result.get("requirement_id") or "")
+        reference = reference_by_id.get(requirement_id)
+        predicted_label = result.get("final_label")
+        reference_label = reference.verification_label.value if reference and reference.verification_label else None
+        matches_reference = predicted_label == reference_label if reference_label is not None else None
+        if reference_label is not None:
+            compared += 1
+            if matches_reference:
+                matches += 1
+        comparison_items.append(
+            {
+                "requirement_id": requirement_id,
+                "predicted_label": predicted_label,
+                "reference_label": reference_label,
+                "matches_reference": matches_reference,
+                "predicted_evidence_steps": _result_evidence_steps(result),
+                "reference_evidence_steps": reference.evidence_steps if reference else [],
+            }
+        )
+
+    metadata["reference_comparison"] = {
+        "summary": {
+            "compared_items": compared,
+            "matches": matches,
+            "accuracy_on_matched_ids": None if compared == 0 else matches / compared,
+            "missing_reference_for_predictions": sum(1 for item in comparison_items if item["reference_label"] is None),
+        },
+        "items": comparison_items,
+    }
+
+
+@app.get("/flows/{flow_id}/verification-pipeline/latest")
+def get_latest_verification_pipeline_run(flow_id: str) -> dict[str, Any]:
+    candidates = sorted(VERIFICATION_PIPELINE_ROOT.glob("*.json"), key=lambda path: path.stat().st_mtime, reverse=True)
+    for path in candidates:
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+        if not isinstance(data, dict):
+            continue
+        if data.get("flow_id") != flow_id:
+            continue
+        if not isinstance(data.get("results"), list):
+            continue
+        _verification_pipeline_summary(flow_id, data, path)
+        return data
+    raise HTTPException(status_code=404, detail=f"Verification pipeline run not found for flow {flow_id}")
 
 
 @app.post("/flows/{flow_id}/candidates/{requirement_id}/accept")
