@@ -51,15 +51,35 @@ PYTHONPATH=src python scripts/evaluate_claim_decomposition_external.py \
 
 Optional flags:
 
+- `--llm-provider {gemini,deepseek}`
 - `--llm-model MODEL_NAME`
 - `--no-cache`
 - `--strict-llm`
 
-## Gemini Setup
+The default LLM role is `claim_decomposition`, configured in `configs/models.json`
+and currently set to provider `gemini`, model `gemini-2.5-flash-lite`, temperature `0.0`. You can override
+it for an evaluation run with `UI_VERIFIER_CLAIM_DECOMPOSITION_PROVIDER`,
+`UI_VERIFIER_CLAIM_DECOMPOSITION_MODEL`, and
+`UI_VERIFIER_CLAIM_DECOMPOSITION_TEMPERATURE`, or pass `--llm-provider` and `--llm-model` explicitly.
 
-The implementation reuses the repository Gemini wrapper and reads `GEMINI_API_KEY` from the environment. Do not commit `.env` files or hard-code keys.
+DeepSeek example for a cheap text-only ablation:
 
-Rule-based decomposition and unit tests do not require `GEMINI_API_KEY`.
+```bash
+DEEPSEEK_API_KEY=your_deepseek_api_key_here \
+PYTHONPATH=src python scripts/evaluate_claim_decomposition_external.py \
+  --input data/raw/pure \
+  --source-kind pure \
+  --claim-decomposer rule_guided_llm \
+  --llm-provider deepseek \
+  --llm-model deepseek-v4-flash \
+  --out data/generated/claim_decomposition_checks/pure_deepseek_v4_flash.json
+```
+
+## Provider Setup
+
+Gemini calls read `GEMINI_API_KEY`. DeepSeek calls read `DEEPSEEK_API_KEY` and optionally `DEEPSEEK_BASE_URL`. Do not commit `.env` files or hard-code keys.
+
+Rule-based decomposition and unit tests do not require provider API keys.
 
 ## Caching
 

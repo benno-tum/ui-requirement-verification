@@ -545,6 +545,7 @@ def evaluate_items(
     *,
     claim_decomposer: str = "rule_based",
     llm_model: str | None = None,
+    llm_provider: str | None = None,
     use_cache: bool = True,
     strict_llm: bool = False,
 ) -> list[dict[str, Any]]:
@@ -553,6 +554,7 @@ def evaluate_items(
     if claim_decomposer == "rule_guided_llm":
         llm_decomposer = RuleGuidedLLMClaimDecomposer(
             model_name=llm_model,
+            provider=llm_provider,
             use_cache=use_cache,
             strict=strict_llm,
         )
@@ -582,6 +584,7 @@ def evaluate_items(
                 "quality_flags": structured_result.quality_flags if structured_result is not None else [],
                 "detected_patterns": structured_result.detected_patterns if structured_result is not None else [],
                 "prompt_version": structured_result.prompt_version if structured_result is not None else None,
+                "provider": structured_result.provider if structured_result is not None else None,
                 "model_name": structured_result.model_name if structured_result is not None else None,
                 "cache_key": structured_result.cache_key if structured_result is not None else None,
                 "raw_response_path": structured_result.raw_response_path if structured_result is not None else None,
@@ -621,6 +624,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     ap.add_argument("--allow-long-text", action="store_true")
     ap.add_argument("--claim-decomposer", choices=["rule_based", "rule_guided_llm"], default="rule_based")
     ap.add_argument("--llm-model", default=None)
+    ap.add_argument("--llm-provider", choices=["gemini", "deepseek"], default=None)
     ap.add_argument("--no-cache", action="store_true")
     ap.add_argument("--strict-llm", action="store_true")
     ap.add_argument("--fail-on-parse-error", action="store_true")
@@ -698,6 +702,7 @@ def run(args: argparse.Namespace) -> int:
         cleaned,
         claim_decomposer=args.claim_decomposer,
         llm_model=args.llm_model,
+        llm_provider=args.llm_provider,
         use_cache=not args.no_cache,
         strict_llm=args.strict_llm,
     )

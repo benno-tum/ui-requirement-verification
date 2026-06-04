@@ -10,6 +10,8 @@ from typing import Any, Protocol
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 
+from ui_verifier.model_config import model_name_for, provider_for, temperature_for
+
 
 CLAIM_DECOMPOSITION_PROMPT_VERSION = "CLAIM_DECOMPOSITION_RULE_GUIDED_V1"
 DEFAULT_LLM_CACHE_DIR = Path("data/generated/cache/claim_decomposition_llm")
@@ -78,6 +80,7 @@ class DecompositionResult(DecompositionModel):
     quality_flags: list[str] = Field(default_factory=list)
     detected_patterns: list[str] = Field(default_factory=list)
     prompt_version: str | None = None
+    provider: str | None = None
     model_name: str | None = None
     cache_key: str | None = None
     raw_response_path: str | None = None
@@ -742,15 +745,33 @@ def classify_claim_for_ui(claim_text: str) -> RequirementClaim:
     )
 
 
-class GeminiLLMClient:
-    def __init__(self, *, model_name: str = "gemini-2.0-flash", temperature: float = 0.0) -> None:
+class ConfiguredTextLLMClient:
+    def __init__(
+        self,
+        *,
+        role: str = "claim_decomposition",
+        provider: str | None = None,
+        model_name: str = model_name_for("claim_decomposition"),
+        temperature: float = temperature_for("claim_decomposition"),
+    ) -> None:
+        self.role = role
+        self.provider = provider or provider_for(role)
         self.model_name = model_name
         self.temperature = temperature
 
     def generate_json(self, prompt: str) -> str:
-        from ui_verifier.requirements.gemini_client import run_gemini
+        from ui_verifier.requirements.llm_client import run_text_json_llm
 
-        return run_gemini(prompt, [], self.model_name, temperature=self.temperature)
+        return run_text_json_llm(
+            prompt,
+            role=self.role,
+            provider=self.provider,
+            model_name=self.model_name,
+            temperature=self.temperature,
+        )
+
+
+GeminiLLMClient = ConfiguredTextLLMClient
 
 
 class FakeLLMClient:
@@ -774,13 +795,15 @@ class RuleGuidedLLMClaimDecomposer:
         llm_client: LLMClient | None = None,
         *,
         model_name: str | None = None,
+        provider: str | None = None,
         cache_dir: Path | str = DEFAULT_LLM_CACHE_DIR,
         use_cache: bool = True,
         strict: bool = False,
         max_claims: int = 8,
     ) -> None:
-        self.model_name = model_name or getattr(llm_client, "model_name", None) or "gemini-2.0-flash"
-        self.llm_client = llm_client or GeminiLLMClient(model_name=self.model_name)
+        self.model_name = model_name or getattr(llm_client, "model_name", None) or model_name_for("claim_decomposition")
+        self.provider = provider or getattr(llm_client, "provider", None) or provider_for("claim_decomposition")
+        self.llm_client = llm_client or ConfiguredTextLLMClient(provider=self.provider, model_name=self.model_name)
         self.cache_dir = Path(cache_dir)
         self.use_cache = use_cache
         self.strict = strict
@@ -832,6 +855,7 @@ class RuleGuidedLLMClaimDecomposer:
                 quality_flags=[*quality_flags, "LLM_UNAVAILABLE"],
                 detected_patterns=detected_patterns,
                 model_name=self.model_name,
+                provider=self.provider,
                 cache_key=cache_key,
                 notes=str(exc),
             )
@@ -854,6 +878,7 @@ class RuleGuidedLLMClaimDecomposer:
                     quality_flags=[*quality_flags, error_flag],
                     detected_patterns=detected_patterns,
                     model_name=self.model_name,
+                    provider=self.provider,
                     cache_key=cache_key,
                     notes=str(second_exc),
                 )
@@ -867,6 +892,7 @@ class RuleGuidedLLMClaimDecomposer:
             quality_flags=_dedupe_strings([*quality_flags, "LLM_USED"]),
             detected_patterns=detected_patterns,
             prompt_version=CLAIM_DECOMPOSITION_PROMPT_VERSION,
+            provider=self.provider,
             model_name=self.model_name,
             cache_key=cache_key,
             raw_response_path=str(cache_path) if self.use_cache else None,
@@ -881,6 +907,7 @@ class RuleGuidedLLMClaimDecomposer:
                 "quality_flags": result.quality_flags,
                 "detected_patterns": detected_patterns,
                 "prompt_version": CLAIM_DECOMPOSITION_PROMPT_VERSION,
+                "provider": self.provider,
                 "model_name": self.model_name,
                 "raw_response": raw_response,
                 "parsed_result": result.model_dump(mode="json"),
@@ -896,6 +923,7 @@ def decompose_requirement_with_diagnostics(
     strategy: str = "rule_guided_llm",
     llm_client: LLMClient | None = None,
     model_name: str | None = None,
+    provider: str | None = None,
     use_cache: bool = True,
     cache_dir: Path | str = DEFAULT_LLM_CACHE_DIR,
     strict: bool = False,
@@ -924,6 +952,7 @@ def decompose_requirement_with_diagnostics(
     return RuleGuidedLLMClaimDecomposer(
         llm_client,
         model_name=model_name,
+        provider=provider,
         cache_dir=cache_dir,
         use_cache=use_cache,
         strict=strict,
@@ -941,6 +970,7 @@ def _fallback_decomposition_result(
     model_name: str,
     cache_key: str,
     notes: str | None,
+    provider: str | None = None,
 ) -> DecompositionResult:
     return DecompositionResult(
         original_text=original_text,
@@ -951,6 +981,7 @@ def _fallback_decomposition_result(
         quality_flags=_dedupe_strings(quality_flags),
         detected_patterns=detected_patterns,
         prompt_version=CLAIM_DECOMPOSITION_PROMPT_VERSION,
+        provider=provider,
         model_name=model_name,
         cache_key=cache_key,
         notes=notes,

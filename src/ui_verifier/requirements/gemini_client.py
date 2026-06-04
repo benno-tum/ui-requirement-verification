@@ -3,6 +3,8 @@ from __future__ import annotations
 from typing import List
 import os
 
+from ui_verifier.requirements.gemini_usage import extract_usage_metadata, record_gemini_usage
+
 
 def run_gemini(
     prompt: str,
@@ -30,6 +32,12 @@ def run_gemini(
             temperature=temperature,
             response_mime_type="application/json",
         ),
+    )
+
+    record_gemini_usage(
+        model_name=model_name,
+        usage=extract_usage_metadata(response),
+        image_count=len(image_bytes_list),
     )
 
     return response.text

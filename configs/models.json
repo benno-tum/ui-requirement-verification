@@ -1,0 +1,71 @@
+{
+  "description": "Default model/provider choices for UI verifier LLM roles. Override with UI_VERIFIER_MODEL_CONFIG or role-specific environment variables documented in docs/model_configuration.md.",
+  "roles": {
+    "claim_decomposition": {
+      "model": "gemini-2.5-flash-lite",
+      "temperature": 0.0,
+      "rationale": "Text-only structured decomposition benefits from low cost and deterministic behavior.",
+      "provider": "gemini"
+    },
+    "pipeline_claim_fallback": {
+      "model": "deepseek-chat",
+      "temperature": 0.0,
+      "rationale": "Cheap text-only structured decomposition fallback for evaluation runs.",
+      "provider": "deepseek"
+    },
+    "evidence_retrieval": {
+      "model": "deepseek-chat",
+      "temperature": 0.0,
+      "rationale": "Cheap text-only reranking over extracted screen text before multimodal verification.",
+      "provider": "deepseek"
+    },
+    "verification": {
+      "model": "gemini-2.5-flash",
+      "temperature": 0.2,
+      "rationale": "Screenshot-grounded verification is the highest-risk multimodal step and should use the stronger Flash model.",
+      "provider": "gemini"
+    },
+    "demo_image_verifier": {
+      "model": "gemini-2.5-flash-lite",
+      "temperature": 0.0,
+      "rationale": "Demo verifier is budget-capped and falls back deterministically.",
+      "provider": "gemini"
+    },
+    "requirement_harvest": {
+      "model": "gemini-2.5-flash",
+      "temperature": 0.0,
+      "rationale": "Flow-level requirement harvesting sees multiple screenshots and should prioritize recall and grounding.",
+      "provider": "gemini"
+    },
+    "api_requirement_harvest": {
+      "model": "gemini-2.5-flash",
+      "temperature": 0.7,
+      "rationale": "Interactive harvesting keeps the previous more exploratory API default.",
+      "provider": "gemini"
+    },
+    "candidate_rewrite": {
+      "model": "gemini-2.5-flash-lite",
+      "temperature": 0.0,
+      "rationale": "Candidate normalization is text-only and schema constrained.",
+      "provider": "gemini"
+    },
+    "claim_rephrase": {
+      "model": "gemini-2.5-flash-lite",
+      "temperature": 0.1,
+      "rationale": "Single-claim editing is low-risk and should be inexpensive.",
+      "provider": "gemini"
+    },
+    "screen_description": {
+      "model": "gemini-2.5-flash",
+      "temperature": 0.2,
+      "rationale": "Ad-hoc screen descriptions are multimodal.",
+      "provider": "gemini"
+    },
+    "contrastive_generation": {
+      "model": "user-provided-model",
+      "temperature": 0.2,
+      "rationale": "Manual contrastive generation records the external/manual model label for provenance.",
+      "provider": "external"
+    }
+  }
+}
