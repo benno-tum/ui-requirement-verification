@@ -34,6 +34,7 @@ class ClaimStatus(str, Enum):
     CONTRADICTED = "CONTRADICTED"
     HIDDEN = "HIDDEN"
     AMBIGUOUS = "AMBIGUOUS"
+    OUT_OF_SCOPE = "OUT_OF_SCOPE"
 
 
 class StrictModel(BaseModel):

@@ -136,6 +136,9 @@ Rules:
 - Return ONLY valid JSON.
 - Do not use screenshots or invent details.
 - Claims must come only from each requirement text.
+- Separate claims are interpreted conjunctively: every returned claim is expected to hold.
+- Do not split disjunctive alternatives joined by "or" into separate claims unless the requirement explicitly requires both alternatives independently.
+- Preserve "or" wording inside one claim for alternative channels, destinations, compose surfaces, or modes.
 - Create 2 to {max_claims} claims when the requirement is compound.
 - Use 1 claim only when the requirement is truly atomic.
 - Keep each claim a short English sentence.

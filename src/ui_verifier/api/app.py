@@ -1,8 +1,15 @@
 from __future__ import annotations
 
+from collections import deque
 import json
+import re
 from pathlib import Path
+import subprocess
+import sys
+import threading
+import time
 from typing import Any
+import uuid
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -18,6 +25,7 @@ from ui_verifier.requirements.gemini_client import run_gemini
 from ui_verifier.requirements.gemini_usage import read_usage_summary, usage_log_path, usage_summary_path
 from ui_verifier.requirements.schemas import RequirementReviewStatus
 from ui_verifier.common.json_utils import parse_json_response
+from ui_verifier.evaluation.prediction_coverage import coverage_for_files
 from ui_verifier.verification.schemas import UIEvaluability, VerificationLabel
 from ui_verifier.verification.service import VerificationService
 from ui_verifier.verification.storage import VerificationStorage
@@ -35,6 +43,13 @@ verification_storage = VerificationStorage()
 flow_catalog = FlowCatalog(annotation_storage=annotation_service.storage, verification_storage=verification_storage)
 DEMO_VERIFICATION_ROOT = Path(__file__).resolve().parents[3] / "data" / "generated" / "demo_verification"
 VERIFICATION_PIPELINE_ROOT = Path(__file__).resolve().parents[3] / "data" / "generated" / "verification_pipeline"
+BASE_DIR = Path(__file__).resolve().parents[3]
+GENERATED_ROOT = BASE_DIR / "data" / "generated"
+REQUIREMENTS_GOLD_ROOT = BASE_DIR / "data" / "annotations" / "requirements_gold"
+VERIFICATION_GOLD_ROOT = BASE_DIR / "data" / "annotations" / "verification_gold"
+RUN_OUTPUT_DIR_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.-]{0,80}$")
+RUN_JOBS: dict[str, dict[str, Any]] = {}
+RUN_JOBS_LOCK = threading.Lock()
 
 app.add_middleware(
     CORSMiddleware,
@@ -153,6 +168,237 @@ class RephraseClaimRequest(BaseModel):
     importance: str | None = None
     model_name: str = model_name_for("claim_rephrase")
     temperature: float = temperature_for("claim_rephrase")
+
+
+class StartPipelineRunRequest(BaseModel):
+    verifier: str = "deterministic"
+    verifier_model: str = model_name_for("demo_image_verifier")
+    retriever: str = "lexical"
+    requirements_source: str = "accepted"
+    top_k: int = 3
+    max_images: int = 6
+    max_gemini_api_calls: int = 0
+    use_cache: bool = True
+    output_dir_name: str = "ui_verification_runs"
+
+
+def _repo_relative(path: Path) -> str:
+    try:
+        return str(path.resolve().relative_to(BASE_DIR.resolve()))
+    except ValueError:
+        return str(path)
+
+
+def _require_under(path: Path, root: Path) -> Path:
+    resolved = path.resolve()
+    root_resolved = root.resolve()
+    try:
+        resolved.relative_to(root_resolved)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=f"Path escapes allowed root: {_repo_relative(path)}") from exc
+    return resolved
+
+
+def _run_id_for_path(path: Path) -> str:
+    return _repo_relative(path)
+
+
+def _path_for_run_id(run_id: str) -> Path:
+    if not run_id or "\x00" in run_id:
+        raise HTTPException(status_code=400, detail="Invalid run id.")
+    path = (BASE_DIR / run_id).resolve()
+    _require_under(path, GENERATED_ROOT)
+    if path.suffix != ".json":
+        raise HTTPException(status_code=400, detail="Run id must point to a JSON file.")
+    return path
+
+
+def _load_json_object(path: Path) -> dict[str, Any] | None:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    return data if isinstance(data, dict) else None
+
+
+def _iter_verification_run_paths() -> list[Path]:
+    roots = [
+        VERIFICATION_PIPELINE_ROOT,
+        DEMO_VERIFICATION_ROOT,
+        *(path for path in GENERATED_ROOT.glob("diagnosis*") if path.is_dir()),
+        *(path for path in GENERATED_ROOT.glob("benchmark*") if path.is_dir()),
+        GENERATED_ROOT / "ui_verification_runs",
+    ]
+    paths: list[Path] = []
+    seen: set[Path] = set()
+    for root in roots:
+        if not root.exists():
+            continue
+        for path in root.glob("*.json"):
+            if path.name.startswith("metrics"):
+                continue
+            resolved = path.resolve()
+            if resolved in seen:
+                continue
+            seen.add(resolved)
+            paths.append(path)
+    return paths
+
+
+def _metrics_available_for(path: Path) -> bool:
+    return any(path.parent.glob("*metrics*.json"))
+
+
+def _run_entry_from_data(path: Path, data: dict[str, Any]) -> dict[str, Any]:
+    metadata = data.get("metadata") if isinstance(data.get("metadata"), dict) else {}
+    results = data.get("results") if isinstance(data.get("results"), list) else []
+    label_distribution = metadata.get("label_distribution")
+    if not isinstance(label_distribution, dict):
+        label_distribution = {}
+        for result in results:
+            if not isinstance(result, dict):
+                continue
+            label = str(result.get("final_label") or "UNKNOWN")
+            label_distribution[label] = int(label_distribution.get(label, 0)) + 1
+
+    return {
+        "run_id": _run_id_for_path(path),
+        "flow_id": data.get("flow_id"),
+        "path": _repo_relative(path),
+        "source": path.parent.name,
+        "run_folder": _repo_relative(path.parent),
+        "mtime": path.stat().st_mtime,
+        "timestamp": metadata.get("created_at") or metadata.get("run_mtime") or path.stat().st_mtime,
+        "verifier": metadata.get("verifier") or metadata.get("run_source") or metadata.get("pipeline") or "unknown",
+        "verifier_model": metadata.get("verifier_model"),
+        "retriever": metadata.get("selected_retriever") or metadata.get("retriever") or metadata.get("requested_retriever"),
+        "requirements_count": metadata.get("requirements_count") or len(results),
+        "label_distribution": label_distribution,
+        "metrics_available": _metrics_available_for(path),
+    }
+
+
+def discover_pipeline_runs(flow_id: str) -> list[dict[str, Any]]:
+    runs: list[dict[str, Any]] = []
+    for path in _iter_verification_run_paths():
+        data = _load_json_object(path)
+        if not data or data.get("flow_id") != flow_id or not isinstance(data.get("results"), list):
+            continue
+        runs.append(_run_entry_from_data(path, data))
+    runs.sort(key=lambda item: float(item.get("mtime") or 0.0), reverse=True)
+    return runs
+
+
+def _safe_output_dir(name: str) -> Path:
+    normalized = name.strip()
+    if not RUN_OUTPUT_DIR_RE.fullmatch(normalized):
+        raise HTTPException(
+            status_code=400,
+            detail="Output directory name may contain only letters, numbers, dot, underscore, and hyphen.",
+        )
+    return _require_under(GENERATED_ROOT / normalized, GENERATED_ROOT)
+
+
+def build_pipeline_run_command(flow_id: str, body: StartPipelineRunRequest, *, job_id: str | None = None) -> tuple[list[str], Path]:
+    verifier = body.verifier.strip()
+    if verifier == "deterministic_rule_based":
+        verifier = "deterministic"
+    if verifier not in {"deterministic", "gemini-image"}:
+        raise HTTPException(status_code=400, detail="verifier must be deterministic_rule_based or gemini-image.")
+    if body.retriever != "lexical":
+        raise HTTPException(status_code=400, detail="Only lexical retriever is supported from the UI for now.")
+    if body.requirements_source not in {"accepted", "benchmark"}:
+        raise HTTPException(status_code=400, detail="requirements_source must be accepted or benchmark.")
+    if body.top_k < 1 or body.top_k > 20:
+        raise HTTPException(status_code=400, detail="top_k must be between 1 and 20.")
+    if body.max_images < 1 or body.max_images > 20:
+        raise HTTPException(status_code=400, detail="max_images must be between 1 and 20.")
+    if body.max_gemini_api_calls < -1 or body.max_gemini_api_calls > 1000:
+        raise HTTPException(status_code=400, detail="max_gemini_api_calls must be -1 or between 0 and 1000.")
+    if verifier == "gemini-image" and body.max_gemini_api_calls == 0:
+        raise HTTPException(status_code=400, detail="Gemini runs require max_gemini_api_calls greater than 0 or -1.")
+
+    _, flow_dir = flow_catalog.resolve_flow(flow_id)
+    flow_dir = _require_under(flow_dir, BASE_DIR / "data")
+    if body.requirements_source == "benchmark":
+        requirements_path = VERIFICATION_GOLD_ROOT / flow_id / "verification_gold.json"
+    else:
+        requirements_path = REQUIREMENTS_GOLD_ROOT / flow_id / "gold_requirements.json"
+        if not requirements_path.exists():
+            requirements_path = VERIFICATION_GOLD_ROOT / flow_id / "verification_gold.json"
+    if not requirements_path.exists():
+        raise HTTPException(status_code=404, detail=f"No requirements file found for {flow_id}.")
+    requirements_path = _require_under(requirements_path, BASE_DIR / "data")
+
+    output_dir = _safe_output_dir(body.output_dir_name)
+    output_path = _require_under(output_dir / f"{flow_id}.json", output_dir)
+    cache_dir = _require_under(output_dir / "cache", output_dir)
+    cache_name = f"{flow_id}_gemini_image_claims.json" if body.use_cache else f"{flow_id}_{job_id or 'run'}_gemini_image_claims.json"
+    cache_path = _require_under(cache_dir / cache_name, cache_dir)
+
+    command = [
+        sys.executable,
+        str(BASE_DIR / "scripts" / "run_verification_pipeline.py"),
+        "--flow-dir",
+        str(flow_dir),
+        "--requirements",
+        str(requirements_path),
+        "--requirements-source",
+        body.requirements_source,
+        "--out",
+        str(output_path),
+        "--retriever",
+        body.retriever,
+        "--top-k",
+        str(body.top_k),
+        "--verifier",
+        verifier,
+        "--max-verifier-images",
+        str(body.max_images),
+        "--max-gemini-api-calls",
+        str(body.max_gemini_api_calls),
+        "--verifier-cache",
+        str(cache_path),
+        "--no-llm-claim-fallback",
+    ]
+    if verifier == "gemini-image":
+        command.extend(["--verifier-model", body.verifier_model.strip() or model_name_for("demo_image_verifier")])
+    return command, output_path
+
+
+def _run_pipeline_job(job_id: str, command: list[str], output_path: Path) -> None:
+    with RUN_JOBS_LOCK:
+        job = RUN_JOBS[job_id]
+        job["status"] = "running"
+        job["started_at"] = time.time()
+    try:
+        process = subprocess.Popen(
+            command,
+            cwd=str(BASE_DIR),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            shell=False,
+            bufsize=1,
+        )
+        with RUN_JOBS_LOCK:
+            RUN_JOBS[job_id]["pid"] = process.pid
+        assert process.stdout is not None
+        for line in process.stdout:
+            with RUN_JOBS_LOCK:
+                RUN_JOBS[job_id]["log"].append(line.rstrip())
+        return_code = process.wait()
+        with RUN_JOBS_LOCK:
+            RUN_JOBS[job_id]["completed_at"] = time.time()
+            RUN_JOBS[job_id]["return_code"] = return_code
+            RUN_JOBS[job_id]["output_path"] = _repo_relative(output_path) if output_path.exists() else None
+            RUN_JOBS[job_id]["status"] = "completed" if return_code == 0 else "failed"
+    except Exception as exc:
+        with RUN_JOBS_LOCK:
+            RUN_JOBS[job_id]["completed_at"] = time.time()
+            RUN_JOBS[job_id]["status"] = "failed"
+            RUN_JOBS[job_id]["error"] = str(exc)
+            RUN_JOBS[job_id]["log"].append(str(exc))
 
 
 def _build_claim_rephrase_prompt(body: RephraseClaimRequest) -> str:
@@ -393,6 +639,9 @@ def _verification_pipeline_summary(flow_id: str, data: dict[str, Any], path: Pat
     metadata.setdefault("claim_count", claim_count)
     metadata.setdefault("label_distribution", label_distribution)
     metadata.setdefault("claim_status_distribution", claim_status_distribution)
+    verification_gold_path = VERIFICATION_GOLD_ROOT / flow_id / "verification_gold.json"
+    if verification_gold_path.exists() and "prediction_coverage" not in metadata:
+        metadata["prediction_coverage"] = coverage_for_files(verification_gold_path, path).to_dict()
 
     if "reference_comparison" in metadata:
         return
@@ -442,21 +691,63 @@ def _verification_pipeline_summary(flow_id: str, data: dict[str, Any], path: Pat
 
 @app.get("/flows/{flow_id}/verification-pipeline/latest")
 def get_latest_verification_pipeline_run(flow_id: str) -> dict[str, Any]:
-    candidates = sorted(VERIFICATION_PIPELINE_ROOT.glob("*.json"), key=lambda path: path.stat().st_mtime, reverse=True)
-    for path in candidates:
-        try:
-            data = json.loads(path.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            continue
-        if not isinstance(data, dict):
-            continue
-        if data.get("flow_id") != flow_id:
-            continue
-        if not isinstance(data.get("results"), list):
+    for run in discover_pipeline_runs(flow_id):
+        path = _path_for_run_id(str(run["run_id"]))
+        data = _load_json_object(path)
+        if data is None:
             continue
         _verification_pipeline_summary(flow_id, data, path)
         return data
     raise HTTPException(status_code=404, detail=f"Verification pipeline run not found for flow {flow_id}")
+
+
+@app.get("/flows/{flow_id}/verification-pipeline/runs")
+def list_verification_pipeline_runs(flow_id: str) -> dict[str, Any]:
+    return {"flow_id": flow_id, "runs": discover_pipeline_runs(flow_id)}
+
+
+@app.get("/flows/{flow_id}/verification-pipeline/run")
+def get_verification_pipeline_run(flow_id: str, run_id: str) -> dict[str, Any]:
+    path = _path_for_run_id(run_id)
+    data = _load_json_object(path)
+    if data is None or data.get("flow_id") != flow_id or not isinstance(data.get("results"), list):
+        raise HTTPException(status_code=404, detail=f"Verification pipeline run not found: {run_id}")
+    _verification_pipeline_summary(flow_id, data, path)
+    return data
+
+
+@app.post("/flows/{flow_id}/verification-pipeline/start")
+def start_verification_pipeline_run(flow_id: str, body: StartPipelineRunRequest) -> dict[str, Any]:
+    job_id = uuid.uuid4().hex
+    command, output_path = build_pipeline_run_command(flow_id, body, job_id=job_id)
+    with RUN_JOBS_LOCK:
+        RUN_JOBS[job_id] = {
+            "job_id": job_id,
+            "flow_id": flow_id,
+            "status": "not_started",
+            "created_at": time.time(),
+            "command": command,
+            "output_path": _repo_relative(output_path),
+            "log": deque(maxlen=200),
+            "return_code": None,
+            "pid": None,
+        }
+    thread = threading.Thread(target=_run_pipeline_job, args=(job_id, command, output_path), daemon=True)
+    thread.start()
+    return get_verification_pipeline_job(job_id)
+
+
+@app.get("/verification-pipeline/jobs/{job_id}")
+def get_verification_pipeline_job(job_id: str) -> dict[str, Any]:
+    with RUN_JOBS_LOCK:
+        job = RUN_JOBS.get(job_id)
+        if job is None:
+            raise HTTPException(status_code=404, detail=f"Pipeline job not found: {job_id}")
+        return {
+            **{key: value for key, value in job.items() if key not in {"log", "command"}},
+            "command": list(job.get("command") or []),
+            "recent_log_lines": list(job.get("log") or []),
+        }
 
 
 @app.post("/flows/{flow_id}/candidates/{requirement_id}/accept")

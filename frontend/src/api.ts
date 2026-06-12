@@ -218,6 +218,51 @@ export type PipelineVerificationRun = {
   metadata: Record<string, unknown>
 }
 
+export type PipelineRunSummary = {
+  run_id: string
+  flow_id: string
+  path: string
+  source: string
+  run_folder: string
+  timestamp?: string | number | null
+  mtime: number
+  verifier?: string | null
+  verifier_model?: string | null
+  retriever?: string | null
+  requirements_count: number
+  label_distribution: Record<string, number>
+  metrics_available: boolean
+}
+
+export type PipelineRunList = {
+  flow_id: string
+  runs: PipelineRunSummary[]
+}
+
+export type StartPipelineRunPayload = {
+  verifier: 'deterministic_rule_based' | 'gemini-image'
+  verifier_model: string
+  retriever: 'lexical'
+  requirements_source: 'accepted' | 'benchmark'
+  top_k: number
+  max_images: number
+  max_gemini_api_calls: number
+  use_cache: boolean
+  output_dir_name: string
+}
+
+export type PipelineRunJob = {
+  job_id: string
+  flow_id: string
+  status: 'not_started' | 'running' | 'completed' | 'failed'
+  output_path?: string | null
+  return_code?: number | null
+  pid?: number | null
+  error?: string | null
+  command: string[]
+  recent_log_lines: string[]
+}
+
 export type RequirementPayload = {
   edited_text?: string
   edited_step_indices?: number[]
@@ -317,6 +362,15 @@ export const api = {
   listVerificationGold: (flowId: string) => request<VerificationGoldItem[]>(`/flows/${flowId}/verification-gold`),
   getLatestVerification: (flowId: string) => request<VerificationRun>(`/flows/${flowId}/verification/latest`),
   getLatestPipelineVerification: (flowId: string) => request<PipelineVerificationRun>(`/flows/${flowId}/verification-pipeline/latest`),
+  listPipelineVerificationRuns: (flowId: string) => request<PipelineRunList>(`/flows/${flowId}/verification-pipeline/runs`),
+  getPipelineVerificationRun: (flowId: string, runId: string) =>
+    request<PipelineVerificationRun>(`/flows/${flowId}/verification-pipeline/run?run_id=${encodeURIComponent(runId)}`),
+  startPipelineVerificationRun: (flowId: string, payload: StartPipelineRunPayload) =>
+    request<PipelineRunJob>(`/flows/${flowId}/verification-pipeline/start`, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
+  getPipelineVerificationJob: (jobId: string) => request<PipelineRunJob>(`/verification-pipeline/jobs/${jobId}`),
   acceptCandidate: (flowId: string, requirementId: string, payload: RequirementPayload) =>
     request<Requirement>(`/flows/${flowId}/candidates/${requirementId}/accept`, {
       method: 'POST',

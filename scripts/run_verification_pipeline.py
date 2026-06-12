@@ -125,6 +125,12 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run the evidence-first UI verification pipeline.")
     parser.add_argument("--flow-dir", type=Path, required=True, help="Directory containing ordered step_XX.png files")
     parser.add_argument("--requirements", type=Path, required=True, help="JSON requirements file")
+    parser.add_argument(
+        "--requirements-source",
+        choices=["accepted", "benchmark", "custom"],
+        default="custom",
+        help="Semantic source of the requirements file. Use benchmark for verification_gold inputs.",
+    )
     parser.add_argument("--out", type=Path, required=True, help="Output JSON path")
     parser.add_argument("--retriever", choices=["lexical", "tfidf", "embedding", "llm"], default="lexical")
     parser.add_argument("--top-k", type=int, default=3)
@@ -216,6 +222,7 @@ def main() -> None:
             metadata={
                 "flow_dir": str(args.flow_dir),
                 "requirements_path": str(args.requirements),
+                "requirements_source": args.requirements_source,
                 "requested_retriever": args.retriever,
                 "retriever_provider": args.retriever_provider if args.retriever == "llm" else None,
                 "retriever_model": args.retriever_model if args.retriever == "llm" else None,

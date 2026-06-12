@@ -108,6 +108,20 @@ def test_decompose_requirement_splits_without_requiring_clause() -> None:
     assert "The user is not required to enter a booking flow first." in claims
 
 
+def test_decompose_requirement_preserves_disjunctive_handoff_destination() -> None:
+    text = (
+        "The system shall provide visible confirmation that a selected job posting has been handed off "
+        "to the chosen external sharing channel or compose surface."
+    )
+
+    claims = decompose_requirement_claim_texts(text)
+
+    assert claims == [
+        "The system provides visible confirmation that a selected job posting has been handed off "
+        "to the chosen external sharing channel or compose surface."
+    ]
+
+
 def test_rule_based_decomposition_works_without_api_key(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delenv("GEMINI_API_KEY", raising=False)
 

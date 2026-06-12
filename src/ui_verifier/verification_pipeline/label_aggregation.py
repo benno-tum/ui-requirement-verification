@@ -12,8 +12,20 @@ from ui_verifier.verification_pipeline.schemas import (
 )
 
 
-_POSITIVE_STATUSES = {ClaimStatus.SUPPORTED, ClaimStatus.PARTIALLY_SUPPORTED}
-_PROBLEM_STATUSES = {ClaimStatus.MISSING, ClaimStatus.HIDDEN, ClaimStatus.AMBIGUOUS}
+_FULFILLED_STATUS = ClaimStatus.SUPPORTED
+_PROBLEM_STATUSES = {
+    ClaimStatus.PARTIALLY_SUPPORTED,
+    ClaimStatus.MISSING,
+    ClaimStatus.HIDDEN,
+    ClaimStatus.AMBIGUOUS,
+    ClaimStatus.OUT_OF_SCOPE,
+}
+_FULFILLED_BLOCKING_REASONS = {
+    UncertaintyReason.FLOW_COVERAGE_GAP,
+    UncertaintyReason.UNVERIFIED_SYSTEM_OUTCOME,
+    UncertaintyReason.NONTRIVIAL_HIDDEN_PROPERTY,
+    UncertaintyReason.EVIDENCE_INTERPRETATION_AMBIGUITY,
+}
 
 
 def _dedupe_reasons(reasons: list[UncertaintyReason]) -> list[UncertaintyReason]:
@@ -56,6 +68,7 @@ class LabelAggregator:
             ui_evaluability=ui_evaluability,
             claim_results=claim_results,
             evidence=evidence,
+            uncertainty_reasons=uncertainty_reasons,
             screens_available=screens_available,
         )
 
@@ -77,6 +90,7 @@ class LabelAggregator:
         ui_evaluability: UIEvaluability,
         claim_results: list[ClaimVerificationResult],
         evidence: list[EvidenceItem],
+        uncertainty_reasons: list[UncertaintyReason],
         screens_available: bool,
     ) -> tuple[VerificationLabel, str]:
         if not screens_available:
@@ -88,17 +102,12 @@ class LabelAggregator:
                 "The requirement is not UI-verifiable from screenshots, so the pipeline abstains.",
             )
 
-        central_visible_contradiction = any(
-            result.is_core
-            and result.is_observable
-            and result.status == ClaimStatus.CONTRADICTED
-            and bool(result.evidence)
-            for result in claim_results
-        )
-        if central_visible_contradiction:
+        important_claims = [result for result in claim_results if result.is_core]
+        central_contradiction = any(result.status == ClaimStatus.CONTRADICTED for result in important_claims)
+        if central_contradiction:
             return (
                 VerificationLabel.NOT_FULFILLED,
-                "A central observable claim is contradicted by visible evidence.",
+                "A central claim is contradicted by evidence.",
             )
 
         if not evidence:
@@ -107,27 +116,38 @@ class LabelAggregator:
                 "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
             )
 
-        important_claims = [result for result in claim_results if result.is_core]
-        core_observable_claims = [result for result in important_claims if result.is_observable]
-        central_hidden_unresolved = any(
-            result.is_core and result.status == ClaimStatus.HIDDEN for result in claim_results
+        all_core_supported = bool(important_claims) and all(
+            result.status == _FULFILLED_STATUS for result in important_claims
         )
-        all_core_observable_supported = bool(core_observable_claims) and all(
-            result.status in _POSITIVE_STATUSES for result in core_observable_claims
+        any_important_supported = any(result.status == _FULFILLED_STATUS for result in important_claims)
+        any_important_partially_supported = any(
+            result.status == ClaimStatus.PARTIALLY_SUPPORTED and bool(result.evidence) for result in important_claims
         )
-        any_important_supported = any(result.status in _POSITIVE_STATUSES for result in important_claims)
         any_important_problem = any(result.status in _PROBLEM_STATUSES for result in important_claims)
+        has_fulfilled_blocking_reason = any(reason in _FULFILLED_BLOCKING_REASONS for reason in uncertainty_reasons)
 
-        if all_core_observable_supported and not central_hidden_unresolved:
+        if all_core_supported and not has_fulfilled_blocking_reason:
             return (
                 VerificationLabel.FULFILLED,
-                "All central observable claims have visible evidence and no central hidden claim remains unresolved.",
+                "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
             )
 
         if any_important_supported and any_important_problem:
             return (
                 VerificationLabel.PARTIALLY_FULFILLED,
-                "At least one important claim has visible support, but another important claim is missing, hidden, or ambiguous.",
+                "At least one important claim is supported, but another important claim is partial, missing, hidden, ambiguous, or out of scope.",
+            )
+
+        if any_important_partially_supported:
+            return (
+                VerificationLabel.PARTIALLY_FULFILLED,
+                "At least one important claim has partial visible support, but the fulfilled gate was not met.",
+            )
+
+        if any_important_supported and has_fulfilled_blocking_reason:
+            return (
+                VerificationLabel.PARTIALLY_FULFILLED,
+                "Important visible support exists, but material uncertainty blocks a fulfilled verdict.",
             )
 
         if any_important_supported:

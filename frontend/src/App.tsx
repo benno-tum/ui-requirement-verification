@@ -4,6 +4,9 @@ import {
   api,
   resolveAssetUrl,
   type PipelineVerificationRun,
+  type PipelineRunJob,
+  type PipelineRunSummary,
+  type StartPipelineRunPayload,
   type FlowStep,
   type FlowSummary,
   type HarvestedRequirement,
@@ -554,6 +557,7 @@ function App() {
 
         {selectedFlow && viewMode === 'verification' && (
           <VerificationRunPanel
+            flowId={selectedFlow.flow_id}
             pipelineRun={pipelineRun}
             verificationGold={verificationGold}
             onJumpToStep={jumpToStep}
@@ -1082,36 +1086,124 @@ function HarvestedPanel({
 }
 
 function VerificationRunPanel({
+  flowId,
   pipelineRun,
   verificationGold,
   onJumpToStep,
 }: {
+  flowId: string
   pipelineRun: PipelineVerificationRun | null
   verificationGold: VerificationGoldItem[]
   onJumpToStep: (stepIndex: number) => void
 }) {
   const [selectedRequirementId, setSelectedRequirementId] = useState<string | null>(null)
+  const [runs, setRuns] = useState<PipelineRunSummary[]>([])
+  const [runsState, setRunsState] = useState<LoadState>('idle')
+  const [selectedRunId, setSelectedRunId] = useState<string>('')
+  const [selectedRun, setSelectedRun] = useState<PipelineVerificationRun | null>(pipelineRun)
+  const [runJob, setRunJob] = useState<PipelineRunJob | null>(null)
+  const [runMessage, setRunMessage] = useState<string>('')
+  const [runForm, setRunForm] = useState<StartPipelineRunPayload>({
+    verifier: 'deterministic_rule_based',
+    verifier_model: 'gemini-2.5-flash-lite',
+    retriever: 'lexical',
+    requirements_source: 'benchmark',
+    top_k: 3,
+    max_images: 6,
+    max_gemini_api_calls: 0,
+    use_cache: true,
+    output_dir_name: 'ui_verification_runs',
+  })
   const goldById = useMemo(() => new Map(verificationGold.map((item) => [item.requirement_id, item])), [verificationGold])
-  const resultById = useMemo(() => new Map((pipelineRun?.results ?? []).map((result) => [result.requirement_id, result])), [pipelineRun])
+  const activeRun = selectedRun ?? pipelineRun
+  const resultById = useMemo(() => new Map((activeRun?.results ?? []).map((result) => [result.requirement_id, result])), [activeRun])
   const selectedResult = selectedRequirementId ? resultById.get(selectedRequirementId) ?? null : null
   const selectedGold = selectedRequirementId ? goldById.get(selectedRequirementId) ?? null : null
 
-  if (!pipelineRun) {
-    return (
-      <section className="card">
-        <div className="panel-header">
-          <h3>Verification run</h3>
-          <span>No generated verification pipeline output exists for this flow yet.</span>
-        </div>
-        <p className="inline-note">Run the CLI command from the repository root, then refresh this page:</p>
-        <pre className="code-block">PYTHONPATH=src python scripts/run_verification_pipeline.py --flow-dir data/processed/flows/mind2web/&lt;flow_id&gt; --requirements data/annotations/verification_gold/&lt;flow_id&gt;/verification_gold.json --out data/generated/verification_pipeline/&lt;flow_id&gt;.json</pre>
-      </section>
-    )
+  useEffect(() => {
+    setSelectedRun(pipelineRun)
+  }, [pipelineRun])
+
+  useEffect(() => {
+    void refreshRuns()
+  }, [flowId])
+
+  useEffect(() => {
+    if (!runJob || (runJob.status !== 'running' && runJob.status !== 'not_started')) {
+      return
+    }
+    const interval = window.setInterval(async () => {
+      try {
+        const latest = await api.getPipelineVerificationJob(runJob.job_id)
+        setRunJob(latest)
+        if (latest.status === 'completed') {
+          await refreshRuns()
+          if (latest.output_path) {
+            const list = await api.listPipelineVerificationRuns(flowId)
+            const completedRun = list.runs.find((run) => run.path === latest.output_path)
+            if (completedRun) {
+              await selectRun(completedRun.run_id)
+            }
+          }
+        }
+      } catch (error) {
+        setRunMessage(error instanceof Error ? error.message : 'Failed to refresh run status')
+      }
+    }, 2000)
+    return () => window.clearInterval(interval)
+  }, [runJob?.job_id, runJob?.status, flowId])
+
+  async function refreshRuns() {
+    setRunsState('loading')
+    setRunMessage('')
+    try {
+      const response = await api.listPipelineVerificationRuns(flowId)
+      setRuns(response.runs)
+      setRunsState('idle')
+      if (response.runs.length > 0) {
+        const nextRunId = selectedRunId && response.runs.some((run) => run.run_id === selectedRunId) ? selectedRunId : response.runs[0].run_id
+        setSelectedRunId(nextRunId)
+        await selectRun(nextRunId)
+      } else {
+        setSelectedRunId('')
+        setSelectedRun(null)
+      }
+    } catch (error) {
+      setRunsState('error')
+      setRunMessage(error instanceof Error ? error.message : 'Failed to load verification runs')
+    }
   }
 
-  const metadata = pipelineRun.metadata
-  const labelDistribution = (metadata.label_distribution ?? labelDistributionForResults(pipelineRun.results)) as Record<string, number>
-  const claimStatusDistribution = (metadata.claim_status_distribution ?? claimStatusDistributionForResults(pipelineRun.results)) as Record<string, number>
+  async function selectRun(runId: string) {
+    setSelectedRunId(runId)
+    setSelectedRequirementId(null)
+    const run = await api.getPipelineVerificationRun(flowId, runId)
+    setSelectedRun(run)
+  }
+
+  async function startRun() {
+    setRunMessage('')
+    if (runForm.verifier === 'gemini-image' && runForm.max_gemini_api_calls === 0) {
+      setRunMessage('Gemini image runs require max Gemini API calls greater than 0 or -1.')
+      return
+    }
+    try {
+      const job = await api.startPipelineVerificationRun(flowId, runForm)
+      setRunJob(job)
+      setRunMessage(`Started pipeline job ${job.job_id}.`)
+    } catch (error) {
+      setRunMessage(error instanceof Error ? error.message : 'Failed to start pipeline run')
+    }
+  }
+
+  const requirementsPath = runForm.requirements_source === 'benchmark'
+    ? `data/annotations/verification_gold/${flowId}/verification_gold.json`
+    : `data/annotations/requirements_gold/${flowId}/gold_requirements.json`
+  const cliCommand = `PYTHONPATH=src:. python scripts/run_verification_pipeline.py --flow-dir data/processed/flows/mind2web/${flowId} --requirements ${requirementsPath} --requirements-source ${runForm.requirements_source} --out data/generated/${runForm.output_dir_name}/${flowId}.json --retriever lexical --verifier ${runForm.verifier === 'deterministic_rule_based' ? 'deterministic' : 'gemini-image'} --verifier-model ${runForm.verifier_model} --max-verifier-images ${runForm.max_images} --max-gemini-api-calls ${runForm.max_gemini_api_calls} --no-llm-claim-fallback`
+
+  const metadata = activeRun?.metadata ?? {}
+  const labelDistribution = (metadata.label_distribution ?? labelDistributionForResults(activeRun?.results ?? [])) as Record<string, number>
+  const claimStatusDistribution = (metadata.claim_status_distribution ?? claimStatusDistributionForResults(activeRun?.results ?? [])) as Record<string, number>
   const referenceComparison = (metadata.reference_comparison ?? {}) as {
     summary?: Record<string, unknown>
     items?: Array<Record<string, unknown>>
@@ -1130,12 +1222,170 @@ function VerificationRunPanel({
     <section className="stack-layout">
       <section className="card">
         <div className="panel-header">
+          <h3>Verification runs</h3>
+          <button className="secondary-button" onClick={() => void refreshRuns()}>
+            Refresh runs
+          </button>
+        </div>
+        {runsState === 'loading' && <p className="inline-note">Loading runs...</p>}
+        {runMessage && <p className="inline-note">{runMessage}</p>}
+        {runs.length > 0 ? (
+          <>
+            <label>
+              Select run
+              <select
+                value={selectedRunId}
+                onChange={(event) => {
+                  void selectRun(event.target.value)
+                }}
+              >
+                {runs.map((run) => (
+                  <option key={run.run_id} value={run.run_id}>
+                    {run.source} | {run.verifier ?? 'unknown'} | {run.retriever ?? 'unknown'} | {run.requirements_count} reqs | {formatDistribution(run.label_distribution)}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <div className="demo-table">
+              <div className="demo-table-header">
+                <span>Source</span>
+                <span>Verifier</span>
+                <span>Retriever</span>
+                <span>Labels</span>
+              </div>
+              {runs.map((run) => (
+                <button
+                  key={run.run_id}
+                  className="demo-table-row comparison-row-button"
+                  onClick={() => void selectRun(run.run_id)}
+                >
+                  <span className="review-mini-stack">
+                    <strong>{run.source}</strong>
+                    <span title={run.path}>{run.run_folder}</span>
+                    <span>{formatTimestamp(run.timestamp)}</span>
+                  </span>
+                  <span className="review-mini-stack">
+                    <strong>{run.verifier ?? 'unknown'}</strong>
+                    <span>{run.verifier_model ?? 'default'}</span>
+                  </span>
+                  <span>{run.retriever ?? 'unknown'}</span>
+                  <span className="review-mini-stack">
+                    <span>{formatCompactDistribution(run.label_distribution)}</span>
+                    <span>{run.metrics_available ? 'metrics available' : 'no metrics file'}</span>
+                  </span>
+                </button>
+              ))}
+            </div>
+          </>
+        ) : (
+          <p className="empty-text">No generated verification pipeline output exists for this flow yet.</p>
+        )}
+      </section>
+
+      <section className="card">
+        <div className="panel-header">
+          <h3>Run pipeline</h3>
+          <span>Starting a Gemini run is an explicit action and may consume API quota.</span>
+        </div>
+        <div className="toolbar-grid">
+          <label>
+            Verifier
+            <select
+              value={runForm.verifier}
+              onChange={(event) => setRunForm({...runForm, verifier: event.target.value as StartPipelineRunPayload['verifier']})}
+            >
+              <option value="deterministic_rule_based">deterministic_rule_based</option>
+              <option value="gemini-image">gemini-image</option>
+            </select>
+          </label>
+          <label>
+            Verifier model
+            <input value={runForm.verifier_model} onChange={(event) => setRunForm({...runForm, verifier_model: event.target.value})} />
+          </label>
+          <label>
+            Retriever
+            <select value={runForm.retriever} onChange={() => setRunForm({...runForm, retriever: 'lexical'})}>
+              <option value="lexical">lexical</option>
+            </select>
+          </label>
+          <label>
+            Requirements
+            <select
+              value={runForm.requirements_source}
+              onChange={(event) => setRunForm({...runForm, requirements_source: event.target.value as StartPipelineRunPayload['requirements_source']})}
+            >
+              <option value="benchmark">verification benchmark</option>
+              <option value="accepted">accepted requirements</option>
+            </select>
+          </label>
+          <label>
+            Output directory
+            <input value={runForm.output_dir_name} onChange={(event) => setRunForm({...runForm, output_dir_name: event.target.value})} />
+          </label>
+          <label>
+            Top-k
+            <input type="number" min={1} max={20} value={runForm.top_k} onChange={(event) => setRunForm({...runForm, top_k: Number(event.target.value)})} />
+          </label>
+          <label>
+            Max images
+            <input type="number" min={1} max={20} value={runForm.max_images} onChange={(event) => setRunForm({...runForm, max_images: Number(event.target.value)})} />
+          </label>
+          <label>
+            Max Gemini API calls
+            <input
+              type="number"
+              min={-1}
+              max={1000}
+              value={runForm.max_gemini_api_calls}
+              onChange={(event) => setRunForm({...runForm, max_gemini_api_calls: Number(event.target.value)})}
+            />
+          </label>
+          <label>
+            Use cache
+            <select value={runForm.use_cache ? 'true' : 'false'} onChange={(event) => setRunForm({...runForm, use_cache: event.target.value === 'true'})}>
+              <option value="true">true</option>
+              <option value="false">false</option>
+            </select>
+          </label>
+        </div>
+        <div className="button-row">
+          <button onClick={() => void startRun()} disabled={runJob?.status === 'running'}>
+            Run pipeline
+          </button>
+        </div>
+        {runJob && (
+          <div className="meta-block">
+            <span>Status: {runJob.status}</span>
+            <span>Output path: {runJob.output_path ?? 'pending'}</span>
+            <span>Return code: {runJob.return_code ?? 'pending'}</span>
+            {runJob.recent_log_lines.length > 0 && <pre className="code-block">{runJob.recent_log_lines.slice(-12).join('\n')}</pre>}
+          </div>
+        )}
+        <details className="expandable-section">
+          <summary className="expandable-summary">
+            <h4>Advanced CLI command</h4>
+            <span>Manual equivalent for repository root.</span>
+          </summary>
+          <pre className="code-block expandable-body">{cliCommand}</pre>
+        </details>
+      </section>
+
+      {!activeRun && (
+        <section className="card">
+          <p className="empty-text">Select an existing run or start a new pipeline run to inspect verification output.</p>
+        </section>
+      )}
+
+      {activeRun && (
+        <>
+      <section className="card">
+        <div className="panel-header">
           <h3>Verification pipeline run</h3>
-          <span>{pipelineRun.flow_id}</span>
+          <span>{activeRun.flow_id}</span>
         </div>
         <div className="metric-grid">
-          <Metric label="Requirements" value={String(metadata.requirements_count ?? pipelineRun.results.length)} />
-          <Metric label="Claims" value={String(metadata.claim_count ?? pipelineRun.results.reduce((sum, result) => sum + result.claims.length, 0))} />
+          <Metric label="Requirements" value={String(metadata.requirements_count ?? activeRun.results.length)} />
+          <Metric label="Claims" value={String(metadata.claim_count ?? activeRun.results.reduce((sum, result) => sum + result.claims.length, 0))} />
           <Metric label="Retriever" value={String(metadata.selected_retriever ?? metadata.retriever ?? metadata.requested_retriever ?? 'unknown')} />
           <Metric label="Claim model" value={String(metadata.claim_model ?? 'rule-based')} />
           <Metric label="Verifier" value={String(metadata.verifier ?? 'deterministic')} />
@@ -1224,7 +1474,7 @@ function VerificationRunPanel({
           <span>Each decision includes claim-level evidence.</span>
         </div>
         <div className="requirement-list">
-          {pipelineRun.results.map((result) => (
+          {activeRun.results.map((result) => (
             <article key={result.requirement_id} className="requirement-card">
               <div className="requirement-header">
                 <strong>{result.requirement_id}</strong>
@@ -1257,6 +1507,8 @@ function VerificationRunPanel({
           ))}
         </div>
       </section>
+        </>
+      )}
       {selectedResult && (
         <VerificationComparisonModal
           result={selectedResult}
@@ -1553,6 +1805,17 @@ function formatCompactDistribution(distribution: Record<string, number>): string
     return 'none'
   }
   return entries.map(([key, value]) => `${humanizeStatus(key)} ${value}`).join(' · ')
+}
+
+function formatTimestamp(value: string | number | null | undefined): string {
+  if (value === null || value === undefined || value === '') {
+    return 'unknown time'
+  }
+  const date = typeof value === 'number' ? new Date(value * 1000) : new Date(value)
+  if (Number.isNaN(date.getTime())) {
+    return String(value)
+  }
+  return date.toLocaleString()
 }
 
 function formatReasons(reasons: string[]): string {

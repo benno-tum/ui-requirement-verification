@@ -26,9 +26,11 @@ from ui_verifier.verification_pipeline.schemas import (
     ScreenRepresentation,
     ScreenshotStep,
     UIEvaluability,
+    UncertaintyReason,
     VerificationLabel,
 )
 from ui_verifier.verification_pipeline.screen_understanding import ScreenUnderstanding
+from scripts.run_verification_pipeline import load_requirements
 
 
 class FakeClaimDecomposer(ClaimDecomposer):
@@ -82,6 +84,7 @@ def _claim_result(
     claim_id: str = "REQ-1-C1",
     evidence: list[EvidenceItem] | None = None,
     observable: bool = True,
+    uncertainty_reasons: list[UncertaintyReason] | None = None,
 ) -> ClaimVerificationResult:
     return ClaimVerificationResult(
         claim_id=claim_id,
@@ -91,6 +94,7 @@ def _claim_result(
         is_core=True,
         is_observable=observable,
         evidence=evidence or [],
+        uncertainty_reasons=uncertainty_reasons or [],
         rationale="test rationale",
     )
 
@@ -128,6 +132,46 @@ def test_requirement_decomposition_creates_two_to_four_claims() -> None:
 
     assert 2 <= len(result.claims) <= 4
     assert all(claim.source_requirement_text == requirement.text for claim in result.claims)
+
+
+def test_benchmark_input_loader_includes_contrastive_requirements(tmp_path: Path) -> None:
+    requirements_path = tmp_path / "verification_gold.json"
+    requirements_path.write_text(
+        json.dumps(
+            {
+                "flow_id": "flow-1",
+                "items": [
+                    {"requirement_id": "REQ-01", "text": "The page shows search."},
+                    {"requirement_id": "CONTR-01", "text": "The page preserves search state."},
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    requirements = load_requirements(requirements_path, default_flow_id="flow-1")
+
+    assert [requirement.requirement_id for requirement in requirements] == ["REQ-01", "CONTR-01"]
+
+
+def test_llm_decomposition_prompt_preserves_or_alternatives() -> None:
+    from ui_verifier.verification_pipeline.requirement_understanding import _build_llm_decomposition_prompt
+
+    prompt = _build_llm_decomposition_prompt(
+        [
+            RequirementInput(
+                requirement_id="REQ-1",
+                text=(
+                    "The system shall provide visible confirmation that a selected job posting has been handed off "
+                    "to the chosen external sharing channel or compose surface."
+                ),
+            )
+        ],
+        max_claims=4,
+    )
+
+    assert "Separate claims are interpreted conjunctively" in prompt
+    assert 'Preserve "or" wording inside one claim' in prompt
 
 
 def test_requirement_understanding_uses_batch_llm_fallback_for_failed_decomposition() -> None:
@@ -259,6 +303,100 @@ def test_missing_evidence_leads_to_abstain_or_partial_not_not_fulfilled() -> Non
 
     assert no_evidence.final_label == VerificationLabel.ABSTAIN
     assert partial.final_label == VerificationLabel.PARTIALLY_FULFILLED
+
+
+def test_aggregator_fulfilled_requires_all_core_claims_supported() -> None:
+    result = LabelAggregator().aggregate(
+        requirement=_requirement(),
+        ui_evaluability=UIEvaluability.UI_VERIFIABLE,
+        claim_results=[
+            _claim_result(ClaimStatus.SUPPORTED, claim_id="REQ-1-C1", evidence=[_evidence(1)]),
+            _claim_result(ClaimStatus.SUPPORTED, claim_id="REQ-1-C2", evidence=[_evidence(2)]),
+        ],
+    )
+
+    assert result.final_label == VerificationLabel.FULFILLED
+
+
+@pytest.mark.parametrize(
+    "problem_status",
+    [
+        ClaimStatus.PARTIALLY_SUPPORTED,
+        ClaimStatus.MISSING,
+        ClaimStatus.HIDDEN,
+        ClaimStatus.AMBIGUOUS,
+        ClaimStatus.OUT_OF_SCOPE,
+    ],
+)
+def test_aggregator_partial_when_supported_claim_has_problem_core_claim(problem_status: ClaimStatus) -> None:
+    result = LabelAggregator().aggregate(
+        requirement=_requirement(),
+        ui_evaluability=UIEvaluability.UI_VERIFIABLE,
+        claim_results=[
+            _claim_result(ClaimStatus.SUPPORTED, claim_id="REQ-1-C1", evidence=[_evidence(1)]),
+            _claim_result(problem_status, claim_id="REQ-1-C2", evidence=[_evidence(2)]),
+        ],
+    )
+
+    assert result.final_label == VerificationLabel.PARTIALLY_FULFILLED
+
+
+def test_aggregator_partially_supported_with_evidence_is_partially_fulfilled() -> None:
+    result = LabelAggregator().aggregate(
+        requirement=_requirement(),
+        ui_evaluability=UIEvaluability.UI_VERIFIABLE,
+        claim_results=[
+            _claim_result(ClaimStatus.PARTIALLY_SUPPORTED, evidence=[_evidence()]),
+        ],
+    )
+
+    assert result.final_label == VerificationLabel.PARTIALLY_FULFILLED
+
+
+@pytest.mark.parametrize(
+    "unsupported_status",
+    [
+        ClaimStatus.MISSING,
+        ClaimStatus.HIDDEN,
+        ClaimStatus.AMBIGUOUS,
+        ClaimStatus.OUT_OF_SCOPE,
+    ],
+)
+def test_aggregator_abstains_when_no_core_claim_is_supported(unsupported_status: ClaimStatus) -> None:
+    result = LabelAggregator().aggregate(
+        requirement=_requirement(),
+        ui_evaluability=UIEvaluability.UI_VERIFIABLE,
+        claim_results=[
+            _claim_result(unsupported_status, claim_id="REQ-1-C1", evidence=[_evidence()]),
+        ],
+    )
+
+    assert result.final_label == VerificationLabel.ABSTAIN
+
+
+@pytest.mark.parametrize(
+    "reason",
+    [
+        UncertaintyReason.FLOW_COVERAGE_GAP,
+        UncertaintyReason.UNVERIFIED_SYSTEM_OUTCOME,
+        UncertaintyReason.NONTRIVIAL_HIDDEN_PROPERTY,
+        UncertaintyReason.EVIDENCE_INTERPRETATION_AMBIGUITY,
+    ],
+)
+def test_aggregator_material_uncertainty_blocks_fulfilled(reason: UncertaintyReason) -> None:
+    result = LabelAggregator().aggregate(
+        requirement=_requirement(),
+        ui_evaluability=UIEvaluability.UI_VERIFIABLE,
+        claim_results=[
+            _claim_result(
+                ClaimStatus.SUPPORTED,
+                evidence=[_evidence()],
+                uncertainty_reasons=[reason],
+            )
+        ],
+    )
+
+    assert result.final_label == VerificationLabel.PARTIALLY_FULFILLED
 
 
 def test_pipeline_produces_valid_json_output(tmp_path: Path) -> None:

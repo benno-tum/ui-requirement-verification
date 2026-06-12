@@ -1027,6 +1027,9 @@ Instructions:
 - Do not add screenshot evidence.
 - Do not decide final verification labels.
 - Make every claim grammatical and self-contained.
+- Separate claims are conjunctive: every returned claim is expected to hold.
+- Do not split alternatives joined by "or" into separate core claims unless the requirement explicitly requires both alternatives independently.
+- Preserve "or" wording inside one claim for alternative channels, destinations, compose surfaces, or modes.
 - Separate observable UI claims from hidden/backend/system/policy claims.
 - Preserve hidden claims but mark them correctly.
 - Split mixed visible/hidden requirements when possible.
