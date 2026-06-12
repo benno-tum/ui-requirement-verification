@@ -26,6 +26,7 @@ data.zip
 data_backup_before_cleanup/
 archive/
 tmp/
+outputs/
 
 # Versioned requirement annotations stay in data/annotations/.
 
