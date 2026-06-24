@@ -20,7 +20,7 @@ from ui_verifier.requirements.schemas import (
     RequirementScope,
     TaskRelevance,
 )
-from ui_verifier.verification.schemas import VerificationGoldFile, VerificationGoldItem, VerificationLabel
+from ui_verifier.verification.schemas import ClaimEvidence, ClaimEvidenceStatus, VerificationGoldFile, VerificationGoldItem, VerificationLabel
 from scripts.backfill_verification_claim_suggestions import backfill_verification_claim_suggestions
 
 
@@ -329,3 +329,16 @@ def test_deleted_gold_requirement_does_not_reappear_from_accepted_candidate(tmp_
     assert deleted_gold is True
     assert service.list_gold_requirements(flow_id) == []
     assert service.list_verification_gold(flow_id) == []
+
+
+def test_verification_claim_status_supports_caveat_roundtrip() -> None:
+    claim = ClaimEvidence(
+        claim="The system offers enough information to accept the behavior with a caveat.",
+        status=ClaimEvidenceStatus.SUPPORTED_WITH_CAVEAT,
+        evidence_steps=[1],
+    )
+
+    parsed = ClaimEvidence.from_dict(claim.to_dict())
+
+    assert parsed.status == ClaimEvidenceStatus.SUPPORTED_WITH_CAVEAT
+    assert parsed.to_dict()["status"] == "SUPPORTED_WITH_CAVEAT"

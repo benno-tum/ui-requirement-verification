@@ -17,7 +17,7 @@ class ModelRoleConfig:
 
 
 _DEFAULTS: dict[str, ModelRoleConfig] = {
-    "claim_decomposition": ModelRoleConfig("claim_decomposition", "gemini", "gemini-2.5-flash-lite", 0.0),
+    "claim_decomposition": ModelRoleConfig("claim_decomposition", "deepseek", "deepseek-chat", 0.0),
     "pipeline_claim_fallback": ModelRoleConfig("pipeline_claim_fallback", "deepseek", "deepseek-chat", 0.0),
     "evidence_retrieval": ModelRoleConfig("evidence_retrieval", "deepseek", "deepseek-chat", 0.0),
     "verification": ModelRoleConfig("verification", "gemini", "gemini-2.5-flash", 0.2),
@@ -25,7 +25,7 @@ _DEFAULTS: dict[str, ModelRoleConfig] = {
     "requirement_harvest": ModelRoleConfig("requirement_harvest", "gemini", "gemini-2.5-flash", 0.0),
     "api_requirement_harvest": ModelRoleConfig("api_requirement_harvest", "gemini", "gemini-2.5-flash", 0.7),
     "candidate_rewrite": ModelRoleConfig("candidate_rewrite", "gemini", "gemini-2.5-flash-lite", 0.0),
-    "claim_rephrase": ModelRoleConfig("claim_rephrase", "gemini", "gemini-2.5-flash-lite", 0.1),
+    "claim_rephrase": ModelRoleConfig("claim_rephrase", "deepseek", "deepseek-chat", 0.1),
     "screen_description": ModelRoleConfig("screen_description", "gemini", "gemini-2.5-flash", 0.2),
     "contrastive_generation": ModelRoleConfig("contrastive_generation", "external", "user-provided-model", 0.2),
 }

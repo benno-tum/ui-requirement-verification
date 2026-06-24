@@ -386,7 +386,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "Learning submission rules and starting a release submission are shown as distinct navigation choices.",
+          "claim": "Learning submission rules and starting a release submission are distinct navigation choices.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",

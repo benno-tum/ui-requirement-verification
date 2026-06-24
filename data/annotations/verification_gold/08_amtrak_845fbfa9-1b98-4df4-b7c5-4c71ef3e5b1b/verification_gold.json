@@ -37,7 +37,7 @@
           "note": null
         },
         {
-          "claim": "The expanded experience navigation shows major experience categories such as Why Amtrak, Before You Go, At the Station, and Onboard.",
+          "claim": "The expanded experience navigation exposes major travel-experience categories.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -154,7 +154,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The Onboard page presents distinct amenity and service categories.",
+          "claim": "The onboard experience area presents distinct amenity and service categories.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -277,7 +277,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The Onboard Dining page surfaces dietary guidance or special dietary requirement information.",
+          "claim": "The onboard dining area surfaces dietary guidance or special dietary requirement information.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -287,7 +287,7 @@
           "note": null
         },
         {
-          "claim": "The Onboard Dining page surfaces related food policy or food information links alongside the dining content.",
+          "claim": "The onboard dining area surfaces related food policy or food information links alongside dining content.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -336,7 +336,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The Onboard Dining page presents specific dining service type entries.",
+          "claim": "The onboard dining area presents specific dining service type entries.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -565,7 +565,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The Onboard overview page presents a list of specific amenity or service topics.",
+          "claim": "The onboard overview presents a list of specific amenity or service topics.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -635,7 +635,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The Onboard Dining page presents multiple dining format options.",
+          "claim": "The onboard dining area presents multiple dining format options.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -645,7 +645,7 @@
           "note": null
         },
         {
-          "claim": "The flow shows menu resources only after the user has reached a specific dining format page.",
+          "claim": "Menu resources are reachable after the user reaches a specific dining format page.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -784,7 +784,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The Café service page includes a Sample Menus section.",
+          "claim": "The dining service page includes a sample menus section.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -794,7 +794,7 @@
           "note": null
         },
         {
-          "claim": "The Sample Menus section presents menu resource links.",
+          "claim": "The sample menus section presents menu resource links.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1229,7 +1229,7 @@
           "note": null
         },
         {
-          "claim": "The flow shows a corresponding detail or menu-entry resource for the Café dining service type.",
+          "claim": "The system provides a corresponding detail or menu-entry resource for a dining service type.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",

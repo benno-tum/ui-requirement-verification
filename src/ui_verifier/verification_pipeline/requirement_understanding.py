@@ -23,7 +23,7 @@ _HIDDEN_INDICATORS: tuple[tuple[str, re.Pattern[str]], ...] = (
         re.compile(r"\b(authenticat|authori[sz]e|login correctness|access control)\b", re.IGNORECASE),
     ),
     ("backend", re.compile(r"\b(backend|server|api|service layer|integration)\b", re.IGNORECASE)),
-    ("database", re.compile(r"\b(database|stored?|storage|persist|persistence|retention)\b", re.IGNORECASE)),
+    ("database", re.compile(r"\b(database|stored|storage|persist(?:s|ed|ing)?|persistence|retention)\b", re.IGNORECASE)),
     ("email delivery", re.compile(r"\b(email|sms|message delivery|notification delivery)\b", re.IGNORECASE)),
     ("payment processing", re.compile(r"\b(payment|charge|refund|transaction|billing)\b", re.IGNORECASE)),
     ("ranking correctness", re.compile(r"\b(rank(?:ing)? correctness|sorted correctly|relevance ranking)\b", re.IGNORECASE)),
@@ -255,6 +255,7 @@ class RequirementUnderstanding:
         min_claims: int = 1,
         max_claims: int = 4,
         fallback_decomposer: ClaimDecomposer | None = None,
+        decompose_claims: bool = True,
     ) -> None:
         if min_claims < 1:
             raise ValueError("min_claims must be >= 1")
@@ -264,11 +265,22 @@ class RequirementUnderstanding:
         self.max_claims = max_claims
         self.heuristic_decomposer = HeuristicClaimDecomposer()
         self.fallback_decomposer = fallback_decomposer
+        self.decompose_claims = decompose_claims
 
     def understand(self, requirement: RequirementInput) -> RequirementUnderstandingResult:
         return self.understand_many([requirement])[0]
 
     def understand_many(self, requirements: list[RequirementInput]) -> list[RequirementUnderstandingResult]:
+        if not self.decompose_claims:
+            return [
+                self._build_result(
+                    requirement,
+                    [requirement.text],
+                    decomposition_source="disabled",
+                )
+                for requirement in requirements
+            ]
+
         heuristic_claims_by_id = self.heuristic_decomposer.decompose_many(requirements, max_claims=self.max_claims)
         claim_texts_by_id = dict(heuristic_claims_by_id)
         decomposition_source_by_id = {requirement.requirement_id: "heuristic" for requirement in requirements}

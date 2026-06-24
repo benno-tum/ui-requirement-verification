@@ -6,9 +6,11 @@ from ui_verifier.model_config import get_model_role_config, model_name_for, prov
 
 
 def test_model_config_uses_repo_default_file() -> None:
-    assert provider_for("claim_decomposition") == "gemini"
-    assert model_name_for("claim_decomposition") == "gemini-2.5-flash-lite"
+    assert provider_for("claim_decomposition") == "deepseek"
+    assert model_name_for("claim_decomposition") == "deepseek-chat"
     assert temperature_for("claim_decomposition") == 0.0
+    assert provider_for("claim_rephrase") == "deepseek"
+    assert model_name_for("claim_rephrase") == "deepseek-chat"
 
 
 def test_model_config_file_and_env_overrides(tmp_path, monkeypatch) -> None:

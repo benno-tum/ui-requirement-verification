@@ -407,7 +407,7 @@
           "note": null
         },
         {
-          "claim": "The flow shows a browsing view of books after the configured advanced search is submitted.",
+          "claim": "The system displays a browsing view of books after the configured advanced search is submitted.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -474,7 +474,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "Global storefront controls remain visible on the homepage and advanced search screens.",
+          "claim": "Global storefront controls remain available during homepage and advanced search use.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -639,7 +639,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The active advanced search filters are visible before submission.",
+          "claim": "Active advanced search filters are reflected before submission.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -871,7 +871,7 @@
           "note": null
         },
         {
-          "claim": "The flow shows the user returning from a filtered browsing view to the advanced search workflow.",
+          "claim": "The user can return from a filtered browsing view to the advanced search workflow.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1045,7 +1045,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The flow shows visible author and language constraints configured in advanced search.",
+          "claim": "Author and language constraints can be configured in advanced search.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1055,7 +1055,7 @@
           "note": null
         },
         {
-          "claim": "The flow shows books after the advanced search is submitted.",
+          "claim": "Books are displayed after advanced search is submitted.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1129,7 +1129,7 @@
           ]
         },
         {
-          "claim": "A resulting browsing view is shown after the configured criteria are submitted.",
+          "claim": "A resulting browsing view is displayed after the configured criteria are submitted.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1189,7 +1189,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "A dedicated review state is visible before executing advanced search.",
+          "claim": "The system provides a dedicated review state before executing advanced search.",
           "status": "CONTRADICTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",

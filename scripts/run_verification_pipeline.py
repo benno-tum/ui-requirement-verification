@@ -135,6 +135,19 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--retriever", choices=["lexical", "tfidf", "embedding", "llm"], default="lexical")
     parser.add_argument("--top-k", type=int, default=3)
     parser.add_argument(
+        "--claims",
+        dest="claims_enabled",
+        action="store_true",
+        default=True,
+        help="Decompose requirements into independently verified claims. Enabled by default.",
+    )
+    parser.add_argument(
+        "--no-claims",
+        dest="claims_enabled",
+        action="store_false",
+        help="Disable claim decomposition and verify each complete requirement as one unit.",
+    )
+    parser.add_argument(
         "--llm-claim-fallback",
         dest="llm_claim_fallback",
         action="store_true",
@@ -164,6 +177,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-verifier-images", type=int, default=6)
     parser.add_argument("--gemini-max-retries", type=int, default=0)
     parser.add_argument("--max-gemini-api-calls", type=int, default=10, help="Use -1 for no cap.")
+    parser.add_argument(
+        "--claim-workers",
+        type=int,
+        default=4,
+        help="Maximum number of independent claim-verification calls to run concurrently.",
+    )
     parser.add_argument("--verifier-cache", type=Path, default=None)
     return parser.parse_args()
 
@@ -188,10 +207,13 @@ def main() -> None:
     )
     fallback_decomposer = (
         GeminiClaimDecomposer(provider=args.claim_provider, model_name=args.claim_model)
-        if args.llm_claim_fallback
+        if args.claims_enabled and args.llm_claim_fallback
         else None
     )
-    requirement_understander = RequirementUnderstanding(fallback_decomposer=fallback_decomposer)
+    requirement_understander = RequirementUnderstanding(
+        fallback_decomposer=fallback_decomposer,
+        decompose_claims=args.claims_enabled,
+    )
     if args.verifier == "gemini-image":
         cache_path = args.verifier_cache or (
             BASE_DIR / "data" / "generated" / "verification_pipeline_cache" / f"{args.flow_dir.name}_gemini_image_claims.json"
@@ -213,6 +235,7 @@ def main() -> None:
         requirement_understander=requirement_understander,
         evidence_retriever=retriever,
         claim_verifier=claim_verifier,
+        max_claim_workers=args.claim_workers,
     )
     output = pipeline.run(
         PipelineInput(
@@ -227,11 +250,13 @@ def main() -> None:
                 "retriever_provider": args.retriever_provider if args.retriever == "llm" else None,
                 "retriever_model": args.retriever_model if args.retriever == "llm" else None,
                 "top_k": args.top_k,
-                "llm_claim_fallback": args.llm_claim_fallback,
+                "claims_enabled": args.claims_enabled,
+                "llm_claim_fallback": args.claims_enabled and args.llm_claim_fallback,
                 "claim_provider": args.claim_provider,
-                "claim_model": args.claim_model if args.llm_claim_fallback else None,
+                "claim_model": args.claim_model if args.claims_enabled and args.llm_claim_fallback else None,
                 "verifier": args.verifier,
                 "verifier_model": args.verifier_model if args.verifier == "gemini-image" else None,
+                "claim_workers": args.claim_workers,
             },
         )
     )

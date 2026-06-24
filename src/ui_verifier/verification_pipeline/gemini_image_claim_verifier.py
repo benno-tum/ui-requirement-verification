@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import threading
 import time
 from typing import Any
 
@@ -59,6 +60,9 @@ def _normalize_status(value: object) -> ClaimStatus:
     normalized = str(value or "").strip().upper()
     aliases = {
         "SUPPORTED": ClaimStatus.SUPPORTED,
+        "SUPPORTED_WITH_CAVEAT": ClaimStatus.SUPPORTED_WITH_CAVEAT,
+        "SUPPORTED WITH CAVEAT": ClaimStatus.SUPPORTED_WITH_CAVEAT,
+        "SUPPORTED_BUT_NOT_PROVEN": ClaimStatus.SUPPORTED_WITH_CAVEAT,
         "PARTIALLY_SUPPORTED": ClaimStatus.PARTIALLY_SUPPORTED,
         "PARTIAL": ClaimStatus.PARTIALLY_SUPPORTED,
         "MISSING": ClaimStatus.MISSING,
@@ -110,9 +114,12 @@ class GeminiImageClaimVerifier:
         self.max_api_calls = max_api_calls
         self.fallback = fallback or ClaimVerifier()
         self.cache = self._load_cache()
+        self._state_lock = threading.Lock()
+        self._api_calls_started = 0
         self.diagnostics: dict[str, Any] = {
             "requested": 0,
             "api_calls": 0,
+            "api_call_attempts": 0,
             "cache_hits": 0,
             "fallbacks": 0,
             "failures": [],
@@ -130,40 +137,54 @@ class GeminiImageClaimVerifier:
         *,
         ui_evaluability: UIEvaluability,
     ) -> ClaimVerificationResult:
-        self.diagnostics["requested"] += 1
+        with self._state_lock:
+            self.diagnostics["requested"] += 1
         if not claim.is_observable or has_hidden_indicator(claim.claim_text):
             return self.fallback.verify(claim, evidence, ui_evaluability=ui_evaluability)
 
         selected_steps = self._selected_steps(evidence) or self._fallback_steps()
         payload = self._request_payload(claim, selected_steps, ui_evaluability=ui_evaluability)
         key = _cache_key(payload)
-        cached = self.cache.get(key)
+        with self._state_lock:
+            cached = self.cache.get(key)
 
         if isinstance(cached, dict) and isinstance(cached.get("parsed"), dict):
-            self.diagnostics["cache_hits"] += 1
+            with self._state_lock:
+                self.diagnostics["cache_hits"] += 1
             parsed = cached["parsed"]
         else:
-            if self.max_api_calls is not None and int(self.diagnostics["api_calls"]) >= self.max_api_calls:
-                self.diagnostics["fallbacks"] += 1
-                self.diagnostics["failures"].append(
-                    {"claim_id": claim.claim_id, "error": f"Gemini image API call cap reached ({self.max_api_calls})."}
+            with self._state_lock:
+                call_cap_reached = (
+                    self.max_api_calls is not None and self._api_calls_started >= self.max_api_calls
+                )
+                if not call_cap_reached:
+                    self._api_calls_started += 1
+                    self.diagnostics["api_call_attempts"] += 1
+            if call_cap_reached:
+                self._record_fallback(
+                    claim.claim_id,
+                    f"Gemini image API call cap reached ({self.max_api_calls}).",
                 )
                 return self.fallback.verify(claim, evidence, ui_evaluability=ui_evaluability)
             try:
                 parsed, raw = self._call_gemini(payload, selected_steps)
-                self.cache[key] = {"payload": payload, "parsed": parsed, "raw": raw}
-                self._save_cache()
+                with self._state_lock:
+                    self.cache[key] = {"payload": payload, "parsed": parsed, "raw": raw}
+                    self._save_cache()
             except Exception as exc:
-                self.diagnostics["fallbacks"] += 1
-                self.diagnostics["failures"].append({"claim_id": claim.claim_id, "error": str(exc)})
+                self._record_fallback(claim.claim_id, str(exc))
                 return self.fallback.verify(claim, evidence, ui_evaluability=ui_evaluability)
 
         try:
             return self._result_from_gemini(claim, parsed, selected_steps)
         except Exception as exc:
-            self.diagnostics["fallbacks"] += 1
-            self.diagnostics["failures"].append({"claim_id": claim.claim_id, "error": str(exc)})
+            self._record_fallback(claim.claim_id, str(exc))
             return self.fallback.verify(claim, evidence, ui_evaluability=ui_evaluability)
+
+    def _record_fallback(self, claim_id: str, error: str) -> None:
+        with self._state_lock:
+            self.diagnostics["fallbacks"] += 1
+            self.diagnostics["failures"].append({"claim_id": claim_id, "error": error})
 
     def _load_cache(self) -> dict[str, Any]:
         if not self.cache_path.exists():
@@ -225,6 +246,7 @@ Do not use raw HTML, DOM, backend state, database state, payment processing, ema
 Strict rules:
 - Only visible UI evidence counts.
 - SUPPORTED requires clear visible screenshot evidence.
+- SUPPORTED_WITH_CAVEAT means the claim is sufficiently supported for fulfillment, but the evidence is inferential, partially visible, or convention-based rather than airtight.
 - PARTIALLY_SUPPORTED means some visible part is supported but important visible detail is missing or ambiguous.
 - MISSING means the claim could be visible but the screenshots do not show enough.
 - HIDDEN means the claim is about hidden/non-visual system behavior.
@@ -237,7 +259,7 @@ Input JSON:
 Return JSON only:
 {{
   "claim_id": "{payload["claim_id"]}",
-  "claim_status": "SUPPORTED | PARTIALLY_SUPPORTED | MISSING | HIDDEN | CONTRADICTED",
+  "claim_status": "SUPPORTED | SUPPORTED_WITH_CAVEAT | PARTIALLY_SUPPORTED | MISSING | HIDDEN | CONTRADICTED",
   "evidence_step_indices": [1],
   "uncertainty_reasons": ["TEXTUAL_AMBIGUITY | SCOPE_OR_CONTEXT_AMBIGUITY | QUANTIFIER_OR_COMPLETENESS_AMBIGUITY | EVIDENCE_INTERPRETATION_AMBIGUITY | FLOW_COVERAGE_GAP | UNVERIFIED_SYSTEM_OUTCOME | NONTRIVIAL_HIDDEN_PROPERTY"],
   "visible_observations": ["short visible observation tied to screenshot evidence"],
@@ -268,7 +290,8 @@ Return JSON only:
         else:
             raise last_error or RuntimeError("Gemini call failed.")
 
-        self.diagnostics["api_calls"] += 1
+        with self._state_lock:
+            self.diagnostics["api_calls"] += 1
         parsed = parse_json_response(raw)
         if not isinstance(parsed, dict):
             raise ValueError("Gemini response was not a JSON object.")
@@ -311,7 +334,7 @@ Return JSON only:
             observation_text = str(parsed.get("rationale") or "Gemini image verifier returned a claim decision.").strip()
 
         evidence: list[EvidenceItem] = []
-        if status in {ClaimStatus.SUPPORTED, ClaimStatus.PARTIALLY_SUPPORTED, ClaimStatus.CONTRADICTED}:
+        if status in {ClaimStatus.SUPPORTED, ClaimStatus.SUPPORTED_WITH_CAVEAT, ClaimStatus.PARTIALLY_SUPPORTED, ClaimStatus.CONTRADICTED}:
             for step_index in step_indices:
                 evidence.append(
                     EvidenceItem(
@@ -349,6 +372,8 @@ Return JSON only:
     def _confidence_for_status(status: ClaimStatus) -> float:
         if status == ClaimStatus.SUPPORTED:
             return 0.85
+        if status == ClaimStatus.SUPPORTED_WITH_CAVEAT:
+            return 0.72
         if status == ClaimStatus.PARTIALLY_SUPPORTED:
             return 0.6
         if status == ClaimStatus.CONTRADICTED:

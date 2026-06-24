@@ -27,7 +27,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The UI presents restaurant discovery content for a specific location.",
+          "claim": "The system provides restaurant discovery content for a specific location.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -92,7 +92,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The UI provides a user menu containing account-related actions.",
+          "claim": "The system exposes account-related actions through a user menu.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -308,7 +308,7 @@
           "note": null
         },
         {
-          "claim": "The short bio field can contain user-entered text.",
+          "claim": "The short bio area can contain user-provided text.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -765,7 +765,7 @@
           "note": null
         },
         {
-          "claim": "The birthday controls can be populated with January, 05, and 1980.",
+          "claim": "The birthday controls can be populated with a month, day, and year.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1348,7 +1348,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "An explicit post-save confirmation or stored-edits summary is visible after the profile edits.",
+          "claim": "The system provides an explicit post-save confirmation or stored-edits summary after profile edits.",
           "status": "CONTRADICTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",

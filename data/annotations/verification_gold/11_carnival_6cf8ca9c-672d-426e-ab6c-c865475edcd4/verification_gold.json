@@ -43,7 +43,7 @@
           "note": null
         },
         {
-          "claim": "The same workflow is progressively configured with Alaska, San Francisco, CA, June 2023, and 10+ days.",
+          "claim": "The same workflow can be progressively configured with destination, departure port, departure month, and trip duration criteria.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -140,7 +140,7 @@
           "note": null
         },
         {
-          "claim": "A destination or region can be selected from that set, with Alaska shown as selected.",
+          "claim": "A destination or region can be selected from the browsable set of sailing destinations.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -198,7 +198,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "After Alaska is selected, the destination remains visible in the Sail To control while later criteria are configured.",
+          "claim": "The selected destination is retained in the search controls while later criteria are configured.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -287,7 +287,7 @@
           "note": null
         },
         {
-          "claim": "The user can choose San Francisco, CA from the departure port list.",
+          "claim": "The user can choose a sail-from location from the departure port list.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -343,7 +343,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "After San Francisco, CA is selected, the departure port remains visible while later search criteria are edited.",
+          "claim": "The selected departure port is preserved while later search criteria are edited.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -412,7 +412,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "After June 2023 is selected, the selected month and year remain visible in the active Dates control.",
+          "claim": "The selected sailing month and year remain part of the active search query.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -472,7 +472,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The duration selector exposes duration bands including 2-5 Days, 6-9 Days, and 10+ Days.",
+          "claim": "The duration selector exposes duration bands such as 2 to 5 days, 6 to 9 days, and 10 plus days.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -482,7 +482,7 @@
           "note": null
         },
         {
-          "claim": "A duration band can be selected, with 10+ Days shown as selected.",
+          "claim": "A duration band can be selected for the cruise search.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -543,7 +543,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "A Search Cruises action is visible in the search workflow.",
+          "claim": "The system provides a search action in the cruise search workflow.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -554,7 +554,7 @@
           "note": null
         },
         {
-          "claim": "The Search Cruises action remains available after the destination, port, date, and duration are configured.",
+          "claim": "The search action remains available after destination, port, date, and duration criteria are configured.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -891,7 +891,7 @@
           "note": null
         },
         {
-          "claim": "Search results reflecting the combined selected criteria are shown after submission.",
+          "claim": "Search results reflecting the combined selected criteria are returned after submission.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -901,7 +901,7 @@
           "note": null
         },
         {
-          "claim": "Whether returned cruises actually reflect all selected filters depends on result correctness not visible in the screenshots.",
+          "claim": "Whether returned cruises actually reflect all selected filters depends on result correctness.",
           "status": "HIDDEN",
           "claim_type": "HIDDEN",
           "importance": "CORE",
@@ -973,7 +973,7 @@
           "note": null
         },
         {
-          "claim": "A specific month and year can be selected, with June 2023 shown as selected.",
+          "claim": "A specific month and year can be selected.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",

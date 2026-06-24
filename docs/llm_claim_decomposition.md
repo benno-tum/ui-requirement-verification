@@ -14,7 +14,7 @@ There is no human review step in this path. Gold claims remain offline evaluatio
 - deterministic quality flags
 - detected textual patterns
 
-The prompt asks for JSON only and uses prompt version `CLAIM_DECOMPOSITION_RULE_GUIDED_V1`. Returned claims are validated against the structured schema with `claim_kind`, `ui_evaluability`, `importance`, and optional rationale.
+The prompt asks for JSON only and uses prompt version `CLAIM_DECOMPOSITION_RULE_GUIDED_V2`. Returned claims are validated against the structured schema with `claim_kind`, `ui_evaluability`, `importance`, and optional rationale.
 
 If the LLM response cannot be parsed, the decomposer retries once with a repair prompt. With `strict=True`, LLM errors raise. With `strict=False`, the component falls back to the rule-based claims and records flags such as `LLM_UNAVAILABLE`, `LLM_PARSE_ERROR`, or `LLM_SCHEMA_INVALID`.
 

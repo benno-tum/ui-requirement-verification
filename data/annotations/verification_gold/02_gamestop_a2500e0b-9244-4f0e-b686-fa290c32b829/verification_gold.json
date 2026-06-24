@@ -29,17 +29,22 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The store locator page is visible in the flow and exposes the store locator functionality.",
+          "claim": "The system exposes store locator functionality.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
-          "claim": "The screenshots show a clear access affordance or navigation action from the homepage into the store locator.",
+          "claim": "The system provides a clear access mechanism from the homepage into the store locator.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -47,7 +52,16 @@
             1,
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -66,8 +80,9 @@
       ],
       "evidence_note": "Step 2 shows the Find A Store page with the locator UI. Step 1 does not visibly show the navigation action or a clearly labeled affordance used to enter that page.",
       "rationale": "The locator functionality is visible, but the access mechanism from the preceding homepage state is not fully shown in the ordered screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T13:10:18+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T13:10:18+00:00",
+      "updated_at": "2026-06-23T21:41:03+00:00"
     },
     {
       "requirement_id": "REQ-02",
@@ -104,10 +119,23 @@
             3,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
-          "claim": "The flow shows the zip code 90028 entered as the geographic identifier.",
+          "claim": "The system accepts a geographic identifier as store-search input.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -115,7 +143,16 @@
             3,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The visible results update after the geographic identifier is used.",
@@ -125,7 +162,12 @@
           "evidence_steps": [
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -149,8 +191,9 @@
       ],
       "evidence_note": "Steps 2 to 4 show a city/state/zip search field, the entered value 90028, and a changed result context after the search.",
       "rationale": "The UI visibly supports searching by a geographic identifier and the flow shows the search being applied.",
-      "review_status": "needs_review",
-      "created_at": "2026-05-07T10:40:48+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-05-07T10:40:48+00:00",
+      "updated_at": "2026-06-23T21:41:12+00:00"
     },
     {
       "requirement_id": "REQ-03",
@@ -170,7 +213,9 @@
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "CONTENT_UPDATE",
+      "annotation_notes": "The screenshots visibly support both result representations and a content update tied to the user's search query.",
       "annotated_by": "benno",
+      "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
       "claims": [
@@ -183,10 +228,19 @@
             2,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
-          "claim": "The map and listed stores visibly change from the initial Columbus area context to a Los Angeles area context after the 90028 search.",
+          "claim": "The map and listed stores update based on the user's search query.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -195,7 +249,20 @@
             3,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -217,11 +284,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T13:11:07+00:00",
-      "verification_label": "FULFILLED",
       "evidence_note": "Steps 2 and 4 show both a map and store cards. Step 4 shows Los Angeles area map content and Los Angeles area stores after 90028 is entered.",
-      "rationale": "The screenshots visibly support both result representations and a content update tied to the user's search query."
+      "rationale": "The screenshots visibly support both result representations and a content update tied to the user's search query.",
+      "review_status": "accepted",
+      "created_at": "2026-04-21T13:11:07+00:00",
+      "updated_at": "2026-06-23T21:41:16+00:00"
     },
     {
       "requirement_id": "REQ-04",
@@ -256,7 +323,16 @@
             2,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The visible operating hours are broken down by individual days of the week.",
@@ -267,7 +343,16 @@
             2,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -286,8 +371,9 @@
       ],
       "evidence_note": "Steps 2 and 4 show store cards with an HOURS section and daily rows such as Sun, Mon, Tue, Wed, Thu, Fri, and Sat.",
       "rationale": "The visible store listings transparently display daily operating hours.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T13:11:26+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T13:11:26+00:00",
+      "updated_at": "2026-06-23T21:43:14+00:00"
     },
     {
       "requirement_id": "REQ-05",
@@ -301,7 +387,6 @@
       "source_harvest_id": "HARV-05",
       "step_indices": [
         2,
-        3,
         4
       ],
       "requirement_type": "FR",
@@ -315,7 +400,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "Store result cards provide a visible Set As Home Store mechanism for selectable stores.",
+          "claim": "Store results provide a mechanism for designating a selected store as the preferred home store.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -323,26 +408,16 @@
             2,
             4
           ],
-          "note": null
-        },
-        {
-          "claim": "The results view can visibly mark a store as the current Home Store.",
-          "status": "SUPPORTED",
-          "claim_type": "OBSERVABLE",
-          "importance": "CORE",
-          "evidence_steps": [
-            2,
-            4
-          ],
-          "note": null
-        },
-        {
-          "claim": "The internal account or persistence effect behind the home-store preference is outside the visible UI target for this mechanism requirement.",
-          "status": "OUT_OF_SCOPE",
-          "claim_type": "OBSERVABLE",
-          "importance": "SUPPORTING",
-          "evidence_steps": [],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -365,8 +440,9 @@
       ],
       "evidence_note": "Steps 2 and 4 show Set As Home Store buttons on store cards and a Home Store marker for the current preferred store. ROUTINE_SYSTEM_DEPENDENCY.",
       "rationale": "The requirement asks for a mechanism, and the visible buttons plus Home Store status provide that mechanism and visible designation state.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T13:12:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T13:12:28+00:00",
+      "updated_at": "2026-06-23T21:46:04+00:00"
     },
     {
       "requirement_id": "REQ-06",
@@ -386,7 +462,9 @@
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "The UI visibly provides a radius refinement mechanism and a selected radius value.",
       "annotated_by": "benno",
+      "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
       "claims": [
@@ -400,10 +478,23 @@
             3,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
-          "claim": "A specific radius value, 15 Miles, is visibly selected while the search is performed.",
+          "claim": "A specific radius value can be selected while the search is performed.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -412,7 +503,20 @@
             3,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -434,11 +538,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T13:13:09+00:00",
-      "verification_label": "FULFILLED",
       "evidence_note": "Steps 2 to 4 show a RADIUS dropdown with 15 Miles selected beside the geographic search field.",
-      "rationale": "The UI visibly provides a radius refinement mechanism and a selected radius value."
+      "rationale": "The UI visibly provides a radius refinement mechanism and a selected radius value.",
+      "review_status": "accepted",
+      "created_at": "2026-04-21T13:13:09+00:00",
+      "updated_at": "2026-06-23T21:46:19+00:00"
     },
     {
       "requirement_id": "CONTR-01",
@@ -482,10 +586,23 @@
             2,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
-          "claim": "The same home store status remains visible after navigating within the locator flow and after the 90028 search results appear.",
+          "claim": "The selected home store remains the active store context while navigating within the locator flow.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -493,15 +610,24 @@
             2,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
-          "claim": "The selected home store is preserved on a subsequent visit beyond the current screenshot flow.",
+          "claim": "The selected home store is preserved on a subsequent visit beyond the current session.",
           "status": "HIDDEN",
           "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [],
-          "note": null
+          "evidence_units": []
         }
       ],
       "evidence_steps": [
@@ -525,8 +651,9 @@
       ],
       "evidence_note": "Steps 1, 2, and 4 show Polaris Fashion Place Mall as the visible home/default store context, but no subsequent visit or long-term persistence is shown.",
       "rationale": "The current-flow context is supported, while subsequent-visit preservation depends on hidden persistence outside the screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-05-07T11:40:57+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-05-07T11:40:57+00:00",
+      "updated_at": "2026-06-23T21:40:31+00:00"
     },
     {
       "requirement_id": "CONTR-04",
@@ -551,39 +678,55 @@
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "intended_label": "NOT_FULFILLED",
-      "verification_label": "NOT_FULFILLED",
+      "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
       "claims": [
         {
-          "claim": "The searched location 90028 and selected radius 15 Miles remain visible with the results.",
+          "claim": "The searched location and selected radius remain associated with the results.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
-          "claim": "The map view updates to the Los Angeles area after the 90028 search.",
+          "claim": "The map view updates after the location search.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
-          "claim": "All visible returned store results are synchronized with the searched Los Angeles map context.",
-          "status": "CONTRADICTED",
+          "claim": "All returned store results are synchronized with the searched map context.",
+          "status": "SUPPORTED_WITH_CAVEAT",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "The home store is still present but the rest is sychronized"
         }
       ],
       "evidence_steps": [
@@ -597,8 +740,9 @@
       ],
       "evidence_note": "Step 4 shows a Los Angeles map for 90028, but the first visible result remains Polaris Fashion Place Mall in Columbus, Ohio, while other results are Los Angeles area stores.",
       "rationale": "The visible counter-evidence contradicts full synchronization between the map context and every returned store in the list.",
-      "review_status": "needs_review",
-      "created_at": "2026-05-07T12:24:43+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-05-07T12:24:43+00:00",
+      "updated_at": "2026-06-23T21:30:28+00:00"
     },
     {
       "requirement_id": "CONTR-05",
@@ -624,7 +768,7 @@
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "intended_label": "ABSTAIN",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "verification_label": "FULFILLED",
       "uncertainty_reasons": [
         "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
         "FLOW_COVERAGE_GAP"
@@ -640,17 +784,32 @@
             2,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
-          "claim": "The screenshots prove complete detail coverage for every returned location in the result set.",
-          "status": "MISSING",
+          "claim": "The system provides complete store detail coverage for every returned location in the result set.",
+          "status": "SUPPORTED_WITH_CAVEAT",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "some stores are not shown, but the UI seems scrollable"
         }
       ],
       "evidence_steps": [
@@ -669,8 +828,9 @@
       ],
       "evidence_note": "Visible full store cards include address, phone, and hours. The universal claim for every returned location is not fully settled because not all returned result cards are fully visible.",
       "rationale": "The requirement is supported for visible complete cards but not fully verified for each returned location.",
-      "review_status": "needs_review",
-      "created_at": "2026-05-07T12:27:55+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-05-07T12:27:55+00:00",
+      "updated_at": "2026-06-23T21:32:31+00:00"
     }
   ]
 }

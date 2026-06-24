@@ -88,6 +88,14 @@ textarea {
   border-color: #cbd5e1;
 }
 
+.mini-action-button {
+  justify-self: start;
+  min-height: 1.65rem;
+  padding: 0.18rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.1;
+}
+
 .danger-button {
   background: #c81e1e;
   border-color: #c81e1e;

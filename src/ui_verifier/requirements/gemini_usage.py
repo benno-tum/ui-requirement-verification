@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any
 import json
 import os
+import threading
 
 
 # Values are USD per 1M tokens. Keep this table explicit so cost estimates are auditable.
@@ -23,6 +24,7 @@ MODEL_PRICING_USD_PER_1M: dict[str, dict[str, float]] = {
 
 DEFAULT_USAGE_LOG_PATH = Path("data/generated/gemini_usage/usage.jsonl")
 DEFAULT_USAGE_SUMMARY_PATH = Path("data/generated/gemini_usage/summary.json")
+_USAGE_WRITE_LOCK = threading.Lock()
 
 
 def usage_log_path() -> Path:
@@ -218,10 +220,10 @@ def record_gemini_usage(
         "pricing_source": "https://ai.google.dev/gemini-api/docs/pricing",
     }
 
-    log_path = usage_log_path()
-    log_path.parent.mkdir(parents=True, exist_ok=True)
-    with log_path.open("a", encoding="utf-8") as fh:
-        fh.write(json.dumps(record, ensure_ascii=False) + "\n")
-
-    _write_summary(_read_jsonl(log_path), usage_summary_path())
+    with _USAGE_WRITE_LOCK:
+        log_path = usage_log_path()
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+        with log_path.open("a", encoding="utf-8") as fh:
+            fh.write(json.dumps(record, ensure_ascii=False) + "\n")
+        _write_summary(_read_jsonl(log_path), usage_summary_path())
     return record

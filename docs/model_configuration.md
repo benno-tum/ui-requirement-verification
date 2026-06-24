@@ -22,7 +22,7 @@ GET http://127.0.0.1:8000/model-config
 
 | Role | Default provider | Default model | Default temperature | Use |
 |---|---:|---:|---:|---|
-| `claim_decomposition` | `gemini` | `gemini-2.5-flash-lite` | `0.0` | Rule-guided text-only claim decomposition. |
+| `claim_decomposition` | `deepseek` | `deepseek-chat` | `0.0` | Rule-guided text-only claim decomposition. |
 | `pipeline_claim_fallback` | `deepseek` | `deepseek-chat` | `0.0` | Cheap text-only LLM fallback when heuristic pipeline decomposition is weak. |
 | `evidence_retrieval` | `deepseek` | `deepseek-chat` | `0.0` | Text-only LLM reranking over extracted screen text/OCR/summaries. |
 | `verification` | `gemini` | `gemini-2.5-flash` | `0.2` | Screenshot-grounded verification. |
@@ -30,7 +30,7 @@ GET http://127.0.0.1:8000/model-config
 | `requirement_harvest` | `gemini` | `gemini-2.5-flash` | `0.0` | CLI flow-level requirement harvesting. |
 | `api_requirement_harvest` | `gemini` | `gemini-2.5-flash` | `0.7` | Interactive API harvesting, preserving the previous exploratory default. |
 | `candidate_rewrite` | `gemini` | `gemini-2.5-flash-lite` | `0.0` | Text-only candidate normalization. |
-| `claim_rephrase` | `gemini` | `gemini-2.5-flash-lite` | `0.1` | Single-claim reviewer-assisted rewrite. |
+| `claim_rephrase` | `deepseek` | `deepseek-chat` | `0.1` | Single-claim reviewer-assisted rewrite. |
 | `screen_description` | `gemini` | `gemini-2.5-flash` | `0.2` | Ad-hoc multimodal screen descriptions. |
 | `contrastive_generation` | `external` | `user-provided-model` | `0.2` | Manual/external contrastive generation provenance label. |
 

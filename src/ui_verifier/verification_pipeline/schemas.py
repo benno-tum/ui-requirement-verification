@@ -29,6 +29,7 @@ def _strip_optional_text(value: str | None) -> str | None:
 
 class ClaimStatus(str, Enum):
     SUPPORTED = "SUPPORTED"
+    SUPPORTED_WITH_CAVEAT = "SUPPORTED_WITH_CAVEAT"
     PARTIALLY_SUPPORTED = "PARTIALLY_SUPPORTED"
     MISSING = "MISSING"
     CONTRADICTED = "CONTRADICTED"

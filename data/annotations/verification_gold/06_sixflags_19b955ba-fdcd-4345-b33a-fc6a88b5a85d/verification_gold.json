@@ -174,7 +174,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The selected park context is shown as Six Flags White Water before continuing.",
+          "claim": "The selected park context is shown before continuing.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -184,7 +184,7 @@
           "note": null
         },
         {
-          "claim": "Later recruiting and job-detail screens preserve the White Water context.",
+          "claim": "Later recruiting and job-detail states preserve the selected park context.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -533,7 +533,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The park recruiting page provides prominent Apply Now actions.",
+          "claim": "The park recruiting page provides prominent application-start actions.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -612,7 +612,7 @@
           "note": null
         },
         {
-          "claim": "The actual downstream application workflow or application form is shown after launch.",
+          "claim": "The downstream application workflow or application form is reached after launch.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1005,7 +1005,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The recruiting flow uses consistent park-context labeling across screens.",
+          "claim": "The recruiting flow uses consistent park-context labeling.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1030,7 +1030,7 @@
           ]
         },
         {
-          "claim": "The recruiting flow uses team-context labeling across screens.",
+          "claim": "The recruiting flow uses consistent team-context labeling.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1045,7 +1045,7 @@
           ]
         },
         {
-          "claim": "The recruiting flow uses role-context labeling across screens.",
+          "claim": "The recruiting flow uses consistent role-context labeling.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",

@@ -38,7 +38,7 @@
           "note": null
         },
         {
-          "claim": "The flow shows the user setting a business or service query and a geographic location together in the search form.",
+          "claim": "The user can set a business or service query and a geographic location together in the search form.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -204,7 +204,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The flow shows a typed or partial San Diego location being represented as a more specific canonical place label.",
+          "claim": "A typed location can be represented as a more specific canonical place label.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -403,7 +403,7 @@
           "note": null
         },
         {
-          "claim": "The flow shows coupon discovery content or coupon results inside the service.",
+          "claim": "The system exposes coupon discovery content or coupon results inside the service.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -462,7 +462,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The flow shows a business category search context configured with a chosen locality.",
+          "claim": "The system supports a business category search context configured with a chosen locality.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -482,7 +482,7 @@
           "note": null
         },
         {
-          "claim": "The flow shows coupon discovery results or a coupon path specifically for the selected category and locality.",
+          "claim": "The system provides coupon discovery results or a coupon path for the selected category and locality.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -544,7 +544,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "When the San Diego location text is entered, the interface presents multiple matching location options.",
+          "claim": "When location input is ambiguous, the system presents multiple matching location options.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -555,7 +555,7 @@
           "note": null
         },
         {
-          "claim": "The location suggestions include both city-level and neighborhood or area-level San Diego options.",
+          "claim": "The location suggestions include both city-level and neighborhood or area-level options.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",

@@ -12,6 +12,7 @@ from ui_verifier.verification.schemas import VerificationLabel
 DEFAULT_LABELS = [label.value for label in VerificationLabel]
 DEFAULT_CLAIM_STATUSES = [
     "SUPPORTED",
+    "SUPPORTED_WITH_CAVEAT",
     "PARTIALLY_SUPPORTED",
     "MISSING",
     "CONTRADICTED",

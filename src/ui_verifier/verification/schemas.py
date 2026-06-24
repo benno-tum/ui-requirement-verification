@@ -87,6 +87,7 @@ class VerificationNote(str, Enum):
 
 class ClaimEvidenceStatus(str, Enum):
     SUPPORTED = "SUPPORTED"
+    SUPPORTED_WITH_CAVEAT = "SUPPORTED_WITH_CAVEAT"
     CONTRADICTED = "CONTRADICTED"
     MISSING = "MISSING"
     HIDDEN = "HIDDEN"

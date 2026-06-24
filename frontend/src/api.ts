@@ -152,6 +152,16 @@ export type RebuildCandidatesResponse = {
   requirements: Requirement[]
 }
 
+export type RegenerateExpectedClaimsResponse = {
+  flow_id: string
+  item_count: number
+  changed_item_count: number
+  changed_claim_count: number
+  max_claims: number
+  preserve_existing_decisions: boolean
+  items: VerificationGoldItem[]
+}
+
 export type GenerateHarvestedResponse = {
   flow_id: string
   harvested_count: number
@@ -169,6 +179,12 @@ export type RephraseClaimPayload = {
 
 export type RephraseClaimResponse = {
   claim_text: string
+}
+
+export type DecomposeClaimsResponse = {
+  claims: VerificationClaim[]
+  provider: string
+  model_name: string
 }
 
 export type VerificationRun = {
@@ -360,6 +376,11 @@ export const api = {
     }),
   listGold: (flowId: string) => request<Requirement[]>(`/flows/${flowId}/gold`),
   listVerificationGold: (flowId: string) => request<VerificationGoldItem[]>(`/flows/${flowId}/verification-gold`),
+  regenerateExpectedClaims: (flowId: string, payload?: { max_claims?: number; preserve_existing_decisions?: boolean }) =>
+    request<RegenerateExpectedClaimsResponse>(`/flows/${flowId}/verification-gold/regenerate-claims`, {
+      method: 'POST',
+      body: JSON.stringify(payload ?? {}),
+    }),
   getLatestVerification: (flowId: string) => request<VerificationRun>(`/flows/${flowId}/verification/latest`),
   getLatestPipelineVerification: (flowId: string) => request<PipelineVerificationRun>(`/flows/${flowId}/verification-pipeline/latest`),
   listPipelineVerificationRuns: (flowId: string) => request<PipelineRunList>(`/flows/${flowId}/verification-pipeline/runs`),
@@ -414,6 +435,11 @@ export const api = {
     ),
   rephraseClaim: (payload: RephraseClaimPayload) =>
     request<RephraseClaimResponse>('/tools/rephrase-claim', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
+  decomposeClaims: (payload: { requirement_text: string; max_claims?: number }) =>
+    request<DecomposeClaimsResponse>('/tools/decompose-claims', {
       method: 'POST',
       body: JSON.stringify(payload),
     }),

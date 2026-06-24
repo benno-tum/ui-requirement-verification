@@ -149,3 +149,139 @@ def test_pipeline_start_command_can_use_verification_benchmark_items(tmp_path: P
     source_index = command.index("--requirements-source") + 1
     assert command[requirements_index].endswith("verification_gold/01_demo_flow/verification_gold.json")
     assert command[source_index] == "benchmark"
+
+
+def test_rephrase_claim_uses_text_llm_role(monkeypatch) -> None:
+    calls = []
+
+    def fake_run_text_json_llm(prompt: str, **kwargs):
+        calls.append((prompt, kwargs))
+        return '{"claim_text": "The checkout flow supports billing information reuse."}'
+
+    monkeypatch.setattr(api_app, "run_text_json_llm", fake_run_text_json_llm)
+    body = api_app.RephraseClaimRequest(
+        requirement_text="The checkout flow shall allow copying passholder information into billing information.",
+        claim_text="The checkout UI provides a visible copy control.",
+        feedback="Remove UI wording.",
+    )
+
+    result = api_app.rephrase_claim(body)
+
+    assert result == {"claim_text": "The checkout flow supports billing information reuse."}
+    assert calls
+    assert calls[0][1]["role"] == "claim_rephrase"
+    assert calls[0][1]["model_name"] == "deepseek-chat"
+    assert "Do not use, infer from, or refer to screenshots" in calls[0][0]
+
+
+def test_pipeline_decomposed_claims_uses_deepseek_rule_guided_decomposition(monkeypatch) -> None:
+    calls = []
+
+    class FakeEvaluability:
+        value = "UI_VERIFIABLE"
+
+    class FakeClaim:
+        claim_text = "The checkout flow supports billing information reuse."
+
+    class FakeResult:
+        claims = [
+            type("EnumClaim", (), {"claim_text": "The checkout flow supports billing information reuse.", "ui_evaluability": FakeEvaluability()})(),
+            type("StringClaim", (), {"claim_text": "The billing reuse is persisted.", "ui_evaluability": "NOT_UI_VERIFIABLE"})(),
+        ]
+
+    def fake_decompose_requirement_with_diagnostics(requirement_text: str, **kwargs):
+        calls.append((requirement_text, kwargs))
+        return FakeResult()
+
+    monkeypatch.setattr(api_app, "decompose_requirement_with_diagnostics", fake_decompose_requirement_with_diagnostics)
+
+    claims = api_app._pipeline_decomposed_claims("The checkout flow shall support billing information reuse.", max_claims=4)
+
+    assert claims == [
+        ("The checkout flow supports billing information reuse.", True),
+        ("The billing reuse is persisted.", False),
+    ]
+    assert calls
+    assert calls[0][1]["strategy"] == "rule_guided_llm"
+    assert calls[0][1]["provider"] == "deepseek"
+    assert calls[0][1]["model_name"] == "deepseek-chat"
+
+
+def test_decompose_claims_endpoint_uses_pipeline_claims(monkeypatch) -> None:
+    monkeypatch.setattr(
+        api_app,
+        "_pipeline_decomposed_claims",
+        lambda requirement_text, *, max_claims: [
+            ("The checkout flow supports billing information reuse.", True),
+            ("The billing information reuse is persisted.", False),
+        ],
+    )
+
+    result = api_app.decompose_claims(
+        api_app.DecomposeClaimsRequest(
+            requirement_text="The checkout flow shall support billing information reuse.",
+            max_claims=4,
+        )
+    )
+
+    assert result["provider"] == "deepseek"
+    assert result["model_name"] == "deepseek-chat"
+    assert result["claims"][0]["claim"] == "The checkout flow supports billing information reuse."
+    assert result["claims"][0]["claim_type"] == "OBSERVABLE"
+    assert result["claims"][1]["claim_type"] == "HIDDEN"
+
+
+def test_regenerate_expected_claims_preserves_manual_decisions(tmp_path: Path, monkeypatch) -> None:
+    flow_id = "01_demo_flow"
+    verification_gold_root = tmp_path / "data" / "annotations" / "verification_gold"
+    monkeypatch.setattr(api_app, "VERIFICATION_GOLD_ROOT", verification_gold_root)
+    monkeypatch.setattr(
+        api_app,
+        "_pipeline_decomposed_claims",
+        lambda requirement_text, *, max_claims: [("The system presents an order summary including subtotal and total.", True)],
+    )
+    _write_json(
+        verification_gold_root / flow_id / "verification_gold.json",
+        {
+            "dataset": "mind2web",
+            "flow_id": flow_id,
+            "items": [
+                {
+                    "requirement_id": "REQ-01",
+                    "flow_id": flow_id,
+                    "text": "The system shall present an order summary including subtotal and total.",
+                    "scope": "single_screen",
+                    "step_indices": [1],
+                    "ui_evaluability": "UI_VERIFIABLE",
+                    "verification_label": "FULFILLED",
+                    "claims": [
+                        {
+                            "claim": "The screenshot shows an old order summary.",
+                            "status": "SUPPORTED",
+                            "claim_type": "OBSERVABLE",
+                            "importance": "CORE",
+                            "evidence_steps": [1],
+                            "evidence_units": [{"step_index": 1, "evidence_type": "screen"}],
+                        }
+                    ],
+                    "evidence_steps": [1],
+                    "evidence_units": [{"step_index": 1, "evidence_type": "screen"}],
+                    "review_status": "accepted",
+                    "created_at": "2026-01-01T00:00:00+00:00",
+                }
+            ],
+        },
+    )
+
+    result = api_app.regenerate_expected_claims_for_flow(
+        flow_id,
+        max_claims=4,
+        preserve_existing_decisions=True,
+    )
+
+    item = result["items"][0]
+    assert result["changed_item_count"] == 1
+    assert item["claims"][0]["claim"] != "The screenshot shows an old order summary."
+    assert "screenshot" not in item["claims"][0]["claim"].lower()
+    assert item["claims"][0]["status"] == "SUPPORTED"
+    assert item["claims"][0]["evidence_steps"] == [1]

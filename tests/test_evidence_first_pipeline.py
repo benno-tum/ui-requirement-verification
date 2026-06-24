@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import threading
+import time
 
 from PIL import Image
 from pydantic import ValidationError
@@ -10,12 +12,14 @@ import pytest
 from ui_verifier.verification_pipeline.claim_verification import ClaimVerifier
 from ui_verifier.verification_pipeline.evidence_retrieval import (
     EmbeddingEvidenceRetriever,
+    EvidenceRetriever,
     LexicalEvidenceRetriever,
 )
 from ui_verifier.verification_pipeline.label_aggregation import LabelAggregator
 from ui_verifier.verification_pipeline.pipeline import EvidenceFirstVerificationPipeline
 from ui_verifier.verification_pipeline.requirement_understanding import RequirementUnderstanding
 from ui_verifier.verification_pipeline.requirement_understanding import ClaimDecomposer
+from ui_verifier.verification_pipeline.requirement_understanding import find_hidden_indicators
 from ui_verifier.verification_pipeline.schemas import (
     ClaimStatus,
     ClaimVerificationResult,
@@ -134,6 +138,19 @@ def test_requirement_decomposition_creates_two_to_four_claims() -> None:
     assert all(claim.source_requirement_text == requirement.text for claim in result.claims)
 
 
+def test_requirement_understanding_can_disable_claim_decomposition() -> None:
+    requirement = RequirementInput(
+        requirement_id="REQ-1",
+        text="The page shows a product title and lets users choose a size.",
+        flow_id="flow-1",
+    )
+
+    result = RequirementUnderstanding(decompose_claims=False).understand(requirement)
+
+    assert [claim.claim_text for claim in result.claims] == [requirement.text]
+    assert result.decomposition_source == "disabled"
+
+
 def test_benchmark_input_loader_includes_contrastive_requirements(tmp_path: Path) -> None:
     requirements_path = tmp_path / "verification_gold.json"
     requirements_path.write_text(
@@ -172,6 +189,12 @@ def test_llm_decomposition_prompt_preserves_or_alternatives() -> None:
 
     assert "Separate claims are interpreted conjunctively" in prompt
     assert 'Preserve "or" wording inside one claim' in prompt
+
+
+def test_store_locator_text_is_not_marked_as_database_hidden() -> None:
+    assert find_hidden_indicators("The system shall provide store locator functionality.") == []
+    assert find_hidden_indicators("The system shall display operating hours for each listed store.") == []
+    assert find_hidden_indicators("The system shall keep stored preferences for later visits.") == ["database"]
 
 
 def test_requirement_understanding_uses_batch_llm_fallback_for_failed_decomposition() -> None:
@@ -318,6 +341,20 @@ def test_aggregator_fulfilled_requires_all_core_claims_supported() -> None:
     assert result.final_label == VerificationLabel.FULFILLED
 
 
+def test_aggregator_fulfilled_allows_supported_with_caveat() -> None:
+    result = LabelAggregator().aggregate(
+        requirement=_requirement(),
+        ui_evaluability=UIEvaluability.UI_VERIFIABLE,
+        claim_results=[
+            _claim_result(ClaimStatus.SUPPORTED, claim_id="REQ-1-C1", evidence=[_evidence(1)]),
+            _claim_result(ClaimStatus.SUPPORTED_WITH_CAVEAT, claim_id="REQ-1-C2", evidence=[_evidence(2)]),
+        ],
+    )
+
+    assert result.final_label == VerificationLabel.FULFILLED
+    assert "caveat" in result.rationale.lower()
+
+
 @pytest.mark.parametrize(
     "problem_status",
     [
@@ -431,3 +468,100 @@ def test_pipeline_produces_valid_json_output(tmp_path: Path) -> None:
     assert result["claims"][0]["status"] in {status.value for status in ClaimStatus}
     assert "uncertainty_reasons" in result
     assert "rationale" in result
+
+
+def test_pipeline_retrieves_evidence_for_all_claims_in_one_batch(tmp_path: Path) -> None:
+    class TrackingRetriever(EvidenceRetriever):
+        def __init__(self) -> None:
+            super().__init__(top_k=1)
+            self.calls: list[list[str]] = []
+            self.fallback = LexicalEvidenceRetriever(top_k=1)
+
+        def retrieve(self, claims, screens):
+            self.calls.append([claim.claim_id for claim in claims])
+            return self.fallback.retrieve(claims, screens)
+
+    image_path = tmp_path / "step_01.png"
+    Image.new("RGB", (16, 16), color="white").save(image_path)
+    retriever = TrackingRetriever()
+    pipeline = EvidenceFirstVerificationPipeline(evidence_retriever=retriever)
+
+    output = pipeline.run(
+        PipelineInput(
+            flow_id="flow-1",
+            screenshots=[
+                ScreenshotStep(
+                    step_index=1,
+                    screenshot_path=str(image_path),
+                    metadata={"visible_text": "A confirmation banner is visible."},
+                )
+            ],
+            requirements=[
+                RequirementInput(
+                    requirement_id=requirement_id,
+                    text="The page shows a confirmation banner.",
+                    flow_id="flow-1",
+                )
+                for requirement_id in ("REQ-1", "REQ-2", "REQ-3")
+            ],
+        )
+    )
+
+    assert len(retriever.calls) == 1
+    assert retriever.calls[0] == ["REQ-1-C1", "REQ-2-C1", "REQ-3-C1"]
+    assert output.metadata["retrieval_batch_claims"] == 3
+
+
+def test_pipeline_verifies_independent_claims_concurrently_and_preserves_order(tmp_path: Path) -> None:
+    class TrackingVerifier(ClaimVerifier):
+        def __init__(self) -> None:
+            super().__init__()
+            self.active = 0
+            self.max_active = 0
+            self.lock = threading.Lock()
+
+        def verify(self, claim, evidence, *, ui_evaluability):
+            with self.lock:
+                self.active += 1
+                self.max_active = max(self.max_active, self.active)
+            try:
+                time.sleep(0.03)
+                return super().verify(claim, evidence, ui_evaluability=ui_evaluability)
+            finally:
+                with self.lock:
+                    self.active -= 1
+
+    image_path = tmp_path / "step_01.png"
+    Image.new("RGB", (16, 16), color="white").save(image_path)
+    verifier = TrackingVerifier()
+    pipeline = EvidenceFirstVerificationPipeline(
+        evidence_retriever=LexicalEvidenceRetriever(top_k=1),
+        claim_verifier=verifier,
+        max_claim_workers=3,
+    )
+    requirement_ids = ["REQ-1", "REQ-2", "REQ-3"]
+
+    output = pipeline.run(
+        PipelineInput(
+            flow_id="flow-1",
+            screenshots=[
+                ScreenshotStep(
+                    step_index=1,
+                    screenshot_path=str(image_path),
+                    metadata={"visible_text": "A confirmation banner is visible."},
+                )
+            ],
+            requirements=[
+                RequirementInput(
+                    requirement_id=requirement_id,
+                    text="The page shows a confirmation banner.",
+                    flow_id="flow-1",
+                )
+                for requirement_id in requirement_ids
+            ],
+        )
+    )
+
+    assert verifier.max_active > 1
+    assert [result.requirement_id for result in output.results] == requirement_ids
+    assert output.metadata["max_claim_workers"] == 3

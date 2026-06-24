@@ -29,7 +29,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The UI provides a mechanism for selecting a specific park.",
+          "claim": "The system allows users to select a specific park.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -130,16 +130,26 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The selected park is visibly shown.",
+          "claim": "The selected park is represented to the user.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
-            3
+            3,
+            4,
+            6
           ],
           "evidence_units": [
             {
               "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
               "evidence_type": "screen"
             }
           ]
@@ -188,7 +198,7 @@
       "rationale": "The screenshots visibly show a transition into a Great Escape-specific browsing and pass context.",
       "review_status": "accepted",
       "created_at": "2026-04-30T14:44:17+00:00",
-      "updated_at": "2026-05-12T12:30:55+00:00"
+      "updated_at": "2026-06-23T15:00:14+00:00"
     },
     {
       "requirement_id": "REQ-04",
@@ -214,7 +224,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The UI presents multiple pass tiers side by side.",
+          "claim": "The system presents multiple pass tiers side by side.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -438,7 +448,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The checkout UI allows the user to configure the quantity of the selected pass.",
+          "claim": "The checkout flow allows the user to configure the quantity of the selected pass.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -453,7 +463,7 @@
           ]
         },
         {
-          "claim": "The checkout UI displays installment or monthly-style payment information for the selected pass.",
+          "claim": "The checkout flow presents installment or monthly-style payment information for the selected pass.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -473,7 +483,7 @@
           ]
         },
         {
-          "claim": "The checkout UI clearly displays yearly subscription information.",
+          "claim": "The checkout flow presents yearly subscription information.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -551,7 +561,7 @@
           ]
         },
         {
-          "claim": "The entered guest name is associated with the purchased pass in the checkout UI.",
+          "claim": "The entered guest name is associated with the purchased pass during checkout.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -609,20 +619,19 @@
         19
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "The flow clearly shows a personal information form being filled across several steps, including fields such as name, email, zip code, and age, which grounds structured passholder data capture.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "verification_label": "FULFILLED",
       "uncertainty_reasons": [
-        "NONTRIVIAL_HIDDEN_PROPERTY",
         "FLOW_COVERAGE_GAP"
       ],
       "notes": [],
       "claims": [
         {
-          "claim": "The checkout UI collects passholder personal information fields.",
+          "claim": "The checkout flow collects passholder personal information.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -637,8 +646,8 @@
           ]
         },
         {
-          "claim": "The user-entered passholder information is visible in the checkout form.",
-          "status": "SUPPORTED",
+          "claim": "The entered passholder information is reflected during checkout.",
+          "status": "SUPPORTED_WITH_CAVEAT",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
@@ -668,9 +677,9 @@
         },
         {
           "claim": "The collected fields are exactly the information needed for passholder setup.",
-          "status": "MISSING",
+          "status": "SUPPORTED_WITH_CAVEAT",
           "claim_type": "HIDDEN",
-          "importance": "CORE",
+          "importance": "SUPPORTING",
           "evidence_steps": [
             19
           ],
@@ -721,12 +730,12 @@
       "rationale": "The UI collects personal information, but whether these fields are exactly required for setup is hidden business logic.",
       "review_status": "accepted",
       "created_at": "2026-04-21T12:38:38+00:00",
-      "updated_at": "2026-05-12T12:42:07+00:00"
+      "updated_at": "2026-06-23T15:08:16+00:00"
     },
     {
       "requirement_id": "REQ-14",
       "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall present multiple dining-plan variants with pricing so the user can compare optional add-ons.",
+      "text": "The system shall present multiple dining-plan variants with pricing so the user ca\nn compare optional add-ons.",
       "scope": "single_screen",
       "tags": [],
       "source_type": "requirements_gold",
@@ -734,7 +743,7 @@
       "source_candidate_id": "REQ-14",
       "source_harvest_id": "HARV-14",
       "step_indices": [
-        15
+        16
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
@@ -747,7 +756,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The checkout UI presents more than one dining-plan variant.",
+          "claim": "The checkout flow presents more than one dining-plan variant.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -788,8 +797,9 @@
       ],
       "evidence_note": "Step 16 shows One Meal and Two Meal Dining Plan cards with prices.",
       "rationale": "The add-on screen visibly presents two dining variants with comparable pricing.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T12:43:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T12:43:28+00:00",
+      "updated_at": "2026-06-23T12:02:37+00:00"
     },
     {
       "requirement_id": "REQ-10",
@@ -802,30 +812,42 @@
       "source_candidate_id": "REQ-10",
       "source_harvest_id": "HARV-10",
       "step_indices": [
+        8,
+        9,
+        10,
+        11,
         12,
         13,
+        14,
         19
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The visible copy mechanism is supported, but the appropriateness condition depends on hidden business logic.",
       "annotated_by": "benno",
       "manual_verification_label": "partially_fulfilled",
       "manual_verification_notes": "the age has to be entered at the beginning. then at the last step the date of birth has to be entered. this would contradict the idea of entering data once.",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
-        "NONTRIVIAL_HIDDEN_PROPERTY"
+        "FLOW_COVERAGE_GAP"
       ],
       "notes": [],
       "claims": [
         {
-          "claim": "The checkout UI provides and accepts a control to copy passholder information into billing-related information.",
-          "status": "SUPPORTED",
+          "claim": "The system supports copying previously entered passholder information into billing-related information where appropriate.",
+          "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
             8,
-            15
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            19
           ],
           "evidence_units": [
             {
@@ -833,38 +855,45 @@
               "evidence_type": "screen"
             },
             {
-              "step_index": 15,
+              "step_index": 9,
               "evidence_type": "screen"
-            }
-          ]
-        },
-        {
-          "claim": "Previously entered passholder information appears in a later billing or agreement-related form.",
-          "status": "SUPPORTED",
-          "claim_type": "OBSERVABLE",
-          "importance": "CORE",
-          "evidence_steps": [
-            19
-          ],
-          "evidence_units": [
+            },
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 11,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 12,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 13,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 14,
+              "evidence_type": "screen"
+            },
             {
               "step_index": 19,
               "evidence_type": "screen"
             }
-          ]
-        },
-        {
-          "claim": "The copied information is appropriate for all billing-related uses.",
-          "status": "HIDDEN",
-          "claim_type": "HIDDEN",
-          "importance": "CORE",
-          "evidence_steps": [],
-          "evidence_units": []
+          ],
+          "note": "There are some fields missing though in screenshot 19."
         }
       ],
       "evidence_steps": [
         8,
-        15,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
         19
       ],
       "evidence_units": [
@@ -883,8 +912,9 @@
       ],
       "evidence_note": "Step 15 shows Copy info to billing selected. Step 19 shows reused details in the later agreement area.",
       "rationale": "The visible copy mechanism is supported, but the appropriateness condition depends on hidden business logic.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T12:47:02+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T12:47:02+00:00",
+      "updated_at": "2026-06-23T15:10:08+00:00"
     },
     {
       "requirement_id": "REQ-11",
@@ -898,7 +928,12 @@
       "source_harvest_id": "HARV-11",
       "step_indices": [
         8,
+        9,
+        10,
+        11,
         12,
+        13,
+        14,
         19
       ],
       "requirement_type": "FR",
@@ -907,25 +942,50 @@
       "annotation_notes": "An age field appears in the personal information step, and the later agreement step references date of birth, which grounds age-related data collection even though the underlying business rule is not fully visible.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "verification_label": "FULFILLED",
       "uncertainty_reasons": [
-        "NONTRIVIAL_HIDDEN_PROPERTY"
+        "FLOW_COVERAGE_GAP"
       ],
       "notes": [],
       "claims": [
         {
-          "claim": "The checkout UI collects age or date-of-birth related information.",
+          "claim": "The system collects age or date-of-birth information when needed for pass purchase or financing eligibility.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
             8,
+            9,
+            10,
+            11,
+            12,
+            13,
             14,
             19
           ],
           "evidence_units": [
             {
               "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 11,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 12,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 13,
               "evidence_type": "screen"
             },
             {
@@ -937,18 +997,15 @@
               "evidence_type": "screen"
             }
           ]
-        },
-        {
-          "claim": "The age or date-of-birth information is needed for pass purchase or financing eligibility.",
-          "status": "HIDDEN",
-          "claim_type": "HIDDEN",
-          "importance": "CORE",
-          "evidence_steps": [],
-          "evidence_units": []
         }
       ],
       "evidence_steps": [
         8,
+        9,
+        10,
+        11,
+        12,
+        13,
         14,
         19
       ],
@@ -968,21 +1025,21 @@
       ],
       "evidence_note": "Step 14 shows age entered. Step 19 shows date-of-birth inputs in the agreement area.",
       "rationale": "The UI collects age-related information, but the eligibility reason is not visible.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T12:49:05+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T12:49:05+00:00",
+      "updated_at": "2026-06-23T12:00:11+00:00"
     },
     {
       "requirement_id": "REQ-13",
       "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
       "text": "The system shall allow users to configure optional dining-plan add-ons as part of a season pass purchase.",
-      "scope": "multi_screen",
+      "scope": "single_screen",
       "tags": [],
       "source_type": "requirements_gold",
       "source_id": "REQ-13",
       "source_candidate_id": "REQ-13",
       "source_harvest_id": "HARV-13",
       "step_indices": [
-        15,
         16
       ],
       "requirement_type": "FR",
@@ -996,7 +1053,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The season pass checkout flow presents optional dining-plan add-ons.",
+          "claim": "The system allows users to configure optional dining-plan add-ons as part of a season pass purchase.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1009,26 +1066,10 @@
               "evidence_type": "screen"
             }
           ]
-        },
-        {
-          "claim": "The user can select a dining-plan add-on during the pass purchase flow.",
-          "status": "SUPPORTED",
-          "claim_type": "OBSERVABLE",
-          "importance": "CORE",
-          "evidence_steps": [
-            17
-          ],
-          "evidence_units": [
-            {
-              "step_index": 17,
-              "evidence_type": "screen"
-            }
-          ]
         }
       ],
       "evidence_steps": [
-        16,
-        17
+        16
       ],
       "evidence_units": [
         {
@@ -1042,21 +1083,21 @@
       ],
       "evidence_note": "Step 16 shows dining add-ons. Step 17 shows One Meal Dining Pass selected.",
       "rationale": "The add-on configuration step is visibly part of the pass checkout modal.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T12:50:56+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T12:50:56+00:00",
+      "updated_at": "2026-06-23T12:01:43+00:00"
     },
     {
       "requirement_id": "REQ-15",
       "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
-      "text": "The system shall provide visible information about each offer when an add-on selection becomes active.",
-      "scope": "multi_screen",
+      "text": "The system shall provide visible information about each offer when a dining add-on selection becomes active.",
+      "scope": "single_screen",
       "tags": [],
       "source_type": "requirements_gold",
       "source_id": "REQ-15",
       "source_candidate_id": "REQ-15",
       "source_harvest_id": "HARV-15",
       "step_indices": [
-        15,
         16
       ],
       "requirement_type": "NFR",
@@ -1070,44 +1111,23 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The add-on screen provides visible descriptive and price information for the dining offers.",
+          "claim": "The system provides visible information about each offer when a dining add-on selection becomes active.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
-            16,
-            17
+            16
           ],
           "evidence_units": [
             {
               "step_index": 16,
-              "evidence_type": "screen"
-            },
-            {
-              "step_index": 17,
-              "evidence_type": "screen"
-            }
-          ]
-        },
-        {
-          "claim": "The selected add-on remains accompanied by visible offer information.",
-          "status": "SUPPORTED",
-          "claim_type": "OBSERVABLE",
-          "importance": "CORE",
-          "evidence_steps": [
-            17
-          ],
-          "evidence_units": [
-            {
-              "step_index": 17,
               "evidence_type": "screen"
             }
           ]
         }
       ],
       "evidence_steps": [
-        16,
-        17
+        16
       ],
       "evidence_units": [
         {
@@ -1121,48 +1141,34 @@
       ],
       "evidence_note": "Steps 16 and 17 show descriptions and prices for both dining plans, including after One Meal becomes selected.",
       "rationale": "The selected add-on remains visibly documented by offer text and price.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T12:52:30+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T12:52:30+00:00",
+      "updated_at": "2026-06-23T12:21:48+00:00"
     },
     {
       "requirement_id": "REQ-16",
       "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
       "text": "The system shall offer a choice between full payment and a flexible installment payment plan for pass purchases.",
-      "scope": "multi_screen",
+      "scope": "single_screen",
       "tags": [],
       "source_type": "requirements_gold",
       "source_id": "REQ-16",
       "source_candidate_id": "REQ-16",
       "source_harvest_id": "HARV-16",
       "step_indices": [
-        17,
         18
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The visible UI offers both payment choices and supports selecting the flexible payment plan.",
       "annotated_by": "benno",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
       "claims": [
         {
-          "claim": "The checkout UI offers both a flexible payment plan and a full payment option.",
-          "status": "SUPPORTED",
-          "claim_type": "OBSERVABLE",
-          "importance": "CORE",
-          "evidence_steps": [
-            18
-          ],
-          "evidence_units": [
-            {
-              "step_index": 18,
-              "evidence_type": "screen"
-            }
-          ]
-        },
-        {
-          "claim": "The user can select the flexible payment option.",
+          "claim": "The system offers a choice between full payment and a flexible installment payment plan for pass purchases.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1192,33 +1198,34 @@
       ],
       "evidence_note": "Step 18 shows choices for Flexible Pay Plan and paying in full, with Flexible Pay selected.",
       "rationale": "The visible UI offers both payment choices and supports selecting the flexible payment plan.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T12:54:49+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T12:54:49+00:00",
+      "updated_at": "2026-06-23T12:30:39+00:00"
     },
     {
       "requirement_id": "REQ-17",
       "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
       "text": "The system shall display the installment schedule and payment amounts when a flexible payment plan is offered.",
-      "scope": "multi_screen",
+      "scope": "single_screen",
       "tags": [],
       "source_type": "requirements_gold",
       "source_id": "REQ-17",
       "source_candidate_id": "REQ-17",
       "source_harvest_id": "HARV-17",
       "step_indices": [
-        17,
         18
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The installment dates and amounts are visibly displayed.",
       "annotated_by": "benno",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
       "claims": [
         {
-          "claim": "The flexible payment screen displays an installment schedule.",
+          "claim": "The flexible payment flow presents an installment schedule.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1233,7 +1240,7 @@
           ]
         },
         {
-          "claim": "The flexible payment screen displays payment amounts for the schedule.",
+          "claim": "The flexible payment flow presents payment amounts for the schedule.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1263,8 +1270,9 @@
       ],
       "evidence_note": "Step 18 shows a payment schedule table with dates, amounts, tax, and totals.",
       "rationale": "The installment dates and amounts are visibly displayed.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T12:55:31+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T12:55:31+00:00",
+      "updated_at": "2026-06-23T12:31:31+00:00"
     },
     {
       "requirement_id": "REQ-19",
@@ -1279,15 +1287,7 @@
       "step_indices": [
         7,
         8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
         16,
-        17,
         18
       ],
       "requirement_type": "NFR",
@@ -1420,8 +1420,9 @@
       ],
       "evidence_note": "Several checkout screens show Back plus Next or Continue controls while the flow advances.",
       "rationale": "The checkout flow visibly uses repeated controls for stepwise progression.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T12:57:43+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T12:57:43+00:00",
+      "updated_at": "2026-06-23T12:55:39+00:00"
     },
     {
       "requirement_id": "REQ-22",
@@ -1434,37 +1435,37 @@
       "source_candidate_id": "REQ-22",
       "source_harvest_id": "HARV-22",
       "step_indices": [
-        6,
         7,
-        15,
-        17
+        16,
+        17,
+        18
       ],
       "requirement_type": "NFR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "Pricing and details are visible, but the sufficiency threshold is partly interpretive.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "verification_label": "NOT_FULFILLED",
       "uncertainty_reasons": [
-        "TEXTUAL_AMBIGUITY",
-        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+        "FLOW_COVERAGE_GAP"
       ],
       "notes": [],
       "claims": [
         {
-          "claim": "The UI presents prices and option details for comparing pass tiers, dining add-ons, and payment choices.",
+          "claim": "The system presents prices and option details for comparing pass tiers, add-ons, and payment choices.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
-            6,
+            7,
             16,
             17,
             18
           ],
           "evidence_units": [
             {
-              "step_index": 6,
+              "step_index": 7,
               "evidence_type": "screen"
             },
             {
@@ -1483,19 +1484,14 @@
         },
         {
           "claim": "The information is transparently enough presented for comparison.",
-          "status": "AMBIGUOUS",
+          "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
-            6,
             16,
             18
           ],
           "evidence_units": [
-            {
-              "step_index": 6,
-              "evidence_type": "screen"
-            },
             {
               "step_index": 16,
               "evidence_type": "screen"
@@ -1505,10 +1501,19 @@
               "evidence_type": "screen"
             }
           ]
+        },
+        {
+          "claim": "The complete comparison process can be done during checkout.",
+          "status": "MISSING",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": [],
+          "note": "During checkout there are menues which show the season passes, but the flow only gives other information in the checkout."
         }
       ],
       "evidence_steps": [
-        6,
+        7,
         16,
         17,
         18
@@ -1532,9 +1537,10 @@
         }
       ],
       "evidence_note": "The flow shows prices and details for pass tiers, dining add-ons, and payment options. The phrase transparently enough is subjective.",
-      "rationale": "Pricing and details are visible, but the sufficiency threshold is partly interpretive.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T12:59:57+00:00"
+      "rationale": "Pricing and details are visible, but it shows only options for Diamond pass and not for the other passes during checkout process.",
+      "review_status": "accepted",
+      "created_at": "2026-04-21T12:59:57+00:00",
+      "updated_at": "2026-06-23T16:01:12+00:00"
     },
     {
       "requirement_id": "REQ-20",
@@ -1550,22 +1556,21 @@
         19
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "A terms and conditions modal explicitly instructs the user to review the agreement, sign, and consent, which directly grounds agreement review as part of financing completion.",
       "annotated_by": "benno",
       "manual_verification_label": "partially_fulfilled",
       "manual_verification_notes": "there are no indicators in the UI that the form only has to be submitted for flexible payment agreements",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
-        "UNVERIFIED_SYSTEM_OUTCOME",
-        "NONTRIVIAL_HIDDEN_PROPERTY"
+        "FLOW_COVERAGE_GAP"
       ],
       "notes": [],
       "claims": [
         {
-          "claim": "The UI presents financing-related terms or agreement instructions after flexible payment is selected.",
-          "status": "SUPPORTED",
+          "claim": "The system presents financing-related terms or agreement instructions after flexible payment is selected.",
+          "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
@@ -1576,10 +1581,11 @@
               "step_index": 19,
               "evidence_type": "screen"
             }
-          ]
+          ],
+          "note": "The screenshot with the pop up isn't sufficient. The terms and conditions are not shown and there is a coverage gap."
         },
         {
-          "claim": "The UI indicates that the user must review, sign, and consent to the agreement.",
+          "claim": "The system indicates that the user must review and consent to the financing agreement.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1595,11 +1601,18 @@
         },
         {
           "claim": "The system enforces review and consent before completing the flexible payment agreement.",
-          "status": "HIDDEN",
-          "claim_type": "HIDDEN",
+          "status": "SUPPORTED_WITH_CAVEAT",
+          "claim_type": "OBSERVABLE",
           "importance": "CORE",
-          "evidence_steps": [],
-          "evidence_units": []
+          "evidence_steps": [
+            19
+          ],
+          "evidence_units": [
+            {
+              "step_index": 19,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -1613,8 +1626,9 @@
       ],
       "evidence_note": "Step 19 shows a Terms and Conditions dialog instructing review, signature, and consent. Enforcement is not shown.",
       "rationale": "The review and consent mechanism is visible, but enforcement before completion cannot be fully verified.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T13:06:41+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T13:06:41+00:00",
+      "updated_at": "2026-06-23T14:41:19+00:00"
     },
     {
       "requirement_id": "REQ-21",
@@ -1630,19 +1644,19 @@
         19
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The UI collects billing and contact details, but sufficiency for completing the agreement is not visible.",
       "annotated_by": "benno",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
-        "UNVERIFIED_SYSTEM_OUTCOME",
-        "NONTRIVIAL_HIDDEN_PROPERTY"
+        "FLOW_COVERAGE_GAP"
       ],
       "notes": [],
       "claims": [
         {
-          "claim": "The payment agreement area includes billing, mailing, and contact detail fields.",
-          "status": "SUPPORTED",
+          "claim": "The payment agreement area includes billing and contact detail fields.",
+          "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
@@ -1656,12 +1670,20 @@
           ]
         },
         {
-          "claim": "The collected billing and contact details are sufficient and needed to complete the payment agreement workflow.",
-          "status": "HIDDEN",
-          "claim_type": "HIDDEN",
-          "importance": "CORE",
-          "evidence_steps": [],
-          "evidence_units": []
+          "claim": "The collected billing and contact details are needed to complete the payment agreement workflow.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "SUPPORTING",
+          "evidence_steps": [
+            19
+          ],
+          "evidence_units": [
+            {
+              "step_index": 19,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "The last screen should indicate the payment area without the pop up and without darkened color tone."
         }
       ],
       "evidence_steps": [
@@ -1675,8 +1697,9 @@
       ],
       "evidence_note": "Step 19 shows agreement-related fields for name, mailing address, city, state, zip, email, phone, and date of birth.",
       "rationale": "The UI collects billing and contact details, but sufficiency for completing the agreement is not visible.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T13:07:02+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T13:07:02+00:00",
+      "updated_at": "2026-06-23T15:55:09+00:00"
     },
     {
       "requirement_id": "CONTR-01",
@@ -1708,12 +1731,12 @@
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "intended_label": "PARTIALLY_FULFILLED",
-      "verification_label": "NOT_FULFILLED",
+      "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
       "claims": [
         {
-          "claim": "The selected park context is visible before entering purchase.",
+          "claim": "The system retains the selected park context before purchase entry.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1733,7 +1756,7 @@
           ]
         },
         {
-          "claim": "The purchase page remains in the Great Escape park context.",
+          "claim": "The purchase page remains in the selected park context.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1758,7 +1781,7 @@
           ]
         },
         {
-          "claim": "Later checkout screens keep the selected park context clearly visible for verification.",
+          "claim": "Later checkout stages retain the selected park context for user verification.",
           "status": "CONTRADICTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1796,8 +1819,8 @@
         {
           "claim": "The purchase is for the intended park.",
           "status": "CONTRADICTED",
-          "claim_type": "OBSERVABLE",
-          "importance": "CORE",
+          "claim_type": "HIDDEN",
+          "importance": "SUPPORTING",
           "evidence_steps": [
             7,
             18
@@ -1863,7 +1886,7 @@
       "rationale": "The requirement extends park context persistence into later checkout. Earlier context is supported, but later checkout visibility is only indirect or ambiguous.",
       "review_status": "accepted",
       "created_at": "2026-05-06T12:41:27+00:00",
-      "updated_at": "2026-05-12T12:10:41+00:00"
+      "updated_at": "2026-06-23T14:48:30+00:00"
     },
     {
       "requirement_id": "CONTR-02",
@@ -1919,7 +1942,7 @@
           ]
         },
         {
-          "claim": "The flow contains visible purchase details that could be summarized, including pass tier, add-on, and payment arrangement.",
+          "claim": "The system has purchase details that could be summarized, including selected park, pass tier, add-ons, and payment arrangement.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1945,7 +1968,7 @@
         },
         {
           "claim": "A confirmation is sent to the contact address after checkout.",
-          "status": "MISSING",
+          "status": "HIDDEN",
           "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [],
@@ -1991,7 +2014,7 @@
       "requirement_id": "CONTR-05",
       "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
       "text": "The system shall provide a final editable review step before commitment where the purchaser can inspect and revise the selected park, pass tier, passholder details, dining add-ons, and payment choice.",
-      "scope": "multi_screen",
+      "scope": "single_screen",
       "tags": [
         "contrastive",
         "intended_label:not_fulfilled",
@@ -2001,12 +2024,6 @@
       "source_id": "CONTR-05",
       "source_candidate_id": "CONTR-05",
       "step_indices": [
-        7,
-        8,
-        11,
-        16,
-        17,
-        18,
         19
       ],
       "requirement_type": "FR",
@@ -2016,74 +2033,14 @@
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "intended_label": "NOT_FULFILLED",
-      "verification_label": "NOT_FULFILLED",
+      "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
         "FLOW_COVERAGE_GAP"
       ],
       "notes": [],
       "claims": [
         {
-          "claim": "The purchaser can inspect and revise parts of the purchase across individual checkout steps using Back and Continue navigation.",
-          "status": "SUPPORTED",
-          "claim_type": "OBSERVABLE",
-          "importance": "SUPPORTING",
-          "evidence_steps": [
-            7,
-            8,
-            16,
-            18
-          ],
-          "evidence_units": [
-            {
-              "step_index": 7,
-              "evidence_type": "screen"
-            },
-            {
-              "step_index": 8,
-              "evidence_type": "screen"
-            },
-            {
-              "step_index": 16,
-              "evidence_type": "screen"
-            },
-            {
-              "step_index": 18,
-              "evidence_type": "screen"
-            }
-          ]
-        },
-        {
-          "claim": "The flow shows selected pass, passholder, dining add-on, and payment information across separate steps.",
-          "status": "SUPPORTED",
-          "claim_type": "OBSERVABLE",
-          "importance": "CORE",
-          "evidence_steps": [
-            7,
-            11,
-            17,
-            18
-          ],
-          "evidence_units": [
-            {
-              "step_index": 7,
-              "evidence_type": "screen"
-            },
-            {
-              "step_index": 11,
-              "evidence_type": "screen"
-            },
-            {
-              "step_index": 17,
-              "evidence_type": "screen"
-            },
-            {
-              "step_index": 18,
-              "evidence_type": "screen"
-            }
-          ]
-        },
-        {
-          "claim": "The flow provides a final consolidated editable review step before commitment.",
+          "claim": "The system provides a final editable review step before commitment where the purchaser can inspect and revise the selected park, pass tier, passholder details, dining add-ons, and payment choice.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -2095,16 +2052,11 @@
               "step_index": 19,
               "evidence_type": "screen"
             }
-          ]
+          ],
+          "note": "The form is not shown properly."
         }
       ],
       "evidence_steps": [
-        7,
-        8,
-        11,
-        16,
-        17,
-        18,
         19
       ],
       "evidence_units": [
@@ -2138,10 +2090,10 @@
         }
       ],
       "evidence_note": "The relevant information is visible across individual steps, but the screenshots do not show a final consolidated editable review page before commitment.",
-      "rationale": "Some inspect-and-revise support is visible, but the stronger final review step is not visibly satisfied.",
+      "rationale": "Some inspect-and-revise support is visible, but the stronger final consolidated editable review step is missing from the captured flow.",
       "review_status": "accepted",
       "created_at": "2026-05-07T10:09:15+00:00",
-      "updated_at": "2026-05-12T12:24:26+00:00"
+      "updated_at": "2026-06-23T14:53:50+00:00"
     },
     {
       "requirement_id": "CONTR-06",
@@ -2177,7 +2129,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The checkout flow shows prices for pass, add-on, and flexible payment choices.",
+          "claim": "The system presents prices for pass, add-on, and flexible payment choices during checkout.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -2227,7 +2179,7 @@
           ]
         },
         {
-          "claim": "Changing an add-on or payment plan visibly updates a checkout pricing summary with the relevant one-time and recurring charges.",
+          "claim": "Changing an add-on or payment plan updates the checkout pricing summary with the relevant one-time and recurring charges.",
           "status": "AMBIGUOUS",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",

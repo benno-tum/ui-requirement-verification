@@ -39,7 +39,7 @@
           "note": null
         },
         {
-          "claim": "A specific park is selected and shown as the active park context.",
+          "claim": "A specific park can be selected as the active park context.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -587,7 +587,7 @@
           "note": null
         },
         {
-          "claim": "The completeness and actual enforcement of all important product conditions can be verified from screenshots.",
+          "claim": "Completeness and enforcement of all important product conditions require behavior beyond visible disclosure.",
           "status": "HIDDEN",
           "claim_type": "HIDDEN",
           "importance": "CORE",
@@ -649,7 +649,7 @@
           "note": null
         },
         {
-          "claim": "The pending add-on quantity can visibly change before Add to Cart.",
+          "claim": "The pending add-on quantity can change before Add to Cart.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -771,7 +771,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The configured add-on quantity is visible before Add to Cart.",
+          "claim": "The configured add-on quantity is reflected before the add-on is added to the cart.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1046,7 +1046,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "Marketing consent is shown as a separate optional opt-in.",
+          "claim": "Marketing consent is distinguished as a separate optional opt-in.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1066,7 +1066,7 @@
           "note": null
         },
         {
-          "claim": "The UI-enforced requiredness of the purchase acknowledgement is fully verifiable from the screenshots.",
+          "claim": "The requiredness of the purchase acknowledgement depends on enforcement behavior.",
           "status": "HIDDEN",
           "claim_type": "HIDDEN",
           "importance": "CORE",
@@ -1187,7 +1187,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The flow shows a control for choosing a digital or mobile ticket fulfillment option.",
+          "claim": "The system provides a control for choosing a digital or mobile ticket fulfillment option.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1197,7 +1197,7 @@
           "note": null
         },
         {
-          "claim": "The chosen digital or mobile ticket option is visibly reflected later in the purchase flow.",
+          "claim": "The chosen digital or mobile ticket option is reflected later in the purchase flow.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1328,7 +1328,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "A digital or mobile ticket fulfillment choice is visibly selected in the flow.",
+          "claim": "A digital or mobile ticket fulfillment choice is selected in the purchase flow.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1338,7 +1338,7 @@
           "note": null
         },
         {
-          "claim": "The selected fulfillment choice is visibly preserved across cart review and checkout transition.",
+          "claim": "The selected fulfillment choice is preserved across cart review and checkout transition.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1396,7 +1396,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The flow visibly identifies a downstream delivery destination or channel for digital tickets before payment.",
+          "claim": "The purchase flow identifies a downstream delivery destination or channel for digital tickets before payment.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1406,7 +1406,7 @@
           "note": null
         },
         {
-          "claim": "Actual external delivery to that destination or channel can be verified from screenshots.",
+          "claim": "Actual external delivery to the destination or channel is outside the captured purchase flow.",
           "status": "HIDDEN",
           "claim_type": "HIDDEN",
           "importance": "CORE",

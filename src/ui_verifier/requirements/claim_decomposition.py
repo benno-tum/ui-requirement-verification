@@ -13,7 +13,7 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_valida
 from ui_verifier.model_config import model_name_for, provider_for, temperature_for
 
 
-CLAIM_DECOMPOSITION_PROMPT_VERSION = "CLAIM_DECOMPOSITION_RULE_GUIDED_V1"
+CLAIM_DECOMPOSITION_PROMPT_VERSION = "CLAIM_DECOMPOSITION_RULE_GUIDED_V2"
 DEFAULT_LLM_CACHE_DIR = Path("data/generated/cache/claim_decomposition_llm")
 
 
@@ -57,7 +57,7 @@ class RequirementClaim(DecompositionModel):
     @field_validator("claim_text")
     @classmethod
     def _normalize_claim_text_field(cls, value: str) -> str:
-        value = _normalize_whitespace(value)
+        value = _normalize_claim_text(value)
         if not value:
             raise ValueError("claim_text must not be empty")
         return value
@@ -456,6 +456,9 @@ def _normalize_claim_text(text: str) -> str:
         (r"\b[Ss]hall present\b", "presents"),
         (r"\b[Mm]ust present\b", "presents"),
         (r"\b[Ss]hould present\b", "presents"),
+        (r"\b[Ss]hall offer\b", "offers"),
+        (r"\b[Mm]ust offer\b", "offers"),
+        (r"\b[Ss]hould offer\b", "offers"),
         (r"\b[Ss]hall surface\b", "surfaces"),
         (r"\b[Mm]ust surface\b", "surfaces"),
         (r"\b[Ss]hould surface\b", "surfaces"),
@@ -1003,7 +1006,7 @@ def _parse_llm_decomposition(raw_response: str) -> _LLMDecompositionOutput:
 
 def _build_rule_guided_prompt(input_payload: dict[str, Any]) -> str:
     input_json = json.dumps(input_payload, indent=2, ensure_ascii=False)
-    return f"""You are decomposing UI requirements into atomic verification claims.
+    return f"""You are decomposing requirements into atomic verification claims.
 Prompt version: {CLAIM_DECOMPOSITION_PROMPT_VERSION}
 
 Return JSON only. The response must match:
@@ -1023,10 +1026,15 @@ Return JSON only. The response must match:
 Instructions:
 - Decompose the requirement into 1 to 5 atomic claims.
 - Use only information contained in the requirement text.
-- Do not invent UI behavior.
-- Do not add screenshot evidence.
+- Do not invent UI behavior, controls, visibility, screenshots, images, or evidence.
+- Do not make a claim more UI-specific than the requirement itself.
+- Do not add "UI" to claim text unless the requirement itself uses "UI".
+- Use "the system", "the flow", or the original requirement subject instead of "the UI" when the requirement says "system" or does not name the UI.
 - Do not decide final verification labels.
 - Make every claim grammatical and self-contained.
+- Make claim text a declarative present-tense sentence with an explicit subject.
+- Do not write imperative fragments such as "Offer a choice...".
+- Prefer "The system offers a choice..." over "The system shall offer a choice...".
 - Separate claims are conjunctive: every returned claim is expected to hold.
 - Do not split alternatives joined by "or" into separate core claims unless the requirement explicitly requires both alternatives independently.
 - Preserve "or" wording inside one claim for alternative channels, destinations, compose surfaces, or modes.
@@ -1041,16 +1049,16 @@ Examples:
 Input: "The system shall perform any required financing or approval check before finalizing a flexible payment agreement and present the resulting status to the user."
 Output claims:
 - The system performs any required financing or approval check before finalizing a flexible payment agreement. | HIDDEN_SYSTEM | NOT_UI_VERIFIABLE | CORE
-- The UI presents the resulting financing or approval status to the user. | OBSERVABLE_UI | UI_VERIFIABLE | CORE
+- The system presents the resulting financing or approval status to the user. | OBSERVABLE_UI | UI_VERIFIABLE | CORE
 
 Input: "The system shall allow public browsing of job listings and posting details, while requiring applicant authentication before entering the application workflow."
 Output claims:
-- The UI allows public browsing of job listings and posting details. | OBSERVABLE_UI | UI_VERIFIABLE | CORE
+- The system allows public browsing of job listings and posting details. | OBSERVABLE_UI | UI_VERIFIABLE | CORE
 - The system requires applicant authentication before entering the application workflow. | MIXED | PARTIALLY_UI_VERIFIABLE | CORE
 
 Input: "The system shall let users remove individual active search or filter criteria directly from the results view and immediately refresh the matching job set."
 Output claims:
-- The UI lets users remove individual active search or filter criteria directly from the results view. | OBSERVABLE_UI | UI_VERIFIABLE | CORE
+- The system lets users remove individual active search or filter criteria directly from the results view. | OBSERVABLE_UI | UI_VERIFIABLE | CORE
 - The matching job set refreshes after an active search or filter criterion is removed. | OBSERVABLE_UI | UI_VERIFIABLE | CORE
 
 Input: "The system shall send a confirmation to the purchaser's contact address after checkout that summarizes the selected park, pass tier, add-ons, and payment arrangement."
@@ -1060,9 +1068,9 @@ Output claims:
 
 Input: "The system shall show complete store detail coverage for each returned location, including address, phone contact, and operating hours."
 Output claims:
-- The UI shows address information for each returned location. | OBSERVABLE_UI | UI_VERIFIABLE | CORE
-- The UI shows phone contact information for each returned location. | OBSERVABLE_UI | UI_VERIFIABLE | CORE
-- The UI shows operating hours for each returned location. | OBSERVABLE_UI | UI_VERIFIABLE | CORE
+- The system shows address information for each returned location. | OBSERVABLE_UI | UI_VERIFIABLE | CORE
+- The system shows phone contact information for each returned location. | OBSERVABLE_UI | UI_VERIFIABLE | CORE
+- The system shows operating hours for each returned location. | OBSERVABLE_UI | UI_VERIFIABLE | CORE
 
 Rule-guided input:
 {input_json}

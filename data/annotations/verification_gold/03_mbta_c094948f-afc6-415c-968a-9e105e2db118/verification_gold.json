@@ -14,19 +14,7 @@
       "source_harvest_id": "HARV-01",
       "step_indices": [
         1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14
+        2
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
@@ -40,7 +28,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "A dedicated MBTA Careers area provides access to job openings and related applicant resources.",
+          "claim": "A dedicated careers area provides access to job openings and related applicant resources.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -48,7 +36,16 @@
             1,
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -115,8 +112,9 @@
       ],
       "evidence_note": "Steps 1 and 2 show MBTA Careers, View MBTA job openings, helpful resources, and job posting alerts.",
       "rationale": "The visible careers area supports both job-opening access and applicant resources.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T18:59:16+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T18:59:16+00:00",
+      "updated_at": "2026-06-24T12:19:53+00:00"
     },
     {
       "requirement_id": "REQ-02",
@@ -130,19 +128,20 @@
       "source_harvest_id": "HARV-02",
       "step_indices": [
         3,
-        4,
-        12,
+        11,
         13
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The catalog view is directly visible.",
       "annotated_by": "benno",
+      "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
       "claims": [
         {
-          "claim": "A dedicated Job Openings view shows a browsable catalog of postings.",
+          "claim": "A dedicated job listings view provides a browsable catalog of open job postings.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -151,7 +150,20 @@
             11,
             13
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 11,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 13,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -177,11 +189,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T19:00:35+00:00",
-      "verification_label": "FULFILLED",
       "evidence_note": "The Job Openings page lists multiple jobs and reports jobs found.",
-      "rationale": "The catalog view is directly visible."
+      "rationale": "The catalog view is directly visible.",
+      "review_status": "accepted",
+      "created_at": "2026-04-21T19:00:35+00:00",
+      "updated_at": "2026-06-24T12:20:40+00:00"
     },
     {
       "requirement_id": "REQ-03",
@@ -195,10 +207,8 @@
       "source_harvest_id": "HARV-03",
       "step_indices": [
         3,
-        4,
-        12,
-        13,
-        14
+        11,
+        13
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
@@ -220,7 +230,20 @@
             11,
             13
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 11,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 13,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -252,8 +275,9 @@
       ],
       "evidence_note": "A Search input is visible above the job listings.",
       "rationale": "The requirement asks for a search mechanism, and the mechanism is visible.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T19:01:56+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T19:01:56+00:00",
+      "updated_at": "2026-06-24T12:20:43+00:00"
     },
     {
       "requirement_id": "REQ-04",
@@ -266,16 +290,10 @@
       "source_candidate_id": "REQ-04",
       "source_harvest_id": "HARV-04",
       "step_indices": [
-        3,
         4,
         5,
         6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        13
+        7
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
@@ -296,10 +314,19 @@
             4,
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
-          "claim": "Selecting MBTA - Safety narrows the visible results to safety department postings.",
+          "claim": "Selecting a department filter narrows the results to postings for that department.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -307,7 +334,16 @@
             6,
             7
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -360,8 +396,9 @@
       ],
       "evidence_note": "The Department filter is visible, MBTA - Safety appears, and the result set changes to safety jobs.",
       "rationale": "Department filtering is visibly available and applied.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T19:04:39+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T19:04:39+00:00",
+      "updated_at": "2026-06-24T12:20:46+00:00"
     },
     {
       "requirement_id": "REQ-05",
@@ -374,10 +411,9 @@
       "source_candidate_id": "REQ-05",
       "source_harvest_id": "HARV-05",
       "step_indices": [
-        3,
         7,
         8,
-        10
+        9
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
@@ -398,17 +434,31 @@
             7,
             8
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
-          "claim": "The $100,000+ salary option is selected and the visible result count narrows.",
+          "claim": "Selecting an estimated salary range or threshold narrows the job results.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -436,8 +486,9 @@
       ],
       "evidence_note": "The salary drawer lists $100,000+, and after selection the page shows 3 jobs found.",
       "rationale": "Salary threshold filtering is visibly available and applied.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T19:05:51+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T19:05:51+00:00",
+      "updated_at": "2026-06-24T12:20:48+00:00"
     },
     {
       "requirement_id": "REQ-06",
@@ -450,20 +501,21 @@
       "source_candidate_id": "REQ-06",
       "source_harvest_id": "HARV-06",
       "step_indices": [
-        6,
-        8,
-        12,
-        13
+        9,
+        10,
+        11
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "Multiple active filters are visibly combined.",
       "annotated_by": "benno",
+      "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
       "claims": [
         {
-          "claim": "Department and Estimated Annual Salary filters are active at the same time and narrow the results.",
+          "claim": "Multiple filter criteria can be active at the same time and narrow the job results.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -472,7 +524,20 @@
             10,
             11
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 11,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -498,11 +563,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T19:07:17+00:00",
-      "verification_label": "FULFILLED",
       "evidence_note": "The filter drawer shows active counts for Department and Estimated Annual Salary, and the main page shows 3 jobs found.",
-      "rationale": "Multiple active filters are visibly combined."
+      "rationale": "Multiple active filters are visibly combined.",
+      "review_status": "accepted",
+      "created_at": "2026-04-21T19:07:17+00:00",
+      "updated_at": "2026-06-24T12:20:58+00:00"
     },
     {
       "requirement_id": "REQ-07",
@@ -515,10 +580,9 @@
       "source_candidate_id": "REQ-07",
       "source_harvest_id": "HARV-07",
       "step_indices": [
-        6,
         7,
-        8,
-        12,
+        10,
+        11,
         13
       ],
       "requirement_type": "NFR",
@@ -526,11 +590,12 @@
       "visible_subtype": "NONE",
       "annotation_notes": "Badges and counters are shown on the filter panel and on the main Filter control, making active refinement state visible to the user.",
       "annotated_by": "benno",
+      "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
       "claims": [
         {
-          "claim": "The UI shows both the total active-filter count and category-level active-filter indicators.",
+          "claim": "The system provides both a total active-filter count and category-level active-filter indicators.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -540,7 +605,24 @@
             11,
             13
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 11,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 13,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -573,9 +655,9 @@
       ],
       "evidence_note": "The main Filter control shows 2, and the filter panel shows badges on Department and Estimated Annual Salary.",
       "rationale": "The active filter state is visibly communicated.",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "created_at": "2026-04-21T19:07:47+00:00",
-      "verification_label": "FULFILLED"
+      "updated_at": "2026-06-24T12:21:03+00:00"
     },
     {
       "requirement_id": "REQ-08",
@@ -588,10 +670,9 @@
       "source_candidate_id": "REQ-08",
       "source_harvest_id": "HARV-08",
       "step_indices": [
-        8,
-        12,
-        13,
-        14
+        9,
+        11,
+        13
       ],
       "requirement_type": "NFR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
@@ -616,7 +697,20 @@
             11,
             13
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 11,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 13,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "Full correctness of the filtered result set and jobs-found count depends on non-visible filtering and data behavior.",
@@ -624,7 +718,7 @@
           "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [],
-          "note": null
+          "evidence_units": []
         }
       ],
       "evidence_steps": [
@@ -652,8 +746,9 @@
       ],
       "evidence_note": "The UI shows 3 jobs found and three visible MBTA - Safety postings after Department and $100,000+ filters are active.",
       "rationale": "Visible consistency is supported, but full data/filter correctness cannot be proven from screenshots alone.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T19:10:52+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T19:10:52+00:00",
+      "updated_at": "2026-06-24T12:21:04+00:00"
     },
     {
       "requirement_id": "REQ-10",
@@ -666,8 +761,9 @@
       "source_candidate_id": "REQ-10",
       "source_harvest_id": "HARV-10",
       "step_indices": [
-        4,
-        12,
+        3,
+        6,
+        11,
         13
       ],
       "requirement_type": "FR",
@@ -675,6 +771,7 @@
       "visible_subtype": "NONE",
       "annotation_notes": "List entries display posting age and closing indicators such as 'Posted 2 weeks ago' and 'Closes in 14 hours', which support latest-opening review.",
       "annotated_by": "benno",
+      "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
       "claims": [
@@ -689,7 +786,24 @@
             11,
             13
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 11,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 13,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -714,9 +828,9 @@
       ],
       "evidence_note": "Listings show values such as Posted 2 weeks ago, Posted more than 30 days ago, Closes in 14 hours, and Closes in 1 day.",
       "rationale": "The relevant status information is visible in the result cards.",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "created_at": "2026-04-21T19:13:23+00:00",
-      "verification_label": "FULFILLED"
+      "updated_at": "2026-06-24T12:21:07+00:00"
     },
     {
       "requirement_id": "REQ-11",
@@ -730,8 +844,8 @@
       "source_harvest_id": "HARV-11",
       "step_indices": [
         3,
-        4,
-        12,
+        6,
+        11,
         13
       ],
       "requirement_type": "FR",
@@ -755,7 +869,24 @@
             11,
             13
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 11,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 13,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -784,8 +915,9 @@
       ],
       "evidence_note": "The visible listings show job titles, salary ranges, Department labels, and summary descriptions.",
       "rationale": "The required summary fields are present in list view.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T19:14:19+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T19:14:19+00:00",
+      "updated_at": "2026-06-24T12:21:10+00:00"
     },
     {
       "requirement_id": "REQ-12",
@@ -820,7 +952,16 @@
             13,
             14
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 13,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 14,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -839,8 +980,9 @@
       ],
       "evidence_note": "Step 13 shows the selected Safety Lead Investigator listing, and step 14 shows its detail flyout.",
       "rationale": "List-to-detail navigation is visibly demonstrated.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T19:31:45+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T19:31:45+00:00",
+      "updated_at": "2026-06-24T12:21:14+00:00"
     },
     {
       "requirement_id": "REQ-16",
@@ -853,10 +995,6 @@
       "source_candidate_id": "REQ-16",
       "source_harvest_id": "HARV-16",
       "step_indices": [
-        4,
-        5,
-        8,
-        12,
         13,
         14
       ],
@@ -883,7 +1021,16 @@
             13,
             14
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 13,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 14,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "Preservation across all page changes and navigation paths is not fully shown.",
@@ -891,7 +1038,7 @@
           "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [],
-          "note": null
+          "evidence_units": []
         }
       ],
       "evidence_steps": [
@@ -926,8 +1073,9 @@
       ],
       "evidence_note": "The detail flyout opens over the filtered three-job result context.",
       "rationale": "The observed transition preserves context, but the broader persistence claim is not fully covered.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T19:35:15+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T19:35:15+00:00",
+      "updated_at": "2026-06-24T12:21:25+00:00"
     },
     {
       "requirement_id": "REQ-17",
@@ -940,20 +1088,21 @@
       "source_candidate_id": "REQ-17",
       "source_harvest_id": "HARV-17",
       "step_indices": [
-        4,
-        12,
-        13,
-        14
+        3,
+        6,
+        11,
+        13
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "NOT_UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "Social and email style action icons are visible beside job entries and in the detail panel, suggesting posting-sharing functionality, though the behavior is not executed here.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
-        "UNVERIFIED_SYSTEM_OUTCOME"
+        "UNVERIFIED_SYSTEM_OUTCOME",
+        "SCOPE_OR_CONTEXT_AMBIGUITY"
       ],
       "notes": [],
       "claims": [
@@ -968,15 +1117,32 @@
             11,
             13
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 11,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 13,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
-          "claim": "Actual handoff or delivery through an external channel is not shown.",
+          "claim": "Actual handoff or delivery through an external channel occurs.",
           "status": "HIDDEN",
           "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [],
-          "note": null
+          "evidence_units": []
         }
       ],
       "evidence_steps": [
@@ -1005,8 +1171,9 @@
       ],
       "evidence_note": "Sharing icons are visible on listing cards, but no external share flow is executed.",
       "rationale": "Visible sharing affordances are supported, while the external behavior remains unverified.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T19:39:54+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T19:39:54+00:00",
+      "updated_at": "2026-06-24T12:23:09+00:00"
     },
     {
       "requirement_id": "REQ-18",
@@ -1043,15 +1210,24 @@
             1,
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
-          "claim": "Completion of an alert subscription and future alert delivery are not shown.",
+          "claim": "Completion of an alert subscription and future alert delivery occur.",
           "status": "HIDDEN",
           "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [],
-          "note": null
+          "evidence_units": []
         }
       ],
       "evidence_steps": [
@@ -1098,7 +1274,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The Sort panel exposes multiple sorting criteria, including posting date, job title, and salary.",
+          "claim": "The system exposes multiple sorting criteria, including posting date, title, and salary.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1106,7 +1282,16 @@
             11,
             12
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 11,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 12,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -1125,8 +1310,9 @@
       ],
       "evidence_note": "The sort panel lists Posting Date, Job Title, and Salary options.",
       "rationale": "The requested sort criteria are visibly available.",
-      "review_status": "needs_review",
-      "created_at": "2026-05-07T12:42:32+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-05-07T12:42:32+00:00",
+      "updated_at": "2026-06-24T12:21:06+00:00"
     },
     {
       "requirement_id": "REQ-13",
@@ -1159,7 +1345,12 @@
           "evidence_steps": [
             14
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 14,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -1173,8 +1364,9 @@
       ],
       "evidence_note": "The detail flyout shows the requested metadata, Description content, and an Apply button.",
       "rationale": "The required detail information is visible before application.",
-      "review_status": "needs_review",
-      "created_at": "2026-05-07T12:47:22+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-05-07T12:47:22+00:00",
+      "updated_at": "2026-06-24T12:21:17+00:00"
     },
     {
       "requirement_id": "REQ-14",
@@ -1192,6 +1384,8 @@
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The explicit application entry action is visible.",
+      "annotated_by": "benno",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1223,8 +1417,9 @@
       ],
       "evidence_note": "The Safety Lead Investigator detail flyout has an Apply button.",
       "rationale": "The explicit application entry action is visible.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T13:30:20+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T13:30:20+00:00",
+      "updated_at": "2026-06-24T12:21:20+00:00"
     },
     {
       "requirement_id": "REQ-15",
@@ -1242,6 +1437,8 @@
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The entry point is supported, but the downstream workflow is missing from the flow.",
+      "annotated_by": "benno",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
         "FLOW_COVERAGE_GAP"
@@ -1264,7 +1461,7 @@
           ]
         },
         {
-          "claim": "The downstream application workflow after Apply is not shown.",
+          "claim": "The downstream application workflow after Apply is reached.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1290,8 +1487,9 @@
       ],
       "evidence_note": "Step 14 shows Apply, but no later application form or workflow is visible.",
       "rationale": "The entry point is supported, but the downstream workflow is missing from the flow.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T13:30:20+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T13:30:20+00:00",
+      "updated_at": "2026-06-24T12:21:23+00:00"
     },
     {
       "requirement_id": "CONTR-01",
@@ -1306,10 +1504,17 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-01",
       "source_candidate_id": "CONTR-01",
-      "step_indices": [],
+      "step_indices": [
+        1,
+        2,
+        11,
+        13
+      ],
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "annotation_notes": "The general alert capability is supported, while current-context persistence is missing or hidden.",
+      "annotated_by": "benno",
       "intended_label": "PARTIALLY_FULFILLED",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
@@ -1394,8 +1599,9 @@
       ],
       "evidence_note": "General alert signup is visible, but save-current-search or alert-from-current-filter behavior is not visible.",
       "rationale": "The general alert capability is supported, while current-context persistence is missing or hidden.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-06-24T12:19:58+00:00"
     },
     {
       "requirement_id": "CONTR-02",
@@ -1410,15 +1616,21 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-02",
       "source_candidate_id": "CONTR-02",
-      "step_indices": [],
+      "step_indices": [
+        3,
+        6,
+        11,
+        13
+      ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
+      "annotation_notes": "Only the entry mechanism is supported; the required confirmation is missing.",
+      "annotated_by": "benno",
       "intended_label": "PARTIALLY_FULFILLED",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
-        "FLOW_COVERAGE_GAP",
-        "UNVERIFIED_SYSTEM_OUTCOME"
+        "FLOW_COVERAGE_GAP"
       ],
       "notes": [],
       "claims": [
@@ -1509,8 +1721,9 @@
       ],
       "evidence_note": "Sharing affordances are visible, but no sharing action or confirmation appears.",
       "rationale": "Only the entry mechanism is supported; the required confirmation is missing.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-06-23T21:58:12+00:00"
     },
     {
       "requirement_id": "CONTR-03",
@@ -1525,10 +1738,16 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-03",
       "source_candidate_id": "CONTR-03",
-      "step_indices": [],
+      "step_indices": [
+        9,
+        11,
+        13
+      ],
       "requirement_type": "NFR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "CONTENT_UPDATE",
+      "annotation_notes": "Visible local consistency is supported, but the universal correctness claim cannot be fully proven.",
+      "annotated_by": "benno",
       "intended_label": "ABSTAIN",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
@@ -1537,7 +1756,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "After filtering, the UI reports three jobs and displays three visible postings.",
+          "claim": "After filtering, the system reports a jobs-found count and presents the corresponding postings.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1562,7 +1781,7 @@
           ]
         },
         {
-          "claim": "Universal correctness across the complete result set depends on data correctness and filtering behavior not fully verifiable from screenshots.",
+          "claim": "Ensuring every job in the complete result set satisfies the selected criteria depends on data correctness and filtering behavior.",
           "status": "HIDDEN",
           "claim_type": "HIDDEN",
           "importance": "CORE",
@@ -1591,14 +1810,15 @@
       ],
       "evidence_note": "The UI shows Showing 1-3 of 3 jobs after filtering, but full correctness remains hidden.",
       "rationale": "Visible local consistency is supported, but the universal correctness claim cannot be fully proven.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-06-24T12:20:03+00:00"
     },
     {
       "requirement_id": "CONTR-04",
       "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
       "text": "The system shall allow public browsing of job listings and posting details, while requiring applicant authentication before entering the application workflow.",
-      "scope": "single_screen",
+      "scope": "multi_screen",
       "tags": [
         "contrastive",
         "intended_label:abstain",
@@ -1607,10 +1827,16 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-04",
       "source_candidate_id": "CONTR-04",
-      "step_indices": [],
+      "step_indices": [
+        3,
+        13,
+        14
+      ],
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "NAVIGATION_OUTCOME",
+      "annotation_notes": "Public browsing is supported; the authentication policy before application is not verified.",
+      "annotated_by": "benno",
       "intended_label": "ABSTAIN",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
@@ -1646,7 +1872,7 @@
           ]
         },
         {
-          "claim": "The screenshots do not show whether authentication is required after selecting Apply.",
+          "claim": "Requiring applicant authentication before entering the application workflow is not established by the captured flow.",
           "status": "HIDDEN",
           "claim_type": "HIDDEN",
           "importance": "CORE",
@@ -1675,14 +1901,15 @@
       ],
       "evidence_note": "Listings and details are browsable while Sign In is visible, but the post-Apply authentication boundary is not shown.",
       "rationale": "Public browsing is supported; the authentication policy before application is not verified.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-06-24T12:20:06+00:00"
     },
     {
       "requirement_id": "CONTR-05",
       "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
       "text": "The system shall provide a visible control on the detailed job view that starts the application workflow for the selected opening.",
-      "scope": "multi_screen",
+      "scope": "single_screen",
       "tags": [
         "contrastive",
         "intended_label:not_fulfilled",
@@ -1691,10 +1918,14 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-05",
       "source_candidate_id": "CONTR-05",
-      "step_indices": [],
+      "step_indices": [
+        14
+      ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NAVIGATION_OUTCOME",
+      "annotation_notes": "The requirement centers on the visible control, and that control is present.",
+      "annotated_by": "benno",
       "intended_label": "NOT_FULFILLED",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
@@ -1742,8 +1973,9 @@
       ],
       "evidence_note": "The selected Safety Lead Investigator detail flyout includes an Apply button.",
       "rationale": "The requirement centers on the visible control, and that control is present.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-06-24T12:20:11+00:00"
     },
     {
       "requirement_id": "CONTR-06",
@@ -1758,10 +1990,15 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-06",
       "source_candidate_id": "CONTR-06",
-      "step_indices": [],
+      "step_indices": [
+        11,
+        13
+      ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "CONTENT_UPDATE",
+      "annotation_notes": "A core observable part of the requirement is contradicted by the active-filter results view.",
+      "annotated_by": "benno",
       "intended_label": "NOT_FULFILLED",
       "verification_label": "NOT_FULFILLED",
       "uncertainty_reasons": [
@@ -1826,8 +2063,9 @@
       ],
       "evidence_note": "The results view shows an aggregate Filter count but no per-criterion remove controls.",
       "rationale": "A core observable part of the requirement is contradicted by the active-filter results view.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-06-24T12:20:35+00:00"
     }
   ]
 }

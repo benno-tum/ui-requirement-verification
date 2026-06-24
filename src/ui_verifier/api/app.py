@@ -21,12 +21,22 @@ from ui_verifier.model_config import all_model_role_configs, model_config_path, 
 from ui_verifier.api.flow_catalog import FlowCatalog
 from ui_verifier.requirement_inspection.schemas import UiEvaluability
 from ui_verifier.requirements.candidate_generation import generate_harvested_for_flow
+from ui_verifier.requirements.claim_decomposition import decompose_requirement_with_diagnostics
 from ui_verifier.requirements.gemini_client import run_gemini
 from ui_verifier.requirements.gemini_usage import read_usage_summary, usage_log_path, usage_summary_path
+from ui_verifier.requirements.llm_client import run_text_json_llm
 from ui_verifier.requirements.schemas import RequirementReviewStatus
 from ui_verifier.common.json_utils import parse_json_response
 from ui_verifier.evaluation.prediction_coverage import coverage_for_files
-from ui_verifier.verification.schemas import UIEvaluability, VerificationLabel
+from ui_verifier.verification.schemas import (
+    ClaimEvidence,
+    ClaimEvidenceStatus,
+    ClaimImportance,
+    ClaimType,
+    UIEvaluability,
+    VerificationGoldFile,
+    VerificationLabel,
+)
 from ui_verifier.verification.service import VerificationService
 from ui_verifier.verification.storage import VerificationStorage
 
@@ -170,6 +180,11 @@ class RephraseClaimRequest(BaseModel):
     temperature: float = temperature_for("claim_rephrase")
 
 
+class DecomposeClaimsRequest(BaseModel):
+    requirement_text: str
+    max_claims: int = 4
+
+
 class StartPipelineRunRequest(BaseModel):
     verifier: str = "deterministic"
     verifier_model: str = model_name_for("demo_image_verifier")
@@ -180,6 +195,11 @@ class StartPipelineRunRequest(BaseModel):
     max_gemini_api_calls: int = 0
     use_cache: bool = True
     output_dir_name: str = "ui_verification_runs"
+
+
+class RegenerateExpectedClaimsRequest(BaseModel):
+    max_claims: int = 4
+    preserve_existing_decisions: bool = True
 
 
 def _repo_relative(path: Path) -> str:
@@ -402,7 +422,7 @@ def _run_pipeline_job(job_id: str, command: list[str], output_path: Path) -> Non
 
 
 def _build_claim_rephrase_prompt(body: RephraseClaimRequest) -> str:
-    return f"""Rewrite one UI verification claim.
+    return f"""Rewrite one expected requirement claim.
 
 Requirement:
 {body.requirement_text.strip()}
@@ -421,7 +441,9 @@ importance: {body.importance or "not set"}
 Rules:
 - Return a replacement claim only.
 - The claim must be an atomic English sentence.
-- Keep it checkable from ordered UI screenshots when possible.
+- Derive the replacement only from the requirement text and reviewer feedback.
+- Do not use, infer from, or refer to screenshots, images, visible evidence, or UI observations.
+- Do not make the claim more UI-specific than the requirement itself.
 - Do not add rationale, notes, evidence, labels, or markdown.
 - Do not mention that this is a rewrite.
 - Do not preserve wording the reviewer explicitly said is wrong.
@@ -572,6 +594,20 @@ def list_verification_gold(flow_id: str) -> list[dict[str, Any]]:
         return []
 
 
+@app.post("/flows/{flow_id}/verification-gold/regenerate-claims")
+def regenerate_verification_gold_claims(flow_id: str, body: RegenerateExpectedClaimsRequest) -> dict[str, Any]:
+    try:
+        return regenerate_expected_claims_for_flow(
+            flow_id,
+            max_claims=body.max_claims,
+            preserve_existing_decisions=body.preserve_existing_decisions,
+        )
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+
+
 @app.get("/flows/{flow_id}/verification/latest")
 def get_latest_verification_run(flow_id: str) -> dict[str, Any]:
     try:
@@ -686,6 +722,106 @@ def _verification_pipeline_summary(flow_id: str, data: dict[str, Any], path: Pat
             "missing_reference_for_predictions": sum(1 for item in comparison_items if item["reference_label"] is None),
         },
         "items": comparison_items,
+    }
+
+
+def _fallback_claim_for_index(existing_claims: list[ClaimEvidence], index: int) -> ClaimEvidence | None:
+    if index < len(existing_claims):
+        return existing_claims[index]
+    return existing_claims[-1] if existing_claims else None
+
+
+def _regenerated_claim(
+    claim_text: str,
+    *,
+    is_observable: bool,
+    existing_claims: list[ClaimEvidence],
+    index: int,
+    preserve_existing_decisions: bool,
+) -> ClaimEvidence:
+    existing = _fallback_claim_for_index(existing_claims, index) if preserve_existing_decisions else None
+    claim_type = ClaimType.OBSERVABLE if is_observable else ClaimType.HIDDEN
+    if existing is None:
+        return ClaimEvidence(
+            claim=claim_text,
+            status=ClaimEvidenceStatus.MISSING,
+            claim_type=claim_type,
+            importance=ClaimImportance.CORE,
+        )
+
+    return ClaimEvidence(
+        claim=claim_text,
+        status=existing.status,
+        claim_type=claim_type,
+        importance=existing.importance,
+        evidence_steps=list(existing.evidence_steps),
+        evidence_units=[unit.to_dict() for unit in existing.evidence_units],
+        note=existing.note,
+    )
+
+
+def _pipeline_decomposed_claims(requirement_text: str, *, max_claims: int) -> list[tuple[str, bool]]:
+    result = decompose_requirement_with_diagnostics(
+        requirement_text,
+        strategy="rule_guided_llm",
+        provider="deepseek",
+        model_name=model_name_for("claim_decomposition"),
+        max_claims=max_claims,
+        use_cache=True,
+    )
+    return [
+        (claim.claim_text, getattr(claim.ui_evaluability, "value", claim.ui_evaluability) != "NOT_UI_VERIFIABLE")
+        for claim in result.claims[:max_claims]
+        if claim.claim_text.strip()
+    ]
+
+
+def regenerate_expected_claims_for_flow(
+    flow_id: str,
+    *,
+    max_claims: int,
+    preserve_existing_decisions: bool,
+) -> dict[str, Any]:
+    if max_claims < 1 or max_claims > 8:
+        raise ValueError("max_claims must be between 1 and 8.")
+
+    path = VERIFICATION_GOLD_ROOT / flow_id / "verification_gold.json"
+    if not path.exists():
+        raise FileNotFoundError(f"Verification gold file not found for flow {flow_id}.")
+
+    gold_file = VerificationGoldFile.load(path)
+    changed_items = 0
+    changed_claims = 0
+    for item in gold_file.items:
+        decomposed_claims = _pipeline_decomposed_claims(item.text, max_claims=max_claims)
+        if not decomposed_claims:
+            continue
+        old_claim_texts = [claim.claim for claim in item.claims]
+        item.claims = [
+            _regenerated_claim(
+                claim_text,
+                is_observable=is_observable,
+                existing_claims=item.claims,
+                index=index,
+                preserve_existing_decisions=preserve_existing_decisions,
+            )
+            for index, (claim_text, is_observable) in enumerate(decomposed_claims)
+        ]
+        new_claim_texts = [claim.claim for claim in item.claims]
+        if old_claim_texts != new_claim_texts:
+            changed_items += 1
+            changed_claims += sum(1 for old, new in zip(old_claim_texts, new_claim_texts) if old != new)
+            changed_claims += abs(len(old_claim_texts) - len(new_claim_texts))
+
+    gold_file.save(path)
+    return {
+        "flow_id": flow_id,
+        "item_count": len(gold_file.items),
+        "changed_item_count": changed_items,
+        "changed_claim_count": changed_claims,
+        "max_claims": max_claims,
+        "preserve_existing_decisions": preserve_existing_decisions,
+        "items": [item.to_dict() for item in gold_file.items],
     }
 
 
@@ -935,9 +1071,9 @@ def delete_verification_gold_item(flow_id: str, requirement_id: str) -> dict[str
 @app.post("/tools/rephrase-claim")
 def rephrase_claim(body: RephraseClaimRequest) -> dict[str, str]:
     try:
-        raw_text = run_gemini(
+        raw_text = run_text_json_llm(
             _build_claim_rephrase_prompt(body),
-            [],
+            role="claim_rephrase",
             model_name=body.model_name,
             temperature=body.temperature,
         )
@@ -946,6 +1082,37 @@ def rephrase_claim(body: RephraseClaimRequest) -> dict[str, str]:
         if not claim_text:
             raise ValueError("Model response did not contain claim_text.")
         return {"claim_text": claim_text}
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e)) from e
+
+
+@app.post("/tools/decompose-claims")
+def decompose_claims(body: DecomposeClaimsRequest) -> dict[str, Any]:
+    try:
+        if body.max_claims < 1 or body.max_claims > 8:
+            raise ValueError("max_claims must be between 1 and 8.")
+        claims = [
+            {
+                "claim": claim_text,
+                "claim_text": claim_text,
+                "status": ClaimEvidenceStatus.MISSING.value,
+                "claim_type": (ClaimType.OBSERVABLE if is_observable else ClaimType.HIDDEN).value,
+                "importance": ClaimImportance.CORE.value,
+                "evidence_steps": [],
+                "uncertainty_reasons": [],
+            }
+            for claim_text, is_observable in _pipeline_decomposed_claims(
+                body.requirement_text,
+                max_claims=body.max_claims,
+            )
+        ]
+        return {
+            "claims": claims,
+            "provider": "deepseek",
+            "model_name": model_name_for("claim_decomposition"),
+        }
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e)) from e
     except Exception as e:

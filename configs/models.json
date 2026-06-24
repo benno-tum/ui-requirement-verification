@@ -2,10 +2,10 @@
   "description": "Default model/provider choices for UI verifier LLM roles. Override with UI_VERIFIER_MODEL_CONFIG or role-specific environment variables documented in docs/model_configuration.md.",
   "roles": {
     "claim_decomposition": {
-      "model": "gemini-2.5-flash-lite",
+      "model": "deepseek-chat",
       "temperature": 0.0,
-      "rationale": "Text-only structured decomposition benefits from low cost and deterministic behavior.",
-      "provider": "gemini"
+      "rationale": "Text-only structured decomposition should use the best working DeepSeek implementation.",
+      "provider": "deepseek"
     },
     "pipeline_claim_fallback": {
       "model": "deepseek-chat",
@@ -50,10 +50,10 @@
       "provider": "gemini"
     },
     "claim_rephrase": {
-      "model": "gemini-2.5-flash-lite",
+      "model": "deepseek-chat",
       "temperature": 0.1,
-      "rationale": "Single-claim editing is low-risk and should be inexpensive.",
-      "provider": "gemini"
+      "rationale": "Single-claim editing is text-only and should use the inexpensive DeepSeek path.",
+      "provider": "deepseek"
     },
     "screen_description": {
       "model": "gemini-2.5-flash",

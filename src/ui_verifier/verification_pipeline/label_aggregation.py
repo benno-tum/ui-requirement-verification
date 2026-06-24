@@ -12,7 +12,7 @@ from ui_verifier.verification_pipeline.schemas import (
 )
 
 
-_FULFILLED_STATUS = ClaimStatus.SUPPORTED
+_FULFILLED_STATUSES = {ClaimStatus.SUPPORTED, ClaimStatus.SUPPORTED_WITH_CAVEAT}
 _PROBLEM_STATUSES = {
     ClaimStatus.PARTIALLY_SUPPORTED,
     ClaimStatus.MISSING,
@@ -117,9 +117,9 @@ class LabelAggregator:
             )
 
         all_core_supported = bool(important_claims) and all(
-            result.status == _FULFILLED_STATUS for result in important_claims
+            result.status in _FULFILLED_STATUSES for result in important_claims
         )
-        any_important_supported = any(result.status == _FULFILLED_STATUS for result in important_claims)
+        any_important_supported = any(result.status in _FULFILLED_STATUSES for result in important_claims)
         any_important_partially_supported = any(
             result.status == ClaimStatus.PARTIALLY_SUPPORTED and bool(result.evidence) for result in important_claims
         )
@@ -127,6 +127,11 @@ class LabelAggregator:
         has_fulfilled_blocking_reason = any(reason in _FULFILLED_BLOCKING_REASONS for reason in uncertainty_reasons)
 
         if all_core_supported and not has_fulfilled_blocking_reason:
+            if any(result.status == ClaimStatus.SUPPORTED_WITH_CAVEAT for result in important_claims):
+                return (
+                    VerificationLabel.FULFILLED,
+                    "All central claims are supported, with at least one accepted caveat that does not block fulfillment.",
+                )
             return (
                 VerificationLabel.FULFILLED,
                 "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",

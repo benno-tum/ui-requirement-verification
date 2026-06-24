@@ -59,6 +59,7 @@ def _validate_claims(
 
         if claim.claim_type == ClaimType.OBSERVABLE and claim.status in {
             ClaimEvidenceStatus.SUPPORTED,
+            ClaimEvidenceStatus.SUPPORTED_WITH_CAVEAT,
             ClaimEvidenceStatus.CONTRADICTED,
             ClaimEvidenceStatus.MISSING,
         } and not claim.evidence_steps:

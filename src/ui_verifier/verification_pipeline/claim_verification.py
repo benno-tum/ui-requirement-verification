@@ -71,7 +71,7 @@ class ClaimVerifier:
             rationale = "Retrieved candidates were below the evidence threshold for support."
 
         reasons = list(claim.uncertainty_reasons)
-        if status != ClaimStatus.SUPPORTED:
+        if status not in {ClaimStatus.SUPPORTED, ClaimStatus.SUPPORTED_WITH_CAVEAT}:
             reasons = list(dict.fromkeys([*reasons, UncertaintyReason.EVIDENCE_INTERPRETATION_AMBIGUITY]))
 
         return ClaimVerificationResult(
@@ -81,7 +81,7 @@ class ClaimVerifier:
             status=status,
             is_core=claim.is_core,
             is_observable=claim.is_observable,
-            evidence=evidence if status in {ClaimStatus.SUPPORTED, ClaimStatus.PARTIALLY_SUPPORTED} else [],
+            evidence=evidence if status in {ClaimStatus.SUPPORTED, ClaimStatus.SUPPORTED_WITH_CAVEAT, ClaimStatus.PARTIALLY_SUPPORTED} else [],
             uncertainty_reasons=reasons,
             confidence=max_confidence,
             rationale=rationale,

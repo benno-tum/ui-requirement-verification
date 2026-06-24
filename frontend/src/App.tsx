@@ -82,7 +82,7 @@ const UNCERTAINTY_REASON_OPTIONS = [
   'UNVERIFIED_SYSTEM_OUTCOME',
   'NONTRIVIAL_HIDDEN_PROPERTY',
 ]
-const CLAIM_STATUS_OPTIONS = ['SUPPORTED', 'CONTRADICTED', 'MISSING', 'HIDDEN', 'AMBIGUOUS', 'OUT_OF_SCOPE']
+const CLAIM_STATUS_OPTIONS = ['SUPPORTED', 'SUPPORTED_WITH_CAVEAT', 'CONTRADICTED', 'MISSING', 'HIDDEN', 'AMBIGUOUS', 'OUT_OF_SCOPE']
 const CLAIM_TYPE_OPTIONS = ['OBSERVABLE', 'HIDDEN']
 const CLAIM_IMPORTANCE_OPTIONS = ['CORE', 'SUPPORTING']
 
@@ -110,6 +110,7 @@ function App() {
   const [editor, setEditor] = useState<EditorState | null>(null)
   const [reviewCursor, setReviewCursor] = useState<EditorState | null>(null)
   const [openNextAfterSave, setOpenNextAfterSave] = useState<boolean>(false)
+  const [regeneratingClaims, setRegeneratingClaims] = useState<boolean>(false)
 
   useEffect(() => {
     void loadFlows()
@@ -335,6 +336,36 @@ function App() {
     }
   }
 
+  async function handleRegenerateExpectedClaims() {
+    if (!selectedFlowId || regeneratingClaims) {
+      return
+    }
+
+    const confirmed = window.confirm(
+      'Regenerate expected claims for all verification benchmark items in this flow? Existing claim statuses and evidence will be preserved by claim position.',
+    )
+    if (!confirmed) {
+      return
+    }
+
+    setMessage('')
+    setRegeneratingClaims(true)
+    try {
+      const result = await api.regenerateExpectedClaims(selectedFlowId, {
+        max_claims: 4,
+        preserve_existing_decisions: true,
+      })
+      setVerificationGold(result.items)
+      await loadFlowDetails(selectedFlowId)
+      setEditor(null)
+      setMessage(`Regenerated expected claims for ${result.changed_item_count} items (${result.changed_claim_count} claim changes).`)
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : 'Failed to regenerate expected claims')
+    } finally {
+      setRegeneratingClaims(false)
+    }
+  }
+
   const activeCandidates = useMemo(
     () => candidates.filter((candidate) => candidate.review_status !== 'accepted' && candidate.review_status !== 'rejected'),
     [candidates],
@@ -536,6 +567,8 @@ function App() {
             onReject={(requirement) => void handleCandidateAction('reject', requirement)}
             onEditGold={(requirement) => setEditor({mode: 'verification_gold', requirement})}
             onDeleteGold={(requirement) => void handleDeleteGoldRequirement(requirement)}
+            onRegenerateExpectedClaims={() => void handleRegenerateExpectedClaims()}
+            regeneratingClaims={regeneratingClaims}
           />
         )}
 
@@ -561,6 +594,7 @@ function App() {
             pipelineRun={pipelineRun}
             verificationGold={verificationGold}
             onJumpToStep={jumpToStep}
+            onEditVerificationGold={(requirement) => setEditor({mode: 'verification_gold', requirement})}
           />
         )}
 
@@ -904,6 +938,8 @@ function OverviewPanel({
   onReject,
   onEditGold,
   onDeleteGold,
+  onRegenerateExpectedClaims,
+  regeneratingClaims,
 }: {
   steps: FlowStep[]
   activeCandidates: Requirement[]
@@ -915,6 +951,8 @@ function OverviewPanel({
   onReject: (requirement: Requirement) => void
   onEditGold: (requirement: VerificationGoldItem) => void
   onDeleteGold: (requirement: VerificationGoldItem) => void
+  onRegenerateExpectedClaims: () => void
+  regeneratingClaims: boolean
 }) {
   return (
     <section className="content-grid">
@@ -966,8 +1004,13 @@ function OverviewPanel({
 
       <section className="card">
         <div className="panel-header">
-          <h3>Verification benchmark items</h3>
-          <span>{gold.length}</span>
+          <div>
+            <h3>Verification benchmark items</h3>
+            <span>{gold.length}</span>
+          </div>
+          <button className="secondary-button" onClick={onRegenerateExpectedClaims} disabled={gold.length === 0 || regeneratingClaims}>
+            {regeneratingClaims ? 'Regenerating claims...' : 'Regenerate expected claims'}
+          </button>
         </div>
         <div className="requirement-list compact-list">
           {gold.map((requirement) => (
@@ -1090,11 +1133,13 @@ function VerificationRunPanel({
   pipelineRun,
   verificationGold,
   onJumpToStep,
+  onEditVerificationGold,
 }: {
   flowId: string
   pipelineRun: PipelineVerificationRun | null
   verificationGold: VerificationGoldItem[]
   onJumpToStep: (stepIndex: number) => void
+  onEditVerificationGold: (requirement: VerificationGoldItem) => void
 }) {
   const [selectedRequirementId, setSelectedRequirementId] = useState<string | null>(null)
   const [runs, setRuns] = useState<PipelineRunSummary[]>([])
@@ -1204,19 +1249,36 @@ function VerificationRunPanel({
   const metadata = activeRun?.metadata ?? {}
   const labelDistribution = (metadata.label_distribution ?? labelDistributionForResults(activeRun?.results ?? [])) as Record<string, number>
   const claimStatusDistribution = (metadata.claim_status_distribution ?? claimStatusDistributionForResults(activeRun?.results ?? [])) as Record<string, number>
-  const referenceComparison = (metadata.reference_comparison ?? {}) as {
-    summary?: Record<string, unknown>
-    items?: Array<Record<string, unknown>>
-  }
-  const comparisonSummary = referenceComparison.summary ?? {}
-  const comparisonRows = [...(referenceComparison.items ?? [])].sort((a, b) => {
-    const aMatch = a.matches_reference === false ? 0 : 1
-    const bMatch = b.matches_reference === false ? 0 : 1
-    if (aMatch !== bMatch) {
-      return aMatch - bMatch
+  const comparisonRows = useMemo(() => {
+    return (activeRun?.results ?? []).map((result) => {
+      const goldItem = goldById.get(result.requirement_id)
+      const referenceLabel = goldItem?.verification_label ?? null
+      const matchesReference = referenceLabel ? normalizeDisplayValue(referenceLabel) === normalizeDisplayValue(result.final_label) : null
+      return {
+        requirement_id: result.requirement_id,
+        predicted_label: result.final_label,
+        reference_label: referenceLabel,
+        matches_reference: matchesReference,
+        predicted_evidence_steps: uniqueEvidenceSteps(result.evidence),
+      }
+    }).sort((a, b) => {
+      const aMatch = a.matches_reference === false ? 0 : 1
+      const bMatch = b.matches_reference === false ? 0 : 1
+      if (aMatch !== bMatch) {
+        return aMatch - bMatch
+      }
+      return String(a.requirement_id).localeCompare(String(b.requirement_id), undefined, {numeric: true})
+    })
+  }, [activeRun, goldById])
+  const comparisonSummary = useMemo(() => {
+    const comparedItems = comparisonRows.filter((row) => row.reference_label).length
+    const matches = comparisonRows.filter((row) => row.matches_reference === true).length
+    return {
+      matches,
+      compared_items: comparedItems,
+      accuracy_on_matched_ids: comparedItems > 0 ? matches / comparedItems : null,
     }
-    return String(a.requirement_id ?? '').localeCompare(String(b.requirement_id ?? ''), undefined, {numeric: true})
-  })
+  }, [comparisonRows])
 
   return (
     <section className="stack-layout">
@@ -1420,7 +1482,7 @@ function VerificationRunPanel({
               <span>Evidence</span>
             </div>
             {comparisonRows.map((row) => {
-              const requirementId = String(row.requirement_id)
+              const requirementId = row.requirement_id
               const result = resultById.get(requirementId)
               const goldItem = goldById.get(requirementId)
               return (
@@ -1438,8 +1500,8 @@ function VerificationRunPanel({
                   }}
                 >
                   <strong>{requirementId}</strong>
-                  <span className={`status-pill ${statusClass(String(row.predicted_label ?? 'unknown'))}`}>{humanizeStatus(String(row.predicted_label ?? 'unknown'))}</span>
-                  <span className={`status-pill ${statusClass(String(row.reference_label ?? 'unknown'))}`}>{humanizeStatus(String(row.reference_label ?? 'unknown'))}</span>
+                  <span className={`status-pill ${statusClass(row.predicted_label ?? 'unknown')}`}>{humanizeStatus(row.predicted_label ?? 'unknown')}</span>
+                  <span className={`status-pill ${statusClass(row.reference_label ?? 'unknown')}`}>{humanizeStatus(row.reference_label ?? 'unknown')}</span>
                   <span className="review-mini-stack">
                     <strong>Manual</strong>
                     <span title={formatReasons(goldItem?.uncertainty_reasons ?? [])}>{formatReasons(goldItem?.uncertainty_reasons ?? [])}</span>
@@ -1502,6 +1564,25 @@ function VerificationRunPanel({
                 <button className="secondary-button" onClick={() => setSelectedRequirementId(result.requirement_id)}>
                   Inspect manual vs pipeline
                 </button>
+                {goldById.get(result.requirement_id) && (
+                  <button
+                    className="secondary-button"
+                    disabled={!canEditBenchmarkItemFromRun(result, goldById.get(result.requirement_id) as VerificationGoldItem)}
+                    title={
+                      canEditBenchmarkItemFromRun(result, goldById.get(result.requirement_id) as VerificationGoldItem)
+                        ? 'Edit current verification benchmark item'
+                        : 'Benchmark item text changed since this run'
+                    }
+                    onClick={() => {
+                      const goldItem = goldById.get(result.requirement_id)
+                      if (goldItem && canEditBenchmarkItemFromRun(result, goldItem)) {
+                        onEditVerificationGold(goldItem)
+                      }
+                    }}
+                  >
+                    Edit benchmark item
+                  </button>
+                )}
               </div>
             </article>
           ))}
@@ -1515,6 +1596,14 @@ function VerificationRunPanel({
           gold={selectedGold}
           onClose={() => setSelectedRequirementId(null)}
           onJumpToStep={onJumpToStep}
+          onEditBenchmarkItem={
+            selectedGold && canEditBenchmarkItemFromRun(selectedResult, selectedGold)
+              ? () => {
+                  onEditVerificationGold(selectedGold)
+                  setSelectedRequirementId(null)
+                }
+              : undefined
+          }
         />
       )}
     </section>
@@ -1526,11 +1615,13 @@ function VerificationComparisonModal({
   gold,
   onClose,
   onJumpToStep,
+  onEditBenchmarkItem,
 }: {
   result: PipelineResult
   gold: VerificationGoldItem | null
   onClose: () => void
   onJumpToStep: (stepIndex: number) => void
+  onEditBenchmarkItem?: () => void
 }) {
   const goldLabel = normalizeDisplayValue(gold?.verification_label)
   const predictedLabel = normalizeDisplayValue(result.final_label)
@@ -1561,9 +1652,20 @@ function VerificationComparisonModal({
             <h3>Manual vs pipeline comparison</h3>
             <span>{result.requirement_id}</span>
           </div>
-          <button className="secondary-button" onClick={onClose}>
-            Close
-          </button>
+          <div className="button-row wrap">
+            <button
+              type="button"
+              className="secondary-button"
+              disabled={!onEditBenchmarkItem}
+              title={onEditBenchmarkItem ? 'Edit current verification benchmark item' : 'Benchmark item is missing or changed since this run'}
+              onClick={onEditBenchmarkItem}
+            >
+              Edit benchmark item
+            </button>
+            <button type="button" className="secondary-button" onClick={onClose}>
+              Close
+            </button>
+          </div>
         </div>
 
         <section className={falseFulfillment ? 'comparison-hero high-risk' : 'comparison-hero'}>
@@ -1652,12 +1754,12 @@ function VerificationComparisonModal({
           </div>
         </section>
 
-        <details className="comparison-section expandable-section">
-          <summary className="expandable-summary">
+        <section className="comparison-section">
+          <div className="panel-header">
             <h4>Claim alignment</h4>
             <span>Manual claims are aligned to pipeline claims by token overlap.</span>
-          </summary>
-          <div className="claim-alignment-list expandable-body">
+          </div>
+          <div className="claim-alignment-list">
             {alignments.map((alignment, index) => (
               <ClaimAlignmentRow
                 key={`${result.requirement_id}-alignment-${index}`}
@@ -1666,7 +1768,7 @@ function VerificationComparisonModal({
               />
             ))}
           </div>
-        </details>
+        </section>
       </div>
     </div>
   )
@@ -1862,6 +1964,14 @@ function mergeDistribution(target: Record<string, number>, source: Record<string
 
 function normalizeDisplayValue(value: unknown): string {
   return typeof value === 'string' && value.trim() ? value.trim().toUpperCase().replace(/-/g, '_').replace(/ /g, '_') : 'unknown'
+}
+
+function normalizeRequirementText(value: string | null | undefined): string {
+  return (value ?? '').replace(/\s+/g, ' ').trim()
+}
+
+function canEditBenchmarkItemFromRun(result: PipelineResult, gold: VerificationGoldItem): boolean {
+  return normalizeRequirementText(result.requirement_text) === normalizeRequirementText(gold.text)
 }
 
 function intersectNumbers(left: number[], right: number[]): number[] {
@@ -2112,6 +2222,7 @@ function RequirementEditorModal({
   const verificationItem = isVerificationGold ? (requirement as VerificationGoldItem) : null
   const editableVerification = isVerificationGold || mode === 'candidate'
   const [rephrasingClaimIndex, setRephrasingClaimIndex] = useState<number | null>(null)
+  const [rephrasingAllClaims, setRephrasingAllClaims] = useState<boolean>(false)
   const [form, setForm] = useState<RequirementFormState>(() => ({
     text: requirement.text,
     stepIndices: [...requirement.step_indices],
@@ -2234,6 +2345,40 @@ function RequirementEditorModal({
       window.alert(error instanceof Error ? error.message : 'Failed to rephrase claim')
     } finally {
       setRephrasingClaimIndex(null)
+    }
+  }
+
+  async function rephraseAllClaims() {
+    const requirementText = form.text.trim()
+    if (!requirementText || rephrasingAllClaims) {
+      return
+    }
+    setRephrasingAllClaims(true)
+    try {
+      const response = await api.decomposeClaims({
+        requirement_text: requirementText,
+        max_claims: 4,
+      })
+      const nextClaims = response.claims.map((claim, index) => {
+        const existing = form.claims[index] ?? form.claims[form.claims.length - 1] ?? emptyClaimFormState()
+        return {
+          ...existing,
+          claimId: '',
+          claim: sentenceCase(stripRequirementBoilerplate(claim.claim_text ?? claim.claim)),
+          claimType: claim.claim_type ?? existing.claimType,
+          importance: existing.importance || claim.importance || 'CORE',
+        }
+      }).filter((claim) => claim.claim)
+      if (nextClaims.length > 0) {
+        setForm((current) => ({
+          ...current,
+          claims: nextClaims,
+        }))
+      }
+    } catch (error) {
+      window.alert(error instanceof Error ? error.message : 'Failed to rephrase all claims')
+    } finally {
+      setRephrasingAllClaims(false)
     }
   }
 
@@ -2410,6 +2555,14 @@ function RequirementEditorModal({
                   <button type="button" className="secondary-button" onClick={addClaim}>
                     Add claim
                   </button>
+                  <button
+                    type="button"
+                    className="secondary-button"
+                    onClick={() => void rephraseAllClaims()}
+                    disabled={rephrasingAllClaims || rephrasingClaimIndex !== null}
+                  >
+                    {rephrasingAllClaims ? 'Rephrasing all...' : 'Rephrase all claims'}
+                  </button>
                 </div>
                 {form.claims.length === 0 && <p className="empty-text">No claim rows yet.</p>}
                 {form.claims.map((claim, index) => (
@@ -2449,7 +2602,7 @@ function RequirementEditorModal({
                           <span className="empty-text">Select top-level evidence steps first.</span>
                         )}
                       </div>
-                      {claim.evidenceSteps.length === 0 && ['SUPPORTED', 'CONTRADICTED'].includes(claim.status) && (
+                      {claim.evidenceSteps.length === 0 && ['SUPPORTED', 'SUPPORTED_WITH_CAVEAT', 'CONTRADICTED'].includes(claim.status) && (
                         <span className="mini-label">Supported or contradicted claims normally need evidence steps.</span>
                       )}
                     </fieldset>
@@ -2483,7 +2636,11 @@ function RequirementEditorModal({
                       <button
                         type="button"
                         className="secondary-button"
-                        onClick={() => void rephraseClaim(index)}
+                        onClick={(event) => {
+                          event.preventDefault()
+                          event.stopPropagation()
+                          void rephraseClaim(index)
+                        }}
                         disabled={rephrasingClaimIndex !== null}
                       >
                         {rephrasingClaimIndex === index ? 'Rephrasing...' : 'Rephrase claim'}
@@ -2574,20 +2731,24 @@ function RequirementEditorModal({
         <div className="button-row wrap">
           {mode === 'candidate' ? (
             <>
-              <button className="secondary-button" onClick={() => onSave('review', candidatePayload)}>
+              <button type="button" className="secondary-button" onClick={() => onSave('review', candidatePayload)}>
                 Save as needs review
               </button>
-              <button className="danger-button" onClick={() => onDelete(requirement)}>
+              <button type="button" className="danger-button" onClick={() => onDelete(requirement)}>
                 Delete bad requirement
               </button>
-              <button onClick={() => onSave('promote', acceptedCandidatePayload)}>Promote to gold</button>
+              <button type="button" onClick={() => onSave('promote', acceptedCandidatePayload)}>
+                Promote to gold
+              </button>
             </>
           ) : (
             <>
-              <button className="danger-button" onClick={() => onDelete(requirement)}>
+              <button type="button" className="danger-button" onClick={() => onDelete(requirement)}>
                 Delete bad requirement
               </button>
-              <button onClick={() => onSave('save_verification_gold', verificationPayload)}>Save verification item</button>
+              <button type="button" onClick={() => onSave('save_verification_gold', verificationPayload)}>
+                Save verification item
+              </button>
             </>
           )}
         </div>
@@ -2609,7 +2770,7 @@ function ImageLightbox({step, onClose}: {step: FlowStep; onClose: () => void}) {
             <a className="link-button" href={resolveAssetUrl(step.original_image_url ?? step.image_url)} target="_blank" rel="noreferrer">
               Open image in new tab
             </a>
-            <button className="secondary-button" onClick={onClose}>
+            <button type="button" className="secondary-button" onClick={onClose}>
               Close
             </button>
           </div>
@@ -2653,8 +2814,20 @@ function requirementTextRows(text: string): number {
 
 function stripRequirementBoilerplate(value: string): string {
   return value
-    .replace(/^the system shall\s+/i, '')
-    .replace(/^the ui shall\s+/i, '')
+    .replace(/^the system shall offer\b/i, 'The system offers')
+    .replace(/^the system shall provide\b/i, 'The system provides')
+    .replace(/^the system shall present\b/i, 'The system presents')
+    .replace(/^the system shall show\b/i, 'The system shows')
+    .replace(/^the system shall allow\b/i, 'The system allows')
+    .replace(/^the system shall support\b/i, 'The system supports')
+    .replace(/^the system shall collect\b/i, 'The system collects')
+    .replace(/^the flow shall offer\b/i, 'The flow offers')
+    .replace(/^the flow shall provide\b/i, 'The flow provides')
+    .replace(/^the flow shall present\b/i, 'The flow presents')
+    .replace(/^the flow shall show\b/i, 'The flow shows')
+    .replace(/^the flow shall allow\b/i, 'The flow allows')
+    .replace(/^the flow shall support\b/i, 'The flow supports')
+    .replace(/^the flow shall collect\b/i, 'The flow collects')
     .replace(/^users? can\s+/i, 'The user can ')
 }
 

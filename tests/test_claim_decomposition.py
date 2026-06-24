@@ -36,6 +36,16 @@ def test_decompose_requirement_alias_matches_claim_text_decomposition() -> None:
     assert decompose_requirement(text) == decompose_requirement_claim_texts(text)
 
 
+def test_decompose_requirement_normalizes_offer_claim_to_declarative_sentence() -> None:
+    claims = decompose_requirement_claim_texts(
+        "The system shall offer a choice between full payment and a flexible installment payment plan for pass purchases."
+    )
+
+    assert claims == [
+        "The system offers a choice between full payment and a flexible installment payment plan for pass purchases."
+    ]
+
+
 def test_build_requirement_claims_adds_review_metadata() -> None:
     claims = build_requirement_claims(
         "The system shall allow applicants to filter job openings by department.",
@@ -165,7 +175,7 @@ def test_rule_guided_llm_sends_structured_rule_context(tmp_path) -> None:
     result = RuleGuidedLLMClaimDecomposer(fake, cache_dir=tmp_path).decompose(text)
 
     assert result.source == "rule_guided_llm"
-    assert result.prompt_version == "CLAIM_DECOMPOSITION_RULE_GUIDED_V1"
+    assert result.prompt_version == "CLAIM_DECOMPOSITION_RULE_GUIDED_V2"
     assert result.model_name == "fake-llm"
     assert "LLM_USED" in result.quality_flags
     prompt = fake.prompts[0]
@@ -174,6 +184,9 @@ def test_rule_guided_llm_sends_structured_rule_context(tmp_path) -> None:
     assert '"quality_flags"' in prompt
     assert '"detected_patterns"' in prompt
     assert "WHILE_REQUIRING" in prompt
+    assert "Do not make a claim more UI-specific than the requirement itself." in prompt
+    assert 'Do not add "UI" to claim text unless the requirement itself uses "UI".' in prompt
+    assert "Do not write imperative fragments" in prompt
 
 
 def test_rule_guided_llm_parses_valid_fake_json(tmp_path) -> None:

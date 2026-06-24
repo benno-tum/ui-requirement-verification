@@ -27,7 +27,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The main AMC site exposes Gift Cards as a navigable area in the global navigation.",
+          "claim": "The main site exposes gift cards as a navigable area in the global navigation.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -158,7 +158,7 @@
           "note": null
         },
         {
-          "claim": "The flow opens a dedicated Check Gift Card Balance page from the gift card area.",
+          "claim": "The system opens a dedicated gift-card balance page from the gift-card area.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -369,7 +369,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The entered gift card number remains visible after later form interactions.",
+          "claim": "The entered gift card number remains reflected after later form interactions.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -496,7 +496,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The system visibly rejects or flags an invalid gift card number format.",
+          "claim": "The system rejects or flags an invalid gift card number format.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -565,7 +565,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The UI provides a balance lookup workflow where card credentials can be entered.",
+          "claim": "The system provides a balance lookup workflow where card credentials can be entered.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -577,7 +577,7 @@
           "note": null
         },
         {
-          "claim": "The flow shows valid card credentials being accepted for lookup.",
+          "claim": "The system accepts valid card credentials for balance lookup.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -587,7 +587,7 @@
           "note": null
         },
         {
-          "claim": "The UI returns the remaining gift card balance after valid credentials are provided.",
+          "claim": "The system returns the remaining gift card balance after valid credentials are provided.",
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -662,7 +662,7 @@
           "note": null
         },
         {
-          "claim": "The gift card page presents non-web alternatives such as visiting an AMC Theatre or calling phone numbers.",
+          "claim": "The gift-card area presents non-web alternatives for balance inquiries.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -777,7 +777,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The balance page clearly states that the user should enter a gift card number and PIN.",
+          "claim": "The balance page clearly states what information is required to perform a balance lookup.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -787,7 +787,7 @@
           "note": null
         },
         {
-          "claim": "The required information is reinforced by labeled input fields for gift card number and PIN.",
+          "claim": "The required balance-lookup information is reinforced by labeled input fields.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -847,7 +847,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The signed-in My AMC context is visible on the gift card service page.",
+          "claim": "The signed-in account context is retained on the gift-card service page.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -857,7 +857,7 @@
           "note": null
         },
         {
-          "claim": "The signed-in My AMC context remains visible on the gift card balance pages.",
+          "claim": "The signed-in account context is retained on gift-card balance pages.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1263,8 +1263,25 @@
           "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
-          "evidence_steps": [],
-          "evidence_units": []
+          "evidence_steps": [
+            3,
+            4,
+            5
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
