@@ -124,7 +124,14 @@ class LabelAggregator:
             result.status == ClaimStatus.PARTIALLY_SUPPORTED and bool(result.evidence) for result in important_claims
         )
         any_important_problem = any(result.status in _PROBLEM_STATUSES for result in important_claims)
-        has_fulfilled_blocking_reason = any(reason in _FULFILLED_BLOCKING_REASONS for reason in uncertainty_reasons)
+        fulfilled_blocking_reasons = {
+            reason for reason in uncertainty_reasons if reason in _FULFILLED_BLOCKING_REASONS
+        }
+        accepted_caveat_only = (
+            fulfilled_blocking_reasons == {UncertaintyReason.EVIDENCE_INTERPRETATION_AMBIGUITY}
+            and any(result.status == ClaimStatus.SUPPORTED_WITH_CAVEAT for result in important_claims)
+        )
+        has_fulfilled_blocking_reason = bool(fulfilled_blocking_reasons) and not accepted_caveat_only
 
         if all_core_supported and not has_fulfilled_blocking_reason:
             if any(result.status == ClaimStatus.SUPPORTED_WITH_CAVEAT for result in important_claims):

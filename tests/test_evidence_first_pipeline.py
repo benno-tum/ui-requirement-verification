@@ -15,6 +15,7 @@ from ui_verifier.verification_pipeline.evidence_retrieval import (
     EvidenceRetriever,
     LexicalEvidenceRetriever,
 )
+from ui_verifier.verification_pipeline.gemini_image_claim_verifier import GeminiImageClaimVerifier
 from ui_verifier.verification_pipeline.label_aggregation import LabelAggregator
 from ui_verifier.verification_pipeline.pipeline import EvidenceFirstVerificationPipeline
 from ui_verifier.verification_pipeline.requirement_understanding import RequirementUnderstanding
@@ -194,6 +195,10 @@ def test_llm_decomposition_prompt_preserves_or_alternatives() -> None:
 def test_store_locator_text_is_not_marked_as_database_hidden() -> None:
     assert find_hidden_indicators("The system shall provide store locator functionality.") == []
     assert find_hidden_indicators("The system shall display operating hours for each listed store.") == []
+    assert find_hidden_indicators("The page displays the role title and role responsibilities.") == []
+    assert find_hidden_indicators("The café page explains service availability.") == []
+    assert find_hidden_indicators("Only administrators with the correct user role may access the page.") == ["security"]
+    assert find_hidden_indicators("The service must meet a high availability target.") == ["uptime"]
     assert find_hidden_indicators("The system shall keep stored preferences for later visits.") == ["database"]
 
 
@@ -355,6 +360,38 @@ def test_aggregator_fulfilled_allows_supported_with_caveat() -> None:
     assert "caveat" in result.rationale.lower()
 
 
+def test_aggregator_accepts_interpretation_uncertainty_embodied_by_supported_caveat() -> None:
+    result = LabelAggregator().aggregate(
+        requirement=_requirement(),
+        ui_evaluability=UIEvaluability.UI_VERIFIABLE,
+        claim_results=[
+            _claim_result(
+                ClaimStatus.SUPPORTED_WITH_CAVEAT,
+                evidence=[_evidence()],
+                uncertainty_reasons=[UncertaintyReason.EVIDENCE_INTERPRETATION_AMBIGUITY],
+            ),
+        ],
+    )
+
+    assert result.final_label == VerificationLabel.FULFILLED
+
+
+def test_aggregator_does_not_accept_flow_gap_as_supported_caveat() -> None:
+    result = LabelAggregator().aggregate(
+        requirement=_requirement(),
+        ui_evaluability=UIEvaluability.UI_VERIFIABLE,
+        claim_results=[
+            _claim_result(
+                ClaimStatus.SUPPORTED_WITH_CAVEAT,
+                evidence=[_evidence()],
+                uncertainty_reasons=[UncertaintyReason.FLOW_COVERAGE_GAP],
+            ),
+        ],
+    )
+
+    assert result.final_label == VerificationLabel.PARTIALLY_FULFILLED
+
+
 @pytest.mark.parametrize(
     "problem_status",
     [
@@ -434,6 +471,148 @@ def test_aggregator_material_uncertainty_blocks_fulfilled(reason: UncertaintyRea
     )
 
     assert result.final_label == VerificationLabel.PARTIALLY_FULFILLED
+
+
+def test_image_verifier_adds_late_screen_for_sequence_claims(tmp_path: Path) -> None:
+    verifier = GeminiImageClaimVerifier(
+        flow_id="flow-1",
+        screenshot_steps=[
+            ScreenshotStep(step_index=index, screenshot_path=f"step_{index:02d}.png")
+            for index in range(1, 10)
+        ],
+        cache_path=tmp_path / "cache.json",
+        max_images_per_claim=4,
+    )
+
+    selected = verifier._selected_steps(
+        _claim(text="The system preserves entered values while the shopper completes later fields."),
+        [_evidence(3), _evidence(4)],
+    )
+
+    assert selected == [1, 3, 4, 9]
+
+
+def test_image_verifier_fills_sparse_retrieval_with_flow_coverage(tmp_path: Path) -> None:
+    verifier = GeminiImageClaimVerifier(
+        flow_id="flow-1",
+        screenshot_steps=[
+            ScreenshotStep(step_index=index, screenshot_path=f"step_{index:02d}.png")
+            for index in range(1, 7)
+        ],
+        cache_path=tmp_path / "cache.json",
+        max_images_per_claim=4,
+    )
+
+    selected = verifier._selected_steps(
+        _claim(text="The page allows browsing by department."),
+        [_evidence(6)],
+    )
+
+    assert selected == [1, 3, 6]
+
+
+def test_image_verifier_adds_final_screen_for_cart_claim(tmp_path: Path) -> None:
+    verifier = GeminiImageClaimVerifier(
+        flow_id="flow-1",
+        screenshot_steps=[
+            ScreenshotStep(step_index=index, screenshot_path=f"step_{index:02d}.png")
+            for index in range(1, 11)
+        ],
+        cache_path=tmp_path / "cache.json",
+        max_images_per_claim=6,
+    )
+
+    selected = verifier._selected_steps(
+        _claim(text="The cart shows an itemized pre-checkout order summary."),
+        [_evidence(index) for index in range(1, 7)],
+    )
+
+    assert selected[-1] == 10
+    assert len(selected) == 6
+
+
+def test_image_verifier_prompt_distinguishes_forms_from_summaries(tmp_path: Path) -> None:
+    verifier = GeminiImageClaimVerifier(
+        flow_id="flow-1",
+        screenshot_steps=[ScreenshotStep(step_index=1, screenshot_path="step_01.png")],
+        cache_path=tmp_path / "cache.json",
+    )
+    payload = verifier._request_payload(
+        _claim(text="The page displays a synchronized purchase summary."),
+        [1],
+        ui_evaluability=UIEvaluability.UI_VERIFIABLE,
+    )
+
+    prompt = verifier._prompt(payload)
+
+    assert "Do not treat editable input fields as a separate review state" in prompt
+    assert "clearly covered UI state" in prompt
+    assert "do not infer a downstream result" in prompt
+    assert "every material clause as conjunctive" in prompt
+
+
+def test_image_verifier_retries_invalid_json_response(tmp_path: Path, monkeypatch) -> None:
+    image_path = tmp_path / "step_01.png"
+    Image.new("RGB", (16, 16), color="white").save(image_path)
+    verifier = GeminiImageClaimVerifier(
+        flow_id="flow-1",
+        screenshot_steps=[ScreenshotStep(step_index=1, screenshot_path=str(image_path))],
+        cache_path=tmp_path / "cache.json",
+        max_retries=1,
+    )
+    responses = iter(
+        [
+            "not json",
+            json.dumps(
+                {
+                    "claim_id": "REQ-1-C1",
+                    "claim_status": "SUPPORTED",
+                    "evidence_step_indices": [1],
+                    "uncertainty_reasons": [],
+                    "visible_observations": ["A confirmation banner is visible."],
+                    "rationale": "Visible evidence supports the claim.",
+                }
+            ),
+        ]
+    )
+
+    monkeypatch.setattr("ui_verifier.requirements.gemini_client.run_gemini", lambda *args, **kwargs: next(responses))
+    monkeypatch.setattr("ui_verifier.verification_pipeline.gemini_image_claim_verifier.time.sleep", lambda _: None)
+
+    parsed, _ = verifier._call_gemini(
+        verifier._request_payload(_claim(), [1], ui_evaluability=UIEvaluability.UI_VERIFIABLE),
+        [1],
+    )
+
+    assert parsed["claim_status"] == "SUPPORTED"
+    assert verifier.diagnostics["api_calls"] == 1
+
+
+def test_image_verifier_downgrades_supported_result_with_unattached_evidence(tmp_path: Path) -> None:
+    verifier = GeminiImageClaimVerifier(
+        flow_id="flow-1",
+        screenshot_steps=[
+            ScreenshotStep(step_index=1, screenshot_path="step_01.png"),
+            ScreenshotStep(step_index=8, screenshot_path="step_08.png"),
+        ],
+        cache_path=tmp_path / "cache.json",
+    )
+
+    result = verifier._result_from_gemini(
+        _claim(),
+        {
+            "claim_status": "SUPPORTED",
+            "evidence_step_indices": [5, 6],
+            "visible_observations": ["The requested element is visible."],
+            "uncertainty_reasons": [],
+            "rationale": "The claim is supported.",
+        },
+        [1, 8],
+    )
+
+    assert result.status == ClaimStatus.MISSING
+    assert result.evidence == []
+    assert UncertaintyReason.FLOW_COVERAGE_GAP in result.uncertainty_reasons
 
 
 def test_pipeline_produces_valid_json_output(tmp_path: Path) -> None:

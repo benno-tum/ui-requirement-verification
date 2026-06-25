@@ -3,11 +3,27 @@ from __future__ import annotations
 import json
 from types import SimpleNamespace
 
+import pytest
+
+from ui_verifier.requirements.gemini_client import _request_timeout_ms
 from ui_verifier.requirements.gemini_usage import (
     estimate_cost_usd,
     extract_usage_metadata,
     record_gemini_usage,
 )
+
+
+def test_gemini_request_timeout_defaults_to_two_minutes(monkeypatch) -> None:
+    monkeypatch.delenv("GEMINI_REQUEST_TIMEOUT_MS", raising=False)
+
+    assert _request_timeout_ms() == 120_000
+
+
+def test_gemini_request_timeout_rejects_too_small_value(monkeypatch) -> None:
+    monkeypatch.setenv("GEMINI_REQUEST_TIMEOUT_MS", "500")
+
+    with pytest.raises(ValueError, match="at least 1000"):
+        _request_timeout_ms()
 
 
 def test_extract_usage_metadata_from_sdk_like_response() -> None:
@@ -52,6 +68,7 @@ def test_record_gemini_usage_writes_log_and_summary(tmp_path, monkeypatch) -> No
         model_name="gemini-2.5-flash",
         usage={"input_tokens": 1_000_000, "output_tokens": 1_000_000, "thoughts_tokens": 0, "total_tokens": 2_000_000},
         image_count=2,
+        context={"flow_id": "flow-1", "claim_id": "REQ-1-C1"},
     )
 
     log_records = [json.loads(line) for line in log_path.read_text(encoding="utf-8").splitlines()]
@@ -60,6 +77,7 @@ def test_record_gemini_usage_writes_log_and_summary(tmp_path, monkeypatch) -> No
     assert len(log_records) == 1
     assert log_records[0]["estimated_cost_usd"] == 2.8
     assert log_records[0]["estimated_cost_eur"] == 2.8 * 0.92
+    assert log_records[0]["context"] == {"flow_id": "flow-1", "claim_id": "REQ-1-C1"}
     assert summary["request_count"] == 1
     assert summary["estimated_cost_usd"] == 2.8
     assert summary["estimated_cost_eur"] == 2.8 * 0.92

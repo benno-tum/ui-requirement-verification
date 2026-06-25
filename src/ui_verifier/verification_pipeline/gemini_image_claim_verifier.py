@@ -89,7 +89,7 @@ def _normalize_uncertainty_reasons(values: object) -> list[UncertaintyReason]:
 
 
 class GeminiImageClaimVerifier:
-    prompt_version = "GEMINI_IMAGE_CLAIM_VERIFICATION_V1"
+    prompt_version = "GEMINI_IMAGE_CLAIM_VERIFICATION_V4"
 
     def __init__(
         self,
@@ -142,7 +142,7 @@ class GeminiImageClaimVerifier:
         if not claim.is_observable or has_hidden_indicator(claim.claim_text):
             return self.fallback.verify(claim, evidence, ui_evaluability=ui_evaluability)
 
-        selected_steps = self._selected_steps(evidence) or self._fallback_steps()
+        selected_steps = self._selected_steps(claim, evidence) or self._fallback_steps()
         payload = self._request_payload(claim, selected_steps, ui_evaluability=ui_evaluability)
         key = _cache_key(payload)
         with self._state_lock:
@@ -199,9 +199,50 @@ class GeminiImageClaimVerifier:
         self.cache_path.parent.mkdir(parents=True, exist_ok=True)
         self.cache_path.write_text(json.dumps(self.cache, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    def _selected_steps(self, evidence: list[EvidenceItem]) -> list[int]:
+    def _selected_steps(self, claim: RequirementClaim, evidence: list[EvidenceItem]) -> list[int]:
         steps = sorted({item.step_index for item in evidence if item.step_index in self.step_to_path})
-        return steps[: self.max_images_per_claim]
+        if not steps:
+            return []
+
+        all_steps = sorted(self.step_to_path)
+        candidates = list(steps)
+        if self._needs_sequence_evidence(claim.claim_text):
+            candidates.extend([all_steps[0], all_steps[-1]])
+
+        if len(candidates) < self.max_images_per_claim:
+            remaining_slots = self.max_images_per_claim - len(set(candidates))
+            if remaining_slots > 0:
+                positions = {
+                    round(index * (len(all_steps) - 1) / max(remaining_slots - 1, 1))
+                    for index in range(remaining_slots)
+                }
+                candidates.extend(all_steps[index] for index in sorted(positions))
+
+        candidates = sorted(set(candidates))
+        if len(candidates) <= self.max_images_per_claim:
+            return candidates
+        positions = {
+            round(index * (len(candidates) - 1) / (self.max_images_per_claim - 1))
+            for index in range(self.max_images_per_claim)
+        }
+        return [candidates[index] for index in sorted(positions)]
+
+    @staticmethod
+    def _needs_sequence_evidence(text: str) -> bool:
+        return bool(
+            re.search(
+                r"\b("
+                r"preserv(?:e|es|ed|ing)|retain(?:s|ed|ing)?|remain(?:s|ed|ing)?|"
+                r"update(?:s|d|ing)?|synchroni[sz](?:e|es|ed|ing)|"
+                r"while|continues?|later fields?|as the (?:shopper|user)|"
+                r"before and after|after (?:entering|selecting|choosing|changing)|"
+                r"cart|checkout|order summary|line items?|result state|results view|"
+                r"confirmation|review step|review panel|before submitting"
+                r")\b",
+                text,
+                re.IGNORECASE,
+            )
+        )
 
     def _fallback_steps(self) -> list[int]:
         return sorted(self.step_to_path)[: self.max_images_per_claim]
@@ -242,16 +283,23 @@ Use the attached screenshot images as the primary evidence source. The images ar
 
 OCR hints are optional image-derived Tesseract OCR. Treat OCR as a hint only; verify against the screenshots.
 Do not use raw HTML, DOM, backend state, database state, payment processing, email delivery, security guarantees, ranking correctness, persistence, or future-session behavior unless there is a visible UI proxy in the screenshots.
+`evidence_step_indices` must contain only original step indices from the attached list above. Do not renumber the attachments by their position.
 
 Strict rules:
 - Only visible UI evidence counts.
+- Verify the exact claim wording. Do not demand a downstream outcome when the claim only asks for a visible action, control, field, or navigation affordance.
+- Conversely, do not infer a downstream result, navigation outcome, submitted state, or completed action merely because a button or input form is visible. A later screenshot must visibly show that outcome.
+- Treat every material clause as conjunctive unless the wording explicitly offers alternatives. Evidence for only one side of "and", "as well as", or "in addition to" is not enough for SUPPORTED.
+- Comparative claims about anonymous versus signed-in users, before versus after states, or leaving and returning require both compared states to be visibly present.
+- Do not treat editable input fields as a separate review state, confirmation, synchronized summary, or preview unless that distinct UI component is visibly present.
+- For claims about preservation, updates, synchronization, or other state changes, compare the attached screenshots chronologically rather than judging one screenshot in isolation.
 - SUPPORTED requires clear visible screenshot evidence.
 - SUPPORTED_WITH_CAVEAT means the claim is sufficiently supported for fulfillment, but the evidence is inferential, partially visible, or convention-based rather than airtight.
 - PARTIALLY_SUPPORTED means some visible part is supported but important visible detail is missing or ambiguous.
 - MISSING means the claim could be visible but the screenshots do not show enough.
 - HIDDEN means the claim is about hidden/non-visual system behavior.
-- CONTRADICTED requires visible counter-evidence in the screenshots.
-- Missing evidence alone is not CONTRADICTED.
+- CONTRADICTED requires visible counter-evidence. This includes a clearly covered UI state where a required visible component or behavior should be present but is visibly absent, provided the screenshots show the relevant state completely enough to judge.
+- Incomplete flow coverage or a state that was never exercised is MISSING, not CONTRADICTED.
 
 Input JSON:
 {json.dumps(payload, indent=2, ensure_ascii=False)}
@@ -279,27 +327,38 @@ Return JSON only:
                     image_bytes,
                     model_name=self.model_name,
                     temperature=self.temperature,
+                    usage_context={
+                        "flow_id": self.flow_id,
+                        "requirement_id": payload["requirement_id"],
+                        "claim_id": payload["claim_id"],
+                        "prompt_version": self.prompt_version,
+                        "selected_evidence_step_indices": selected_steps,
+                    },
                 )
-                break
+                parsed = parse_json_response(raw)
+                if not isinstance(parsed, dict):
+                    raise ValueError("Gemini response was not a JSON object.")
+                with self._state_lock:
+                    self.diagnostics["api_calls"] += 1
+                return parsed, raw
             except Exception as exc:
                 last_error = exc
                 message = str(exc)
                 if attempt >= self.max_retries or not self._is_retryable_gemini_error(message):
                     raise
                 time.sleep(self._retry_delay_seconds(message))
-        else:
-            raise last_error or RuntimeError("Gemini call failed.")
-
-        with self._state_lock:
-            self.diagnostics["api_calls"] += 1
-        parsed = parse_json_response(raw)
-        if not isinstance(parsed, dict):
-            raise ValueError("Gemini response was not a JSON object.")
-        return parsed, raw
+        raise last_error or RuntimeError("Gemini call failed.")
 
     @staticmethod
     def _is_retryable_gemini_error(message: str) -> bool:
-        return "RESOURCE_EXHAUSTED" in message or "UNAVAILABLE" in message or "retry" in message.lower()
+        return (
+            "RESOURCE_EXHAUSTED" in message
+            or "UNAVAILABLE" in message
+            or "retry" in message.lower()
+            or "not a JSON object" in message
+            or "invalid json" in message.lower()
+            or "parsed as json" in message.lower()
+        )
 
     @staticmethod
     def _retry_delay_seconds(message: str) -> float:
@@ -326,6 +385,18 @@ Return JSON only:
             for step in evidence_step_indices
             if isinstance(step, int) and step in self.step_to_path and step in selected_steps
         ]
+        invalid_positive_evidence = (
+            status
+            in {
+                ClaimStatus.SUPPORTED,
+                ClaimStatus.SUPPORTED_WITH_CAVEAT,
+                ClaimStatus.PARTIALLY_SUPPORTED,
+                ClaimStatus.CONTRADICTED,
+            }
+            and not step_indices
+        )
+        if invalid_positive_evidence:
+            status = ClaimStatus.MISSING
         observations = parsed.get("visible_observations")
         if not isinstance(observations, list):
             observations = []
@@ -355,6 +426,13 @@ Return JSON only:
         if status == ClaimStatus.HIDDEN:
             reasons = list(dict.fromkeys([*reasons, UncertaintyReason.NONTRIVIAL_HIDDEN_PROPERTY]))
 
+        rationale = str(parsed.get("rationale") or "Gemini image verifier returned this claim decision.").strip()
+        if invalid_positive_evidence:
+            rationale = (
+                "The verifier returned a positive or contradictory decision without citing any attached screenshot "
+                "step, so the claim was downgraded to missing evidence."
+            )
+
         return ClaimVerificationResult(
             claim_id=claim.claim_id,
             requirement_id=claim.requirement_id,
@@ -365,7 +443,7 @@ Return JSON only:
             evidence=evidence,
             uncertainty_reasons=reasons,
             confidence=self._confidence_for_status(status),
-            rationale=str(parsed.get("rationale") or "Gemini image verifier returned this claim decision.").strip(),
+            rationale=rationale,
         )
 
     @staticmethod

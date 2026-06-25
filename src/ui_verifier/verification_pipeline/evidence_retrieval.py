@@ -435,6 +435,8 @@ Rank screenshot steps for verifying UI claims.
 
 Use only the provided extracted screen text/OCR/summary. Do not assume image details not present in the text.
 Return the most relevant steps for screenshot verification. Give score 0.0 when a step is not useful.
+For claims about preservation, updates, synchronization, or changes over time, rank multiple chronologically separated states, including a later or final state. Do not return only near-duplicate early screens.
+For claims requiring a distinct summary, review state, confirmation, preview, or feedback component, prioritize screenshots that show the relevant completed or final page state so visible absence can be assessed.
 
 Input JSON:
 {json.dumps(payload, indent=2, ensure_ascii=False)}

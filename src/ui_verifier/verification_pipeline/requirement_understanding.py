@@ -17,7 +17,14 @@ from ui_verifier.verification_pipeline.schemas import (
 
 
 _HIDDEN_INDICATORS: tuple[tuple[str, re.Pattern[str]], ...] = (
-    ("security", re.compile(r"\b(security|secure|encrypt|privacy|permission|role)\b", re.IGNORECASE)),
+    (
+        "security",
+        re.compile(
+            r"\b(security|secure|encrypt|privacy|permission|"
+            r"(?:user|account|access|admin(?:istrative)?) roles?|role[- ]based access)\b",
+            re.IGNORECASE,
+        ),
+    ),
     (
         "authentication correctness",
         re.compile(r"\b(authenticat|authori[sz]e|login correctness|access control)\b", re.IGNORECASE),
@@ -27,7 +34,14 @@ _HIDDEN_INDICATORS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("email delivery", re.compile(r"\b(email|sms|message delivery|notification delivery)\b", re.IGNORECASE)),
     ("payment processing", re.compile(r"\b(payment|charge|refund|transaction|billing)\b", re.IGNORECASE)),
     ("ranking correctness", re.compile(r"\b(rank(?:ing)? correctness|sorted correctly|relevance ranking)\b", re.IGNORECASE)),
-    ("uptime", re.compile(r"\b(uptime|availability|available 24/7)\b", re.IGNORECASE)),
+    (
+        "uptime",
+        re.compile(
+            r"\b(uptime|high availability|availability target|"
+            r"available (?:24/7|at all times|without interruption))\b",
+            re.IGNORECASE,
+        ),
+    ),
     ("performance target", re.compile(r"\b(performance|response time|latency|load time|throughput)\b", re.IGNORECASE)),
     (
         "long-term data correctness",

@@ -205,6 +205,7 @@ def record_gemini_usage(
     usage: dict[str, int],
     request_kind: str = "generate_content",
     image_count: int = 0,
+    context: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     cost_usd = estimate_cost_usd(model_name, usage)
     rate = eur_per_usd()
@@ -219,6 +220,8 @@ def record_gemini_usage(
         "eur_per_usd": rate,
         "pricing_source": "https://ai.google.dev/gemini-api/docs/pricing",
     }
+    if context:
+        record["context"] = dict(context)
 
     with _USAGE_WRITE_LOCK:
         log_path = usage_log_path()
