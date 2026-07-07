@@ -34,7 +34,12 @@
           "evidence_steps": [
             1
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The visible session appears to be signed in through account access.",
@@ -44,7 +49,12 @@
           "evidence_steps": [
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -63,21 +73,21 @@
       ],
       "evidence_note": "Step 1 shows Columbus, OH discovery content and restaurant sections. Step 2 shows an account menu with Sign Out, supporting signed-in context.",
       "rationale": "The visible UI supports both location-specific discovery and signed-in account context.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T20:33:17+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T20:33:17+00:00",
+      "updated_at": "2026-07-03T14:15:41+00:00"
     },
     {
       "requirement_id": "REQ-02",
       "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
       "text": "The system shall expose account actions through a user menu.",
-      "scope": "multi_screen",
+      "scope": "single_screen",
       "tags": [],
       "source_type": "requirements_gold",
       "source_id": "REQ-02",
       "source_candidate_id": "REQ-02",
       "source_harvest_id": "HARV-02",
       "step_indices": [
-        1,
         2
       ],
       "requirement_type": "FR",
@@ -99,7 +109,12 @@
           "evidence_steps": [
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -117,8 +132,9 @@
       ],
       "evidence_note": "Step 2 shows a user menu with Profile, My Hit List, Payment Methods, Communication, Help & Feedback, and Sign Out.",
       "rationale": "The account menu visibly exposes multiple account actions.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T20:34:39+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T20:34:39+00:00",
+      "updated_at": "2026-07-03T14:15:43+00:00"
     },
     {
       "requirement_id": "REQ-03",
@@ -153,7 +169,12 @@
           "evidence_steps": [
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The flow reaches a dedicated Profile settings page.",
@@ -163,7 +184,12 @@
           "evidence_steps": [
             3
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -182,27 +208,22 @@
       ],
       "evidence_note": "The account menu in step 2 includes Profile, and step 3 shows the Profile settings page.",
       "rationale": "The ordered flow visibly moves from account navigation to a dedicated profile settings area.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T20:36:10+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T20:36:10+00:00",
+      "updated_at": "2026-07-03T14:15:53+00:00"
     },
     {
       "requirement_id": "REQ-04",
       "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
       "text": "The system shall present existing profile information in editable, prepopulated form.",
-      "scope": "multi_screen",
+      "scope": "single_screen",
       "tags": [],
       "source_type": "requirements_gold",
       "source_id": "REQ-04",
       "source_candidate_id": "REQ-04",
       "source_harvest_id": "HARV-04",
       "step_indices": [
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9
+        3
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
@@ -222,7 +243,12 @@
           "evidence_steps": [
             3
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The prepopulated information is presented in editable form controls.",
@@ -232,7 +258,12 @@
           "evidence_steps": [
             3
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -270,8 +301,9 @@
       ],
       "evidence_note": "Step 3 shows editable fields prefilled with name, phone number, and email address.",
       "rationale": "Existing profile values are visibly shown inside editable input fields.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T20:36:45+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T20:36:45+00:00",
+      "updated_at": "2026-07-03T14:16:14+00:00"
     },
     {
       "requirement_id": "REQ-06",
@@ -284,8 +316,13 @@
       "source_candidate_id": "REQ-06",
       "source_harvest_id": "HARV-06",
       "step_indices": [
+        3,
+        4,
+        5,
         6,
-        7
+        7,
+        8,
+        9
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
@@ -305,7 +342,12 @@
           "evidence_steps": [
             3
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The short bio area can contain user-provided text.",
@@ -315,12 +357,22 @@
           "evidence_steps": [
             7
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
         3,
-        7
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
       ],
       "evidence_units": [
         {
@@ -334,8 +386,9 @@
       ],
       "evidence_note": "Step 3 shows the short bio field, and step 7 shows it populated with 'Love Ramen Noodles'.",
       "rationale": "The flow visibly supports adding or editing a short profile bio.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T20:37:39+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T20:37:39+00:00",
+      "updated_at": "2026-07-03T14:17:44+00:00"
     },
     {
       "requirement_id": "REQ-07",
@@ -370,7 +423,12 @@
           "evidence_steps": [
             3
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "Allergy or restriction preferences can be selected in the profile.",
@@ -381,7 +439,16 @@
             8,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -405,21 +472,21 @@
       ],
       "evidence_note": "The allergies and restrictions section is visible, and Dairy plus Peanuts become selected in later steps.",
       "rationale": "The UI visibly provides selectable profile preferences for allergies and dietary restrictions.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T20:38:00+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T20:38:00+00:00",
+      "updated_at": "2026-07-03T14:17:48+00:00"
     },
     {
       "requirement_id": "REQ-08",
       "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
       "text": "The system shall support selecting multiple allergy or restriction tags within the same profile.",
-      "scope": "multi_screen",
+      "scope": "single_screen",
       "tags": [],
       "source_type": "requirements_gold",
       "source_id": "REQ-08",
       "source_candidate_id": "REQ-08",
       "source_harvest_id": "HARV-08",
       "step_indices": [
-        8,
         9
       ],
       "requirement_type": "FR",
@@ -440,7 +507,12 @@
           "evidence_steps": [
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -458,8 +530,9 @@
       ],
       "evidence_note": "Step 9 shows both All Dairy and Peanuts selected at the same time.",
       "rationale": "The selected tag states visibly demonstrate multi-selection.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T20:39:14+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T20:39:14+00:00",
+      "updated_at": "2026-07-03T14:18:00+00:00"
     },
     {
       "requirement_id": "REQ-09",
@@ -495,7 +568,16 @@
             8,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -514,8 +596,9 @@
       ],
       "evidence_note": "Selected tags are shown with a blue active state while inactive tags remain unhighlighted.",
       "rationale": "The UI visibly communicates which dietary preferences are active.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T20:42:51+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T20:42:51+00:00",
+      "updated_at": "2026-07-03T14:18:13+00:00"
     },
     {
       "requirement_id": "REQ-10",
@@ -529,6 +612,10 @@
       "source_harvest_id": "HARV-10",
       "step_indices": [
         3,
+        4,
+        5,
+        6,
+        7,
         8,
         9
       ],
@@ -552,11 +639,28 @@
             8,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
         3,
+        4,
+        5,
+        6,
+        7,
         8,
         9
       ],
@@ -576,21 +680,28 @@
       ],
       "evidence_note": "The profile page shows a note field with placeholder text for allergies and restrictions.",
       "rationale": "Because the requirement asks for a mechanism, the visible text area is sufficient evidence for the observable core.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T20:43:44+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T20:43:44+00:00",
+      "updated_at": "2026-07-03T14:18:40+00:00"
     },
     {
       "requirement_id": "REQ-12",
       "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
-      "text": "The system shall communicate how profile information is used in the reservation context.",
-      "scope": "single_screen",
+      "text": "The system shall communicate how profile information is used.",
+      "scope": "multi_screen",
       "tags": [],
       "source_type": "requirements_gold",
       "source_id": "REQ-12",
       "source_candidate_id": "REQ-12",
       "source_harvest_id": "HARV-12",
       "step_indices": [
-        3
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
       ],
       "requirement_type": "NFR",
       "ui_evaluability": "UI_VERIFIABLE",
@@ -611,7 +722,12 @@
           "evidence_steps": [
             3
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The allergies section explains that dietary information can be communicated in advance.",
@@ -622,11 +738,25 @@
             3,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
         3,
+        4,
+        5,
+        6,
+        7,
+        8,
         9
       ],
       "evidence_units": [
@@ -637,8 +767,9 @@
       ],
       "evidence_note": "Step 3 includes explanatory text about sharing profile information with restaurants a user reserves. The allergy section also contains explanatory helper text.",
       "rationale": "The UI visibly communicates the reservation-related purpose of profile information.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-22T12:10:38+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-22T12:10:38+00:00",
+      "updated_at": "2026-07-03T14:20:55+00:00"
     },
     {
       "requirement_id": "REQ-13",
@@ -663,7 +794,7 @@
       "annotated_by": "benno",
       "manual_verification_label": "partially_fulfilled",
       "manual_verification_notes": "the notification of the restaurant may also have to have an UI or at least a email template",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "verification_label": "FULFILLED",
       "uncertainty_reasons": [
         "UNVERIFIED_SYSTEM_OUTCOME",
         "NONTRIVIAL_HIDDEN_PROPERTY"
@@ -680,7 +811,20 @@
             8,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The page frames these preferences as information restaurants may use for reservations.",
@@ -691,7 +835,16 @@
             3,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The preferences are reusable for future reservations after this flow.",
@@ -699,7 +852,8 @@
           "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [],
-          "note": null
+          "evidence_units": [],
+          "note": "It is strongly implied by the design."
         }
       ],
       "evidence_steps": [
@@ -728,8 +882,9 @@
       ],
       "evidence_note": "The UI supports editing reusable-looking dining preferences, but future reuse and persistence are not visibly confirmed.",
       "rationale": "The visible profile preference mechanism is supported, while future reuse remains hidden.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-22T12:26:31+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-22T12:26:31+00:00",
+      "updated_at": "2026-07-03T14:07:05+00:00"
     },
     {
       "requirement_id": "REQ-05",
@@ -745,11 +900,16 @@
         3,
         4,
         5,
-        6
+        6,
+        7,
+        8,
+        9
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The flow visibly demonstrates structured birthday entry.",
+      "annotated_by": "benno",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -760,9 +920,44 @@
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
-            3
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The birthday controls can be populated with a month, day, and year.",
@@ -770,18 +965,54 @@
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
+            3,
             4,
             5,
-            6
+            6,
+            7,
+            8,
+            9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
         3,
         4,
         5,
-        6
+        6,
+        7,
+        8,
+        9
       ],
       "evidence_units": [
         {
@@ -803,8 +1034,9 @@
       ],
       "evidence_note": "The birthday controls progress from placeholders to January, 05, and 1980.",
       "rationale": "The flow visibly demonstrates structured birthday entry.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T20:31:59+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T20:31:59+00:00",
+      "updated_at": "2026-07-03T14:17:01+00:00"
     },
     {
       "requirement_id": "REQ-11",
@@ -828,7 +1060,9 @@
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "NONE",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "annotation_notes": "The save mechanism is visible; successful commitment is not verified.",
+      "annotated_by": "benno",
+      "verification_label": "FULFILLED",
       "uncertainty_reasons": [
         "UNVERIFIED_SYSTEM_OUTCOME"
       ],
@@ -841,7 +1075,11 @@
           "importance": "CORE",
           "evidence_steps": [
             3,
+            4,
+            5,
+            6,
             7,
+            8,
             9
           ],
           "evidence_units": [
@@ -850,7 +1088,23 @@
               "evidence_type": "screen"
             },
             {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
               "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
               "evidence_type": "screen"
             },
             {
@@ -861,16 +1115,58 @@
         },
         {
           "claim": "The save action commits profile changes.",
-          "status": "HIDDEN",
-          "claim_type": "HIDDEN",
+          "status": "SUPPORTED_WITH_CAVEAT",
+          "claim_type": "OBSERVABLE",
           "importance": "CORE",
-          "evidence_steps": [],
-          "evidence_units": []
+          "evidence_steps": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "It's a trivial backend property strongly implied by frontend."
         }
       ],
       "evidence_steps": [
         3,
+        4,
+        5,
+        6,
         7,
+        8,
         9
       ],
       "evidence_units": [
@@ -889,8 +1185,9 @@
       ],
       "evidence_note": "A Save action is visible while profile changes are present, but the screenshots do not show a post-save state or stored outcome.",
       "rationale": "The save mechanism is visible; successful commitment is not verified.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T20:31:59+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T20:31:59+00:00",
+      "updated_at": "2026-07-03T14:04:48+00:00"
     },
     {
       "requirement_id": "REQ-14",
@@ -914,6 +1211,8 @@
       "requirement_type": "NFR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The profile can be edited while account-section navigation remains available.",
+      "annotated_by": "benno",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1005,8 +1304,9 @@
       ],
       "evidence_note": "The left account navigation remains present across the profile editing steps.",
       "rationale": "The profile can be edited while account-section navigation remains available.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-21T20:31:59+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-21T20:31:59+00:00",
+      "updated_at": "2026-07-03T14:21:43+00:00"
     },
     {
       "requirement_id": "CONTR-01",
@@ -1021,10 +1321,16 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-01",
       "source_candidate_id": "CONTR-01",
-      "step_indices": [],
+      "step_indices": [
+        7,
+        8,
+        9
+      ],
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "annotation_notes": "Visible editing support is present, but persistence across a later revisit is not verified.",
+      "annotated_by": "benno",
       "intended_label": "PARTIALLY_FULFILLED",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
@@ -1044,7 +1350,20 @@
             8,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The profile provides a visible Save action related to these edits.",
@@ -1054,7 +1373,12 @@
           "evidence_steps": [
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "Saved dining preferences and dietary notes are preserved when the user later returns to the profile.",
@@ -1062,7 +1386,7 @@
           "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [],
-          "note": null
+          "evidence_units": []
         }
       ],
       "evidence_steps": [
@@ -1086,8 +1410,9 @@
       ],
       "evidence_note": "The flow shows editing preferences and a Save button, but does not show a later return to the profile.",
       "rationale": "Visible editing support is present, but persistence across a later revisit is not verified.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-03T14:13:52+00:00"
     },
     {
       "requirement_id": "CONTR-02",
@@ -1102,10 +1427,16 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-02",
       "source_candidate_id": "CONTR-02",
-      "step_indices": [],
+      "step_indices": [
+        3,
+        8,
+        9
+      ],
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "Visible profile data entry is supported, while the external reservation information transfer is hidden.",
+      "annotated_by": "benno",
       "intended_label": "PARTIALLY_FULFILLED",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
@@ -1123,7 +1454,16 @@
             8,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The profile includes a field for dietary notes.",
@@ -1134,7 +1474,16 @@
             3,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "Saved allergy selections and dietary notes are passed into restaurant-facing reservation information.",
@@ -1142,7 +1491,8 @@
           "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [],
-          "note": null
+          "evidence_units": [],
+          "note": "It is strongly supported by \"Let the restaurant know in advance of any allergies or dietary restrictions\""
         }
       ],
       "evidence_steps": [
@@ -1166,8 +1516,9 @@
       ],
       "evidence_note": "The UI supports entering allergy information and explains reservation context, but actual restaurant-facing delivery is not visible.",
       "rationale": "Visible profile data entry is supported, while the external reservation information transfer is hidden.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-03T13:53:22+00:00"
     },
     {
       "requirement_id": "CONTR-03",
@@ -1182,15 +1533,21 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-03",
       "source_candidate_id": "CONTR-03",
-      "step_indices": [],
+      "step_indices": [
+        2,
+        3
+      ],
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "NAVIGATION_OUTCOME",
+      "annotation_notes": "The central owner-only access rule cannot be judged from the captured flow.",
+      "annotated_by": "benno",
       "intended_label": "ABSTAIN",
-      "verification_label": "ABSTAIN",
+      "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
         "NONTRIVIAL_HIDDEN_PROPERTY",
-        "UNVERIFIED_SYSTEM_OUTCOME"
+        "UNVERIFIED_SYSTEM_OUTCOME",
+        "FLOW_COVERAGE_GAP"
       ],
       "notes": [],
       "claims": [
@@ -1239,8 +1596,9 @@
       ],
       "evidence_note": "The screenshots show profile access in a signed-in session, but they do not test another user, unauthenticated access, or authorization enforcement.",
       "rationale": "The central owner-only access rule cannot be judged from the captured flow.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-03T13:56:53+00:00"
     },
     {
       "requirement_id": "CONTR-04",
@@ -1255,10 +1613,16 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-04",
       "source_candidate_id": "CONTR-04",
-      "step_indices": [],
+      "step_indices": [
+        7,
+        8,
+        9
+      ],
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The universal future-application requirement is not verifiable from these screenshots.",
+      "annotated_by": "benno",
       "intended_label": "ABSTAIN",
       "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
@@ -1322,14 +1686,15 @@
       ],
       "evidence_note": "The flow shows profile dining preference editing, but no future reservations or consistency checks are shown.",
       "rationale": "The universal future-application requirement is not verifiable from these screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-03T14:14:22+00:00"
     },
     {
       "requirement_id": "CONTR-05",
       "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
       "text": "The system shall present an explicit post-save confirmation or summary indicating that profile edits were stored.",
-      "scope": "multi_screen",
+      "scope": "single_screen",
       "tags": [
         "contrastive",
         "intended_label:not_fulfilled",
@@ -1338,24 +1703,35 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-05",
       "source_candidate_id": "CONTR-05",
-      "step_indices": [],
+      "step_indices": [
+        9
+      ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
+      "annotation_notes": "The expected visible confirmation or summary is absent in the final visible state after the profile edits.",
+      "annotated_by": "benno",
       "intended_label": "NOT_FULFILLED",
-      "verification_label": "NOT_FULFILLED",
-      "uncertainty_reasons": [],
+      "verification_label": "ABSTAIN",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
       "notes": [],
       "claims": [
         {
           "claim": "The system provides an explicit post-save confirmation or stored-edits summary after profile edits.",
-          "status": "CONTRADICTED",
+          "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -1369,8 +1745,9 @@
       ],
       "evidence_note": "The final relevant screenshot shows the edited profile form and Save button, but no visible confirmation or summary.",
       "rationale": "The expected visible confirmation or summary is absent in the final visible state after the profile edits.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-03T13:58:10+00:00"
     },
     {
       "requirement_id": "CONTR-06",
@@ -1385,10 +1762,19 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-06",
       "source_candidate_id": "CONTR-06",
-      "step_indices": [],
+      "step_indices": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
+      "annotation_notes": "The warning condition is not exercised, so the requirement cannot be judged.",
+      "annotated_by": "benno",
       "intended_label": "NOT_FULFILLED",
       "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
@@ -1488,8 +1874,9 @@
       ],
       "evidence_note": "The flow shows profile edits, but it does not show the user attempting to leave the editing flow before saving.",
       "rationale": "The warning condition is not exercised, so the requirement cannot be judged.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-03T14:15:16+00:00"
     }
   ]
 }

@@ -86,10 +86,33 @@ Missing evidence alone is not `NOT_FULFILLED`.
 
 ## Suggested Review Order
 
-1. Finish flow 01 and 02 first because they already contain the richest recovered claim evidence.
-2. For each flow, review `REQ-*` before `CONTR-*`.
-3. For `CONTR-*`, pay special attention to hidden/persistence/long-term requirements.
-4. After each flow, run validation and commit or at least save a backup.
+Use `docs/systematic_error_analysis_and_review_plan_2026-07-02.md` as the current review map.
+
+1. Review `needs_review` items with label mismatches first.
+2. Start with over-fulfilled cases where the prediction is `FULFILLED` but gold is weaker or abstains.
+3. Then review gold-`ABSTAIN` cases where the model predicts a concrete label.
+4. Then review under-called cases with no evidence overlap, especially late cart, checkout, result, review, and summary states.
+5. After label mismatches, review label-correct cases whose evidence has no overlap with gold evidence.
+6. For each flow, review `REQ-*` before `CONTR-*`.
+7. For `CONTR-*`, pay special attention to hidden, persistence, completeness, validity, availability, and long-term requirements.
+8. After each flow, run validation and commit or at least save a backup.
+
+Recommended flow order for the current benchmark:
+
+1. Flow 10: strongest late-state/top-k issue.
+2. Flow 09: many over-fulfillment and abstain-boundary issues.
+3. Flow 06: strong universal/comparative over-fulfillment pattern.
+4. Flows 11, 12, and 13: result/search/persistence and hidden-property boundaries.
+5. Flows 04, 05, 07, and 08: smaller cleanup.
+6. Flows 01-03: lower manual-review priority, but flow 01 remains technically flagged because older runs had API fallback issues.
+
+Use one short review tag in `annotation_notes` or the review notes while adjudicating:
+
+- `model_over_fulfilled`
+- `model_should_abstain`
+- `retrieval_missed_late_state`
+- `label_boundary`
+- `gold_label_update_candidate`
 
 ## Model-Assisted Review Bundles
 

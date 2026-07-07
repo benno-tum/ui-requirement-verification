@@ -592,7 +592,7 @@
         "mutation_family:stronger_visible_constraint"
       ],
       "origin": "model",
-      "review_status": "needs_review",
+      "review_status": "rejected",
       "step_indices": [],
       "rationale": "A core observable part of the requirement is contradicted by the active-filter results view.",
       "generation_model": "contrastive_import_manual",
