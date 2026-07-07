@@ -91,7 +91,38 @@ export type Requirement = {
 export type EvidenceRef = {
   step_index: number
   evidence_type: string
+  bbox?: BoundingBox | null
+  matched_text?: string | null
+  ui_element_id?: string | null
   reason?: string
+  bbox_image_path?: string | null
+  bbox_image_width?: number | null
+  bbox_image_height?: number | null
+  bbox_coordinate_space?: string | null
+  bbox_source?: string | null
+  bbox_confidence?: number | null
+}
+
+export type BoundingBox = {
+  x1: number
+  y1: number
+  x2: number
+  y2: number
+}
+
+export type EvidenceUnit = {
+  step_index: number
+  evidence_type: string
+  bbox?: BoundingBox | null
+  matched_text?: string | null
+  ui_element_id?: string | null
+  note?: string | null
+  bbox_image_path?: string | null
+  bbox_image_width?: number | null
+  bbox_image_height?: number | null
+  bbox_coordinate_space?: string | null
+  bbox_source?: string | null
+  bbox_confidence?: number | null
 }
 
 export type RequirementVerdict = {
@@ -111,6 +142,7 @@ export type VerificationClaim = {
   claim_type?: string
   importance?: string
   evidence_steps?: number[]
+  evidence_units?: EvidenceUnit[]
   uncertainty_reasons?: string[]
   note?: string
 }
@@ -199,8 +231,49 @@ export type PipelineEvidenceItem = {
   step_index: number
   screenshot_path: string
   visible_observation: string
+  bbox?: number[] | BoundingBox | null
+  bbox_metadata?: BoundingBoxMetadata | null
   confidence?: number | null
   source?: string | null
+  metadata?: {
+    bbox_localization?: BoundingBoxMetadata | null
+    [key: string]: unknown
+  } | null
+}
+
+export type BoundingBoxMetadata = {
+  image_path?: string | null
+  image_width?: number | null
+  image_height?: number | null
+  coordinate_space?: string | null
+  source?: string | null
+  confidence?: number | null
+  matched_text?: string | null
+  score?: number | null
+  level?: string | null
+}
+
+export type BoundingBoxSuggestion = {
+  bbox: BoundingBox
+  matched_text: string
+  score: number
+  confidence?: number | null
+  source: string
+  level: string
+  image_path?: string | null
+  image_width?: number | null
+  image_height?: number | null
+  coordinate_space?: string | null
+}
+
+export type BoundingBoxSuggestionResponse = {
+  flow_id: string
+  step_index: number
+  image_path: string
+  image_width?: number | null
+  image_height?: number | null
+  coordinate_space?: string | null
+  candidates: BoundingBoxSuggestion[]
 }
 
 export type PipelineClaimResult = {
@@ -238,6 +311,7 @@ export type PipelineRunSummary = {
   run_id: string
   flow_id: string
   path: string
+  run_name?: string | null
   source: string
   run_folder: string
   timestamp?: string | number | null
@@ -362,6 +436,11 @@ export const api = {
   listFlows: () => request<FlowSummary[]>('/flows'),
   getFlow: (flowId: string) => request<FlowSummary>(`/flows/${flowId}`),
   getSteps: (flowId: string) => request<FlowStep[]>(`/flows/${flowId}/steps`),
+  suggestBoundingBoxes: (flowId: string, payload: { claim_text: string; step_index: number; max_candidates?: number; generate_if_missing?: boolean }) =>
+    request<BoundingBoxSuggestionResponse>(`/flows/${flowId}/bbox-suggestions`, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
   listHarvested: (flowId: string) => request<HarvestedRequirement[]>(`/flows/${flowId}/harvested`),
   generateHarvestedRequirements: (flowId: string, payload?: { max_images?: number; image_max_side?: number; model_name?: string; temperature?: number }) =>
     request<GenerateHarvestedResponse>(`/flows/${flowId}/harvested/generate`, {

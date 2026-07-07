@@ -160,8 +160,8 @@ def parse_args() -> argparse.Namespace:
         action="store_false",
         help="Use only deterministic rule-based claim decomposition.",
     )
-    parser.add_argument("--claim-model", type=str, default=model_name_for("pipeline_claim_fallback"))
-    parser.add_argument("--claim-provider", choices=["gemini", "deepseek"], default=provider_for("pipeline_claim_fallback"))
+    parser.add_argument("--claim-model", type=str, default=model_name_for("claim_decomposition"))
+    parser.add_argument("--claim-provider", choices=["gemini", "deepseek"], default=provider_for("claim_decomposition"))
     parser.add_argument("--retriever-model", type=str, default=model_name_for("evidence_retrieval"))
     parser.add_argument("--retriever-provider", choices=["gemini", "deepseek"], default=provider_for("evidence_retrieval"))
     parser.add_argument("--retriever-temperature", type=float, default=temperature_for("evidence_retrieval"))

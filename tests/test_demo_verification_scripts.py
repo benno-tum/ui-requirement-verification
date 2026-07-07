@@ -7,6 +7,7 @@ import pytest
 
 from scripts.generate_ocr_sidecars import generate_ocr_sidecars, write_ocr_sidecar
 from scripts.run_demo_verification import DemoDataError, resolve_screenshot_dir
+from ui_verifier.localization import TextBoxLocalizer, load_ocr_text_boxes, parse_tesseract_tsv
 
 
 def _write_step_image(path: Path) -> None:
@@ -85,3 +86,40 @@ def test_generate_ocr_sidecars_skips_missing_when_tesseract_unavailable(tmp_path
     assert summary.status == "tesseract_unavailable"
     assert summary.skipped_no_tesseract == 1
     assert summary.generated == 0
+
+
+def test_tesseract_tsv_boxes_are_normalized() -> None:
+    boxes = parse_tesseract_tsv(
+        "level\tpage_num\tblock_num\tpar_num\tline_num\tword_num\tleft\ttop\twidth\theight\tconf\ttext\n"
+        "5\t1\t1\t1\t1\t1\t10\t20\t30\t12\t96\tCheckout\n"
+        "5\t1\t1\t1\t1\t2\t45\t20\t25\t12\t90\tTotal\n"
+    )
+
+    line = next(box for box in boxes if box.level == "line")
+    assert line.text == "Checkout Total"
+    assert line.bbox == {"x1": 10.0, "y1": 20.0, "x2": 70.0, "y2": 32.0}
+    assert line.confidence == pytest.approx(0.93)
+
+
+def test_text_box_localizer_matches_claim_to_sidecar_box(tmp_path: Path) -> None:
+    image_path = tmp_path / "step_01.png"
+    _write_step_image(image_path)
+    write_ocr_sidecar(
+        image_path,
+        text="Checkout Total",
+        text_boxes=parse_tesseract_tsv(
+            "level\tpage_num\tblock_num\tpar_num\tline_num\tword_num\tleft\ttop\twidth\theight\tconf\ttext\n"
+            "5\t1\t1\t1\t1\t1\t10\t20\t30\t12\t96\tCheckout\n"
+            "5\t1\t1\t1\t1\t2\t45\t20\t25\t12\t90\tTotal\n"
+        ),
+    )
+
+    assert load_ocr_text_boxes(image_path)
+    suggestions = TextBoxLocalizer().suggest("The checkout page shows the total.", image_path)
+
+    assert suggestions
+    assert suggestions[0]["bbox"] == {"x1": 10.0, "y1": 20.0, "x2": 70.0, "y2": 32.0}
+    assert suggestions[0]["matched_text"] == "Checkout Total"
+    assert suggestions[0]["image_width"] == 8
+    assert suggestions[0]["image_height"] == 8
+    assert suggestions[0]["coordinate_space"] == "image_pixels"

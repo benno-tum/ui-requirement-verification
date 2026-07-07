@@ -193,6 +193,11 @@ class AnnotationService:
                         for step in claim.get("evidence_steps", [])
                         if int(step) in allowed_steps
                     ],
+                    "evidence_units": [
+                        unit
+                        for unit in claim.get("evidence_units", [])
+                        if isinstance(unit, dict) and int(unit.get("step_index", -1)) in allowed_steps
+                    ],
                 }
                 for claim in candidate.claims
             ]
@@ -728,12 +733,13 @@ class AnnotationService:
         invalid_references: list[str] = []
         for claim_index, claim in enumerate(item.claims, start=1):
             invalid_steps = [step for step in claim.evidence_steps if step not in allowed_steps]
-            if invalid_steps:
-                invalid_references.append(f"claim {claim_index}: {invalid_steps}")
+            invalid_unit_steps = [unit.step_index for unit in claim.evidence_units if unit.step_index not in allowed_steps]
+            if invalid_steps or invalid_unit_steps:
+                invalid_references.append(f"claim {claim_index}: steps={invalid_steps} units={invalid_unit_steps}")
 
         if invalid_references:
             details = "; ".join(invalid_references)
             raise ValueError(
-                "Claim evidence_steps must be a subset of item evidence_steps. "
+                "Claim evidence_steps and evidence_units must be a subset of item evidence_steps. "
                 f"Invalid references: {details}"
             )

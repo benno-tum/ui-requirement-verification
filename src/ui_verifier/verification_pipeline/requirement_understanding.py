@@ -7,7 +7,10 @@ from typing import Any
 
 from ui_verifier.common.json_utils import parse_json_response
 from ui_verifier.model_config import model_name_for, provider_for, temperature_for
-from ui_verifier.requirements.claim_decomposition import decompose_requirement_claim_texts
+from ui_verifier.requirements.claim_decomposition import (
+    decompose_requirement_claim_texts,
+    decompose_requirement_with_diagnostics,
+)
 from ui_verifier.verification_pipeline.schemas import (
     RequirementClaim,
     RequirementInput,
@@ -175,16 +178,16 @@ Return this JSON shape:
 
 
 class GeminiClaimDecomposer(ClaimDecomposer):
-    """Optional provider-aware text LLM fallback for weak heuristic decompositions."""
+    """Provider-aware text LLM fallback using the shared rule-guided claim decomposer."""
 
     def __init__(
         self,
         *,
         provider: str | None = None,
-        model_name: str = model_name_for("pipeline_claim_fallback"),
-        temperature: float = temperature_for("pipeline_claim_fallback"),
+        model_name: str = model_name_for("claim_decomposition"),
+        temperature: float = temperature_for("claim_decomposition"),
     ) -> None:
-        self.provider = provider or provider_for("pipeline_claim_fallback")
+        self.provider = provider or provider_for("claim_decomposition")
         self.model_name = model_name
         self.temperature = temperature
 
@@ -192,18 +195,20 @@ class GeminiClaimDecomposer(ClaimDecomposer):
         if not requirements:
             return {}
 
-        from ui_verifier.requirements.llm_client import run_text_json_llm
-
-        prompt = _build_llm_decomposition_prompt(requirements, max_claims=max_claims)
-        raw = run_text_json_llm(
-            prompt,
-            role="pipeline_claim_fallback",
-            provider=self.provider,
-            model_name=self.model_name,
-            temperature=self.temperature,
-        )
-        parsed = parse_json_response(raw)
-        return _parse_llm_decomposition_response(parsed, requirements, max_claims=max_claims)
+        results: dict[str, list[str]] = {}
+        for requirement in requirements:
+            result = decompose_requirement_with_diagnostics(
+                requirement.text,
+                strategy="rule_guided_llm",
+                provider=self.provider,
+                model_name=self.model_name,
+                use_cache=True,
+                max_claims=max_claims,
+            )
+            claims = [claim.claim_text for claim in result.claims[:max_claims] if claim.claim_text.strip()]
+            if claims:
+                results[requirement.requirement_id] = claims
+        return results
 
 
 def _parse_llm_decomposition_response(

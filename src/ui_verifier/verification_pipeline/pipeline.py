@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
+from typing import Any
 
+from ui_verifier.localization import TextBoxLocalizer
 from ui_verifier.verification_pipeline.claim_verification import ClaimVerifier
 from ui_verifier.verification_pipeline.evidence_retrieval import EvidenceRetriever, LexicalEvidenceRetriever
 from ui_verifier.verification_pipeline.label_aggregation import LabelAggregator
 from ui_verifier.verification_pipeline.requirement_understanding import RequirementUnderstanding
-from ui_verifier.verification_pipeline.schemas import PipelineInput, PipelineOutput
+from ui_verifier.verification_pipeline.schemas import ClaimVerificationResult, EvidenceItem, PipelineInput, PipelineOutput
 from ui_verifier.verification_pipeline.screen_understanding import ScreenUnderstanding
 
 
@@ -19,6 +22,7 @@ class EvidenceFirstVerificationPipeline:
         evidence_retriever: EvidenceRetriever | None = None,
         claim_verifier: ClaimVerifier | None = None,
         label_aggregator: LabelAggregator | None = None,
+        evidence_localizer: TextBoxLocalizer | None = None,
         max_claim_workers: int = 1,
     ) -> None:
         if max_claim_workers < 1:
@@ -28,6 +32,7 @@ class EvidenceFirstVerificationPipeline:
         self.evidence_retriever = evidence_retriever or LexicalEvidenceRetriever()
         self.claim_verifier = claim_verifier or ClaimVerifier()
         self.label_aggregator = label_aggregator or LabelAggregator()
+        self.evidence_localizer = evidence_localizer or TextBoxLocalizer()
         self.max_claim_workers = max_claim_workers
 
     def run(self, pipeline_input: PipelineInput) -> PipelineOutput:
@@ -94,8 +99,62 @@ class EvidenceFirstVerificationPipeline:
 
     def _verify_claim(self, job: tuple) -> object:
         claim, evidence, ui_evaluability = job
-        return self.claim_verifier.verify(
+        result = self.claim_verifier.verify(
             claim,
             evidence,
             ui_evaluability=ui_evaluability,
+        )
+        if isinstance(result, ClaimVerificationResult):
+            return self._localize_claim_evidence(result)
+        return result
+
+    def _localize_claim_evidence(self, result: ClaimVerificationResult) -> ClaimVerificationResult:
+        localized_evidence = [
+            self._localize_evidence_item(result.claim_text, item)
+            for item in result.evidence
+        ]
+        if localized_evidence == result.evidence:
+            return result
+        return result.model_copy(update={"evidence": localized_evidence})
+
+    def _localize_evidence_item(self, claim_text: str, item: EvidenceItem) -> EvidenceItem:
+        if item.bbox:
+            return item
+        suggestions = self.evidence_localizer.suggest(claim_text, Path(item.screenshot_path), max_candidates=1)
+        if not suggestions:
+            return item
+        suggestion = suggestions[0]
+        bbox = suggestion.get("bbox")
+        if not isinstance(bbox, dict):
+            return item
+        metadata: dict[str, Any] = {
+            **item.metadata,
+            "bbox_localization": {
+                "source": suggestion.get("source"),
+                "level": suggestion.get("level"),
+                "score": suggestion.get("score"),
+                "matched_text": suggestion.get("matched_text"),
+                "image_path": suggestion.get("image_path"),
+                "image_width": suggestion.get("image_width"),
+                "image_height": suggestion.get("image_height"),
+                "coordinate_space": suggestion.get("coordinate_space"),
+            },
+        }
+        bbox_metadata: dict[str, Any] = {
+            "image_path": suggestion.get("image_path"),
+            "image_width": suggestion.get("image_width"),
+            "image_height": suggestion.get("image_height"),
+            "coordinate_space": suggestion.get("coordinate_space"),
+            "source": suggestion.get("source"),
+            "confidence": suggestion.get("confidence"),
+            "matched_text": suggestion.get("matched_text"),
+            "score": suggestion.get("score"),
+            "level": suggestion.get("level"),
+        }
+        return item.model_copy(
+            update={
+                "bbox": [bbox["x1"], bbox["y1"], bbox["x2"], bbox["y2"]],
+                "bbox_metadata": bbox_metadata,
+                "metadata": metadata,
+            }
         )

@@ -2,11 +2,9 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
 import json
 from pathlib import Path
 import shutil
-import subprocess
 import sys
 
 
@@ -16,6 +14,14 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 from ui_verifier.common.flow_utils import find_step_images, parse_step_number
+from ui_verifier.localization.text_box_localizer import (
+    OcrTextBox,
+    default_ocr_sidecar_path,
+    existing_ocr_sidecar,
+    run_tesseract_boxes,
+    run_tesseract_text,
+    write_ocr_sidecar as write_ocr_sidecar_with_boxes,
+)
 
 
 @dataclass
@@ -34,10 +40,6 @@ class OcrRunSummary:
         return asdict(self)
 
 
-def normalize_ocr_text(text: str) -> str:
-    return " ".join(text.split()).strip()
-
-
 def sidecar_candidates(image_path: Path) -> list[Path]:
     return [
         image_path.with_suffix(".ocr.txt"),
@@ -50,6 +52,9 @@ def sidecar_candidates(image_path: Path) -> list[Path]:
 
 
 def existing_sidecar(image_path: Path) -> Path | None:
+    json_sidecar = existing_ocr_sidecar(image_path)
+    if json_sidecar is not None:
+        return json_sidecar
     for candidate in sidecar_candidates(image_path):
         if candidate.exists() and candidate.is_file():
             return candidate
@@ -57,7 +62,7 @@ def existing_sidecar(image_path: Path) -> Path | None:
 
 
 def default_sidecar_path(image_path: Path) -> Path:
-    return image_path.parent / "ocr" / f"{image_path.stem}.json"
+    return default_ocr_sidecar_path(image_path)
 
 
 def run_tesseract(
@@ -68,51 +73,34 @@ def run_tesseract(
     psm: int = 6,
     timeout_seconds: int = 60,
 ) -> str:
-    result = subprocess.run(
-        [
-            tesseract_path,
-            str(image_path),
-            "stdout",
-            "-l",
-            language,
-            "--psm",
-            str(psm),
-        ],
-        check=False,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        timeout=timeout_seconds,
+    return run_tesseract_text(
+        image_path,
+        tesseract_path=tesseract_path,
+        language=language,
+        psm=psm,
+        timeout_seconds=timeout_seconds,
     )
-    if result.returncode != 0:
-        stderr = normalize_ocr_text(result.stderr)
-        raise RuntimeError(stderr or f"tesseract exited with status {result.returncode}")
-    return normalize_ocr_text(result.stdout)
 
 
 def write_ocr_sidecar(
     image_path: Path,
     *,
     text: str,
+    text_boxes: list[OcrTextBox] | None = None,
     sidecar_path: Path | None = None,
     engine_path: str | None = None,
     language: str = "eng",
     psm: int = 6,
 ) -> Path:
-    target = sidecar_path or default_sidecar_path(image_path)
-    target.parent.mkdir(parents=True, exist_ok=True)
-    payload = {
-        "text": text,
-        "ocr_text": text,
-        "engine": "tesseract",
-        "engine_path": engine_path,
-        "language": language,
-        "psm": psm,
-        "image_path": str(image_path),
-        "generated_at": datetime.now(timezone.utc).isoformat(),
-    }
-    target.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
-    return target
+    return write_ocr_sidecar_with_boxes(
+        image_path,
+        text=text,
+        text_boxes=text_boxes,
+        sidecar_path=sidecar_path,
+        engine_path=engine_path,
+        language=language,
+        psm=psm,
+    )
 
 
 def generate_ocr_sidecars(
@@ -159,9 +147,17 @@ def generate_ocr_sidecars(
                 psm=psm,
                 timeout_seconds=timeout_seconds,
             )
+            boxes = run_tesseract_boxes(
+                image_path,
+                tesseract_path=tesseract_path,
+                language=language,
+                psm=psm,
+                timeout_seconds=timeout_seconds,
+            )
             sidecar = write_ocr_sidecar(
                 image_path,
                 text=text,
+                text_boxes=boxes,
                 engine_path=tesseract_path,
                 language=language,
                 psm=psm,

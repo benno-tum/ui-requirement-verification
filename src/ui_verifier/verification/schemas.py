@@ -229,6 +229,12 @@ class EvidenceRef:
     matched_text: str | None = None
     ui_element_id: str | None = None
     reason: str | None = None
+    bbox_image_path: str | None = None
+    bbox_image_width: int | None = None
+    bbox_image_height: int | None = None
+    bbox_coordinate_space: str | None = None
+    bbox_source: str | None = None
+    bbox_confidence: float | None = None
 
     def __post_init__(self) -> None:
         if not isinstance(self.step_index, int):
@@ -245,6 +251,16 @@ class EvidenceRef:
         if self.reason is not None:
             self.reason = self.reason.strip() or None
 
+        self.bbox_image_path = _normalize_optional_text(self.bbox_image_path)
+        self.bbox_coordinate_space = _normalize_optional_text(self.bbox_coordinate_space)
+        self.bbox_source = _normalize_optional_text(self.bbox_source)
+        if self.bbox_image_width is not None:
+            self.bbox_image_width = int(self.bbox_image_width)
+        if self.bbox_image_height is not None:
+            self.bbox_image_height = int(self.bbox_image_height)
+        if self.bbox_confidence is not None:
+            self.bbox_confidence = float(self.bbox_confidence)
+
         if self.evidence_type == EvidenceType.REGION and self.bbox is None:
             raise ValueError("bbox is required when evidence_type='region'")
 
@@ -257,6 +273,12 @@ class EvidenceRef:
                 "matched_text": self.matched_text,
                 "ui_element_id": self.ui_element_id,
                 "reason": self.reason,
+                "bbox_image_path": self.bbox_image_path,
+                "bbox_image_width": self.bbox_image_width,
+                "bbox_image_height": self.bbox_image_height,
+                "bbox_coordinate_space": self.bbox_coordinate_space,
+                "bbox_source": self.bbox_source,
+                "bbox_confidence": self.bbox_confidence,
             }
         )
 
@@ -270,6 +292,12 @@ class EvidenceRef:
             matched_text=data.get("matched_text"),
             ui_element_id=data.get("ui_element_id"),
             reason=data.get("reason"),
+            bbox_image_path=data.get("bbox_image_path"),
+            bbox_image_width=data.get("bbox_image_width"),
+            bbox_image_height=data.get("bbox_image_height"),
+            bbox_coordinate_space=data.get("bbox_coordinate_space"),
+            bbox_source=data.get("bbox_source"),
+            bbox_confidence=data.get("bbox_confidence"),
         )
 
 
@@ -382,6 +410,12 @@ class EvidenceUnit:
     matched_text: str | None = None
     ui_element_id: str | None = None
     note: str | None = None
+    bbox_image_path: str | None = None
+    bbox_image_width: int | None = None
+    bbox_image_height: int | None = None
+    bbox_coordinate_space: str | None = None
+    bbox_source: str | None = None
+    bbox_confidence: float | None = None
 
     def __post_init__(self) -> None:
         if not isinstance(self.step_index, int):
@@ -392,6 +426,15 @@ class EvidenceUnit:
         self.matched_text = _normalize_optional_text(self.matched_text)
         self.ui_element_id = _normalize_optional_text(self.ui_element_id)
         self.note = _normalize_optional_text(self.note)
+        self.bbox_image_path = _normalize_optional_text(self.bbox_image_path)
+        self.bbox_coordinate_space = _normalize_optional_text(self.bbox_coordinate_space)
+        self.bbox_source = _normalize_optional_text(self.bbox_source)
+        if self.bbox_image_width is not None:
+            self.bbox_image_width = int(self.bbox_image_width)
+        if self.bbox_image_height is not None:
+            self.bbox_image_height = int(self.bbox_image_height)
+        if self.bbox_confidence is not None:
+            self.bbox_confidence = float(self.bbox_confidence)
 
         if self.evidence_type == EvidenceType.REGION and self.bbox is None:
             raise ValueError("bbox is required when evidence_type='region'")
@@ -405,6 +448,12 @@ class EvidenceUnit:
                 "matched_text": self.matched_text,
                 "ui_element_id": self.ui_element_id,
                 "note": self.note,
+                "bbox_image_path": self.bbox_image_path,
+                "bbox_image_width": self.bbox_image_width,
+                "bbox_image_height": self.bbox_image_height,
+                "bbox_coordinate_space": self.bbox_coordinate_space,
+                "bbox_source": self.bbox_source,
+                "bbox_confidence": self.bbox_confidence,
             }
         )
 
@@ -418,6 +467,12 @@ class EvidenceUnit:
             matched_text=data.get("matched_text"),
             ui_element_id=data.get("ui_element_id"),
             note=data.get("note") or data.get("reason"),
+            bbox_image_path=data.get("bbox_image_path"),
+            bbox_image_width=data.get("bbox_image_width"),
+            bbox_image_height=data.get("bbox_image_height"),
+            bbox_coordinate_space=data.get("bbox_coordinate_space"),
+            bbox_source=data.get("bbox_source"),
+            bbox_confidence=data.get("bbox_confidence"),
         )
 
 
@@ -446,6 +501,8 @@ class ClaimEvidence:
 
         if not self.evidence_units and self.evidence_steps:
             self.evidence_units = [EvidenceUnit(step_index=step_index) for step_index in self.evidence_steps]
+        if self.evidence_units and not self.evidence_steps:
+            self.evidence_steps = _validate_step_indices([unit.step_index for unit in self.evidence_units])
 
     def to_dict(self) -> dict[str, Any]:
         return _drop_none(

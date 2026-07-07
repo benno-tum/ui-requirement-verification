@@ -3,6 +3,9 @@ import {
   ApiError,
   api,
   resolveAssetUrl,
+  type BoundingBox,
+  type BoundingBoxMetadata,
+  type EvidenceUnit,
   type PipelineVerificationRun,
   type PipelineRunJob,
   type PipelineRunSummary,
@@ -34,12 +37,25 @@ type ClaimFormState = {
   claimType: string
   importance: string
   evidenceSteps: number[]
+  evidenceUnit: EvidenceUnit | null
   note: string
   uncertaintyReasons: string[]
 }
 
 type PipelineResult = PipelineVerificationRun['results'][number]
 type PipelineClaim = PipelineResult['claims'][number]
+type ReviewCategoryId =
+  | 'all'
+  | 'needs_review'
+  | 'label_mismatch'
+  | 'evidence_no_overlap'
+  | 'over_fulfilled'
+  | 'should_abstain'
+  | 'under_called'
+  | 'boundary'
+  | 'late_state'
+  | 'universal_or_hidden'
+
 type ClaimAlignment = {
   goldClaim: VerificationClaim | null
   predictedClaim: PipelineClaim | null
@@ -85,6 +101,17 @@ const UNCERTAINTY_REASON_OPTIONS = [
 const CLAIM_STATUS_OPTIONS = ['SUPPORTED', 'SUPPORTED_WITH_CAVEAT', 'CONTRADICTED', 'MISSING', 'HIDDEN', 'AMBIGUOUS', 'OUT_OF_SCOPE']
 const CLAIM_TYPE_OPTIONS = ['OBSERVABLE', 'HIDDEN']
 const CLAIM_IMPORTANCE_OPTIONS = ['CORE', 'SUPPORTING']
+const REVIEW_CATEGORY_OPTIONS: Array<{id: ReviewCategoryId; label: string}> = [
+  {id: 'needs_review', label: 'Needs review'},
+  {id: 'evidence_no_overlap', label: 'No evidence overlap'},
+  {id: 'over_fulfilled', label: 'Over-fulfilled'},
+  {id: 'should_abstain', label: 'Should abstain'},
+  {id: 'under_called', label: 'Under-called'},
+  {id: 'boundary', label: 'Boundary'},
+  {id: 'late_state', label: 'Late state'},
+  {id: 'universal_or_hidden', label: 'Universal/hidden'},
+  {id: 'label_mismatch', label: 'Any label mismatch'},
+]
 
 function App() {
   const [flows, setFlows] = useState<FlowSummary[]>([])
@@ -366,9 +393,40 @@ function App() {
     }
   }
 
+  async function handleAcceptVerificationGoldFromPipeline(requirement: VerificationGoldItem) {
+    if (!selectedFlowId) {
+      return
+    }
+
+    setMessage('')
+    try {
+      const updated = await api.updateVerificationGold(selectedFlowId, requirement.requirement_id, {
+        review_status: 'accepted',
+        annotation_notes: annotationNotes || undefined,
+        annotated_by: annotatedBy || undefined,
+      })
+      setVerificationGold((items) =>
+        items.map((item) => (item.requirement_id === updated.requirement_id ? updated : item)),
+      )
+      setMessage(`${updated.requirement_id} accepted.`)
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Failed to accept verification benchmark item'
+      setMessage(errorMessage)
+      window.alert(errorMessage)
+      throw error
+    }
+  }
+
+  const representedCandidateIds = useMemo(() => candidateIdsRepresentedInVerificationGold(verificationGold), [verificationGold])
   const activeCandidates = useMemo(
-    () => candidates.filter((candidate) => candidate.review_status !== 'accepted' && candidate.review_status !== 'rejected'),
-    [candidates],
+    () =>
+      candidates.filter(
+        (candidate) =>
+          candidate.review_status !== 'accepted' &&
+          candidate.review_status !== 'rejected' &&
+          !representedCandidateIds.has(candidate.requirement_id),
+      ),
+    [candidates, representedCandidateIds],
   )
   const orderedVerificationGold = useMemo(() => orderReviewItemsFirst(verificationGold), [verificationGold])
   const isPureFlow = selectedFlow?.dataset === 'pure'
@@ -591,10 +649,12 @@ function App() {
         {selectedFlow && viewMode === 'verification' && (
           <VerificationRunPanel
             flowId={selectedFlow.flow_id}
+            steps={steps}
             pipelineRun={pipelineRun}
             verificationGold={verificationGold}
             onJumpToStep={jumpToStep}
             onEditVerificationGold={(requirement) => setEditor({mode: 'verification_gold', requirement})}
+            onAcceptVerificationGold={(requirement) => handleAcceptVerificationGoldFromPipeline(requirement)}
           />
         )}
 
@@ -609,7 +669,7 @@ function App() {
         <RequirementEditorModal
           mode={editor.mode}
           requirement={editor.requirement}
-          availableSteps={steps.map((step) => step.step_index)}
+          availableSteps={steps}
           defaultAnnotatedBy={annotatedBy}
           onClose={() => setEditor(null)}
           onSave={(action, payload, openNext) => void handleSaveEditor(action, payload, openNext)}
@@ -1130,16 +1190,20 @@ function HarvestedPanel({
 
 function VerificationRunPanel({
   flowId,
+  steps,
   pipelineRun,
   verificationGold,
   onJumpToStep,
   onEditVerificationGold,
+  onAcceptVerificationGold,
 }: {
   flowId: string
+  steps: FlowStep[]
   pipelineRun: PipelineVerificationRun | null
   verificationGold: VerificationGoldItem[]
   onJumpToStep: (stepIndex: number) => void
   onEditVerificationGold: (requirement: VerificationGoldItem) => void
+  onAcceptVerificationGold: (requirement: VerificationGoldItem) => Promise<void>
 }) {
   const [selectedRequirementId, setSelectedRequirementId] = useState<string | null>(null)
   const [runs, setRuns] = useState<PipelineRunSummary[]>([])
@@ -1148,6 +1212,8 @@ function VerificationRunPanel({
   const [selectedRun, setSelectedRun] = useState<PipelineVerificationRun | null>(pipelineRun)
   const [runJob, setRunJob] = useState<PipelineRunJob | null>(null)
   const [runMessage, setRunMessage] = useState<string>('')
+  const [acceptingRequirementId, setAcceptingRequirementId] = useState<string | null>(null)
+  const [reviewCategoryId, setReviewCategoryId] = useState<ReviewCategoryId>('needs_review')
   const [runForm, setRunForm] = useState<StartPipelineRunPayload>({
     verifier: 'deterministic_rule_based',
     verifier_model: 'gemini-2.5-flash-lite',
@@ -1203,10 +1269,11 @@ function VerificationRunPanel({
     setRunMessage('')
     try {
       const response = await api.listPipelineVerificationRuns(flowId)
-      setRuns(response.runs)
+      const orderedRuns = orderPipelineRunsForDisplay(response.runs)
+      setRuns(orderedRuns)
       setRunsState('idle')
-      if (response.runs.length > 0) {
-        const nextRunId = selectedRunId && response.runs.some((run) => run.run_id === selectedRunId) ? selectedRunId : response.runs[0].run_id
+      if (orderedRuns.length > 0) {
+        const nextRunId = orderedRuns[0].run_id
         setSelectedRunId(nextRunId)
         await selectRun(nextRunId)
       } else {
@@ -1241,6 +1308,19 @@ function VerificationRunPanel({
     }
   }
 
+  async function acceptBenchmarkItem(requirement: VerificationGoldItem) {
+    setRunMessage('')
+    setAcceptingRequirementId(requirement.requirement_id)
+    try {
+      await onAcceptVerificationGold(requirement)
+      setRunMessage(`${requirement.requirement_id} accepted.`)
+    } catch (error) {
+      setRunMessage(error instanceof Error ? error.message : 'Failed to accept verification benchmark item')
+    } finally {
+      setAcceptingRequirementId(null)
+    }
+  }
+
   const requirementsPath = runForm.requirements_source === 'benchmark'
     ? `data/annotations/verification_gold/${flowId}/verification_gold.json`
     : `data/annotations/requirements_gold/${flowId}/gold_requirements.json`
@@ -1254,12 +1334,21 @@ function VerificationRunPanel({
       const goldItem = goldById.get(result.requirement_id)
       const referenceLabel = goldItem?.verification_label ?? null
       const matchesReference = referenceLabel ? normalizeDisplayValue(referenceLabel) === normalizeDisplayValue(result.final_label) : null
+      const predictedEvidenceSteps = uniqueEvidenceSteps(result.evidence)
+      const referenceEvidenceSteps = goldItem?.evidence_steps ?? []
+      const evidenceOverlap = intersectNumbers(referenceEvidenceSteps, predictedEvidenceSteps)
+      const categoryIds = reviewCategoriesForComparison(goldItem ?? null, result, evidenceOverlap)
       return {
         requirement_id: result.requirement_id,
         predicted_label: result.final_label,
         reference_label: referenceLabel,
         matches_reference: matchesReference,
-        predicted_evidence_steps: uniqueEvidenceSteps(result.evidence),
+        predicted_evidence_steps: predictedEvidenceSteps,
+        reference_evidence_steps: referenceEvidenceSteps,
+        evidence_overlap: evidenceOverlap,
+        review_status: goldItem?.review_status ?? null,
+        category_ids: categoryIds,
+        primary_category: primaryReviewCategory(categoryIds),
       }
     }).sort((a, b) => {
       const aMatch = a.matches_reference === false ? 0 : 1
@@ -1270,6 +1359,29 @@ function VerificationRunPanel({
       return String(a.requirement_id).localeCompare(String(b.requirement_id), undefined, {numeric: true})
     })
   }, [activeRun, goldById])
+  const reviewCategoryCounts = useMemo(() => {
+    const counts = new Map<ReviewCategoryId, number>()
+    for (const row of comparisonRows) {
+      if (row.review_status !== 'needs_review') {
+        continue
+      }
+      counts.set('needs_review', (counts.get('needs_review') ?? 0) + 1)
+      for (const categoryId of row.category_ids) {
+        counts.set(categoryId, (counts.get(categoryId) ?? 0) + 1)
+      }
+    }
+    return counts
+  }, [comparisonRows])
+  const filteredComparisonRows = useMemo(() => {
+    if (reviewCategoryId === 'all') {
+      return comparisonRows
+    }
+    return comparisonRows.filter((row) =>
+      reviewCategoryId === 'needs_review'
+        ? row.review_status === 'needs_review'
+        : row.review_status === 'needs_review' && row.category_ids.includes(reviewCategoryId),
+    )
+  }, [comparisonRows, reviewCategoryId])
   const comparisonSummary = useMemo(() => {
     const comparedItems = comparisonRows.filter((row) => row.reference_label).length
     const matches = comparisonRows.filter((row) => row.matches_reference === true).length
@@ -1303,7 +1415,7 @@ function VerificationRunPanel({
               >
                 {runs.map((run) => (
                   <option key={run.run_id} value={run.run_id}>
-                    {run.source} | {run.verifier ?? 'unknown'} | {run.retriever ?? 'unknown'} | {run.requirements_count} reqs | {formatDistribution(run.label_distribution)}
+                    {runLabel(run)} | {run.verifier ?? 'unknown'} | {run.retriever ?? 'unknown'} | {run.requirements_count} reqs | {formatDistribution(run.label_distribution)}
                   </option>
                 ))}
               </select>
@@ -1322,8 +1434,9 @@ function VerificationRunPanel({
                   onClick={() => void selectRun(run.run_id)}
                 >
                   <span className="review-mini-stack">
-                    <strong>{run.source}</strong>
-                    <span title={run.path}>{run.run_folder}</span>
+                    <strong title={run.path}>{runLabel(run)}</strong>
+                    <span title={run.path}>{run.source}</span>
+                    {runHasBboxHint(run) && <span className="status-pill supported">Bbox evidence</span>}
                     <span>{formatTimestamp(run.timestamp)}</span>
                   </span>
                   <span className="review-mini-stack">
@@ -1469,7 +1582,31 @@ function VerificationRunPanel({
       <section className="card">
         <div className="panel-header">
           <h3>Reviewed-label comparison</h3>
-          <span>Rows with disagreement are listed first. This compares the latest pipeline run to verification gold.</span>
+          <span>{filteredComparisonRows.length} shown. Review queues use open verification-gold items only.</span>
+        </div>
+        <div className="review-category-toolbar">
+          {REVIEW_CATEGORY_OPTIONS.map((category) => {
+            const count = reviewCategoryCounts.get(category.id) ?? 0
+            return (
+              <button
+                key={category.id}
+                type="button"
+                className={reviewCategoryId === category.id ? 'category-filter active' : 'category-filter'}
+                onClick={() => setReviewCategoryId(category.id)}
+              >
+                <span>{category.label}</span>
+                <strong>{count}</strong>
+              </button>
+            )
+          })}
+          <button
+            type="button"
+            className={reviewCategoryId === 'all' ? 'category-filter active' : 'category-filter'}
+            onClick={() => setReviewCategoryId('all')}
+          >
+            <span>All rows</span>
+            <strong>{comparisonRows.length}</strong>
+          </button>
         </div>
         {comparisonRows.length > 0 ? (
           <div className="demo-table review-comparison-table">
@@ -1477,14 +1614,22 @@ function VerificationRunPanel({
               <span>Requirement</span>
               <span>Prediction</span>
               <span>Reviewed</span>
+              <span>Queue</span>
               <span>Ambiguity</span>
               <span>Claim composition</span>
               <span>Evidence</span>
+              <span>Review</span>
             </div>
-            {comparisonRows.map((row) => {
+            {filteredComparisonRows.map((row) => {
               const requirementId = row.requirement_id
               const result = resultById.get(requirementId)
               const goldItem = goldById.get(requirementId)
+              const canAccept = Boolean(
+                result &&
+                  goldItem &&
+                  goldItem.review_status === 'needs_review' &&
+                  canEditBenchmarkItemFromRun(result, goldItem),
+              )
               return (
                 <div
                   key={requirementId}
@@ -1503,6 +1648,10 @@ function VerificationRunPanel({
                   <span className={`status-pill ${statusClass(row.predicted_label ?? 'unknown')}`}>{humanizeStatus(row.predicted_label ?? 'unknown')}</span>
                   <span className={`status-pill ${statusClass(row.reference_label ?? 'unknown')}`}>{humanizeStatus(row.reference_label ?? 'unknown')}</span>
                   <span className="review-mini-stack">
+                    <strong>{reviewCategoryLabel(row.primary_category)}</strong>
+                    <span>{row.review_status ? humanizeStatus(row.review_status) : 'no benchmark item'}</span>
+                  </span>
+                  <span className="review-mini-stack">
                     <strong>Manual</strong>
                     <span title={formatReasons(goldItem?.uncertainty_reasons ?? [])}>{formatReasons(goldItem?.uncertainty_reasons ?? [])}</span>
                     <strong>Pipeline</strong>
@@ -1519,7 +1668,30 @@ function VerificationRunPanel({
                     </span>
                   </span>
                   <span>
-                    <StepChipList stepIndices={(row.predicted_evidence_steps ?? []) as number[]} onJumpToStep={onJumpToStep} />
+                    <span className="review-mini-stack">
+                      <strong>Manual</strong>
+                      <span><StepChipList stepIndices={(row.reference_evidence_steps ?? []) as number[]} onJumpToStep={onJumpToStep} /></span>
+                      <strong>Pipeline</strong>
+                      <span><StepChipList stepIndices={(row.predicted_evidence_steps ?? []) as number[]} onJumpToStep={onJumpToStep} /></span>
+                    </span>
+                  </span>
+                  <span className="button-row compact">
+                    {goldItem?.review_status === 'needs_review' && (
+                      <button
+                        type="button"
+                        className="secondary-button"
+                        disabled={!canAccept || acceptingRequirementId === requirementId}
+                        title={canAccept ? 'Accept this open benchmark item' : 'Benchmark item is missing or changed since this run'}
+                        onClick={(event) => {
+                          event.stopPropagation()
+                          if (goldItem && canAccept) {
+                            void acceptBenchmarkItem(goldItem)
+                          }
+                        }}
+                      >
+                        {acceptingRequirementId === requirementId ? 'Accepting...' : 'Accept'}
+                      </button>
+                    )}
                   </span>
                 </div>
               )
@@ -1594,6 +1766,7 @@ function VerificationRunPanel({
         <VerificationComparisonModal
           result={selectedResult}
           gold={selectedGold}
+          steps={steps}
           onClose={() => setSelectedRequirementId(null)}
           onJumpToStep={onJumpToStep}
           onEditBenchmarkItem={
@@ -1604,6 +1777,14 @@ function VerificationRunPanel({
                 }
               : undefined
           }
+          onAcceptBenchmarkItem={
+            selectedGold &&
+            selectedGold.review_status === 'needs_review' &&
+            canEditBenchmarkItemFromRun(selectedResult, selectedGold)
+              ? () => acceptBenchmarkItem(selectedGold)
+              : undefined
+          }
+          accepting={acceptingRequirementId === selectedGold?.requirement_id}
         />
       )}
     </section>
@@ -1613,15 +1794,21 @@ function VerificationRunPanel({
 function VerificationComparisonModal({
   result,
   gold,
+  steps,
   onClose,
   onJumpToStep,
   onEditBenchmarkItem,
+  onAcceptBenchmarkItem,
+  accepting,
 }: {
   result: PipelineResult
   gold: VerificationGoldItem | null
+  steps: FlowStep[]
   onClose: () => void
   onJumpToStep: (stepIndex: number) => void
   onEditBenchmarkItem?: () => void
+  onAcceptBenchmarkItem?: () => void
+  accepting: boolean
 }) {
   const goldLabel = normalizeDisplayValue(gold?.verification_label)
   const predictedLabel = normalizeDisplayValue(result.final_label)
@@ -1662,6 +1849,11 @@ function VerificationComparisonModal({
             >
               Edit benchmark item
             </button>
+            {onAcceptBenchmarkItem && (
+              <button type="button" disabled={accepting} title="Accept this verification benchmark item" onClick={onAcceptBenchmarkItem}>
+                {accepting ? 'Accepting...' : 'Accept item'}
+              </button>
+            )}
             <button type="button" className="secondary-button" onClick={onClose}>
               Close
             </button>
@@ -1756,14 +1948,22 @@ function VerificationComparisonModal({
 
         <section className="comparison-section">
           <div className="panel-header">
-            <h4>Claim alignment</h4>
-            <span>Manual claims are aligned to pipeline claims by token overlap.</span>
+            <div>
+              <h4>Claim alignment</h4>
+              <span>Manual claims are aligned to pipeline claims by token overlap.</span>
+            </div>
+            {onAcceptBenchmarkItem && (
+              <button type="button" disabled={accepting} title="Accept this verification benchmark item" onClick={onAcceptBenchmarkItem}>
+                {accepting ? 'Accepting...' : 'Accept item'}
+              </button>
+            )}
           </div>
           <div className="claim-alignment-list">
             {alignments.map((alignment, index) => (
               <ClaimAlignmentRow
                 key={`${result.requirement_id}-alignment-${index}`}
                 alignment={alignment}
+                steps={steps}
                 onJumpToStep={onJumpToStep}
               />
             ))}
@@ -1812,14 +2012,17 @@ function ComparisonColumn({
 
 function ClaimAlignmentRow({
   alignment,
+  steps,
   onJumpToStep,
 }: {
   alignment: ClaimAlignment
+  steps: FlowStep[]
   onJumpToStep: (stepIndex: number) => void
 }) {
   const goldClaim = alignment.goldClaim
   const predictedClaim = alignment.predictedClaim
   const statusMismatch = normalizeDisplayValue(goldClaim?.status) !== normalizeDisplayValue(predictedClaim?.status)
+  const goldEvidenceUnit = firstRegionEvidenceUnit(goldClaim?.evidence_units)
   return (
     <article className={statusMismatch ? 'claim-alignment-row status-mismatch' : 'claim-alignment-row'}>
       <div className="alignment-score">
@@ -1843,6 +2046,15 @@ function ClaimAlignmentRow({
           </div>
         )}
         {goldClaim?.note && <p className="inline-note">{goldClaim.note}</p>}
+        {goldEvidenceUnit && (
+          <EvidenceBoxPreview
+            step={steps.find((step) => step.step_index === goldEvidenceUnit.step_index) ?? null}
+            bbox={goldEvidenceUnit.bbox ?? null}
+            label={`Manual box · step ${goldEvidenceUnit.step_index}`}
+            bboxMetadata={metadataFromEvidenceUnit(goldEvidenceUnit)}
+            legacyVariant="display"
+          />
+        )}
       </div>
       <div className="aligned-claim predicted">
         <div className="comparison-column-header">
@@ -1863,12 +2075,26 @@ function ClaimAlignmentRow({
             </div>
             <p className="inline-note">Rationale: {predictedClaim.rationale}</p>
             <div className="evidence-snippet-list">
-              {predictedClaim.evidence.slice(0, 3).map((evidence) => (
-                <button key={`${predictedClaim.claim_id}-${evidence.step_index}`} className="evidence-snippet" onClick={() => onJumpToStep(evidence.step_index)}>
-                  <strong>Step {evidence.step_index}</strong>
-                  <span>{truncateText(evidence.visible_observation, 260)}</span>
-                </button>
-              ))}
+              {predictedClaim.evidence.slice(0, 3).map((evidence) => {
+                const bbox = normalizeBoundingBox(evidence.bbox)
+                return (
+                  <div key={`${predictedClaim.claim_id}-${evidence.step_index}`} className="evidence-snippet-group">
+                    <button className="evidence-snippet" onClick={() => onJumpToStep(evidence.step_index)}>
+                      <strong>Step {evidence.step_index}</strong>
+                      <span>{truncateText(evidence.visible_observation, 260)}</span>
+                    </button>
+                    {bbox && (
+                      <EvidenceBoxPreview
+                        step={steps.find((step) => step.step_index === evidence.step_index) ?? null}
+                        bbox={bbox}
+                        label="Pipeline box"
+                        bboxMetadata={metadataFromPipelineEvidence(evidence)}
+                        legacyVariant="preview"
+                      />
+                    )}
+                  </div>
+                )
+              })}
             </div>
           </>
         )}
@@ -1918,6 +2144,34 @@ function formatTimestamp(value: string | number | null | undefined): string {
     return String(value)
   }
   return date.toLocaleString()
+}
+
+function runLabel(run: PipelineRunSummary): string {
+  return run.run_name || fileNameFromPath(run.path) || run.source || run.run_id
+}
+
+function fileNameFromPath(path: string | null | undefined): string {
+  if (!path) {
+    return ''
+  }
+  const parts = path.split(/[\\/]/).filter(Boolean)
+  return parts[parts.length - 1] ?? path
+}
+
+function runHasBboxHint(run: PipelineRunSummary): boolean {
+  const label = `${runLabel(run)} ${run.path ?? ''}`.toLowerCase()
+  return label.includes('with_bboxes') || label.includes('bbox')
+}
+
+function orderPipelineRunsForDisplay(runs: PipelineRunSummary[]): PipelineRunSummary[] {
+  return [...runs].sort((left, right) => {
+    const leftBbox = runHasBboxHint(left) ? 1 : 0
+    const rightBbox = runHasBboxHint(right) ? 1 : 0
+    if (leftBbox !== rightBbox) {
+      return rightBbox - leftBbox
+    }
+    return Number(right.mtime ?? 0) - Number(left.mtime ?? 0)
+  })
 }
 
 function formatReasons(reasons: string[]): string {
@@ -1972,6 +2226,137 @@ function normalizeRequirementText(value: string | null | undefined): string {
 
 function canEditBenchmarkItemFromRun(result: PipelineResult, gold: VerificationGoldItem): boolean {
   return normalizeRequirementText(result.requirement_text) === normalizeRequirementText(gold.text)
+}
+
+function reviewCategoriesForComparison(
+  gold: VerificationGoldItem | null,
+  result: PipelineResult,
+  evidenceOverlap: number[],
+): ReviewCategoryId[] {
+  const categories: ReviewCategoryId[] = []
+  if (!gold) {
+    return categories
+  }
+
+  const goldLabel = normalizeDisplayValue(gold.verification_label)
+  const predictedLabel = normalizeDisplayValue(result.final_label)
+  const labelMismatch = goldLabel !== 'unknown' && predictedLabel !== 'unknown' && goldLabel !== predictedLabel
+  const goldEvidenceSteps = gold.evidence_steps ?? []
+
+  if (labelMismatch) {
+    categories.push('label_mismatch')
+  }
+  if (goldEvidenceSteps.length > 0 && evidenceOverlap.length === 0) {
+    categories.push('evidence_no_overlap')
+  }
+  if (predictedLabel === 'FULFILLED' && goldLabel !== 'FULFILLED' && goldLabel !== 'unknown') {
+    categories.push('over_fulfilled')
+  }
+  if (goldLabel === 'ABSTAIN' && predictedLabel !== 'ABSTAIN' && predictedLabel !== 'unknown') {
+    categories.push('should_abstain')
+  }
+  if (['ABSTAIN', 'NOT_FULFILLED'].includes(predictedLabel) && ['FULFILLED', 'PARTIALLY_FULFILLED'].includes(goldLabel)) {
+    categories.push('under_called')
+  }
+  if (labelMismatch && !categories.includes('over_fulfilled') && !categories.includes('should_abstain') && !categories.includes('under_called')) {
+    categories.push('boundary')
+  }
+  if (isLateStateRequirement(gold.text)) {
+    categories.push('late_state')
+  }
+  if (isUniversalOrHiddenRequirement(gold)) {
+    categories.push('universal_or_hidden')
+  }
+  return [...new Set(categories)]
+}
+
+function primaryReviewCategory(categories: ReviewCategoryId[]): ReviewCategoryId {
+  const priority: ReviewCategoryId[] = [
+    'over_fulfilled',
+    'should_abstain',
+    'under_called',
+    'boundary',
+    'evidence_no_overlap',
+    'late_state',
+    'universal_or_hidden',
+    'label_mismatch',
+  ]
+  return priority.find((category) => categories.includes(category)) ?? 'needs_review'
+}
+
+function reviewCategoryLabel(category: ReviewCategoryId): string {
+  if (category === 'all') {
+    return 'All rows'
+  }
+  return REVIEW_CATEGORY_OPTIONS.find((option) => option.id === category)?.label ?? humanizeStatus(category)
+}
+
+function isLateStateRequirement(text: string): boolean {
+  return containsAny(text, [
+    'cart',
+    'checkout',
+    'subtotal',
+    'total',
+    'fee',
+    'tax',
+    'payment',
+    'purchase',
+    'order',
+    'result',
+    'results',
+    'summary',
+    'review',
+    'confirmation',
+    'confirm',
+    'pre-checkout',
+    'pre-submission',
+  ])
+}
+
+function isUniversalOrHiddenRequirement(gold: VerificationGoldItem): boolean {
+  const textMatches = containsAny(gold.text, [
+    'all ',
+    'every',
+    'only when',
+    'distinguish',
+    'compare',
+    'each',
+    'complete',
+    'valid',
+    'available',
+    'future',
+    'preserve',
+    'persist',
+    'return',
+    'stored',
+    'backend',
+    'account',
+    'email',
+    'external',
+  ])
+  const claimMatches = (gold.claims ?? []).some((claim) =>
+    normalizeDisplayValue(claim.claim_type) === 'HIDDEN' || normalizeDisplayValue(claim.status) === 'HIDDEN',
+  )
+  return textMatches || claimMatches
+}
+
+function containsAny(value: string, needles: string[]): boolean {
+  const normalized = value.toLowerCase()
+  return needles.some((needle) => normalized.includes(needle))
+}
+
+function candidateIdsRepresentedInVerificationGold(items: VerificationGoldItem[]): Set<string> {
+  const ids = new Set<string>()
+  for (const item of items) {
+    ids.add(item.requirement_id)
+    if (item.source_candidate_id) {
+      ids.add(item.source_candidate_id)
+    }
+    if (item.source_type === 'requirements_candidate' && item.source_id) {
+      ids.add(item.source_id)
+    }
+  }
+  return ids
 }
 
 function intersectNumbers(left: number[], right: number[]): number[] {
@@ -2115,6 +2500,73 @@ function uniqueEvidenceSteps(evidence: {step_index: number}[]): number[] {
   return [...new Set(evidence.map((item) => item.step_index))].sort((a, b) => a - b)
 }
 
+function normalizeBoundingBox(value: unknown): BoundingBox | null {
+  if (Array.isArray(value) && value.length === 4) {
+    const [x1, y1, x2, y2] = value.map(Number)
+    return validBoundingBox({x1, y1, x2, y2})
+  }
+  if (value && typeof value === 'object') {
+    const record = value as Record<string, unknown>
+    return validBoundingBox({
+      x1: Number(record.x1),
+      y1: Number(record.y1),
+      x2: Number(record.x2),
+      y2: Number(record.y2),
+    })
+  }
+  return null
+}
+
+function validBoundingBox(box: BoundingBox): BoundingBox | null {
+  if ([box.x1, box.y1, box.x2, box.y2].some((value) => !Number.isFinite(value))) {
+    return null
+  }
+  return box.x2 > box.x1 && box.y2 > box.y1 ? box : null
+}
+
+function firstRegionEvidenceUnit(units: EvidenceUnit[] | undefined): EvidenceUnit | null {
+  return units?.find((unit) => unit.evidence_type === 'region' && normalizeBoundingBox(unit.bbox)) ?? null
+}
+
+function claimEvidenceUnitsForPayload(claim: ClaimFormState): EvidenceUnit[] {
+  const steps = new Set(claim.evidenceSteps)
+  if (claim.evidenceUnit?.bbox) {
+    steps.add(claim.evidenceUnit.step_index)
+  }
+  return [...steps].sort((a, b) => a - b).map((stepIndex) => {
+    if (claim.evidenceUnit?.bbox && claim.evidenceUnit.step_index === stepIndex) {
+      return {
+        ...claim.evidenceUnit,
+        evidence_type: 'region',
+        bbox: claim.evidenceUnit.bbox,
+      }
+    }
+    return {
+    step_index: stepIndex,
+    evidence_type: 'screen',
+    }
+  })
+}
+
+function metadataFromEvidenceUnit(unit: EvidenceUnit | null): BoundingBoxMetadata | null {
+  if (!unit) {
+    return null
+  }
+  return {
+    image_path: unit.bbox_image_path ?? null,
+    image_width: unit.bbox_image_width ?? null,
+    image_height: unit.bbox_image_height ?? null,
+    coordinate_space: unit.bbox_coordinate_space ?? null,
+    source: unit.bbox_source ?? null,
+    confidence: unit.bbox_confidence ?? null,
+    matched_text: unit.matched_text ?? null,
+  }
+}
+
+function metadataFromPipelineEvidence(evidence: {bbox_metadata?: BoundingBoxMetadata | null; metadata?: {bbox_localization?: BoundingBoxMetadata | null} | null}): BoundingBoxMetadata | null {
+  return evidence.bbox_metadata ?? evidence.metadata?.bbox_localization ?? null
+}
+
 function RequirementCard({
   requirement,
   actions,
@@ -2208,7 +2660,7 @@ function RequirementEditorModal({
 }: {
   mode: EditorMode
   requirement: RequirementLike
-  availableSteps: number[]
+  availableSteps: FlowStep[]
   defaultAnnotatedBy: string
   onClose: () => void
   onSave: (
@@ -2221,6 +2673,7 @@ function RequirementEditorModal({
   const isVerificationGold = mode === 'verification_gold'
   const verificationItem = isVerificationGold ? (requirement as VerificationGoldItem) : null
   const editableVerification = isVerificationGold || mode === 'candidate'
+  const availableStepIndices = availableSteps.map((step) => step.step_index)
   const [rephrasingClaimIndex, setRephrasingClaimIndex] = useState<number | null>(null)
   const [rephrasingAllClaims, setRephrasingAllClaims] = useState<boolean>(false)
   const [form, setForm] = useState<RequirementFormState>(() => ({
@@ -2259,6 +2712,7 @@ function RequirementEditorModal({
         claims: current.claims.map((claim) => ({
           ...claim,
           evidenceSteps: claim.evidenceSteps.filter((claimStep) => allowed.has(claimStep)),
+          evidenceUnit: claim.evidenceUnit && allowed.has(claim.evidenceUnit.step_index) ? claim.evidenceUnit : null,
         })),
       }
     })
@@ -2271,11 +2725,14 @@ function RequirementEditorModal({
         if (claimIndex !== index) {
           return claim
         }
+        const selected = claim.evidenceSteps.includes(stepIndex)
+        const nextEvidenceSteps = selected
+          ? claim.evidenceSteps.filter((claimStep) => claimStep !== stepIndex)
+          : [...claim.evidenceSteps, stepIndex].sort((a, b) => a - b)
         return {
           ...claim,
-          evidenceSteps: claim.evidenceSteps.includes(stepIndex)
-            ? claim.evidenceSteps.filter((item) => item !== stepIndex)
-            : [...claim.evidenceSteps, stepIndex].sort((a, b) => a - b),
+          evidenceSteps: nextEvidenceSteps,
+          evidenceUnit: selected && claim.evidenceUnit?.step_index === stepIndex ? null : claim.evidenceUnit,
         }
       }),
     }))
@@ -2406,6 +2863,7 @@ function RequirementEditorModal({
           claim_type: claim.claimType,
           importance: claim.importance,
           evidence_steps: claim.evidenceSteps,
+          evidence_units: claimEvidenceUnitsForPayload(claim),
           uncertainty_reasons: claim.uncertaintyReasons,
           note: claim.note.trim() || undefined,
         }),
@@ -2436,6 +2894,7 @@ function RequirementEditorModal({
           claim_type: claim.claimType,
           importance: claim.importance,
           evidence_steps: claim.evidenceSteps,
+          evidence_units: claimEvidenceUnitsForPayload(claim),
           uncertainty_reasons: claim.uncertaintyReasons,
           note: claim.note.trim() || undefined,
         }),
@@ -2528,7 +2987,7 @@ function RequirementEditorModal({
               <fieldset className="step-picker">
                 <legend>Evidence steps</legend>
                 <div className="chip-row">
-                  {availableSteps.map((stepIndex) => {
+                  {availableStepIndices.map((stepIndex) => {
                     const selected = form.evidenceSteps.includes(stepIndex)
                     return (
                       <button
@@ -2781,6 +3240,100 @@ function ImageLightbox({step, onClose}: {step: FlowStep; onClose: () => void}) {
   )
 }
 
+function EvidenceBoxPreview({
+  step,
+  bbox,
+  label,
+  bboxMetadata = null,
+  legacyVariant = 'display',
+}: {
+  step: FlowStep | null
+  bbox: BoundingBox | null
+  label: string
+  bboxMetadata?: BoundingBoxMetadata | null
+  legacyVariant?: 'display' | 'preview'
+}) {
+  if (!step || !bbox) {
+    return null
+  }
+  const image = selectBoxImage(step, bboxMetadata, legacyVariant)
+  return (
+    <div className="evidence-box-preview">
+      <span className="mini-label">{label}</span>
+      <div className="bbox-canvas preview">
+        <img src={resolveAssetUrl(image.url)} alt={`Step ${step.step_index}`} draggable={false} />
+        <BoundingBoxOverlay bbox={bbox} imageWidth={image.width} imageHeight={image.height} />
+      </div>
+    </div>
+  )
+}
+
+function selectBoxImage(
+  step: FlowStep,
+  metadata: BoundingBoxMetadata | null,
+  legacyVariant: 'display' | 'preview' = 'display',
+): {url: string; width?: number | null; height?: number | null} {
+  const metaWidth = metadata?.image_width
+  const metaHeight = metadata?.image_height
+  const displayMatches = sameImageSize(metaWidth, metaHeight, step.image_width, step.image_height)
+  const previewMatches = sameImageSize(metaWidth, metaHeight, step.preview_image_width, step.preview_image_height)
+
+  if (displayMatches) {
+    return {url: step.image_url, width: step.image_width, height: step.image_height}
+  }
+  if (previewMatches && step.preview_image_url) {
+    return {url: step.preview_image_url, width: step.preview_image_width, height: step.preview_image_height}
+  }
+
+  const metaPath = metadata?.image_path ?? ''
+  if (metaPath && pathLooksLikeAsset(metaPath, step.image_url)) {
+    return {url: step.image_url, width: step.image_width, height: step.image_height}
+  }
+  if (metaPath && step.preview_image_url && pathLooksLikeAsset(metaPath, step.preview_image_url)) {
+    return {url: step.preview_image_url, width: step.preview_image_width, height: step.preview_image_height}
+  }
+
+  if (legacyVariant === 'preview' && step.preview_image_url) {
+    return {url: step.preview_image_url, width: step.preview_image_width, height: step.preview_image_height}
+  }
+  return {url: step.image_url, width: step.image_width, height: step.image_height}
+}
+
+function sameImageSize(
+  leftWidth?: number | null,
+  leftHeight?: number | null,
+  rightWidth?: number | null,
+  rightHeight?: number | null,
+): boolean {
+  return Boolean(leftWidth && leftHeight && rightWidth && rightHeight && leftWidth === rightWidth && leftHeight === rightHeight)
+}
+
+function pathLooksLikeAsset(path: string, assetUrl: string): boolean {
+  const normalizedPath = path.replace(/\\/g, '/')
+  const normalizedAsset = assetUrl.replace(/\\/g, '/')
+  return normalizedPath.endsWith(normalizedAsset) || normalizedAsset.endsWith(normalizedPath) || normalizedPath.endsWith(normalizedAsset.split('/static/').pop() ?? normalizedAsset)
+}
+
+function BoundingBoxOverlay({bbox, imageWidth, imageHeight}: {bbox: BoundingBox; imageWidth?: number | null; imageHeight?: number | null}) {
+  const width = imageWidth && imageWidth > 0 ? imageWidth : Math.max(bbox.x2, 1)
+  const height = imageHeight && imageHeight > 0 ? imageHeight : Math.max(bbox.y2, 1)
+  const left = (bbox.x1 / width) * 100
+  const top = (bbox.y1 / height) * 100
+  const boxWidth = ((bbox.x2 - bbox.x1) / width) * 100
+  const boxHeight = ((bbox.y2 - bbox.y1) / height) * 100
+  return (
+    <div
+      className="bbox-overlay"
+      style={{
+        left: `${left}%`,
+        top: `${top}%`,
+        width: `${boxWidth}%`,
+        height: `${boxHeight}%`,
+      }}
+    />
+  )
+}
+
 function groupRequirementsBySingleStep<T extends {step_indices: number[]}>(requirements: T[]): Map<number, T[]> {
   const groups = new Map<number, T[]>()
   requirements.forEach((requirement) => {
@@ -2841,13 +3394,20 @@ function sentenceCase(value: string): string {
 }
 
 function toClaimFormState(claim: VerificationClaim): ClaimFormState {
+  const regionUnit = firstRegionEvidenceUnit(claim.evidence_units)
+  const evidenceSteps = [...(claim.evidence_steps ?? [])]
+  if (regionUnit && !evidenceSteps.includes(regionUnit.step_index)) {
+    evidenceSteps.push(regionUnit.step_index)
+    evidenceSteps.sort((a, b) => a - b)
+  }
   return {
     claimId: claim.claim_id ?? '',
     claim: claim.claim_text ?? claim.claim,
     status: claim.status,
     claimType: claim.claim_type ?? 'OBSERVABLE',
     importance: claim.importance ?? 'CORE',
-    evidenceSteps: [...(claim.evidence_steps ?? [])],
+    evidenceSteps,
+    evidenceUnit: regionUnit,
     note: claim.note ?? '',
     uncertaintyReasons: [...(claim.uncertainty_reasons ?? [])],
   }
@@ -2861,6 +3421,7 @@ function emptyClaimFormState(): ClaimFormState {
     claimType: 'OBSERVABLE',
     importance: 'CORE',
     evidenceSteps: [],
+    evidenceUnit: null,
     note: '',
     uncertaintyReasons: [],
   }

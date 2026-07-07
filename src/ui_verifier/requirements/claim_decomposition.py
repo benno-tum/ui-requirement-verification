@@ -844,6 +844,7 @@ class RuleGuidedLLMClaimDecomposer:
             "rule_based_claims": rule_based_claims,
             "quality_flags": quality_flags,
             "detected_patterns": detected_patterns,
+            "max_claims": self.max_claims,
         }
         prompt = _build_rule_guided_prompt(input_payload)
         try:
@@ -1025,6 +1026,7 @@ Return JSON only. The response must match:
 
 Instructions:
 - Decompose the requirement into 1 to 5 atomic claims.
+- Treat the max_claims value in the rule-guided input as the upper bound.
 - Use only information contained in the requirement text.
 - Do not invent UI behavior, controls, visibility, screenshots, images, or evidence.
 - Do not make a claim more UI-specific than the requirement itself.
@@ -1041,6 +1043,7 @@ Instructions:
 - Separate observable UI claims from hidden/backend/system/policy claims.
 - Preserve hidden claims but mark them correctly.
 - Split mixed visible/hidden requirements when possible.
+- Prefer multiple claims for compound requirements with lists, "including", "while", "and", "so that", or separate visible and hidden obligations.
 - Avoid over-splitting simple atomic requirements.
 - Remove document heading prefixes from claim text when they are only headings.
 - Mark non-UI implementation, legal, architecture, security, database, performance, or license constraints as NON_UI or HIDDEN_SYSTEM and NOT_UI_VERIFIABLE.

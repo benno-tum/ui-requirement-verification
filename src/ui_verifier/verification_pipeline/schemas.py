@@ -121,6 +121,7 @@ class EvidenceItem(StrictModel):
     screenshot_path: str
     visible_observation: str
     bbox: list[float] | None = None
+    bbox_metadata: dict[str, Any] = Field(default_factory=dict)
     confidence: float | None = Field(default=None, ge=0.0, le=1.0)
     source: str | None = None
     metadata: dict[str, Any] = Field(default_factory=dict)

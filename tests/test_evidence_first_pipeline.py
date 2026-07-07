@@ -18,7 +18,8 @@ from ui_verifier.verification_pipeline.evidence_retrieval import (
 from ui_verifier.verification_pipeline.gemini_image_claim_verifier import GeminiImageClaimVerifier
 from ui_verifier.verification_pipeline.label_aggregation import LabelAggregator
 from ui_verifier.verification_pipeline.pipeline import EvidenceFirstVerificationPipeline
-from ui_verifier.verification_pipeline.requirement_understanding import RequirementUnderstanding
+from ui_verifier.verification_pipeline import requirement_understanding as requirement_understanding_module
+from ui_verifier.verification_pipeline.requirement_understanding import GeminiClaimDecomposer, RequirementUnderstanding
 from ui_verifier.verification_pipeline.requirement_understanding import ClaimDecomposer
 from ui_verifier.verification_pipeline.requirement_understanding import find_hidden_indicators
 from ui_verifier.verification_pipeline.schemas import (
@@ -218,6 +219,55 @@ def test_requirement_understanding_uses_batch_llm_fallback_for_failed_decomposit
         "The page shows payment controls.",
     ]
     assert results[1].decomposition_source == "heuristic"
+
+
+def test_pipeline_llm_fallback_uses_shared_rule_guided_decomposer(monkeypatch: pytest.MonkeyPatch) -> None:
+    calls: list[tuple[str, dict[str, object]]] = []
+
+    class FakeClaim:
+        def __init__(self, claim_text: str) -> None:
+            self.claim_text = claim_text
+
+    class FakeResult:
+        claims = [
+            FakeClaim("The page shows booking controls."),
+            FakeClaim("The page shows payment controls."),
+        ]
+
+    def fake_decompose_requirement_with_diagnostics(requirement_text: str, **kwargs: object) -> FakeResult:
+        calls.append((requirement_text, kwargs))
+        return FakeResult()
+
+    monkeypatch.setattr(
+        requirement_understanding_module,
+        "decompose_requirement_with_diagnostics",
+        fake_decompose_requirement_with_diagnostics,
+    )
+
+    decomposer = GeminiClaimDecomposer(provider="deepseek", model_name="deepseek-chat")
+    result = decomposer.decompose_many(
+        [RequirementInput(requirement_id="REQ-1", text="The page supports booking and payment.")],
+        max_claims=4,
+    )
+
+    assert result == {
+        "REQ-1": [
+            "The page shows booking controls.",
+            "The page shows payment controls.",
+        ]
+    }
+    assert calls == [
+        (
+            "The page supports booking and payment.",
+            {
+                "strategy": "rule_guided_llm",
+                "provider": "deepseek",
+                "model_name": "deepseek-chat",
+                "use_cache": True,
+                "max_claims": 4,
+            },
+        )
+    ]
 
 
 def test_lexical_evidence_retrieval_returns_top_k_steps() -> None:

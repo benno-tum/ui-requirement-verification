@@ -456,10 +456,53 @@ textarea {
     minmax(100px, 0.55fr)
     minmax(125px, 0.75fr)
     minmax(125px, 0.75fr)
+    minmax(145px, 0.85fr)
     minmax(190px, 1.1fr)
     minmax(220px, 1.25fr)
-    minmax(150px, 0.9fr);
-  min-width: 1040px;
+    minmax(185px, 1fr)
+    minmax(110px, 0.65fr);
+  min-width: 1320px;
+}
+
+.review-category-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 0.85rem 0 1rem;
+}
+
+.category-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.25rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  background: #fff;
+  color: #334155;
+}
+
+.category-filter strong {
+  display: inline-grid;
+  min-width: 1.45rem;
+  min-height: 1.45rem;
+  place-items: center;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  background: #e2e8f0;
+  color: #0f172a;
+  font-size: 0.78rem;
+}
+
+.category-filter.active {
+  border-color: #0f172a;
+  background: #0f172a;
+  color: #fff;
+}
+
+.category-filter.active strong {
+  background: #fff;
 }
 
 .review-mini-stack {
@@ -498,6 +541,15 @@ textarea {
 .comparison-row-button:focus {
   background: #f8fafc;
   outline: none;
+}
+
+.button-row.compact {
+  gap: 0.35rem;
+}
+
+.button-row.compact button {
+  min-height: 2.1rem;
+  padding: 0.35rem 0.55rem;
 }
 
 .meta-block {
@@ -932,6 +984,7 @@ textarea {
 
 .claim-main,
 .claim-evidence-picker,
+.bbox-editor,
 .claim-note,
 .claim-advanced-row {
   grid-column: 1 / -1;
@@ -951,6 +1004,76 @@ textarea {
 .claim-evidence-picker legend {
   padding: 0 0.35rem;
   font-weight: 700;
+}
+
+.bbox-editor {
+  display: grid;
+  gap: 0.55rem;
+  border: 1px solid #e5eaf2;
+  border-radius: 12px;
+  padding: 0.65rem;
+  background: #ffffff;
+}
+
+.bbox-editor.missing-required {
+  border-color: #f5a3a3;
+  background: #fffafa;
+}
+
+.bbox-editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.bbox-canvas {
+  position: relative;
+  width: min(100%, 760px);
+  border: 1px solid #dbe2ec;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+  touch-action: none;
+  user-select: none;
+}
+
+.bbox-canvas img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+.bbox-canvas.preview {
+  width: min(100%, 260px);
+  touch-action: auto;
+}
+
+.bbox-overlay {
+  position: absolute;
+  border: 2px solid #ef4444;
+  background: rgba(239, 68, 68, 0.12);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.95);
+  pointer-events: none;
+}
+
+.bbox-suggestion-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.evidence-box-preview {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.45rem;
+}
+
+.evidence-snippet-group {
+  display: grid;
+  gap: 0.35rem;
 }
 
 .claim-advanced-row {

@@ -27,7 +27,9 @@ from ui_verifier.requirements.gemini_usage import read_usage_summary, usage_log_
 from ui_verifier.requirements.llm_client import run_text_json_llm
 from ui_verifier.requirements.schemas import RequirementReviewStatus
 from ui_verifier.common.json_utils import parse_json_response
+from ui_verifier.common.flow_utils import parse_step_number
 from ui_verifier.evaluation.prediction_coverage import coverage_for_files
+from ui_verifier.localization import TextBoxLocalizer, ensure_ocr_sidecar
 from ui_verifier.verification.schemas import (
     ClaimEvidence,
     ClaimEvidenceStatus,
@@ -202,6 +204,14 @@ class RegenerateExpectedClaimsRequest(BaseModel):
     preserve_existing_decisions: bool = True
 
 
+class BoundingBoxSuggestionRequest(BaseModel):
+    claim_text: str
+    step_index: int
+    max_candidates: int = 5
+    generate_if_missing: bool = True
+    tesseract_cmd: str = "tesseract"
+
+
 def _repo_relative(path: Path) -> str:
     try:
         return str(path.resolve().relative_to(BASE_DIR.resolve()))
@@ -285,6 +295,7 @@ def _run_entry_from_data(path: Path, data: dict[str, Any]) -> dict[str, Any]:
         "run_id": _run_id_for_path(path),
         "flow_id": data.get("flow_id"),
         "path": _repo_relative(path),
+        "run_name": path.name,
         "source": path.parent.name,
         "run_folder": _repo_relative(path.parent),
         "mtime": path.stat().st_mtime,
@@ -317,6 +328,15 @@ def _safe_output_dir(name: str) -> Path:
             detail="Output directory name may contain only letters, numbers, dot, underscore, and hyphen.",
         )
     return _require_under(GENERATED_ROOT / normalized, GENERATED_ROOT)
+
+
+def _step_image_path_for_localization(flow_id: str, step_index: int) -> Path:
+    dataset, flow_dir = flow_catalog.resolve_flow(flow_id)
+    visible_paths = flow_catalog._visible_step_paths(dataset, flow_id, flow_dir)
+    for step_path in visible_paths:
+        if parse_step_number(step_path) == step_index:
+            return flow_catalog._preferred_step_image_path(flow_dir, flow_id, step_path)
+    raise FileNotFoundError(f"Step {step_index} not found for flow {flow_id}.")
 
 
 def build_pipeline_run_command(flow_id: str, body: StartPipelineRunRequest, *, job_id: str | None = None) -> tuple[list[str], Path]:
@@ -494,6 +514,44 @@ def get_flow(flow_id: str) -> dict[str, Any]:
 def get_flow_steps(flow_id: str) -> list[dict[str, Any]]:
     try:
         return flow_catalog.get_flow_steps(flow_id)
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+
+
+@app.post("/flows/{flow_id}/bbox-suggestions")
+def suggest_bounding_boxes(flow_id: str, body: BoundingBoxSuggestionRequest) -> dict[str, Any]:
+    if body.step_index < 0:
+        raise HTTPException(status_code=400, detail="step_index must be >= 0.")
+    if body.max_candidates < 1 or body.max_candidates > 20:
+        raise HTTPException(status_code=400, detail="max_candidates must be between 1 and 20.")
+    try:
+        image_path = _step_image_path_for_localization(flow_id, body.step_index)
+        if body.generate_if_missing:
+            try:
+                ensure_ocr_sidecar(image_path, tesseract_cmd=body.tesseract_cmd)
+            except Exception:
+                pass
+        candidates = TextBoxLocalizer().suggest(
+            body.claim_text,
+            image_path,
+            max_candidates=body.max_candidates,
+        )
+        for candidate in candidates:
+            if candidate.get("image_path"):
+                candidate["image_path"] = _repo_relative(Path(str(candidate["image_path"])))
+        image_width = candidates[0].get("image_width") if candidates else None
+        image_height = candidates[0].get("image_height") if candidates else None
+        return {
+            "flow_id": flow_id,
+            "step_index": body.step_index,
+            "image_path": _repo_relative(image_path),
+            "image_width": image_width,
+            "image_height": image_height,
+            "coordinate_space": "image_pixels",
+            "candidates": candidates,
+        }
     except FileNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e)) from e
     except ValueError as e:

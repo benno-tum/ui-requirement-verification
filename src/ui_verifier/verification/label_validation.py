@@ -6,6 +6,7 @@ from ui_verifier.verification.schemas import (
     ClaimEvidenceStatus,
     ClaimImportance,
     ClaimType,
+    EvidenceType,
     UIEvaluability,
     VerificationGoldItem,
     VerificationLabel,
@@ -74,6 +75,26 @@ def _validate_claims(
                 )
             )
 
+        invalid_unit_steps = [unit.step_index for unit in claim.evidence_units if unit.step_index not in allowed_steps]
+        if invalid_unit_steps:
+            errors.append(
+                ValidationIssue(
+                    field_prefix,
+                    f"Claim evidence unit steps must be included in item evidence_steps: {invalid_unit_steps}.",
+                )
+            )
+
+        region_units = [
+            unit
+            for unit in claim.evidence_units
+            if unit.evidence_type == EvidenceType.REGION and unit.bbox is not None
+        ]
+        for region_unit in region_units:
+            if region_unit.step_index not in claim.evidence_steps:
+                errors.append(ValidationIssue(field_prefix, "Claim bounding box step must be included in claim evidence_steps."))
+            elif not _bbox_within_declared_image(region_unit):
+                errors.append(ValidationIssue(field_prefix, "Claim bounding box must fit within its declared image dimensions."))
+
         if claim.claim_type == ClaimType.HIDDEN and claim.status not in {
             ClaimEvidenceStatus.HIDDEN,
             ClaimEvidenceStatus.AMBIGUOUS,
@@ -83,3 +104,14 @@ def _validate_claims(
 
     if item.claims and not has_core_claim:
         warnings.append(ValidationIssue("claims", "At least one claim should be marked CORE."))
+
+
+def _bbox_within_declared_image(unit: object) -> bool:
+    bbox = getattr(unit, "bbox", None)
+    width = getattr(unit, "bbox_image_width", None)
+    height = getattr(unit, "bbox_image_height", None)
+    if bbox is None or width is None or height is None:
+        return True
+    if width <= 0 or height <= 0:
+        return False
+    return bbox.x1 >= 0 and bbox.y1 >= 0 and bbox.x2 <= width and bbox.y2 <= height

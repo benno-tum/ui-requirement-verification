@@ -20,6 +20,7 @@ from ui_verifier.requirements.schemas import (
     RequirementScope,
     TaskRelevance,
 )
+from ui_verifier.verification.label_validation import validate_verification_gold_item
 from ui_verifier.verification.schemas import ClaimEvidence, ClaimEvidenceStatus, VerificationGoldFile, VerificationGoldItem, VerificationLabel
 from scripts.backfill_verification_claim_suggestions import backfill_verification_claim_suggestions
 
@@ -342,3 +343,154 @@ def test_verification_claim_status_supports_caveat_roundtrip() -> None:
 
     assert parsed.status == ClaimEvidenceStatus.SUPPORTED_WITH_CAVEAT
     assert parsed.to_dict()["status"] == "SUPPORTED_WITH_CAVEAT"
+
+
+def test_observable_supported_claim_does_not_require_bounding_box() -> None:
+    item = VerificationGoldItem(
+        requirement_id="REQ-01",
+        flow_id="flow-1",
+        text="The system shall show checkout total.",
+        step_indices=[1],
+        verification_label="FULFILLED",
+        ui_evaluability="UI_VERIFIABLE",
+        evidence_steps=[1],
+        claims=[
+            {
+                "claim": "The checkout total is visible.",
+                "status": "SUPPORTED",
+                "claim_type": "OBSERVABLE",
+                "evidence_steps": [1],
+            }
+        ],
+        review_status="accepted",
+    )
+
+    result = validate_verification_gold_item(item)
+
+    assert result.errors == []
+
+
+def test_observable_supported_claim_accepts_region_bounding_box() -> None:
+    item = VerificationGoldItem(
+        requirement_id="REQ-01",
+        flow_id="flow-1",
+        text="The system shall show checkout total.",
+        step_indices=[1],
+        verification_label="FULFILLED",
+        ui_evaluability="UI_VERIFIABLE",
+        evidence_steps=[1],
+        claims=[
+            {
+                "claim": "The checkout total is visible.",
+                "status": "SUPPORTED",
+                "claim_type": "OBSERVABLE",
+                "evidence_steps": [1],
+                "evidence_units": [
+                    {
+                        "step_index": 1,
+                        "evidence_type": "region",
+                        "bbox": {"x1": 10, "y1": 20, "x2": 70, "y2": 32},
+                        "matched_text": "Checkout Total",
+                    }
+                ],
+            }
+        ],
+        review_status="accepted",
+    )
+
+    result = validate_verification_gold_item(item)
+
+    assert result.errors == []
+    assert item.claims[0].to_dict()["evidence_units"][0]["bbox"] == {"x1": 10.0, "y1": 20.0, "x2": 70.0, "y2": 32.0}
+
+
+def test_observable_supported_claim_rejects_bounding_box_outside_declared_image() -> None:
+    item = VerificationGoldItem(
+        requirement_id="REQ-01",
+        flow_id="flow-1",
+        text="The system shall show checkout total.",
+        step_indices=[1],
+        verification_label="FULFILLED",
+        ui_evaluability="UI_VERIFIABLE",
+        evidence_steps=[1],
+        claims=[
+            {
+                "claim": "The checkout total is visible.",
+                "status": "SUPPORTED",
+                "claim_type": "OBSERVABLE",
+                "evidence_steps": [1],
+                "evidence_units": [
+                    {
+                        "step_index": 1,
+                        "evidence_type": "region",
+                        "bbox": {"x1": 10, "y1": 20, "x2": 120, "y2": 32},
+                        "bbox_image_width": 100,
+                        "bbox_image_height": 80,
+                        "bbox_coordinate_space": "image_pixels",
+                        "bbox_source": "manual",
+                    }
+                ],
+            }
+        ],
+        review_status="accepted",
+    )
+
+    result = validate_verification_gold_item(item)
+
+    assert any("image dimensions" in issue.message for issue in result.errors)
+
+
+def test_region_bounding_box_provenance_roundtrips(tmp_path: Path) -> None:
+    storage = AnnotationStorage(
+        candidate_root=tmp_path / "generated" / "candidate_requirements",
+        versioned_candidate_root=tmp_path / "annotations" / "requirements_candidate",
+        gold_root=tmp_path / "annotations" / "requirements_gold",
+        verification_gold_root=tmp_path / "annotations" / "verification_gold",
+    )
+    verification_gold_file = VerificationGoldFile(
+        dataset="mind2web",
+        flow_id="flow-1",
+        items=[
+            VerificationGoldItem(
+                requirement_id="REQ-01",
+                flow_id="flow-1",
+                text="The system shall show checkout total.",
+                step_indices=[1],
+                verification_label="FULFILLED",
+                ui_evaluability="UI_VERIFIABLE",
+                evidence_steps=[1],
+                claims=[
+                    {
+                        "claim": "The checkout total is visible.",
+                        "status": "SUPPORTED",
+                        "claim_type": "OBSERVABLE",
+                        "evidence_steps": [1],
+                        "evidence_units": [
+                            {
+                                "step_index": 1,
+                                "evidence_type": "region",
+                                "bbox": {"x1": 10, "y1": 20, "x2": 70, "y2": 32},
+                                "matched_text": "Checkout Total",
+                                "bbox_image_path": "/static/flows/mind2web/flow-1/original/step_01.png",
+                                "bbox_image_width": 1280,
+                                "bbox_image_height": 2400,
+                                "bbox_coordinate_space": "image_pixels",
+                                "bbox_source": "manual",
+                                "bbox_confidence": 1.0,
+                            }
+                        ],
+                    }
+                ],
+            )
+        ],
+    )
+
+    storage.save_verification_gold_file(verification_gold_file)
+    loaded = storage.load_verification_gold_file("flow-1")
+
+    assert loaded is not None
+    unit = loaded.items[0].claims[0].to_dict()["evidence_units"][0]
+    assert unit["bbox_image_path"] == "/static/flows/mind2web/flow-1/original/step_01.png"
+    assert unit["bbox_image_width"] == 1280
+    assert unit["bbox_image_height"] == 2400
+    assert unit["bbox_source"] == "manual"
