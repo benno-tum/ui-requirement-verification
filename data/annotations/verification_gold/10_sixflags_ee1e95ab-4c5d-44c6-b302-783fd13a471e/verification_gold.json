@@ -36,7 +36,16 @@
             1,
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "A specific park can be selected as the active park context.",
@@ -47,7 +56,16 @@
             3,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "Later ticketing or add-on pages are localized to the selected park.",
@@ -59,7 +77,20 @@
             6,
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -88,10 +119,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:07:03+00:00",
       "evidence_note": "Steps 1-3 show park selection ending in Six Flags America; later purchase pages and the cart retain that park context.",
-      "rationale": "All observable core claims are supported by the ordered flow."
+      "rationale": "All observable core claims are supported by the ordered flow.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:07:03+00:00",
+      "updated_at": "2026-07-07T15:59:26+00:00"
     },
     {
       "requirement_id": "REQ-02",
@@ -104,13 +136,13 @@
       "source_candidate_id": "REQ-02",
       "source_harvest_id": "HARV-02",
       "step_indices": [
-        3,
         4,
-        5
+        6
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The visible flow supports park-specific purchase content after the park has been selected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
@@ -125,7 +157,12 @@
           "evidence_steps": [
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "Park-specific pass or in-park purchase options are presented after selection.",
@@ -136,7 +173,16 @@
             4,
             6
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -157,10 +203,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:08:41+00:00",
       "evidence_note": "Step 4 shows Six Flags America with pass merchandising; step 6 shows season add-ons for the purchase flow.",
-      "rationale": "The visible flow supports park-specific purchase content after the park has been selected."
+      "rationale": "The visible flow supports park-specific purchase content after the park has been selected.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:08:41+00:00",
+      "updated_at": "2026-07-07T17:17:18+00:00"
     },
     {
       "requirement_id": "REQ-03",
@@ -196,7 +243,16 @@
             4,
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The flow reaches an add-on purchasing section from that park browsing context.",
@@ -206,7 +262,12 @@
           "evidence_steps": [
             6
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -230,8 +291,9 @@
       ],
       "evidence_note": "The localized homepage and tickets menu lead to the Season Add-Ons page.",
       "rationale": "The required navigation outcome is visibly shown.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:11:31+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:11:31+00:00",
+      "updated_at": "2026-07-07T17:17:19+00:00"
     },
     {
       "requirement_id": "REQ-04",
@@ -249,6 +311,7 @@
       "requirement_type": "NFR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The visible cards provide enough basic title, description, and price information for comparison.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
@@ -263,7 +326,12 @@
           "evidence_steps": [
             6
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The add-on options include visible descriptive information.",
@@ -273,7 +341,12 @@
           "evidence_steps": [
             6
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The add-on options include visible prices or starting prices.",
@@ -283,7 +356,12 @@
           "evidence_steps": [
             6
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -295,10 +373,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:11:44+00:00",
       "evidence_note": "Step 6 shows add-on cards for Flash Pass, Dining Pass, Go-Karts, and Season Drink Bottle with descriptions and prices.",
-      "rationale": "The visible cards provide enough basic title, description, and price information for comparison."
+      "rationale": "The visible cards provide enough basic title, description, and price information for comparison.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:11:44+00:00",
+      "updated_at": "2026-07-07T17:17:19+00:00"
     },
     {
       "requirement_id": "REQ-05",
@@ -311,12 +390,15 @@
       "source_candidate_id": "REQ-05",
       "source_harvest_id": "HARV-05",
       "step_indices": [
-        6,
-        7
+        7,
+        8,
+        9,
+        10
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The category-based shopping interface is visibly present and contains purchasable items.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
@@ -334,7 +416,24 @@
             9,
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "Purchasable items are browsed within the selected category interface.",
@@ -345,7 +444,16 @@
             7,
             8
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -364,27 +472,31 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:11:57+00:00",
       "evidence_note": "The modal contains category tabs such as Daily Tickets, Season Passes, THE FLASH PASS, Group Tickets, Dining, More Deals, and Promo.",
-      "rationale": "The category-based shopping interface is visibly present and contains purchasable items."
+      "rationale": "The category-based shopping interface is visibly present and contains purchasable items.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:11:57+00:00",
+      "updated_at": "2026-07-07T17:17:20+00:00"
     },
     {
       "requirement_id": "REQ-06",
       "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
       "text": "The system shall allow the user to choose among multiple add-on variants within the selected park context.",
-      "scope": "single_screen",
+      "scope": "multi_screen",
       "tags": [],
       "source_type": "requirements_gold",
       "source_id": "REQ-06",
       "source_candidate_id": "REQ-06",
       "source_harvest_id": "HARV-06",
       "step_indices": [
-        7
+        7,
+        8,
+        9
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The user can visibly choose among more than one add-on variant.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
@@ -401,7 +513,20 @@
             8,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The add-on interface offers multiple add-on variants to choose from.",
@@ -411,7 +536,12 @@
           "evidence_steps": [
             7
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -425,10 +555,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:23:04+00:00",
       "evidence_note": "Step 7 shows two go-kart product variants while the Six Flags America context remains in the page chrome.",
-      "rationale": "The user can visibly choose among more than one add-on variant."
+      "rationale": "The user can visibly choose among more than one add-on variant.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:23:04+00:00",
+      "updated_at": "2026-07-07T17:17:21+00:00"
     },
     {
       "requirement_id": "REQ-15",
@@ -460,7 +591,12 @@
           "evidence_steps": [
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The pre-checkout summary shows subtotal, fees, tax, and total.",
@@ -470,7 +606,12 @@
           "evidence_steps": [
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -482,28 +623,29 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:23:57+00:00",
       "evidence_note": "Step 10 shows line items plus Subtotal, Processing Fee, Tax, and Total.",
-      "rationale": "The required pricing summary is visibly present before checkout."
+      "rationale": "The required pricing summary is visibly present before checkout.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:23:57+00:00",
+      "updated_at": "2026-07-07T16:36:50+00:00"
     },
     {
       "requirement_id": "REQ-07",
       "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
       "text": "The system shall provide a dedicated detail view for a selected add-on before it is added to the cart.",
-      "scope": "multi_screen",
+      "scope": "single_screen",
       "tags": [],
       "source_type": "requirements_gold",
       "source_id": "REQ-07",
       "source_candidate_id": "REQ-07",
       "source_harvest_id": "HARV-07",
       "step_indices": [
-        7,
         8
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The dedicated view appears before cart addition.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
@@ -518,7 +660,12 @@
           "evidence_steps": [
             8
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The item is not added immediately before the user reviews the detail view.",
@@ -528,7 +675,12 @@
           "evidence_steps": [
             8
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -544,10 +696,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:24:16+00:00",
       "evidence_note": "Step 8 shows a product detail/configuration panel for the 2023 All Season Go-Kart Pass with Back and Add to Cart actions.",
-      "rationale": "The dedicated view appears before cart addition."
+      "rationale": "The dedicated view appears before cart addition.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:24:16+00:00",
+      "updated_at": "2026-07-07T17:17:22+00:00"
     },
     {
       "requirement_id": "REQ-08",
@@ -564,19 +717,19 @@
         8
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "The flow shows visible product notes such as membership-related conditions and ride restrictions. The disclosure is visible, while actual enforcement would depend on hidden logic.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "verification_label": "FULFILLED",
       "uncertainty_reasons": [
         "NONTRIVIAL_HIDDEN_PROPERTY"
       ],
       "notes": [],
       "claims": [
         {
-          "claim": "Visible product conditions or restrictions are disclosed before adding the add-on to the cart.",
+          "claim": "The add-on purchase flow discloses eligibility or purchase conditions before the user commits to the add-on.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -584,15 +737,33 @@
             6,
             8
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "tep 6 states the All Season Go-Kart Pass is “Only available to Pass and Legacy Membership Holders.” Step 8 repeats the Go-Kart add-on detail before Add to Cart."
         },
         {
-          "claim": "Completeness and enforcement of all important product conditions require behavior beyond visible disclosure.",
-          "status": "HIDDEN",
-          "claim_type": "HIDDEN",
+          "claim": "The add-on purchase flow discloses usage or safety restrictions before the user commits to the add-on.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
           "importance": "CORE",
-          "evidence_steps": [],
-          "note": null
+          "evidence_steps": [
+            8
+          ],
+          "evidence_units": [
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Step 8 shows height requirements, driving requirement, medical/safety restrictions, and availability/weather limitations before the Add to Cart button."
         }
       ],
       "evidence_steps": [
@@ -611,8 +782,9 @@
       ],
       "evidence_note": "Step 6 notes pass or legacy membership availability for go-karts, and step 8 shows ride and safety restrictions before Add to Cart.",
       "rationale": "Visible disclosure is supported, but screenshots cannot establish that every important condition is disclosed or enforced.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:25:05+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:25:05+00:00",
+      "updated_at": "2026-07-07T17:07:59+00:00"
     },
     {
       "requirement_id": "REQ-09",
@@ -646,7 +818,12 @@
           "evidence_steps": [
             8
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The pending add-on quantity can change before Add to Cart.",
@@ -657,7 +834,16 @@
             8,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -676,8 +862,9 @@
       ],
       "evidence_note": "The quantity control is visible at quantity 1 in step 8 and quantity 2 in step 9.",
       "rationale": "The visible state change supports quantity adjustment before cart addition.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:26:04+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:26:04+00:00",
+      "updated_at": "2026-07-07T16:00:11+00:00"
     },
     {
       "requirement_id": "REQ-11",
@@ -714,7 +901,16 @@
             8,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "Using that action returns to the broader shopping context without losing it.",
@@ -725,7 +921,16 @@
             8,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -744,8 +949,9 @@
       ],
       "evidence_note": "A Back button is visible in the configuration modal, but the flow does not show it being used.",
       "rationale": "The mechanism is visible, but the outcome of backing out without losing context is not shown.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:27:40+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:27:40+00:00",
+      "updated_at": "2026-07-07T17:10:40+00:00"
     },
     {
       "requirement_id": "REQ-12",
@@ -778,7 +984,12 @@
           "evidence_steps": [
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The shopping cart contains the configured add-on as a line item.",
@@ -788,7 +999,12 @@
           "evidence_steps": [
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The cart line item reflects the selected quantity.",
@@ -798,7 +1014,12 @@
           "evidence_steps": [
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -815,10 +1036,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:27:51+00:00",
       "evidence_note": "Step 9 shows quantity 2 for the go-kart pass, and step 10 shows the All Season Go-Kart Pass line with Qty 2.",
-      "rationale": "The visible cart line item confirms the configured add-on and selected quantity."
+      "rationale": "The visible cart line item confirms the configured add-on and selected quantity.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:27:51+00:00",
+      "updated_at": "2026-07-07T16:02:31+00:00"
     },
     {
       "requirement_id": "REQ-13",
@@ -850,7 +1072,12 @@
           "evidence_steps": [
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The same cart review contains an optional add-on product.",
@@ -860,7 +1087,12 @@
           "evidence_steps": [
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -872,10 +1104,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:28:32+00:00",
       "evidence_note": "Step 10 shows a One-Day Ticket and a 2023 All Season Go-Kart Pass in the same shopping cart.",
-      "rationale": "The cart visibly combines admission and add-on products in one order review."
+      "rationale": "The cart visibly combines admission and add-on products in one order review.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:28:32+00:00",
+      "updated_at": "2026-07-07T16:17:27+00:00"
     },
     {
       "requirement_id": "REQ-14",
@@ -910,7 +1143,16 @@
             3,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The selected park context remains visible or referenced during add-on selection.",
@@ -923,7 +1165,24 @@
             8,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The selected park context remains visible or referenced during cart review.",
@@ -933,7 +1192,12 @@
           "evidence_steps": [
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -959,10 +1223,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:28:49+00:00",
       "evidence_note": "Six Flags America is shown after park selection and the cart acknowledgment references Six Flags America, Baltimore, Maryland/Washington.",
-      "rationale": "The visible screens consistently preserve the selected park context; hidden session implementation is treated as a routine dependency."
+      "rationale": "The visible screens consistently preserve the selected park context; hidden session implementation is treated as a routine dependency.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:28:49+00:00",
+      "updated_at": "2026-07-07T16:33:30+00:00"
     },
     {
       "requirement_id": "REQ-16",
@@ -994,7 +1259,12 @@
           "evidence_steps": [
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The cart review provides a visible modification mechanism before checkout.",
@@ -1004,7 +1274,12 @@
           "evidence_steps": [
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -1016,10 +1291,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:29:30+00:00",
       "evidence_note": "Step 10 shows a cart review with a Modify Cart action and Checkout still ahead.",
-      "rationale": "The visible cart state supports review and modification before proceeding."
+      "rationale": "The visible cart state supports review and modification before proceeding.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:29:30+00:00",
+      "updated_at": "2026-07-07T16:41:42+00:00"
     },
     {
       "requirement_id": "REQ-17",
@@ -1035,11 +1311,12 @@
         10
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The separation is visible, but enforcement of required purchase acknowledgement is not directly demonstrated.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "verification_label": "FULFILLED",
       "uncertainty_reasons": [
         "UNVERIFIED_SYSTEM_OUTCOME"
       ],
@@ -1053,7 +1330,12 @@
           "evidence_steps": [
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "Purchase acknowledgements are shown separately from the marketing opt-in.",
@@ -1063,15 +1345,28 @@
           "evidence_steps": [
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The requiredness of the purchase acknowledgement depends on enforcement behavior.",
-          "status": "HIDDEN",
-          "claim_type": "HIDDEN",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
           "importance": "CORE",
-          "evidence_steps": [],
-          "note": null
+          "evidence_steps": [
+            10
+          ],
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "The checkout button is disabled, since the purchase acknowledgement isn't consented yet."
         }
       ],
       "evidence_steps": [
@@ -1083,10 +1378,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:29:58+00:00",
       "evidence_note": "Step 10 separates a marketing/news checkbox from a purchase terms checkbox; the marketing text states it is not a condition of purchase.",
-      "rationale": "The separation is visible, but enforcement of required purchase acknowledgement is not directly demonstrated."
+      "rationale": "The separation is visible, but enforcement of required purchase acknowledgement is not directly demonstrated.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:29:58+00:00",
+      "updated_at": "2026-07-07T16:53:16+00:00"
     },
     {
       "requirement_id": "REQ-18",
@@ -1125,7 +1421,24 @@
             9,
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -1156,10 +1469,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:30:16+00:00",
       "evidence_note": "The purchase modal and cart review show a High Contrast Mode control.",
-      "rationale": "A visible accessibility support mechanism is present during the purchase workflow."
+      "rationale": "A visible accessibility support mechanism is present during the purchase workflow.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:30:16+00:00",
+      "updated_at": "2026-07-07T16:58:56+00:00"
     },
     {
       "requirement_id": "REQ-19",
@@ -1194,7 +1508,12 @@
           "evidence_steps": [
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The chosen digital or mobile ticket option is reflected later in the purchase flow.",
@@ -1204,7 +1523,12 @@
           "evidence_steps": [
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -1218,8 +1542,9 @@
       ],
       "evidence_note": "The cart review is visible, but no explicit digital or mobile ticket fulfillment selector or selected fulfillment state is shown.",
       "rationale": "The screenshots do not provide enough visible evidence to verify or contradict fulfillment-option support.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:31:42+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:31:42+00:00",
+      "updated_at": "2026-07-07T17:10:49+00:00"
     },
     {
       "requirement_id": "REQ-10",
@@ -1238,6 +1563,8 @@
       "requirement_type": "NFR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The quantity change is reflected in the pending purchase configuration before cart addition.",
+      "annotated_by": "benno",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1299,8 +1626,9 @@
       ],
       "evidence_note": "Step 8 shows the pending configuration with quantity 1. Step 9 shows the same configuration with quantity 2.",
       "rationale": "The quantity change is reflected in the pending purchase configuration before cart addition.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:06:31+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:06:31+00:00",
+      "updated_at": "2026-07-07T17:17:22+00:00"
     },
     {
       "requirement_id": "CONTR-01",
@@ -1319,6 +1647,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "annotated_by": "benno",
       "intended_label": "PARTIALLY_FULFILLED",
       "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
@@ -1335,7 +1664,12 @@
           "evidence_steps": [
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The selected fulfillment choice is preserved across cart review and checkout transition.",
@@ -1345,7 +1679,12 @@
           "evidence_steps": [
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "Actual cross-step persistence of the fulfillment choice can be verified without hidden state.",
@@ -1353,7 +1692,7 @@
           "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [],
-          "note": null
+          "evidence_units": []
         }
       ],
       "evidence_steps": [
@@ -1367,8 +1706,9 @@
       ],
       "evidence_note": "No explicit digital or mobile ticket fulfillment choice is visible in the provided cart review, and the checkout transition is not shown.",
       "rationale": "The screenshots do not provide a reliable basis for judging persistence of a fulfillment choice.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-07T16:59:12+00:00"
     },
     {
       "requirement_id": "CONTR-02",
@@ -1387,6 +1727,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
+      "annotated_by": "benno",
       "intended_label": "PARTIALLY_FULFILLED",
       "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
@@ -1403,7 +1744,12 @@
           "evidence_steps": [
             10
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "Actual external delivery to the destination or channel is outside the captured purchase flow.",
@@ -1411,7 +1757,7 @@
           "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [],
-          "note": null
+          "evidence_units": []
         }
       ],
       "evidence_steps": [
@@ -1425,8 +1771,9 @@
       ],
       "evidence_note": "The pre-checkout cart is visible, but it does not show an email, mobile wallet, or other digital ticket delivery destination.",
       "rationale": "The required delivery-channel indication is not visible, and actual delivery would be external to the UI evidence.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-07T16:59:54+00:00"
     },
     {
       "requirement_id": "CONTR-03",
@@ -1441,10 +1788,15 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-03",
       "source_candidate_id": "CONTR-03",
-      "step_indices": [],
+      "step_indices": [
+        6,
+        8
+      ],
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
+      "annotation_notes": "The explanatory part is visible, while enforcement of eligibility policy is not verifiable from screenshots alone.",
+      "annotated_by": "benno",
       "intended_label": "ABSTAIN",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
@@ -1475,11 +1827,19 @@
         },
         {
           "claim": "The system enforces required pass-ownership or eligibility policy before checkout.",
-          "status": "HIDDEN",
+          "status": "SUPPORTED_WITH_CAVEAT",
           "claim_type": "HIDDEN",
           "importance": "CORE",
-          "evidence_steps": [],
-          "evidence_units": []
+          "evidence_steps": [
+            8
+          ],
+          "evidence_units": [
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "It is only shown for the Go-Kart Pass and not for the other add ons. But it is indicated in the top bar of the checkout. There are other passes and Dining options."
         }
       ],
       "evidence_steps": [
@@ -1498,8 +1858,9 @@
       ],
       "evidence_note": "Steps 6 and 8 disclose membership availability and ride restrictions, but no policy enforcement behavior is demonstrated.",
       "rationale": "The explanatory part is visible, while enforcement of eligibility policy is not verifiable from screenshots alone.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-07T15:42:24+00:00"
     },
     {
       "requirement_id": "CONTR-04",
@@ -1518,6 +1879,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "CONTENT_UPDATE",
+      "annotated_by": "benno",
       "intended_label": "ABSTAIN",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
@@ -1561,8 +1923,9 @@
       ],
       "evidence_note": "Step 10 shows subtotal, processing fee, tax, and total, but cannot prove completeness for all possible park-specific surcharges or fulfillment-related fees.",
       "rationale": "The visible monetary summary is supported, while the universal completeness claim is not settled by the screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-07T15:50:52+00:00"
     },
     {
       "requirement_id": "CONTR-05",
@@ -1581,6 +1944,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NAVIGATION_OUTCOME",
+      "annotated_by": "benno",
       "intended_label": "NOT_FULFILLED",
       "verification_label": "NOT_FULFILLED",
       "uncertainty_reasons": [],
@@ -1628,8 +1992,9 @@
       ],
       "evidence_note": "Step 10 shows the relevant pre-checkout cart review, but no ticket fulfillment method confirmation or change control is present in that review step.",
       "rationale": "The shown pre-checkout review step visibly lacks the required fulfillment-method confirmation or change mechanism.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-07T15:55:50+00:00"
     },
     {
       "requirement_id": "CONTR-06",
@@ -1648,6 +2013,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "annotated_by": "benno",
       "intended_label": "NOT_FULFILLED",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
@@ -1747,8 +2113,9 @@
       ],
       "evidence_note": "Park context and add-on quantity are carried through configuration and cart review, but no chosen ticket fulfillment method is visible in those states.",
       "rationale": "The synchronization requirement is supported for park context and quantity, but missing for ticket fulfillment.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-07T17:03:01+00:00"
     }
   ]
 }

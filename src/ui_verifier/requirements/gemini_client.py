@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
 from typing import Any, List
 import os
 
@@ -17,13 +18,20 @@ def _request_timeout_ms() -> int:
     return timeout_ms
 
 
-def run_gemini(
+@dataclass(frozen=True)
+class GeminiRunResult:
+    text: str
+    usage: dict[str, int]
+    usage_record: dict[str, Any]
+
+
+def run_gemini_with_usage(
     prompt: str,
     image_bytes_list: List[bytes],
     model_name: str,
     temperature: float = 0.2,
     usage_context: dict[str, Any] | None = None,
-) -> str:
+) -> GeminiRunResult:
     from google import genai
     from google.genai import types
 
@@ -49,11 +57,27 @@ def run_gemini(
         ),
     )
 
-    record_gemini_usage(
+    usage = extract_usage_metadata(response)
+    usage_record = record_gemini_usage(
         model_name=model_name,
-        usage=extract_usage_metadata(response),
+        usage=usage,
         image_count=len(image_bytes_list),
         context=usage_context,
     )
+    return GeminiRunResult(text=response.text, usage=usage, usage_record=usage_record)
 
-    return response.text
+
+def run_gemini(
+    prompt: str,
+    image_bytes_list: List[bytes],
+    model_name: str,
+    temperature: float = 0.2,
+    usage_context: dict[str, Any] | None = None,
+) -> str:
+    return run_gemini_with_usage(
+        prompt,
+        image_bytes_list,
+        model_name,
+        temperature=temperature,
+        usage_context=usage_context,
+    ).text

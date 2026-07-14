@@ -329,11 +329,36 @@ export type PipelineRunList = {
   runs: PipelineRunSummary[]
 }
 
+export type UploadedFlowRequirement = {
+  requirement_id: string
+  flow_id: string
+  text: string
+  [key: string]: unknown
+}
+
+export type CreateUploadedFlowPayload = {
+  project_name: string
+  description?: string
+  requirements_content: string
+  requirements_filename?: string
+  screenshots: Array<{
+    filename: string
+    content_base64: string
+  }>
+}
+
+export type CreateUploadedFlowResponse = {
+  flow: FlowSummary
+  steps: FlowStep[]
+  requirements: UploadedFlowRequirement[]
+  requirements_count: number
+}
+
 export type StartPipelineRunPayload = {
   verifier: 'deterministic_rule_based' | 'gemini-image'
   verifier_model: string
   retriever: 'lexical'
-  requirements_source: 'accepted' | 'benchmark'
+  requirements_source: 'accepted' | 'benchmark' | 'uploaded'
   top_k: number
   max_images: number
   max_gemini_api_calls: number
@@ -433,6 +458,11 @@ export function resolveAssetUrl(path: string): string {
 }
 
 export const api = {
+  createUploadedFlow: (payload: CreateUploadedFlowPayload) =>
+    request<CreateUploadedFlowResponse>('/uploaded-flows', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
   listFlows: () => request<FlowSummary[]>('/flows'),
   getFlow: (flowId: string) => request<FlowSummary>(`/flows/${flowId}`),
   getSteps: (flowId: string) => request<FlowStep[]>(`/flows/${flowId}/steps`),

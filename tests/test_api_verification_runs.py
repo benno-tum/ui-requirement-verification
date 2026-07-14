@@ -18,6 +18,7 @@ def test_run_discovery_finds_diagnosis_and_demo_outputs(tmp_path: Path, monkeypa
     monkeypatch.setattr(api_app, "BASE_DIR", base_dir)
     monkeypatch.setattr(api_app, "GENERATED_ROOT", generated_root)
     monkeypatch.setattr(api_app, "VERIFICATION_PIPELINE_ROOT", generated_root / "verification_pipeline")
+    monkeypatch.setattr(api_app, "VERIFICATION_PIPELINE_RUNS_ROOT", generated_root / "verification_pipeline_runs")
     monkeypatch.setattr(api_app, "DEMO_VERIFICATION_ROOT", generated_root / "demo_verification")
 
     payload = {
@@ -29,6 +30,11 @@ def test_run_discovery_finds_diagnosis_and_demo_outputs(tmp_path: Path, monkeypa
     _write_json(generated_root / "diagnosis_strict_gemini_flash_lite" / f"{flow_id}.json", payload)
     _write_json(generated_root / "benchmark_coverage_gemini_flash_lite" / f"{flow_id}.json", payload)
     _write_json(generated_root / "demo_verification" / f"{flow_id}.json", payload)
+    _write_json(generated_root / "verification_pipeline_runs" / f"{flow_id}_gemini25_single_call.json", payload)
+    _write_json(
+        generated_root / "verification_pipeline_runs" / f"{flow_id}_invalid.json",
+        {**payload, "metadata": {**payload["metadata"], "run_valid": False}},
+    )
     _write_json(generated_root / "diagnosis_strict_gemini_flash_lite" / "metrics_with_claims.json", {"label_metrics": {}})
 
     runs = api_app.discover_pipeline_runs(flow_id)
@@ -38,6 +44,8 @@ def test_run_discovery_finds_diagnosis_and_demo_outputs(tmp_path: Path, monkeypa
     assert "diagnosis_strict_gemini_flash_lite" in sources
     assert "benchmark_coverage_gemini_flash_lite" in sources
     assert "demo_verification" in sources
+    assert "verification_pipeline_runs" in sources
+    assert all(not run["path"].endswith("_invalid.json") for run in runs)
     assert any(run["metrics_available"] for run in runs if run["source"] == "diagnosis_strict_gemini_flash_lite")
     assert all(run["requirements_count"] == 1 for run in runs)
 

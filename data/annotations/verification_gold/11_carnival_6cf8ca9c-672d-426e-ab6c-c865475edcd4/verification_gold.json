@@ -40,7 +40,12 @@
           "evidence_steps": [
             1
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The same workflow can be progressively configured with destination, departure port, departure month, and trip duration criteria.",
@@ -53,7 +58,24 @@
             7,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -101,10 +123,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:32:10+00:00",
       "evidence_note": "Step 9 shows all four configured criteria in the same search bar before submission.",
-      "rationale": "The visible flow supports a single combined search workflow for the task criteria."
+      "rationale": "The visible flow supports a single combined search workflow for the task criteria.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:32:10+00:00",
+      "updated_at": "2026-07-10T16:36:43+00:00"
     },
     {
       "requirement_id": "REQ-02",
@@ -137,7 +160,12 @@
           "evidence_steps": [
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "A destination or region can be selected from the browsable set of sailing destinations.",
@@ -147,7 +175,12 @@
           "evidence_steps": [
             3
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -164,10 +197,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:32:30+00:00",
       "evidence_note": "The open destination panel lists multiple regions and the selected option is marked.",
-      "rationale": "The screenshots visibly support both browsing and selecting a cruise destination."
+      "rationale": "The screenshots visibly support both browsing and selecting a cruise destination.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:32:30+00:00",
+      "updated_at": "2026-07-10T16:36:45+00:00"
     },
     {
       "requirement_id": "REQ-03",
@@ -208,7 +242,24 @@
             7,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -247,10 +298,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:32:44+00:00",
       "evidence_note": "Alaska remains displayed across the later sail-from, date, and duration steps.",
-      "rationale": "The selected destination is retained in the visible controls through the rest of the shown configuration flow."
+      "rationale": "The selected destination is retained in the visible controls through the rest of the shown configuration flow.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:32:44+00:00",
+      "updated_at": "2026-07-10T16:36:46+00:00"
     },
     {
       "requirement_id": "REQ-04",
@@ -284,7 +336,12 @@
           "evidence_steps": [
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The user can choose a sail-from location from the departure port list.",
@@ -294,7 +351,12 @@
           "evidence_steps": [
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -313,8 +375,9 @@
       ],
       "evidence_note": "The port list includes several locations and San Francisco, CA is marked as selected.",
       "rationale": "The visible UI supports choosing a sail-from location from a departure-port list.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:33:38+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:33:38+00:00",
+      "updated_at": "2026-07-10T16:36:46+00:00"
     },
     {
       "requirement_id": "REQ-05",
@@ -352,7 +415,20 @@
             7,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -382,10 +458,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:34:30+00:00",
       "evidence_note": "San Francisco, CA remains displayed when date and duration controls are used later.",
-      "rationale": "The visible sequence supports preservation of the selected departure port during subsequent configuration."
+      "rationale": "The visible sequence supports preservation of the selected departure port during subsequent configuration.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:34:30+00:00",
+      "updated_at": "2026-07-10T16:36:46+00:00"
     },
     {
       "requirement_id": "REQ-07",
@@ -421,7 +498,20 @@
             8,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -443,10 +533,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:41:16+00:00",
       "evidence_note": "The Dates control displays Jun 2023 after selection and while duration is configured.",
-      "rationale": "The selected sailing month and year are visibly kept as part of the active query."
+      "rationale": "The selected sailing month and year are visibly kept as part of the active query.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:41:16+00:00",
+      "updated_at": "2026-07-10T16:36:47+00:00"
     },
     {
       "requirement_id": "REQ-08",
@@ -479,7 +570,12 @@
           "evidence_steps": [
             8
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "A duration band can be selected for the cruise search.",
@@ -489,7 +585,12 @@
           "evidence_steps": [
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -506,10 +607,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:41:43+00:00",
       "evidence_note": "The duration panel lists the stated bands and the final state marks 10+ Days as active.",
-      "rationale": "The visible UI supports filtering by broad duration bands."
+      "rationale": "The visible UI supports filtering by broad duration bands.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:41:43+00:00",
+      "updated_at": "2026-07-10T16:28:21+00:00"
     },
     {
       "requirement_id": "REQ-09",
@@ -551,7 +653,16 @@
             1,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The search action remains available after destination, port, date, and duration criteria are configured.",
@@ -561,7 +672,12 @@
           "evidence_steps": [
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -608,8 +724,9 @@
       ],
       "evidence_note": "The red Search Cruises button is visible next to the configured controls.",
       "rationale": "The configured query has an available visible search action before submission.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:43:50+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:43:50+00:00",
+      "updated_at": "2026-07-10T16:36:49+00:00"
     },
     {
       "requirement_id": "REQ-10",
@@ -643,7 +760,12 @@
           "evidence_steps": [
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The grouped visible criteria allow the user to review the query state before invoking search.",
@@ -653,7 +775,12 @@
           "evidence_steps": [
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -673,10 +800,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:44:02+00:00",
       "evidence_note": "Step 9 shows Alaska, San Francisco, CA, Jun 2023, and 10+ Days together beside the search button.",
-      "rationale": "The final pre-search state visibly supports review of the configured query."
+      "rationale": "The final pre-search state visibly supports review of the configured query.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:44:02+00:00",
+      "updated_at": "2026-07-10T16:36:50+00:00"
     },
     {
       "requirement_id": "REQ-11",
@@ -720,7 +848,24 @@
             7,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "Selected options receive visible active-state feedback such as highlighting and check indicators.",
@@ -733,7 +878,24 @@
             7,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -778,8 +940,9 @@
       ],
       "evidence_note": "Selected values appear in the controls and selected options are highlighted or marked with green checks.",
       "rationale": "The visible UI provides clear feedback about the current configured state of selectors.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:45:13+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:45:13+00:00",
+      "updated_at": "2026-07-10T16:36:52+00:00"
     },
     {
       "requirement_id": "REQ-12",
@@ -814,7 +977,12 @@
           "evidence_steps": [
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The controls retain dropdown affordances, indicating each criterion can be reopened or adjusted before search.",
@@ -824,7 +992,12 @@
           "evidence_steps": [
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -848,10 +1021,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:45:43+00:00",
       "evidence_note": "Step 9 shows separate Sail To, Sail From, Dates, and Duration controls with visible dropdown indicators before the search action.",
-      "rationale": "The visible mechanism supports revising individual criteria before submitting, although no actual changed revision is performed in the flow."
+      "rationale": "The visible mechanism supports revising individual criteria before submitting, although no actual changed revision is performed in the flow.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:45:43+00:00",
+      "updated_at": "2026-07-10T16:36:52+00:00"
     },
     {
       "requirement_id": "REQ-13",
@@ -888,7 +1062,12 @@
           "evidence_steps": [
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "Search results reflecting the combined selected criteria are returned after submission.",
@@ -898,7 +1077,12 @@
           "evidence_steps": [
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "Whether returned cruises actually reflect all selected filters depends on result correctness.",
@@ -906,7 +1090,7 @@
           "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [],
-          "note": null
+          "evidence_units": []
         }
       ],
       "evidence_steps": [
@@ -926,10 +1110,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:46:01+00:00",
       "evidence_note": "The flow stops before a search result page is shown.",
-      "rationale": "The query configuration is visible, but the required result outcome is not visibly demonstrated."
+      "rationale": "The query configuration is visible, but the required result outcome is not visibly demonstrated.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:46:01+00:00",
+      "updated_at": "2026-07-10T16:31:56+00:00"
     },
     {
       "requirement_id": "REQ-06",
@@ -948,6 +1133,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotated_by": "benno",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -960,7 +1146,12 @@
           "evidence_steps": [
             6
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The date selector shows selectable month options across multiple years.",
@@ -970,7 +1161,12 @@
           "evidence_steps": [
             6
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "A specific month and year can be selected.",
@@ -980,7 +1176,12 @@
           "evidence_steps": [
             7
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -999,8 +1200,9 @@
       ],
       "evidence_note": "The date panel is organized under 2023, 2024, and 2025 and June 2023 is selected.",
       "rationale": "The visible date selector supports month and year granularity across multiple years.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:31:56+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:31:56+00:00",
+      "updated_at": "2026-07-10T16:36:47+00:00"
     },
     {
       "requirement_id": "REQ-14",
@@ -1021,6 +1223,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotated_by": "benno",
       "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
         "NONTRIVIAL_HIDDEN_PROPERTY"
@@ -1092,8 +1295,9 @@
       ],
       "evidence_note": "The option lists are visible, but the screenshots do not expose inventory, availability, or searchability logic behind those options.",
       "rationale": "The core availability claim cannot be reliably judged from the visible screenshots alone.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:31:56+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:31:56+00:00",
+      "updated_at": "2026-07-10T16:33:53+00:00"
     },
     {
       "requirement_id": "CONTR-01",
@@ -1112,6 +1316,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "annotated_by": "benno",
       "intended_label": "PARTIALLY_FULFILLED",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
@@ -1131,7 +1336,24 @@
             7,
             9
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The selected criteria are preserved after leaving the search flow and returning later in the same browsing session.",
@@ -1139,7 +1361,7 @@
           "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [],
-          "note": null
+          "evidence_units": []
         }
       ],
       "evidence_steps": [
@@ -1168,8 +1390,9 @@
       ],
       "evidence_note": "The visible flow supports short-term in-flow retention but does not show leaving and returning to the search flow.",
       "rationale": "The requirement extends visible retention into session persistence, which is not demonstrated by the screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-10T16:11:53+00:00"
     },
     {
       "requirement_id": "CONTR-02",
@@ -1188,6 +1411,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
+      "annotated_by": "benno",
       "intended_label": "PARTIALLY_FULFILLED",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
@@ -1247,14 +1471,15 @@
       ],
       "evidence_note": "The combined search criteria are visible before submission, but no submitted results or no-results state is shown.",
       "rationale": "Filter setup is supported, while result availability correctness and no-match feedback are not verified.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-10T16:36:42+00:00"
     },
     {
       "requirement_id": "CONTR-03",
       "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
       "text": "The system shall return all cruises that satisfy the configured destination, departure port, sailing month, and duration criteria, without omitting any eligible sailings.",
-      "scope": "multi_screen",
+      "scope": "single_screen",
       "tags": [
         "contrastive",
         "intended_label:abstain",
@@ -1263,12 +1488,16 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-03",
       "source_candidate_id": "CONTR-03",
-      "step_indices": [],
+      "step_indices": [
+        9
+      ],
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "CONTENT_UPDATE",
+      "annotation_notes": "The completeness of returned cruises cannot be judged from the screenshots.",
+      "annotated_by": "benno",
       "intended_label": "ABSTAIN",
-      "verification_label": "ABSTAIN",
+      "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
         "UNVERIFIED_SYSTEM_OUTCOME",
         "NONTRIVIAL_HIDDEN_PROPERTY",
@@ -1311,8 +1540,9 @@
       ],
       "evidence_note": "No results page, complete inventory reference, or post-search result set is shown.",
       "rationale": "The completeness of returned cruises cannot be judged from the screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-10T16:12:55+00:00"
     },
     {
       "requirement_id": "CONTR-04",
@@ -1327,12 +1557,17 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-04",
       "source_candidate_id": "CONTR-04",
-      "step_indices": [],
+      "step_indices": [
+        1,
+        9
+      ],
       "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "NAVIGATION_OUTCOME",
+      "annotation_notes": "The comparative requirement cannot be reliably judged without an anonymous-user state.",
+      "annotated_by": "benno",
       "intended_label": "ABSTAIN",
-      "verification_label": "ABSTAIN",
+      "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
         "FLOW_COVERAGE_GAP"
       ],
@@ -1380,7 +1615,7 @@
         },
         {
           "claim": "A policy restriction is communicated when anonymous and signed-in search behavior differs.",
-          "status": "MISSING",
+          "status": "SUPPORTED_WITH_CAVEAT",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
@@ -1415,8 +1650,9 @@
       ],
       "evidence_note": "The screenshots show a signed-in context with cruise search controls, but no anonymous comparison state or policy-restriction state is shown.",
       "rationale": "The comparative requirement cannot be reliably judged without an anonymous-user state.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-10T16:19:37+00:00"
     },
     {
       "requirement_id": "CONTR-05",
@@ -1431,10 +1667,22 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-05",
       "source_candidate_id": "CONTR-05",
-      "step_indices": [],
+      "step_indices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "annotation_notes": "The dedicated review-panel requirement is contradicted by the visible pre-search flow.",
+      "annotated_by": "benno",
       "intended_label": "NOT_FULFILLED",
       "verification_label": "NOT_FULFILLED",
       "uncertainty_reasons": [],
@@ -1442,7 +1690,7 @@
       "claims": [
         {
           "claim": "A dedicated pre-search review step or summary panel is provided before submitting the search.",
-          "status": "CONTRADICTED",
+          "status": "SUPPORTED_WITH_CAVEAT",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
@@ -1592,8 +1840,9 @@
       ],
       "evidence_note": "The full visible pre-search sequence uses inline search controls. Step 9 shows all criteria together inline, but no separate review step or summary panel appears before the Search Cruises action.",
       "rationale": "The dedicated review-panel requirement is contradicted by the visible pre-search flow.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-10T16:26:29+00:00"
     },
     {
       "requirement_id": "CONTR-06",
@@ -1608,12 +1857,17 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-06",
       "source_candidate_id": "CONTR-06",
-      "step_indices": [],
+      "step_indices": [
+        8,
+        9
+      ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "The opened duration selector provides visible counter-evidence against exact-day filtering.",
+      "annotated_by": "benno",
       "intended_label": "NOT_FULFILLED",
-      "verification_label": "NOT_FULFILLED",
+      "verification_label": "ABSTAIN",
       "uncertainty_reasons": [],
       "notes": [],
       "claims": [
@@ -1639,7 +1893,7 @@
         },
         {
           "claim": "The system allows filtering by an exact itinerary length in days in addition to broad duration bands.",
-          "status": "CONTRADICTED",
+          "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
@@ -1674,8 +1928,9 @@
       ],
       "evidence_note": "The visible duration choices are broad bands only: 2-5 Days, 6-9 Days, and 10+ Days. No exact day-length option is shown in the open duration choices.",
       "rationale": "The opened duration selector provides visible counter-evidence against exact-day filtering.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-10T16:27:45+00:00"
     }
   ]
 }

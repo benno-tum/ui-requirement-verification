@@ -165,6 +165,7 @@ class ClaimVerificationResult(StrictModel):
     uncertainty_reasons: list[UncertaintyReason] = Field(default_factory=list)
     confidence: float | None = Field(default=None, ge=0.0, le=1.0)
     rationale: str
+    metadata: dict[str, Any] = Field(default_factory=dict)
 
     @field_validator("claim_id", "requirement_id", "claim_text", "rationale")
     @classmethod

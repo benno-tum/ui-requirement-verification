@@ -34,7 +34,12 @@
           "evidence_steps": [
             1
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The flow reaches a dedicated AMC gift card area after using that navigation path.",
@@ -44,7 +49,12 @@
           "evidence_steps": [
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -63,8 +73,9 @@
       ],
       "evidence_note": "Step 1 shows Gift Cards in the AMC global navigation. Step 2 shows the dedicated Gift Cards page and gift card menu content.",
       "rationale": "The visible flow supports both the access mechanism and the resulting gift card area.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T09:31:02+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T09:31:02+00:00",
+      "updated_at": "2026-07-07T15:04:21+00:00"
     },
     {
       "requirement_id": "REQ-02",
@@ -97,7 +108,12 @@
           "evidence_steps": [
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The page also presents gift card purchase, balance check, and business ordering sections as related gift card services.",
@@ -107,7 +123,12 @@
           "evidence_steps": [
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -121,8 +142,9 @@
       ],
       "evidence_note": "Step 2 shows grouped columns for Buy Gift Cards, A-List Gift Memberships, and Corporate Orders, plus page sections for buying, checking balance, and business orders.",
       "rationale": "The centralized gift card hub and grouped service categories are directly visible.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T09:31:56+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T09:31:56+00:00",
+      "updated_at": "2026-07-07T15:04:12+00:00"
     },
     {
       "requirement_id": "REQ-03",
@@ -141,6 +163,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The screenshots show both the balance-check entry point and the dedicated balance-check screen.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
@@ -155,7 +178,12 @@
           "evidence_steps": [
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The system opens a dedicated gift-card balance page from the gift-card area.",
@@ -165,7 +193,12 @@
           "evidence_steps": [
             3
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -182,10 +215,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T09:38:34+00:00",
       "evidence_note": "Step 2 shows a Check Balance action. Step 3 shows the Check Gift Card Balance page.",
-      "rationale": "The screenshots show both the balance-check entry point and the dedicated balance-check screen."
+      "rationale": "The screenshots show both the balance-check entry point and the dedicated balance-check screen.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T09:38:34+00:00",
+      "updated_at": "2026-07-07T15:04:22+00:00"
     },
     {
       "requirement_id": "REQ-04",
@@ -205,6 +239,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The required input fields are visible and are used during the flow.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
@@ -221,7 +256,20 @@
             4,
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The balance inquiry form asks for a gift card PIN.",
@@ -232,7 +280,16 @@
             3,
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -254,10 +311,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T09:38:42+00:00",
       "evidence_note": "Step 3 shows Gift Card Number and Gift Card Pin fields. Step 4 shows the card number filled. Step 5 shows both the card number and PIN filled.",
-      "rationale": "The required input fields are visible and are used during the flow."
+      "rationale": "The required input fields are visible and are used during the flow.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T09:38:42+00:00",
+      "updated_at": "2026-07-07T15:04:23+00:00"
     },
     {
       "requirement_id": "REQ-05",
@@ -277,6 +335,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The visible optional mechanism is supported, but actual account association is not visible.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "verification_label": "PARTIALLY_FULFILLED",
@@ -296,7 +355,20 @@
             4,
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The form provides an optional control to add the gift card to the user's account.",
@@ -308,15 +380,29 @@
             4,
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "Selecting the option actually associates the gift card with the user's account.",
-          "status": "HIDDEN",
+          "status": "SUPPORTED_WITH_CAVEAT",
           "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [],
-          "note": null
+          "evidence_units": [],
+          "note": "It is only implied by flow, but well enough to serve as evidence."
         }
       ],
       "evidence_steps": [
@@ -338,10 +424,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T09:38:54+00:00",
       "evidence_note": "Steps 3 to 5 show HELLO JAMES / My AMC and an unchecked Add gift card to my account checkbox. No completed account-linking outcome is shown.",
-      "rationale": "The visible optional mechanism is supported, but actual account association is not visible."
+      "rationale": "The visible optional mechanism is supported, but actual account association is not visible.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T09:38:54+00:00",
+      "updated_at": "2026-07-07T14:19:41+00:00"
     },
     {
       "requirement_id": "REQ-06",
@@ -377,7 +464,16 @@
             4,
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "Entered balance-check inputs remain visible when validation feedback appears.",
@@ -387,7 +483,12 @@
           "evidence_steps": [
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -406,8 +507,9 @@
       ],
       "evidence_note": "Step 4 shows the number 87654321 entered. Step 5 still shows 87654321 and shows PIN 9753 while inline validation feedback is displayed.",
       "rationale": "The screenshots visibly preserve the entered values across the validation state.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T09:42:31+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T09:42:31+00:00",
+      "updated_at": "2026-07-07T15:04:25+00:00"
     },
     {
       "requirement_id": "REQ-07",
@@ -440,7 +542,12 @@
           "evidence_steps": [
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The validation feedback is shown inline near the invalid gift card number field.",
@@ -450,7 +557,12 @@
           "evidence_steps": [
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -464,8 +576,9 @@
       ],
       "evidence_note": "Step 5 shows the inline message VALUE MUST BE AT LEAST 16 CHARACTERS under the gift card number field.",
       "rationale": "A format validation error is visibly presented inline.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T09:44:12+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T09:44:12+00:00",
+      "updated_at": "2026-07-07T15:04:26+00:00"
     },
     {
       "requirement_id": "REQ-08",
@@ -503,7 +616,12 @@
           "evidence_steps": [
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The system only accepts valid gift card actions in all relevant cases.",
@@ -511,7 +629,7 @@
           "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [],
-          "note": null
+          "evidence_units": []
         }
       ],
       "evidence_steps": [
@@ -533,8 +651,9 @@
       ],
       "evidence_note": "Step 5 shows validation feedback for an invalid card number, but the screenshots cannot verify all valid and invalid action handling.",
       "rationale": "Visible validation supports part of the requirement, but the universal acceptance rule depends on behavior beyond the shown UI evidence.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T09:49:39+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T09:49:39+00:00",
+      "updated_at": "2026-07-07T14:20:55+00:00"
     },
     {
       "requirement_id": "REQ-09",
@@ -547,17 +666,17 @@
       "source_candidate_id": "REQ-09",
       "source_harvest_id": "HARV-09",
       "step_indices": [
-        2,
         3,
         4,
         5
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The visible setup for balance lookup is present, but the successful balance-return outcome is not shown.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
         "FLOW_COVERAGE_GAP",
         "UNVERIFIED_SYSTEM_OUTCOME"
@@ -574,27 +693,50 @@
             4,
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The system accepts valid card credentials for balance lookup.",
           "status": "MISSING",
-          "claim_type": "OBSERVABLE",
+          "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The system returns the remaining gift card balance after valid credentials are provided.",
           "status": "MISSING",
-          "claim_type": "OBSERVABLE",
+          "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -620,10 +762,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T09:59:06+00:00",
       "evidence_note": "Steps 3 to 5 show the lookup form and entered values, but the final visible state is a validation error rather than a balance result.",
-      "rationale": "The visible setup for balance lookup is present, but the successful balance-return outcome is not shown."
+      "rationale": "The visible setup for balance lookup is present, but the successful balance-return outcome is not shown.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T09:59:06+00:00",
+      "updated_at": "2026-07-07T14:29:31+00:00"
     },
     {
       "requirement_id": "REQ-10",
@@ -644,10 +787,9 @@
       "annotation_notes": "The gift card page mentions checking balance through the website, at a theatre, or by phone, indicating the product supports multiple access paths for the same user need.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "verification_label": "FULFILLED",
       "uncertainty_reasons": [
-        "UNVERIFIED_SYSTEM_OUTCOME",
-        "NONTRIVIAL_HIDDEN_PROPERTY"
+        "SCOPE_OR_CONTEXT_AMBIGUITY"
       ],
       "notes": [],
       "claims": [
@@ -659,7 +801,12 @@
           "evidence_steps": [
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The gift-card area presents non-web alternatives for balance inquiries.",
@@ -669,15 +816,12 @@
           "evidence_steps": [
             2
           ],
-          "note": null
-        },
-        {
-          "claim": "The alternative inquiry channels are operational outside the website.",
-          "status": "HIDDEN",
-          "claim_type": "HIDDEN",
-          "importance": "CORE",
-          "evidence_steps": [],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -691,8 +835,9 @@
       ],
       "evidence_note": "Step 2 states that balance can be checked by clicking below, visiting an AMC Theatre, or calling listed phone numbers.",
       "rationale": "The page visibly provides the alternative channels, but the screenshots cannot verify that those external channels work.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T09:59:39+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T09:59:39+00:00",
+      "updated_at": "2026-07-07T14:44:13+00:00"
     },
     {
       "requirement_id": "REQ-11",
@@ -725,7 +870,12 @@
           "evidence_steps": [
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The same service area provides business ordering workflow entry points.",
@@ -735,7 +885,12 @@
           "evidence_steps": [
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -749,8 +904,9 @@
       ],
       "evidence_note": "Step 2 shows Buy Now, Buy Gift Cards, Bulk Gift Cards, and Package Tickets options in the gift card area.",
       "rationale": "Adjacent gift card workflow entry points are visible from the same centralized area.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:03:26+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:03:26+00:00",
+      "updated_at": "2026-07-07T15:04:27+00:00"
     },
     {
       "requirement_id": "REQ-13",
@@ -764,12 +920,12 @@
       "source_harvest_id": "HARV-13",
       "step_indices": [
         3,
-        4,
         5
       ],
       "requirement_type": "NFR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The page provides direct task guidance and matching field labels.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
@@ -784,7 +940,12 @@
           "evidence_steps": [
             3
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The required balance-lookup information is reinforced by labeled input fields.",
@@ -795,7 +956,16 @@
             3,
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -816,10 +986,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:04:32+00:00",
       "evidence_note": "Step 3 shows the instruction Enter your gift card number and PIN below, plus the two corresponding fields.",
-      "rationale": "The page provides direct task guidance and matching field labels."
+      "rationale": "The page provides direct task guidance and matching field labels.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:04:32+00:00",
+      "updated_at": "2026-07-07T15:04:29+00:00"
     },
     {
       "requirement_id": "REQ-14",
@@ -840,6 +1011,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The account context remains visible across the gift card landing page and balance-check screens.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
@@ -854,7 +1026,12 @@
           "evidence_steps": [
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The signed-in account context is retained on gift-card balance pages.",
@@ -866,7 +1043,20 @@
             4,
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -893,10 +1083,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:05:41+00:00",
       "evidence_note": "Steps 2 to 5 keep HELLO JAMES / My AMC visible in the header.",
-      "rationale": "The account context remains visible across the gift card landing page and balance-check screens."
+      "rationale": "The account context remains visible across the gift card landing page and balance-check screens.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:05:41+00:00",
+      "updated_at": "2026-07-07T15:04:30+00:00"
     },
     {
       "requirement_id": "REQ-12",
@@ -917,6 +1108,8 @@
       "requirement_type": "NFR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotation_notes": "The shown gift-card related pages maintain consistent branding and global navigation.",
+      "annotated_by": "benno",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1008,8 +1201,9 @@
       ],
       "evidence_note": "Steps 2 to 5 keep the AMC logo, My AMC context, Showtimes, and main navigation items in the header.",
       "rationale": "The shown gift-card related pages maintain consistent branding and global navigation.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T09:30:12+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T09:30:12+00:00",
+      "updated_at": "2026-07-07T15:04:28+00:00"
     },
     {
       "requirement_id": "CONTR-01",
@@ -1024,12 +1218,18 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-01",
       "source_candidate_id": "CONTR-01",
-      "step_indices": [],
+      "step_indices": [
+        3,
+        4,
+        5
+      ],
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "annotation_notes": "The account-association option is supported, while persistence and completion reflection are not shown.",
+      "annotated_by": "benno",
       "intended_label": "PARTIALLY_FULFILLED",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
         "FLOW_COVERAGE_GAP",
         "UNVERIFIED_SYSTEM_OUTCOME",
@@ -1065,7 +1265,7 @@
         {
           "claim": "A selected association decision is preserved through the remainder of the balance inquiry workflow.",
           "status": "MISSING",
-          "claim_type": "OBSERVABLE",
+          "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [
             3,
@@ -1117,8 +1317,9 @@
       ],
       "evidence_note": "The add-to-account option is present, but it is not selected and no completed lookup or reflected association state is shown.",
       "rationale": "The account-association option is supported, while persistence and completion reflection are not shown.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-07T12:57:11+00:00"
     },
     {
       "requirement_id": "CONTR-02",
@@ -1137,6 +1338,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
+      "annotated_by": "benno",
       "intended_label": "PARTIALLY_FULFILLED",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
@@ -1196,8 +1398,9 @@
       ],
       "evidence_note": "Step 5 shows a format error only. The flow does not show a well-formed but unrecognized card lookup failure.",
       "rationale": "One feedback class is visible, but the second failure mode and backend distinction are not shown.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-07T13:02:28+00:00"
     },
     {
       "requirement_id": "CONTR-03",
@@ -1216,6 +1419,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "annotated_by": "benno",
       "intended_label": "ABSTAIN",
       "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
@@ -1305,8 +1509,9 @@
       ],
       "evidence_note": "The screenshots show a signed-in user and the add-to-account option, but no guest-mode flow or sign-in enforcement boundary.",
       "rationale": "The key signed-in versus guest-mode policy distinction cannot be reliably judged from this flow.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-07T13:07:04+00:00"
     },
     {
       "requirement_id": "CONTR-04",
@@ -1325,6 +1530,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotated_by": "benno",
       "intended_label": "ABSTAIN",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
@@ -1390,8 +1596,9 @@
       ],
       "evidence_note": "Step 2 shows balance checking, theatre and phone alternatives, terms, FAQs, and business order help. The universal completeness of all supported paths and all help resources cannot be established from the screenshot flow.",
       "rationale": "Several paths and resources are visible, but the all-supported-paths and all-help-resources parts remain ambiguous.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-07T13:11:56+00:00"
     },
     {
       "requirement_id": "CONTR-05",
@@ -1406,13 +1613,21 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-05",
       "source_candidate_id": "CONTR-05",
-      "step_indices": [],
+      "step_indices": [
+        3,
+        4,
+        5
+      ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "annotation_notes": "The visible flow contradicts the requested result-state outcome by ending on the form with validation feedback instead of a balance result screen.",
+      "annotated_by": "benno",
       "intended_label": "NOT_FULFILLED",
-      "verification_label": "NOT_FULFILLED",
-      "uncertainty_reasons": [],
+      "verification_label": "ABSTAIN",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
       "notes": [],
       "claims": [
         {
@@ -1425,27 +1640,43 @@
             4,
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The flow reaches a separate result state that confirms which gift card was checked.",
-          "status": "CONTRADICTED",
-          "claim_type": "OBSERVABLE",
+          "status": "MISSING",
+          "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [
             5
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The flow presents the remaining gift card balance separately from the entry form.",
-          "status": "CONTRADICTED",
-          "claim_type": "OBSERVABLE",
+          "status": "MISSING",
+          "claim_type": "HIDDEN",
           "importance": "CORE",
-          "evidence_steps": [
-            5
-          ],
-          "note": null
+          "evidence_steps": [],
+          "evidence_units": []
         }
       ],
       "evidence_steps": [
@@ -1469,8 +1700,9 @@
       ],
       "evidence_note": "The final visible state in step 5 remains the entry form with an inline validation error. No separate result state, checked-card confirmation, or balance value is visible.",
       "rationale": "The visible flow contradicts the requested result-state outcome by ending on the form with validation feedback instead of a balance result screen.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-07T13:21:31+00:00"
     },
     {
       "requirement_id": "CONTR-06",
@@ -1485,17 +1717,23 @@
       "source_type": "requirements_candidate",
       "source_id": "CONTR-06",
       "source_candidate_id": "CONTR-06",
-      "step_indices": [],
+      "step_indices": [
+        3,
+        4,
+        5
+      ],
       "requirement_type": "NFR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
+      "annotation_notes": "The visible lookup action does not clearly track or explain whether the current input state is submittable, so the core observable claim is contradicted.",
+      "annotated_by": "benno",
       "intended_label": "NOT_FULFILLED",
-      "verification_label": "NOT_FULFILLED",
+      "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
       "claims": [
         {
-          "claim": "The current validation state changes as card information is entered.",
+          "claim": "The system keeps the balance lookup action visibly consistent with the current validation state.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1520,8 +1758,8 @@
           ]
         },
         {
-          "claim": "The balance lookup action communicates whether the current card information is submittable.",
-          "status": "CONTRADICTED",
+          "claim": "The user can clearly tell when the entered card information is submittable.",
+          "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
@@ -1542,7 +1780,8 @@
               "step_index": 5,
               "evidence_type": "screen"
             }
-          ]
+          ],
+          "note": "The button gets disabled if invalid data gets entered."
         }
       ],
       "evidence_steps": [
@@ -1565,9 +1804,10 @@
         }
       ],
       "evidence_note": "Across steps 3, 4, and 5 the Search action appears visually similar while the form moves from blank to partially filled to invalid with an error message.",
-      "rationale": "The visible lookup action does not clearly track or explain whether the current input state is submittable, so the core observable claim is contradicted.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "rationale": "The balance inquiry form visibly communicates the current validation state before lookup completion. When the entered card number is too short, the form displays “VALUE MUST BE AT LEAST 16 CHARACTERS,” allowing users to tell that the entered card information is not submittable. The requirement does not require the Search button itself to be disabled or restyled.",
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-07T14:16:11+00:00"
     }
   ]
 }

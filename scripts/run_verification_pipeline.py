@@ -20,6 +20,7 @@ if str(SRC_DIR) not in sys.path:
 from ui_verifier.common.flow_utils import find_step_images, parse_step_number
 from ui_verifier.model_config import model_name_for, provider_for, temperature_for
 from ui_verifier.common.json_utils import load_json
+from ui_verifier.verification_pipeline.batched_gemini_image_claim_verifier import BatchedGeminiImageClaimVerifier
 from ui_verifier.verification_pipeline.claim_verification import ClaimVerifier
 from ui_verifier.verification_pipeline.evidence_retrieval import build_evidence_retriever
 from ui_verifier.verification_pipeline.gemini_image_claim_verifier import GeminiImageClaimVerifier
@@ -86,6 +87,26 @@ def _requirement_text(item: dict[str, Any]) -> str:
     raise ValueError(f"Could not find requirement text in item keys: {sorted(item)}")
 
 
+def _provided_claim_texts(item: dict[str, Any]) -> list[str]:
+    """Return only frozen claim wording, excluding annotation labels/evidence."""
+    claims = item.get("claims")
+    if not isinstance(claims, list):
+        return []
+
+    texts: list[str] = []
+    for claim in claims:
+        if isinstance(claim, str):
+            text = claim.strip()
+        elif isinstance(claim, dict):
+            value = claim.get("claim_text") or claim.get("claim") or claim.get("text")
+            text = value.strip() if isinstance(value, str) else ""
+        else:
+            text = ""
+        if text and text not in texts:
+            texts.append(text)
+    return texts
+
+
 def load_requirements(path: Path, *, default_flow_id: str) -> list[RequirementInput]:
     data = load_json(path)
     requirements: list[RequirementInput] = []
@@ -115,7 +136,11 @@ def load_requirements(path: Path, *, default_flow_id: str) -> list[RequirementIn
                 requirement_id=str(requirement_id),
                 text=_requirement_text(item),
                 flow_id=str(item.get("flow_id") or default_flow_id),
-                metadata={**item, "source_path": str(path)},
+                metadata={
+                    **item,
+                    "provided_claim_texts": _provided_claim_texts(item),
+                    "source_path": str(path),
+                },
             )
         )
     return requirements
@@ -172,9 +197,32 @@ def parse_args() -> argparse.Namespace:
         help="Optional local sentence-transformers model path. No download is attempted.",
     )
     parser.add_argument("--verifier", choices=["deterministic", "gemini-image"], default="deterministic")
+    parser.add_argument(
+        "--execution-mode",
+        choices=["per-claim", "batched-topk", "single-call"],
+        default="batched-topk",
+        help="Verifier orchestration mode. batched-topk and single-call apply to gemini-image verification.",
+    )
     parser.add_argument("--verifier-model", type=str, default=model_name_for("demo_image_verifier"))
     parser.add_argument("--verifier-temperature", type=float, default=temperature_for("demo_image_verifier"))
     parser.add_argument("--max-verifier-images", type=int, default=6)
+    parser.add_argument(
+        "--max-verifier-group-images",
+        type=int,
+        default=-1,
+        help="Maximum images attached per batched prompt. Use -1 for no group cap.",
+    )
+    parser.add_argument(
+        "--max-verifier-group-claims",
+        type=int,
+        default=-1,
+        help="Maximum claims per batched verification prompt. Use -1 for no group cap.",
+    )
+    parser.add_argument(
+        "--no-sequence-context",
+        action="store_true",
+        help="Do not automatically add first/last screenshots for sequence-like claims. Useful for staged grouping ablations.",
+    )
     parser.add_argument("--gemini-max-retries", type=int, default=0)
     parser.add_argument("--max-gemini-api-calls", type=int, default=10, help="Use -1 for no cap.")
     parser.add_argument(
@@ -183,6 +231,16 @@ def parse_args() -> argparse.Namespace:
         default=4,
         help="Maximum number of independent claim-verification calls to run concurrently.",
     )
+    parser.add_argument(
+        "--claim-decomposition-policy",
+        choices=["disabled", "gated", "always", "provided"],
+        default="gated",
+        help=(
+            "Use disabled for original requirements, gated for conservative splitting, always for legacy eager "
+            "splitting, or provided for frozen claims from the requirements file."
+        ),
+    )
+    parser.add_argument("--max-claims", type=int, default=4, help="Maximum claims retained per requirement.")
     parser.add_argument("--verifier-cache", type=Path, default=None)
     return parser.parse_args()
 
@@ -211,23 +269,40 @@ def main() -> None:
         else None
     )
     requirement_understander = RequirementUnderstanding(
+        max_claims=args.max_claims,
         fallback_decomposer=fallback_decomposer,
         decompose_claims=args.claims_enabled,
+        decomposition_policy=args.claim_decomposition_policy if args.claims_enabled else "disabled",
     )
     if args.verifier == "gemini-image":
         cache_path = args.verifier_cache or (
-            BASE_DIR / "data" / "generated" / "verification_pipeline_cache" / f"{args.flow_dir.name}_gemini_image_claims.json"
+            BASE_DIR
+            / "data"
+            / "generated"
+            / "verification_pipeline_cache"
+            / f"{args.flow_dir.name}_{args.execution_mode}_gemini_image_claims.json"
         )
-        claim_verifier = GeminiImageClaimVerifier(
-            flow_id=args.flow_dir.name,
-            screenshot_steps=screenshots,
-            cache_path=cache_path,
-            model_name=args.verifier_model,
-            temperature=args.verifier_temperature,
-            max_images_per_claim=args.max_verifier_images,
-            max_retries=args.gemini_max_retries,
-            max_api_calls=None if args.max_gemini_api_calls < 0 else args.max_gemini_api_calls,
-        )
+        verifier_kwargs = {
+            "flow_id": args.flow_dir.name,
+            "screenshot_steps": screenshots,
+            "cache_path": cache_path,
+            "model_name": args.verifier_model,
+            "temperature": args.verifier_temperature,
+            "max_images_per_claim": args.max_verifier_images,
+            "max_retries": args.gemini_max_retries,
+            "max_api_calls": None if args.max_gemini_api_calls < 0 else args.max_gemini_api_calls,
+            "include_sequence_context": not args.no_sequence_context,
+        }
+        if args.execution_mode == "per-claim":
+            claim_verifier = GeminiImageClaimVerifier(**verifier_kwargs)
+        else:
+            claim_verifier = BatchedGeminiImageClaimVerifier(
+                **verifier_kwargs,
+                grouping_strategy=args.execution_mode,
+                max_images_per_group=None if args.max_verifier_group_images < 0 else args.max_verifier_group_images,
+                max_claims_per_group=None if args.max_verifier_group_claims < 0 else args.max_verifier_group_claims,
+                group_workers=args.claim_workers,
+            )
     else:
         claim_verifier = ClaimVerifier()
 
@@ -251,11 +326,18 @@ def main() -> None:
                 "retriever_model": args.retriever_model if args.retriever == "llm" else None,
                 "top_k": args.top_k,
                 "claims_enabled": args.claims_enabled,
+                "claim_decomposition_policy": args.claim_decomposition_policy if args.claims_enabled else "disabled",
+                "max_claims": args.max_claims,
                 "llm_claim_fallback": args.claims_enabled and args.llm_claim_fallback,
                 "claim_provider": args.claim_provider,
                 "claim_model": args.claim_model if args.claims_enabled and args.llm_claim_fallback else None,
                 "verifier": args.verifier,
+                "execution_mode": args.execution_mode if args.verifier == "gemini-image" else "per-claim",
                 "verifier_model": args.verifier_model if args.verifier == "gemini-image" else None,
+                "max_verifier_images": args.max_verifier_images,
+                "max_verifier_group_images": args.max_verifier_group_images if args.verifier == "gemini-image" else None,
+                "max_verifier_group_claims": args.max_verifier_group_claims if args.verifier == "gemini-image" else None,
+                "include_sequence_context": not args.no_sequence_context if args.verifier == "gemini-image" else None,
                 "claim_workers": args.claim_workers,
             },
         )

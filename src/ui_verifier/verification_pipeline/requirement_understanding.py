@@ -45,7 +45,14 @@ _HIDDEN_INDICATORS: tuple[tuple[str, re.Pattern[str]], ...] = (
             re.IGNORECASE,
         ),
     ),
-    ("performance target", re.compile(r"\b(performance|response time|latency|load time|throughput)\b", re.IGNORECASE)),
+    (
+        "performance target",
+        re.compile(
+            r"\b(response time|latency|load time|throughput|"
+            r"performance (?:target|requirement|threshold|budget))\b",
+            re.IGNORECASE,
+        ),
+    ),
     (
         "long-term data correctness",
         re.compile(r"\b(long[- ]term|historical correctness|subsequent use|later visit|future session)\b", re.IGNORECASE),
@@ -153,6 +160,11 @@ Rules:
 - Return ONLY valid JSON.
 - Do not use screenshots or invent details.
 - Claims must come only from each requirement text.
+- Do not improve, generalize, strengthen, or reinterpret the requirement.
+- Prefer no decomposition over semantic drift.
+- Preserve modality, conditions, scope, quantifiers, and comparison terms such as "all", "only", "any", "before", "after", "route-specific", "valid", "authenticated", "owner", and "guest".
+- Do not add exclusivity. For example, "authenticated users can" must not become "only authenticated users can" unless "only" is present.
+- Do not turn a visible link or resource affordance into a claim that the destination page was opened or shown.
 - Separate claims are interpreted conjunctively: every returned claim is expected to hold.
 - Do not split disjunctive alternatives joined by "or" into separate claims unless the requirement explicitly requires both alternatives independently.
 - Preserve "or" wording inside one claim for alternative channels, destinations, compose surfaces, or modes.
@@ -249,6 +261,41 @@ def _normalize_claim_candidate(value: Any) -> str | None:
 
 
 _COMPOUND_HINT_RE = re.compile(r"\b(including|and|or|with|without|so that)\b|[,;:]", re.IGNORECASE)
+_SAFE_DECOMPOSITION_HINT_RE = re.compile(
+    r"\b("
+    r"including|as well as|in addition to|while|so that|without requiring|before .* and|after .* and|"
+    r"subtotal,|fees,|tax,|total|selected .+ and .+ summary|visible .+ and .+"
+    r")\b|[;:]",
+    re.IGNORECASE,
+)
+_SEMANTIC_GUARD_TERMS = {
+    "all",
+    "any",
+    "only",
+    "every",
+    "each",
+    "before",
+    "after",
+    "while",
+    "without",
+    "authenticated",
+    "authorized",
+    "owner",
+    "guest",
+    "route-specific",
+    "specific",
+    "general",
+    "valid",
+    "invalid",
+    "current",
+    "remaining",
+    "preserve",
+    "preserves",
+    "maintain",
+    "maintains",
+    "synchronize",
+    "synchronized",
+}
 
 
 def _heuristic_decomposition_failed(requirement_text: str, claim_texts: list[str], *, min_claims: int) -> bool:
@@ -259,6 +306,41 @@ def _heuristic_decomposition_failed(requirement_text: str, claim_texts: list[str
     if any(claim.strip().lower() == requirement_text.strip().lower() for claim in claim_texts):
         return bool(_COMPOUND_HINT_RE.search(requirement_text))
     return False
+
+
+def _should_decompose_requirement(requirement_text: str) -> bool:
+    text = requirement_text.strip()
+    if not _SAFE_DECOMPOSITION_HINT_RE.search(text):
+        return False
+    return len(text.split()) >= 14
+
+
+def _tokens_for_semantic_guard(text: str) -> set[str]:
+    lowered = text.lower().replace("route specific", "route-specific")
+    return {
+        token
+        for token in _SEMANTIC_GUARD_TERMS
+        if re.search(rf"\b{re.escape(token)}\b", lowered)
+    }
+
+
+def _passes_semantic_guard(requirement_text: str, claim_texts: list[str]) -> bool:
+    if not claim_texts:
+        return False
+    original_terms = _tokens_for_semantic_guard(requirement_text)
+    claims_joined = " ".join(claim_texts)
+    claims_terms = _tokens_for_semantic_guard(claims_joined)
+    if not original_terms.issubset(claims_terms):
+        return False
+    original_has_only = bool(re.search(r"\bonly\b", requirement_text, re.IGNORECASE))
+    claims_add_only = bool(re.search(r"\bonly\b", claims_joined, re.IGNORECASE)) and not original_has_only
+    if claims_add_only:
+        return False
+    original_has_destination = bool(re.search(r"\b(open|access|link|resource)\b", requirement_text, re.IGNORECASE))
+    claims_add_opened_page = bool(re.search(r"\b(opened|destination page|resulting page)\b", claims_joined, re.IGNORECASE))
+    if claims_add_opened_page and not original_has_destination:
+        return False
+    return True
 
 
 class RequirementUnderstanding:
@@ -275,6 +357,7 @@ class RequirementUnderstanding:
         max_claims: int = 4,
         fallback_decomposer: ClaimDecomposer | None = None,
         decompose_claims: bool = True,
+        decomposition_policy: str = "gated",
     ) -> None:
         if min_claims < 1:
             raise ValueError("min_claims must be >= 1")
@@ -285,12 +368,15 @@ class RequirementUnderstanding:
         self.heuristic_decomposer = HeuristicClaimDecomposer()
         self.fallback_decomposer = fallback_decomposer
         self.decompose_claims = decompose_claims
+        if decomposition_policy not in {"disabled", "gated", "always", "provided"}:
+            raise ValueError("decomposition_policy must be disabled, gated, always, or provided")
+        self.decomposition_policy = "disabled" if not decompose_claims else decomposition_policy
 
     def understand(self, requirement: RequirementInput) -> RequirementUnderstandingResult:
         return self.understand_many([requirement])[0]
 
     def understand_many(self, requirements: list[RequirementInput]) -> list[RequirementUnderstandingResult]:
-        if not self.decompose_claims:
+        if self.decomposition_policy == "disabled":
             return [
                 self._build_result(
                     requirement,
@@ -300,13 +386,60 @@ class RequirementUnderstanding:
                 for requirement in requirements
             ]
 
-        heuristic_claims_by_id = self.heuristic_decomposer.decompose_many(requirements, max_claims=self.max_claims)
+        if self.decomposition_policy == "provided":
+            results: list[RequirementUnderstandingResult] = []
+            for requirement in requirements:
+                provided = requirement.metadata.get("provided_claim_texts", [])
+                claim_texts = (
+                    [text.strip() for text in provided if isinstance(text, str) and text.strip()]
+                    if isinstance(provided, list)
+                    else []
+                )
+                results.append(
+                    self._build_result(
+                        requirement,
+                        claim_texts or [requirement.text],
+                        decomposition_source="provided_claims" if claim_texts else "provided_fallback",
+                    )
+                )
+            return results
+
+        decomposable_requirements = [
+            requirement
+            for requirement in requirements
+            if self.decomposition_policy == "always" or _should_decompose_requirement(requirement.text)
+        ]
+        atomic_requirements = [
+            requirement
+            for requirement in requirements
+            if requirement.requirement_id not in {item.requirement_id for item in decomposable_requirements}
+        ]
+
+        heuristic_claims_by_id = self.heuristic_decomposer.decompose_many(
+            decomposable_requirements,
+            max_claims=self.max_claims,
+        )
         claim_texts_by_id = dict(heuristic_claims_by_id)
-        decomposition_source_by_id = {requirement.requirement_id: "heuristic" for requirement in requirements}
+        for requirement in list(decomposable_requirements):
+            claim_texts = heuristic_claims_by_id.get(requirement.requirement_id, [])
+            if not _passes_semantic_guard(requirement.text, claim_texts):
+                claim_texts_by_id[requirement.requirement_id] = [requirement.text]
+        for requirement in atomic_requirements:
+            claim_texts_by_id[requirement.requirement_id] = [requirement.text]
+
+        decomposition_source_by_id = {
+            requirement.requirement_id: (
+                "heuristic"
+                if requirement in decomposable_requirements
+                and claim_texts_by_id.get(requirement.requirement_id) != [requirement.text]
+                else "single_requirement"
+            )
+            for requirement in requirements
+        }
 
         failed_requirements = [
             requirement
-            for requirement in requirements
+            for requirement in decomposable_requirements
             if _heuristic_decomposition_failed(
                 requirement.text,
                 heuristic_claims_by_id.get(requirement.requirement_id, []),
@@ -325,6 +458,8 @@ class RequirementUnderstanding:
             for requirement in failed_requirements:
                 fallback_claims = fallback_claims_by_id.get(requirement.requirement_id, [])
                 if not fallback_claims:
+                    continue
+                if not _passes_semantic_guard(requirement.text, fallback_claims):
                     continue
                 if len(fallback_claims) >= len(heuristic_claims_by_id.get(requirement.requirement_id, [])):
                     claim_texts_by_id[requirement.requirement_id] = fallback_claims

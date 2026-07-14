@@ -1,0 +1,1253 @@
+{
+  "dataset": "pure",
+  "flow_id": "pure_2010_mashboot",
+  "items": [
+    {
+      "requirement_id": "PURE-MB-NAV-001",
+      "flow_id": "pure_2010_mashboot",
+      "text": "The Mashbot web interface shall provide tabbed navigation for Dashboard, Create, Schedule, and Explore workflows.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_pdf_page:5",
+        "pure_pdf_page:9",
+        "pure_requirement:contextualized_feature",
+        "pure_source_section:2.1.2 User Interface; 4 User Interface"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:mashboot::2.1.2+mashboot::4",
+      "source_candidate_id": "PURE-MB-NAV-001",
+      "source_harvest_id": "composed:mashboot::2.1.2+mashboot::4",
+      "step_indices": [
+        1,
+        2,
+        3
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - mashboot.pdf, section 2.1.2 User Interface; 4 User Interface, PDF page(s) [5, 9]. Prepared after the pipeline run was inspected; use as a post-hoc review draft, not blinded gold.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Post-run manual suggestion for independent human review.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The web interface exposes a Dashboard tab.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "The web interface exposes a Create tab.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "The web interface exposes a Schedule tab.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "The web interface exposes an Explore tab.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        3
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 1-3 visibly show the Dashboard, Create, Schedule, and Explore tabs.",
+      "rationale": "Steps 1-3 visibly show the Dashboard, Create, Schedule, and Explore tabs.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-14T13:56:20+00:00",
+      "updated_at": "2026-07-14T13:56:20+00:00"
+    },
+    {
+      "requirement_id": "PURE-MB-DASHBOARD-001",
+      "flow_id": "pure_2010_mashboot",
+      "text": "The Dashboard shall summarize campaign performance through graphs, standard metrics, plugin-defined metrics, and metric-detail information.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_pdf_page:10",
+        "pure_pdf_page:11",
+        "pure_requirement:contextualized_feature",
+        "pure_source_section:4.1 Dashboard"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:mashboot::4.1",
+      "source_candidate_id": "PURE-MB-DASHBOARD-001",
+      "source_harvest_id": "composed:mashboot::4.1",
+      "step_indices": [
+        1
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - mashboot.pdf, section 4.1 Dashboard, PDF page(s) [10, 11]. Prepared after the pipeline run was inspected; use as a post-hoc review draft, not blinded gold.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "partially_fulfilled",
+      "manual_verification_notes": "Post-run manual suggestion for independent human review.",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Dashboard displays campaign-performance graphs or charts.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "The Dashboard includes a clickthrough-rate metric.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "The Dashboard includes a page-views metric.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "The Dashboard includes a number-of-comments metric.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "The Dashboard supports plugin-defined metrics.",
+          "status": "SUPPORTED_WITH_CAVEAT",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "The Dashboard provides additional information for a selected metric.",
+          "status": "AMBIGUOUS",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        }
+      ],
+      "evidence_steps": [
+        1
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 1 shows the graph and standard metrics; plugin provenance and selected-metric detail behavior are not directly established.",
+      "rationale": "Step 1 shows the graph and standard metrics; plugin provenance and selected-metric detail behavior are not directly established.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-14T13:56:20+00:00",
+      "updated_at": "2026-07-14T13:56:20+00:00"
+    },
+    {
+      "requirement_id": "PURE-MB-DASHBOARD-002",
+      "flow_id": "pure_2010_mashboot",
+      "text": "The monitoring Dashboard shall give users a view of responses to content in a campaign.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_pdf_page:10",
+        "pure_pdf_page:11",
+        "pure_pdf_page:5",
+        "pure_requirement:contextualized_feature",
+        "pure_source_section:2.1.2 User Interface; 4.1 Dashboard"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:mashboot::2.1.2+mashboot::4.1",
+      "source_candidate_id": "PURE-MB-DASHBOARD-002",
+      "source_harvest_id": "composed:mashboot::2.1.2+mashboot::4.1",
+      "step_indices": [
+        1
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - mashboot.pdf, section 2.1.2 User Interface; 4.1 Dashboard, PDF page(s) [5, 10, 11]. Prepared after the pipeline run was inspected; use as a post-hoc review draft, not blinded gold.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Post-run manual suggestion for independent human review.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Dashboard displays responses associated with campaign content.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        }
+      ],
+      "evidence_steps": [
+        1
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 1 visibly associates a response/comment panel with the displayed campaign dashboard.",
+      "rationale": "Step 1 visibly associates a response/comment panel with the displayed campaign dashboard.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-14T13:56:20+00:00",
+      "updated_at": "2026-07-14T13:56:20+00:00"
+    },
+    {
+      "requirement_id": "PURE-MB-CREATE-001",
+      "flow_id": "pure_2010_mashboot",
+      "text": "The Create view shall allow users to create campaigns, edit existing campaigns, and fill campaigns with content.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_pdf_page:10",
+        "pure_pdf_page:12",
+        "pure_pdf_page:8",
+        "pure_requirement:contextualized_feature",
+        "pure_source_section:3.2.2 Marketing Campaigns; 4.1.1 Create"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:2010 - mashboot::3.2::3.2.2/req-0480+2010 - mashboot::3.2::3.2.2/req-0490+mashboot::4.1.1",
+      "source_candidate_id": "PURE-MB-CREATE-001",
+      "source_harvest_id": "composed:2010 - mashboot::3.2::3.2.2/req-0480+2010 - mashboot::3.2::3.2.2/req-0490+mashboot::4.1.1",
+      "step_indices": [
+        2
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - mashboot.pdf, section 3.2.2 Marketing Campaigns; 4.1.1 Create, PDF page(s) [8, 10, 12]. Prepared after the pipeline run was inspected; use as a post-hoc review draft, not blinded gold.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "partially_fulfilled",
+      "manual_verification_notes": "Post-run manual suggestion for independent human review.",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Create view allows a user to create a campaign.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "The Create view allows a user to edit an existing campaign.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "The Create view allows a user to fill a campaign with content.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        }
+      ],
+      "evidence_steps": [
+        2
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 2 directly supports new-campaign creation, but editing and filling an existing campaign are absent.",
+      "rationale": "Step 2 directly supports new-campaign creation, but editing and filling an existing campaign are absent.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-14T13:56:20+00:00",
+      "updated_at": "2026-07-14T13:56:20+00:00"
+    },
+    {
+      "requirement_id": "PURE-MB-CREATE-002",
+      "flow_id": "pure_2010_mashboot",
+      "text": "The Create view shall let users add service-supported content elements and schedule, edit, or delete each element.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_pdf_page:10",
+        "pure_pdf_page:12",
+        "pure_pdf_page:7",
+        "pure_requirement:contextualized_feature",
+        "pure_source_section:3.2.1 User Accounts; 4.1.1 Create"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:2010 - mashboot::3.2::3.2.1/req-0210+mashboot::4.1.1",
+      "source_candidate_id": "PURE-MB-CREATE-002",
+      "source_harvest_id": "composed:2010 - mashboot::3.2::3.2.1/req-0210+mashboot::4.1.1",
+      "step_indices": [
+        2
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - mashboot.pdf, section 3.2.1 User Accounts; 4.1.1 Create, PDF page(s) [7, 10, 12]. Prepared after the pipeline run was inspected; use as a post-hoc review draft, not blinded gold.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "abstain",
+      "manual_verification_notes": "Post-run manual suggestion for independent human review.",
+      "verification_label": "ABSTAIN",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Create view provides an Add Content action.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "The available content types depend on services accessible to the user.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": [],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "Adding a content type creates a section for individually scheduled content elements.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "Each content element can be scheduled.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "Each content element can be edited.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "Each content element can be deleted.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        }
+      ],
+      "evidence_steps": [
+        2
+      ],
+      "evidence_units": [
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "No screenshot shows the document-described Add Content view or its per-element edit and delete controls.",
+      "rationale": "No screenshot shows the document-described Add Content view or its per-element edit and delete controls.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-14T13:56:20+00:00",
+      "updated_at": "2026-07-14T13:56:20+00:00"
+    },
+    {
+      "requirement_id": "PURE-MB-SCHEDULE-001",
+      "flow_id": "pure_2010_mashboot",
+      "text": "The Schedule view shall support dragging content to a calendar, assigning a default midnight go-live time, and changing that time.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_pdf_page:10",
+        "pure_pdf_page:13",
+        "pure_pdf_page:9",
+        "pure_requirement:contextualized_feature",
+        "pure_source_section:3.2.2 Marketing Campaigns; 4.1.2 Schedule"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:2010 - mashboot::3.2::3.2.2/req-0530+mashboot::4.1.2",
+      "source_candidate_id": "PURE-MB-SCHEDULE-001",
+      "source_harvest_id": "composed:2010 - mashboot::3.2::3.2.2/req-0530+mashboot::4.1.2",
+      "step_indices": [
+        3
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - mashboot.pdf, section 3.2.2 Marketing Campaigns; 4.1.2 Schedule, PDF page(s) [9, 10, 13]. Prepared after the pipeline run was inspected; use as a post-hoc review draft, not blinded gold.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "partially_fulfilled",
+      "manual_verification_notes": "Post-run manual suggestion for independent human review.",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Users can drag content from a content bucket to the calendar to schedule it.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "Dragged content receives a default go-live time of 12am on the selected day.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "Users can select scheduled content and assign a different go-live time.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        }
+      ],
+      "evidence_steps": [
+        3
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 3 shows drag-and-drop calendar scheduling, but not the default midnight time or changing that time.",
+      "rationale": "Step 3 shows drag-and-drop calendar scheduling, but not the default midnight time or changing that time.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-14T13:56:20+00:00",
+      "updated_at": "2026-07-14T13:56:20+00:00"
+    },
+    {
+      "requirement_id": "PURE-MB-SCHEDULE-002",
+      "flow_id": "pure_2010_mashboot",
+      "text": "The calendar shall visualize content go-live and deletion actions and allow month-to-month scheduling.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_pdf_page:10",
+        "pure_pdf_page:13",
+        "pure_requirement:contextualized_feature",
+        "pure_source_section:4.1.2 Schedule"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:mashboot::4.1.2",
+      "source_candidate_id": "PURE-MB-SCHEDULE-002",
+      "source_harvest_id": "composed:mashboot::4.1.2",
+      "step_indices": [
+        3
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - mashboot.pdf, section 4.1.2 Schedule, PDF page(s) [10, 13]. Prepared after the pipeline run was inspected; use as a post-hoc review draft, not blinded gold.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "partially_fulfilled",
+      "manual_verification_notes": "Post-run manual suggestion for independent human review.",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The calendar visually represents when content goes live.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "The calendar visually represents when content is deleted.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "Users can page between calendar months.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "Users can schedule content on a desired day.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        }
+      ],
+      "evidence_steps": [
+        3
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 3 shows calendar scheduling and month navigation, but does not demonstrate deletion visualization.",
+      "rationale": "Step 3 shows calendar scheduling and month navigation, but does not demonstrate deletion visualization.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-14T13:56:20+00:00",
+      "updated_at": "2026-07-14T13:56:20+00:00"
+    },
+    {
+      "requirement_id": "PURE-MB-CAMPAIGN-001",
+      "flow_id": "pure_2010_mashboot",
+      "text": "A Mashbot campaign shall contain a name, pieces of content, a schedule, and user or group permissions.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_pdf_page:8",
+        "pure_requirement:contextualized_feature",
+        "pure_source_section:3.2.2 Marketing Campaigns"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:2010 - mashboot::3.2::3.2.2/req-0480+2010 - mashboot::3.2::3.2.2/req-0490+2010 - mashboot::3.2::3.2.2/req-0500+2010 - mashboot::3.2::3.2.2/req-0510+2010 - mashboot::3.2::3.2.2/req-0520",
+      "source_candidate_id": "PURE-MB-CAMPAIGN-001",
+      "source_harvest_id": "composed:2010 - mashboot::3.2::3.2.2/req-0480+2010 - mashboot::3.2::3.2.2/req-0490+2010 - mashboot::3.2::3.2.2/req-0500+2010 - mashboot::3.2::3.2.2/req-0510+2010 - mashboot::3.2::3.2.2/req-0520",
+      "step_indices": [
+        1,
+        2,
+        3
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - mashboot.pdf, section 3.2.2 Marketing Campaigns, PDF page(s) [8]. Prepared after the pipeline run was inspected; use as a post-hoc review draft, not blinded gold.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "partially_fulfilled",
+      "manual_verification_notes": "Post-run manual suggestion for independent human review.",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "A campaign includes a name.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            2
+          ],
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "A campaign includes pieces of content.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "A campaign includes a schedule.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "A campaign includes user or group permissions.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2,
+            3
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        3
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 1-3 show campaign names, content, and schedules; user or group permissions are not shown.",
+      "rationale": "Steps 1-3 show campaign names, content, and schedules; user or group permissions are not shown.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-14T13:56:20+00:00",
+      "updated_at": "2026-07-14T13:56:20+00:00"
+    },
+    {
+      "requirement_id": "PURE-MB-CONTENT-001",
+      "flow_id": "pure_2010_mashboot",
+      "text": "Mashbot campaign content shall support text, image, audio, and video forms.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_pdf_page:9",
+        "pure_requirement:contextualized_feature",
+        "pure_source_section:3.2.2 Marketing Campaigns"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:2010 - mashboot::3.2::3.2.2/req-0540+2010 - mashboot::3.2::3.2.2/req-0550+2010 - mashboot::3.2::3.2.2/req-0560+2010 - mashboot::3.2::3.2.2/req-0570+2010 - mashboot::3.2::3.2.2/req-0580",
+      "source_candidate_id": "PURE-MB-CONTENT-001",
+      "source_harvest_id": "composed:2010 - mashboot::3.2::3.2.2/req-0540+2010 - mashboot::3.2::3.2.2/req-0550+2010 - mashboot::3.2::3.2.2/req-0560+2010 - mashboot::3.2::3.2.2/req-0570+2010 - mashboot::3.2::3.2.2/req-0580",
+      "step_indices": [
+        1,
+        2
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - mashboot.pdf, section 3.2.2 Marketing Campaigns, PDF page(s) [9]. Prepared after the pipeline run was inspected; use as a post-hoc review draft, not blinded gold.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "partially_fulfilled",
+      "manual_verification_notes": "Post-run manual suggestion for independent human review.",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Campaign content supports text.",
+          "status": "SUPPORTED_WITH_CAVEAT",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "Campaign content supports images.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "Campaign content supports audio.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            2
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "Campaign content supports video.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 2,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 1 visibly exposes Blog/Status, Pictures, and Video content categories; audio is absent and text support is inferred from Blog/Status.",
+      "rationale": "Step 1 visibly exposes Blog/Status, Pictures, and Video content categories; audio is absent and text support is inferred from Blog/Status.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-14T13:56:20+00:00",
+      "updated_at": "2026-07-14T13:56:20+00:00"
+    },
+    {
+      "requirement_id": "PURE-MB-EXPLORE-001",
+      "flow_id": "pure_2010_mashboot",
+      "text": "The Explore view shall support monitored keyword searches and aggregate comments from campaign content.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_pdf_page:10",
+        "pure_pdf_page:5",
+        "pure_requirement:contextualized_feature",
+        "pure_source_section:2.1.2 User Interface; 4.1.3 Explore"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:mashboot::2.1.2+mashboot::4.1.3",
+      "source_candidate_id": "PURE-MB-EXPLORE-001",
+      "source_harvest_id": "composed:mashboot::2.1.2+mashboot::4.1.3",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - mashboot.pdf, section 2.1.2 User Interface; 4.1.3 Explore, PDF page(s) [5, 10]. Prepared after the pipeline run was inspected; use as a post-hoc review draft, not blinded gold.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "abstain",
+      "manual_verification_notes": "Post-run manual suggestion for independent human review.",
+      "verification_label": "ABSTAIN",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Explore view supports monitored keyword searches for compatible services.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "The Explore view aggregates comments from content published within a campaign.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        }
+      ],
+      "evidence_steps": [
+        1
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The Explore tab is visible, but no Explore-view screenshot demonstrates monitored searches or comment aggregation there.",
+      "rationale": "The Explore tab is visible, but no Explore-view screenshot demonstrates monitored searches or comment aggregation there.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-14T13:56:20+00:00",
+      "updated_at": "2026-07-14T13:56:20+00:00"
+    },
+    {
+      "requirement_id": "PURE-MB-SERVICE-001",
+      "flow_id": "pure_2010_mashboot",
+      "text": "Mashbot shall associate Mashbot accounts with external service accounts and provide authentication and standardized interaction interfaces.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_pdf_page:9",
+        "pure_requirement:contextualized_feature",
+        "pure_source_section:3.2.3 External Service Accounts"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:2010 - mashboot::3.2::3.2.3/req-0590+2010 - mashboot::3.2::3.2.3/req-0600+2010 - mashboot::3.2::3.2.3/req-0610",
+      "source_candidate_id": "PURE-MB-SERVICE-001",
+      "source_harvest_id": "composed:2010 - mashboot::3.2::3.2.3/req-0590+2010 - mashboot::3.2::3.2.3/req-0600+2010 - mashboot::3.2::3.2.3/req-0610",
+      "step_indices": [],
+      "requirement_type": "FR",
+      "ui_evaluability": "NOT_UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - mashboot.pdf, section 3.2.3 External Service Accounts, PDF page(s) [9]. Prepared after the pipeline run was inspected; use as a post-hoc review draft, not blinded gold.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "abstain",
+      "manual_verification_notes": "Post-run manual suggestion for independent human review.",
+      "verification_label": "ABSTAIN",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Mashbot accounts can be associated with external service accounts.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": [],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "Mashbot provides an interface for authenticating to an external service account.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": [],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        },
+        {
+          "claim": "Mashbot provides a standardized method for interacting with external service accounts.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": [],
+          "note": "Manual screenshot assessment; requires reviewer confirmation."
+        }
+      ],
+      "evidence_steps": [],
+      "evidence_units": [],
+      "evidence_note": "The screenshots do not show account association, external-service authentication, or the standardized interaction interface.",
+      "rationale": "The screenshots do not show account association, external-service authentication, or the standardized interaction interface.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-14T13:56:20+00:00",
+      "updated_at": "2026-07-14T13:56:20+00:00"
+    }
+  ]
+}

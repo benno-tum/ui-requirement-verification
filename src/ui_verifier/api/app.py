@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import base64
 from collections import deque
+import io
 import json
 import re
 from pathlib import Path
@@ -14,6 +16,7 @@ import uuid
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from PIL import Image, ImageOps, UnidentifiedImageError
 from pydantic import BaseModel
 
 from ui_verifier.annotation.service import AnnotationService
@@ -55,11 +58,16 @@ verification_storage = VerificationStorage()
 flow_catalog = FlowCatalog(annotation_storage=annotation_service.storage, verification_storage=verification_storage)
 DEMO_VERIFICATION_ROOT = Path(__file__).resolve().parents[3] / "data" / "generated" / "demo_verification"
 VERIFICATION_PIPELINE_ROOT = Path(__file__).resolve().parents[3] / "data" / "generated" / "verification_pipeline"
+VERIFICATION_PIPELINE_RUNS_ROOT = Path(__file__).resolve().parents[3] / "data" / "generated" / "verification_pipeline_runs"
 BASE_DIR = Path(__file__).resolve().parents[3]
 GENERATED_ROOT = BASE_DIR / "data" / "generated"
 REQUIREMENTS_GOLD_ROOT = BASE_DIR / "data" / "annotations" / "requirements_gold"
 VERIFICATION_GOLD_ROOT = BASE_DIR / "data" / "annotations" / "verification_gold"
 RUN_OUTPUT_DIR_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.-]{0,80}$")
+UPLOAD_PROJECT_SLUG_RE = re.compile(r"[^a-z0-9]+")
+MAX_UPLOAD_SCREENSHOTS = 20
+MAX_UPLOAD_IMAGE_BYTES = 12 * 1024 * 1024
+MAX_UPLOAD_TOTAL_BYTES = 80 * 1024 * 1024
 RUN_JOBS: dict[str, dict[str, Any]] = {}
 RUN_JOBS_LOCK = threading.Lock()
 
@@ -199,6 +207,19 @@ class StartPipelineRunRequest(BaseModel):
     output_dir_name: str = "ui_verification_runs"
 
 
+class UploadedScreenshot(BaseModel):
+    filename: str
+    content_base64: str
+
+
+class CreateUploadedFlowRequest(BaseModel):
+    project_name: str
+    requirements_content: str
+    requirements_filename: str | None = None
+    screenshots: list[UploadedScreenshot]
+    description: str | None = None
+
+
 class RegenerateExpectedClaimsRequest(BaseModel):
     max_claims: int = 4
     preserve_existing_decisions: bool = True
@@ -217,6 +238,114 @@ def _repo_relative(path: Path) -> str:
         return str(path.resolve().relative_to(BASE_DIR.resolve()))
     except ValueError:
         return str(path)
+
+
+def _uploaded_project_slug(value: str) -> str:
+    normalized = UPLOAD_PROJECT_SLUG_RE.sub("-", value.strip().lower()).strip("-")
+    return (normalized[:42].strip("-") or "untitled")
+
+
+def _uploaded_requirement_items(content: str, filename: str | None) -> list[str | dict[str, Any]]:
+    content = content.strip()
+    if not content:
+        raise HTTPException(status_code=400, detail="Add at least one requirement or upload a requirements file.")
+    if len(content.encode("utf-8")) > 2 * 1024 * 1024:
+        raise HTTPException(status_code=413, detail="Requirements content must be 2 MB or smaller.")
+
+    looks_like_json = (filename or "").lower().endswith(".json") or content.startswith(("[", "{"))
+    if looks_like_json:
+        try:
+            parsed = json.loads(content)
+        except json.JSONDecodeError as exc:
+            raise HTTPException(status_code=400, detail=f"Requirements JSON is invalid: {exc.msg}.") from exc
+        if isinstance(parsed, list):
+            items = parsed
+        elif isinstance(parsed, dict):
+            nested = parsed.get("requirements", parsed.get("items"))
+            items = nested if isinstance(nested, list) else [parsed]
+        else:
+            raise HTTPException(status_code=400, detail="Requirements JSON must contain an object or list.")
+        if not items:
+            raise HTTPException(status_code=400, detail="The requirements file does not contain any requirements.")
+        return items
+
+    lines = []
+    for raw_line in content.splitlines():
+        line = re.sub(r"^\s*(?:[-*+]\s+|\d+[.)]\s+)", "", raw_line).strip()
+        if line and not re.fullmatch(r"#+\s*requirements?\s*", line, flags=re.IGNORECASE):
+            lines.append(line)
+    if not lines:
+        raise HTTPException(status_code=400, detail="The requirements file does not contain any non-empty lines.")
+    return lines
+
+
+def _normalize_uploaded_requirements(
+    content: str,
+    filename: str | None,
+    *,
+    flow_id: str,
+) -> list[dict[str, Any]]:
+    normalized: list[dict[str, Any]] = []
+    seen_ids: set[str] = set()
+    for index, item in enumerate(_uploaded_requirement_items(content, filename), start=1):
+        if isinstance(item, str):
+            data: dict[str, Any] = {"text": item}
+        elif isinstance(item, dict):
+            data = dict(item)
+        else:
+            raise HTTPException(status_code=400, detail=f"Requirement {index} must be a string or object.")
+
+        text_value = next(
+            (
+                data.get(key).strip()
+                for key in ("text", "requirement_text", "harvested_text", "claim_text")
+                if isinstance(data.get(key), str) and data.get(key).strip()
+            ),
+            None,
+        )
+        if text_value is None:
+            raise HTTPException(status_code=400, detail=f"Requirement {index} is missing a text field.")
+
+        base_id = str(data.get("requirement_id") or data.get("id") or f"REQ-{index:03d}").strip() or f"REQ-{index:03d}"
+        requirement_id = base_id
+        duplicate_index = 2
+        while requirement_id in seen_ids:
+            requirement_id = f"{base_id}-{duplicate_index}"
+            duplicate_index += 1
+        seen_ids.add(requirement_id)
+        normalized.append({**data, "requirement_id": requirement_id, "flow_id": flow_id, "text": text_value})
+    return normalized
+
+
+def _decode_uploaded_screenshot(screenshot: UploadedScreenshot) -> bytes:
+    encoded = screenshot.content_base64
+    if encoded.startswith("data:"):
+        _, separator, encoded = encoded.partition(",")
+        if not separator:
+            raise HTTPException(status_code=400, detail=f"Invalid image data for {screenshot.filename}.")
+    try:
+        raw = base64.b64decode(encoded, validate=True)
+    except (ValueError, TypeError) as exc:
+        raise HTTPException(status_code=400, detail=f"Invalid base64 image data for {screenshot.filename}.") from exc
+    if not raw:
+        raise HTTPException(status_code=400, detail=f"{screenshot.filename} is empty.")
+    if len(raw) > MAX_UPLOAD_IMAGE_BYTES:
+        raise HTTPException(status_code=413, detail=f"{screenshot.filename} exceeds the 12 MB image limit.")
+
+    try:
+        with Image.open(io.BytesIO(raw)) as source:
+            image = ImageOps.exif_transpose(source)
+            image.load()
+            if image.width < 1 or image.height < 1 or image.width * image.height > 50_000_000:
+                raise HTTPException(status_code=400, detail=f"{screenshot.filename} has unsupported dimensions.")
+            normalized = image.convert("RGBA" if "A" in image.getbands() else "RGB")
+            output = io.BytesIO()
+            normalized.save(output, format="PNG", optimize=True)
+            return output.getvalue()
+    except HTTPException:
+        raise
+    except (UnidentifiedImageError, OSError) as exc:
+        raise HTTPException(status_code=400, detail=f"{screenshot.filename} is not a supported image.") from exc
 
 
 def _require_under(path: Path, root: Path) -> Path:
@@ -254,6 +383,7 @@ def _load_json_object(path: Path) -> dict[str, Any] | None:
 def _iter_verification_run_paths() -> list[Path]:
     roots = [
         VERIFICATION_PIPELINE_ROOT,
+        VERIFICATION_PIPELINE_RUNS_ROOT,
         DEMO_VERIFICATION_ROOT,
         *(path for path in GENERATED_ROOT.glob("diagnosis*") if path.is_dir()),
         *(path for path in GENERATED_ROOT.glob("benchmark*") if path.is_dir()),
@@ -315,6 +445,9 @@ def discover_pipeline_runs(flow_id: str) -> list[dict[str, Any]]:
         data = _load_json_object(path)
         if not data or data.get("flow_id") != flow_id or not isinstance(data.get("results"), list):
             continue
+        metadata = data.get("metadata") if isinstance(data.get("metadata"), dict) else {}
+        if metadata.get("run_valid") is False:
+            continue
         runs.append(_run_entry_from_data(path, data))
     runs.sort(key=lambda item: float(item.get("mtime") or 0.0), reverse=True)
     return runs
@@ -347,8 +480,8 @@ def build_pipeline_run_command(flow_id: str, body: StartPipelineRunRequest, *, j
         raise HTTPException(status_code=400, detail="verifier must be deterministic_rule_based or gemini-image.")
     if body.retriever != "lexical":
         raise HTTPException(status_code=400, detail="Only lexical retriever is supported from the UI for now.")
-    if body.requirements_source not in {"accepted", "benchmark"}:
-        raise HTTPException(status_code=400, detail="requirements_source must be accepted or benchmark.")
+    if body.requirements_source not in {"accepted", "benchmark", "uploaded"}:
+        raise HTTPException(status_code=400, detail="requirements_source must be accepted, benchmark, or uploaded.")
     if body.top_k < 1 or body.top_k > 20:
         raise HTTPException(status_code=400, detail="top_k must be between 1 and 20.")
     if body.max_images < 1 or body.max_images > 20:
@@ -358,9 +491,20 @@ def build_pipeline_run_command(flow_id: str, body: StartPipelineRunRequest, *, j
     if verifier == "gemini-image" and body.max_gemini_api_calls == 0:
         raise HTTPException(status_code=400, detail="Gemini runs require max_gemini_api_calls greater than 0 or -1.")
 
-    _, flow_dir = flow_catalog.resolve_flow(flow_id)
+    dataset, flow_dir = flow_catalog.resolve_flow(flow_id)
     flow_dir = _require_under(flow_dir, BASE_DIR / "data")
-    if body.requirements_source == "benchmark":
+    requirements_source_arg = body.requirements_source
+    if body.requirements_source == "uploaded":
+        if dataset != "uploads":
+            raise HTTPException(status_code=400, detail="Uploaded requirements can only be used with an uploaded flow.")
+        task = _load_json_object(flow_dir / "task.json") or {}
+        uploaded_path = task.get("uploaded_requirements_path")
+        if not isinstance(uploaded_path, str) or not uploaded_path.strip():
+            raise HTTPException(status_code=404, detail=f"Uploaded requirements not found for {flow_id}.")
+        requirements_path = (BASE_DIR / uploaded_path).resolve()
+        _require_under(requirements_path, GENERATED_ROOT / "uploaded_flows")
+        requirements_source_arg = "custom"
+    elif body.requirements_source == "benchmark":
         requirements_path = VERIFICATION_GOLD_ROOT / flow_id / "verification_gold.json"
     else:
         requirements_path = REQUIREMENTS_GOLD_ROOT / flow_id / "gold_requirements.json"
@@ -384,7 +528,7 @@ def build_pipeline_run_command(flow_id: str, body: StartPipelineRunRequest, *, j
         "--requirements",
         str(requirements_path),
         "--requirements-source",
-        body.requirements_source,
+        requirements_source_arg,
         "--out",
         str(output_path),
         "--retriever",
@@ -492,6 +636,75 @@ def model_config() -> dict[str, Any]:
     return {
         "config_path": str(model_config_path()),
         "roles": all_model_role_configs(),
+    }
+
+
+@app.post("/uploaded-flows")
+def create_uploaded_flow(body: CreateUploadedFlowRequest) -> dict[str, Any]:
+    project_name = body.project_name.strip()
+    if not project_name:
+        raise HTTPException(status_code=400, detail="Project name is required.")
+    if len(body.screenshots) < 1:
+        raise HTTPException(status_code=400, detail="Upload at least one screenshot.")
+    if len(body.screenshots) > MAX_UPLOAD_SCREENSHOTS:
+        raise HTTPException(status_code=413, detail=f"Upload at most {MAX_UPLOAD_SCREENSHOTS} screenshots per project.")
+
+    decoded_screenshots: list[bytes] = []
+    total_bytes = 0
+    for screenshot in body.screenshots:
+        decoded = _decode_uploaded_screenshot(screenshot)
+        total_bytes += len(decoded)
+        if total_bytes > MAX_UPLOAD_TOTAL_BYTES:
+            raise HTTPException(status_code=413, detail="The combined screenshot upload exceeds 80 MB.")
+        decoded_screenshots.append(decoded)
+
+    flow_id = f"upload-{_uploaded_project_slug(project_name)}-{uuid.uuid4().hex[:8]}"
+    requirements = _normalize_uploaded_requirements(
+        body.requirements_content,
+        body.requirements_filename,
+        flow_id=flow_id,
+    )
+
+    flow_dir = flow_catalog.flows_root / "uploads" / flow_id
+    requirements_path = GENERATED_ROOT / "uploaded_flows" / flow_id / "requirements.json"
+    flow_dir.mkdir(parents=True, exist_ok=False)
+    requirements_path.parent.mkdir(parents=True, exist_ok=False)
+
+    for index, screenshot_bytes in enumerate(decoded_screenshots, start=1):
+        (flow_dir / f"step_{index}.png").write_bytes(screenshot_bytes)
+
+    requirements_path.write_text(
+        json.dumps(
+            {
+                "dataset": "uploads",
+                "flow_id": flow_id,
+                "requirements": requirements,
+            },
+            indent=2,
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+    (flow_dir / "task.json").write_text(
+        json.dumps(
+            {
+                "website": project_name,
+                "confirmed_task": (body.description or "").strip() or f"Ad-hoc verification for {project_name}",
+                "source": "uploaded",
+                "uploaded_requirements_path": _repo_relative(requirements_path),
+                "requirements_count": len(requirements),
+            },
+            indent=2,
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+
+    return {
+        "flow": flow_catalog.get_flow(flow_id),
+        "steps": flow_catalog.get_flow_steps(flow_id),
+        "requirements": requirements,
+        "requirements_count": len(requirements),
     }
 
 

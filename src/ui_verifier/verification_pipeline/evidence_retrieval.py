@@ -17,6 +17,25 @@ from ui_verifier.verification_pipeline.schemas import (
 
 
 _TOKEN_RE = re.compile(r"[a-z0-9][a-z0-9_-]*")
+_LATE_STATE_CLAIM_RE = re.compile(
+    r"\b("
+    r"cart|checkout|pre-?checkout|payment|order summary|line items?|"
+    r"subtotal|fees?|tax|total|modify cart|marketing consent|purchase acknowledgement|"
+    r"high contrast|accessibility|review step|review panel|summary|result state|results?|"
+    r"confirmation|preserv(?:e|es|ed|ing)|retain(?:s|ed|ing)?|remain(?:s|ed|ing)?|"
+    r"reflect(?:s|ed|ing)?|synchroni[sz](?:e|es|ed|ing)|quantity|transition"
+    r")\b",
+    re.IGNORECASE,
+)
+_LATE_STATE_SCREEN_RE = re.compile(
+    r"\b("
+    r"shopping cart|cart items?|checkout|order review|order summary|subtotal|"
+    r"processing fee|fees?|tax|total|modify cart|continue shopping|"
+    r"marketing|terms of purchase|purchase acknowledgement|high contrast|"
+    r"result|results?|confirmation|confirmed|balance|qty|quantity"
+    r")\b",
+    re.IGNORECASE,
+)
 _STOPWORDS = {
     "a",
     "an",
@@ -110,6 +129,71 @@ def _make_evidence(
     )
 
 
+def _needs_late_state_coverage(claim_text: str) -> bool:
+    return bool(_LATE_STATE_CLAIM_RE.search(claim_text))
+
+
+def _late_state_screens(
+    claim: RequirementClaim,
+    screens: list[ScreenRepresentation],
+) -> list[ScreenRepresentation]:
+    if not _needs_late_state_coverage(claim.claim_text) or not screens:
+        return []
+
+    matched = [
+        screen
+        for screen in screens
+        if _LATE_STATE_SCREEN_RE.search(_screen_document(screen))
+    ]
+    if matched:
+        return sorted(matched, key=lambda screen: screen.step_index)[-2:]
+    return [max(screens, key=lambda screen: screen.step_index)]
+
+
+def _with_state_coverage(
+    claim: RequirementClaim,
+    ranked: list[tuple[float, ScreenRepresentation]],
+    screens: list[ScreenRepresentation],
+    *,
+    top_k: int,
+) -> list[tuple[float, ScreenRepresentation]]:
+    if top_k <= 0:
+        return []
+
+    deduped: list[tuple[float, ScreenRepresentation]] = []
+    seen_steps: set[int] = set()
+    for score, screen in ranked:
+        if screen.step_index in seen_steps:
+            continue
+        seen_steps.add(screen.step_index)
+        deduped.append((score, screen))
+
+    required_screens = _late_state_screens(claim, screens)
+    if not required_screens:
+        return deduped[:top_k]
+
+    selected: list[tuple[float, ScreenRepresentation]] = []
+    selected_steps: set[int] = set()
+    by_step = {screen.step_index: score for score, screen in deduped}
+
+    for screen in required_screens:
+        if screen.step_index in selected_steps:
+            continue
+        selected_steps.add(screen.step_index)
+        selected.append((max(by_step.get(screen.step_index, 0.0), 0.62), screen))
+
+    for score, screen in deduped:
+        if len(selected) >= top_k:
+            break
+        if screen.step_index in selected_steps:
+            continue
+        selected_steps.add(screen.step_index)
+        selected.append((score, screen))
+
+    selected.sort(key=lambda item: item[1].step_index)
+    return selected[:top_k]
+
+
 class EvidenceRetriever(ABC):
     def __init__(self, *, top_k: int = 3) -> None:
         if top_k < 1:
@@ -150,9 +234,10 @@ class LexicalEvidenceRetriever(EvidenceRetriever):
                     scored.append((score, screen))
 
             scored.sort(key=lambda item: (-item[0], item[1].step_index))
+            selected = _with_state_coverage(claim, scored, screens, top_k=self.top_k)
             results[claim.claim_id] = [
                 _make_evidence(claim, screen, score=score, source="lexical")
-                for score, screen in scored[: self.top_k]
+                for score, screen in selected
                 if score > 0.0
             ]
 
@@ -197,9 +282,10 @@ class TfidfEvidenceRetriever(EvidenceRetriever):
                 if float(score) > 0.0
             ]
             scored.sort(key=lambda item: (-item[0], item[1].step_index))
+            selected = _with_state_coverage(claim, scored, screens, top_k=self.top_k)
             results[claim.claim_id] = [
                 _make_evidence(claim, screen, score=score, source="tfidf")
-                for score, screen in scored[: self.top_k]
+                for score, screen in selected
             ]
 
         if not any(results.values()):
@@ -267,9 +353,10 @@ class EmbeddingEvidenceRetriever(EvidenceRetriever):
             ]
             scored = [(score, screen) for score, screen in scored if score > 0.0]
             scored.sort(key=lambda item: (-item[0], item[1].step_index))
+            selected = _with_state_coverage(claim, scored, screens, top_k=self.top_k)
             results[claim.claim_id] = [
                 _make_evidence(claim, screen, score=score, source="embedding")
-                for score, screen in scored[: self.top_k]
+                for score, screen in selected
             ]
 
         if not any(results.values()):
@@ -347,9 +434,10 @@ class TextLLMEvidenceRetriever(EvidenceRetriever):
         results: dict[str, list[EvidenceItem]] = {}
         for claim in claims:
             ranked = rankings.get(claim.claim_id, [])
+            selected = _with_state_coverage(claim, ranked, screens, top_k=self.top_k)
             results[claim.claim_id] = [
                 _make_evidence(claim, screen, score=score, source="llm_text_rerank")
-                for score, screen in ranked[: self.top_k]
+                for score, screen in selected
                 if score > 0.0
             ]
 

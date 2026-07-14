@@ -5,6 +5,7 @@ import {
   resolveAssetUrl,
   type BoundingBox,
   type BoundingBoxMetadata,
+  type CreateUploadedFlowResponse,
   type EvidenceUnit,
   type PipelineVerificationRun,
   type PipelineRunJob,
@@ -113,7 +114,35 @@ const REVIEW_CATEGORY_OPTIONS: Array<{id: ReviewCategoryId; label: string}> = [
   {id: 'label_mismatch', label: 'Any label mismatch'},
 ]
 
+type AppRoute = 'workbench' | 'upload'
+
+function routeFromLocation(): AppRoute {
+  return window.location.pathname.startsWith('/verify/new') ? 'upload' : 'workbench'
+}
+
 function App() {
+  const [route, setRoute] = useState<AppRoute>(routeFromLocation)
+
+  useEffect(() => {
+    const handlePopState = () => setRoute(routeFromLocation())
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
+
+  function navigate(nextRoute: AppRoute, flowId?: string) {
+    const path = nextRoute === 'upload'
+      ? `/verify/new${flowId ? `?flow_id=${encodeURIComponent(flowId)}` : ''}`
+      : '/'
+    window.history.pushState({}, '', path)
+    setRoute(nextRoute)
+  }
+
+  return route === 'upload'
+    ? <UploadVerificationPage onBack={() => navigate('workbench')} onProjectCreated={(flowId) => navigate('upload', flowId)} />
+    : <AnnotationWorkbench onOpenUpload={() => navigate('upload')} />
+}
+
+function AnnotationWorkbench({onOpenUpload}: {onOpenUpload: () => void}) {
   const [flows, setFlows] = useState<FlowSummary[]>([])
   const [flowsState, setFlowsState] = useState<LoadState>('idle')
   const [selectedFlowId, setSelectedFlowId] = useState<string>('')
@@ -515,6 +544,11 @@ function App() {
           Refresh flows
         </button>
 
+        <button className="upload-route-button" onClick={onOpenUpload}>
+          <span>＋</span>
+          New screenshot verification
+        </button>
+
         <div className="flow-list">
           {flowsState === 'loading' && <p>Loading flows...</p>}
           {flows.map((flow) => (
@@ -684,6 +718,334 @@ function App() {
           }
         />
       )}
+    </div>
+  )
+}
+
+function UploadVerificationPage({
+  onBack,
+  onProjectCreated,
+}: {
+  onBack: () => void
+  onProjectCreated: (flowId: string) => void
+}) {
+  const [projectName, setProjectName] = useState('')
+  const [description, setDescription] = useState('')
+  const [requirementsContent, setRequirementsContent] = useState('')
+  const [requirementsFilename, setRequirementsFilename] = useState<string | undefined>()
+  const [screenshots, setScreenshots] = useState<File[]>([])
+  const [dragActive, setDragActive] = useState(false)
+  const [creating, setCreating] = useState(false)
+  const [loadingProject, setLoadingProject] = useState(false)
+  const [message, setMessage] = useState('')
+  const [project, setProject] = useState<CreateUploadedFlowResponse | null>(null)
+  const [pipelineRun, setPipelineRun] = useState<PipelineVerificationRun | null>(null)
+
+  useEffect(() => {
+    const flowId = new URLSearchParams(window.location.search).get('flow_id')
+    if (!flowId) {
+      return
+    }
+    let cancelled = false
+    setLoadingProject(true)
+    Promise.all([api.getFlow(flowId), api.getSteps(flowId), api.getLatestPipelineVerification(flowId).catch(() => null)])
+      .then(([flow, steps, latestRun]) => {
+        if (cancelled) {
+          return
+        }
+        setProject({
+          flow,
+          steps,
+          requirements: [],
+          requirements_count: Number(flow.task?.requirements_count ?? 0),
+        })
+        setPipelineRun(latestRun)
+      })
+      .catch((error) => {
+        if (!cancelled) {
+          setMessage(error instanceof Error ? error.message : 'Failed to load the uploaded project')
+        }
+      })
+      .finally(() => {
+        if (!cancelled) {
+          setLoadingProject(false)
+        }
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  function addScreenshots(files: File[]) {
+    const imageFiles = files.filter((file) => file.type.startsWith('image/'))
+    if (imageFiles.length !== files.length) {
+      setMessage('Only image files were added. Unsupported files were skipped.')
+    } else {
+      setMessage('')
+    }
+    setScreenshots((current) => [...current, ...imageFiles].slice(0, 20))
+  }
+
+  function moveScreenshot(index: number, direction: -1 | 1) {
+    const nextIndex = index + direction
+    if (nextIndex < 0 || nextIndex >= screenshots.length) {
+      return
+    }
+    setScreenshots((current) => {
+      const next = [...current]
+      const [file] = next.splice(index, 1)
+      next.splice(nextIndex, 0, file)
+      return next
+    })
+  }
+
+  async function handleRequirementsFile(file: File | undefined) {
+    if (!file) {
+      return
+    }
+    try {
+      const content = await file.text()
+      setRequirementsContent(content)
+      setRequirementsFilename(file.name)
+      setMessage('')
+    } catch {
+      setMessage('Could not read the requirements file.')
+    }
+  }
+
+  async function createProject() {
+    setMessage('')
+    if (!projectName.trim() || screenshots.length === 0 || !requirementsContent.trim()) {
+      setMessage('Add a project name, at least one screenshot, and at least one requirement.')
+      return
+    }
+    setCreating(true)
+    try {
+      const encodedScreenshots = await Promise.all(
+        screenshots.map(async (file) => ({
+          filename: file.name,
+          content_base64: await fileToBase64(file),
+        })),
+      )
+      const created = await api.createUploadedFlow({
+        project_name: projectName.trim(),
+        description: description.trim() || undefined,
+        requirements_content: requirementsContent,
+        requirements_filename: requirementsFilename,
+        screenshots: encodedScreenshots,
+      })
+      setProject(created)
+      setPipelineRun(null)
+      onProjectCreated(created.flow.flow_id)
+      setMessage(`Project ready with ${created.steps.length} screenshots and ${created.requirements_count} requirements.`)
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : 'Failed to create the verification project')
+    } finally {
+      setCreating(false)
+    }
+  }
+
+  function startAnotherProject() {
+    setProject(null)
+    setPipelineRun(null)
+    setProjectName('')
+    setDescription('')
+    setRequirementsContent('')
+    setRequirementsFilename(undefined)
+    setScreenshots([])
+    setMessage('')
+    window.history.pushState({}, '', '/verify/new')
+  }
+
+  const currentStep = project ? 3 : screenshots.length > 0 || requirementsContent ? 2 : 1
+
+  return (
+    <div className="upload-page">
+      <header className="upload-nav">
+        <button className="brand-button" onClick={onBack} aria-label="Back to annotation workbench">
+          <span className="brand-mark">UV</span>
+          <span><strong>UI Verifier</strong><small>Verification studio</small></span>
+        </button>
+        <div className="button-row">
+          {project && <button className="secondary-button" onClick={startAnotherProject}>New project</button>}
+          <button className="secondary-button" onClick={onBack}>Back to workbench</button>
+        </div>
+      </header>
+
+      <main className="upload-main">
+        <section className="upload-hero">
+          <div>
+            <span className="eyebrow">Ad-hoc verification</span>
+            <h1>Turn screenshots into inspectable evidence.</h1>
+            <p>Upload an ordered UI flow, add requirements, and run the evidence-first pipeline. Every result stays connected to its source screen, including localized bounding boxes when available.</p>
+          </div>
+          <div className="bbox-feature-card">
+            <span className="bbox-feature-icon"><span /></span>
+            <div><strong>Bounding boxes included</strong><span>Localized regions are overlaid at the correct image scale.</span></div>
+          </div>
+        </section>
+
+        <ol className="upload-progress" aria-label="Verification setup progress">
+          {['Add inputs', 'Review setup', 'Run & inspect'].map((label, index) => {
+            const step = index + 1
+            return <li key={label} className={currentStep >= step ? 'active' : ''}><span>{currentStep > step ? '✓' : step}</span>{label}</li>
+          })}
+        </ol>
+
+        {message && <section className="upload-message">{message}</section>}
+        {loadingProject && <section className="upload-card">Loading uploaded project…</section>}
+
+        {!project && !loadingProject && (
+          <section className="upload-form-grid">
+            <div className="upload-card upload-card-wide">
+              <div className="upload-section-heading">
+                <span className="section-number">1</span>
+                <div><h2>Project details</h2><p>Give this verification run a recognizable name.</p></div>
+              </div>
+              <div className="project-fields">
+                <label>Project name<input value={projectName} onChange={(event) => setProjectName(event.target.value)} placeholder="Checkout confirmation flow" /></label>
+                <label>Context <span className="optional-label">Optional</span><input value={description} onChange={(event) => setDescription(event.target.value)} placeholder="What should this UI flow demonstrate?" /></label>
+              </div>
+            </div>
+
+            <div className="upload-card">
+              <div className="upload-section-heading">
+                <span className="section-number">2</span>
+                <div><h2>Screenshots</h2><p>Order them as the user experiences the flow.</p></div>
+              </div>
+              <label
+                className={dragActive ? 'drop-zone active' : 'drop-zone'}
+                onDragEnter={(event) => { event.preventDefault(); setDragActive(true) }}
+                onDragOver={(event) => event.preventDefault()}
+                onDragLeave={() => setDragActive(false)}
+                onDrop={(event) => {
+                  event.preventDefault()
+                  setDragActive(false)
+                  addScreenshots(Array.from(event.dataTransfer.files))
+                }}
+              >
+                <input type="file" accept="image/*" multiple onChange={(event) => addScreenshots(Array.from(event.target.files ?? []))} />
+                <span className="drop-icon">↑</span>
+                <strong>Drop screenshots here</strong>
+                <span>or click to browse · PNG, JPG, WebP · up to 20</span>
+              </label>
+              {screenshots.length > 0 && (
+                <div className="upload-thumbnail-list">
+                  {screenshots.map((file, index) => (
+                    <UploadThumbnail
+                      key={`${file.name}-${file.lastModified}-${index}`}
+                      file={file}
+                      index={index}
+                      count={screenshots.length}
+                      onMove={moveScreenshot}
+                      onRemove={() => setScreenshots((current) => current.filter((_, fileIndex) => fileIndex !== index))}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="upload-card">
+              <div className="upload-section-heading">
+                <span className="section-number">3</span>
+                <div><h2>Requirements</h2><p>One per line, or upload JSON, TXT, or Markdown.</p></div>
+              </div>
+              <textarea
+                className="requirements-input"
+                value={requirementsContent}
+                onChange={(event) => { setRequirementsContent(event.target.value); setRequirementsFilename(undefined) }}
+                rows={10}
+                placeholder={'The confirmation page shall show the order number.\nThe user shall be able to return to the store.'}
+              />
+              <label className="requirements-file-button">
+                <input type="file" accept=".json,.txt,.md,application/json,text/plain,text/markdown" onChange={(event) => void handleRequirementsFile(event.target.files?.[0])} />
+                <span>Attach requirements file</span>
+                <strong>{requirementsFilename ?? 'No file selected'}</strong>
+              </label>
+              <p className="format-hint">JSON may be a list of strings or objects with <code>text</code> and optional metadata.</p>
+            </div>
+
+            <div className="upload-submit-card upload-card-wide">
+              <div><strong>Ready to create your verification workspace?</strong><span>Inputs stay local under this repository.</span></div>
+              <button onClick={() => void createProject()} disabled={creating}>{creating ? 'Preparing workspace…' : 'Create project & continue →'}</button>
+            </div>
+          </section>
+        )}
+
+        {project && (
+          <section className="uploaded-workspace">
+            <section className="upload-card workspace-summary">
+              <div>
+                <span className="eyebrow">Project ready</span>
+                <h2>{project.flow.website ?? project.flow.flow_id}</h2>
+                <p>{project.flow.confirmed_task}</p>
+              </div>
+              <div className="workspace-stats">
+                <Metric label="Screenshots" value={String(project.steps.length)} />
+                <Metric label="Requirements" value={String(project.requirements_count)} />
+                <Metric label="Evidence regions" value="Enabled" />
+              </div>
+            </section>
+
+            <section className="upload-card">
+              <div className="panel-header"><h3>Uploaded flow</h3><span>Step order used by the pipeline</span></div>
+              <div className="uploaded-step-strip">
+                {project.steps.map((step) => (
+                  <figure key={step.step_index} id={`uploaded-step-${step.step_index}`}>
+                    <img src={resolveAssetUrl(step.image_url)} alt={`Uploaded step ${step.step_index}`} />
+                    <figcaption>Step {step.step_index}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            </section>
+
+            <VerificationRunPanel
+              key={project.flow.flow_id}
+              flowId={project.flow.flow_id}
+              steps={project.steps}
+              pipelineRun={pipelineRun}
+              verificationGold={[]}
+              defaultRequirementsSource="uploaded"
+              onJumpToStep={(stepIndex) => document.getElementById(`uploaded-step-${stepIndex}`)?.scrollIntoView({behavior: 'smooth', block: 'center'})}
+              onEditVerificationGold={() => undefined}
+              onAcceptVerificationGold={async () => undefined}
+            />
+          </section>
+        )}
+      </main>
+    </div>
+  )
+}
+
+function UploadThumbnail({
+  file,
+  index,
+  count,
+  onMove,
+  onRemove,
+}: {
+  file: File
+  index: number
+  count: number
+  onMove: (index: number, direction: -1 | 1) => void
+  onRemove: () => void
+}) {
+  const [previewUrl, setPreviewUrl] = useState('')
+  useEffect(() => {
+    const url = URL.createObjectURL(file)
+    setPreviewUrl(url)
+    return () => URL.revokeObjectURL(url)
+  }, [file])
+  return (
+    <div className="upload-thumbnail">
+      <span className="thumbnail-order">{index + 1}</span>
+      {previewUrl && <img src={previewUrl} alt={`Screenshot ${index + 1}: ${file.name}`} />}
+      <div><strong title={file.name}>{file.name}</strong><span>{formatFileSize(file.size)}</span></div>
+      <div className="thumbnail-actions">
+        <button type="button" className="secondary-button" onClick={() => onMove(index, -1)} disabled={index === 0} aria-label="Move screenshot earlier">←</button>
+        <button type="button" className="secondary-button" onClick={() => onMove(index, 1)} disabled={index === count - 1} aria-label="Move screenshot later">→</button>
+        <button type="button" className="secondary-button remove" onClick={onRemove} aria-label="Remove screenshot">×</button>
+      </div>
     </div>
   )
 }
@@ -1193,6 +1555,7 @@ function VerificationRunPanel({
   steps,
   pipelineRun,
   verificationGold,
+  defaultRequirementsSource = 'benchmark',
   onJumpToStep,
   onEditVerificationGold,
   onAcceptVerificationGold,
@@ -1201,6 +1564,7 @@ function VerificationRunPanel({
   steps: FlowStep[]
   pipelineRun: PipelineVerificationRun | null
   verificationGold: VerificationGoldItem[]
+  defaultRequirementsSource?: StartPipelineRunPayload['requirements_source']
   onJumpToStep: (stepIndex: number) => void
   onEditVerificationGold: (requirement: VerificationGoldItem) => void
   onAcceptVerificationGold: (requirement: VerificationGoldItem) => Promise<void>
@@ -1218,7 +1582,7 @@ function VerificationRunPanel({
     verifier: 'deterministic_rule_based',
     verifier_model: 'gemini-2.5-flash-lite',
     retriever: 'lexical',
-    requirements_source: 'benchmark',
+    requirements_source: defaultRequirementsSource,
     top_k: 3,
     max_images: 6,
     max_gemini_api_calls: 0,
@@ -1323,8 +1687,14 @@ function VerificationRunPanel({
 
   const requirementsPath = runForm.requirements_source === 'benchmark'
     ? `data/annotations/verification_gold/${flowId}/verification_gold.json`
-    : `data/annotations/requirements_gold/${flowId}/gold_requirements.json`
-  const cliCommand = `PYTHONPATH=src:. python scripts/run_verification_pipeline.py --flow-dir data/processed/flows/mind2web/${flowId} --requirements ${requirementsPath} --requirements-source ${runForm.requirements_source} --out data/generated/${runForm.output_dir_name}/${flowId}.json --retriever lexical --verifier ${runForm.verifier === 'deterministic_rule_based' ? 'deterministic' : 'gemini-image'} --verifier-model ${runForm.verifier_model} --max-verifier-images ${runForm.max_images} --max-gemini-api-calls ${runForm.max_gemini_api_calls} --no-llm-claim-fallback`
+    : runForm.requirements_source === 'uploaded'
+      ? `data/generated/uploaded_flows/${flowId}/requirements.json`
+      : `data/annotations/requirements_gold/${flowId}/gold_requirements.json`
+  const flowPath = runForm.requirements_source === 'uploaded'
+    ? `data/processed/flows/uploads/${flowId}`
+    : `data/processed/flows/mind2web/${flowId}`
+  const cliRequirementsSource = runForm.requirements_source === 'uploaded' ? 'custom' : runForm.requirements_source
+  const cliCommand = `PYTHONPATH=src:. python scripts/run_verification_pipeline.py --flow-dir ${flowPath} --requirements ${requirementsPath} --requirements-source ${cliRequirementsSource} --out data/generated/${runForm.output_dir_name}/${flowId}.json --retriever lexical --verifier ${runForm.verifier === 'deterministic_rule_based' ? 'deterministic' : 'gemini-image'} --verifier-model ${runForm.verifier_model} --max-verifier-images ${runForm.max_images} --max-gemini-api-calls ${runForm.max_gemini_api_calls} --no-llm-claim-fallback`
 
   const metadata = activeRun?.metadata ?? {}
   const labelDistribution = (metadata.label_distribution ?? labelDistributionForResults(activeRun?.results ?? [])) as Record<string, number>
@@ -1489,8 +1859,14 @@ function VerificationRunPanel({
               value={runForm.requirements_source}
               onChange={(event) => setRunForm({...runForm, requirements_source: event.target.value as StartPipelineRunPayload['requirements_source']})}
             >
-              <option value="benchmark">verification benchmark</option>
-              <option value="accepted">accepted requirements</option>
+              {defaultRequirementsSource === 'uploaded' ? (
+                <option value="uploaded">uploaded requirements</option>
+              ) : (
+                <>
+                  <option value="benchmark">verification benchmark</option>
+                  <option value="accepted">accepted requirements</option>
+                </>
+              )}
             </select>
           </label>
           <label>
@@ -1579,7 +1955,7 @@ function VerificationRunPanel({
         </div>
       </section>
 
-      <section className="card">
+      {verificationGold.length > 0 && <section className="card">
         <div className="panel-header">
           <h3>Reviewed-label comparison</h3>
           <span>{filteredComparisonRows.length} shown. Review queues use open verification-gold items only.</span>
@@ -1700,7 +2076,7 @@ function VerificationRunPanel({
         ) : (
           <p className="empty-text">No reviewed reference comparison was available.</p>
         )}
-      </section>
+      </section>}
 
       <section className="card">
         <div className="panel-header">
@@ -1734,7 +2110,7 @@ function VerificationRunPanel({
               </div>
               <div className="button-row left">
                 <button className="secondary-button" onClick={() => setSelectedRequirementId(result.requirement_id)}>
-                  Inspect manual vs pipeline
+                  {goldById.get(result.requirement_id) ? 'Inspect manual vs pipeline' : 'Inspect evidence & bounding boxes'}
                 </button>
                 {goldById.get(result.requirement_id) && (
                   <button
@@ -1836,19 +2212,19 @@ function VerificationComparisonModal({
       <div className="modal-card comparison-modal-card" onClick={(event) => event.stopPropagation()}>
         <div className="panel-header align-start">
           <div>
-            <h3>Manual vs pipeline comparison</h3>
+            <h3>{gold ? 'Manual vs pipeline comparison' : 'Evidence inspection'}</h3>
             <span>{result.requirement_id}</span>
           </div>
           <div className="button-row wrap">
-            <button
-              type="button"
-              className="secondary-button"
-              disabled={!onEditBenchmarkItem}
-              title={onEditBenchmarkItem ? 'Edit current verification benchmark item' : 'Benchmark item is missing or changed since this run'}
-              onClick={onEditBenchmarkItem}
-            >
-              Edit benchmark item
-            </button>
+            {gold && <button
+                type="button"
+                className="secondary-button"
+                disabled={!onEditBenchmarkItem}
+                title={onEditBenchmarkItem ? 'Edit current verification benchmark item' : 'Benchmark item changed since this run'}
+                onClick={onEditBenchmarkItem}
+              >
+                Edit benchmark item
+              </button>}
             {onAcceptBenchmarkItem && (
               <button type="button" disabled={accepting} title="Accept this verification benchmark item" onClick={onAcceptBenchmarkItem}>
                 {accepting ? 'Accepting...' : 'Accept item'}
@@ -1865,18 +2241,18 @@ function VerificationComparisonModal({
             <span className="mini-label">Requirement</span>
             <p>{gold?.text ?? result.requirement_text}</p>
           </div>
-          <div className="comparison-verdict-strip">
-            <div>
+          <div className={gold ? 'comparison-verdict-strip' : 'comparison-verdict-strip pipeline-only'}>
+            {gold && <div>
               <span>Manual benchmark</span>
               <strong className={`status-pill ${statusClass(goldLabel)}`}>{humanizeStatus(goldLabel)}</strong>
-            </div>
+            </div>}
             <div>
               <span>Pipeline decision</span>
               <strong className={`status-pill ${statusClass(predictedLabel)}`}>{humanizeStatus(predictedLabel)}</strong>
             </div>
             <div>
-              <span>Risk</span>
-              <strong>{falseFulfillment ? 'False fulfillment' : labelMismatch ? 'Label mismatch' : 'Label aligned'}</strong>
+              <span>{gold ? 'Risk' : 'Evidence screens'}</span>
+              <strong>{gold ? (falseFulfillment ? 'False fulfillment' : labelMismatch ? 'Label mismatch' : 'Label aligned') : (predictedEvidenceSteps.join(', ') || 'None')}</strong>
             </div>
           </div>
         </section>
@@ -1886,13 +2262,13 @@ function VerificationComparisonModal({
             <h4>Final label and claim composition</h4>
             <span>The pipeline label is produced by the aggregation step, not by copying one claim.</span>
           </div>
-          <div className="composition-grid">
-            <article className="composition-card">
+          <div className={gold ? 'composition-grid' : 'composition-grid pipeline-only'}>
+            {gold && <article className="composition-card">
               <span className="mini-label">Manual final label</span>
               <strong className={`status-pill ${statusClass(goldLabel)}`}>{humanizeStatus(goldLabel)}</strong>
               <p>Claim labels: {formatDistribution(manualClaimDistribution)}</p>
               <p>Ambiguity: {formatReasons(gold?.uncertainty_reasons ?? [])}</p>
-            </article>
+            </article>}
             <article className="composition-card">
               <span className="mini-label">Pipeline final label</span>
               <strong className={`status-pill ${statusClass(predictedLabel)}`}>{humanizeStatus(predictedLabel)}</strong>
@@ -1910,7 +2286,7 @@ function VerificationComparisonModal({
         </section>
 
         <section className="comparison-grid">
-          <ComparisonColumn
+          {gold && <ComparisonColumn
             title="Manual benchmark"
             label={goldLabel}
             uiEvaluability={gold?.ui_evaluability}
@@ -1919,7 +2295,7 @@ function VerificationComparisonModal({
             rationale={gold?.rationale}
             evidenceNote={gold?.evidence_note}
             onJumpToStep={onJumpToStep}
-          />
+          />}
           <ComparisonColumn
             title="Pipeline output"
             label={predictedLabel}
@@ -1932,7 +2308,7 @@ function VerificationComparisonModal({
           />
         </section>
 
-        <section className="comparison-section">
+        {gold && <section className="comparison-section">
           <div className="panel-header">
             <h4>Why the decision differs</h4>
             <span>Evidence overlap: {evidenceOverlap.length > 0 ? evidenceOverlap.join(', ') : 'none'}</span>
@@ -1944,13 +2320,13 @@ function VerificationComparisonModal({
               </div>
             ))}
           </div>
-        </section>
+        </section>}
 
         <section className="comparison-section">
           <div className="panel-header">
             <div>
-              <h4>Claim alignment</h4>
-              <span>Manual claims are aligned to pipeline claims by token overlap.</span>
+              <h4>{gold ? 'Claim alignment' : 'Claim evidence'}</h4>
+              <span>{gold ? 'Manual claims are aligned to pipeline claims by token overlap.' : 'Inspect retrieved evidence and localized regions for each pipeline claim.'}</span>
             </div>
             {onAcceptBenchmarkItem && (
               <button type="button" disabled={accepting} title="Accept this verification benchmark item" onClick={onAcceptBenchmarkItem}>
@@ -1965,6 +2341,7 @@ function VerificationComparisonModal({
                 alignment={alignment}
                 steps={steps}
                 onJumpToStep={onJumpToStep}
+                pipelineOnly={!gold}
               />
             ))}
           </div>
@@ -2014,22 +2391,24 @@ function ClaimAlignmentRow({
   alignment,
   steps,
   onJumpToStep,
+  pipelineOnly = false,
 }: {
   alignment: ClaimAlignment
   steps: FlowStep[]
   onJumpToStep: (stepIndex: number) => void
+  pipelineOnly?: boolean
 }) {
   const goldClaim = alignment.goldClaim
   const predictedClaim = alignment.predictedClaim
   const statusMismatch = normalizeDisplayValue(goldClaim?.status) !== normalizeDisplayValue(predictedClaim?.status)
   const goldEvidenceUnit = firstRegionEvidenceUnit(goldClaim?.evidence_units)
   return (
-    <article className={statusMismatch ? 'claim-alignment-row status-mismatch' : 'claim-alignment-row'}>
-      <div className="alignment-score">
+    <article className={`${statusMismatch && !pipelineOnly ? 'claim-alignment-row status-mismatch' : 'claim-alignment-row'}${pipelineOnly ? ' pipeline-only' : ''}`}>
+      {!pipelineOnly && <div className="alignment-score">
         <span>match</span>
         <strong>{alignment.score.toFixed(2)}</strong>
-      </div>
-      <div className="aligned-claim manual">
+      </div>}
+      {!pipelineOnly && <div className="aligned-claim manual">
         <div className="comparison-column-header">
           <strong>Manual claim</strong>
           {goldClaim?.status && <span className={`status-pill ${statusClass(goldClaim.status)}`}>{humanizeStatus(goldClaim.status)}</span>}
@@ -2055,7 +2434,7 @@ function ClaimAlignmentRow({
             legacyVariant="display"
           />
         )}
-      </div>
+      </div>}
       <div className="aligned-claim predicted">
         <div className="comparison-column-header">
           <strong>Pipeline claim</strong>
@@ -3432,6 +3811,28 @@ function parseTags(value: string): string[] {
     .split(',')
     .map((tag) => tag.trim())
     .filter(Boolean)
+}
+
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => {
+      const result = String(reader.result ?? '')
+      resolve(result.includes(',') ? result.split(',', 2)[1] : result)
+    }
+    reader.onerror = () => reject(reader.error ?? new Error(`Could not read ${file.name}`))
+    reader.readAsDataURL(file)
+  })
+}
+
+function formatFileSize(bytes: number): string {
+  if (bytes < 1024) {
+    return `${bytes} B`
+  }
+  if (bytes < 1024 * 1024) {
+    return `${Math.round(bytes / 1024)} KB`
+  }
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
 }
 
 function humanizeStatus(value: string | null | undefined): string {

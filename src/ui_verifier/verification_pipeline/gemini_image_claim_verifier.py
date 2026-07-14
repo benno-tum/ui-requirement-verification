@@ -89,7 +89,7 @@ def _normalize_uncertainty_reasons(values: object) -> list[UncertaintyReason]:
 
 
 class GeminiImageClaimVerifier:
-    prompt_version = "GEMINI_IMAGE_CLAIM_VERIFICATION_V4"
+    prompt_version = "GEMINI_IMAGE_CLAIM_VERIFICATION_V6"
 
     def __init__(
         self,
@@ -102,6 +102,7 @@ class GeminiImageClaimVerifier:
         max_images_per_claim: int = 6,
         max_retries: int = 0,
         max_api_calls: int | None = 10,
+        include_sequence_context: bool = True,
         fallback: ClaimVerifier | None = None,
     ) -> None:
         self.flow_id = flow_id
@@ -112,6 +113,7 @@ class GeminiImageClaimVerifier:
         self.max_images_per_claim = max_images_per_claim
         self.max_retries = max_retries
         self.max_api_calls = max_api_calls
+        self.include_sequence_context = include_sequence_context
         self.fallback = fallback or ClaimVerifier()
         self.cache = self._load_cache()
         self._state_lock = threading.Lock()
@@ -128,6 +130,7 @@ class GeminiImageClaimVerifier:
             "prompt_version": self.prompt_version,
             "max_retries": max_retries,
             "max_api_calls": max_api_calls,
+            "include_sequence_context": include_sequence_context,
         }
 
     def verify(
@@ -206,7 +209,7 @@ class GeminiImageClaimVerifier:
 
         all_steps = sorted(self.step_to_path)
         candidates = list(steps)
-        if self._needs_sequence_evidence(claim.claim_text):
+        if self.include_sequence_context and self._needs_sequence_evidence(claim.claim_text):
             candidates.extend([all_steps[0], all_steps[-1]])
 
         if len(candidates) < self.max_images_per_claim:
@@ -221,6 +224,8 @@ class GeminiImageClaimVerifier:
         candidates = sorted(set(candidates))
         if len(candidates) <= self.max_images_per_claim:
             return candidates
+        if self.max_images_per_claim == 1:
+            return [candidates[len(candidates) // 2]]
         positions = {
             round(index * (len(candidates) - 1) / (self.max_images_per_claim - 1))
             for index in range(self.max_images_per_claim)
@@ -288,9 +293,15 @@ Do not use raw HTML, DOM, backend state, database state, payment processing, ema
 Strict rules:
 - Only visible UI evidence counts.
 - Verify the exact claim wording. Do not demand a downstream outcome when the claim only asks for a visible action, control, field, or navigation affordance.
+- Strong frontend text, controls, selected states, summaries, or helper copy can support routine user-facing behavior even if the backend is not directly observable. Use SUPPORTED_WITH_CAVEAT when the hidden part is routine and directly represented by a specific UI proxy; use PARTIALLY_SUPPORTED when an important material part is still unobserved.
+- For "all", "every", "complete", or "available" claims, a bounded or closed UI set can support the quantifier when the screen presents it as the relevant complete set. Open-world completeness, freshness, external correctness, security, or eligibility scope still needs explicit visible evidence or a caveat.
 - Conversely, do not infer a downstream result, navigation outcome, submitted state, or completed action merely because a button or input form is visible. A later screenshot must visibly show that outcome.
+- Do not substitute nearby objects for the exact object in the claim. For example, preserved cart items or quantities do not prove preservation of a digital ticket fulfillment choice.
+- Digital/mobile fulfillment or delivery claims require visible fulfillment-specific evidence such as a delivery selector, digital/mobile ticket option, email delivery, mobile wallet, or selected fulfillment state. Generic ticket/cart/checkout evidence is not enough.
 - Treat every material clause as conjunctive unless the wording explicitly offers alternatives. Evidence for only one side of "and", "as well as", or "in addition to" is not enough for SUPPORTED.
-- Comparative claims about anonymous versus signed-in users, before versus after states, or leaving and returning require both compared states to be visibly present.
+- Comparative or exclusive claims about anonymous versus signed-in users, owners versus non-owners, valid versus invalid inputs, before versus after states, or leaving and returning require both compared states unless a specific visible UI proxy states the restriction or distinction.
+- Result, confirmation, or lookup-complete claims require a distinct post-action state with the relevant result or confirmation; pre-submit forms, entered values, and validation errors are not enough.
+- Direct transition or direct return claims require a visible affordance or demonstrated navigation from the relevant page/state to the claimed target. A visible menu elsewhere is not enough for a direct path unless it is open or usable in that same state.
 - Do not treat editable input fields as a separate review state, confirmation, synchronized summary, or preview unless that distinct UI component is visibly present.
 - For claims about preservation, updates, synchronization, or other state changes, compare the attached screenshots chronologically rather than judging one screenshot in isolation.
 - SUPPORTED requires clear visible screenshot evidence.
@@ -298,8 +309,9 @@ Strict rules:
 - PARTIALLY_SUPPORTED means some visible part is supported but important visible detail is missing or ambiguous.
 - MISSING means the claim could be visible but the screenshots do not show enough.
 - HIDDEN means the claim is about hidden/non-visual system behavior.
-- CONTRADICTED requires visible counter-evidence. This includes a clearly covered UI state where a required visible component or behavior should be present but is visibly absent, provided the screenshots show the relevant state completely enough to judge.
-- Incomplete flow coverage or a state that was never exercised is MISSING, not CONTRADICTED.
+- CONTRADICTED requires visible counter-evidence: an incompatible UI state, an alternative flow that conflicts with the claim, an explicit error/failure state, or visible text/control behavior that makes the claim false.
+- Mere absence of a required feature is MISSING unless the screenshots show a conflicting alternative or demonstrated behavior that contradicts the claim.
+- Incomplete flow coverage, an unopened menu/control, or a state that was never exercised is MISSING, not CONTRADICTED.
 
 Input JSON:
 {json.dumps(payload, indent=2, ensure_ascii=False)}
@@ -444,6 +456,15 @@ Return JSON only:
             uncertainty_reasons=reasons,
             confidence=self._confidence_for_status(status),
             rationale=rationale,
+            metadata={
+                "prompt_group_id": None,
+                "prompt_version": self.prompt_version,
+                "model_name": self.model_name,
+                "grouping_strategy": "per-claim",
+                "attached_step_indices": selected_steps,
+                "claim_selected_step_indices": selected_steps,
+                "raw_model_label": str(parsed.get("claim_status") or parsed.get("status") or ""),
+            },
         )
 
     @staticmethod

@@ -10,6 +10,7 @@ from pydantic import ValidationError
 import pytest
 
 from ui_verifier.verification_pipeline.claim_verification import ClaimVerifier
+from ui_verifier.verification_pipeline.batched_gemini_image_claim_verifier import BatchedGeminiImageClaimVerifier
 from ui_verifier.verification_pipeline.evidence_retrieval import (
     EmbeddingEvidenceRetriever,
     EvidenceRetriever,
@@ -115,6 +116,40 @@ def test_schema_validation_rejects_invalid_bbox() -> None:
         )
 
 
+def test_provided_claim_decomposition_uses_only_frozen_claim_texts(tmp_path: Path) -> None:
+    requirements_path = tmp_path / "requirements.json"
+    requirements_path.write_text(
+        json.dumps(
+            {
+                "requirements": [
+                    {
+                        "requirement_id": "REQ-1",
+                        "text": "The system supports splitting and merging.",
+                        "claims": [
+                            {"claim": "The system supports splitting.", "status": "SUPPORTED"},
+                            {"claim_text": "The system supports merging.", "evidence_steps": [9]},
+                        ],
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    requirement = load_requirements(requirements_path, default_flow_id="flow-1")[0]
+    assert requirement.metadata["provided_claim_texts"] == [
+        "The system supports splitting.",
+        "The system supports merging.",
+    ]
+
+    result = RequirementUnderstanding(
+        decomposition_policy="provided",
+        max_claims=4,
+    ).understand(requirement)
+    assert [claim.claim_text for claim in result.claims] == requirement.metadata["provided_claim_texts"]
+    assert result.decomposition_source == "provided_claims"
+
+
 def test_screen_understanding_preserves_step_index(tmp_path: Path) -> None:
     image_path = tmp_path / "step_07.png"
     Image.new("RGB", (12, 8), color="white").save(image_path)
@@ -134,7 +169,7 @@ def test_requirement_decomposition_creates_two_to_four_claims() -> None:
         text="The system shall present an order summary including subtotal, fees, tax, and total.",
     )
 
-    result = RequirementUnderstanding(max_claims=4).understand(requirement)
+    result = RequirementUnderstanding(max_claims=4, decomposition_policy="always").understand(requirement)
 
     assert 2 <= len(result.claims) <= 4
     assert all(claim.source_requirement_text == requirement.text for claim in result.claims)
@@ -151,6 +186,22 @@ def test_requirement_understanding_can_disable_claim_decomposition() -> None:
 
     assert [claim.claim_text for claim in result.claims] == [requirement.text]
     assert result.decomposition_source == "disabled"
+
+
+def test_campaign_performance_graph_is_not_misclassified_as_hidden_performance_target() -> None:
+    visible = RequirementInput(
+        requirement_id="REQ-VISIBLE",
+        text="The Dashboard shall display campaign performance graphs.",
+    )
+    hidden = RequirementInput(
+        requirement_id="REQ-HIDDEN",
+        text="The application has a response time below 200 ms.",
+    )
+
+    understanding = RequirementUnderstanding(decompose_claims=False)
+
+    assert understanding.understand(visible).ui_evaluability == UIEvaluability.UI_VERIFIABLE
+    assert understanding.understand(hidden).ui_evaluability == UIEvaluability.NOT_UI_VERIFIABLE
 
 
 def test_benchmark_input_loader_includes_contrastive_requirements(tmp_path: Path) -> None:
@@ -191,6 +242,8 @@ def test_llm_decomposition_prompt_preserves_or_alternatives() -> None:
 
     assert "Separate claims are interpreted conjunctively" in prompt
     assert 'Preserve "or" wording inside one claim' in prompt
+    assert "Do not improve, generalize, strengthen, or reinterpret" in prompt
+    assert "authenticated users can" in prompt
 
 
 def test_store_locator_text_is_not_marked_as_database_hidden() -> None:
@@ -210,7 +263,10 @@ def test_requirement_understanding_uses_batch_llm_fallback_for_failed_decomposit
         RequirementInput(requirement_id="REQ-2", text="The system shall present an order summary including subtotal, fees, tax, and total."),
     ]
 
-    results = RequirementUnderstanding(fallback_decomposer=fallback).understand_many(requirements)
+    results = RequirementUnderstanding(
+        fallback_decomposer=fallback,
+        decomposition_policy="always",
+    ).understand_many(requirements)
 
     assert fallback.calls == [["REQ-1"]]
     assert results[0].decomposition_source == "FakeClaimDecomposer"
@@ -219,6 +275,39 @@ def test_requirement_understanding_uses_batch_llm_fallback_for_failed_decomposit
         "The page shows payment controls.",
     ]
     assert results[1].decomposition_source == "heuristic"
+
+
+def test_gated_decomposition_keeps_atomic_requirement_as_single_claim() -> None:
+    requirement = RequirementInput(
+        requirement_id="REQ-1",
+        text="The system shall allow authenticated users to access editable profile settings.",
+    )
+
+    result = RequirementUnderstanding(decomposition_policy="gated").understand(requirement)
+
+    assert [claim.claim_text for claim in result.claims] == [requirement.text]
+    assert result.decomposition_source == "single_requirement"
+
+
+def test_semantic_guard_rejects_added_only_term() -> None:
+    class ExclusiveFallback(ClaimDecomposer):
+        def decompose_many(self, requirements: list[RequirementInput], *, max_claims: int) -> dict[str, list[str]]:
+            return {
+                requirement.requirement_id: ["Only authenticated users can access editable profile settings."]
+                for requirement in requirements
+            }
+
+    requirement = RequirementInput(
+        requirement_id="REQ-1",
+        text="The system shall allow authenticated users to access editable profile settings while editing a profile.",
+    )
+
+    result = RequirementUnderstanding(
+        fallback_decomposer=ExclusiveFallback(),
+        decomposition_policy="always",
+    ).understand(requirement)
+
+    assert all("Only authenticated users" not in claim.claim_text for claim in result.claims)
 
 
 def test_pipeline_llm_fallback_uses_shared_rule_guided_decomposer(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -297,6 +386,42 @@ def test_lexical_evidence_retrieval_returns_top_k_steps() -> None:
     evidence = result["REQ-1-C1"]
     assert len(evidence) == 2
     assert {item.step_index for item in evidence} == {1, 2}
+
+
+def test_retriever_includes_late_cart_state_for_cart_claims() -> None:
+    screens = [
+        ScreenRepresentation(
+            step_index=1,
+            screenshot_path="step_01.png",
+            visible_text="Season add-ons are listed with buy buttons.",
+            screen_summary="Season add-ons are listed with buy buttons.",
+        ),
+        ScreenRepresentation(
+            step_index=2,
+            screenshot_path="step_02.png",
+            visible_text="The Go-Kart Pass configuration shows quantity 2.",
+            screen_summary="The Go-Kart Pass configuration shows quantity 2.",
+        ),
+        ScreenRepresentation(
+            step_index=3,
+            screenshot_path="step_03.png",
+            visible_text="The add-on detail remains open.",
+            screen_summary="The add-on detail remains open.",
+        ),
+        ScreenRepresentation(
+            step_index=4,
+            screenshot_path="step_04.png",
+            visible_text="Shopping Cart contains One-Day Ticket and Go-Kart Pass Qty 2. Subtotal, Tax, Total.",
+            screen_summary="Shopping Cart contains One-Day Ticket and Go-Kart Pass Qty 2. Subtotal, Tax, Total.",
+        ),
+    ]
+
+    result = LexicalEvidenceRetriever(top_k=2).retrieve(
+        [_claim(text="The system reflects the selected quantity in cart line items.")],
+        screens,
+    )
+
+    assert {item.step_index for item in result["REQ-1-C1"]} == {2, 4}
 
 
 def test_embedding_retriever_falls_back_gracefully_without_local_model() -> None:
@@ -596,9 +721,173 @@ def test_image_verifier_prompt_distinguishes_forms_from_summaries(tmp_path: Path
     prompt = verifier._prompt(payload)
 
     assert "Do not treat editable input fields as a separate review state" in prompt
-    assert "clearly covered UI state" in prompt
+    assert "Mere absence of a required feature is MISSING" in prompt
     assert "do not infer a downstream result" in prompt
+    assert "do not prove preservation of a digital ticket fulfillment choice" in prompt
+    assert "Generic ticket/cart/checkout evidence is not enough" in prompt
     assert "every material clause as conjunctive" in prompt
+    assert "Strong frontend text, controls, selected states, summaries, or helper copy" in prompt
+    assert "a bounded or closed UI set can support the quantifier" in prompt
+    assert "Result, confirmation, or lookup-complete claims require a distinct post-action state" in prompt
+    assert "Direct transition or direct return claims require a visible affordance" in prompt
+
+
+def test_batched_verifier_groups_overlapping_evidence_and_preserves_metadata(tmp_path: Path, monkeypatch) -> None:
+    image_paths = []
+    for index in range(1, 5):
+        image_path = tmp_path / f"step_{index:02d}.png"
+        Image.new("RGB", (16, 16), color="white").save(image_path)
+        image_paths.append(image_path)
+
+    verifier = BatchedGeminiImageClaimVerifier(
+        flow_id="flow-1",
+        screenshot_steps=[
+            ScreenshotStep(step_index=index, screenshot_path=str(path))
+            for index, path in enumerate(image_paths, start=1)
+        ],
+        cache_path=tmp_path / "cache.json",
+        max_images_per_claim=2,
+        max_api_calls=None,
+        include_sequence_context=False,
+    )
+
+    calls: list[tuple[str, list[int]]] = []
+
+    def fake_call(payload, selected_steps):
+        calls.append((payload["group_id"], selected_steps))
+        return (
+            {
+                "claims": [
+                    {
+                        "claim_id": claim["claim_id"],
+                        "claim_status": "SUPPORTED",
+                        "evidence_step_indices": [selected_steps[0]],
+                        "uncertainty_reasons": [],
+                        "visible_observations": ["The requested element is visible."],
+                        "rationale": "Visible evidence supports the claim.",
+                    }
+                    for claim in payload["claims"]
+                ]
+            },
+            "{}",
+            {"input_tokens": 10, "output_tokens": 5, "total_tokens": 15, "cached_content_tokens": 0},
+        )
+
+    monkeypatch.setattr(verifier, "_call_gemini_group", fake_call)
+
+    jobs = [
+        (_claim(claim_id="REQ-1-C1", text="The page shows order details."), [_evidence(1), _evidence(2)], UIEvaluability.UI_VERIFIABLE),
+        (_claim(claim_id="REQ-1-C2", text="The page shows order total."), [_evidence(2), _evidence(3)], UIEvaluability.UI_VERIFIABLE),
+        (_claim(claim_id="REQ-1-C3", text="The page shows help text."), [_evidence(4)], UIEvaluability.UI_VERIFIABLE),
+    ]
+
+    results = verifier.verify_many(jobs)
+
+    assert [call[1] for call in calls] == [[1, 2, 3, 4]]
+    assert [result.status for result in results] == [ClaimStatus.SUPPORTED] * 3
+    assert results[0].metadata["prompt_group_id"] == "G1"
+    assert results[2].metadata["prompt_group_id"] == "G1"
+    assert verifier.diagnostics["group_count"] == 1
+    assert verifier.diagnostics["unique_images_attached"] == 4
+
+
+def test_batched_verifier_caps_claims_per_group(tmp_path: Path, monkeypatch) -> None:
+    image_paths = []
+    for index in range(1, 4):
+        image_path = tmp_path / f"step_{index:02d}.png"
+        Image.new("RGB", (16, 16), color="white").save(image_path)
+        image_paths.append(image_path)
+
+    verifier = BatchedGeminiImageClaimVerifier(
+        flow_id="flow-1",
+        screenshot_steps=[
+            ScreenshotStep(step_index=index, screenshot_path=str(path))
+            for index, path in enumerate(image_paths, start=1)
+        ],
+        cache_path=tmp_path / "cache.json",
+        max_claims_per_group=2,
+        max_api_calls=None,
+    )
+    calls: list[list[str]] = []
+
+    def fake_call(payload, selected_steps):
+        calls.append([claim["claim_id"] for claim in payload["claims"]])
+        return (
+            {
+                "claims": [
+                    {
+                        "claim_id": claim["claim_id"],
+                        "claim_status": "SUPPORTED",
+                        "evidence_step_indices": [selected_steps[0]],
+                        "uncertainty_reasons": [],
+                        "visible_observations": ["Visible."],
+                        "rationale": "Visible evidence supports the claim.",
+                    }
+                    for claim in payload["claims"]
+                ]
+            },
+            "{}",
+            {},
+        )
+
+    monkeypatch.setattr(verifier, "_call_gemini_group", fake_call)
+    jobs = [
+        (_claim(claim_id=f"REQ-1-C{index}", text=f"Claim {index}."), [_evidence(1)], UIEvaluability.UI_VERIFIABLE)
+        for index in range(1, 6)
+    ]
+
+    verifier.verify_many(jobs)
+
+    assert [len(group) for group in calls] == [2, 2, 1]
+    assert verifier.diagnostics["group_count"] == 3
+
+
+def test_batched_verifier_single_call_uses_all_screenshots(tmp_path: Path, monkeypatch) -> None:
+    image_paths = []
+    for index in range(1, 4):
+        image_path = tmp_path / f"step_{index:02d}.png"
+        Image.new("RGB", (16, 16), color="white").save(image_path)
+        image_paths.append(image_path)
+
+    verifier = BatchedGeminiImageClaimVerifier(
+        flow_id="flow-1",
+        screenshot_steps=[
+            ScreenshotStep(step_index=index, screenshot_path=str(path))
+            for index, path in enumerate(image_paths, start=1)
+        ],
+        cache_path=tmp_path / "cache.json",
+        grouping_strategy="single-call",
+    )
+    seen_steps: list[list[int]] = []
+
+    def fake_call(payload, selected_steps):
+        seen_steps.append(selected_steps)
+        return (
+            {
+                "claims": [
+                    {
+                        "claim_id": payload["claims"][0]["claim_id"],
+                        "claim_status": "MISSING",
+                        "evidence_step_indices": [],
+                        "uncertainty_reasons": ["FLOW_COVERAGE_GAP"],
+                        "visible_observations": [],
+                        "rationale": "Not visible.",
+                    }
+                ]
+            },
+            "{}",
+            {},
+        )
+
+    monkeypatch.setattr(verifier, "_call_gemini_group", fake_call)
+
+    results = verifier.verify_many(
+        [(_claim(claim_id="REQ-1-C1", text="The page shows a confirmation banner."), [_evidence(2)], UIEvaluability.UI_VERIFIABLE)]
+    )
+
+    assert seen_steps == [[1, 2, 3]]
+    assert results[0].metadata["grouping_strategy"] == "single-call"
+    assert results[0].status == ClaimStatus.MISSING
 
 
 def test_image_verifier_retries_invalid_json_response(tmp_path: Path, monkeypatch) -> None:

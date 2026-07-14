@@ -28,6 +28,13 @@ from ui_verifier.requirement_inspection.pure_loader import (
     load_pure_document,
     load_pure_documents_from_dir,
 )
+from ui_verifier.requirement_inspection.pure_pdf_loader import (
+    PurePdfPage,
+    extract_pdf_pages,
+    extract_pure_pdf_requirement_candidates_from_dir,
+    extract_pure_pdf_requirement_candidates_from_file,
+    extract_pure_pdf_requirement_candidates_from_pages,
+)
 from ui_verifier.requirement_inspection.annotation_sheet import (
     ANNOTATION_LABEL_FIELDNAMES,
     ANNOTATION_SHEET_FIELDNAMES,
@@ -61,6 +68,11 @@ __all__ = [
     "extract_pure_requirement_candidates_from_document",
     "extract_pure_requirement_candidates_from_file",
     "extract_pure_requirement_candidates_from_dir",
+    "PurePdfPage",
+    "extract_pdf_pages",
+    "extract_pure_pdf_requirement_candidates_from_pages",
+    "extract_pure_pdf_requirement_candidates_from_file",
+    "extract_pure_pdf_requirement_candidates_from_dir",
     "load_annotation_records_csv",
     "load_annotation_records_jsonl",
     "save_annotation_records_csv",

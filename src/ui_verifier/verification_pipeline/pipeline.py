@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from typing import Any
+from typing import Any, Protocol, runtime_checkable
 
 from ui_verifier.localization import TextBoxLocalizer
 from ui_verifier.verification_pipeline.claim_verification import ClaimVerifier
@@ -11,6 +11,12 @@ from ui_verifier.verification_pipeline.label_aggregation import LabelAggregator
 from ui_verifier.verification_pipeline.requirement_understanding import RequirementUnderstanding
 from ui_verifier.verification_pipeline.schemas import ClaimVerificationResult, EvidenceItem, PipelineInput, PipelineOutput
 from ui_verifier.verification_pipeline.screen_understanding import ScreenUnderstanding
+
+
+@runtime_checkable
+class BatchClaimVerifier(Protocol):
+    def verify_many(self, jobs: list[tuple]) -> list[ClaimVerificationResult]:
+        ...
 
 
 class EvidenceFirstVerificationPipeline:
@@ -56,7 +62,9 @@ class EvidenceFirstVerificationPipeline:
                 for claim in requirement_understanding.claims
             )
 
-        if self.max_claim_workers == 1:
+        if isinstance(self.claim_verifier, BatchClaimVerifier):
+            verified_claims = self.claim_verifier.verify_many(verification_jobs)
+        elif self.max_claim_workers == 1:
             verified_claims = [self._verify_claim(job) for job in verification_jobs]
         else:
             with ThreadPoolExecutor(
@@ -64,6 +72,11 @@ class EvidenceFirstVerificationPipeline:
                 thread_name_prefix="claim-verifier",
             ) as executor:
                 verified_claims = list(executor.map(self._verify_claim, verification_jobs))
+
+        verified_claims = [
+            self._localize_claim_evidence(result) if isinstance(result, ClaimVerificationResult) else result
+            for result in verified_claims
+        ]
 
         results = []
         claim_offset = 0

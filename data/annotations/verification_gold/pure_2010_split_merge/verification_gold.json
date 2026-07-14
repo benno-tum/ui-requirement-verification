@@ -1,0 +1,3109 @@
+{
+  "dataset": "pure",
+  "flow_id": "pure_2010_split_merge",
+  "items": [
+    {
+      "requirement_id": "PURE-REQ-001",
+      "flow_id": "pure_2010_split_merge",
+      "text": "2.5 Design and Implementation Constraints PDFsam is platform independent and is written in Java. Its user interface is written with Java Swing, so anyone who wishes to work on further development of PDFsam has to know this programming language. PDFsam is GNU GPLv2 licensed and the PDFsam-console is dual licensed (GPLv2 and LGPLv2). Everyone, that does or is going to develop or use PDFsam, should agree and fully accept the terms of this kind of license.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_candidate:2.5",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:structural_fallback",
+        "pure_pdf_page:7",
+        "pure_source_section:2.5 Design and Implementation Constraints"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "2.5",
+      "source_candidate_id": "PURE-REQ-001",
+      "source_harvest_id": "2.5",
+      "step_indices": [
+        14,
+        15,
+        16
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "NOT_UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 2.5 Design and Implementation Constraints, PDF page(s) [7]. The pre-label model verdict was not inspected.",
+      "annotated_by": "benno",
+      "manual_verification_label": "abstain",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "ABSTAIN",
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Design and Implementation Constraints PDFsam is platform independent and is written in Java.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": [],
+          "note": "Not demonstrable from the available static screenshot set."
+        },
+        {
+          "claim": "Its user interface is written with Java Swing, so anyone who wishes to work on further development of PDFsam has to know this programming language.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": [],
+          "note": "Not demonstrable from the available static screenshot set."
+        },
+        {
+          "claim": "PDFsam is GNU GPLv2 licensed and the PDFsam-console is dual licensed (GPLv2 and LGPLv2).",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": [],
+          "note": "Not demonstrable from the available static screenshot set."
+        },
+        {
+          "claim": "Everyone, that does or is going to develop or use PDFsam, should agree and fully accept the terms of this kind of license.",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": [],
+          "note": "Not demonstrable from the available static screenshot set."
+        }
+      ],
+      "evidence_steps": [],
+      "evidence_units": [],
+      "evidence_note": "The requirement concerns implementation, licensing, platform, or abstract usability properties that screenshots cannot establish.",
+      "rationale": "A reliable positive or negative decision cannot be made from static UI evidence for this non-visual or ill-defined requirement.",
+      "review_status": "accepted",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:05:45+00:00"
+    },
+    {
+      "requirement_id": "PURE-REQ-002",
+      "flow_id": "pure_2010_split_merge",
+      "text": "If the pdf documents contain forms, the user must add that to the merge options.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_candidate:2010 - split merge::TEXT-00002",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:structural_fallback",
+        "pure_pdf_page:12",
+        "pure_source_section:3.2.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "2010 - split merge::TEXT-00002",
+      "source_candidate_id": "PURE-REQ-002",
+      "source_harvest_id": "2010 - split merge::TEXT-00002",
+      "step_indices": [
+        14,
+        15,
+        16
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.2.2 Stimulus/Response Sequences, PDF page(s) [12]. The pre-label model verdict was not inspected.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "If the pdf documents contain forms, the user must add that to the merge options.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            24
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 24,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        4,
+        24
+      ],
+      "evidence_units": [
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 24,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 4, 24 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "accepted",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T16:04:55+00:00"
+    },
+    {
+      "requirement_id": "PURE-REQ-003",
+      "flow_id": "pure_2010_split_merge",
+      "text": "REQ-1: pages number in the page selection must be comprehended. REQ-2: The compression of the output files requires pdf version 1.5 or above.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_candidate:REQ-1",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:structural_fallback",
+        "pure_pdf_page:12",
+        "pure_source_section:3.2.3 Functional Requirements"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "REQ-1",
+      "source_candidate_id": "PURE-REQ-003",
+      "source_harvest_id": "REQ-1",
+      "step_indices": [
+        1,
+        15,
+        16
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.2.3 Functional Requirements, PDF page(s) [12]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "abstain",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "TEXTUAL_AMBIGUITY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "REQ-1: pages number in the page selection must be comprehended.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            24
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 24,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Not demonstrable from the available static screenshot set."
+        },
+        {
+          "claim": "REQ-2: The compression of the output files requires pdf version 1.5 or above.",
+          "status": "AMBIGUOUS",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            24
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 24,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Not demonstrable from the available static screenshot set."
+        }
+      ],
+      "evidence_steps": [
+        4,
+        24
+      ],
+      "evidence_units": [
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 24,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 4, 24 show the relevant UI surface, but not the required constraint, validation, or post-action behavior.",
+      "rationale": "The relevant screen is present, but the screenshot set does not demonstrate the stated behavioral constraint or outcome; missing evidence is not counter-evidence.",
+      "review_status": "accepted",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T16:09:56+00:00"
+    },
+    {
+      "requirement_id": "PURE-REQ-004",
+      "flow_id": "pure_2010_split_merge",
+      "text": "However this step can be configured by this option telling PDFsam how many pages it should take from one document before switching to the other.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_candidate:2010 - split merge::TEXT-00004",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:structural_fallback",
+        "pure_pdf_page:13",
+        "pure_source_section:3.3.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "2010 - split merge::TEXT-00004",
+      "source_candidate_id": "PURE-REQ-004",
+      "source_harvest_id": "2010 - split merge::TEXT-00004",
+      "step_indices": [
+        2,
+        3,
+        12
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.3.2 Stimulus/Response Sequences, PDF page(s) [13]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "However this step can be configured by this option telling PDFsam how many pages it should take from one document before switching to the other.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5,
+            23
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 23,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        5,
+        23
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 23,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 5, 23 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-REQ-005",
+      "flow_id": "pure_2010_split_merge",
+      "text": "5.2 Safety Requirements The application must ensure that it leaves untouched the input pdf files. No modification is allowed to these files. Moreover, the application should function even in cases of wrong data insertion or wrong settings. In case of error it should provide users with appropriate help messages.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_candidate:5.2",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:structural_fallback",
+        "pure_pdf_page:31",
+        "pure_source_section:5.2 Safety Requirements"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "5.2",
+      "source_candidate_id": "PURE-REQ-005",
+      "source_harvest_id": "5.2",
+      "step_indices": [
+        1,
+        15,
+        16
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "VALIDATION_OR_FEEDBACK",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 5.2 Safety Requirements, PDF page(s) [31]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "abstain",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The application must ensure that it leaves untouched the input pdf files.",
+          "status": "SUPPORTED_WITH_CAVEAT",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            19
+          ],
+          "evidence_units": [
+            {
+              "step_index": 19,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Inferred by output file directory"
+        },
+        {
+          "claim": "Moreover, the application should function even in cases of wrong data insertion or wrong settings.",
+          "status": "MISSING",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [
+            19
+          ],
+          "evidence_units": [
+            {
+              "step_index": 19,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Not demonstrable from the available static screenshot set."
+        },
+        {
+          "claim": "In case of error it provides users with appropriate help messages.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            19
+          ],
+          "evidence_units": [
+            {
+              "step_index": 19,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Not demonstrable from the available static screenshot set."
+        }
+      ],
+      "evidence_steps": [
+        19
+      ],
+      "evidence_units": [
+        {
+          "step_index": 19,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Step 19 shows ordinary log output, but the flow contains no invalid-input, error-help, or input-file-integrity demonstration.",
+      "rationale": "The relevant screen is present, but the screenshot set does not demonstrate the stated behavioral constraint or outcome; missing evidence is not counter-evidence.",
+      "review_status": "accepted",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T16:20:53+00:00"
+    },
+    {
+      "requirement_id": "PURE-REQ-006",
+      "flow_id": "pure_2010_split_merge",
+      "text": "5.4 Software Quality Attributes This application provides a pleasant and user friendly graphical interface with relatively simple functions. Any user should be able to use PDFsam without any specific knowledge or experience by reading the user manuals (or the help messages that are embedded in the application). Users only need to provide some pdf documents and with just a few clicks they can perform any action.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_candidate:5.4",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:structural_fallback",
+        "pure_pdf_page:31",
+        "pure_source_section:5.4 Software Quality Attributes"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "5.4",
+      "source_candidate_id": "PURE-REQ-006",
+      "source_harvest_id": "5.4",
+      "step_indices": [
+        14,
+        15,
+        16
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 5.4 Software Quality Attributes, PDF page(s) [31]. Revised after manual reassessment of the cited screenshots.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "partially_fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "TEXTUAL_AMBIGUITY",
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The application provides a graphical interface.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            12
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 12,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The graphical interface is pleasant and user friendly.",
+          "status": "SUPPORTED_WITH_CAVEAT",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            4,
+            9,
+            12
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 12,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Claim is a bit subjective, but generally it's true."
+        },
+        {
+          "claim": "The application provides relatively simple functions.",
+          "status": "SUPPORTED_WITH_CAVEAT",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            4,
+            9,
+            12
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 12,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "The feature set is not that complex."
+        },
+        {
+          "claim": "Any user can operate PDFsam without specific knowledge or experience by reading the user manuals (or the help messages that are embedded in the application)",
+          "status": "MISSING",
+          "claim_type": "HIDDEN",
+          "importance": "CORE",
+          "evidence_steps": [],
+          "evidence_units": [],
+          "note": "There is no manual in the screenshots."
+        },
+        {
+          "claim": "Users can provide PDF documents as inputs.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            4,
+            5,
+            6,
+            9,
+            24
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 24,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "Users can perform every action in only a few clicks.",
+          "status": "SUPPORTED_WITH_CAVEAT",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            4,
+            5,
+            6,
+            9
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            }
+          ]
+        }
+      ],
+      "evidence_steps": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        9,
+        12,
+        24
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 9,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 12,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 24,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "The screenshots directly show a graphical interface and PDF input controls. They do not establish subjective usability, inexperienced-user success, or the universal 'every action in a few clicks' claim.",
+      "rationale": "The graphical interface and PDF-input capabilities are visibly supported, while subjective usability, manual-assisted operation, universal-user, and few-click claims remain ambiguous, hidden, or missing.",
+      "review_status": "accepted",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T16:30:41+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-UI-001",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The main GUI shall expose the six basic plugins through the plugins tree.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:26",
+        "pure_pdf_page:27",
+        "pure_pdf_page:28",
+        "pure_pdf_page:9",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3 System Features / 4.1 User Interfaces - GUI",
+        "pure_source_section:3 System Features / 4.1 User Interfaces - GUI"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:4.1",
+      "source_candidate_id": "PURE-SM-UI-001",
+      "source_harvest_id": "composed:4.1",
+      "step_indices": [
+        1,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3 System Features / 4.1 User Interfaces - GUI, PDF page(s) [9, 26, 27, 28]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The plugins tree exposes Alternate Mix, Merge/Extract, Rotate, Split, Visual document composer, and Visual reorder.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 23,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 24,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 25,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 26,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 27,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 28,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        1,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 23,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 24,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 25,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 26,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 27,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 28,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 1, 23, 24, 25, 26, 27, 28 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-SPLIT-001",
+      "flow_id": "pure_2010_split_merge",
+      "text": "Selecting Split from the plugins tree shall display the Split panel.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:9",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.1.2 Stimulus/Response Sequences",
+        "pure_source_section:3.1.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.1",
+      "source_candidate_id": "PURE-SM-SPLIT-001",
+      "source_harvest_id": "composed:3.1",
+      "step_indices": [
+        1,
+        3,
+        26
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.1.2 Stimulus/Response Sequences, PDF page(s) [9]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The plugins tree provides access to a Split panel.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            1,
+            3,
+            26
+          ],
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 26,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        1,
+        3,
+        26
+      ],
+      "evidence_units": [
+        {
+          "step_index": 1,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 26,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 1, 3, 26 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-SPLIT-002",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The Split panel shall provide an input-document table with file information and password entry for protected PDFs.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:10",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.1.2 Stimulus/Response Sequences",
+        "pure_source_section:3.1.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.1",
+      "source_candidate_id": "PURE-SM-SPLIT-002",
+      "source_harvest_id": "composed:3.1",
+      "step_indices": [
+        3,
+        26
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.1.2 Stimulus/Response Sequences, PDF page(s) [10]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Split panel contains an input-document table with file information.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            26
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 26,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The table includes password entry for protected PDFs.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            26
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 26,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        3,
+        26
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 26,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 3, 26 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-SPLIT-003",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The Split panel shall offer burst, every-n-pages, even-page, odd-page, specified-page, size, and bookmark-level split modes.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:10",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.1.2 Stimulus/Response Sequences",
+        "pure_source_section:3.1.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.1",
+      "source_candidate_id": "PURE-SM-SPLIT-003",
+      "source_harvest_id": "composed:3.1",
+      "step_indices": [
+        3,
+        26
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.1.2 Stimulus/Response Sequences, PDF page(s) [10]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Split panel exposes seven distinct split modes.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            26
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 26,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        3,
+        26
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 26,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 3, 26 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-SPLIT-004",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The Split panel shall expose destination selection, compression, output PDF version, filename-prefix, and Run controls.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:10",
+        "pure_pdf_page:11",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.1.2 Stimulus/Response Sequences",
+        "pure_source_section:3.1.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.1",
+      "source_candidate_id": "PURE-SM-SPLIT-004",
+      "source_harvest_id": "composed:3.1",
+      "step_indices": [
+        3,
+        26
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.1.2 Stimulus/Response Sequences, PDF page(s) [10, 11]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Split panel exposes destination selection.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            26
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 26,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The Split panel exposes compression and output PDF version controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            26
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 26,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The Split panel exposes filename-prefix and Run controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            26
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 26,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        3,
+        26
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 26,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 3, 26 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-MERGE-001",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The Merge/Extract panel shall accept multiple PDF files and display file details, page selection, passwords, and ordering controls.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:11",
+        "pure_pdf_page:12",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.2.2 Stimulus/Response Sequences",
+        "pure_source_section:3.2.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.2",
+      "source_candidate_id": "PURE-SM-MERGE-001",
+      "source_harvest_id": "composed:3.2",
+      "step_indices": [
+        4,
+        24
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.2.2 Stimulus/Response Sequences, PDF page(s) [11, 12]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Merge/Extract panel accepts multiple PDF files.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            24
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 24,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The file table displays details, page selection, and password columns.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            24
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 24,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The panel exposes file-ordering controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            24
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 24,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        4,
+        24
+      ],
+      "evidence_units": [
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 24,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 4, 24 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-MERGE-002",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The Merge/Extract panel shall expose an option indicating that input PDF documents contain forms.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:12",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.2.2 Stimulus/Response Sequences",
+        "pure_source_section:3.2.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.2",
+      "source_candidate_id": "PURE-SM-MERGE-002",
+      "source_harvest_id": "composed:3.2",
+      "step_indices": [
+        4,
+        24
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.2.2 Stimulus/Response Sequences, PDF page(s) [12]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Merge/Extract panel contains a PDF-documents-contain-forms option.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            24
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 24,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        4,
+        24
+      ],
+      "evidence_units": [
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 24,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 4, 24 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-MERGE-003",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The Merge/Extract panel shall expose output-file selection, compression, output PDF version, and Run controls.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:12",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.2.2 Stimulus/Response Sequences",
+        "pure_source_section:3.2.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.2",
+      "source_candidate_id": "PURE-SM-MERGE-003",
+      "source_harvest_id": "composed:3.2",
+      "step_indices": [
+        4,
+        24
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.2.2 Stimulus/Response Sequences, PDF page(s) [12]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Merge/Extract panel exposes output-file selection.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            24
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 24,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The panel exposes compression and output PDF version controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            24
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 24,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The panel exposes a Run control.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            24
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 24,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        4,
+        24
+      ],
+      "evidence_units": [
+        {
+          "step_index": 4,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 24,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 4, 24 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-MIX-001",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The Alternate Mix panel shall expose two-document selection, ordering, reversal, and pages-to-switch controls.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:13",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.3.2 Stimulus/Response Sequences",
+        "pure_source_section:3.3.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.3",
+      "source_candidate_id": "PURE-SM-MIX-001",
+      "source_harvest_id": "composed:3.3",
+      "step_indices": [
+        5,
+        23
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.3.2 Stimulus/Response Sequences, PDF page(s) [13]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Alternate Mix panel displays two input documents.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5,
+            23
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 23,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The panel exposes document ordering and reversal controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5,
+            23
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 23,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The panel exposes a pages-to-switch control.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5,
+            23
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 23,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        5,
+        23
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 23,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 5, 23 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-MIX-002",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The Alternate Mix panel shall expose output-file selection, compression, output PDF version, and Run controls.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:13",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.3.2 Stimulus/Response Sequences",
+        "pure_source_section:3.3.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.3",
+      "source_candidate_id": "PURE-SM-MIX-002",
+      "source_harvest_id": "composed:3.3",
+      "step_indices": [
+        5,
+        23
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.3.2 Stimulus/Response Sequences, PDF page(s) [13]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Alternate Mix panel exposes output-file selection.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5,
+            23
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 23,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The panel exposes compression and output PDF version controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5,
+            23
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 23,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The panel exposes a Run control.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5,
+            23
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 23,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        5,
+        23
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 23,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 5, 23 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-ROTATE-001",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The Rotate panel shall accept PDF documents and expose clockwise-angle and page-subset controls.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:14",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.4.2 Stimulus/Response Sequences",
+        "pure_source_section:3.4.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.4",
+      "source_candidate_id": "PURE-SM-ROTATE-001",
+      "source_harvest_id": "composed:3.4",
+      "step_indices": [
+        6,
+        25
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.4.2 Stimulus/Response Sequences, PDF page(s) [14]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Rotate panel contains an input-document table.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6,
+            25
+          ],
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 25,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The panel exposes clockwise-angle and All, Even, or Odd page controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6,
+            25
+          ],
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 25,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        6,
+        25
+      ],
+      "evidence_units": [
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 25,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 6, 25 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-ROTATE-002",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The Rotate panel shall expose destination, compression, output PDF version, filename-prefix, and Run controls.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:15",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.4.2 Stimulus/Response Sequences",
+        "pure_source_section:3.4.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.4",
+      "source_candidate_id": "PURE-SM-ROTATE-002",
+      "source_harvest_id": "composed:3.4",
+      "step_indices": [
+        6,
+        25
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.4.2 Stimulus/Response Sequences, PDF page(s) [15]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Rotate panel exposes destination selection.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6,
+            25
+          ],
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 25,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The panel exposes compression and output PDF version controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6,
+            25
+          ],
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 25,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The panel exposes filename-prefix and Run controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6,
+            25
+          ],
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 25,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        6,
+        25
+      ],
+      "evidence_units": [
+        {
+          "step_index": 6,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 25,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 6, 25 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-REORDER-001",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The Visual Reorder panel shall display page thumbnails for a selected PDF document.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:15",
+        "pure_pdf_page:16",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.5.2 Stimulus/Response Sequences",
+        "pure_source_section:3.5.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.5",
+      "source_candidate_id": "PURE-SM-REORDER-001",
+      "source_harvest_id": "composed:3.5",
+      "step_indices": [
+        8,
+        28
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.5.2 Stimulus/Response Sequences, PDF page(s) [15, 16]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Visual Reorder panel displays page thumbnails for a PDF document.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            8,
+            28
+          ],
+          "evidence_units": [
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 28,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        8,
+        28
+      ],
+      "evidence_units": [
+        {
+          "step_index": 8,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 28,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 8, 28 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-REORDER-002",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The Visual Reorder panel shall expose move, reverse, delete, undelete, rotate, zoom, and preview controls for selected pages.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:15",
+        "pure_pdf_page:16",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.5.2 Stimulus/Response Sequences",
+        "pure_source_section:3.5.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.5",
+      "source_candidate_id": "PURE-SM-REORDER-002",
+      "source_harvest_id": "composed:3.5",
+      "step_indices": [
+        7,
+        8,
+        20,
+        28
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.5.2 Stimulus/Response Sequences, PDF page(s) [15, 16]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Visual Reorder panel exposes page move and reverse controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            7,
+            8,
+            20,
+            28
+          ],
+          "evidence_units": [
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 20,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 28,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The panel exposes delete, undelete, rotate, and zoom controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            7,
+            8,
+            20,
+            28
+          ],
+          "evidence_units": [
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 20,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 28,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The panel supports previewing a page in the image viewer.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            7,
+            8,
+            20,
+            28
+          ],
+          "evidence_units": [
+            {
+              "step_index": 7,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 20,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 28,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        7,
+        8,
+        20,
+        28
+      ],
+      "evidence_units": [
+        {
+          "step_index": 7,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 8,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 20,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 28,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 7, 8, 20, 28 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-REORDER-003",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The Visual Reorder panel shall expose destination, compression, output PDF version, and Run controls.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:17",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.5.2 Stimulus/Response Sequences",
+        "pure_source_section:3.5.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.5",
+      "source_candidate_id": "PURE-SM-REORDER-003",
+      "source_harvest_id": "composed:3.5",
+      "step_indices": [
+        8,
+        28
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.5.2 Stimulus/Response Sequences, PDF page(s) [17]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Visual Reorder panel exposes destination selection.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            8,
+            28
+          ],
+          "evidence_units": [
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 28,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The panel exposes compression and output PDF version controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            8,
+            28
+          ],
+          "evidence_units": [
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 28,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The panel exposes a Run control.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            8,
+            28
+          ],
+          "evidence_units": [
+            {
+              "step_index": 8,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 28,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        8,
+        28
+      ],
+      "evidence_units": [
+        {
+          "step_index": 8,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 28,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 8, 28 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-COMPOSE-001",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The Visual Document Composer shall provide source-document and output-composition thumbnail panels.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:17",
+        "pure_pdf_page:18",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.6.2 Stimulus/Response Sequences",
+        "pure_source_section:3.6.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.6",
+      "source_candidate_id": "PURE-SM-COMPOSE-001",
+      "source_harvest_id": "composed:3.6",
+      "step_indices": [
+        9,
+        27
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.6.2 Stimulus/Response Sequences, PDF page(s) [17, 18]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Visual Document Composer displays separate source and output thumbnail panels.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            9,
+            27
+          ],
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 27,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        9,
+        27
+      ],
+      "evidence_units": [
+        {
+          "step_index": 9,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 27,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 9, 27 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-COMPOSE-002",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The Visual Document Composer shall expose add, move, delete, rotate, reverse, zoom, and preview controls for composing pages.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:17",
+        "pure_pdf_page:18",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.6.2 Stimulus/Response Sequences",
+        "pure_source_section:3.6.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.6",
+      "source_candidate_id": "PURE-SM-COMPOSE-002",
+      "source_harvest_id": "composed:3.6",
+      "step_indices": [
+        9,
+        27
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.6.2 Stimulus/Response Sequences, PDF page(s) [17, 18]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The composer exposes controls for adding and moving pages.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            9,
+            27
+          ],
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 27,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The composer exposes delete, rotate, reverse, and zoom controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            9,
+            27
+          ],
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 27,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The composer exposes page-preview controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            9,
+            27
+          ],
+          "evidence_units": [
+            {
+              "step_index": 9,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 27,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        9,
+        27
+      ],
+      "evidence_units": [
+        {
+          "step_index": 9,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 27,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 9, 27 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-ENV-001",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The application shall expose Save Environment and Load Environment actions through the File menu and XML file dialogs.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:18",
+        "pure_pdf_page:19",
+        "pure_pdf_page:22",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.7.2 Stimulus/Response Sequences",
+        "pure_source_section:3.7.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.7",
+      "source_candidate_id": "PURE-SM-ENV-001",
+      "source_harvest_id": "composed:3.7",
+      "step_indices": [
+        10,
+        11,
+        14,
+        15
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.7.2 Stimulus/Response Sequences, PDF page(s) [18, 19, 22]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The File menu exposes Save Environment and Load Environment actions.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            10,
+            11,
+            14,
+            15
+          ],
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 11,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 14,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 15,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "Environment selection uses an XML file dialog.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            10,
+            11,
+            14,
+            15
+          ],
+          "evidence_units": [
+            {
+              "step_index": 10,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 11,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 14,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 15,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        10,
+        11,
+        14,
+        15
+      ],
+      "evidence_units": [
+        {
+          "step_index": 10,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 11,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 14,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 15,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 10, 11, 14, 15 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-LOG-001",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The application shall provide a log panel that displays operational messages and exposes copy, clear, and save actions.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:19",
+        "pure_pdf_page:20",
+        "pure_pdf_page:23",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.8.2 Stimulus/Response Sequences",
+        "pure_source_section:3.8.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.8",
+      "source_candidate_id": "PURE-SM-LOG-001",
+      "source_harvest_id": "composed:3.8",
+      "step_indices": [
+        12,
+        19
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.8.2 Stimulus/Response Sequences, PDF page(s) [19, 20, 23]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The application displays operational messages in a log panel.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            12,
+            19
+          ],
+          "evidence_units": [
+            {
+              "step_index": 12,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 19,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The log panel exposes copy, clear, and save actions.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            12,
+            19
+          ],
+          "evidence_units": [
+            {
+              "step_index": 12,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 19,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        12,
+        19
+      ],
+      "evidence_units": [
+        {
+          "step_index": 12,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 19,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 12, 19 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-SETTINGS-001",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The Settings panel shall expose language, look-and-feel, theme, log-level, thumbnail-library, update, alert, overwrite-confirmation, default-environment, and working-directory settings.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:20",
+        "pure_pdf_page:21",
+        "pure_pdf_page:23",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.9.2 Stimulus/Response Sequences",
+        "pure_source_section:3.9.2 Stimulus/Response Sequences"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:3.9",
+      "source_candidate_id": "PURE-SM-SETTINGS-001",
+      "source_harvest_id": "composed:3.9",
+      "step_indices": [
+        13,
+        18
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.9.2 Stimulus/Response Sequences, PDF page(s) [20, 21, 23]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The Settings panel exposes language, look-and-feel, theme, and log-level controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            13,
+            18
+          ],
+          "evidence_units": [
+            {
+              "step_index": 13,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 18,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The panel exposes thumbnail-library, update, alert, and overwrite-confirmation controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            13,
+            18
+          ],
+          "evidence_units": [
+            {
+              "step_index": 13,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 18,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The panel exposes default-environment and working-directory controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            13,
+            18
+          ],
+          "evidence_units": [
+            {
+              "step_index": 13,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 18,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        13,
+        18
+      ],
+      "evidence_units": [
+        {
+          "step_index": 13,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 18,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 13, 18 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-GUI-001",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The GUI shall provide file dialogs that distinguish XML environment files from PDF document files.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:22",
+        "pure_requirement:contextualized_feature",
+        "pure_section:4.1 User Interfaces - GUI",
+        "pure_source_section:4.1 User Interfaces - GUI"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:4.1",
+      "source_candidate_id": "PURE-SM-GUI-001",
+      "source_harvest_id": "composed:4.1",
+      "step_indices": [
+        15,
+        16
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 4.1 User Interfaces - GUI, PDF page(s) [22]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The environment dialog filters XML files.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            15,
+            16
+          ],
+          "evidence_units": [
+            {
+              "step_index": 15,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 16,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The document dialog filters PDF files.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            15,
+            16
+          ],
+          "evidence_units": [
+            {
+              "step_index": 15,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 16,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        15,
+        16
+      ],
+      "evidence_units": [
+        {
+          "step_index": 15,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 16,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 15, 16 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-GUI-002",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The application shall provide an About panel with application, runtime, operating-system, and translation information.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:23",
+        "pure_requirement:contextualized_feature",
+        "pure_section:4.1 User Interfaces - GUI",
+        "pure_source_section:4.1 User Interfaces - GUI"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:4.1",
+      "source_candidate_id": "PURE-SM-GUI-002",
+      "source_harvest_id": "composed:4.1",
+      "step_indices": [
+        17
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 4.1 User Interfaces - GUI, PDF page(s) [23]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The About panel displays application and runtime information.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            17
+          ],
+          "evidence_units": [
+            {
+              "step_index": 17,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The About panel displays operating-system and translation information.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            17
+          ],
+          "evidence_units": [
+            {
+              "step_index": 17,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        17
+      ],
+      "evidence_units": [
+        {
+          "step_index": 17,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 17 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-GUI-003",
+      "flow_id": "pure_2010_split_merge",
+      "text": "The loading screen shall report the PDFsam version and plugin-loading progress.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:manual_grouping",
+        "pure_pdf_page:25",
+        "pure_requirement:contextualized_feature",
+        "pure_section:4.1 User Interfaces - GUI",
+        "pure_source_section:4.1 User Interfaces - GUI"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "composed:4.1",
+      "source_candidate_id": "PURE-SM-GUI-003",
+      "source_harvest_id": "composed:4.1",
+      "step_indices": [
+        22
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 4.1 User Interfaces - GUI, PDF page(s) [25]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "fulfilled",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "The loading screen displays the PDFsam version.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            22
+          ],
+          "evidence_units": [
+            {
+              "step_index": 22,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The loading screen reports plugin-loading progress.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            22
+          ],
+          "evidence_units": [
+            {
+              "step_index": 22,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        }
+      ],
+      "evidence_steps": [
+        22
+      ],
+      "evidence_units": [
+        {
+          "step_index": 22,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 22 visibly show the required controls or information.",
+      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "review_status": "needs_review",
+      "created_at": "2026-07-13T14:03:51+00:00",
+      "updated_at": "2026-07-13T14:03:51+00:00"
+    }
+  ]
+}

@@ -136,6 +136,17 @@ npm run dev
 
 By default the frontend calls `http://127.0.0.1:8000`. To override this, set `VITE_API_BASE_URL`.
 
+### Ad-hoc screenshot verification
+
+Open `http://127.0.0.1:5173/verify/new` (or choose **New screenshot verification** in the workbench) to:
+
+- upload and order up to 20 screenshots;
+- paste requirements or import a JSON, TXT, or Markdown requirements file;
+- run the deterministic or Gemini image verification pipeline; and
+- inspect requirement decisions, claim evidence, run history, and localized bounding boxes.
+
+Uploaded flows are stored locally under `data/processed/flows/uploads/`. Their normalized requirements and pipeline outputs stay under `data/generated/`.
+
 ## Tests
 
 Run the Python test suite from the repository root:
