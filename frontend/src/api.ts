@@ -264,6 +264,8 @@ export type BoundingBoxSuggestion = {
   image_width?: number | null
   image_height?: number | null
   coordinate_space?: string | null
+  candidate_id?: string | null
+  candidate_source?: string | null
 }
 
 export type BoundingBoxSuggestionResponse = {
@@ -274,6 +276,132 @@ export type BoundingBoxSuggestionResponse = {
   image_height?: number | null
   coordinate_space?: string | null
   candidates: BoundingBoxSuggestion[]
+}
+
+export type EvaluationAuditSummary = {
+  audit_id: string
+  title: string
+  created_at: string
+  seed: number
+  ui_item_count: number
+  bbox_item_count: number
+  blind_review: boolean
+  status: string
+}
+
+export type UiEvaluabilityAuditReview = {
+  label: string
+  rationale: string
+  confidence: number
+  ambiguous: boolean
+  updated_at?: string
+}
+
+export type UiEvaluabilityAuditItem = {
+  audit_item_id: string
+  flow_id: string
+  dataset: string
+  requirement_id: string
+  requirement_text: string
+  step_indices: number[]
+  manual_label?: string | null
+  pipeline_label?: string | null
+  labels_match?: boolean
+  structural_conflict_reasons?: string[]
+  review?: UiEvaluabilityAuditReview | null
+}
+
+export type UiEvaluabilityAuditBundle = {
+  schema_version: string
+  blind: boolean
+  seed: number
+  sample_size: number
+  sampling_note: string
+  reviewer_id: string
+  items: UiEvaluabilityAuditItem[]
+}
+
+export type BoundingBoxAuditReview = {
+  applicability: string
+  gold_boxes: BoundingBox[]
+  evidence_note: string
+  gold_locked: boolean
+  relevance: string
+  sufficiency: string
+  error_categories: string[]
+  updated_at?: string
+}
+
+export type BoundingBoxAuditItem = {
+  audit_item_id: string
+  dataset: string
+  flow_id: string
+  requirement_id: string
+  requirement_text: string
+  claim_id: string
+  claim_text: string
+  step_index: number
+  image_url: string
+  image_path: string
+  image_width: number
+  image_height: number
+  image_sha256: string
+  coordinate_space: string
+  review?: BoundingBoxAuditReview | null
+  prediction?: BoundingBoxSuggestion | null
+  all_suggestions?: BoundingBoxSuggestion[]
+  claim_status?: string | null
+  claim_type?: string | null
+  inspection_judgment?: {
+    status: 'VALID' | 'INCORRECT' | 'UNCERTAIN'
+    note: string
+    error_category?: 'MISALIGNED' | 'WRONG_LOCATION' | 'SEMANTIC_ERROR' | null
+    updated_at?: string
+  } | null
+  candidate_selection?: OmniParserCandidateSelection | null
+}
+
+export type OmniParserCandidate = {
+  candidate_id: string
+  source: 'omniparser_ui' | 'tesseract_line' | string
+  bbox: BoundingBox
+  text?: string | null
+  caption?: string | null
+  associated_text?: string | null
+  semantic_text?: string | null
+  confidence?: number | null
+  rank?: number
+  rank_score?: number
+  rank_reasons?: string[]
+}
+
+export type OmniParserCandidateSelection = OmniParserCandidate & {
+  package?: string
+  updated_at?: string
+}
+
+export type OmniParserCandidateBundle = {
+  flow_id: string
+  step_index: number
+  image_width: number
+  image_height: number
+  package: string
+  ranking_method?: string
+  candidates: OmniParserCandidate[]
+}
+
+export type BoundingBoxAuditBundle = {
+  schema_version: string
+  created_at?: string
+  source_run_id?: string
+  source_run_created_at?: string
+  source_run_configuration?: Record<string, unknown>
+  blind: boolean
+  seed: number
+  sample_size: number
+  sampling_note: string
+  reviewer_id: string
+  items: BoundingBoxAuditItem[]
 }
 
 export type PipelineClaimResult = {
@@ -322,6 +450,10 @@ export type PipelineRunSummary = {
   requirements_count: number
   label_distribution: Record<string, number>
   metrics_available: boolean
+  evidence_count?: number
+  bbox_evidence_count?: number
+  has_pipeline_evidence?: boolean
+  has_bbox_evidence?: boolean
 }
 
 export type PipelineRunList = {
@@ -458,6 +590,39 @@ export function resolveAssetUrl(path: string): string {
 }
 
 export const api = {
+  listEvaluationAudits: () => request<EvaluationAuditSummary[]>('/evaluation-audits'),
+  getUiInspectionItems: (auditId: string) =>
+    request<UiEvaluabilityAuditBundle>(`/evaluation-audits/${encodeURIComponent(auditId)}/inspection/ui-items`),
+  getBboxInspectionItems: (auditId: string) =>
+    request<BoundingBoxAuditBundle>(`/evaluation-audits/${encodeURIComponent(auditId)}/inspection/bbox-items`),
+  saveBboxInspectionJudgment: (auditId: string, itemId: string, payload: {status: 'VALID' | 'INCORRECT' | 'UNCERTAIN'; note?: string; error_category?: 'MISALIGNED' | 'WRONG_LOCATION' | 'SEMANTIC_ERROR' | null}) =>
+    request<{audit_item_id: string; inspection_judgment: NonNullable<BoundingBoxAuditItem['inspection_judgment']>}>(`/evaluation-audits/${encodeURIComponent(auditId)}/inspection/bbox-items/${encodeURIComponent(itemId)}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    }),
+  getOmniParserCandidates: (auditId: string, itemId: string) =>
+    request<OmniParserCandidateBundle>(`/evaluation-audits/${encodeURIComponent(auditId)}/inspection/bbox-items/${encodeURIComponent(itemId)}/omniparser-candidates`),
+  saveOmniParserSelection: (auditId: string, itemId: string, candidateId: string) =>
+    request<{audit_item_id: string; candidate_selection: OmniParserCandidateSelection}>(`/evaluation-audits/${encodeURIComponent(auditId)}/inspection/bbox-items/${encodeURIComponent(itemId)}/omniparser-selection`, {
+      method: 'PUT',
+      body: JSON.stringify({candidate_id: candidateId}),
+    }),
+  getUiAuditItems: (auditId: string, reviewerId: string) =>
+    request<UiEvaluabilityAuditBundle>(`/evaluation-audits/${encodeURIComponent(auditId)}/ui-items?reviewer_id=${encodeURIComponent(reviewerId)}`),
+  saveUiAuditReview: (auditId: string, itemId: string, payload: UiEvaluabilityAuditReview & {reviewer_id: string}) =>
+    request<{audit_item_id: string; review: UiEvaluabilityAuditReview}>(`/evaluation-audits/${encodeURIComponent(auditId)}/ui-items/${encodeURIComponent(itemId)}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    }),
+  getBboxAuditItems: (auditId: string, reviewerId: string) =>
+    request<BoundingBoxAuditBundle>(`/evaluation-audits/${encodeURIComponent(auditId)}/bbox-items?reviewer_id=${encodeURIComponent(reviewerId)}`),
+  saveBboxAuditReview: (auditId: string, itemId: string, payload: BoundingBoxAuditReview & {reviewer_id: string}) =>
+    request<{audit_item_id: string; review: BoundingBoxAuditReview; prediction?: BoundingBoxSuggestion | null}>(`/evaluation-audits/${encodeURIComponent(auditId)}/bbox-items/${encodeURIComponent(itemId)}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    }),
+  getEvaluationAuditMetrics: (auditId: string, reviewerId: string) =>
+    request<Record<string, unknown>>(`/evaluation-audits/${encodeURIComponent(auditId)}/metrics?reviewer_id=${encodeURIComponent(reviewerId)}`),
   createUploadedFlow: (payload: CreateUploadedFlowPayload) =>
     request<CreateUploadedFlowResponse>('/uploaded-flows', {
       method: 'POST',

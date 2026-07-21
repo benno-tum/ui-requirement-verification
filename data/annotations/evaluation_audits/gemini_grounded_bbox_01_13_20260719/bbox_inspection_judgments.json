@@ -1,0 +1,30 @@
+{
+  "schema_version": "bbox_inspection_judgments_v1",
+  "items": {
+    "GBBOX-0001": {
+      "status": "VALID",
+      "note": "",
+      "updated_at": "2026-07-19T13:44:44.551917+00:00"
+    },
+    "GBBOX-0002": {
+      "status": "INCORRECT",
+      "note": "Gemini described the Great Escape park indicator but returned a region ending just before the location text; it also does not correctly cover the separate Great Escape logo. Original-to-review coordinate conversion was verified against a direct resize.",
+      "updated_at": "2026-07-19T14:17:48.152238+00:00"
+    },
+    "GBBOX-0003": {
+      "status": "VALID",
+      "note": "",
+      "updated_at": "2026-07-19T13:47:54.675892+00:00"
+    },
+    "GBBOX-0004": {
+      "status": "UNCERTAIN",
+      "note": "",
+      "updated_at": "2026-07-19T13:50:38.638598+00:00"
+    },
+    "GBBOX-0037": {
+      "status": "INCORRECT",
+      "note": "Model selected the All New Events at Six Flags Great Escape title, but this is not the required retained park-context indicator before purchase entry. Confirmed during grouped-gallery review.",
+      "updated_at": "2026-07-19T14:14:40.031287+00:00"
+    }
+  }
+}

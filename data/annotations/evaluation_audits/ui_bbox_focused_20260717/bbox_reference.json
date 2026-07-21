@@ -1,0 +1,5482 @@
+{
+  "schema_version": "bounding_box_review_reference_v1",
+  "items": {
+    "BBOX-001": {
+      "prediction": {
+        "bbox": {
+          "x1": 29.0,
+          "y1": 75.0,
+          "x2": 326.0,
+          "y2": 102.0
+        },
+        "matched_text": "Aecommedatons Onboard Dining",
+        "score": 0.31428571428571433,
+        "confidence": 0.6436636366666666,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+        "image_width": 682,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 29.0,
+            "y1": 75.0,
+            "x2": 326.0,
+            "y2": 102.0
+          },
+          "matched_text": "Aecommedatons Onboard Dining",
+          "score": 0.31428571428571433,
+          "confidence": 0.6436636366666666,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 182.0,
+            "y1": 79.0,
+            "x2": 261.0,
+            "y2": 93.0
+          },
+          "matched_text": "Onboard",
+          "score": 0.16666666666666669,
+          "confidence": 0.9683515199999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 270.0,
+            "y1": 79.0,
+            "x2": 326.0,
+            "y2": 98.0
+          },
+          "matched_text": "Dining",
+          "score": 0.16666666666666669,
+          "confidence": 0.96263939,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 429.0,
+            "y1": 443.0,
+            "x2": 463.0,
+            "y2": 455.0
+          },
+          "matched_text": "Dining",
+          "score": 0.16666666666666669,
+          "confidence": 0.9677330000000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 473.0,
+            "y1": 789.0,
+            "x2": 497.0,
+            "y2": 798.0
+          },
+          "matched_text": "Food",
+          "score": 0.16666666666666669,
+          "confidence": 0.84965248,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "medium",
+        "line",
+        "long",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-002": {
+      "prediction": {
+        "bbox": {
+          "x1": 552.0,
+          "y1": 149.0,
+          "x2": 589.0,
+          "y2": 160.0
+        },
+        "matched_text": "Card",
+        "score": 0.25,
+        "confidence": 0.9665231300000001,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+        "image_width": 880,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 552.0,
+            "y1": 149.0,
+            "x2": 589.0,
+            "y2": 160.0
+          },
+          "matched_text": "Card",
+          "score": 0.25,
+          "confidence": 0.9665231300000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 233.0,
+            "y1": 463.0,
+            "x2": 279.0,
+            "y2": 473.0
+          },
+          "matched_text": "CARD",
+          "score": 0.25,
+          "confidence": 0.95798012,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 485.0,
+            "y1": 149.0,
+            "x2": 589.0,
+            "y2": 160.0
+          },
+          "matched_text": "UAeGift Card",
+          "score": 0.2444444444444445,
+          "confidence": 0.9412071200000001,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 192.0,
+            "y1": 463.0,
+            "x2": 528.0,
+            "y2": 481.0
+          },
+          "matched_text": "GIFT CARD sss",
+          "score": 0.22000000000000003,
+          "confidence": 0.6386534133333334,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "medium",
+        "word",
+        "short",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-003": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "short",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-004": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "long",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-005": {
+      "prediction": {
+        "bbox": {
+          "x1": 485.0,
+          "y1": 149.0,
+          "x2": 589.0,
+          "y2": 160.0
+        },
+        "matched_text": "UAeGift Card",
+        "score": 0.19999999999999998,
+        "confidence": 0.9412071200000001,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+        "image_width": 880,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 485.0,
+            "y1": 149.0,
+            "x2": 589.0,
+            "y2": 160.0
+          },
+          "matched_text": "UAeGift Card",
+          "score": 0.19999999999999998,
+          "confidence": 0.9412071200000001,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 552.0,
+            "y1": 149.0,
+            "x2": 589.0,
+            "y2": 160.0
+          },
+          "matched_text": "Card",
+          "score": 0.19999999999999998,
+          "confidence": 0.9665231300000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 233.0,
+            "y1": 463.0,
+            "x2": 279.0,
+            "y2": 473.0
+          },
+          "matched_text": "CARD",
+          "score": 0.19999999999999998,
+          "confidence": 0.95798012,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 192.0,
+            "y1": 463.0,
+            "x2": 528.0,
+            "y2": 481.0
+          },
+          "matched_text": "GIFT CARD sss",
+          "score": 0.18333333333333335,
+          "confidence": 0.6386534133333334,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "AMBIGUOUS",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "low",
+        "line",
+        "short",
+        "AMBIGUOUS",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-006": {
+      "prediction": {
+        "bbox": {
+          "x1": 24.0,
+          "y1": 18.0,
+          "x2": 1161.0,
+          "y2": 38.0
+        },
+        "matched_text": "= Menu > JOB OPENINGS < Estimated Annual Salary x",
+        "score": 0.4714285714285714,
+        "confidence": 0.92852169,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_09.png",
+        "image_width": 1182,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 24.0,
+            "y1": 18.0,
+            "x2": 1161.0,
+            "y2": 38.0
+          },
+          "matched_text": "= Menu > JOB OPENINGS < Estimated Annual Salary x",
+          "score": 0.4714285714285714,
+          "confidence": 0.92852169,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_09.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 524.0,
+            "y1": 21.0,
+            "x2": 557.0,
+            "y2": 33.0
+          },
+          "matched_text": "JOB",
+          "score": 0.2222222222222222,
+          "confidence": 0.9690097,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_09.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 822.0,
+            "y1": 18.0,
+            "x2": 917.0,
+            "y2": 33.0
+          },
+          "matched_text": "Estimated",
+          "score": 0.2222222222222222,
+          "confidence": 0.95917007,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_09.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 998.0,
+            "y1": 18.0,
+            "x2": 1058.0,
+            "y2": 38.0
+          },
+          "matched_text": "Salary",
+          "score": 0.2222222222222222,
+          "confidence": 0.9664035,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_09.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 58.0,
+            "y1": 1204.0,
+            "x2": 84.0,
+            "y2": 1213.0
+          },
+          "matched_text": "JOB",
+          "score": 0.2222222222222222,
+          "confidence": 0.96099037,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_09.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "high",
+        "line",
+        "short",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-007": {
+      "prediction": {
+        "bbox": {
+          "x1": 552.0,
+          "y1": 149.0,
+          "x2": 589.0,
+          "y2": 160.0
+        },
+        "matched_text": "Card",
+        "score": 0.2857142857142857,
+        "confidence": 0.9665231300000001,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+        "image_width": 880,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 552.0,
+            "y1": 149.0,
+            "x2": 589.0,
+            "y2": 160.0
+          },
+          "matched_text": "Card",
+          "score": 0.2857142857142857,
+          "confidence": 0.9665231300000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 496.0,
+            "y1": 416.0,
+            "x2": 526.0,
+            "y2": 422.0
+          },
+          "matched_text": "‘Amount’",
+          "score": 0.2857142857142857,
+          "confidence": 0.5700614199999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 233.0,
+            "y1": 463.0,
+            "x2": 279.0,
+            "y2": 473.0
+          },
+          "matched_text": "CARD",
+          "score": 0.2857142857142857,
+          "confidence": 0.95798012,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 485.0,
+            "y1": 149.0,
+            "x2": 589.0,
+            "y2": 160.0
+          },
+          "matched_text": "UAeGift Card",
+          "score": 0.275,
+          "confidence": 0.9412071200000001,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 192.0,
+            "y1": 463.0,
+            "x2": 528.0,
+            "y2": 481.0
+          },
+          "matched_text": "GIFT CARD sss",
+          "score": 0.24444444444444446,
+          "confidence": 0.6386534133333334,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "medium",
+        "word",
+        "short",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-008": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "short",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-009": {
+      "prediction": {
+        "bbox": {
+          "x1": 108.0,
+          "y1": 184.0,
+          "x2": 160.0,
+          "y2": 223.0
+        },
+        "matched_text": "document",
+        "score": 0.18181818181818182,
+        "confidence": 0.74893784,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_23.png",
+        "image_width": 1059,
+        "image_height": 732,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 108.0,
+            "y1": 184.0,
+            "x2": 160.0,
+            "y2": 223.0
+          },
+          "matched_text": "document",
+          "score": 0.18181818181818182,
+          "confidence": 0.74893784,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_23.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 344.0,
+            "y1": 408.0,
+            "x2": 394.0,
+            "y2": 421.0
+          },
+          "matched_text": "document",
+          "score": 0.18181818181818182,
+          "confidence": 0.8347740899999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_23.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 506.0,
+            "y1": 408.0,
+            "x2": 561.0,
+            "y2": 421.0
+          },
+          "matched_text": "document",
+          "score": 0.18181818181818182,
+          "confidence": 0.96659714,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_23.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 38.0,
+            "y1": 184.0,
+            "x2": 216.0,
+            "y2": 223.0
+          },
+          "matched_text": "-D Voval document composer",
+          "score": 0.1692307692307692,
+          "confidence": 0.3953427725,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_23.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 256.0,
+            "y1": 404.0,
+            "x2": 561.0,
+            "y2": 428.0
+          },
+          "matched_text": "C)Reverse first document [¥] Reverse second document",
+          "score": 0.15714285714285717,
+          "confidence": 0.70502743,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_23.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "low",
+        "word",
+        "long",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-010": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "short",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-011": {
+      "prediction": {
+        "bbox": {
+          "x1": 43.0,
+          "y1": 241.0,
+          "x2": 377.0,
+          "y2": 257.0
+        },
+        "matched_text": "Flexible Dining Sample Menus",
+        "score": 0.4,
+        "confidence": 0.8950310499999999,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+        "image_width": 987,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 43.0,
+            "y1": 241.0,
+            "x2": 377.0,
+            "y2": 257.0
+          },
+          "matched_text": "Flexible Dining Sample Menus",
+          "score": 0.4,
+          "confidence": 0.8950310499999999,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 275.0,
+            "y1": 241.0,
+            "x2": 325.0,
+            "y2": 257.0
+          },
+          "matched_text": "Sample",
+          "score": 0.25,
+          "confidence": 0.9636079399999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 331.0,
+            "y1": 241.0,
+            "x2": 377.0,
+            "y2": 253.0
+          },
+          "matched_text": "Menus",
+          "score": 0.25,
+          "confidence": 0.96693222,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 275.0,
+            "y1": 260.0,
+            "x2": 309.0,
+            "y2": 268.0
+          },
+          "matched_text": "Menus",
+          "score": 0.25,
+          "confidence": 0.91847206,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 393.0,
+            "y1": 353.0,
+            "x2": 417.0,
+            "y2": 360.0
+          },
+          "matched_text": "Menu",
+          "score": 0.25,
+          "confidence": 0.88219368,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "high",
+        "line",
+        "short",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-012": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "short",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-013": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "short",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-014": {
+      "prediction": {
+        "bbox": {
+          "x1": 42.0,
+          "y1": 80.0,
+          "x2": 179.0,
+          "y2": 92.0
+        },
+        "matched_text": "<s4_photoshopi01308.pdF",
+        "score": 0.28571428571428575,
+        "confidence": 0.27652149000000004,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_16.png",
+        "image_width": 516,
+        "image_height": 362,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 42.0,
+            "y1": 80.0,
+            "x2": 179.0,
+            "y2": 92.0
+          },
+          "matched_text": "<s4_photoshopi01308.pdF",
+          "score": 0.28571428571428575,
+          "confidence": 0.27652149000000004,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_16.png",
+          "image_width": 516,
+          "image_height": 362,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 23.0,
+            "y1": 77.0,
+            "x2": 179.0,
+            "y2": 92.0
+          },
+          "matched_text": "IE) <s4_photoshopi01308.pdF",
+          "score": 0.275,
+          "confidence": 0.370115605,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_16.png",
+          "image_width": 516,
+          "image_height": 362,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "medium",
+        "word",
+        "short",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-015": {
+      "prediction": {
+        "bbox": {
+          "x1": 264.0,
+          "y1": 113.0,
+          "x2": 319.0,
+          "y2": 135.0
+        },
+        "matched_text": "Café",
+        "score": 0.33333333333333337,
+        "confidence": 0.95622704,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+        "image_width": 987,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 264.0,
+            "y1": 113.0,
+            "x2": 319.0,
+            "y2": 135.0
+          },
+          "matched_text": "Café",
+          "score": 0.33333333333333337,
+          "confidence": 0.95622704,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 395.0,
+            "y1": 172.0,
+            "x2": 417.0,
+            "y2": 181.0
+          },
+          "matched_text": "Café",
+          "score": 0.33333333333333337,
+          "confidence": 0.73814888,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 334.0,
+            "y1": 187.0,
+            "x2": 356.0,
+            "y2": 196.0
+          },
+          "matched_text": "Café",
+          "score": 0.33333333333333337,
+          "confidence": 0.8097084800000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 275.0,
+            "y1": 297.0,
+            "x2": 322.0,
+            "y2": 307.0
+          },
+          "matched_text": "National",
+          "score": 0.33333333333333337,
+          "confidence": 0.95948128,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 393.0,
+            "y1": 353.0,
+            "x2": 417.0,
+            "y2": 360.0
+          },
+          "matched_text": "Menu",
+          "score": 0.33333333333333337,
+          "confidence": 0.88219368,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "medium",
+        "word",
+        "short",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-016": {
+      "prediction": {
+        "bbox": {
+          "x1": 2.0,
+          "y1": 6.0,
+          "x2": 41.0,
+          "y2": 15.0
+        },
+        "matched_text": "Loading",
+        "score": 0.4,
+        "confidence": 0.9224057000000001,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_22.png",
+        "image_width": 350,
+        "image_height": 200,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 2.0,
+            "y1": 6.0,
+            "x2": 41.0,
+            "y2": 15.0
+          },
+          "matched_text": "Loading",
+          "score": 0.4,
+          "confidence": 0.9224057000000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_22.png",
+          "image_width": 350,
+          "image_height": 200,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 2.0,
+            "y1": 6.0,
+            "x2": 62.0,
+            "y2": 15.0
+          },
+          "matched_text": "Loading plug",
+          "score": 0.3666666666666667,
+          "confidence": 0.93813923,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_22.png",
+          "image_width": 350,
+          "image_height": 200,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "high",
+        "word",
+        "short",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-017": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "MISSING",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "long",
+        "MISSING",
+        "BROADER_VISUAL_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-018": {
+      "prediction": {
+        "bbox": {
+          "x1": 192.0,
+          "y1": 463.0,
+          "x2": 528.0,
+          "y2": 481.0
+        },
+        "matched_text": "GIFT CARD a",
+        "score": 0.3142857142857143,
+        "confidence": 0.6386534133333334,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_09.png",
+        "image_width": 880,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 192.0,
+            "y1": 463.0,
+            "x2": 528.0,
+            "y2": 481.0
+          },
+          "matched_text": "GIFT CARD a",
+          "score": 0.3142857142857143,
+          "confidence": 0.6386534133333334,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_09.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 485.0,
+            "y1": 149.0,
+            "x2": 589.0,
+            "y2": 160.0
+          },
+          "matched_text": "UAeGift Card",
+          "score": 0.15714285714285714,
+          "confidence": 0.9412071200000001,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_09.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 552.0,
+            "y1": 149.0,
+            "x2": 589.0,
+            "y2": 160.0
+          },
+          "matched_text": "Card",
+          "score": 0.15384615384615385,
+          "confidence": 0.9665231300000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_09.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 192.0,
+            "y1": 463.0,
+            "x2": 227.0,
+            "y2": 473.0
+          },
+          "matched_text": "GIFT",
+          "score": 0.15384615384615385,
+          "confidence": 0.95798012,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_09.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 233.0,
+            "y1": 463.0,
+            "x2": 279.0,
+            "y2": 473.0
+          },
+          "matched_text": "CARD",
+          "score": 0.15384615384615385,
+          "confidence": 0.95798012,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_09.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "OUT_OF_SCOPE",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "medium",
+        "line",
+        "long",
+        "OUT_OF_SCOPE",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-019": {
+      "prediction": {
+        "bbox": {
+          "x1": 496.0,
+          "y1": 416.0,
+          "x2": 526.0,
+          "y2": 422.0
+        },
+        "matched_text": "‘Amount’",
+        "score": 0.15384615384615385,
+        "confidence": 0.5700614199999999,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+        "image_width": 880,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 496.0,
+            "y1": 416.0,
+            "x2": 526.0,
+            "y2": 422.0
+          },
+          "matched_text": "‘Amount’",
+          "score": 0.15384615384615385,
+          "confidence": 0.5700614199999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 378.0,
+            "y1": 403.0,
+            "x2": 702.0,
+            "y2": 428.0
+          },
+          "matched_text": "Lat ‘Amount’ Detivory Date",
+          "score": 0.1375,
+          "confidence": 0.5757055275,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "low",
+        "word",
+        "long",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-020": {
+      "prediction": {
+        "bbox": {
+          "x1": 575.0,
+          "y1": 1013.0,
+          "x2": 600.0,
+          "y2": 1033.0
+        },
+        "matched_text": "Access",
+        "score": 0.19999999999999998,
+        "confidence": 0.25683056,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_06.png",
+        "image_width": 880,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 575.0,
+            "y1": 1013.0,
+            "x2": 600.0,
+            "y2": 1033.0
+          },
+          "matched_text": "Access",
+          "score": 0.19999999999999998,
+          "confidence": 0.25683056,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_06.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 445.0,
+            "y1": 1012.0,
+            "x2": 719.0,
+            "y2": 1033.0
+          },
+          "matched_text": "‘Sere Locator UA Access ToSports © Twater",
+          "score": 0.14666666666666667,
+          "confidence": 0.47448412714285715,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_06.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "low",
+        "word",
+        "short",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-021": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "long",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-022": {
+      "prediction": {
+        "bbox": {
+          "x1": 38.0,
+          "y1": 218.0,
+          "x2": 143.0,
+          "y2": 232.0
+        },
+        "matched_text": "~~D) Visual reorder",
+        "score": 0.2933333333333334,
+        "confidence": 0.6132300833333333,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_24.png",
+        "image_width": 1059,
+        "image_height": 732,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 38.0,
+            "y1": 218.0,
+            "x2": 143.0,
+            "y2": 232.0
+          },
+          "matched_text": "~~D) Visual reorder",
+          "score": 0.2933333333333334,
+          "confidence": 0.6132300833333333,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_24.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 38.0,
+            "y1": 184.0,
+            "x2": 216.0,
+            "y2": 223.0
+          },
+          "matched_text": "-D Voval document composer",
+          "score": 0.275,
+          "confidence": 0.3953427725,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_24.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 0.0,
+            "y1": 0.0,
+            "x2": 1055.0,
+            "y2": 28.0
+          },
+          "matched_text": "| G8 PDF Split and Merge basic Ver. 2.1.0 AAA leh leet,",
+          "score": 0.20000000000000004,
+          "confidence": 0.6417217758333333,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_24.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 38.0,
+            "y1": 182.0,
+            "x2": 94.0,
+            "y2": 197.0
+          },
+          "matched_text": "oD Split",
+          "score": 0.1466666666666667,
+          "confidence": 0.30876228000000006,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_24.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 53.0,
+            "y1": 0.0,
+            "x2": 80.0,
+            "y2": 28.0
+          },
+          "matched_text": "Split",
+          "score": 0.14285714285714288,
+          "confidence": 0.57559242,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_24.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "medium",
+        "line",
+        "long",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-023": {
+      "prediction": {
+        "bbox": {
+          "x1": 620.0,
+          "y1": 15.0,
+          "x2": 704.0,
+          "y2": 29.0
+        },
+        "matched_text": "Department",
+        "score": 0.2857142857142857,
+        "confidence": 0.91205215,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_06.png",
+        "image_width": 891,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 620.0,
+            "y1": 15.0,
+            "x2": 704.0,
+            "y2": 29.0
+          },
+          "matched_text": "Department",
+          "score": 0.2857142857142857,
+          "confidence": 0.91205215,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_06.png",
+          "image_width": 891,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 44.0,
+            "y1": 589.0,
+            "x2": 104.0,
+            "y2": 599.0
+          },
+          "matched_text": "Department:",
+          "score": 0.2857142857142857,
+          "confidence": 0.51476612,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_06.png",
+          "image_width": 891,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 44.0,
+            "y1": 747.0,
+            "x2": 104.0,
+            "y2": 756.0
+          },
+          "matched_text": "Department:",
+          "score": 0.2857142857142857,
+          "confidence": 0.77345085,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_06.png",
+          "image_width": 891,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 44.0,
+            "y1": 920.0,
+            "x2": 104.0,
+            "y2": 929.0
+          },
+          "matched_text": "Department:",
+          "score": 0.2857142857142857,
+          "confidence": 0.72305717,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_06.png",
+          "image_width": 891,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 44.0,
+            "y1": 1076.0,
+            "x2": 104.0,
+            "y2": 1086.0
+          },
+          "matched_text": "Department:",
+          "score": 0.2857142857142857,
+          "confidence": 0.6575868199999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_06.png",
+          "image_width": 891,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "medium",
+        "word",
+        "long",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-024": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "short",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-025": {
+      "prediction": {
+        "bbox": {
+          "x1": 67.0,
+          "y1": 191.0,
+          "x2": 102.0,
+          "y2": 222.0
+        },
+        "matched_text": "Visual",
+        "score": 0.19999999999999998,
+        "confidence": 0.6925632500000001,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_28.png",
+        "image_width": 1059,
+        "image_height": 732,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 67.0,
+            "y1": 191.0,
+            "x2": 102.0,
+            "y2": 222.0
+          },
+          "matched_text": "Visual",
+          "score": 0.19999999999999998,
+          "confidence": 0.6925632500000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_28.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 320.0,
+            "y1": 458.0,
+            "x2": 354.0,
+            "y2": 489.0
+          },
+          "matched_text": "output",
+          "score": 0.19999999999999998,
+          "confidence": 0.95626907,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_28.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 327.0,
+            "y1": 560.0,
+            "x2": 359.0,
+            "y2": 584.0
+          },
+          "matched_text": "output",
+          "score": 0.19999999999999998,
+          "confidence": 0.84191269,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_28.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 375.0,
+            "y1": 581.0,
+            "x2": 410.0,
+            "y2": 618.0
+          },
+          "matched_text": "version",
+          "score": 0.19999999999999998,
+          "confidence": 0.60856701,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_28.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 38.0,
+            "y1": 191.0,
+            "x2": 216.0,
+            "y2": 232.0
+          },
+          "matched_text": "t Q Visual document composer",
+          "score": 0.18333333333333335,
+          "confidence": 0.696479386,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_28.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "low",
+        "word",
+        "short",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-026": {
+      "prediction": {
+        "bbox": {
+          "x1": 16.0,
+          "y1": 703.0,
+          "x2": 118.0,
+          "y2": 721.0
+        },
+        "matched_text": "D| Merge/Extract",
+        "score": 0.44000000000000006,
+        "confidence": 0.45882545499999994,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_04.png",
+        "image_width": 1059,
+        "image_height": 732,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 16.0,
+            "y1": 703.0,
+            "x2": 118.0,
+            "y2": 721.0
+          },
+          "matched_text": "D| Merge/Extract",
+          "score": 0.44000000000000006,
+          "confidence": 0.45882545499999994,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_04.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 44.0,
+            "y1": 703.0,
+            "x2": 118.0,
+            "y2": 721.0
+          },
+          "matched_text": "Merge/Extract",
+          "score": 0.4,
+          "confidence": 0.7769946299999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_04.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 128.0,
+            "y1": 13.0,
+            "x2": 131.0,
+            "y2": 17.0
+          },
+          "matched_text": "Merge",
+          "score": 0.2222222222222222,
+          "confidence": 0.93779831,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_04.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 826.0,
+            "y1": 87.0,
+            "x2": 877.0,
+            "y2": 127.0
+          },
+          "matched_text": "Selection",
+          "score": 0.2222222222222222,
+          "confidence": 0.46296920999999996,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_04.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 109.0,
+            "y1": 185.0,
+            "x2": 160.0,
+            "y2": 226.0
+          },
+          "matched_text": "document",
+          "score": 0.2222222222222222,
+          "confidence": 0.6491721300000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_04.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "HIDDEN",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "high",
+        "line",
+        "short",
+        "HIDDEN",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-027": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "short",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-028": {
+      "prediction": {
+        "bbox": {
+          "x1": 29.0,
+          "y1": 75.0,
+          "x2": 326.0,
+          "y2": 102.0
+        },
+        "matched_text": "Aecommedatons Onboard Dining",
+        "score": 0.44000000000000006,
+        "confidence": 0.6436636366666666,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+        "image_width": 682,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 29.0,
+            "y1": 75.0,
+            "x2": 326.0,
+            "y2": 102.0
+          },
+          "matched_text": "Aecommedatons Onboard Dining",
+          "score": 0.44000000000000006,
+          "confidence": 0.6436636366666666,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 307.0,
+            "y1": 440.0,
+            "x2": 611.0,
+            "y2": 455.0
+          },
+          "matched_text": "a = Dining Options & Sample Menus",
+          "score": 0.4,
+          "confidence": 0.8725373714285715,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 182.0,
+            "y1": 79.0,
+            "x2": 261.0,
+            "y2": 93.0
+          },
+          "matched_text": "Onboard",
+          "score": 0.25,
+          "confidence": 0.9683515199999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 270.0,
+            "y1": 79.0,
+            "x2": 326.0,
+            "y2": 98.0
+          },
+          "matched_text": "Dining",
+          "score": 0.25,
+          "confidence": 0.96263939,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 429.0,
+            "y1": 443.0,
+            "x2": 463.0,
+            "y2": 455.0
+          },
+          "matched_text": "Dining",
+          "score": 0.25,
+          "confidence": 0.9677330000000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "high",
+        "line",
+        "short",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-029": {
+      "prediction": {
+        "bbox": {
+          "x1": 524.0,
+          "y1": 21.0,
+          "x2": 557.0,
+          "y2": 33.0
+        },
+        "matched_text": "JOB",
+        "score": 0.19999999999999998,
+        "confidence": 0.9690097,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_09.png",
+        "image_width": 1182,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 524.0,
+            "y1": 21.0,
+            "x2": 557.0,
+            "y2": 33.0
+          },
+          "matched_text": "JOB",
+          "score": 0.19999999999999998,
+          "confidence": 0.9690097,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_09.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 58.0,
+            "y1": 1204.0,
+            "x2": 84.0,
+            "y2": 1213.0
+          },
+          "matched_text": "JOB",
+          "score": 0.19999999999999998,
+          "confidence": 0.96099037,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_09.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 24.0,
+            "y1": 18.0,
+            "x2": 1161.0,
+            "y2": 38.0
+          },
+          "matched_text": "= Menu > JOB OPENINGS < Estimated Annual Salary x",
+          "score": 0.14666666666666667,
+          "confidence": 0.92852169,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_09.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "low",
+        "word",
+        "long",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-030": {
+      "prediction": {
+        "bbox": {
+          "x1": 485.0,
+          "y1": 149.0,
+          "x2": 589.0,
+          "y2": 160.0
+        },
+        "matched_text": "UAeGift Card",
+        "score": 0.19999999999999998,
+        "confidence": 0.9412071200000001,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+        "image_width": 880,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 485.0,
+            "y1": 149.0,
+            "x2": 589.0,
+            "y2": 160.0
+          },
+          "matched_text": "UAeGift Card",
+          "score": 0.19999999999999998,
+          "confidence": 0.9412071200000001,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 552.0,
+            "y1": 149.0,
+            "x2": 589.0,
+            "y2": 160.0
+          },
+          "matched_text": "Card",
+          "score": 0.19999999999999998,
+          "confidence": 0.9665231300000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 496.0,
+            "y1": 416.0,
+            "x2": 526.0,
+            "y2": 422.0
+          },
+          "matched_text": "‘Amount’",
+          "score": 0.19999999999999998,
+          "confidence": 0.5700614199999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 233.0,
+            "y1": 463.0,
+            "x2": 279.0,
+            "y2": 473.0
+          },
+          "matched_text": "CARD",
+          "score": 0.19999999999999998,
+          "confidence": 0.95798012,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 192.0,
+            "y1": 463.0,
+            "x2": 528.0,
+            "y2": 481.0
+          },
+          "matched_text": "GIFT CARD sss",
+          "score": 0.18333333333333335,
+          "confidence": 0.6386534133333334,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "MISSING",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "low",
+        "line",
+        "long",
+        "MISSING",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-031": {
+      "prediction": {
+        "bbox": {
+          "x1": 486.0,
+          "y1": 267.0,
+          "x2": 530.0,
+          "y2": 304.0
+        },
+        "matched_text": "every”",
+        "score": 0.2857142857142857,
+        "confidence": 0.11326665999999999,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_03.png",
+        "image_width": 1059,
+        "image_height": 732,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 486.0,
+            "y1": 267.0,
+            "x2": 530.0,
+            "y2": 304.0
+          },
+          "matched_text": "every”",
+          "score": 0.2857142857142857,
+          "confidence": 0.11326665999999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_03.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 256.0,
+            "y1": 267.0,
+            "x2": 570.0,
+            "y2": 304.0
+          },
+          "matched_text": "O split even pages O split every” pages",
+          "score": 0.22000000000000003,
+          "confidence": 0.44323650875,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_03.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "medium",
+        "word",
+        "short",
+        "SUPPORTED_WITH_CAVEAT",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-032": {
+      "prediction": {
+        "bbox": {
+          "x1": 270.0,
+          "y1": 79.0,
+          "x2": 326.0,
+          "y2": 98.0
+        },
+        "matched_text": "Dining",
+        "score": 0.2222222222222222,
+        "confidence": 0.96263939,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+        "image_width": 682,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 270.0,
+            "y1": 79.0,
+            "x2": 326.0,
+            "y2": 98.0
+          },
+          "matched_text": "Dining",
+          "score": 0.2222222222222222,
+          "confidence": 0.96263939,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 429.0,
+            "y1": 443.0,
+            "x2": 463.0,
+            "y2": 455.0
+          },
+          "matched_text": "Dining",
+          "score": 0.2222222222222222,
+          "confidence": 0.9677330000000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 29.0,
+            "y1": 75.0,
+            "x2": 326.0,
+            "y2": 102.0
+          },
+          "matched_text": "Aecommedatons Onboard Dining",
+          "score": 0.2,
+          "confidence": 0.6436636366666666,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 307.0,
+            "y1": 440.0,
+            "x2": 611.0,
+            "y2": 455.0
+          },
+          "matched_text": "a = Dining Options & Sample Menus",
+          "score": 0.18333333333333335,
+          "confidence": 0.8725373714285715,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "medium",
+        "word",
+        "long",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-033": {
+      "prediction": {
+        "bbox": {
+          "x1": 560.0,
+          "y1": 560.0,
+          "x2": 595.0,
+          "y2": 573.0
+        },
+        "matched_text": "public",
+        "score": 0.19999999999999998,
+        "confidence": 0.96451431,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_14.png",
+        "image_width": 1182,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 560.0,
+            "y1": 560.0,
+            "x2": 595.0,
+            "y2": 573.0
+          },
+          "matched_text": "public",
+          "score": 0.19999999999999998,
+          "confidence": 0.96451431,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_14.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "low",
+        "word",
+        "long",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-034": {
+      "prediction": {
+        "bbox": {
+          "x1": 66.0,
+          "y1": 255.0,
+          "x2": 101.0,
+          "y2": 263.0
+        },
+        "matched_text": "STORES",
+        "score": 0.25,
+        "confidence": 0.43229401,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/step_04.png",
+        "image_width": 775,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 66.0,
+            "y1": 255.0,
+            "x2": 101.0,
+            "y2": 263.0
+          },
+          "matched_text": "STORES",
+          "score": 0.25,
+          "confidence": 0.43229401,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/step_04.png",
+          "image_width": 775,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 7.0,
+            "y1": 249.0,
+            "x2": 101.0,
+            "y2": 271.0
+          },
+          "matched_text": "‘= FILTER STORES",
+          "score": 0.2444444444444445,
+          "confidence": 0.46482628000000004,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/step_04.png",
+          "image_width": 775,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "medium",
+        "word",
+        "long",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-035": {
+      "prediction": {
+        "bbox": {
+          "x1": 83.0,
+          "y1": 417.0,
+          "x2": 131.0,
+          "y2": 450.0
+        },
+        "matched_text": "Search",
+        "score": 0.16666666666666669,
+        "confidence": 0.95487274,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_13.png",
+        "image_width": 1182,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 83.0,
+            "y1": 417.0,
+            "x2": 131.0,
+            "y2": 450.0
+          },
+          "matched_text": "Search",
+          "score": 0.16666666666666669,
+          "confidence": 0.95487274,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_13.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 83.0,
+            "y1": 417.0,
+            "x2": 1102.0,
+            "y2": 451.0
+          },
+          "matched_text": "Search a | 3jobsfound = fF IF Sot~ Filter ~",
+          "score": 0.12941176470588237,
+          "confidence": 0.505532264,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_13.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "MISSING",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "low",
+        "word",
+        "long",
+        "MISSING",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-036": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "long",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-037": {
+      "prediction": {
+        "bbox": {
+          "x1": 471.0,
+          "y1": 158.0,
+          "x2": 976.0,
+          "y2": 184.0
+        },
+        "matched_text": "Job Type Full-Time Department MBTA- Safety",
+        "score": 0.31428571428571433,
+        "confidence": 0.83226367,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_14.png",
+        "image_width": 1182,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 471.0,
+            "y1": 158.0,
+            "x2": 976.0,
+            "y2": 184.0
+          },
+          "matched_text": "Job Type Full-Time Department MBTA- Safety",
+          "score": 0.31428571428571433,
+          "confidence": 0.83226367,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_14.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 471.0,
+            "y1": 199.0,
+            "x2": 629.0,
+            "y2": 210.0
+          },
+          "matched_text": "Job Number 23-19223",
+          "score": 0.24444444444444446,
+          "confidence": 0.1798917,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_14.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 467.0,
+            "y1": 116.0,
+            "x2": 1064.0,
+            "y2": 140.0
+          },
+          "matched_text": "Salary @ $95,810.00 - $122,637.92 Location@ 185 Kneeland Street, Boston",
+          "score": 0.16296296296296298,
+          "confidence": 0.748241519,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_14.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 627.0,
+            "y1": 1016.0,
+            "x2": 719.0,
+            "y2": 1025.0
+          },
+          "matched_text": "INFORMATION",
+          "score": 0.1375,
+          "confidence": 0.9668338,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_14.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 467.0,
+            "y1": 116.0,
+            "x2": 515.0,
+            "y2": 140.0
+          },
+          "matched_text": "Salary",
+          "score": 0.125,
+          "confidence": 0.22665310000000002,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_14.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "medium",
+        "line",
+        "long",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-038": {
+      "prediction": {
+        "bbox": {
+          "x1": 18.0,
+          "y1": 703.0,
+          "x2": 1047.0,
+          "y2": 721.0
+        },
+        "matched_text": "| About |",
+        "score": 0.3142857142857143,
+        "confidence": 0.5271040533333334,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_17.png",
+        "image_width": 1059,
+        "image_height": 732,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 18.0,
+            "y1": 703.0,
+            "x2": 1047.0,
+            "y2": 721.0
+          },
+          "matched_text": "| About |",
+          "score": 0.3142857142857143,
+          "confidence": 0.5271040533333334,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_17.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 401.0,
+            "y1": 233.0,
+            "x2": 448.0,
+            "y2": 243.0
+          },
+          "matched_text": "Runtime",
+          "score": 0.2857142857142857,
+          "confidence": 0.9683292400000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_17.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 44.0,
+            "y1": 708.0,
+            "x2": 77.0,
+            "y2": 717.0
+          },
+          "matched_text": "About",
+          "score": 0.2857142857142857,
+          "confidence": 0.9580515300000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_17.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 18.0,
+            "y1": 233.0,
+            "x2": 603.0,
+            "y2": 251.0
+          },
+          "matched_text": "oD Settings {fava version: Java(TM) SE Runtime Environment 1.6.0_16-b01",
+          "score": 0.1375,
+          "confidence": 0.7683764077777778,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_17.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "MISSING",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "medium",
+        "line",
+        "short",
+        "MISSING",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-039": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "long",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-040": {
+      "prediction": {
+        "bbox": {
+          "x1": 83.0,
+          "y1": 417.0,
+          "x2": 131.0,
+          "y2": 450.0
+        },
+        "matched_text": "Search",
+        "score": 0.2857142857142857,
+        "confidence": 0.95487274,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_11.png",
+        "image_width": 1182,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 83.0,
+            "y1": 417.0,
+            "x2": 131.0,
+            "y2": 450.0
+          },
+          "matched_text": "Search",
+          "score": 0.2857142857142857,
+          "confidence": 0.95487274,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_11.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 253.0,
+            "y1": 630.0,
+            "x2": 302.0,
+            "y2": 641.0
+          },
+          "matched_text": "includes",
+          "score": 0.2857142857142857,
+          "confidence": 0.9427575699999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_11.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 83.0,
+            "y1": 417.0,
+            "x2": 1102.0,
+            "y2": 451.0
+          },
+          "matched_text": "Search a | 3jobsfound = fF IF Sot~ Filter ~",
+          "score": 0.18333333333333335,
+          "confidence": 0.505532264,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_11.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "medium",
+        "word",
+        "short",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-041": {
+      "prediction": {
+        "bbox": {
+          "x1": 43.0,
+          "y1": 204.0,
+          "x2": 135.0,
+          "y2": 215.0
+        },
+        "matched_text": "Traditional Dining",
+        "score": 0.16923076923076924,
+        "confidence": 0.844315525,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+        "image_width": 987,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 43.0,
+            "y1": 204.0,
+            "x2": 135.0,
+            "y2": 215.0
+          },
+          "matched_text": "Traditional Dining",
+          "score": 0.16923076923076924,
+          "confidence": 0.844315525,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 42.0,
+            "y1": 325.0,
+            "x2": 593.0,
+            "y2": 336.0
+          },
+          "matched_text": "Acela Dining -",
+          "score": 0.16923076923076924,
+          "confidence": 0.6716867933333334,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 263.0,
+            "y1": 159.0,
+            "x2": 943.0,
+            "y2": 191.0
+          },
+          "matched_text": "Most Amtrak routes offer Café service, wth a variety of meals, snacks and beverages forsale. Customers in all classes of service are",
+          "score": 0.1692307692307692,
+          "confidence": 0.7611103027272726,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 422.0,
+            "y1": 174.0,
+            "x2": 457.0,
+            "y2": 181.0
+          },
+          "matched_text": "service,",
+          "score": 0.16666666666666669,
+          "confidence": 0.83017029,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 819.0,
+            "y1": 172.0,
+            "x2": 829.0,
+            "y2": 181.0
+          },
+          "matched_text": "all",
+          "score": 0.16666666666666669,
+          "confidence": 0.51092854,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "MISSING",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "low",
+        "line",
+        "long",
+        "MISSING",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-042": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "long",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-043": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "short",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-044": {
+      "prediction": {
+        "bbox": {
+          "x1": 43.0,
+          "y1": 204.0,
+          "x2": 135.0,
+          "y2": 215.0
+        },
+        "matched_text": "Traditional Dining",
+        "score": 0.18333333333333338,
+        "confidence": 0.844315525,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+        "image_width": 987,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 43.0,
+            "y1": 204.0,
+            "x2": 135.0,
+            "y2": 215.0
+          },
+          "matched_text": "Traditional Dining",
+          "score": 0.18333333333333338,
+          "confidence": 0.844315525,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 42.0,
+            "y1": 325.0,
+            "x2": 593.0,
+            "y2": 336.0
+          },
+          "matched_text": "Acela Dining -",
+          "score": 0.18333333333333338,
+          "confidence": 0.6716867933333334,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 103.0,
+            "y1": 204.0,
+            "x2": 135.0,
+            "y2": 215.0
+          },
+          "matched_text": "Dining",
+          "score": 0.18181818181818182,
+          "confidence": 0.9166033899999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 86.0,
+            "y1": 245.0,
+            "x2": 118.0,
+            "y2": 256.0
+          },
+          "matched_text": "Dining",
+          "score": 0.18181818181818182,
+          "confidence": 0.82479202,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 74.0,
+            "y1": 328.0,
+            "x2": 100.0,
+            "y2": 336.0
+          },
+          "matched_text": "Dining",
+          "score": 0.18181818181818182,
+          "confidence": 0.9463752700000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "AMBIGUOUS",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "low",
+        "line",
+        "long",
+        "AMBIGUOUS",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-045": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "short",
+        "SUPPORTED_WITH_CAVEAT",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-046": {
+      "prediction": {
+        "bbox": {
+          "x1": 67.0,
+          "y1": 258.0,
+          "x2": 102.0,
+          "y2": 266.0
+        },
+        "matched_text": "STORES",
+        "score": 0.25,
+        "confidence": 0.72124443,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/step_03.png",
+        "image_width": 784,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 67.0,
+            "y1": 258.0,
+            "x2": 102.0,
+            "y2": 266.0
+          },
+          "matched_text": "STORES",
+          "score": 0.25,
+          "confidence": 0.72124443,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/step_03.png",
+          "image_width": 784,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 7.0,
+            "y1": 252.0,
+            "x2": 102.0,
+            "y2": 274.0
+          },
+          "matched_text": "‘= FILTER STORES",
+          "score": 0.2444444444444445,
+          "confidence": 0.56399482,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/step_03.png",
+          "image_width": 784,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "medium",
+        "word",
+        "long",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-047": {
+      "prediction": {
+        "bbox": {
+          "x1": 422.0,
+          "y1": 174.0,
+          "x2": 457.0,
+          "y2": 181.0
+        },
+        "matched_text": "service,",
+        "score": 0.2222222222222222,
+        "confidence": 0.83017029,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+        "image_width": 987,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 422.0,
+            "y1": 174.0,
+            "x2": 457.0,
+            "y2": 181.0
+          },
+          "matched_text": "service,",
+          "score": 0.2222222222222222,
+          "confidence": 0.83017029,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 887.0,
+            "y1": 172.0,
+            "x2": 922.0,
+            "y2": 181.0
+          },
+          "matched_text": "service",
+          "score": 0.2222222222222222,
+          "confidence": 0.80647827,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 384.0,
+            "y1": 190.0,
+            "x2": 419.0,
+            "y2": 196.0
+          },
+          "matched_text": "service",
+          "score": 0.2222222222222222,
+          "confidence": 0.86205482,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 103.0,
+            "y1": 204.0,
+            "x2": 135.0,
+            "y2": 215.0
+          },
+          "matched_text": "Dining",
+          "score": 0.2222222222222222,
+          "confidence": 0.9166033899999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 86.0,
+            "y1": 245.0,
+            "x2": 118.0,
+            "y2": 256.0
+          },
+          "matched_text": "Dining",
+          "score": 0.2222222222222222,
+          "confidence": 0.82479202,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "medium",
+        "word",
+        "long",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-048": {
+      "prediction": {
+        "bbox": {
+          "x1": 552.0,
+          "y1": 149.0,
+          "x2": 589.0,
+          "y2": 160.0
+        },
+        "matched_text": "Card",
+        "score": 0.2222222222222222,
+        "confidence": 0.9665231300000001,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+        "image_width": 880,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 552.0,
+            "y1": 149.0,
+            "x2": 589.0,
+            "y2": 160.0
+          },
+          "matched_text": "Card",
+          "score": 0.2222222222222222,
+          "confidence": 0.9665231300000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 233.0,
+            "y1": 463.0,
+            "x2": 279.0,
+            "y2": 473.0
+          },
+          "matched_text": "CARD",
+          "score": 0.2222222222222222,
+          "confidence": 0.95798012,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 485.0,
+            "y1": 149.0,
+            "x2": 589.0,
+            "y2": 160.0
+          },
+          "matched_text": "UAeGift Card",
+          "score": 0.22000000000000003,
+          "confidence": 0.9412071200000001,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 192.0,
+            "y1": 463.0,
+            "x2": 528.0,
+            "y2": 481.0
+          },
+          "matched_text": "GIFT CARD sss",
+          "score": 0.2,
+          "confidence": 0.6386534133333334,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "medium",
+        "word",
+        "long",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-049": {
+      "prediction": {
+        "bbox": {
+          "x1": 485.0,
+          "y1": 149.0,
+          "x2": 589.0,
+          "y2": 160.0
+        },
+        "matched_text": "UAeGift Card",
+        "score": 0.19999999999999998,
+        "confidence": 0.9412071200000001,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+        "image_width": 880,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 485.0,
+            "y1": 149.0,
+            "x2": 589.0,
+            "y2": 160.0
+          },
+          "matched_text": "UAeGift Card",
+          "score": 0.19999999999999998,
+          "confidence": 0.9412071200000001,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 552.0,
+            "y1": 149.0,
+            "x2": 589.0,
+            "y2": 160.0
+          },
+          "matched_text": "Card",
+          "score": 0.19999999999999998,
+          "confidence": 0.9665231300000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 233.0,
+            "y1": 463.0,
+            "x2": 279.0,
+            "y2": 473.0
+          },
+          "matched_text": "CARD",
+          "score": 0.19999999999999998,
+          "confidence": 0.95798012,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 192.0,
+            "y1": 463.0,
+            "x2": 528.0,
+            "y2": 481.0
+          },
+          "matched_text": "GIFT CARD sss",
+          "score": 0.18333333333333335,
+          "confidence": 0.6386534133333334,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_07.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "MISSING",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "low",
+        "line",
+        "long",
+        "MISSING",
+        "BROADER_VISUAL_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-050": {
+      "prediction": {
+        "bbox": {
+          "x1": 0.0,
+          "y1": 0.0,
+          "x2": 1054.0,
+          "y2": 29.0
+        },
+        "matched_text": "| @8 PDF Split and Merge basic Ver. 21.0 AAA cee hlee se",
+        "score": 0.23157894736842108,
+        "confidence": 0.5791442738461539,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_03.png",
+        "image_width": 1059,
+        "image_height": 732,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 0.0,
+            "y1": 0.0,
+            "x2": 1054.0,
+            "y2": 29.0
+          },
+          "matched_text": "| @8 PDF Split and Merge basic Ver. 21.0 AAA cee hlee se",
+          "score": 0.23157894736842108,
+          "confidence": 0.5791442738461539,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_03.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 38.0,
+            "y1": 182.0,
+            "x2": 94.0,
+            "y2": 197.0
+          },
+          "matched_text": "~D Split",
+          "score": 0.22,
+          "confidence": 0.46717440499999996,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_03.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 29.0,
+            "y1": 0.0,
+            "x2": 49.0,
+            "y2": 29.0
+          },
+          "matched_text": "PDF",
+          "score": 0.19999999999999998,
+          "confidence": 0.76506508,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_03.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 53.0,
+            "y1": 0.0,
+            "x2": 78.0,
+            "y2": 29.0
+          },
+          "matched_text": "Split",
+          "score": 0.19999999999999998,
+          "confidence": 0.86653419,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_03.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 71.0,
+            "y1": 185.0,
+            "x2": 94.0,
+            "y2": 197.0
+          },
+          "matched_text": "Split",
+          "score": 0.19999999999999998,
+          "confidence": 0.81392731,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_03.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "MISSING",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "medium",
+        "line",
+        "long",
+        "MISSING",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-051": {
+      "prediction": {
+        "bbox": {
+          "x1": 471.0,
+          "y1": 166.0,
+          "x2": 495.0,
+          "y2": 177.0
+        },
+        "matched_text": "Job",
+        "score": 0.25,
+        "confidence": 0.9488205000000001,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_14.png",
+        "image_width": 1182,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 471.0,
+            "y1": 166.0,
+            "x2": 495.0,
+            "y2": 177.0
+          },
+          "matched_text": "Job",
+          "score": 0.25,
+          "confidence": 0.9488205000000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_14.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 471.0,
+            "y1": 199.0,
+            "x2": 495.0,
+            "y2": 210.0
+          },
+          "matched_text": "Job",
+          "score": 0.25,
+          "confidence": 0.13228893,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_14.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 855.0,
+            "y1": 599.0,
+            "x2": 905.0,
+            "y2": 609.0
+          },
+          "matched_text": "includes",
+          "score": 0.25,
+          "confidence": 0.96941605,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_14.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 876.0,
+            "y1": 739.0,
+            "x2": 912.0,
+            "y2": 748.0
+          },
+          "matched_text": "action",
+          "score": 0.25,
+          "confidence": 0.96923264,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_14.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 471.0,
+            "y1": 199.0,
+            "x2": 629.0,
+            "y2": 210.0
+          },
+          "matched_text": "Job Number 23-19223",
+          "score": 0.22000000000000003,
+          "confidence": 0.1798917,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_14.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "medium",
+        "word",
+        "short",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-052": {
+      "prediction": {
+        "bbox": {
+          "x1": 29.0,
+          "y1": 75.0,
+          "x2": 326.0,
+          "y2": 102.0
+        },
+        "matched_text": "Aecommedatons Onboard Dining",
+        "score": 0.3384615384615384,
+        "confidence": 0.6436636366666666,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+        "image_width": 682,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 29.0,
+            "y1": 75.0,
+            "x2": 326.0,
+            "y2": 102.0
+          },
+          "matched_text": "Aecommedatons Onboard Dining",
+          "score": 0.3384615384615384,
+          "confidence": 0.6436636366666666,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 182.0,
+            "y1": 79.0,
+            "x2": 261.0,
+            "y2": 93.0
+          },
+          "matched_text": "Onboard",
+          "score": 0.18181818181818182,
+          "confidence": 0.9683515199999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 270.0,
+            "y1": 79.0,
+            "x2": 326.0,
+            "y2": 98.0
+          },
+          "matched_text": "Dining",
+          "score": 0.18181818181818182,
+          "confidence": 0.96263939,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 429.0,
+            "y1": 443.0,
+            "x2": 463.0,
+            "y2": 455.0
+          },
+          "matched_text": "Dining",
+          "score": 0.18181818181818182,
+          "confidence": 0.9677330000000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 307.0,
+            "y1": 440.0,
+            "x2": 611.0,
+            "y2": 455.0
+          },
+          "matched_text": "a = Dining Options & Sample Menus",
+          "score": 0.15714285714285717,
+          "confidence": 0.8725373714285715,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "medium",
+        "line",
+        "long",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-053": {
+      "prediction": {
+        "bbox": {
+          "x1": 16.0,
+          "y1": 699.0,
+          "x2": 425.0,
+          "y2": 732.0
+        },
+        "matched_text": "2 | Settings nn",
+        "score": 0.19999999999999998,
+        "confidence": 0.589204375,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_18.png",
+        "image_width": 1059,
+        "image_height": 732,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 16.0,
+            "y1": 699.0,
+            "x2": 425.0,
+            "y2": 732.0
+          },
+          "matched_text": "2 | Settings nn",
+          "score": 0.19999999999999998,
+          "confidence": 0.589204375,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_18.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 37.0,
+            "y1": 703.0,
+            "x2": 86.0,
+            "y2": 721.0
+          },
+          "matched_text": "Settings",
+          "score": 0.19999999999999998,
+          "confidence": 0.91770927,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_18.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "HIDDEN",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "low",
+        "line",
+        "long",
+        "HIDDEN",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-054": {
+      "prediction": {
+        "bbox": {
+          "x1": 490.0,
+          "y1": 984.0,
+          "x2": 518.0,
+          "y2": 1004.0
+        },
+        "matched_text": "Delivery",
+        "score": 0.13333333333333333,
+        "confidence": 0.9118763,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+        "image_width": 880,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 490.0,
+            "y1": 984.0,
+            "x2": 518.0,
+            "y2": 1004.0
+          },
+          "matched_text": "Delivery",
+          "score": 0.13333333333333333,
+          "confidence": 0.9118763,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "low",
+        "word",
+        "long",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-055": {
+      "prediction": {
+        "bbox": {
+          "x1": 634.0,
+          "y1": 1238.0,
+          "x2": 726.0,
+          "y2": 1247.0
+        },
+        "matched_text": "INFORMATION",
+        "score": 0.24444444444444446,
+        "confidence": 0.96750893,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_13.png",
+        "image_width": 1182,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 634.0,
+            "y1": 1238.0,
+            "x2": 726.0,
+            "y2": 1247.0
+          },
+          "matched_text": "INFORMATION",
+          "score": 0.24444444444444446,
+          "confidence": 0.96750893,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_13.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 524.0,
+            "y1": 243.0,
+            "x2": 557.0,
+            "y2": 254.0
+          },
+          "matched_text": "JOB",
+          "score": 0.2222222222222222,
+          "confidence": 0.96743698,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_13.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 65.0,
+            "y1": 1204.0,
+            "x2": 91.0,
+            "y2": 1213.0
+          },
+          "matched_text": "JOB",
+          "score": 0.2222222222222222,
+          "confidence": 0.90188087,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_13.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 634.0,
+            "y1": 1238.0,
+            "x2": 726.0,
+            "y2": 1247.0
+          },
+          "matched_text": "INFORMATION",
+          "score": 0.2222222222222222,
+          "confidence": 0.96750893,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_13.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 4.0,
+            "y1": 226.0,
+            "x2": 1157.0,
+            "y2": 273.0
+          },
+          "matched_text": "'T) = Menu > JOB OPENINGS 4] signin",
+          "score": 0.18333333333333335,
+          "confidence": 0.67415598125,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_13.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "medium",
+        "line",
+        "short",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-056": {
+      "prediction": {
+        "bbox": {
+          "x1": 37.0,
+          "y1": 698.0,
+          "x2": 1045.0,
+          "y2": 726.0
+        },
+        "matched_text": "| Alternate Mix 00",
+        "score": 0.31428571428571433,
+        "confidence": 0.752551135,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_05.png",
+        "image_width": 1059,
+        "image_height": 732,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 37.0,
+            "y1": 698.0,
+            "x2": 1045.0,
+            "y2": 726.0
+          },
+          "matched_text": "| Alternate Mix 00",
+          "score": 0.31428571428571433,
+          "confidence": 0.752551135,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_05.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 250.0,
+            "y1": 285.0,
+            "x2": 314.0,
+            "y2": 318.0
+          },
+          "matched_text": "Mix options",
+          "score": 0.16923076923076924,
+          "confidence": 0.8238186249999999,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_05.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 30.0,
+            "y1": 0.0,
+            "x2": 47.0,
+            "y2": 27.0
+          },
+          "matched_text": "PDF",
+          "score": 0.16666666666666669,
+          "confidence": 0.93772591,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_05.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 250.0,
+            "y1": 285.0,
+            "x2": 268.0,
+            "y2": 318.0
+          },
+          "matched_text": "Mix",
+          "score": 0.16666666666666669,
+          "confidence": 0.82325966,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_05.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 333.0,
+            "y1": 666.0,
+            "x2": 350.0,
+            "y2": 677.0
+          },
+          "matched_text": "pdf",
+          "score": 0.16666666666666669,
+          "confidence": 0.73784996,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_05.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "medium",
+        "line",
+        "long",
+        "SUPPORTED_WITH_CAVEAT",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-057": {
+      "prediction": {
+        "bbox": {
+          "x1": 29.0,
+          "y1": 75.0,
+          "x2": 326.0,
+          "y2": 102.0
+        },
+        "matched_text": "Aecommedatons Onboard Dining",
+        "score": 0.31428571428571433,
+        "confidence": 0.6436636366666666,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+        "image_width": 682,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 29.0,
+            "y1": 75.0,
+            "x2": 326.0,
+            "y2": 102.0
+          },
+          "matched_text": "Aecommedatons Onboard Dining",
+          "score": 0.31428571428571433,
+          "confidence": 0.6436636366666666,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 182.0,
+            "y1": 79.0,
+            "x2": 261.0,
+            "y2": 93.0
+          },
+          "matched_text": "Onboard",
+          "score": 0.16666666666666669,
+          "confidence": 0.9683515199999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 270.0,
+            "y1": 79.0,
+            "x2": 326.0,
+            "y2": 98.0
+          },
+          "matched_text": "Dining",
+          "score": 0.16666666666666669,
+          "confidence": 0.96263939,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 429.0,
+            "y1": 443.0,
+            "x2": 463.0,
+            "y2": 455.0
+          },
+          "matched_text": "Dining",
+          "score": 0.16666666666666669,
+          "confidence": 0.9677330000000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 307.0,
+            "y1": 440.0,
+            "x2": 611.0,
+            "y2": 455.0
+          },
+          "matched_text": "a = Dining Options & Sample Menus",
+          "score": 0.14666666666666667,
+          "confidence": 0.8725373714285715,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_04.png",
+          "image_width": 682,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "MISSING",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "medium",
+        "line",
+        "long",
+        "MISSING",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-058": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "MISSING",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "long",
+        "MISSING",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-059": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "short",
+        "SUPPORTED_WITH_CAVEAT",
+        "BROADER_VISUAL_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-060": {
+      "prediction": {
+        "bbox": {
+          "x1": 103.0,
+          "y1": 204.0,
+          "x2": 135.0,
+          "y2": 215.0
+        },
+        "matched_text": "Dining",
+        "score": 0.2857142857142857,
+        "confidence": 0.9166033899999999,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+        "image_width": 987,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 103.0,
+            "y1": 204.0,
+            "x2": 135.0,
+            "y2": 215.0
+          },
+          "matched_text": "Dining",
+          "score": 0.2857142857142857,
+          "confidence": 0.9166033899999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 86.0,
+            "y1": 245.0,
+            "x2": 118.0,
+            "y2": 256.0
+          },
+          "matched_text": "Dining",
+          "score": 0.2857142857142857,
+          "confidence": 0.82479202,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 74.0,
+            "y1": 328.0,
+            "x2": 100.0,
+            "y2": 336.0
+          },
+          "matched_text": "Dining",
+          "score": 0.2857142857142857,
+          "confidence": 0.9463752700000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 393.0,
+            "y1": 353.0,
+            "x2": 417.0,
+            "y2": 360.0
+          },
+          "matched_text": "Menu",
+          "score": 0.2857142857142857,
+          "confidence": 0.88219368,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 389.0,
+            "y1": 417.0,
+            "x2": 413.0,
+            "y2": 425.0
+          },
+          "matched_text": "Menu",
+          "score": 0.2857142857142857,
+          "confidence": 0.4015057,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "medium",
+        "word",
+        "short",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-061": {
+      "prediction": {
+        "bbox": {
+          "x1": 18.0,
+          "y1": 14.0,
+          "x2": 798.0,
+          "y2": 29.0
+        },
+        "matched_text": "= menu > JOB OPENINGS <_ Estimated Annual Salary",
+        "score": 0.44000000000000006,
+        "confidence": 0.7306401077777778,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_08.png",
+        "image_width": 891,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 18.0,
+            "y1": 14.0,
+            "x2": 798.0,
+            "y2": 29.0
+          },
+          "matched_text": "= menu > JOB OPENINGS <_ Estimated Annual Salary",
+          "score": 0.44000000000000006,
+          "confidence": 0.7306401077777778,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_08.png",
+          "image_width": 891,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 620.0,
+            "y1": 14.0,
+            "x2": 691.0,
+            "y2": 25.0
+          },
+          "matched_text": "Estimated",
+          "score": 0.19999999999999998,
+          "confidence": 0.9523834999999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_08.png",
+          "image_width": 891,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 696.0,
+            "y1": 14.0,
+            "x2": 747.0,
+            "y2": 25.0
+          },
+          "matched_text": "Annual",
+          "score": 0.19999999999999998,
+          "confidence": 0.9514106800000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_08.png",
+          "image_width": 891,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 752.0,
+            "y1": 14.0,
+            "x2": 798.0,
+            "y2": 29.0
+          },
+          "matched_text": "Salary",
+          "score": 0.19999999999999998,
+          "confidence": 0.96885147,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_08.png",
+          "image_width": 891,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "high",
+        "line",
+        "long",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-062": {
+      "prediction": {
+        "bbox": {
+          "x1": 120.0,
+          "y1": 196.0,
+          "x2": 137.0,
+          "y2": 221.0
+        },
+        "matched_text": "CODE",
+        "score": 0.19999999999999998,
+        "confidence": 0.54784389,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/step_03.png",
+        "image_width": 784,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 120.0,
+            "y1": 196.0,
+            "x2": 137.0,
+            "y2": 221.0
+          },
+          "matched_text": "CODE",
+          "score": 0.19999999999999998,
+          "confidence": 0.54784389,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/step_03.png",
+          "image_width": 784,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 12.0,
+            "y1": 195.0,
+            "x2": 781.0,
+            "y2": 232.0
+          },
+          "matched_text": "‘seancu y cry, TATE ORZIP CODE aos ne am",
+          "score": 0.12941176470588237,
+          "confidence": 0.26696248222222224,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/step_03.png",
+          "image_width": 784,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "low",
+        "word",
+        "long",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-063": {
+      "prediction": {
+        "bbox": {
+          "x1": 378.0,
+          "y1": 403.0,
+          "x2": 702.0,
+          "y2": 428.0
+        },
+        "matched_text": "Lat ‘Amount’ Detivory Date",
+        "score": 0.275,
+        "confidence": 0.5757055275,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+        "image_width": 880,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 378.0,
+            "y1": 403.0,
+            "x2": 702.0,
+            "y2": 428.0
+          },
+          "matched_text": "Lat ‘Amount’ Detivory Date",
+          "score": 0.275,
+          "confidence": 0.5757055275,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 485.0,
+            "y1": 149.0,
+            "x2": 589.0,
+            "y2": 160.0
+          },
+          "matched_text": "UAeGift Card",
+          "score": 0.15714285714285714,
+          "confidence": 0.9412071200000001,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 552.0,
+            "y1": 149.0,
+            "x2": 589.0,
+            "y2": 160.0
+          },
+          "matched_text": "Card",
+          "score": 0.15384615384615385,
+          "confidence": 0.9665231300000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 496.0,
+            "y1": 416.0,
+            "x2": 526.0,
+            "y2": 422.0
+          },
+          "matched_text": "‘Amount’",
+          "score": 0.15384615384615385,
+          "confidence": 0.5700614199999999,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 689.0,
+            "y1": 416.0,
+            "x2": 702.0,
+            "y2": 422.0
+          },
+          "matched_text": "Date",
+          "score": 0.15384615384615385,
+          "confidence": 0.94482124,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_03.png",
+          "image_width": 880,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "medium",
+        "line",
+        "long",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-064": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "long",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-065": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "long",
+        "SUPPORTED_WITH_CAVEAT",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-066": {
+      "prediction": {
+        "bbox": {
+          "x1": 67.0,
+          "y1": 661.0,
+          "x2": 265.0,
+          "y2": 692.0
+        },
+        "matched_text": "Enter your Gift Card number end PIN below.",
+        "score": 0.4714285714285714,
+        "confidence": 0.38179341749999995,
+        "source": "tesseract",
+        "level": "line",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_02.png",
+        "image_width": 804,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 67.0,
+            "y1": 661.0,
+            "x2": 265.0,
+            "y2": 692.0
+          },
+          "matched_text": "Enter your Gift Card number end PIN below.",
+          "score": 0.4714285714285714,
+          "confidence": 0.38179341749999995,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_02.png",
+          "image_width": 804,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 140.0,
+            "y1": 675.0,
+            "x2": 159.0,
+            "y2": 682.0
+          },
+          "matched_text": "Card",
+          "score": 0.2857142857142857,
+          "confidence": 0.49666446999999997,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_02.png",
+          "image_width": 804,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 163.0,
+            "y1": 661.0,
+            "x2": 195.0,
+            "y2": 692.0
+          },
+          "matched_text": "number",
+          "score": 0.2857142857142857,
+          "confidence": 0.57578323,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_02.png",
+          "image_width": 804,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 220.0,
+            "y1": 675.0,
+            "x2": 234.0,
+            "y2": 681.0
+          },
+          "matched_text": "PIN",
+          "score": 0.2857142857142857,
+          "confidence": 0.26907829,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/step_02.png",
+          "image_width": 804,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "high",
+        "line",
+        "short",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-067": {
+      "prediction": {
+        "bbox": {
+          "x1": 264.0,
+          "y1": 113.0,
+          "x2": 319.0,
+          "y2": 135.0
+        },
+        "matched_text": "Café",
+        "score": 0.5,
+        "confidence": 0.95622704,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+        "image_width": 987,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 264.0,
+            "y1": 113.0,
+            "x2": 319.0,
+            "y2": 135.0
+          },
+          "matched_text": "Café",
+          "score": 0.5,
+          "confidence": 0.95622704,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 395.0,
+            "y1": 172.0,
+            "x2": 417.0,
+            "y2": 181.0
+          },
+          "matched_text": "Café",
+          "score": 0.5,
+          "confidence": 0.73814888,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 334.0,
+            "y1": 187.0,
+            "x2": 356.0,
+            "y2": 196.0
+          },
+          "matched_text": "Café",
+          "score": 0.5,
+          "confidence": 0.8097084800000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 38.0,
+            "y1": 109.0,
+            "x2": 319.0,
+            "y2": 139.0
+          },
+          "matched_text": "‘Accommodations Café",
+          "score": 0.44000000000000006,
+          "confidence": 0.857548295,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 263.0,
+            "y1": 187.0,
+            "x2": 676.0,
+            "y2": 199.0
+          },
+          "matched_text": "invited to the Café and service is available from early morning unt ate at night.",
+          "score": 0.18333333333333335,
+          "confidence": 0.7609719466666667,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/step_05.png",
+          "image_width": 987,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "high",
+        "word",
+        "short",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-068": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "MISSING",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "long",
+        "MISSING",
+        "BROADER_VISUAL_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-069": {
+      "prediction": {
+        "bbox": {
+          "x1": 67.0,
+          "y1": 191.0,
+          "x2": 102.0,
+          "y2": 222.0
+        },
+        "matched_text": "Visual",
+        "score": 0.25,
+        "confidence": 0.6925632500000001,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_28.png",
+        "image_width": 1059,
+        "image_height": 732,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 67.0,
+            "y1": 191.0,
+            "x2": 102.0,
+            "y2": 222.0
+          },
+          "matched_text": "Visual",
+          "score": 0.25,
+          "confidence": 0.6925632500000001,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_28.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 38.0,
+            "y1": 191.0,
+            "x2": 216.0,
+            "y2": 232.0
+          },
+          "matched_text": "t Q Visual document composer",
+          "score": 0.22000000000000003,
+          "confidence": 0.696479386,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_28.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "medium",
+        "word",
+        "long",
+        "SUPPORTED",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-070": {
+      "prediction": {
+        "bbox": {
+          "x1": 176.0,
+          "y1": 77.0,
+          "x2": 208.0,
+          "y2": 85.0
+        },
+        "matched_text": "search",
+        "score": 0.19999999999999998,
+        "confidence": 0.16337565999999998,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/step_02.png",
+        "image_width": 784,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 176.0,
+            "y1": 77.0,
+            "x2": 208.0,
+            "y2": 85.0
+          },
+          "matched_text": "search",
+          "score": 0.19999999999999998,
+          "confidence": 0.16337565999999998,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/step_02.png",
+          "image_width": 784,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 8.0,
+            "y1": 66.0,
+            "x2": 774.0,
+            "y2": 96.0
+          },
+          "matched_text": "= GaMeEStop —& search games, consoles & more tion «6 ¥",
+          "score": 0.14666666666666667,
+          "confidence": 0.45283906636363636,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/step_02.png",
+          "image_width": 784,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "source",
+      "sampling_stratum": [
+        "low",
+        "word",
+        "long",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "source"
+      ]
+    },
+    "BBOX-071": {
+      "prediction": {
+        "bbox": {
+          "x1": 201.0,
+          "y1": 654.0,
+          "x2": 245.0,
+          "y2": 686.0
+        },
+        "matched_text": "interface",
+        "score": 0.4,
+        "confidence": 0.75453987,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_12.png",
+        "image_width": 1059,
+        "image_height": 732,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 201.0,
+            "y1": 654.0,
+            "x2": 245.0,
+            "y2": 686.0
+          },
+          "matched_text": "interface",
+          "score": 0.4,
+          "confidence": 0.75453987,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_12.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 6.0,
+            "y1": 654.0,
+            "x2": 561.0,
+            "y2": 686.0
+          },
+          "matched_text": "} 01:18:38,489 INFO Loading user interface configuration Pie",
+          "score": 0.1692307692307692,
+          "confidence": 0.61752308,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_12.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "high",
+        "word",
+        "short",
+        "SUPPORTED_WITH_CAVEAT",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-072": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "short",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-073": {
+      "prediction": {
+        "bbox": {
+          "x1": 645.0,
+          "y1": 954.0,
+          "x2": 711.0,
+          "y2": 968.0
+        },
+        "matched_text": "application",
+        "score": 0.18181818181818182,
+        "confidence": 0.96788368,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_14.png",
+        "image_width": 1182,
+        "image_height": 1280,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 645.0,
+            "y1": 954.0,
+            "x2": 711.0,
+            "y2": 968.0
+          },
+          "matched_text": "application",
+          "score": 0.18181818181818182,
+          "confidence": 0.96788368,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_14.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 536.0,
+            "y1": 954.0,
+            "x2": 1074.0,
+            "y2": 968.0
+          },
+          "matched_text": "support and daily application of safety policies, safety risk management activities, safety",
+          "score": 0.12222222222222225,
+          "confidence": 0.9453398700000001,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/step_14.png",
+          "image_width": 1182,
+          "image_height": 1280,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "OUT_OF_SCOPE",
+      "claim_type": "HIDDEN",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "low",
+        "word",
+        "long",
+        "OUT_OF_SCOPE",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-074": {
+      "prediction": null,
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "no_proposal",
+        "none",
+        "short",
+        "SUPPORTED",
+        "BROADER_VISUAL_CANDIDATE",
+        "contrastive"
+      ]
+    },
+    "BBOX-075": {
+      "prediction": {
+        "bbox": {
+          "x1": 109.0,
+          "y1": 0.0,
+          "x2": 138.0,
+          "y2": 28.0
+        },
+        "matched_text": "Merge",
+        "score": 0.2222222222222222,
+        "confidence": 0.9653112,
+        "source": "tesseract",
+        "level": "word",
+        "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_24.png",
+        "image_width": 1059,
+        "image_height": 732,
+        "coordinate_space": "image_pixels"
+      },
+      "all_suggestions": [
+        {
+          "bbox": {
+            "x1": 109.0,
+            "y1": 0.0,
+            "x2": 138.0,
+            "y2": 28.0
+          },
+          "matched_text": "Merge",
+          "score": 0.2222222222222222,
+          "confidence": 0.9653112,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_24.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 108.0,
+            "y1": 184.0,
+            "x2": 160.0,
+            "y2": 223.0
+          },
+          "matched_text": "document",
+          "score": 0.2222222222222222,
+          "confidence": 0.74893784,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_24.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 295.0,
+            "y1": 571.0,
+            "x2": 349.0,
+            "y2": 616.0
+          },
+          "matched_text": "document",
+          "score": 0.2222222222222222,
+          "confidence": 0.56775192,
+          "source": "tesseract",
+          "level": "word",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_24.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 38.0,
+            "y1": 184.0,
+            "x2": 216.0,
+            "y2": 223.0
+          },
+          "matched_text": "-D Voval document composer",
+          "score": 0.2,
+          "confidence": 0.3953427725,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_24.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        },
+        {
+          "bbox": {
+            "x1": 247.0,
+            "y1": 571.0,
+            "x2": 559.0,
+            "y2": 616.0
+          },
+          "matched_text": "Outpt document rt veson| Ves cost) =]",
+          "score": 0.15714285714285717,
+          "confidence": 0.35554841,
+          "source": "tesseract",
+          "level": "line",
+          "image_path": "/Users/bennobrueck/Bachelorarbeit_TUM_Informatik/tech/data/processed/flows/pure/pure_2010_split_merge/step_24.png",
+          "image_width": 1059,
+          "image_height": 732,
+          "coordinate_space": "image_pixels"
+        }
+      ],
+      "claim_status": "HIDDEN",
+      "claim_type": "OBSERVABLE",
+      "source_group": "contrastive",
+      "sampling_stratum": [
+        "medium",
+        "word",
+        "short",
+        "HIDDEN",
+        "OCR_TEXT_CANDIDATE",
+        "contrastive"
+      ]
+    }
+  }
+}

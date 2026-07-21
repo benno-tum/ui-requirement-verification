@@ -116,6 +116,38 @@ def test_schema_validation_rejects_invalid_bbox() -> None:
         )
 
 
+def test_localizer_uses_visible_observation_only_when_claim_text_has_no_match() -> None:
+    class RecordingLocalizer:
+        def __init__(self) -> None:
+            self.queries: list[str] = []
+
+        def suggest(self, query: str, image_path: Path, *, max_candidates: int) -> list[dict]:
+            self.queries.append(query)
+            if query == "Visible confirmation banner.":
+                return [
+                    {
+                        "bbox": {"x1": 1, "y1": 2, "x2": 10, "y2": 12},
+                        "source": "tesseract",
+                        "level": "line",
+                        "score": 0.8,
+                        "matched_text": "Confirmation",
+                        "image_path": str(image_path),
+                        "image_width": 20,
+                        "image_height": 20,
+                        "coordinate_space": "image_pixels",
+                    }
+                ]
+            return []
+
+    localizer = RecordingLocalizer()
+    pipeline = EvidenceFirstVerificationPipeline(evidence_localizer=localizer)
+    localized = pipeline._localize_evidence_item("A differently worded requirement.", _evidence())
+
+    assert localizer.queries == ["A differently worded requirement.", "Visible confirmation banner."]
+    assert localized.bbox == [1.0, 2.0, 10.0, 12.0]
+    assert localized.bbox_metadata["query_source"] == "visible_observation"
+
+
 def test_provided_claim_decomposition_uses_only_frozen_claim_texts(tmp_path: Path) -> None:
     requirements_path = tmp_path / "requirements.json"
     requirements_path.write_text(
@@ -730,6 +762,145 @@ def test_image_verifier_prompt_distinguishes_forms_from_summaries(tmp_path: Path
     assert "a bounded or closed UI set can support the quantifier" in prompt
     assert "Result, confirmation, or lookup-complete claims require a distinct post-action state" in prompt
     assert "Direct transition or direct return claims require a visible affordance" in prompt
+    assert "smallest semantically sufficient visible region" in prompt
+    assert '"evidence_regions"' in prompt
+
+
+def test_image_verifier_converts_grounded_regions_to_original_image_pixels(tmp_path: Path) -> None:
+    image_path = tmp_path / "step_01.png"
+    Image.new("RGB", (1000, 500), color="white").save(image_path)
+    verifier = GeminiImageClaimVerifier(
+        flow_id="flow-1",
+        screenshot_steps=[ScreenshotStep(step_index=1, screenshot_path=str(image_path))],
+        cache_path=tmp_path / "cache.json",
+    )
+
+    result = verifier._result_from_gemini(
+        _claim(),
+        {
+            "claim_status": "SUPPORTED",
+            "evidence_step_indices": [1],
+            "visible_observations": ["The displayed range supports the claim."],
+            "uncertainty_reasons": [],
+            "evidence_regions": [
+                {
+                    "step_index": 1,
+                    "box_2d": [100, 200, 300, 600],
+                    "description": "Displayed amount range.",
+                    "role": "SUPPORTING",
+                    "localizability": "LOCAL_REGION",
+                }
+            ],
+            "rationale": "The range is visible.",
+        },
+        [1],
+    )
+
+    assert result.evidence[0].bbox == [200.0, 50.0, 600.0, 150.0]
+    assert result.evidence[0].bbox_metadata["source"] == "gemini_visual_grounding"
+    assert result.evidence[0].bbox_metadata["normalized_coordinate_space"] == "0_1000_yxyx"
+
+
+def test_image_verifier_refines_text_region_with_ocr_phrase(tmp_path: Path, monkeypatch) -> None:
+    from ui_verifier.localization.text_box_localizer import OcrTextBox
+
+    image_path = tmp_path / "step_01.png"
+    Image.new("RGB", (1298, 4701), color="white").save(image_path)
+    verifier = GeminiImageClaimVerifier(
+        flow_id="flow-1",
+        screenshot_steps=[ScreenshotStep(step_index=1, screenshot_path=str(image_path))],
+        cache_path=tmp_path / "cache.json",
+    )
+    monkeypatch.setattr(
+        verifier,
+        "_ocr_boxes_for_grounding",
+        lambda _: [
+            OcrTextBox("Great", {"x1": 264, "y1": 32, "x2": 310, "y2": 46}, 0.97, "word"),
+            OcrTextBox("Escape", {"x1": 318, "y1": 32, "x2": 376, "y2": 51}, 0.97, "word"),
+            OcrTextBox("calendar", {"x1": 278, "y1": 111, "x2": 344, "y2": 124}, 0.59, "word"),
+            OcrTextBox("Six", {"x1": 1103, "y1": 1879, "x2": 1127, "y2": 1893}, 0.96, "word"),
+            OcrTextBox("Flags", {"x1": 1133, "y1": 1878, "x2": 1174, "y2": 1898}, 0.96, "word"),
+            OcrTextBox("Great", {"x1": 1181, "y1": 1879, "x2": 1225, "y2": 1893}, 0.97, "word"),
+        ],
+    )
+
+    result = verifier._result_from_gemini(
+        _claim(),
+        {
+            "claim_status": "SUPPORTED",
+            "evidence_step_indices": [1],
+            "visible_observations": ["Great Escape is selected."],
+            "uncertainty_reasons": [],
+            "evidence_regions": [
+                {
+                    "step_index": 1,
+                    "box_2d": [20, 200, 40, 300],
+                    "description": "The selected park 'Great Escape' displayed in the header.",
+                    "role": "SUPPORTING",
+                    "localizability": "LOCAL_REGION",
+                }
+            ],
+            "rationale": "The selected park is visible.",
+        },
+        [1],
+    )
+
+    bbox = result.evidence[0].bbox
+    assert bbox is not None
+    assert 195 <= bbox[0] <= 205
+    assert bbox[1] < 32
+    assert bbox[2] > 376
+    assert bbox[3] > 51
+    assert result.evidence[0].bbox_metadata["source"] == "gemini_visual_grounding_ocr_refined"
+    assert result.evidence[0].bbox_metadata["raw_gemini_pixel_bbox"] == [259.6, 94.02, 389.4, 188.04]
+
+
+def test_pipeline_does_not_replace_missing_gemini_region_with_ocr_box(tmp_path: Path) -> None:
+    image_path = tmp_path / "step_01.png"
+    Image.new("RGB", (100, 80), color="white").save(image_path)
+    pipeline = EvidenceFirstVerificationPipeline()
+    item = EvidenceItem(
+        step_index=1,
+        screenshot_path=str(image_path),
+        visible_observation="A relevant indicator is visible.",
+        source="gemini_image",
+    )
+
+    localized = pipeline._localize_evidence_item("The claim", item)
+
+    assert localized.bbox is None
+
+
+def test_image_verifier_recovers_explicit_screenshot_references_when_indices_are_omitted(tmp_path: Path) -> None:
+    image_paths = []
+    for index in range(1, 5):
+        image_path = tmp_path / f"step_{index:02d}.png"
+        Image.new("RGB", (16, 16), color="white").save(image_path)
+        image_paths.append(image_path)
+    verifier = GeminiImageClaimVerifier(
+        flow_id="flow-1",
+        screenshot_steps=[
+            ScreenshotStep(step_index=index, screenshot_path=str(path))
+            for index, path in enumerate(image_paths, start=1)
+        ],
+        cache_path=tmp_path / "cache.json",
+    )
+
+    result = verifier._result_from_gemini(
+        _claim(text="The page shows a Jobs entry point."),
+        {
+            "claim_status": "SUPPORTED",
+            "visible_observations": [
+                "Screenshot 1 shows Jobs in the header.",
+                "Screenshots 2, 3, and 4 also show the entry point.",
+            ],
+            "rationale": "The explicitly cited screenshots support the claim.",
+        },
+        [1, 2, 3, 4],
+    )
+
+    assert [item.step_index for item in result.evidence] == [1, 2, 3, 4]
+    assert result.metadata["evidence_step_indices_inferred_from_observation"] is True
 
 
 def test_batched_verifier_groups_overlapping_evidence_and_preserves_metadata(tmp_path: Path, monkeypatch) -> None:

@@ -46,7 +46,7 @@ CLAIM_DECISIONS: dict[str, dict[int, tuple[str, list[int]]]] = {
     },
     "PURE-MB-DASHBOARD-002": {1: ("SUPPORTED", [1])},
     "PURE-MB-CREATE-001": {1: ("SUPPORTED", [2])},
-    "PURE-MB-CREATE-002": {2: ("HIDDEN", [])},
+    "PURE-MB-CREATE-002": {3: ("HIDDEN", [])},
     "PURE-MB-SCHEDULE-001": {1: ("SUPPORTED", [3])},
     "PURE-MB-SCHEDULE-002": {
         1: ("SUPPORTED", [3]),
@@ -107,7 +107,7 @@ def _evidence_note(requirement_id: str) -> str:
     return notes[requirement_id]
 
 
-def build_item(candidate: dict[str, Any], timestamp: str) -> VerificationGoldItem:
+def build_item(candidate: dict[str, Any], timestamp: str, *, created_at: str | None = None) -> VerificationGoldItem:
     requirement_id = str(candidate["requirement_id"])
     label = LABELS[requirement_id]
     decisions = CLAIM_DECISIONS.get(requirement_id, {})
@@ -124,7 +124,6 @@ def build_item(candidate: dict[str, Any], timestamp: str) -> VerificationGoldIte
             "importance": "CORE",
             "evidence_steps": steps,
             "evidence_units": [{"step_index": step, "evidence_type": "screen"} for step in steps],
-            "note": "Manual screenshot assessment; requires reviewer confirmation.",
         })
 
     ui_evaluability = (
@@ -174,7 +173,7 @@ def build_item(candidate: dict[str, Any], timestamp: str) -> VerificationGoldIte
         "evidence_note": _evidence_note(requirement_id),
         "rationale": _evidence_note(requirement_id),
         "review_status": "needs_review",
-        "created_at": timestamp,
+        "created_at": created_at or timestamp,
         "updated_at": timestamp,
     })
     validation = validate_verification_gold_item(item)
@@ -184,12 +183,60 @@ def build_item(candidate: dict[str, Any], timestamp: str) -> VerificationGoldIte
     return item
 
 
+_REVIEW_FIELDS = {
+    "ui_evaluability",
+    "annotation_notes",
+    "annotated_by",
+    "manual_verification_label",
+    "manual_verification_notes",
+    "verification_label",
+    "uncertainty_reasons",
+    "notes",
+    "claims",
+    "evidence_steps",
+    "evidence_units",
+    "evidence_note",
+    "rationale",
+    "review_status",
+    "created_at",
+    "updated_at",
+}
+
+
+def preserve_accepted_review(
+    generated: VerificationGoldItem,
+    existing: VerificationGoldItem | None,
+) -> VerificationGoldItem:
+    """Never overwrite a human-accepted annotation during regeneration."""
+    if existing is None or existing.review_status != "accepted":
+        return generated
+    merged = generated.to_dict()
+    previous = existing.to_dict()
+    for field in _REVIEW_FIELDS:
+        if field in previous:
+            merged[field] = previous[field]
+    return VerificationGoldItem.from_dict(merged)
+
+
 def main() -> None:
     candidate_path = BASE_DIR / "data/generated/candidate_requirements" / FLOW_ID / "candidate_requirements.json"
     out_path = BASE_DIR / "data/annotations/verification_gold" / FLOW_ID / "verification_gold.json"
     candidates = json.loads(candidate_path.read_text(encoding="utf-8"))
     timestamp = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
-    items = [build_item(candidate, timestamp) for candidate in candidates["requirements"]]
+    existing_by_id = (
+        {item.requirement_id: item for item in VerificationGoldFile.load(out_path).items}
+        if out_path.exists()
+        else {}
+    )
+    items = []
+    for candidate in candidates["requirements"]:
+        existing = existing_by_id.get(candidate["requirement_id"])
+        generated = build_item(
+            candidate,
+            timestamp,
+            created_at=existing.created_at if existing else None,
+        )
+        items.append(preserve_accepted_review(generated, existing))
     VerificationGoldFile(dataset="pure", flow_id=FLOW_ID, items=items).save(out_path)
     distribution = {label: sum(item.verification_label.value == label for item in items) for label in sorted(set(LABELS.values()))}
     print(f"items={len(items)} labels={distribution}")

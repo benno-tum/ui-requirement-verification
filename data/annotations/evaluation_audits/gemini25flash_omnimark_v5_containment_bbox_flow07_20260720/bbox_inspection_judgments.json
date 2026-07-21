@@ -1,0 +1,113 @@
+{
+  "schema_version": "bbox_inspection_judgments_v1",
+  "items": {
+    "GBBOX-0001": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T21:57:12.177578+00:00"
+    },
+    "GBBOX-0002": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T21:57:15.066895+00:00"
+    },
+    "GBBOX-0003": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T21:57:26.772355+00:00"
+    },
+    "GBBOX-0004": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T21:57:31.374322+00:00"
+    },
+    "GBBOX-0005": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T21:57:31.391714+00:00"
+    },
+    "GBBOX-0006": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T21:57:33.920414+00:00"
+    },
+    "GBBOX-0007": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T21:57:33.972454+00:00"
+    },
+    "GBBOX-0008": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T21:57:50.707187+00:00"
+    },
+    "GBBOX-0009": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T21:57:50.736914+00:00"
+    },
+    "GBBOX-0011": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T21:58:06.087957+00:00"
+    },
+    "GBBOX-0010": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T21:58:07.032208+00:00"
+    },
+    "GBBOX-0012": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T21:58:34.962129+00:00"
+    },
+    "GBBOX-0014": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T21:58:34.982346+00:00"
+    },
+    "GBBOX-0013": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T21:58:44.331910+00:00"
+    },
+    "GBBOX-0015": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T21:58:44.355695+00:00"
+    },
+    "GBBOX-0016": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T21:59:28.538544+00:00"
+    },
+    "GBBOX-0017": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T21:59:28.559193+00:00"
+    },
+    "GBBOX-0023": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T22:03:43.975726+00:00"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "audit_id": "local_omniparser_florence_bbox_flow02_20260720",
+  "title": "LOCAL PILOT: OmniParser + Florence + OCR top-ranked boxes — 1 flow (preferred-original input, high-resolution review)",
+  "created_at": "2026-07-20T14:28:39.928896+00:00",
+  "seed": 20260719,
+  "ui_item_count": 72,
+  "bbox_item_count": 25,
+  "blind_review": false,
+  "status": "completed_pipeline_inspection",
+  "run_id": "bbox_local_omniparser_florence_flow02_20260720",
+  "bbox_source": "local_omniparser_florence_ocr_ranked"
+}

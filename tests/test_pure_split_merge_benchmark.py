@@ -14,13 +14,29 @@ FLOW_ID = "pure_2010_split_merge"
 def test_split_merge_runtime_candidates_round_trip_through_schema() -> None:
     candidate_path = Path(f"data/generated/candidate_requirements/{FLOW_ID}/candidate_requirements.json")
     candidate_file = CandidateRequirementFile.load(candidate_path)
-    assert len(candidate_file.requirements) == 29
-    assert len({item.requirement_id for item in candidate_file.requirements}) == 29
-    assert sum(len(item.claims) > 1 for item in candidate_file.requirements) == 21
-    assert not any(item.requirement_id.startswith("PURE-SM-FR-") for item in candidate_file.requirements)
+    assert len(candidate_file.requirements) == 31
+    assert len({item.requirement_id for item in candidate_file.requirements}) == 31
+    assert sum(len(item.claims) > 1 for item in candidate_file.requirements) == 22
+    assert {
+        item.requirement_id
+        for item in candidate_file.requirements
+        if item.requirement_id.startswith("PURE-SM-FR-")
+    } == {
+        "PURE-SM-FR-3_1-REQ-1",
+        "PURE-SM-FR-3_3-REQ-1",
+        "PURE-SM-FR-3_9-REQ-1",
+    }
     contextualized = {item.requirement_id: item for item in candidate_file.requirements}
     assert "3.5.3/req-2" in (contextualized["PURE-SM-REORDER-001"].parent_harvest_text or "")
     assert "3.8.3/req-1" in (contextualized["PURE-SM-LOG-001"].parent_harvest_text or "")
+    repaired = contextualized["PURE-REQ-004"]
+    assert repaired.text.startswith("Mix options:")
+    assert "The default behavior is to take one page from the first document" in repaired.text
+    assert len(repaired.claims) == 5
+    repaired_merge = contextualized["PURE-REQ-003"]
+    assert repaired_merge.text.startswith("In the Page Selection column")
+    assert len(repaired_merge.claims) == 6
+    assert "PURE-SM-MERGE-002" not in contextualized
 
 
 def test_split_merge_review_inventory_and_gold_are_complete() -> None:
@@ -32,15 +48,19 @@ def test_split_merge_review_inventory_and_gold_are_complete() -> None:
     assert len(review_rows) == 51
     assert sum(row["record_type"] == "legacy_extraction" for row in review_rows) == 6
     assert sum(row.get("extraction_mode") == "explicit_req" for row in review_rows) == 13
-    assert len(gold.items) == 29
-    assert len({item.requirement_id for item in gold.items}) == 29
-    assert not any(item.requirement_id.startswith("PURE-SM-FR-") for item in gold.items)
+    assert len(gold.items) == 31
+    assert len({item.requirement_id for item in gold.items}) == 31
     explicit_rows = [
         row for row in review_rows
         if row.get("extraction_mode") == "explicit_req"
     ]
-    assert all(row["review_decision"] == "exclude_from_runtime_contextual_fragment" for row in explicit_rows)
+    assert sum(row["review_decision"] == "include_after_source_contextualization" for row in explicit_rows) == 3
+    assert sum(row["review_decision"] == "exclude_from_runtime_contextual_fragment" for row in explicit_rows) == 10
     assert all(row["benchmark_requirement_ids"] for row in explicit_rows)
+
+    pending_path = Path(f"data/annotations/requirements_candidate/{FLOW_ID}/candidate_requirements.json")
+    pending = json.loads(pending_path.read_text(encoding="utf-8"))
+    assert pending["requirements"] == []
 
     for item in gold.items:
         assert item.review_status in {"needs_review", "accepted"}
@@ -48,6 +68,16 @@ def test_split_merge_review_inventory_and_gold_are_complete() -> None:
         assert any(tag.startswith("pure_pdf_page:") for tag in item.tags)
         assert 2 not in item.evidence_steps  # Decorative use-case diagram is not UI evidence.
         assert not validate_verification_gold_item(item).errors
+
+    repaired_gold = next(item for item in gold.items if item.requirement_id == "PURE-REQ-004")
+    assert repaired_gold.verification_label.value == "PARTIALLY_FULFILLED"
+    assert [claim.status.value for claim in repaired_gold.claims] == [
+        "SUPPORTED_WITH_CAVEAT",
+        "SUPPORTED_WITH_CAVEAT",
+        "SUPPORTED",
+        "MISSING",
+        "SUPPORTED",
+    ]
 
 
 def test_split_merge_baseline_covers_every_gold_requirement() -> None:

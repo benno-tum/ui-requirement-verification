@@ -5,7 +5,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from ui_verifier.requirements.gemini_client import _request_timeout_ms
+from ui_verifier.requirements.gemini_client import _request_timeout_ms, _thinking_budget
 from ui_verifier.requirements.gemini_usage import (
     estimate_cost_usd,
     extract_usage_metadata,
@@ -24,6 +24,12 @@ def test_gemini_request_timeout_rejects_too_small_value(monkeypatch) -> None:
 
     with pytest.raises(ValueError, match="at least 1000"):
         _request_timeout_ms()
+
+
+def test_gemini_thinking_budget_can_be_disabled(monkeypatch) -> None:
+    monkeypatch.setenv("GEMINI_THINKING_BUDGET", "0")
+
+    assert _thinking_budget() == 0
 
 
 def test_extract_usage_metadata_from_sdk_like_response() -> None:

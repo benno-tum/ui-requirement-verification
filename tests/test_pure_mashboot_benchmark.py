@@ -16,6 +16,7 @@ def test_mashboot_candidates_are_document_contextualized() -> None:
     assert len(candidates.requirements) == 11
     assert len({item.requirement_id for item in candidates.requirements}) == 11
     assert sum(len(item.claims) > 1 for item in candidates.requirements) == 10
+    assert sum(len(item.claims) for item in candidates.requirements) == 42
     assert all(item.candidate_origin.value == "VISIBLE_CORE_REWRITE" for item in candidates.requirements)
     assert all(item.benchmark_decision.value == "REWRITE_TO_VISIBLE_CORE" for item in candidates.requirements)
     assert all(item.parent_harvest_text for item in candidates.requirements)

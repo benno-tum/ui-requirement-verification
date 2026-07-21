@@ -1,0 +1,98 @@
+{
+  "schema_version": "bbox_inspection_judgments_v1",
+  "items": {
+    "GBBOX-0003": {
+      "status": "VALID",
+      "note": "",
+      "updated_at": "2026-07-19T15:04:33.711914+00:00"
+    },
+    "GBBOX-0001": {
+      "status": "VALID",
+      "note": "",
+      "updated_at": "2026-07-19T15:04:33.710574+00:00"
+    },
+    "GBBOX-0002": {
+      "status": "VALID",
+      "note": "",
+      "updated_at": "2026-07-19T15:04:37.488082+00:00"
+    },
+    "GBBOX-0004": {
+      "status": "VALID",
+      "note": "",
+      "updated_at": "2026-07-19T15:04:43.752175+00:00"
+    },
+    "GBBOX-0005": {
+      "status": "VALID",
+      "note": "",
+      "updated_at": "2026-07-19T15:04:49.878608+00:00"
+    },
+    "GBBOX-0007": {
+      "status": "VALID",
+      "note": "",
+      "updated_at": "2026-07-19T15:06:35.750915+00:00"
+    },
+    "GBBOX-0006": {
+      "status": "VALID",
+      "note": "",
+      "updated_at": "2026-07-19T15:06:35.750343+00:00"
+    },
+    "GBBOX-0010": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "WRONG_LOCATION",
+      "updated_at": "2026-07-19T17:18:02.806072+00:00"
+    },
+    "GBBOX-0015": {
+      "status": "VALID",
+      "note": "",
+      "updated_at": "2026-07-19T17:06:56.245923+00:00"
+    },
+    "GBBOX-0008": {
+      "status": "VALID",
+      "note": "",
+      "updated_at": "2026-07-19T17:10:18.850231+00:00"
+    },
+    "GBBOX-0009": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "MISALIGNED",
+      "updated_at": "2026-07-19T17:16:43.896098+00:00"
+    },
+    "GBBOX-0016": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "WRONG_LOCATION",
+      "updated_at": "2026-07-19T17:17:59.007187+00:00"
+    },
+    "GBBOX-0017": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "MISALIGNED",
+      "updated_at": "2026-07-19T17:18:39.910627+00:00"
+    },
+    "GBBOX-0018": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "WRONG_LOCATION",
+      "updated_at": "2026-07-19T17:19:16.971925+00:00"
+    },
+    "GBBOX-0012": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "WRONG_LOCATION",
+      "updated_at": "2026-07-19T17:20:03.104909+00:00"
+    },
+    "GBBOX-0011": {
+      "status": "INCORRECT",
+      "note": "should be on the non background comparison screen where they are clear",
+      "error_category": "SEMANTIC_ERROR",
+      "updated_at": "2026-07-19T17:20:48.432012+00:00"
+    },
+    "GBBOX-0019": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "WRONG_LOCATION",
+      "updated_at": "2026-07-19T17:20:59.875994+00:00"
+    }
+  }
+}

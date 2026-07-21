@@ -31,6 +31,34 @@ def test_run_discovery_finds_diagnosis_and_demo_outputs(tmp_path: Path, monkeypa
     _write_json(generated_root / "benchmark_coverage_gemini_flash_lite" / f"{flow_id}.json", payload)
     _write_json(generated_root / "demo_verification" / f"{flow_id}.json", payload)
     _write_json(generated_root / "verification_pipeline_runs" / f"{flow_id}_gemini25_single_call.json", payload)
+    nested_payload = {
+        **payload,
+        "results": [
+            {
+                "requirement_id": "REQ-1",
+                "final_label": "FULFILLED",
+                "claims": [
+                    {
+                        "status": "SUPPORTED",
+                        "evidence": [
+                            {
+                                "step_index": 1,
+                                "bbox": [1, 2, 10, 12],
+                            }
+                        ],
+                    }
+                ],
+            }
+        ],
+    }
+    _write_json(
+        generated_root / "verification_pipeline_runs" / "bbox_topk_package" / f"{flow_id}.json",
+        nested_payload,
+    )
+    _write_json(
+        generated_root / "verification_pipeline_runs" / "bbox_topk_package" / "active" / f"{flow_id}.json",
+        nested_payload,
+    )
     _write_json(
         generated_root / "verification_pipeline_runs" / f"{flow_id}_invalid.json",
         {**payload, "metadata": {**payload["metadata"], "run_valid": False}},
@@ -48,6 +76,12 @@ def test_run_discovery_finds_diagnosis_and_demo_outputs(tmp_path: Path, monkeypa
     assert all(not run["path"].endswith("_invalid.json") for run in runs)
     assert any(run["metrics_available"] for run in runs if run["source"] == "diagnosis_strict_gemini_flash_lite")
     assert all(run["requirements_count"] == 1 for run in runs)
+    packaged = [run for run in runs if run["source"] == "bbox_topk_package"]
+    assert len(packaged) == 1
+    assert packaged[0]["has_pipeline_evidence"] is True
+    assert packaged[0]["evidence_count"] == 1
+    assert packaged[0]["has_bbox_evidence"] is True
+    assert packaged[0]["bbox_evidence_count"] == 1
 
 
 def test_selected_run_loader_restricts_to_generated_json(tmp_path: Path, monkeypatch) -> None:

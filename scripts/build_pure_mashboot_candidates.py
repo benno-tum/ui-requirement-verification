@@ -103,25 +103,29 @@ COMPOSED_REQUIREMENTS: list[dict[str, Any]] = [
         "source_ids": [],
         "evidence_steps": [1, 2, 3],
         "claims": [
-            "The web interface exposes a Dashboard tab.",
-            "The web interface exposes a Create tab.",
-            "The web interface exposes a Schedule tab.",
-            "The web interface exposes an Explore tab.",
+            "The Mashbot web interface provides a Dashboard navigation tab.",
+            "The Mashbot web interface provides a Create navigation tab.",
+            "The Mashbot web interface provides a Schedule navigation tab.",
+            "The Mashbot web interface provides an Explore navigation tab.",
         ],
     },
     {
         "requirement_id": "PURE-MB-DASHBOARD-001",
-        "text": "The Dashboard shall summarize campaign performance through graphs, standard metrics, plugin-defined metrics, and metric-detail information.",
+        "text": (
+            "The Dashboard shall summarize campaign performance through graphs and metrics including clickthrough "
+            "rate, page views, number of comments, and plugin-defined specialized metrics, and shall provide "
+            "additional information for the selected metric."
+        ),
         "section_ids": ["mashboot::4.1"],
         "source_ids": [],
         "evidence_steps": [1],
         "claims": [
-            "The Dashboard displays campaign-performance graphs or charts.",
-            "The Dashboard includes a clickthrough-rate metric.",
-            "The Dashboard includes a page-views metric.",
-            "The Dashboard includes a number-of-comments metric.",
-            "The Dashboard supports plugin-defined metrics.",
-            "The Dashboard provides additional information for a selected metric.",
+            "The Dashboard summarizes campaign performance through graphs.",
+            "The Dashboard includes clickthrough rate as a campaign-performance metric.",
+            "The Dashboard includes page views as a campaign-performance metric.",
+            "The Dashboard includes number of comments as a campaign-performance metric.",
+            "The Dashboard includes plugin-defined specialized campaign-performance metrics.",
+            "The Dashboard provides additional information for the selected metric.",
         ],
     },
     {
@@ -130,7 +134,7 @@ COMPOSED_REQUIREMENTS: list[dict[str, Any]] = [
         "section_ids": ["mashboot::2.1.2", "mashboot::4.1"],
         "source_ids": [],
         "evidence_steps": [1],
-        "claims": ["The Dashboard displays responses associated with campaign content."],
+        "claims": ["The monitoring Dashboard gives users a view of responses to content in a campaign."],
     },
     {
         "requirement_id": "PURE-MB-CREATE-001",
@@ -146,42 +150,55 @@ COMPOSED_REQUIREMENTS: list[dict[str, Any]] = [
     },
     {
         "requirement_id": "PURE-MB-CREATE-002",
-        "text": "The Create view shall let users add service-supported content elements and schedule, edit, or delete each element.",
+        "text": (
+            "The Create view shall let a user invoke Add Content, choose a content type populated from services "
+            "accessible through stored credentials, create a section for that type, add individual elements, and "
+            "schedule, edit, or delete each element."
+        ),
         "section_ids": ["mashboot::4.1.1"],
-        "source_ids": ["2010 - mashboot::3.2::3.2.1/req-0210"],
+        "source_ids": [],
         "evidence_steps": [2],
         "claims": [
             "The Create view provides an Add Content action.",
-            "The available content types depend on services accessible to the user.",
-            "Adding a content type creates a section for individually scheduled content elements.",
-            "Each content element can be scheduled.",
-            "Each content element can be edited.",
-            "Each content element can be deleted.",
+            "In the Create view, invoking Add Content prompts the user to select a content type.",
+            "In the Create view's Add Content prompt, the content-type choices are populated from services the user can access through credentials stored in the system.",
+            "In the Create view, selecting a content type creates a section for the selected content type.",
+            "In the Create view, the selected content-type section allows the user to add individual content elements.",
+            "In the Create view, each content-element row provides a scheduling action.",
+            "In the Create view, each content-element row provides an edit action.",
+            "In the Create view, each content-element row provides a delete action.",
         ],
     },
     {
         "requirement_id": "PURE-MB-SCHEDULE-001",
-        "text": "The Schedule view shall support dragging content to a calendar, assigning a default midnight go-live time, and changing that time.",
+        "text": (
+            "The Schedule view shall let users drag content from the content bucket to the calendar. Content "
+            "dragged to the calendar shall automatically receive a default go-live time of 12am on the selected "
+            "day. The Schedule view shall let users select scheduled content and assign a different go-live time."
+        ),
         "section_ids": ["mashboot::4.1.2"],
         "source_ids": ["2010 - mashboot::3.2::3.2.2/req-0530"],
         "evidence_steps": [3],
         "claims": [
-            "Users can drag content from a content bucket to the calendar to schedule it.",
-            "Dragged content receives a default go-live time of 12am on the selected day.",
-            "Users can select scheduled content and assign a different go-live time.",
+            "In the Schedule view, users can drag content from the content bucket to the calendar.",
+            "In the Schedule view, content dragged to the calendar automatically receives a default go-live time of 12am on the selected day.",
+            "In the Schedule view, users can select scheduled content and assign a different go-live time.",
         ],
     },
     {
         "requirement_id": "PURE-MB-SCHEDULE-002",
-        "text": "The calendar shall visualize content go-live and deletion actions and allow month-to-month scheduling.",
+        "text": (
+            "The Schedule-view calendar shall visually represent when content goes live and when content is "
+            "deleted, let users page between months, and let users schedule content on a desired day."
+        ),
         "section_ids": ["mashboot::4.1.2"],
         "source_ids": [],
         "evidence_steps": [3],
         "claims": [
-            "The calendar visually represents when content goes live.",
-            "The calendar visually represents when content is deleted.",
-            "Users can page between calendar months.",
-            "Users can schedule content on a desired day.",
+            "The Schedule-view calendar visually represents when content goes live.",
+            "The Schedule-view calendar visually represents when content is deleted.",
+            "The Schedule-view calendar lets users page between months.",
+            "The Schedule-view calendar lets users schedule content on a desired day.",
         ],
     },
     {
@@ -224,18 +241,25 @@ COMPOSED_REQUIREMENTS: list[dict[str, Any]] = [
     },
     {
         "requirement_id": "PURE-MB-EXPLORE-001",
-        "text": "The Explore view shall support monitored keyword searches and aggregate comments from campaign content.",
+        "text": (
+            "The Explore view shall let users configure monitored searches for services that support keyword "
+            "search through an API and shall aggregate comments on content published as part of a campaign."
+        ),
         "section_ids": ["mashboot::2.1.2", "mashboot::4.1.3"],
         "source_ids": [],
         "evidence_steps": [],
         "claims": [
-            "The Explore view supports monitored keyword searches for compatible services.",
-            "The Explore view aggregates comments from content published within a campaign.",
+            "The Explore view lets users configure monitored searches for services that support keyword search through an API.",
+            "The Explore view aggregates comments on content published as part of a campaign.",
         ],
     },
     {
         "requirement_id": "PURE-MB-SERVICE-001",
-        "text": "Mashbot shall associate Mashbot accounts with external service accounts and provide authentication and standardized interaction interfaces.",
+        "text": (
+            "Mashbot shall allow Mashbot accounts to be associated with external service accounts, provide an "
+            "interface for authenticating a user account to an external service account, and provide a standardized "
+            "method for interacting with external service accounts."
+        ),
         "section_ids": [],
         "source_ids": [
             "2010 - mashboot::3.2::3.2.3/req-0590",
@@ -244,8 +268,8 @@ COMPOSED_REQUIREMENTS: list[dict[str, Any]] = [
         ],
         "evidence_steps": [],
         "claims": [
-            "Mashbot accounts can be associated with external service accounts.",
-            "Mashbot provides an interface for authenticating to an external service account.",
+            "Mashbot allows Mashbot accounts to be associated with external service accounts.",
+            "Mashbot provides an interface for authenticating a user account to an external service account.",
             "Mashbot provides a standardized method for interacting with external service accounts.",
         ],
     },

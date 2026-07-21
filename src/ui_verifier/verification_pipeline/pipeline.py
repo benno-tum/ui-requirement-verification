@@ -133,7 +133,21 @@ class EvidenceFirstVerificationPipeline:
     def _localize_evidence_item(self, claim_text: str, item: EvidenceItem) -> EvidenceItem:
         if item.bbox:
             return item
+        # Gemini now grounds its own semantic evidence regions in the same call
+        # that decides the claim. A missing model region is preferable to a
+        # semantically unrelated OCR keyword box. OCR localization remains the
+        # deterministic fallback for non-visual verifiers and legacy evidence.
+        if item.source == "gemini_image":
+            return item
+        query_source = "claim_text"
         suggestions = self.evidence_localizer.suggest(claim_text, Path(item.screenshot_path), max_candidates=1)
+        if not suggestions and item.visible_observation.strip():
+            query_source = "visible_observation"
+            suggestions = self.evidence_localizer.suggest(
+                item.visible_observation,
+                Path(item.screenshot_path),
+                max_candidates=1,
+            )
         if not suggestions:
             return item
         suggestion = suggestions[0]
@@ -151,6 +165,7 @@ class EvidenceFirstVerificationPipeline:
                 "image_width": suggestion.get("image_width"),
                 "image_height": suggestion.get("image_height"),
                 "coordinate_space": suggestion.get("coordinate_space"),
+                "query_source": query_source,
             },
         }
         bbox_metadata: dict[str, Any] = {
@@ -163,6 +178,7 @@ class EvidenceFirstVerificationPipeline:
             "matched_text": suggestion.get("matched_text"),
             "score": suggestion.get("score"),
             "level": suggestion.get("level"),
+            "query_source": query_source,
         }
         return item.model_copy(
             update={

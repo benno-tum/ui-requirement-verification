@@ -160,42 +160,64 @@
     {
       "requirement_id": "PURE-REQ-003",
       "flow_id": "pure_2010_split_merge",
-      "text": "REQ-1: pages number in the page selection must be comprehended. REQ-2: The compression of the output files requires pdf version 1.5 or above.",
+      "text": "In the Page Selection column of the table, user can write: \"All\": to merge the whole document. \"page - to page\": to merge pages between \"page\" and \"to page\" (e.g. 8-15 if he want to merge pages between 8 and 15). \"page -\": to merge pages starting from \"page\" till the end of the document. A single page number, if he wants only that page of the document. Commas (without any blanks) to separate the different values (e.g. \"2,12-16,17-\" if he wants to merge page 2, pages between 12 and 16, and all the other pages from page17 to the end). The compression of the output files requires pdf version 1.5 or above.",
       "scope": "multi_screen",
       "tags": [
         "pure",
         "pure_candidate:REQ-1",
         "pure_doc:2010 - split merge",
+        "pure_extraction:source_context_repair",
         "pure_extraction:structural_fallback",
         "pure_pdf_page:12",
-        "pure_source_section:3.2.3 Functional Requirements"
+        "pure_source_section:3.2.2-3.2.3 Stimulus/Response Sequences and Functional Requirements - Merge/Extract"
       ],
       "source_type": "requirements_candidate",
       "source_id": "REQ-1",
       "source_candidate_id": "PURE-REQ-003",
       "source_harvest_id": "REQ-1",
       "step_indices": [
-        1,
-        15,
-        16
+        4,
+        24
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
-      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.2.3 Functional Requirements, PDF page(s) [12]. The pre-label model verdict was not inspected.",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.2.2-3.2.3 Stimulus/Response Sequences and Functional Requirements - Merge/Extract, PDF page(s) [12]. The pre-label model verdict was not inspected.",
       "annotated_by": "codex_draft",
-      "manual_verification_label": "abstain",
+      "manual_verification_label": "partially_fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
-        "TEXTUAL_AMBIGUITY",
-        "FLOW_COVERAGE_GAP"
+        "FLOW_COVERAGE_GAP",
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "UNVERIFIED_SYSTEM_OUTCOME"
       ],
       "notes": [],
       "claims": [
         {
-          "claim": "REQ-1: pages number in the page selection must be comprehended.",
-          "status": "SUPPORTED",
+          "claim": "In the Merge/Extract Page Selection column, All merges the whole document.",
+          "status": "HIDDEN",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            24
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 24,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "pages list single numbers, but not \"All\" or ranges like \"8-15\""
+        },
+        {
+          "claim": "In the Merge/Extract Page Selection column, page - to page merges the pages between the two specified page numbers.",
+          "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
@@ -215,8 +237,71 @@
           "note": "Not demonstrable from the available static screenshot set."
         },
         {
-          "claim": "REQ-2: The compression of the output files requires pdf version 1.5 or above.",
-          "status": "AMBIGUOUS",
+          "claim": "In the Merge/Extract Page Selection column, page - merges from the specified page through the end of the document.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            24
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 24,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Not demonstrable from the available static screenshot set."
+        },
+        {
+          "claim": "In the Merge/Extract Page Selection column, a single page number selects only that page.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            24
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 24,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Not demonstrable from the available static screenshot set."
+        },
+        {
+          "claim": "In the Merge/Extract Page Selection column, comma-separated values without blanks combine different page selections.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            4,
+            24
+          ],
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 24,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Not demonstrable from the available static screenshot set."
+        },
+        {
+          "claim": "In Merge/Extract, compression of the output file requires PDF version 1.5 or above.",
+          "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
@@ -250,47 +335,133 @@
           "evidence_type": "screen"
         }
       ],
-      "evidence_note": "Steps 4, 24 show the relevant UI surface, but not the required constraint, validation, or post-action behavior.",
-      "rationale": "The relevant screen is present, but the screenshot set does not demonstrate the stated behavioral constraint or outcome; missing evidence is not counter-evidence.",
+      "evidence_note": "Steps 4 and 24 show All in the Merge/Extract Page Selection column and show compression/version controls. They do not demonstrate the other accepted page-selection syntaxes or the PDF 1.5 compression dependency.",
+      "rationale": "The screenshot visibly supports the All page-selection value, while the remaining documented selection syntaxes and compression/version dependency are not exercised.",
       "review_status": "accepted",
-      "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T16:09:56+00:00"
+      "created_at": "2026-07-16T11:54:44+00:00",
+      "updated_at": "2026-07-16T12:42:22+00:00"
     },
     {
       "requirement_id": "PURE-REQ-004",
       "flow_id": "pure_2010_split_merge",
-      "text": "However this step can be configured by this option telling PDFsam how many pages it should take from one document before switching to the other.",
+      "text": "Mix options: The user can modify the following parameters: Reverse first document: if he wants to take pages from the first document in reverse order (starting from the last page). Reverse second document: if he wants to take pages from the second document in reverse order (starting from the last page). Number of pages to switch document: the user with this option can define the step size of the mix. The default behavior is to take one page from the first document and one from the second one. However this step can be configured by this option telling PDFsam how many pages it should take from one document before switching to the other.",
       "scope": "multi_screen",
       "tags": [
         "pure",
         "pure_candidate:2010 - split merge::TEXT-00004",
         "pure_doc:2010 - split merge",
+        "pure_extraction:source_context_repair",
         "pure_extraction:structural_fallback",
         "pure_pdf_page:13",
-        "pure_source_section:3.3.2 Stimulus/Response Sequences"
+        "pure_source_section:3.3.2 Stimulus/Response Sequences - Alternate Mix - Mix options"
       ],
       "source_type": "requirements_candidate",
       "source_id": "2010 - split merge::TEXT-00004",
       "source_candidate_id": "PURE-REQ-004",
       "source_harvest_id": "2010 - split merge::TEXT-00004",
       "step_indices": [
-        2,
-        3,
-        12
+        5,
+        23
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
-      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.3.2 Stimulus/Response Sequences, PDF page(s) [13]. The pre-label model verdict was not inspected.",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.3.2 Stimulus/Response Sequences - Alternate Mix - Mix options, PDF page(s) [13]. The pre-label model verdict was not inspected.",
       "annotated_by": "codex_draft",
-      "manual_verification_label": "fulfilled",
+      "manual_verification_label": "partially_fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
-      "verification_label": "FULFILLED",
-      "uncertainty_reasons": [],
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
       "notes": [],
       "claims": [
         {
-          "claim": "However this step can be configured by this option telling PDFsam how many pages it should take from one document before switching to the other.",
+          "claim": "In Alternate Mix, the Reverse first document option takes pages from the first document in reverse order, starting from its last page.",
+          "status": "SUPPORTED_WITH_CAVEAT",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5,
+            23
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 23,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Only inferred from screenshot evidence."
+        },
+        {
+          "claim": "In Alternate Mix, the Reverse second document option takes pages from the second document in reverse order, starting from its last page.",
+          "status": "SUPPORTED_WITH_CAVEAT",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5,
+            23
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 23,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Only inferred by the screenshot evidence."
+        },
+        {
+          "claim": "In Alternate Mix, the Number of pages to switch document option defines the step size of the mix.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5,
+            23
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 23,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "By default, Alternate Mix takes one page from the first document and one page from the second document.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5,
+            23
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 23,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Not demonstrable from the available static screenshot set."
+        },
+        {
+          "claim": "In Alternate Mix, the Number of pages to switch document option configures how many pages PDFsam takes from one document before switching to the other.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -325,11 +496,11 @@
           "evidence_type": "screen"
         }
       ],
-      "evidence_note": "Steps 5, 23 visibly show the required controls or information.",
-      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "evidence_note": "Steps 5 and 23 show the Alternate Mix reversal and step-size controls. Static screenshots do not establish that the default behavior takes exactly one page from each document.",
+      "rationale": "The configurable step-size control is visible, but the documented default of one page from each document is not demonstrated by the screenshots.",
+      "review_status": "accepted",
+      "created_at": "2026-07-16T11:56:04+00:00",
+      "updated_at": "2026-07-16T13:08:33+00:00"
     },
     {
       "requirement_id": "PURE-REQ-005",
@@ -724,7 +895,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3 System Features / 4.1 User Interfaces - GUI, PDF page(s) [9, 26, 27, 28]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -819,9 +990,9 @@
       ],
       "evidence_note": "Steps 1, 23, 24, 25, 26, 27, 28 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "updated_at": "2026-07-16T13:11:32+00:00"
     },
     {
       "requirement_id": "PURE-SM-SPLIT-001",
@@ -850,7 +1021,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.1.2 Stimulus/Response Sequences, PDF page(s) [9]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -905,9 +1076,9 @@
       ],
       "evidence_note": "Steps 1, 3, 26 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "updated_at": "2026-07-16T13:11:29+00:00"
     },
     {
       "requirement_id": "PURE-SM-SPLIT-002",
@@ -935,7 +1106,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.1.2 Stimulus/Response Sequences, PDF page(s) [10]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -964,7 +1135,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The table includes password entry for protected PDFs.",
+          "claim": "The Split input-document table includes password entry for protected PDFs.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1001,9 +1172,9 @@
       ],
       "evidence_note": "Steps 3, 26 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-07-16T11:56:04+00:00",
+      "updated_at": "2026-07-16T13:11:30+00:00"
     },
     {
       "requirement_id": "PURE-SM-SPLIT-003",
@@ -1031,7 +1202,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.1.2 Stimulus/Response Sequences, PDF page(s) [10]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -1076,9 +1247,9 @@
       ],
       "evidence_note": "Steps 3, 26 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "updated_at": "2026-07-16T13:11:30+00:00"
     },
     {
       "requirement_id": "PURE-SM-SPLIT-004",
@@ -1107,7 +1278,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.1.2 Stimulus/Response Sequences, PDF page(s) [10, 11]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -1194,9 +1365,9 @@
       ],
       "evidence_note": "Steps 3, 26 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "updated_at": "2026-07-16T13:11:30+00:00"
     },
     {
       "requirement_id": "PURE-SM-MERGE-001",
@@ -1225,7 +1396,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.2.2 Stimulus/Response Sequences, PDF page(s) [11, 12]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -1254,7 +1425,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The file table displays details, page selection, and password columns.",
+          "claim": "The Merge/Extract file table displays details, page selection, and password columns.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1275,82 +1446,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The panel exposes file-ordering controls.",
-          "status": "SUPPORTED",
-          "claim_type": "OBSERVABLE",
-          "importance": "CORE",
-          "evidence_steps": [
-            4,
-            24
-          ],
-          "evidence_units": [
-            {
-              "step_index": 4,
-              "evidence_type": "screen"
-            },
-            {
-              "step_index": 24,
-              "evidence_type": "screen"
-            }
-          ],
-          "note": "Visible screenshot support."
-        }
-      ],
-      "evidence_steps": [
-        4,
-        24
-      ],
-      "evidence_units": [
-        {
-          "step_index": 4,
-          "evidence_type": "screen"
-        },
-        {
-          "step_index": 24,
-          "evidence_type": "screen"
-        }
-      ],
-      "evidence_note": "Steps 4, 24 visibly show the required controls or information.",
-      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
-    },
-    {
-      "requirement_id": "PURE-SM-MERGE-002",
-      "flow_id": "pure_2010_split_merge",
-      "text": "The Merge/Extract panel shall expose an option indicating that input PDF documents contain forms.",
-      "scope": "multi_screen",
-      "tags": [
-        "pure",
-        "pure_doc:2010 - split merge",
-        "pure_extraction:manual_grouping",
-        "pure_pdf_page:12",
-        "pure_requirement:contextualized_feature",
-        "pure_section:3.2.2 Stimulus/Response Sequences",
-        "pure_source_section:3.2.2 Stimulus/Response Sequences"
-      ],
-      "source_type": "requirements_candidate",
-      "source_id": "composed:3.2",
-      "source_candidate_id": "PURE-SM-MERGE-002",
-      "source_harvest_id": "composed:3.2",
-      "step_indices": [
-        4,
-        24
-      ],
-      "requirement_type": "FR",
-      "ui_evaluability": "UI_VERIFIABLE",
-      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
-      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.2.2 Stimulus/Response Sequences, PDF page(s) [12]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
-      "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
-      "verification_label": "FULFILLED",
-      "uncertainty_reasons": [],
-      "notes": [],
-      "claims": [
-        {
-          "claim": "The Merge/Extract panel contains a PDF-documents-contain-forms option.",
+          "claim": "The Merge/Extract panel exposes file-ordering controls.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1387,9 +1483,9 @@
       ],
       "evidence_note": "Steps 4, 24 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-07-16T11:56:04+00:00",
+      "updated_at": "2026-07-16T13:11:28+00:00"
     },
     {
       "requirement_id": "PURE-SM-MERGE-003",
@@ -1417,7 +1513,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.2.2 Stimulus/Response Sequences, PDF page(s) [12]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -1446,7 +1542,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The panel exposes compression and output PDF version controls.",
+          "claim": "The Merge/Extract panel exposes compression and output PDF version controls.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1467,7 +1563,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The panel exposes a Run control.",
+          "claim": "The Merge/Extract panel exposes a Run control.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1504,14 +1600,14 @@
       ],
       "evidence_note": "Steps 4, 24 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-07-16T11:56:04+00:00",
+      "updated_at": "2026-07-16T12:57:06+00:00"
     },
     {
       "requirement_id": "PURE-SM-MIX-001",
       "flow_id": "pure_2010_split_merge",
-      "text": "The Alternate Mix panel shall expose two-document selection, ordering, reversal, and pages-to-switch controls.",
+      "text": "The Alternate Mix panel shall provide an input-document selection table and document-ordering controls.",
       "scope": "multi_screen",
       "tags": [
         "pure",
@@ -1534,7 +1630,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.3.2 Stimulus/Response Sequences, PDF page(s) [13]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -1542,7 +1638,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The Alternate Mix panel displays two input documents.",
+          "claim": "The Alternate Mix panel provides an input-document selection table.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1563,28 +1659,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The panel exposes document ordering and reversal controls.",
-          "status": "SUPPORTED",
-          "claim_type": "OBSERVABLE",
-          "importance": "CORE",
-          "evidence_steps": [
-            5,
-            23
-          ],
-          "evidence_units": [
-            {
-              "step_index": 5,
-              "evidence_type": "screen"
-            },
-            {
-              "step_index": 23,
-              "evidence_type": "screen"
-            }
-          ],
-          "note": "Visible screenshot support."
-        },
-        {
-          "claim": "The panel exposes a pages-to-switch control.",
+          "claim": "The Alternate Mix panel provides document-ordering controls.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1621,9 +1696,9 @@
       ],
       "evidence_note": "Steps 5, 23 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-07-16T11:56:04+00:00",
+      "updated_at": "2026-07-16T13:11:28+00:00"
     },
     {
       "requirement_id": "PURE-SM-MIX-002",
@@ -1651,7 +1726,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.3.2 Stimulus/Response Sequences, PDF page(s) [13]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -1680,7 +1755,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The panel exposes compression and output PDF version controls.",
+          "claim": "The Alternate Mix panel exposes compression and output PDF version controls.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1701,7 +1776,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The panel exposes a Run control.",
+          "claim": "The Alternate Mix panel exposes a Run control.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1738,9 +1813,9 @@
       ],
       "evidence_note": "Steps 5, 23 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-07-16T11:56:04+00:00",
+      "updated_at": "2026-07-16T13:11:28+00:00"
     },
     {
       "requirement_id": "PURE-SM-ROTATE-001",
@@ -1776,7 +1851,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The Rotate panel contains an input-document table.",
+          "claim": "The Rotate panel accepts PDF documents.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1797,7 +1872,28 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The panel exposes clockwise-angle and All, Even, or Odd page controls.",
+          "claim": "The Rotate panel exposes clockwise-angle controls.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            6,
+            25
+          ],
+          "evidence_units": [
+            {
+              "step_index": 6,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 25,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Visible screenshot support."
+        },
+        {
+          "claim": "The Rotate panel exposes page-subset controls.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1834,9 +1930,9 @@
       ],
       "evidence_note": "Steps 6, 25 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-07-16T11:56:04+00:00",
+      "updated_at": "2026-07-16T13:10:02+00:00"
     },
     {
       "requirement_id": "PURE-SM-ROTATE-002",
@@ -1864,7 +1960,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.4.2 Stimulus/Response Sequences, PDF page(s) [15]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -1893,7 +1989,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The panel exposes compression and output PDF version controls.",
+          "claim": "The Rotate panel exposes compression and output PDF version controls.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1914,7 +2010,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The panel exposes filename-prefix and Run controls.",
+          "claim": "The Rotate panel exposes filename-prefix and Run controls.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -1951,9 +2047,9 @@
       ],
       "evidence_note": "Steps 6, 25 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-07-16T11:56:04+00:00",
+      "updated_at": "2026-07-16T13:11:29+00:00"
     },
     {
       "requirement_id": "PURE-SM-REORDER-001",
@@ -1982,7 +2078,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.5.2 Stimulus/Response Sequences, PDF page(s) [15, 16]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -2027,9 +2123,9 @@
       ],
       "evidence_note": "Steps 8, 28 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "updated_at": "2026-07-16T13:11:29+00:00"
     },
     {
       "requirement_id": "PURE-SM-REORDER-002",
@@ -2060,7 +2156,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.5.2 Stimulus/Response Sequences, PDF page(s) [15, 16]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -2099,7 +2195,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The panel exposes delete, undelete, rotate, and zoom controls.",
+          "claim": "The Visual Reorder panel exposes delete, undelete, rotate, and zoom controls.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -2130,7 +2226,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The panel supports previewing a page in the image viewer.",
+          "claim": "The Visual Reorder panel supports previewing a page in the image viewer.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -2187,9 +2283,9 @@
       ],
       "evidence_note": "Steps 7, 8, 20, 28 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-07-16T11:56:04+00:00",
+      "updated_at": "2026-07-16T12:57:47+00:00"
     },
     {
       "requirement_id": "PURE-SM-REORDER-003",
@@ -2217,7 +2313,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.5.2 Stimulus/Response Sequences, PDF page(s) [17]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -2246,7 +2342,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The panel exposes compression and output PDF version controls.",
+          "claim": "The Visual Reorder panel exposes compression and output PDF version controls.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -2267,7 +2363,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The panel exposes a Run control.",
+          "claim": "The Visual Reorder panel exposes a Run control.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -2304,9 +2400,9 @@
       ],
       "evidence_note": "Steps 8, 28 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-07-16T11:56:04+00:00",
+      "updated_at": "2026-07-16T13:11:29+00:00"
     },
     {
       "requirement_id": "PURE-SM-COMPOSE-001",
@@ -2335,7 +2431,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.6.2 Stimulus/Response Sequences, PDF page(s) [17, 18]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -2380,9 +2476,9 @@
       ],
       "evidence_note": "Steps 9, 27 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "updated_at": "2026-07-16T13:11:27+00:00"
     },
     {
       "requirement_id": "PURE-SM-COMPOSE-002",
@@ -2411,7 +2507,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.6.2 Stimulus/Response Sequences, PDF page(s) [17, 18]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -2419,7 +2515,7 @@
       "notes": [],
       "claims": [
         {
-          "claim": "The composer exposes controls for adding and moving pages.",
+          "claim": "The Visual Document Composer exposes controls for adding and moving pages.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -2440,7 +2536,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The composer exposes delete, rotate, reverse, and zoom controls.",
+          "claim": "The Visual Document Composer exposes delete, rotate, reverse, and zoom controls.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -2461,7 +2557,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The composer exposes page-preview controls.",
+          "claim": "The Visual Document Composer exposes page-preview controls.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -2498,9 +2594,9 @@
       ],
       "evidence_note": "Steps 9, 27 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-07-16T11:56:04+00:00",
+      "updated_at": "2026-07-16T13:10:35+00:00"
     },
     {
       "requirement_id": "PURE-SM-ENV-001",
@@ -2532,7 +2628,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.7.2 Stimulus/Response Sequences, PDF page(s) [18, 19, 22]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -2571,7 +2667,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "Environment selection uses an XML file dialog.",
+          "claim": "Save Environment and Load Environment use an XML file dialog.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -2628,9 +2724,9 @@
       ],
       "evidence_note": "Steps 10, 11, 14, 15 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-07-16T11:56:04+00:00",
+      "updated_at": "2026-07-16T12:43:07+00:00"
     },
     {
       "requirement_id": "PURE-SM-LOG-001",
@@ -2660,7 +2756,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.8.2 Stimulus/Response Sequences, PDF page(s) [19, 20, 23]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -2726,9 +2822,9 @@
       ],
       "evidence_note": "Steps 12, 19 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "updated_at": "2026-07-16T13:11:28+00:00"
     },
     {
       "requirement_id": "PURE-SM-SETTINGS-001",
@@ -2758,7 +2854,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.9.2 Stimulus/Response Sequences, PDF page(s) [20, 21, 23]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -2787,7 +2883,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The panel exposes thumbnail-library, update, alert, and overwrite-confirmation controls.",
+          "claim": "The Settings panel exposes thumbnail-library, update, alert, and overwrite-confirmation controls.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -2808,7 +2904,7 @@
           "note": "Visible screenshot support."
         },
         {
-          "claim": "The panel exposes default-environment and working-directory controls.",
+          "claim": "The Settings panel exposes default-environment and working-directory controls.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -2845,9 +2941,9 @@
       ],
       "evidence_note": "Steps 13, 18 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
-      "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-07-16T11:56:04+00:00",
+      "updated_at": "2026-07-16T13:11:29+00:00"
     },
     {
       "requirement_id": "PURE-SM-GUI-001",
@@ -2875,7 +2971,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 4.1 User Interfaces - GUI, PDF page(s) [22]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -2941,9 +3037,9 @@
       ],
       "evidence_note": "Steps 15, 16 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "updated_at": "2026-07-16T13:11:28+00:00"
     },
     {
       "requirement_id": "PURE-SM-GUI-002",
@@ -2973,13 +3069,15 @@
       "annotated_by": "codex_draft",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
-      "verification_label": "FULFILLED",
-      "uncertainty_reasons": [],
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP"
+      ],
       "notes": [],
       "claims": [
         {
           "claim": "The About panel displays application and runtime information.",
-          "status": "SUPPORTED",
+          "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
@@ -2995,7 +3093,7 @@
         },
         {
           "claim": "The About panel displays operating-system and translation information.",
-          "status": "SUPPORTED",
+          "status": "MISSING",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
@@ -3008,6 +3106,21 @@
             }
           ],
           "note": "Visible screenshot support."
+        },
+        {
+          "claim": "There is an about panel.",
+          "status": "SUPPORTED",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            17
+          ],
+          "evidence_units": [
+            {
+              "step_index": 17,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -3021,9 +3134,9 @@
       ],
       "evidence_note": "Steps 17 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "updated_at": "2026-07-16T12:52:41+00:00"
     },
     {
       "requirement_id": "PURE-SM-GUI-003",
@@ -3050,7 +3163,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 4.1 User Interfaces - GUI, PDF page(s) [25]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
       "verification_label": "FULFILLED",
@@ -3101,9 +3214,240 @@
       ],
       "evidence_note": "Steps 22 visibly show the required controls or information.",
       "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "created_at": "2026-07-13T14:03:51+00:00",
-      "updated_at": "2026-07-13T14:03:51+00:00"
+      "updated_at": "2026-07-16T13:11:28+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-FR-3_1-REQ-1",
+      "flow_id": "pure_2010_split_merge",
+      "text": "In the Split plugin, the user can provide only one input PDF document per split operation.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:source_contextualization",
+        "pure_pdf_page:11",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.1.3 Functional Requirements",
+        "pure_source_section:3.1.3 Functional Requirements"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "2010 - split merge::3.1::3.1.3/req-1",
+      "source_candidate_id": "PURE-SM-FR-3_1-REQ-1",
+      "source_harvest_id": "2010 - split merge::3.1::3.1.3/req-1",
+      "step_indices": [
+        3,
+        26
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.1.3 Functional Requirements, PDF page(s) [11]. The pre-label model verdict was not inspected.",
+      "annotated_by": "benno",
+      "manual_verification_label": "abstain",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "ABSTAIN",
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "In the Split plugin, one split operation accepts only one input PDF document.",
+          "status": "MISSING",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            3,
+            26
+          ],
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 26,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Not demonstrable from the available static screenshot set."
+        }
+      ],
+      "evidence_steps": [
+        3,
+        26
+      ],
+      "evidence_units": [
+        {
+          "step_index": 3,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 26,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 3, 26 show the relevant UI surface, but not the required constraint, validation, or post-action behavior.",
+      "rationale": "The relevant screen is present, but the screenshot set does not demonstrate the stated behavioral constraint or outcome; missing evidence is not counter-evidence.",
+      "review_status": "accepted",
+      "created_at": "2026-07-16T11:03:00+00:00",
+      "updated_at": "2026-07-16T13:11:28+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-FR-3_3-REQ-1",
+      "flow_id": "pure_2010_split_merge",
+      "text": "In the Alternate Mix plugin, one mix operation requires exactly two input PDF documents.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:source_contextualization",
+        "pure_pdf_page:13",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.3.3 Functional Requirements",
+        "pure_source_section:3.3.3 Functional Requirements"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "2010 - split merge::3.3::3.3.3/req-1",
+      "source_candidate_id": "PURE-SM-FR-3_3-REQ-1",
+      "source_harvest_id": "2010 - split merge::3.3::3.3.3/req-1",
+      "step_indices": [
+        5,
+        23
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.3.3 Functional Requirements, PDF page(s) [13]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "abstain",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "In the Alternate Mix plugin, one mix operation accepts exactly two input PDF documents.",
+          "status": "SUPPORTED_WITH_CAVEAT",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            5,
+            23
+          ],
+          "evidence_units": [
+            {
+              "step_index": 5,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 23,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "It is strongly inferred. We don't have error messages for other behaviour, but the screen shows exaclty 2 PDF documents."
+        }
+      ],
+      "evidence_steps": [
+        5,
+        23
+      ],
+      "evidence_units": [
+        {
+          "step_index": 5,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 23,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 5, 23 show the relevant UI surface, but not the required constraint, validation, or post-action behavior.",
+      "rationale": "The relevant screen is present, but the screenshot set does not demonstrate the stated behavioral constraint or outcome; missing evidence is not counter-evidence.",
+      "review_status": "accepted",
+      "created_at": "2026-07-16T11:03:00+00:00",
+      "updated_at": "2026-07-16T12:46:02+00:00"
+    },
+    {
+      "requirement_id": "PURE-SM-FR-3_9-REQ-1",
+      "flow_id": "pure_2010_split_merge",
+      "text": "Changes saved in the Settings panel take effect after PDFsam is restarted.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - split merge",
+        "pure_extraction:source_contextualization",
+        "pure_pdf_page:21",
+        "pure_requirement:contextualized_feature",
+        "pure_section:3.9.2-3.9.3 Stimulus/Response Sequences and Functional Requirements",
+        "pure_source_section:3.9.2-3.9.3 Stimulus/Response Sequences and Functional Requirements"
+      ],
+      "source_type": "requirements_candidate",
+      "source_id": "2010 - split merge::3.9::3.9.3/req-1",
+      "source_candidate_id": "PURE-SM-FR-3_9-REQ-1",
+      "source_harvest_id": "2010 - split merge::3.9::3.9.3/req-1",
+      "step_indices": [
+        13,
+        18
+      ],
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.9.2-3.9.3 Stimulus/Response Sequences and Functional Requirements, PDF page(s) [21]. The pre-label model verdict was not inspected.",
+      "annotated_by": "codex_draft",
+      "manual_verification_label": "abstain",
+      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "verification_label": "ABSTAIN",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "notes": [],
+      "claims": [
+        {
+          "claim": "Changes saved in the Settings panel take effect after PDFsam is restarted.",
+          "status": "HIDDEN",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "evidence_steps": [
+            13,
+            18
+          ],
+          "evidence_units": [
+            {
+              "step_index": 13,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 18,
+              "evidence_type": "screen"
+            }
+          ],
+          "note": "Not demonstrable from the available static screenshot set."
+        }
+      ],
+      "evidence_steps": [
+        13,
+        18
+      ],
+      "evidence_units": [
+        {
+          "step_index": 13,
+          "evidence_type": "screen"
+        },
+        {
+          "step_index": 18,
+          "evidence_type": "screen"
+        }
+      ],
+      "evidence_note": "Steps 13, 18 show the relevant UI surface, but not the required constraint, validation, or post-action behavior.",
+      "rationale": "The relevant screen is present, but the screenshot set does not demonstrate the stated behavioral constraint or outcome; missing evidence is not counter-evidence.",
+      "review_status": "accepted",
+      "created_at": "2026-07-16T11:03:00+00:00",
+      "updated_at": "2026-07-16T13:11:18+00:00"
     }
   ]
 }

@@ -49,7 +49,6 @@ PURE_REQ_006_CLAIMS = [
 
 FULFILLED_IDS = {
     "PURE-REQ-002",
-    "PURE-REQ-004",
     "PURE-SM-FR-3_8-REQ-1",
     "PURE-SM-UI-001",
     "PURE-SM-SPLIT-001",
@@ -57,7 +56,6 @@ FULFILLED_IDS = {
     "PURE-SM-SPLIT-003",
     "PURE-SM-SPLIT-004",
     "PURE-SM-MERGE-001",
-    "PURE-SM-MERGE-002",
     "PURE-SM-MERGE-003",
     "PURE-SM-MIX-001",
     "PURE-SM-MIX-002",
@@ -76,7 +74,11 @@ FULFILLED_IDS = {
     "PURE-SM-GUI-003",
 }
 
-PARTIALLY_FULFILLED_IDS = {"PURE-REQ-006"}
+PARTIALLY_FULFILLED_IDS = {
+    "PURE-REQ-003",
+    "PURE-REQ-004",
+    "PURE-REQ-006",
+}
 
 NOT_UI_IDS = {
     "PURE-REQ-001",
@@ -94,7 +96,6 @@ PARTIAL_UI_IDS = {
 }
 
 AMBIGUOUS_IDS = {
-    "PURE-REQ-003",
     "PURE-SM-FR-3_2-REQ-1",
     "PURE-SM-FR-3_7-REQ-1",
 }
@@ -168,6 +169,10 @@ def _claim_status_and_type(requirement_id: str, claim_index: int) -> tuple[str, 
         if claim_index == 4:
             return "HIDDEN", "HIDDEN"
         return "MISSING", "OBSERVABLE"
+    if requirement_id == "PURE-REQ-003":
+        return ("SUPPORTED", "OBSERVABLE") if claim_index == 1 else ("MISSING", "OBSERVABLE")
+    if requirement_id == "PURE-REQ-004":
+        return ("MISSING", "OBSERVABLE") if claim_index == 4 else ("SUPPORTED", "OBSERVABLE")
     if requirement_id in {"PURE-REQ-001", "PURE-SM-FR-3_7-REQ-1"}:
         return ("AMBIGUOUS", "HIDDEN") if requirement_id == "PURE-SM-FR-3_7-REQ-1" else ("HIDDEN", "HIDDEN")
     if requirement_id == "PURE-REQ-005" and claim_index <= 2:
@@ -215,6 +220,17 @@ def _evidence_note(requirement_id: str, steps: list[int], label: str) -> str:
             "The screenshots directly show a graphical interface and PDF input controls. They do not establish "
             "subjective usability, inexperienced-user success, or the universal 'every action in a few clicks' claim."
         )
+    if requirement_id == "PURE-REQ-004":
+        return (
+            "Steps 5 and 23 show the Alternate Mix reversal and step-size controls. Static screenshots do not "
+            "establish that the default behavior takes exactly one page from each document."
+        )
+    if requirement_id == "PURE-REQ-003":
+        return (
+            "Steps 4 and 24 show All in the Merge/Extract Page Selection column and show compression/version "
+            "controls. They do not demonstrate the other accepted page-selection syntaxes or the PDF 1.5 "
+            "compression dependency."
+        )
     return f"Steps {', '.join(map(str, steps))} show the relevant UI surface, but not the required constraint, validation, or post-action behavior."
 
 
@@ -227,6 +243,16 @@ def _rationale(requirement_id: str, label: str) -> str:
         return (
             "The graphical interface and PDF-input capabilities are visibly supported, while subjective usability, "
             "manual-assisted operation, universal-user, and few-click claims remain ambiguous, hidden, or missing."
+        )
+    if requirement_id == "PURE-REQ-004":
+        return (
+            "The configurable step-size control is visible, but the documented default of one page from each "
+            "document is not demonstrated by the screenshots."
+        )
+    if requirement_id == "PURE-REQ-003":
+        return (
+            "The screenshot visibly supports the All page-selection value, while the remaining documented "
+            "selection syntaxes and compression/version dependency are not exercised."
         )
     return "The relevant screen is present, but the screenshot set does not demonstrate the stated behavioral constraint or outcome; missing evidence is not counter-evidence."
 
@@ -282,6 +308,8 @@ def build_gold_item(item: dict[str, Any], timestamp: str) -> VerificationGoldIte
         + (
             "Revised after manual reassessment of the cited screenshots."
             if requirement_id == "PURE-REQ-006"
+            else "Promoted from the extraction audit after restoring the surrounding PDF feature context."
+            if requirement_id.startswith("PURE-SM-FR-")
             else "The pre-label model verdict was not inspected."
         )
     )
@@ -338,13 +366,18 @@ _ANNOTATION_FIELDS = {
     "updated_at",
 }
 
-
 def _preserve_existing_annotation(
     generated: VerificationGoldItem,
     existing: VerificationGoldItem | None,
 ) -> VerificationGoldItem:
     """Keep reviewed human labels while refreshing candidate provenance and scope."""
     if existing is None:
+        return generated
+    generated_claims = [_claim_text(claim) for claim in generated.to_dict().get("claims", [])]
+    existing_claims = [_claim_text(claim) for claim in existing.to_dict().get("claims", [])]
+    if generated.text != existing.text:
+        return generated
+    if existing.review_status != "accepted" and generated_claims != existing_claims:
         return generated
     merged = generated.to_dict()
     previous = existing.to_dict()

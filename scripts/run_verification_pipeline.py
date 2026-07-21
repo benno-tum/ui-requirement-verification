@@ -54,13 +54,40 @@ def _load_steps_metadata(flow_dir: Path) -> dict[int, dict[str, Any]]:
     return by_index
 
 
-def discover_screenshot_steps(flow_dir: Path) -> list[ScreenshotStep]:
+def _preferred_screenshot_path(flow_dir: Path, path: Path) -> Path:
+    candidates = [
+        flow_dir / "original" / path.name,
+        flow_dir / "originals" / path.name,
+        flow_dir / "full" / path.name,
+        flow_dir / "fullres" / path.name,
+        flow_dir / "hires" / path.name,
+    ]
+    existing = [candidate for candidate in candidates if candidate.is_file()]
+    if not existing:
+        return path
+    try:
+        from PIL import Image
+
+        def pixel_count(candidate: Path) -> int:
+            with Image.open(candidate) as image:
+                return int(image.width) * int(image.height)
+
+        return max([path, *existing], key=pixel_count)
+    except Exception:
+        return path
+
+
+def discover_screenshot_steps(flow_dir: Path, *, image_variant: str = "processed") -> list[ScreenshotStep]:
     metadata_by_step = _load_steps_metadata(flow_dir)
     paths = sorted(find_step_images(flow_dir), key=parse_step_number)
     return [
         ScreenshotStep(
             step_index=parse_step_number(path),
-            screenshot_path=str(path),
+            screenshot_path=str(
+                _preferred_screenshot_path(flow_dir, path)
+                if image_variant == "preferred-original"
+                else path
+            ),
             metadata=metadata_by_step.get(parse_step_number(path), {}),
         )
         for path in paths
@@ -149,6 +176,12 @@ def load_requirements(path: Path, *, default_flow_id: str) -> list[RequirementIn
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run the evidence-first UI verification pipeline.")
     parser.add_argument("--flow-dir", type=Path, required=True, help="Directory containing ordered step_XX.png files")
+    parser.add_argument(
+        "--image-variant",
+        choices=["processed", "preferred-original"],
+        default="processed",
+        help="Use processed step images or the largest available original/high-resolution counterpart.",
+    )
     parser.add_argument("--requirements", type=Path, required=True, help="JSON requirements file")
     parser.add_argument(
         "--requirements-source",
@@ -250,7 +283,7 @@ def main() -> None:
         load_dotenv(BASE_DIR / ".env")
 
     args = parse_args()
-    screenshots = discover_screenshot_steps(args.flow_dir)
+    screenshots = discover_screenshot_steps(args.flow_dir, image_variant=args.image_variant)
     if not screenshots:
         raise ValueError(f"No step_*.png screenshots found in {args.flow_dir}")
 

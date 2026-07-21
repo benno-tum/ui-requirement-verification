@@ -1,0 +1,20 @@
+{
+  "schema_version": "ui_review_responses_v1",
+  "reviewer_id": "benno",
+  "items": {
+    "UI-001": {
+      "label": "UI_VERIFIABLE",
+      "rationale": "",
+      "confidence": 1.0,
+      "ambiguous": false,
+      "updated_at": "2026-07-17T10:45:41.721336+00:00"
+    },
+    "UI-002": {
+      "label": "UI_VERIFIABLE",
+      "rationale": "",
+      "confidence": 1.0,
+      "ambiguous": false,
+      "updated_at": "2026-07-17T10:46:14.329135+00:00"
+    }
+  }
+}

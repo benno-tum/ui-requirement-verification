@@ -1,0 +1,847 @@
+{
+  "schema_version": "ui_evaluability_review_v1",
+  "blind": true,
+  "seed": 20260717,
+  "sample_size": 72,
+  "sampling_note": "Targeted audit: all NOT_UI_VERIFIABLE and structural-conflict items plus stratified controls.",
+  "items": [
+    {
+      "audit_item_id": "UI-001",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-06",
+      "requirement_text": "The system shall preserve user entered balance check inputs across intermediate form interactions and validation states.",
+      "step_indices": [
+        4,
+        5
+      ]
+    },
+    {
+      "audit_item_id": "UI-002",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-01",
+      "requirement_text": "The system shall expose major travel experience categories from the primary site navigation.",
+      "step_indices": [
+        1,
+        2
+      ]
+    },
+    {
+      "audit_item_id": "UI-003",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-02",
+      "requirement_text": "The system shall switch the user into park-specific browsing context after a park is selected.",
+      "step_indices": [
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "audit_item_id": "UI-004",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-08",
+      "requirement_text": "The system shall present core metadata for each opening, including role title, job category, requisition identifier, employment type, location, and posting information.",
+      "step_indices": [
+        6
+      ]
+    },
+    {
+      "audit_item_id": "UI-005",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-09",
+      "requirement_text": "The system shall provide route or region specific café menu resources in addition to a national menu.",
+      "step_indices": [
+        5
+      ]
+    },
+    {
+      "audit_item_id": "UI-006",
+      "flow_id": "pure_2010_split_merge",
+      "dataset": "pure",
+      "requirement_id": "PURE-SM-MERGE-001",
+      "requirement_text": "The Merge/Extract panel shall accept multiple PDF files and display file details, page selection, passwords, and ordering controls.",
+      "step_indices": [
+        4,
+        24
+      ]
+    },
+    {
+      "audit_item_id": "UI-007",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-05",
+      "requirement_text": "The system shall allow an authenticated user to optionally associate a gift card with their account during the balance check process.",
+      "step_indices": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "audit_item_id": "UI-008",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-12",
+      "requirement_text": "The system shall maintain consistent global navigation and branding across gift card related pages.",
+      "step_indices": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "audit_item_id": "UI-009",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall provide a visible control on the detailed job view that starts the application workflow for the selected opening.",
+      "step_indices": [
+        14
+      ]
+    },
+    {
+      "audit_item_id": "UI-010",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall show complete store detail coverage for each returned location, including address, phone contact, and operating hours.",
+      "step_indices": [
+        2,
+        4
+      ]
+    },
+    {
+      "audit_item_id": "UI-011",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall require a signed-in account before a gift card can be attached to a user profile, while still allowing balance checks to proceed in guest mode.",
+      "step_indices": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "audit_item_id": "UI-012",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall keep the searched location, selected radius, and resulting stores synchronized between the map view and the store list.",
+      "step_indices": [
+        4
+      ]
+    },
+    {
+      "audit_item_id": "UI-013",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-08",
+      "requirement_text": "The system shall collect personal information needed for passholder setup during checkout.",
+      "step_indices": [
+        8,
+        11,
+        12,
+        13,
+        14,
+        19
+      ]
+    },
+    {
+      "audit_item_id": "UI-014",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall present a dedicated coupon results or review step after search submission that summarizes matching offers for the selected business category and locality.",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "audit_item_id": "UI-015",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-06",
+      "requirement_text": "The system shall keep the balance lookup action visibly consistent with the current validation state so users can clearly tell when the entered card information is submittable.",
+      "step_indices": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "audit_item_id": "UI-016",
+      "flow_id": "pure_2010_split_merge",
+      "dataset": "pure",
+      "requirement_id": "PURE-SM-LOG-001",
+      "requirement_text": "The application shall provide a log panel that displays operational messages and exposes copy, clear, and save actions.",
+      "step_indices": [
+        12,
+        19
+      ]
+    },
+    {
+      "audit_item_id": "UI-017",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall clearly indicate the downstream delivery destination or channel for digital tickets, such as email or mobile wallet, before the user proceeds to payment.",
+      "step_indices": [
+        10
+      ]
+    },
+    {
+      "audit_item_id": "UI-018",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall enforce any required pass-ownership or eligibility policy for park add-ons and explain that policy in the purchase flow before checkout.",
+      "step_indices": [
+        6,
+        8
+      ]
+    },
+    {
+      "audit_item_id": "UI-019",
+      "flow_id": "pure_2010_split_merge",
+      "dataset": "pure",
+      "requirement_id": "PURE-SM-FR-3_3-REQ-1",
+      "requirement_text": "In the Alternate Mix plugin, one mix operation requires exactly two input PDF documents.",
+      "step_indices": [
+        5,
+        23
+      ]
+    },
+    {
+      "audit_item_id": "UI-020",
+      "flow_id": "pure_2010_split_merge",
+      "dataset": "pure",
+      "requirement_id": "PURE-SM-SPLIT-004",
+      "requirement_text": "The Split panel shall expose destination selection, compression, output PDF version, filename-prefix, and Run controls.",
+      "step_indices": [
+        3,
+        26
+      ]
+    },
+    {
+      "audit_item_id": "UI-021",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall provide an explicit transition from the release submission overview into the actual submission workflow so contributors can proceed directly from learning the rules to starting a release submission.",
+      "step_indices": [
+        2,
+        3
+      ]
+    },
+    {
+      "audit_item_id": "UI-022",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall include all currently available catalog titles that match the configured author and German-language criteria in the resulting browsing view.",
+      "step_indices": [
+        4
+      ]
+    },
+    {
+      "audit_item_id": "UI-023",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall allow travelers to open the national café menu in a dedicated resource that can be viewed independently of the surrounding café information page.",
+      "step_indices": [
+        5
+      ]
+    },
+    {
+      "audit_item_id": "UI-024",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall preserve a user's decision to associate a gift card with their account through the remainder of the balance inquiry workflow and reflect that choice when the lookup completes.",
+      "step_indices": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "audit_item_id": "UI-025",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-22",
+      "requirement_text": "The system shall present prices and option details transparently enough for users to compare pass tiers, add-ons, and payment choices during checkout.",
+      "step_indices": [
+        7,
+        16,
+        17,
+        18
+      ]
+    },
+    {
+      "audit_item_id": "UI-026",
+      "flow_id": "pure_2010_split_merge",
+      "dataset": "pure",
+      "requirement_id": "PURE-REQ-006",
+      "requirement_text": "5.4 Software Quality Attributes This application provides a pleasant and user friendly graphical interface with relatively simple functions. Any user should be able to use PDFsam without any specific knowledge or experience by reading the user manuals (or the help messages that are embedded in the application). Users only need to provide some pdf documents and with just a few clicks they can perform any action.",
+      "step_indices": [
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "audit_item_id": "UI-027",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall keep the release submission overview aligned with the currently applicable submission policy so contributors see up to date rules.",
+      "step_indices": [
+        3
+      ]
+    },
+    {
+      "audit_item_id": "UI-028",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall retain the selected park context in later purchase and checkout screens so users can verify that they are still completing a pass purchase for the intended park.",
+      "step_indices": [
+        3,
+        4,
+        6,
+        7,
+        8,
+        16,
+        18,
+        19
+      ]
+    },
+    {
+      "audit_item_id": "UI-029",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall retain previously entered advanced search criteria when the user returns from a filtered browsing view to the advanced search workflow during the same session.",
+      "step_indices": [
+        3,
+        4
+      ]
+    },
+    {
+      "audit_item_id": "UI-030",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-14",
+      "requirement_text": "The system shall preserve the selected park context consistently across discovery, add-on selection, and cart review screens.",
+      "step_indices": [
+        3,
+        6,
+        10
+      ]
+    },
+    {
+      "audit_item_id": "UI-031",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall support an application workflow that can be launched for a specific opening after the applicant has identified the relevant park and role.",
+      "step_indices": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "audit_item_id": "UI-032",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall make all supported eGift card denominations visibly available within the purchase flow rather than exposing only a partial subset of purchasable amounts.",
+      "step_indices": [
+        3,
+        7
+      ]
+    },
+    {
+      "audit_item_id": "UI-033",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall provide the purchaser with a confirmation outside the product page flow that reflects the configured eGift card recipient, amount, and scheduled delivery details after the gift card is accepted for purchase progression.",
+      "step_indices": [
+        3,
+        7,
+        9
+      ]
+    },
+    {
+      "audit_item_id": "UI-034",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall provide corresponding detail or menu-entry resources for all dining service types presented from the onboard dining page.",
+      "step_indices": [
+        4,
+        5
+      ]
+    },
+    {
+      "audit_item_id": "UI-035",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall collect age or date-of-birth information when needed for pass purchase or financing eligibility.",
+      "step_indices": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        19
+      ]
+    },
+    {
+      "audit_item_id": "UI-036",
+      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-13",
+      "requirement_text": "The system shall let users maintain reusable dining preferences that can inform future reservations.",
+      "step_indices": [
+        3,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "audit_item_id": "UI-037",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall clearly distinguish which contribution resources are generally browsable and which submission work areas require an authenticated contributor account.",
+      "step_indices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "audit_item_id": "UI-038",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-12",
+      "requirement_text": "The system shall communicate employment perks, benefits, or similar value propositions alongside job discovery content.",
+      "step_indices": [
+        2,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "audit_item_id": "UI-039",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall let users open a discovered coupon into a redeemable detail or outbound handoff that provides merchant-facing usage instructions.",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "audit_item_id": "UI-040",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall restrict scheduled eGift card delivery to valid future dates and provide user-facing feedback when an unavailable date is chosen.",
+      "step_indices": [
+        3,
+        9
+      ]
+    },
+    {
+      "audit_item_id": "UI-041",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-12",
+      "requirement_text": "The system shall help users continue from overview documentation into related articles when they need more detailed submission rules.",
+      "step_indices": [
+        3
+      ]
+    },
+    {
+      "audit_item_id": "UI-042",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall present key gift-card fulfillment and usage information, including delivery timing, redemption channels, fees or expiration status, and discount restrictions.",
+      "step_indices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "audit_item_id": "UI-043",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall preserve access to broader site navigation while users are exploring contribution help resources.",
+      "step_indices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "audit_item_id": "UI-044",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall cover all major release submission rule categories from the overview page so contributors can discover every essential rule area from one starting point.",
+      "step_indices": [
+        3
+      ]
+    },
+    {
+      "audit_item_id": "UI-045",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-19",
+      "requirement_text": "The system shall support selection of a digital or mobile ticket fulfillment option as part of the purchase flow.",
+      "step_indices": [
+        10
+      ]
+    },
+    {
+      "audit_item_id": "UI-046",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-12",
+      "requirement_text": "The system shall carry active advanced search filters forward into subsequent browsing views so users can understand the basis of the shown results.",
+      "step_indices": [
+        3,
+        4
+      ]
+    },
+    {
+      "audit_item_id": "UI-047",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-06",
+      "requirement_text": "The system shall support discovery of contributor documentation from an authenticated user workspace.",
+      "step_indices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "audit_item_id": "UI-048",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall provide an explicit balance inquiry result state that confirms which gift card was checked and presents the remaining balance separately from the entry form.",
+      "step_indices": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "audit_item_id": "UI-049",
+      "flow_id": "pure_2010_mashboot",
+      "dataset": "pure",
+      "requirement_id": "PURE-MB-CREATE-002",
+      "requirement_text": "The Create view shall let a user invoke Add Content, choose a content type populated from services accessible through stored credentials, create a section for that type, add individual elements, and schedule, edit, or delete each element.",
+      "step_indices": [
+        2
+      ]
+    },
+    {
+      "audit_item_id": "UI-050",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-17",
+      "requirement_text": "The system shall support sharing job postings through external channels such as social media and email.",
+      "step_indices": [
+        3,
+        6,
+        11,
+        13
+      ]
+    },
+    {
+      "audit_item_id": "UI-051",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-15",
+      "requirement_text": "The system shall add the configured eGift card to the shopper's ongoing cart or bag session after confirmation so it can continue into downstream checkout.",
+      "step_indices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "audit_item_id": "UI-052",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-08",
+      "requirement_text": "The system shall only accept valid gift card actions.",
+      "step_indices": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "audit_item_id": "UI-053",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-09",
+      "requirement_text": "The system shall return the remaining gift card balance after the user provides valid card credentials.",
+      "step_indices": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "audit_item_id": "UI-054",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-10",
+      "requirement_text": "The system shall allow users to pursue coupon discovery for a searched business category within a chosen locality.",
+      "step_indices": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "audit_item_id": "UI-055",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-07",
+      "requirement_text": "The system shall provide a clear separation between learning submission rules and performing a release submission.",
+      "step_indices": [
+        2,
+        3
+      ]
+    },
+    {
+      "audit_item_id": "UI-056",
+      "flow_id": "pure_2010_split_merge",
+      "dataset": "pure",
+      "requirement_id": "PURE-SM-FR-3_9-REQ-1",
+      "requirement_text": "Changes saved in the Settings panel take effect after PDFsam is restarted.",
+      "step_indices": [
+        13,
+        18
+      ]
+    },
+    {
+      "audit_item_id": "UI-057",
+      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall provide the same cruise search criteria and equivalent search behavior to anonymous users and signed-in users unless a visible policy restriction is communicated.",
+      "step_indices": [
+        1,
+        9
+      ]
+    },
+    {
+      "audit_item_id": "UI-058",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-10",
+      "requirement_text": "The system shall provide alternative channels for balance inquiries in addition to the self service web form.",
+      "step_indices": [
+        2
+      ]
+    },
+    {
+      "audit_item_id": "UI-059",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall make all supported gift card balance inquiry paths and help resources discoverable from the centralized gift card service area.",
+      "step_indices": [
+        2
+      ]
+    },
+    {
+      "audit_item_id": "UI-060",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-06",
+      "requirement_text": "The system shall allow users to combine multiple advanced search criteria in a single search request, including author and language together.",
+      "step_indices": [
+        3,
+        4
+      ]
+    },
+    {
+      "audit_item_id": "UI-061",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-18",
+      "requirement_text": "The system shall allow users to subscribe to job posting alerts for future openings.",
+      "step_indices": [
+        1,
+        2
+      ]
+    },
+    {
+      "audit_item_id": "UI-062",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-15",
+      "requirement_text": "The system shall support a downstream application workflow after the applicant selects Apply for a job.",
+      "step_indices": [
+        14
+      ]
+    },
+    {
+      "audit_item_id": "UI-063",
+      "flow_id": "pure_2010_split_merge",
+      "dataset": "pure",
+      "requirement_id": "PURE-REQ-001",
+      "requirement_text": "2.5 Design and Implementation Constraints PDFsam is platform independent and is written in Java. Its user interface is written with Java Swing, so anyone who wishes to work on further development of PDFsam has to know this programming language. PDFsam is GNU GPLv2 licensed and the PDFsam-console is dual licensed (GPLv2 and LGPLv2). Everyone, that does or is going to develop or use PDFsam, should agree and fully accept the terms of this kind of license.",
+      "step_indices": [
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "audit_item_id": "UI-064",
+      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall provide a save action for committing profile changes.",
+      "step_indices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "audit_item_id": "UI-065",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall provide a pre-submission review state for the configured eGift card that summarizes recipient details, sender details, amount, delivery date, and message, with an option to edit before finalizing the purchase action.",
+      "step_indices": [
+        9
+      ]
+    },
+    {
+      "audit_item_id": "UI-066",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-16",
+      "requirement_text": "The system shall preserve the applicant's current discovery context while moving between pages, filtering and job detail viewing.",
+      "step_indices": [
+        13,
+        14
+      ]
+    },
+    {
+      "audit_item_id": "UI-067",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-08",
+      "requirement_text": "The system shall keep the displayed result set consistent with the selected filter criteria and the reported jobs found count.",
+      "step_indices": [
+        9,
+        11,
+        13
+      ]
+    },
+    {
+      "audit_item_id": "UI-068",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall preserve documentation context when contributors open detailed rule pages from the release submission overview, including a visible path back to the originating overview section.",
+      "step_indices": [
+        3
+      ]
+    },
+    {
+      "audit_item_id": "UI-069",
+      "flow_id": "pure_2010_split_merge",
+      "dataset": "pure",
+      "requirement_id": "PURE-REQ-005",
+      "requirement_text": "5.2 Safety Requirements The application must ensure that it leaves untouched the input pdf files. No modification is allowed to these files. Moreover, the application should function even in cases of wrong data insertion or wrong settings. In case of error it should provide users with appropriate help messages.",
+      "step_indices": [
+        1,
+        15,
+        16
+      ]
+    },
+    {
+      "audit_item_id": "UI-070",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-09",
+      "requirement_text": "The system shall expose coupons as a user-facing discovery feature within the service.",
+      "step_indices": [
+        1
+      ]
+    },
+    {
+      "audit_item_id": "UI-071",
+      "flow_id": "pure_2010_mashboot",
+      "dataset": "pure",
+      "requirement_id": "PURE-MB-SERVICE-001",
+      "requirement_text": "Mashbot shall allow Mashbot accounts to be associated with external service accounts, provide an interface for authenticating a user account to an external service account, and provide a standardized method for interacting with external service accounts.",
+      "step_indices": []
+    },
+    {
+      "audit_item_id": "UI-072",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall send a confirmation to the purchaser's contact address after checkout that summarizes the selected park, pass tier, add-ons, and payment arrangement.",
+      "step_indices": [
+        7,
+        12,
+        17,
+        18,
+        19
+      ]
+    }
+  ]
+}

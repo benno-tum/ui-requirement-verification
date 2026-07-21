@@ -18,6 +18,32 @@ def _request_timeout_ms() -> int:
     return timeout_ms
 
 
+def _max_output_tokens() -> int | None:
+    raw = os.environ.get("GEMINI_MAX_OUTPUT_TOKENS", "").strip()
+    if not raw:
+        return None
+    try:
+        value = int(raw)
+    except ValueError as exc:
+        raise ValueError("GEMINI_MAX_OUTPUT_TOKENS must be an integer.") from exc
+    if value < 1:
+        raise ValueError("GEMINI_MAX_OUTPUT_TOKENS must be positive.")
+    return value
+
+
+def _thinking_budget() -> int | None:
+    raw = os.environ.get("GEMINI_THINKING_BUDGET", "").strip()
+    if not raw:
+        return None
+    try:
+        value = int(raw)
+    except ValueError as exc:
+        raise ValueError("GEMINI_THINKING_BUDGET must be an integer.") from exc
+    if value < -1:
+        raise ValueError("GEMINI_THINKING_BUDGET must be -1 or greater.")
+    return value
+
+
 @dataclass(frozen=True)
 class GeminiRunResult:
     text: str
@@ -48,12 +74,19 @@ def run_gemini_with_usage(
     for img_bytes in image_bytes_list:
         parts.append(types.Part.from_bytes(data=img_bytes, mime_type="image/png"))
 
+    thinking_budget = _thinking_budget()
     response = client.models.generate_content(
         model=model_name,
         contents=parts,
         config=types.GenerateContentConfig(
             temperature=temperature,
             response_mime_type="application/json",
+            max_output_tokens=_max_output_tokens(),
+            thinking_config=(
+                types.ThinkingConfig(thinking_budget=thinking_budget)
+                if thinking_budget is not None
+                else None
+            ),
         ),
     )
 

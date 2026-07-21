@@ -13,6 +13,57 @@ FLOW_ID = "pure_2010_split_merge"
 DOC_ID = "2010 - split merge"
 SOURCE_PDF = "data/raw/pure/req/2010 - split merge.pdf"
 
+LEGACY_CONTEXT_REPAIRS: dict[str, dict[str, Any]] = {
+    "PURE-REQ-003": {
+        "text": (
+            "In the Page Selection column of the table, user can write: "
+            "\"All\": to merge the whole document. "
+            "\"page - to page\": to merge pages between \"page\" and \"to page\" "
+            "(e.g. 8-15 if he want to merge pages between 8 and 15). "
+            "\"page -\": to merge pages starting from \"page\" till the end of the document. "
+            "A single page number, if he wants only that page of the document. "
+            "Commas (without any blanks) to separate the different values "
+            "(e.g. \"2,12-16,17-\" if he wants to merge page 2, pages between 12 and 16, "
+            "and all the other pages from page17 to the end). "
+            "The compression of the output files requires pdf version 1.5 or above."
+        ),
+        "claims": [
+            "In the Merge/Extract Page Selection column, All merges the whole document.",
+            "In the Merge/Extract Page Selection column, page - to page merges the pages between the two specified page numbers.",
+            "In the Merge/Extract Page Selection column, page - merges from the specified page through the end of the document.",
+            "In the Merge/Extract Page Selection column, a single page number selects only that page.",
+            "In the Merge/Extract Page Selection column, comma-separated values without blanks combine different page selections.",
+            "In Merge/Extract, compression of the output file requires PDF version 1.5 or above.",
+        ],
+        "source_pages": [12],
+        "source_section": "3.2.2-3.2.3 Stimulus/Response Sequences and Functional Requirements - Merge/Extract",
+        "evidence_steps": [4, 24],
+    },
+    "PURE-REQ-004": {
+        "text": (
+            "Mix options: The user can modify the following parameters: "
+            "Reverse first document: if he wants to take pages from the first document in reverse order "
+            "(starting from the last page). "
+            "Reverse second document: if he wants to take pages from the second document in reverse order "
+            "(starting from the last page). "
+            "Number of pages to switch document: the user with this option can define the step size of the mix. "
+            "The default behavior is to take one page from the first document and one from the second one. "
+            "However this step can be configured by this option telling PDFsam how many pages it should take "
+            "from one document before switching to the other."
+        ),
+        "claims": [
+            "In Alternate Mix, the Reverse first document option takes pages from the first document in reverse order, starting from its last page.",
+            "In Alternate Mix, the Reverse second document option takes pages from the second document in reverse order, starting from its last page.",
+            "In Alternate Mix, the Number of pages to switch document option defines the step size of the mix.",
+            "By default, Alternate Mix takes one page from the first document and one page from the second document.",
+            "In Alternate Mix, the Number of pages to switch document option configures how many pages PDFsam takes from one document before switching to the other.",
+        ],
+        "source_pages": [13],
+        "source_section": "3.3.2 Stimulus/Response Sequences - Alternate Mix - Mix options",
+        "evidence_steps": [5, 23],
+    },
+}
+
 
 CURATED_REQUIREMENTS: list[dict[str, Any]] = [
     {
@@ -37,7 +88,7 @@ CURATED_REQUIREMENTS: list[dict[str, Any]] = [
         "section": "3.1.2 Stimulus/Response Sequences",
         "source_pages": [10],
         "evidence_steps": [3, 26],
-        "claims": ["The Split panel contains an input-document table with file information.", "The table includes password entry for protected PDFs."],
+        "claims": ["The Split panel contains an input-document table with file information.", "The Split input-document table includes password entry for protected PDFs."],
     },
     {
         "requirement_id": "PURE-SM-SPLIT-003",
@@ -61,15 +112,7 @@ CURATED_REQUIREMENTS: list[dict[str, Any]] = [
         "section": "3.2.2 Stimulus/Response Sequences",
         "source_pages": [11, 12],
         "evidence_steps": [4, 24],
-        "claims": ["The Merge/Extract panel accepts multiple PDF files.", "The file table displays details, page selection, and password columns.", "The panel exposes file-ordering controls."],
-    },
-    {
-        "requirement_id": "PURE-SM-MERGE-002",
-        "text": "The Merge/Extract panel shall expose an option indicating that input PDF documents contain forms.",
-        "section": "3.2.2 Stimulus/Response Sequences",
-        "source_pages": [12],
-        "evidence_steps": [4, 24],
-        "claims": ["The Merge/Extract panel contains a PDF-documents-contain-forms option."],
+        "claims": ["The Merge/Extract panel accepts multiple PDF files.", "The Merge/Extract file table displays details, page selection, and password columns.", "The Merge/Extract panel exposes file-ordering controls."],
     },
     {
         "requirement_id": "PURE-SM-MERGE-003",
@@ -77,15 +120,18 @@ CURATED_REQUIREMENTS: list[dict[str, Any]] = [
         "section": "3.2.2 Stimulus/Response Sequences",
         "source_pages": [12],
         "evidence_steps": [4, 24],
-        "claims": ["The Merge/Extract panel exposes output-file selection.", "The panel exposes compression and output PDF version controls.", "The panel exposes a Run control."],
+        "claims": ["The Merge/Extract panel exposes output-file selection.", "The Merge/Extract panel exposes compression and output PDF version controls.", "The Merge/Extract panel exposes a Run control."],
     },
     {
         "requirement_id": "PURE-SM-MIX-001",
-        "text": "The Alternate Mix panel shall expose two-document selection, ordering, reversal, and pages-to-switch controls.",
+        "text": "The Alternate Mix panel shall provide an input-document selection table and document-ordering controls.",
         "section": "3.3.2 Stimulus/Response Sequences",
         "source_pages": [13],
         "evidence_steps": [5, 23],
-        "claims": ["The Alternate Mix panel displays two input documents.", "The panel exposes document ordering and reversal controls.", "The panel exposes a pages-to-switch control."],
+        "claims": [
+            "The Alternate Mix panel provides an input-document selection table.",
+            "The Alternate Mix panel provides document-ordering controls.",
+        ],
     },
     {
         "requirement_id": "PURE-SM-MIX-002",
@@ -93,7 +139,7 @@ CURATED_REQUIREMENTS: list[dict[str, Any]] = [
         "section": "3.3.2 Stimulus/Response Sequences",
         "source_pages": [13],
         "evidence_steps": [5, 23],
-        "claims": ["The Alternate Mix panel exposes output-file selection.", "The panel exposes compression and output PDF version controls.", "The panel exposes a Run control."],
+        "claims": ["The Alternate Mix panel exposes output-file selection.", "The Alternate Mix panel exposes compression and output PDF version controls.", "The Alternate Mix panel exposes a Run control."],
     },
     {
         "requirement_id": "PURE-SM-ROTATE-001",
@@ -101,7 +147,7 @@ CURATED_REQUIREMENTS: list[dict[str, Any]] = [
         "section": "3.4.2 Stimulus/Response Sequences",
         "source_pages": [14],
         "evidence_steps": [6, 25],
-        "claims": ["The Rotate panel contains an input-document table.", "The panel exposes clockwise-angle and All, Even, or Odd page controls."],
+        "claims": ["The Rotate panel contains an input-document table.", "The Rotate panel exposes clockwise-angle and All, Even, or Odd page controls."],
     },
     {
         "requirement_id": "PURE-SM-ROTATE-002",
@@ -109,7 +155,7 @@ CURATED_REQUIREMENTS: list[dict[str, Any]] = [
         "section": "3.4.2 Stimulus/Response Sequences",
         "source_pages": [15],
         "evidence_steps": [6, 25],
-        "claims": ["The Rotate panel exposes destination selection.", "The panel exposes compression and output PDF version controls.", "The panel exposes filename-prefix and Run controls."],
+        "claims": ["The Rotate panel exposes destination selection.", "The Rotate panel exposes compression and output PDF version controls.", "The Rotate panel exposes filename-prefix and Run controls."],
     },
     {
         "requirement_id": "PURE-SM-REORDER-001",
@@ -125,7 +171,7 @@ CURATED_REQUIREMENTS: list[dict[str, Any]] = [
         "section": "3.5.2 Stimulus/Response Sequences",
         "source_pages": [15, 16],
         "evidence_steps": [7, 8, 20, 28],
-        "claims": ["The Visual Reorder panel exposes page move and reverse controls.", "The panel exposes delete, undelete, rotate, and zoom controls.", "The panel supports previewing a page in the image viewer."],
+        "claims": ["The Visual Reorder panel exposes page move and reverse controls.", "The Visual Reorder panel exposes delete, undelete, rotate, and zoom controls.", "The Visual Reorder panel supports previewing a page in the image viewer."],
     },
     {
         "requirement_id": "PURE-SM-REORDER-003",
@@ -133,7 +179,7 @@ CURATED_REQUIREMENTS: list[dict[str, Any]] = [
         "section": "3.5.2 Stimulus/Response Sequences",
         "source_pages": [17],
         "evidence_steps": [8, 28],
-        "claims": ["The Visual Reorder panel exposes destination selection.", "The panel exposes compression and output PDF version controls.", "The panel exposes a Run control."],
+        "claims": ["The Visual Reorder panel exposes destination selection.", "The Visual Reorder panel exposes compression and output PDF version controls.", "The Visual Reorder panel exposes a Run control."],
     },
     {
         "requirement_id": "PURE-SM-COMPOSE-001",
@@ -149,7 +195,7 @@ CURATED_REQUIREMENTS: list[dict[str, Any]] = [
         "section": "3.6.2 Stimulus/Response Sequences",
         "source_pages": [17, 18],
         "evidence_steps": [9, 27],
-        "claims": ["The composer exposes controls for adding and moving pages.", "The composer exposes delete, rotate, reverse, and zoom controls.", "The composer exposes page-preview controls."],
+        "claims": ["The Visual Document Composer exposes controls for adding and moving pages.", "The Visual Document Composer exposes delete, rotate, reverse, and zoom controls.", "The Visual Document Composer exposes page-preview controls."],
     },
     {
         "requirement_id": "PURE-SM-ENV-001",
@@ -157,7 +203,7 @@ CURATED_REQUIREMENTS: list[dict[str, Any]] = [
         "section": "3.7.2 Stimulus/Response Sequences",
         "source_pages": [18, 19, 22],
         "evidence_steps": [10, 11, 14, 15],
-        "claims": ["The File menu exposes Save Environment and Load Environment actions.", "Environment selection uses an XML file dialog."],
+        "claims": ["The File menu exposes Save Environment and Load Environment actions.", "Save Environment and Load Environment use an XML file dialog."],
     },
     {
         "requirement_id": "PURE-SM-LOG-001",
@@ -173,7 +219,7 @@ CURATED_REQUIREMENTS: list[dict[str, Any]] = [
         "section": "3.9.2 Stimulus/Response Sequences",
         "source_pages": [20, 21, 23],
         "evidence_steps": [13, 18],
-        "claims": ["The Settings panel exposes language, look-and-feel, theme, and log-level controls.", "The panel exposes thumbnail-library, update, alert, and overwrite-confirmation controls.", "The panel exposes default-environment and working-directory controls."],
+        "claims": ["The Settings panel exposes language, look-and-feel, theme, and log-level controls.", "The Settings panel exposes thumbnail-library, update, alert, and overwrite-confirmation controls.", "The Settings panel exposes default-environment and working-directory controls."],
     },
     {
         "requirement_id": "PURE-SM-GUI-001",
@@ -201,9 +247,69 @@ CURATED_REQUIREMENTS: list[dict[str, Any]] = [
     },
 ]
 
+
+# These requirements preserve the meaning of explicit REQ-n statements while
+# restoring feature context from the immediately surrounding PDF section. They
+# are source contextualizations, not screenshot-derived feature inventions.
+CONTEXTUALIZED_EXPLICIT_REQUIREMENTS: list[dict[str, Any]] = [
+    {
+        "requirement_id": "PURE-SM-FR-3_1-REQ-1",
+        "source_id": "2010 - split merge::3.1::3.1.3/req-1",
+        "text": "In the Split plugin, the user can provide only one input PDF document per split operation.",
+        "section": "3.1.3 Functional Requirements",
+        "source_pages": [11],
+        "evidence_steps": [3, 26],
+        "claims": [
+            "In the Split plugin, one split operation accepts only one input PDF document."
+        ],
+    },
+    {
+        "requirement_id": "PURE-SM-FR-3_3-REQ-1",
+        "source_id": "2010 - split merge::3.3::3.3.3/req-1",
+        "text": "In the Alternate Mix plugin, one mix operation requires exactly two input PDF documents.",
+        "section": "3.3.3 Functional Requirements",
+        "source_pages": [13],
+        "evidence_steps": [5, 23],
+        "claims": [
+            "In the Alternate Mix plugin, one mix operation accepts exactly two input PDF documents."
+        ],
+    },
+    {
+        "requirement_id": "PURE-SM-FR-3_9-REQ-1",
+        "source_id": "2010 - split merge::3.9::3.9.3/req-1",
+        "text": "Changes saved in the Settings panel take effect after PDFsam is restarted.",
+        "section": "3.9.2-3.9.3 Stimulus/Response Sequences and Functional Requirements",
+        "source_pages": [21],
+        "evidence_steps": [13, 18],
+        "claims": [
+            "Changes saved in the Settings panel take effect after PDFsam is restarted."
+        ],
+    },
+]
+
+EXPLICIT_PROMOTIONS = {
+    item["source_id"]: item["requirement_id"]
+    for item in CONTEXTUALIZED_EXPLICIT_REQUIREMENTS
+}
+
+EXPLICIT_EXCLUSION_REASONS = {
+    "2010 - split merge::3.1::3.1.3/req-2": "Duplicate of the same PDF-version/compression constraint repeated for several plugins; not retained as a separate benchmark item.",
+    "2010 - split merge::3.1::3.1.3/req-3": "Duplicate of the filename-prefix digit constraint also stated for Rotate; not retained as a separate benchmark item.",
+    "2010 - split merge::3.2::3.2.3/req-1": "Its meaning is retained in PURE-REQ-003 using the complete source Page Selection list rather than the ambiguous isolated REQ sentence.",
+    "2010 - split merge::3.2::3.2.3/req-2": "Retained in the repaired source-grounded PURE-REQ-003; not duplicated as a separate benchmark item.",
+    "2010 - split merge::3.4::3.4.3/req-1": "Duplicate of the same PDF-version/compression constraint repeated for several plugins; not retained as a separate benchmark item.",
+    "2010 - split merge::3.4::3.4.3/req-2": "Duplicate of the filename-prefix digit constraint also stated for Split; not retained as a separate benchmark item.",
+    "2010 - split merge::3.5::3.5.3/req-1": "Duplicate of the same PDF-version/compression constraint repeated for several plugins; not retained as a separate benchmark item.",
+    "2010 - split merge::3.5::3.5.3/req-2": "Previously rejected by the human reviewer as an incorrect extraction result; it is not reintroduced.",
+    "2010 - split merge::3.7::3.7.3/req-1": "The extracted sentence is not a coherent, testable requirement even with its surrounding section context.",
+    "2010 - split merge::3.8::3.8.3/req-1": "Previously removed by the human reviewer; the cross-panel log-level precondition is retained only as source provenance.",
+}
+
 # Most raw REQ-n fragments inherit their feature context directly. The log-level
 # fragment explicitly crosses the Log Panel and Settings feature boundaries.
 EXPLICIT_CONTEXT_TARGETS = {
+    "2010 - split merge::3.2::3.2.3/req-1": ["PURE-REQ-003"],
+    "2010 - split merge::3.2::3.2.3/req-2": ["PURE-REQ-003"],
     "2010 - split merge::3.8::3.8.3/req-1": [
         "PURE-SM-LOG-001",
         "PURE-SM-SETTINGS-001",
@@ -259,6 +365,15 @@ def _runtime_requirement(
     extraction_mode: str,
     parent_harvest_text: str | None = None,
 ) -> dict[str, Any]:
+    contextualized = extraction_mode in {"manual_grouping", "source_contextualization"}
+    candidate_origin = {
+        "manual_grouping": "VISIBLE_CORE_REWRITE",
+        "source_contextualization": "VISIBLE_CORE_REWRITE",
+    }.get(extraction_mode, "DIRECT_FROM_HARVEST")
+    benchmark_decision = {
+        "manual_grouping": "REWRITE_TO_VISIBLE_CORE",
+        "source_contextualization": "REWRITE_TO_VISIBLE_CORE",
+    }.get(extraction_mode, "DIRECT_INCLUDE")
     return {
         "requirement_id": requirement_id,
         "flow_id": FLOW_ID,
@@ -269,20 +384,20 @@ def _runtime_requirement(
             f"pure_doc:{DOC_ID}",
             f"pure_section:{section}",
             f"pure_extraction:{extraction_mode}",
-            *(["pure_requirement:contextualized_feature"] if extraction_mode == "manual_grouping" else []),
+            *(["pure_requirement:contextualized_feature"] if contextualized else []),
         ],
         "origin": origin,
         "review_status": "candidate",
         "step_indices": sorted(set(evidence_steps)),
-        "rationale": "Frozen pre-label candidate with document and screenshot provenance; manual verification is pending.",
+        "rationale": "Source-grounded benchmark requirement with document and screenshot provenance; manual verification is pending.",
         "confidence": "MEDIUM",
         "source_harvest_id": source_id,
         "parent_harvest_text": parent_harvest_text,
         "source_document": SOURCE_PDF,
         "source_pages": source_pages,
         "source_section": section,
-        "candidate_origin": "VISIBLE_CORE_REWRITE" if extraction_mode == "manual_grouping" else "DIRECT_FROM_HARVEST",
-        "benchmark_decision": "REWRITE_TO_VISIBLE_CORE" if extraction_mode == "manual_grouping" else "DIRECT_INCLUDE",
+        "candidate_origin": candidate_origin,
+        "benchmark_decision": benchmark_decision,
         "grounding_scope": "DIRECT_FLOW_GROUNDED",
         "requirement_type": "FR",
         "ui_evaluability": "UI_VERIFIABLE",
@@ -307,6 +422,32 @@ def build_outputs(args: argparse.Namespace) -> tuple[list[dict[str, Any]], list[
         item for item in legacy_data.get("requirements", [])
         if item.get("requirement_id") in {f"PURE-REQ-{index:03d}" for index in range(1, 7)}
     ]
+    repaired_legacy = []
+    for item in legacy:
+        repair = LEGACY_CONTEXT_REPAIRS.get(item["requirement_id"])
+        if not repair:
+            repaired_legacy.append(item)
+            continue
+        repaired = dict(item)
+        repaired.update({
+            "text": repair["text"],
+            "origin": "human",
+            "step_indices": repair["evidence_steps"],
+            "evidence_steps": repair["evidence_steps"],
+            "source_pages": repair["source_pages"],
+            "source_section": repair["source_section"],
+            "claims": _claim_entries(item["requirement_id"], repair["claims"]),
+            "candidate_origin": "VISIBLE_CORE_REWRITE",
+            "benchmark_decision": "REWRITE_TO_VISIBLE_CORE",
+            "rationale": "Recovered verbatim from the complete source paragraph after the legacy extractor captured only its final sentence.",
+            "parent_harvest_text": item["text"],
+        })
+        repaired["tags"] = sorted(set([
+            *item.get("tags", []),
+            "pure_extraction:source_context_repair",
+        ]))
+        repaired_legacy.append(repaired)
+    legacy = repaired_legacy
 
     runtime = []
     for item in legacy:
@@ -347,6 +488,27 @@ def build_outputs(args: argparse.Namespace) -> tuple[list[dict[str, Any]], list[
             )
         )
 
+    extracted_by_id = {
+        str(candidate["candidate_id"]): candidate
+        for candidate in extracted
+    }
+    for requirement in CONTEXTUALIZED_EXPLICIT_REQUIREMENTS:
+        source = extracted_by_id[requirement["source_id"]]
+        runtime.append(
+            _runtime_requirement(
+                requirement_id=requirement["requirement_id"],
+                text=requirement["text"],
+                source_id=requirement["source_id"],
+                section=requirement["section"],
+                source_pages=requirement["source_pages"],
+                evidence_steps=requirement["evidence_steps"],
+                claims=requirement["claims"],
+                origin="human",
+                extraction_mode="source_contextualization",
+                parent_harvest_text=str(source["requirement_text"]),
+            )
+        )
+
     review_rows: list[dict[str, Any]] = []
     for item in legacy:
         review_rows.append({
@@ -370,12 +532,17 @@ def build_outputs(args: argparse.Namespace) -> tuple[list[dict[str, Any]], list[
             candidate["candidate_id"],
             contextualized_ids,
         )
+        promoted_id = EXPLICIT_PROMOTIONS.get(candidate["candidate_id"])
+        if promoted_id:
+            contextualized_ids = [promoted_id]
         review_rows.append({
             "record_type": "pdf_extraction",
             **candidate,
             "source_page": _page_from_candidate(candidate),
             "review_decision": (
-                "exclude_from_runtime_contextual_fragment"
+                "include_after_source_contextualization"
+                if promoted_id
+                else "exclude_from_runtime_contextual_fragment"
                 if is_explicit
                 else "source_for_grouped_ui_requirement"
             ),
@@ -385,9 +552,16 @@ def build_outputs(args: argparse.Namespace) -> tuple[list[dict[str, Any]], list[
                 else contextualized_ids
             ),
             "contextualization_note": (
-                "Retained verbatim for source provenance only. It is not a standalone runtime requirement; "
+                "Promoted after restoring the feature context stated in the surrounding PDF section; no screenshot-derived capability was added."
+                if promoted_id
+                else "Retained verbatim for source provenance only. It is not a standalone runtime requirement; "
                 "its feature-level context is represented by the listed composed requirements."
                 if is_explicit
+                else None
+            ),
+            "exclusion_reason": (
+                EXPLICIT_EXCLUSION_REASONS.get(candidate["candidate_id"])
+                if is_explicit and not promoted_id
                 else None
             ),
             "source_document": SOURCE_PDF,
@@ -414,6 +588,12 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=BASE_DIR / "data/annotations/requirement_inspection/pure" / f"{FLOW_ID}_extraction_review.jsonl",
     )
+    parser.add_argument(
+        "--pending-out",
+        type=Path,
+        default=BASE_DIR / "data/annotations/requirements_candidate" / FLOW_ID / "candidate_requirements.json",
+        help="Tracked reviewer queue. PURE promotions go directly to gold, so this is emptied after adjudication.",
+    )
     return parser.parse_args()
 
 
@@ -436,9 +616,22 @@ def main() -> None:
         "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in review_rows),
         encoding="utf-8",
     )
+    pending_payload = {
+        "dataset": "pure",
+        "flow_id": FLOW_ID,
+        "flow_overview": "Adjudicated PURE Split/Merge candidate queue; accepted source items were moved to the benchmark.",
+        "capability_summary": [],
+        "requirements": [],
+    }
+    args.pending_out.parent.mkdir(parents=True, exist_ok=True)
+    args.pending_out.write_text(
+        json.dumps(pending_payload, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
     print(f"requirements={len(runtime)} review_rows={len(review_rows)}")
     print(f"candidate_out={args.candidate_out}")
     print(f"review_out={args.review_out}")
+    print(f"pending_out={args.pending_out}")
 
 
 if __name__ == "__main__":

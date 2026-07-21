@@ -17,7 +17,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from PIL import Image, ImageOps, UnidentifiedImageError
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from ui_verifier.annotation.service import AnnotationService
 from ui_verifier.model_config import all_model_role_configs, model_config_path, model_name_for, temperature_for
@@ -32,7 +32,15 @@ from ui_verifier.requirements.schemas import RequirementReviewStatus
 from ui_verifier.common.json_utils import parse_json_response
 from ui_verifier.common.flow_utils import parse_step_number
 from ui_verifier.evaluation.prediction_coverage import coverage_for_files
-from ui_verifier.localization import TextBoxLocalizer, ensure_ocr_sidecar
+from ui_verifier.evaluation.review_audit import (
+    EvaluationAuditStore,
+    bbox_metrics,
+    classification_metrics,
+    validate_bbox_review,
+    validate_ui_review,
+)
+from ui_verifier.localization import TextBoxLocalizer, ensure_ocr_sidecar, load_ocr_text_boxes
+from ui_verifier.localization.candidate_ranking import rank_candidates
 from ui_verifier.verification.schemas import (
     ClaimEvidence,
     ClaimEvidenceStatus,
@@ -44,6 +52,7 @@ from ui_verifier.verification.schemas import (
 )
 from ui_verifier.verification.service import VerificationService
 from ui_verifier.verification.storage import VerificationStorage
+from ui_verifier.verification_pipeline.requirement_understanding import RequirementUnderstanding
 
 
 def _ensure_static_dir(path: Path) -> Path:
@@ -63,6 +72,8 @@ BASE_DIR = Path(__file__).resolve().parents[3]
 GENERATED_ROOT = BASE_DIR / "data" / "generated"
 REQUIREMENTS_GOLD_ROOT = BASE_DIR / "data" / "annotations" / "requirements_gold"
 VERIFICATION_GOLD_ROOT = BASE_DIR / "data" / "annotations" / "verification_gold"
+EVALUATION_AUDIT_ROOT = BASE_DIR / "data" / "annotations" / "evaluation_audits"
+OMNIPARSER_CANDIDATE_ROOT = GENERATED_ROOT / "omniparser_candidate_marks"
 RUN_OUTPUT_DIR_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.-]{0,80}$")
 UPLOAD_PROJECT_SLUG_RE = re.compile(r"[^a-z0-9]+")
 MAX_UPLOAD_SCREENSHOTS = 20
@@ -233,6 +244,35 @@ class BoundingBoxSuggestionRequest(BaseModel):
     tesseract_cmd: str = "tesseract"
 
 
+class UiEvaluabilityAuditReviewRequest(BaseModel):
+    reviewer_id: str
+    label: str
+    rationale: str = ""
+    confidence: float = 0.5
+    ambiguous: bool = False
+
+
+class BoundingBoxAuditReviewRequest(BaseModel):
+    reviewer_id: str
+    applicability: str
+    gold_boxes: list[dict[str, float]] = Field(default_factory=list)
+    evidence_note: str = ""
+    gold_locked: bool = False
+    relevance: str = "NOT_APPLICABLE"
+    sufficiency: str = "NOT_APPLICABLE"
+    error_categories: list[str] = Field(default_factory=list)
+
+
+class BoundingBoxInspectionJudgmentRequest(BaseModel):
+    status: str
+    note: str = ""
+    error_category: str | None = None
+
+
+class BoundingBoxCandidateSelectionRequest(BaseModel):
+    candidate_id: str
+
+
 def _repo_relative(path: Path) -> str:
     try:
         return str(path.resolve().relative_to(BASE_DIR.resolve()))
@@ -391,11 +431,22 @@ def _iter_verification_run_paths() -> list[Path]:
     ]
     paths: list[Path] = []
     seen: set[Path] = set()
+    ignored_nested_directories = {
+        "active",
+        "cache",
+        "failed_topk",
+        "fallback_single_call",
+        "intermediate",
+        "pilot",
+    }
     for root in roots:
         if not root.exists():
             continue
-        for path in root.glob("*.json"):
-            if path.name.startswith("metrics"):
+        for path in root.rglob("*.json"):
+            relative_parts = path.relative_to(root).parts[:-1]
+            if any(part in ignored_nested_directories for part in relative_parts):
+                continue
+            if path.name.startswith("metrics") or path.name in {"summary.json", "gold_01_13.json"}:
                 continue
             resolved = path.resolve()
             if resolved in seen:
@@ -421,6 +472,31 @@ def _run_entry_from_data(path: Path, data: dict[str, Any]) -> dict[str, Any]:
             label = str(result.get("final_label") or "UNKNOWN")
             label_distribution[label] = int(label_distribution.get(label, 0)) + 1
 
+    evidence_items: list[dict[str, Any]] = []
+    for result in results:
+        if not isinstance(result, dict):
+            continue
+        claims = result.get("claims") if isinstance(result.get("claims"), list) else []
+        claim_evidence = [
+            evidence
+            for claim in claims
+            if isinstance(claim, dict)
+            for evidence in (claim.get("evidence") if isinstance(claim.get("evidence"), list) else [])
+            if isinstance(evidence, dict)
+        ]
+        if claim_evidence:
+            evidence_items.extend(claim_evidence)
+        else:
+            evidence_items.extend(
+                evidence
+                for evidence in (result.get("evidence") if isinstance(result.get("evidence"), list) else [])
+                if isinstance(evidence, dict)
+            )
+    bbox_evidence_count = sum(
+        isinstance(evidence.get("bbox"), list) and len(evidence["bbox"]) == 4
+        for evidence in evidence_items
+    )
+
     return {
         "run_id": _run_id_for_path(path),
         "flow_id": data.get("flow_id"),
@@ -436,6 +512,10 @@ def _run_entry_from_data(path: Path, data: dict[str, Any]) -> dict[str, Any]:
         "requirements_count": metadata.get("requirements_count") or len(results),
         "label_distribution": label_distribution,
         "metrics_available": _metrics_available_for(path),
+        "evidence_count": len(evidence_items),
+        "bbox_evidence_count": bbox_evidence_count,
+        "has_pipeline_evidence": bool(evidence_items),
+        "has_bbox_evidence": bbox_evidence_count > 0,
     }
 
 
@@ -468,7 +548,12 @@ def _step_image_path_for_localization(flow_id: str, step_index: int) -> Path:
     visible_paths = flow_catalog._visible_step_paths(dataset, flow_id, flow_dir)
     for step_path in visible_paths:
         if parse_step_number(step_path) == step_index:
-            return flow_catalog._preferred_step_image_path(flow_dir, flow_id, step_path)
+            preferred = flow_catalog._preferred_step_image_path(flow_dir, flow_id, step_path)
+            if load_ocr_text_boxes(preferred):
+                return preferred
+            if load_ocr_text_boxes(step_path):
+                return step_path
+            return preferred
     raise FileNotFoundError(f"Step {step_index} not found for flow {flow_id}.")
 
 
@@ -769,6 +854,352 @@ def suggest_bounding_boxes(flow_id: str, body: BoundingBoxSuggestionRequest) -> 
         raise HTTPException(status_code=404, detail=str(e)) from e
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e)) from e
+
+
+def _audit_store() -> EvaluationAuditStore:
+    # Construct from the current module-level root so tests and local deployments can override it safely.
+    return EvaluationAuditStore(EVALUATION_AUDIT_ROOT)
+
+
+def _omniparser_candidates(flow_id: str, step_index: int) -> tuple[Path, list[dict[str, Any]]]:
+    if not OMNIPARSER_CANDIDATE_ROOT.exists():
+        raise FileNotFoundError("No local OmniParser candidate package is available.")
+    packages = sorted(
+        OMNIPARSER_CANDIDATE_ROOT.glob("*/candidates.json"),
+        key=lambda path: path.stat().st_mtime,
+        reverse=True,
+    )
+    for path in packages:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        if payload.get("flow_id") != flow_id:
+            continue
+        steps = payload.get("steps") or {}
+        candidates = steps.get(str(step_index))
+        if isinstance(candidates, list):
+            return path, candidates
+    raise FileNotFoundError(f"No local OmniParser candidates for {flow_id} step {step_index}.")
+
+
+def _bbox_audit_item(audit_id: str, item_id: str) -> dict[str, Any]:
+    manifest = _audit_store().load_public_manifest(audit_id, "bbox")
+    item = next((value for value in manifest.get("items", []) if value.get("audit_item_id") == item_id), None)
+    if item is None:
+        raise KeyError(item_id)
+    return item
+
+
+@app.get("/evaluation-audits")
+def list_evaluation_audits() -> list[dict[str, Any]]:
+    return _audit_store().list_audits()
+
+
+@app.get("/evaluation-audits/{audit_id}/ui-items")
+def get_ui_evaluability_audit_items(audit_id: str, reviewer_id: str) -> dict[str, Any]:
+    try:
+        return _audit_store().public_items_for_reviewer(audit_id, reviewer_id, "ui")
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="UI-evaluability audit bundle not found.") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.get("/evaluation-audits/{audit_id}/inspection/ui-items")
+def get_ui_evaluability_inspection_items(audit_id: str) -> dict[str, Any]:
+    """Return trusted manual labels beside deterministic pipeline labels for inspection."""
+    store = _audit_store()
+    try:
+        manifest = store.load_public_manifest(audit_id, "ui")
+        references = store.load_private_reference(audit_id, "ui").get("items", {})
+        classifier = RequirementUnderstanding()
+        items = []
+        for item in manifest.get("items", []):
+            item_id = item["audit_item_id"]
+            manual_label = references.get(item_id, {}).get("gold_label")
+            pipeline_label = classifier.classify_ui_evaluability(str(item.get("requirement_text") or "")).value
+            items.append(
+                {
+                    **item,
+                    "manual_label": manual_label,
+                    "pipeline_label": pipeline_label,
+                    "labels_match": manual_label == pipeline_label,
+                    "structural_conflict_reasons": references.get(item_id, {}).get("structural_conflict_reasons", []),
+                }
+            )
+        return {
+            **manifest,
+            "blind": False,
+            "inspection_mode": True,
+            "items": items,
+        }
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="UI-evaluability audit bundle not found.") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.put("/evaluation-audits/{audit_id}/ui-items/{item_id}")
+def save_ui_evaluability_audit_review(
+    audit_id: str,
+    item_id: str,
+    body: UiEvaluabilityAuditReviewRequest,
+) -> dict[str, Any]:
+    store = _audit_store()
+    try:
+        review = validate_ui_review(body.model_dump(exclude={"reviewer_id"}))
+        stored = store.save_review(audit_id, body.reviewer_id, "ui", item_id, review)
+        return {"audit_item_id": item_id, "review": stored}
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="UI-evaluability audit bundle not found.") from exc
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=f"UI audit item not found: {item_id}") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.get("/evaluation-audits/{audit_id}/bbox-items")
+def get_bounding_box_audit_items(audit_id: str, reviewer_id: str) -> dict[str, Any]:
+    try:
+        return _audit_store().public_items_for_reviewer(audit_id, reviewer_id, "bbox")
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="Bounding-box audit bundle not found.") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.get("/evaluation-audits/{audit_id}/inspection/bbox-items")
+def get_bounding_box_inspection_items(audit_id: str) -> dict[str, Any]:
+    """Reveal the stored OCR boxes directly; no annotation or locking is required."""
+    store = _audit_store()
+    try:
+        manifest = store.load_public_manifest(audit_id, "bbox")
+        references = store.load_private_reference(audit_id, "bbox").get("items", {})
+        judgments = store.load_bbox_inspection_judgments(audit_id).get("items", {})
+        candidate_selections = store.load_bbox_candidate_selections(audit_id).get("items", {})
+        items = []
+        for item in manifest.get("items", []):
+            reference = references.get(item["audit_item_id"], {})
+            items.append(
+                {
+                    **item,
+                    "prediction": reference.get("prediction"),
+                    "all_suggestions": reference.get("all_suggestions", []),
+                    "claim_status": reference.get("claim_status"),
+                    "claim_type": reference.get("claim_type"),
+                    "inspection_judgment": judgments.get(item["audit_item_id"]),
+                    "candidate_selection": candidate_selections.get(item["audit_item_id"]),
+                }
+            )
+        return {
+            **manifest,
+            "blind": False,
+            "inspection_mode": True,
+            "items": items,
+        }
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="Bounding-box audit bundle not found.") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.get("/evaluation-audits/{audit_id}/inspection/bbox-items/{item_id}/omniparser-candidates")
+def get_omniparser_bbox_candidates(audit_id: str, item_id: str) -> dict[str, Any]:
+    try:
+        item = _bbox_audit_item(audit_id, item_id)
+        package_path, candidates = _omniparser_candidates(str(item["flow_id"]), int(item["step_index"]))
+        width = float(item["image_width"])
+        height = float(item["image_height"])
+        valid_candidates: list[dict[str, Any]] = []
+        for candidate in candidates:
+            bbox = candidate.get("bbox")
+            if not isinstance(bbox, list) or len(bbox) != 4:
+                continue
+            x1, y1, x2, y2 = (float(value) for value in bbox)
+            if not (0 <= x1 < x2 <= width and 0 <= y1 < y2 <= height):
+                continue
+            valid_candidates.append({**candidate, "bbox": [x1, y1, x2, y2]})
+        ranked_candidates = rank_candidates(
+            valid_candidates,
+            claim_text=str(item.get("claim_text") or ""),
+            requirement_text=str(item.get("requirement_text") or ""),
+            image_width=width,
+            image_height=height,
+        )
+        serialized_candidates = [
+            {
+                **candidate,
+                "bbox": {
+                    "x1": candidate["bbox"][0],
+                    "y1": candidate["bbox"][1],
+                    "x2": candidate["bbox"][2],
+                    "y2": candidate["bbox"][3],
+                },
+            }
+            for candidate in ranked_candidates
+        ]
+        return {
+            "flow_id": item["flow_id"],
+            "step_index": item["step_index"],
+            "image_width": item["image_width"],
+            "image_height": item["image_height"],
+            "package": _repo_relative(package_path),
+            "ranking_method": "local_florence_caption_plus_ocr_tfidf_v1",
+            "candidates": serialized_candidates,
+        }
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=f"Bounding-box audit item not found: {item_id}") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.put("/evaluation-audits/{audit_id}/inspection/bbox-items/{item_id}/omniparser-selection")
+def save_omniparser_bbox_selection(
+    audit_id: str,
+    item_id: str,
+    body: BoundingBoxCandidateSelectionRequest,
+) -> dict[str, Any]:
+    try:
+        item = _bbox_audit_item(audit_id, item_id)
+        package_path, candidates = _omniparser_candidates(str(item["flow_id"]), int(item["step_index"]))
+        candidate_id = body.candidate_id.strip().upper()
+        candidate = next(
+            (value for value in candidates if str(value.get("candidate_id") or "").upper() == candidate_id),
+            None,
+        )
+        if candidate is None:
+            raise ValueError(f"Unknown OmniParser candidate: {candidate_id}")
+        bbox = candidate.get("bbox")
+        if not isinstance(bbox, list) or len(bbox) != 4:
+            raise ValueError("Candidate has no valid bounding box.")
+        x1, y1, x2, y2 = (float(value) for value in bbox)
+        width = float(item["image_width"])
+        height = float(item["image_height"])
+        if not (0 <= x1 < x2 <= width and 0 <= y1 < y2 <= height):
+            raise ValueError("Candidate bounding box is outside the audit image.")
+        stored = _audit_store().save_bbox_candidate_selection(
+            audit_id,
+            item_id,
+            {
+                "candidate_id": candidate_id,
+                "source": candidate.get("source"),
+                "text": candidate.get("text") or "",
+                "confidence": candidate.get("confidence"),
+                "bbox": {"x1": x1, "y1": y1, "x2": x2, "y2": y2},
+                "package": _repo_relative(package_path),
+            },
+        )
+        return {"audit_item_id": item_id, "candidate_selection": stored}
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=f"Bounding-box audit item not found: {item_id}") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.put("/evaluation-audits/{audit_id}/inspection/bbox-items/{item_id}")
+def save_bounding_box_inspection_judgment(
+    audit_id: str,
+    item_id: str,
+    body: BoundingBoxInspectionJudgmentRequest,
+) -> dict[str, Any]:
+    status = body.status.strip().upper()
+    if status not in {"VALID", "INCORRECT", "UNCERTAIN"}:
+        raise HTTPException(status_code=400, detail="status must be VALID, INCORRECT, or UNCERTAIN.")
+    error_category = str(body.error_category or "").strip().upper() or None
+    if error_category not in {None, "MISALIGNED", "WRONG_LOCATION", "SEMANTIC_ERROR"}:
+        raise HTTPException(status_code=400, detail="Unsupported bounding-box error category.")
+    if status != "INCORRECT":
+        error_category = None
+    try:
+        stored = _audit_store().save_bbox_inspection_judgment(
+            audit_id,
+            item_id,
+            {"status": status, "note": body.note.strip(), "error_category": error_category},
+        )
+        return {"audit_item_id": item_id, "inspection_judgment": stored}
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="Bounding-box audit bundle not found.") from exc
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=f"Bounding-box audit item not found: {item_id}") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.put("/evaluation-audits/{audit_id}/bbox-items/{item_id}")
+def save_bounding_box_audit_review(
+    audit_id: str,
+    item_id: str,
+    body: BoundingBoxAuditReviewRequest,
+) -> dict[str, Any]:
+    store = _audit_store()
+    try:
+        manifest = store.load_public_manifest(audit_id, "bbox")
+        item = next((value for value in manifest.get("items", []) if value.get("audit_item_id") == item_id), None)
+        if item is None:
+            raise KeyError(item_id)
+        previous = store.load_reviews(audit_id, body.reviewer_id, "bbox").get("items", {}).get(item_id)
+        review = validate_bbox_review(
+            body.model_dump(exclude={"reviewer_id"}),
+            image_width=int(item["image_width"]),
+            image_height=int(item["image_height"]),
+        )
+        if previous and previous.get("gold_locked"):
+            protected_fields = ("applicability", "gold_boxes", "evidence_note")
+            if any(previous.get(field) != review.get(field) for field in protected_fields):
+                raise ValueError("The blinded gold annotation is locked and cannot be changed during prediction review.")
+            review["gold_locked"] = True
+        stored = store.save_review(audit_id, body.reviewer_id, "bbox", item_id, review)
+        response = {"audit_item_id": item_id, "review": stored}
+        if stored.get("gold_locked"):
+            response["prediction"] = store.load_private_reference(audit_id, "bbox").get("items", {}).get(item_id, {}).get("prediction")
+        return response
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="Bounding-box audit bundle not found.") from exc
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=f"Bounding-box audit item not found: {item_id}") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.get("/evaluation-audits/{audit_id}/metrics")
+def get_evaluation_audit_metrics(audit_id: str, reviewer_id: str) -> dict[str, Any]:
+    store = _audit_store()
+    try:
+        ui_reference = store.load_private_reference(audit_id, "ui").get("items", {})
+        ui_reviews = store.load_reviews(audit_id, reviewer_id, "ui").get("items", {})
+        ui_pairs = [
+            (ui_reference[item_id]["gold_label"], review["label"])
+            for item_id, review in ui_reviews.items()
+            if item_id in ui_reference and review.get("label")
+        ]
+        ui_required = len(store.load_public_manifest(audit_id, "ui").get("items", []))
+        ui_agreement: dict[str, Any]
+        if len(ui_pairs) == ui_required:
+            ui_agreement = classification_metrics(ui_pairs)
+        else:
+            # Partial agreement would tell a blinded reviewer whether each submitted
+            # label matched the hidden reference, especially early in the audit.
+            ui_agreement = {
+                "status": "pending",
+                "reviewed": len(ui_pairs),
+                "required": ui_required,
+                "reason": "Agreement is withheld until the blinded UI review is complete.",
+            }
+        bbox_manifest = store.load_public_manifest(audit_id, "bbox")
+        bbox_reference = store.load_private_reference(audit_id, "bbox").get("items", {})
+        bbox_reviews = store.load_reviews(audit_id, reviewer_id, "bbox").get("items", {})
+        return {
+            "audit_id": audit_id,
+            "reviewer_id": reviewer_id,
+            "ui_evaluability_agreement": ui_agreement,
+            "bounding_box_localization": bbox_metrics(bbox_manifest.get("items", []), bbox_reference, bbox_reviews),
+        }
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="Evaluation audit bundle not found.") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 

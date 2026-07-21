@@ -1,0 +1,75 @@
+{
+  "schema_version": "bbox_inspection_judgments_v1",
+  "items": {
+    "BBOX-001": {
+      "status": "INCORRECT",
+      "note": "",
+      "updated_at": "2026-07-19T12:15:56.695100+00:00"
+    },
+    "BBOX-002": {
+      "status": "INCORRECT",
+      "note": "The range is below.",
+      "updated_at": "2026-07-19T12:17:07.858602+00:00"
+    },
+    "BBOX-003": {
+      "status": "INCORRECT",
+      "note": "",
+      "updated_at": "2026-07-19T12:17:40.798202+00:00"
+    },
+    "BBOX-004": {
+      "status": "INCORRECT",
+      "note": "",
+      "updated_at": "2026-07-19T12:18:16.579851+00:00"
+    },
+    "BBOX-005": {
+      "status": "INCORRECT",
+      "note": "",
+      "updated_at": "2026-07-19T12:24:44.967905+00:00"
+    },
+    "BBOX-006": {
+      "status": "INCORRECT",
+      "note": "",
+      "updated_at": "2026-07-19T12:25:14.685492+00:00"
+    },
+    "BBOX-007": {
+      "status": "INCORRECT",
+      "note": "",
+      "updated_at": "2026-07-19T12:26:01.766018+00:00"
+    },
+    "BBOX-008": {
+      "status": "INCORRECT",
+      "note": "",
+      "updated_at": "2026-07-19T12:26:14.038616+00:00"
+    },
+    "BBOX-009": {
+      "status": "INCORRECT",
+      "note": "",
+      "updated_at": "2026-07-19T12:28:56.452810+00:00"
+    },
+    "BBOX-011": {
+      "status": "INCORRECT",
+      "note": "",
+      "updated_at": "2026-07-19T12:31:01.049092+00:00"
+    },
+    "BBOX-012": {
+      "status": "INCORRECT",
+      "note": "",
+      "updated_at": "2026-07-19T12:31:55.762444+00:00"
+    },
+    "BBOX-013": {
+      "status": "INCORRECT",
+      "note": "",
+      "updated_at": "2026-07-19T12:32:38.522289+00:00"
+    },
+    "BBOX-014": {
+      "status": "UNCERTAIN",
+      "note": "",
+      "updated_at": "2026-07-19T12:33:40.392487+00:00"
+    },
+    "BBOX-015": {
+      "status": "INCORRECT",
+      "note": "",
+      "updated_at": "2026-07-19T12:34:14.739177+00:00"
+    }
+  }
+}

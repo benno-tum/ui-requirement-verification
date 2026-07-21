@@ -26,7 +26,7 @@ BatchJob = tuple[RequirementClaim, list[EvidenceItem], UIEvaluability]
 
 
 class BatchedGeminiImageClaimVerifier(GeminiImageClaimVerifier):
-    prompt_version = "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V1"
+    prompt_version = "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS"
 
     def __init__(
         self,
@@ -460,6 +460,9 @@ Strict label rules:
 - Direct transition claims require a visible affordance or demonstrated navigation from the relevant state.
 - NOT_FULFILLED requires contradiction: an incompatible UI state, a conflicting alternative, explicit failure, or visible behavior that makes the claim false.
 - Mere missing evidence usually means ABSTAIN at the requirement level, so use MISSING for a claim unless there is visible counter-evidence.
+- For every cited screenshot, identify the smallest semantically sufficient visible region or regions for the exact claim. Do not box a page title or nearby keyword when a specific value, control, message, list, range, or state is the evidence.
+- Return multiple regions when the claim depends on multiple indicators. Do not invent a local box for absent, whole-screen, or transition-only evidence.
+- `box_2d` uses `[ymin, xmin, ymax, xmax]` normalized to integers from 0 to 1000 relative to the original attached screenshot.
 
 Claim statuses:
 - SUPPORTED: clear visible screenshot evidence.
@@ -481,6 +484,15 @@ Return JSON only:
       "evidence_step_indices": [1],
       "uncertainty_reasons": ["TEXTUAL_AMBIGUITY | SCOPE_OR_CONTEXT_AMBIGUITY | QUANTIFIER_OR_COMPLETENESS_AMBIGUITY | EVIDENCE_INTERPRETATION_AMBIGUITY | FLOW_COVERAGE_GAP | UNVERIFIED_SYSTEM_OUTCOME | NONTRIVIAL_HIDDEN_PROPERTY"],
       "visible_observations": ["short visible observation tied to screenshot evidence"],
+      "evidence_regions": [
+        {{
+          "step_index": 1,
+          "box_2d": [100, 120, 240, 760],
+          "description": "specific visible indicator captured by this region",
+          "role": "SUPPORTING | CONTRADICTING | PARTIAL",
+          "localizability": "LOCAL_REGION | MULTI_REGION_PART"
+        }}
+      ],
       "rationale": "short explanation"
     }}
   ]

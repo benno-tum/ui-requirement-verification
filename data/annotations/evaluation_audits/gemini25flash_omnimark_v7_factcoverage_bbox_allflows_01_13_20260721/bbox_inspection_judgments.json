@@ -1,0 +1,77 @@
+{
+  "schema_version": "bbox_inspection_judgments_v1",
+  "items": {
+    "GBBOX-0001": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T23:51:42.324709+00:00"
+    },
+    "GBBOX-0002": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T23:51:54.489732+00:00"
+    },
+    "GBBOX-0003": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T23:52:03.674128+00:00"
+    },
+    "GBBOX-0004": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T23:52:19.074654+00:00"
+    },
+    "GBBOX-0005": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T23:52:29.753433+00:00"
+    },
+    "GBBOX-0006": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T23:52:41.053666+00:00"
+    },
+    "GBBOX-0010": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T23:53:10.004712+00:00"
+    },
+    "GBBOX-0007": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "WRONG_LOCATION",
+      "updated_at": "2026-07-20T23:53:28.282394+00:00"
+    },
+    "GBBOX-0008": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T23:53:36.384695+00:00"
+    },
+    "GBBOX-0011": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T23:54:01.922752+00:00"
+    },
+    "GBBOX-0012": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T23:54:06.001915+00:00"
+    },
+    "GBBOX-0013": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T23:54:22.504410+00:00"
+    }
+  }
+}
