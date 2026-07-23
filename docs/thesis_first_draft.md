@@ -244,6 +244,33 @@ Automatic gated decomposition does not consistently improve accuracy, false fulf
 
 An offline policy counterfactual replaced every native `ABSTAIN` with `NOT_FULFILLED` without making new model calls. Accuracy fell from 0.795 to 0.702 for raw/all and from 0.736 to 0.643 for gated/top-4; macro-F1 fell to 0.331 and 0.305. False fulfillment was unchanged because the policy cannot generate a positive label. The result shows that treating absence of sufficient evidence as a negative verdict is harmful on this benchmark. It does not show that every abstention is calibrated or that abstention causally reduces unsafe positive predictions.
 
+### 7.6 Run-to-Run Stability
+
+Two independent repetitions were executed for the raw/all and gated/top-4
+Gemini anchors and for the hosted Qwen raw/shared-top-4 baseline. Every
+repetition covered all 13 flows and 258 items. The new Gemini runs used 160
+first-attempt API calls without cache hits, fallbacks, or failures; the Qwen
+runs used 78 first-attempt calls, were served by Alibaba with provider fallbacks
+disabled, and likewise recorded no failures.
+
+Gemini produced exactly the same requirement label for every item in all three
+executions of both configurations. Raw/all therefore remains at 0.795 accuracy
+and 0.514 macro-F1 in every run, while gated/top-4 remains at 0.736 accuracy and
+0.518 macro-F1. Screenshot-step evidence was not perfectly invariant: raw/all
+evidence MRR ranges from 0.712 to 0.716 and gated/top-4 from 0.607 to 0.610.
+
+Qwen shows small but measurable variation. Across three executions, accuracy
+ranges from 0.705 to 0.713, macro-F1 from 0.345 to 0.356, false fulfillment from
+0.185 to 0.189, and evidence MRR from 0.622 to 0.635. Pairwise label agreement
+ranges from 0.965 to 0.988, with Cohen's kappa between 0.906 and 0.969. These
+figures indicate strong descriptive stability without implying determinism or
+treating repeated executions on the same benchmark as independent samples.
+
+The six repetitions cost approximately USD 1.1245 in recorded successful
+inference usage. Bounding boxes were not requested in the Qwen runs. The Gemini
+prompt did produce unvalidated free-form visual regions, but the mature
+evaluated evidence contribution remains screenshot-step traceability.
+
 The matched raw/all comparison also provides a model-sensitivity result for RQ1. Gemini 3.1 Flash-Lite reaches 79.5% accuracy compared with 73.3% for Gemini 2.5 Flash-Lite. The paired flow-cluster bootstrap estimates an accuracy difference of 6.2 percentage points with a 95% interval from 1.6 to 10.8. The models assign the same label to 83.3% of items; Cohen's kappa is 0.616.
 
 A separate hosted open-weight baseline compares Qwen3-VL-8B-Instruct with Gemini 3.1 Flash-Lite under the same raw-requirement, batched shared-top-4 evidence condition. Both reach 71.3% accuracy and essentially identical evidence MRR (0.622 and 0.621). Their label agreement is 81.0% and Cohen's kappa is 0.559. The equality in accuracy hides a safety-relevant difference: Qwen's false-fulfillment rate is 18.5%, 7.4 percentage points above Flash-Lite (flow-cluster bootstrap 95% interval +2.5 to +12.6), and its macro-F1 is lower at 0.356. This comparison supports cross-provider model sensitivity while showing that headline accuracy alone is insufficient. Qwen was accessed through OpenRouter on Alibaba infrastructure; its Apache-2.0 weights are available, but the hosted serving stack and quantization remain opaque.

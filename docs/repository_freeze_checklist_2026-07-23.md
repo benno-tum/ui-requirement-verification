@@ -1,6 +1,7 @@
 # Repository Freeze Checklist
 
-Status: pre-run cleanup checklist, 23 July 2026.
+Status: stability runs completed; human review and release decision remain,
+23 July 2026.
 
 ## Versioned core
 
@@ -36,13 +37,13 @@ Status: pre-run cleanup checklist, 23 July 2026.
 
 ## Post-run acceptance criteria
 
-- 13 flow files and exactly 258 predictions per run;
-- zero missing predictions, with failures and fallbacks reported separately;
-- strict evaluator filter `^[0-9]{2}_` and full-coverage enforcement;
-- raw responses, usage, provider, runtime, token, image, and cost metadata
+- [x] 13 flow files and exactly 258 predictions per stability run;
+- [x] zero missing predictions, with failures and fallbacks reported separately;
+- [x] strict evaluator filter `^[0-9]{2}_` and full-coverage enforcement;
+- [x] raw responses, usage, provider, runtime, token, image, and cost metadata
   archived locally;
-- three-run descriptive stability and pairwise label agreement generated;
-- 3–5 qualitative examples and the RQ3 error taxonomy frozen;
-- second-reviewer sample and adjudication recorded;
-- release/licensing decision documented before copying selected artifacts into
-  `artifacts/thesis_evaluation/`.
+- [x] three-run descriptive stability and pairwise label agreement generated;
+- [x] five qualitative examples and the RQ3 error taxonomy frozen;
+- [x] blinded, stratified second-review form prepared;
+- [ ] independent reviewer responses and adjudication recorded;
+- [ ] release/licensing decision documented before publishing derived artifacts.

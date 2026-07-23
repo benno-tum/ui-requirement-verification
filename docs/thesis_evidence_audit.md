@@ -170,6 +170,34 @@ The matched Gemini 3.1 Flash-Lite raw/shared-top-4 run has the same 71.3% accura
 
 The Qwen weights are Apache-2.0, but this must be described as a hosted open-weight baseline rather than a fully independently reproduced local run. The provider serving stack and quantization are not exposed. The raw response archive records the provider, model slug, usage, cost, prompts, outputs, source-manifest hashes, and preprocessing settings.
 
+### 4.3 Completed Three-Run Stability Analysis
+
+The six prespecified repetitions completed on 23 July 2026 from clean Git commit
+`cf243be2dd641e4b90e844eccbbe97bd0325f3c6`. Each run has 13 flow files and
+258/258 predictions.
+
+The four new Gemini runs used 160 first-attempt API calls, 2,068,262 tokens, and
+approximately USD 1.0421. They recorded zero cache hits, fallbacks, or failures.
+Across the original run and both repetitions, raw/all has identical accuracy
+(79.5%), macro-F1 (0.514), false fulfillment (10.6%), abstention (19.0%), and
+100% pairwise label agreement. Gated/top-4 likewise has identical accuracy
+(73.6%), macro-F1 (0.518), false fulfillment (10.4%), abstention (26.0%), and
+100% pairwise label agreement. Evidence MRR changes slightly because evidence
+steps vary even when requirement labels do not: 0.712–0.716 for raw/all and
+0.607–0.610 for gated/top-4.
+
+The two new Qwen runs used 78 first-attempt calls, 510,370 prompt tokens, 49,882
+completion tokens, and approximately USD 0.0824. Alibaba served every call,
+fallbacks were disabled, and no failure was recorded. Across three runs,
+accuracy ranges from 70.5% to 71.3%, macro-F1 from 0.345 to 0.356, false
+fulfillment from 18.5% to 18.9%, and evidence MRR from 0.622 to 0.635. Pairwise
+label agreement is 96.5–98.8% with Cohen's κ of 0.906–0.969.
+
+The six repetitions cost approximately USD 1.1245 in recorded successful
+inference usage. The result supports strong descriptive run stability, especially
+for Gemini requirement labels. Repetitions use the same 258 items and are not
+independent benchmark samples.
+
 The following older full-coverage configurations remain useful contextual evidence. They are denominator-compatible but not a factor-controlled comparison because model strength, claim policy, screenshot selection, execution grouping, and grounding differ.
 
 | Configuration | Items / flows | Prompt, claim, and evidence strategy | Accuracy | Macro-F1 | False fulfillment | Abstain | Coverage | Estimated cost |
@@ -261,13 +289,18 @@ A visible search form can establish that the user can enter criteria and submit 
 
 ### Required
 
-- Freeze the 258-item Mind2Web benchmark and record a checksum or commit identifier.
-- Choose final configurations and reproduce every headline configuration over flows 01–13 from that frozen benchmark.
-- Store a run manifest containing model identifier, date, prompt version, claim policy, retrieval strategy, top-k, image limits, aggregation method, retries, fallbacks, runtime, tokens, image count, and cost.
+- Copy the benchmark hashes, clean-commit repetition manifests, aggregate metrics,
+  bootstrap artifact, and stability summary into the curated replication package.
+- Preserve the disclosure that the original 2x2 matrix was executed from commit
+  `b26285a5588382ede25d1ecc8b2e544918bb7b2a` with a dirty worktree, while the
+  stability repetitions were executed from clean commit
+  `cf243be2dd641e4b90e844eccbbe97bd0325f3c6`.
 - Recompute every table from the frozen manifest rather than copying summary files by hand.
-- Add an independent second review for at least a stratified sample covering every label and the main ambiguity categories; report agreement and adjudication.
+- Complete the prepared blinded 44-item independent second review and report
+  agreement and adjudication.
 - Retain the paired flow-cluster bootstrap artifact with the frozen run manifest and add a statistical-method citation. An ordered-versus-shuffled run is optional because ordering is part of the task definition rather than a current causal RQ.
-- Select and freeze 3–5 qualitative cases with requirement text, gold label, prediction, evidence steps, and a short error category.
+- Apply the frozen RQ3 taxonomy to final errors and count every category with an
+  explicit denominator. Five qualitative cases are now prespecified.
 - Decide whether the completed 10,000-sample flow-cluster bootstrap is sufficient given only 13 clusters, and document the chosen statistical method and citation.
 - Document Mind2Web/PURE licenses and specify which derived artifacts can be released.
 - Either perform a prediction-independent relevance and sufficiency review of the bounding boxes or classify region grounding as exploratory rather than a validated contribution.

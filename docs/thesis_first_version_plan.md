@@ -173,11 +173,16 @@ Summarize completed contributions and provide concise final RQ answers. Limit fu
 
 ### Before Final Results
 
-- Freeze the 258-item benchmark and exact run manifest.
-- Independently re-review a stratified annotation sample and adjudicate disagreements.
-- Retain and document the completed flow-cluster bootstrap, and decide whether a repeated-run stability check is affordable.
-- Add confidence intervals and final runtime, failure, token, image, and cost statistics.
-- Freeze 3–5 qualitative cases and the error-category protocol.
+- [x] Execute the six prespecified stability repetitions from a clean commit and
+  generate the three-run stability summary.
+- [x] Retain the flow-cluster bootstrap, aggregate metrics, sanitized execution
+  manifests, and hashes in the curated replication package.
+- [x] Freeze five qualitative cases and the RQ3 error-category protocol.
+- [x] Prepare a blinded, stratified 44-item second-review form covering every
+  flow and label.
+- [ ] Obtain the independent reviewer responses and adjudicate disagreements.
+- [ ] Add the final statistical-method citation and decide how to characterize
+  uncertainty from only 13 flow clusters.
 - Decide whether bounding boxes are an evaluated contribution or an exploratory extension.
 - Document Mind2Web/PURE licensing and artifact-release boundaries.
 

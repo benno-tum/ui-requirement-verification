@@ -245,48 +245,40 @@ The matched Gemini 3.1 Flash-Lite raw/shared-top-4 condition also reaches 71.3% 
 
 This satisfies the practical open-weight comparison recommendation but not the stronger ideal of independent local reproducibility. The Qwen weights are Apache-2.0, while the hosted provider's quantization and serving stack remain opaque. The local SmolVLM timing artifact remains excluded from benchmark results.
 
-### Prepared stability and oracle package
+### Completed stability package and optional oracle diagnostics
 
-`configs/thesis_remaining_runs.json` defines six core stability runs and two optional oracle diagnostics. Every repetition uses a distinct output and verifier-cache directory. The package intentionally excludes Gemini 3.6, shuffled-order, bounding-box, and new abstention calls.
+All six prespecified stability runs completed on 23 July 2026 from clean Git
+commit `cf243be2dd641e4b90e844eccbbe97bd0325f3c6`. Every repetition used a
+distinct output and verifier-cache directory. The package intentionally
+excluded Gemini 3.6, shuffled-order, bounding-box, and new abstention calls.
 
-Preflight only, with no API calls:
+The four Gemini repetitions contain 52/52 completed flow executions and
+1,032/1,032 predictions. All 160 API calls succeeded on their first attempt;
+there were no cache hits, fallbacks, or recorded failures. Recorded usage was
+2,068,262 tokens and approximately USD 1.0421.
 
-```bash
-python scripts/run_thesis_final_experiments.py \
-  --config configs/thesis_remaining_runs.json \
-  --tiers core \
-  --manifest-out data/generated/thesis_final_experiments/stability_preflight_manifest.json
-```
+The two Qwen repetitions contain 26/26 completed flow executions and 516/516
+predictions. All 78 calls succeeded on their first attempt. OpenRouter returned
+Alibaba for every call, provider fallbacks remained disabled, and there were no
+recorded failures. Their combined recorded usage was 510,370 prompt tokens and
+49,882 completion tokens, costing approximately USD 0.0824.
 
-The conservative preflight estimate for all six stability runs is USD 0.98–1.48. Split estimates are USD 0.90–1.38 for four Gemini repetitions and USD 0.07–0.10 for two Qwen repetitions. Based on recorded prior runs, actual cost is expected to be lower, but only the conservative bounds should authorize execution.
+The six new runs therefore cost approximately USD 1.1245 in recorded successful
+inference usage, below the USD 1.93 authorization reserve. Earlier smoke tests
+and any account-level fees are not included.
 
-After committing and confirming that the regenerated manifest records `git_dirty: false`, execute sequentially:
+The descriptive three-run analysis gives:
 
-```bash
-python scripts/run_thesis_final_experiments.py \
-  --config configs/thesis_remaining_runs.json \
-  --groups stability_gemini \
-  --workers 1 \
-  --execute \
-  --cost-ceiling-usd 1.80
+| Three-run family | Accuracy mean (SD; range) | Macro-F1 mean (SD; range) | Pairwise label agreement |
+|---|---|---|---|
+| Gemini raw/all | 79.5% (0.0; 79.5–79.5%) | 0.514 (0.000; 0.514–0.514) | 100% in every pair |
+| Gemini gated/top-4 | 73.6% (0.0; 73.6–73.6%) | 0.518 (0.000; 0.518–0.518) | 100% in every pair |
+| Qwen raw/shared-top-4 | 71.1% (0.4 pp; 70.5–71.3%) | 0.350 (0.006; 0.345–0.356) | 96.5–98.8%; κ 0.906–0.969 |
 
-python scripts/run_thesis_final_experiments.py \
-  --config configs/thesis_remaining_runs.json \
-  --groups stability_open_weight \
-  --workers 1 \
-  --execute \
-  --cost-ceiling-usd 0.14
-```
-
-The cost-ceiling argument is an authorization check, not a provider-side hard cap. Do not add `--force` to completed repetition directories: a replacement could reuse their local cache and would no longer be a clean independent execution. Use a new repetition ID instead.
-
-After all six repetitions pass strict 258-item coverage, generate the descriptive stability artifact:
-
-```bash
-python scripts/analyze_thesis_run_stability.py
-```
-
-This reports every run separately, the mean, sample standard deviation and range of each metric, and all pairwise label agreements. It explicitly does not treat three executions over the same benchmark as independent benchmark samples.
+Gemini's requirement labels were exactly stable, although evidence MRR varied
+slightly: 0.712–0.716 for raw/all and 0.607–0.610 for gated/top-4. Qwen was also
+highly stable but not deterministic at item level. Repetitions share the same
+fixed benchmark and must not be treated as independent benchmark samples.
 
 The optional reviewed-claim oracle pair is prepared separately:
 
@@ -297,7 +289,9 @@ python scripts/run_thesis_final_experiments.py \
   --manifest-out data/generated/thesis_final_experiments/oracle_preflight_manifest.json
 ```
 
-Its conservative estimate is USD 1.67–2.44 before retry reserve. It should be executed only after the stability runs and only if the remaining budget and thesis schedule justify the additional upper-bound analysis.
+Its conservative estimate is USD 1.67–2.44 before retry reserve. It remains
+optional and should be executed only if the supervisor specifically requests a
+reviewed-claim upper-bound analysis.
 
 ## 11. Completed deterministic sanity checks
 
