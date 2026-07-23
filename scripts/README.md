@@ -18,6 +18,11 @@ frozen entry points below rather than copying an older wrapper.
 - `run_abstention_policy_ablation.py`: zero-call aggregation counterfactual.
 - `audit_thesis_replication_package.py`: release gate for secrets, personal
   paths, and artifact hashes.
+- `build_verification_second_review_sample.py`: deterministic blinded,
+  label-stratified 44-item independent-review form.
+- `evaluate_verification_second_review.py`: completeness gate, agreement,
+  Cohen's kappa, confusion matrix, and adjudication queue for the completed
+  second review.
 
 ## Historical or specialized runners
 

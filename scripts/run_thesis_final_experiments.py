@@ -456,12 +456,14 @@ def main() -> None:
 
     results.sort(key=lambda item: (str(item["experiment_id"]), str(item["flow_id"])))
     result_path = OUTPUT_ROOT / "orchestration_results.json"
+    pre_execution_manifest_sha256 = sha256(manifest_path)
     result_path.write_text(
         json.dumps(
             {
                 "schema_version": "thesis_final_orchestration_results_v1",
                 "created_at": datetime.now(timezone.utc).isoformat(),
-                "manifest_sha256": sha256(manifest_path),
+                "manifest_sha256": pre_execution_manifest_sha256,
+                "manifest_hash_scope": "pre_execution_manifest",
                 "results": results,
             },
             indent=2,
@@ -469,6 +471,21 @@ def main() -> None:
         encoding="utf-8",
     )
     failures = [result for result in results if result["status"] == "failed"]
+    manifest["status"] = "execution_failed" if failures else "execution_completed"
+    manifest["completed_at"] = datetime.now(timezone.utc).isoformat()
+    manifest["execution_summary"] = {
+        "commands": len(results),
+        "completed": sum(result["status"] == "completed" for result in results),
+        "existing": sum(result["status"] == "existing" for result in results),
+        "failed": len(failures),
+        "all_output_files_exist": all(
+            Path(str(result["output"])).is_file() for result in results
+        ),
+        "orchestration_results_path": str(result_path.relative_to(BASE_DIR)),
+        "orchestration_results_sha256": sha256(result_path),
+        "pre_execution_manifest_sha256": pre_execution_manifest_sha256,
+    }
+    manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     if failures:
         raise SystemExit(f"{len(failures)} flow command(s) failed. See {result_path}.")
 
