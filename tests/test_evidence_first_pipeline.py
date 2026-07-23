@@ -157,6 +157,7 @@ def test_provided_claim_decomposition_uses_only_frozen_claim_texts(tmp_path: Pat
                     {
                         "requirement_id": "REQ-1",
                         "text": "The system supports splitting and merging.",
+                        "verification_label": "FULFILLED",
                         "claims": [
                             {"claim": "The system supports splitting.", "status": "SUPPORTED"},
                             {"claim_text": "The system supports merging.", "evidence_steps": [9]},
@@ -173,6 +174,8 @@ def test_provided_claim_decomposition_uses_only_frozen_claim_texts(tmp_path: Pat
         "The system supports splitting.",
         "The system supports merging.",
     ]
+    assert "verification_label" not in requirement.metadata
+    assert "claims" not in requirement.metadata
 
     result = RequirementUnderstanding(
         decomposition_policy="provided",
@@ -1059,6 +1062,136 @@ def test_batched_verifier_single_call_uses_all_screenshots(tmp_path: Path, monke
     assert seen_steps == [[1, 2, 3]]
     assert results[0].metadata["grouping_strategy"] == "single-call"
     assert results[0].status == ClaimStatus.MISSING
+
+
+def test_single_call_claim_chunks_each_keep_all_screenshots(tmp_path: Path) -> None:
+    image_paths = []
+    for index in range(1, 4):
+        image_path = tmp_path / f"step_{index:02d}.png"
+        Image.new("RGB", (16, 16), color="white").save(image_path)
+        image_paths.append(image_path)
+
+    verifier = BatchedGeminiImageClaimVerifier(
+        flow_id="flow-1",
+        screenshot_steps=[
+            ScreenshotStep(step_index=index, screenshot_path=str(path))
+            for index, path in enumerate(image_paths, start=1)
+        ],
+        cache_path=tmp_path / "cache.json",
+        grouping_strategy="single-call",
+        max_claims_per_group=2,
+    )
+    jobs = [
+        {
+            "index": index,
+            "claim": _claim(claim_id=f"REQ-1-C{index}", text=f"Claim {index}."),
+            "evidence": [_evidence(1)],
+            "ui_evaluability": UIEvaluability.UI_VERIFIABLE,
+            "selected_steps": [1],
+        }
+        for index in range(1, 6)
+    ]
+
+    groups = verifier._build_groups(jobs)
+
+    assert [len(group["payload"]["claims"]) for group in groups] == [2, 2, 1]
+    assert [group["step_indices"] for group in groups] == [[1, 2, 3], [1, 2, 3], [1, 2, 3]]
+
+
+def test_batched_candidate_grounding_resolves_ids_and_allows_clean_only_steps(tmp_path: Path) -> None:
+    image_paths = []
+    for index in range(1, 3):
+        image_path = tmp_path / f"step_{index:02d}.png"
+        Image.new("RGB", (100, 80), color="white").save(image_path)
+        image_paths.append(image_path)
+    assets = tmp_path / "marks"
+    assets.mkdir()
+    for suffix in ("ui_marks", "ocr_marks", "candidate_atlas"):
+        Image.new("RGB", (100, 80), color="white").save(assets / f"step_01_{suffix}.png")
+    candidates = tmp_path / "candidates.json"
+    candidates.write_text(
+        json.dumps(
+            {
+                "flow_id": "flow-1",
+                "steps": {
+                    "1": [
+                        {
+                            "candidate_id": "U01",
+                            "source": "omniparser_ui",
+                            "bbox": [10, 20, 50, 60],
+                            "text": "Search",
+                        }
+                    ]
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    verifier = BatchedGeminiImageClaimVerifier(
+        flow_id="flow-1",
+        screenshot_steps=[
+            ScreenshotStep(step_index=index, screenshot_path=str(path))
+            for index, path in enumerate(image_paths, start=1)
+        ],
+        cache_path=tmp_path / "cache.json",
+        grouping_strategy="single-call",
+        candidate_package=candidates,
+        marked_assets_dir=assets,
+        predict_ui_evaluability=True,
+    )
+
+    group = verifier._group_payload(
+        group_id="G1",
+        jobs=[
+            {
+                "claim": _claim(claim_id="REQ-1-C1", text="The page has search."),
+                "ui_evaluability": UIEvaluability.UI_VERIFIABLE,
+                "selected_steps": [1],
+            }
+        ],
+        step_indices=[1, 2],
+    )
+    regions = verifier._normalized_evidence_regions(
+        {
+            "evidence_regions": [
+                {
+                    "step_index": 1,
+                    "candidate_ids": ["U01"],
+                    "description": "Search control",
+                }
+            ]
+        },
+        [1, 2],
+    )
+
+    assert group["payload"]["attachment_order"] == [
+        {"step_index": 1, "images": ["clean", "ui_marks", "ocr_marks", "candidate_atlas"]},
+        {"step_index": 2, "images": ["clean"]},
+    ]
+    assert regions[0]["bbox"] == [10.0, 20.0, 50.0, 60.0]
+    assert regions[0]["bbox_metadata"]["candidate_id"] == "U01"
+    assert "ui_evaluability" not in group["payload"]["claims"][0]
+    result = verifier._result_from_batched_gemini(
+        verifier._group_payload(
+            group_id="G2",
+            jobs=[
+                {
+                    "claim": _claim(claim_id="REQ-1-C1", text="The page has search."),
+                    "ui_evaluability": UIEvaluability.UI_VERIFIABLE,
+                    "selected_steps": [1],
+                }
+            ],
+            step_indices=[1],
+        )["jobs"][0]["claim"],
+        {
+            "claim_status": "MISSING",
+            "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+            "evidence_step_indices": [],
+            "rationale": "The visible portion is incomplete.",
+        },
+        group,
+    )
+    assert result.metadata["model_ui_evaluability"] == "PARTIALLY_UI_VERIFIABLE"
 
 
 def test_image_verifier_retries_invalid_json_response(tmp_path: Path, monkeypatch) -> None:

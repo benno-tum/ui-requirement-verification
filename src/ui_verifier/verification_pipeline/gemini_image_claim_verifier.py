@@ -150,6 +150,9 @@ class GeminiImageClaimVerifier:
         max_retries: int = 0,
         max_api_calls: int | None = 10,
         include_sequence_context: bool = True,
+        thinking_level: str | None = None,
+        thinking_budget: int | None = None,
+        max_output_tokens: int | None = None,
         fallback: ClaimVerifier | None = None,
     ) -> None:
         self.flow_id = flow_id
@@ -161,6 +164,9 @@ class GeminiImageClaimVerifier:
         self.max_retries = max_retries
         self.max_api_calls = max_api_calls
         self.include_sequence_context = include_sequence_context
+        self.thinking_level = thinking_level
+        self.thinking_budget = thinking_budget
+        self.max_output_tokens = max_output_tokens
         self.fallback = fallback or ClaimVerifier()
         self.cache = self._load_cache()
         self._grounding_ocr_cache: dict[int, list[OcrTextBox]] = {}
@@ -179,6 +185,9 @@ class GeminiImageClaimVerifier:
             "max_retries": max_retries,
             "max_api_calls": max_api_calls,
             "include_sequence_context": include_sequence_context,
+            "thinking_level": thinking_level,
+            "thinking_budget": thinking_budget,
+            "max_output_tokens": max_output_tokens,
         }
 
     def verify(
@@ -406,6 +415,9 @@ Return JSON only:
                         "prompt_version": self.prompt_version,
                         "selected_evidence_step_indices": selected_steps,
                     },
+                    thinking_level=self.thinking_level,
+                    thinking_budget=self.thinking_budget,
+                    max_output_tokens=self.max_output_tokens,
                 )
                 parsed = parse_json_response(raw)
                 if not isinstance(parsed, dict):
@@ -434,6 +446,7 @@ Return JSON only:
             or "not a JSON object" in message
             or "invalid json" in message.lower()
             or "parsed as json" in message.lower()
+            or "omitted claim records" in message.lower()
         )
 
     @staticmethod

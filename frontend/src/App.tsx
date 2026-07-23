@@ -12,6 +12,7 @@ import {
   type EvidenceUnit,
   type EvaluationAuditSummary,
   type PipelineVerificationRun,
+  type PipelineEvidenceItem,
   type PipelineRunJob,
   type PipelineRunSummary,
   type StartPipelineRunPayload,
@@ -3220,6 +3221,7 @@ function ClaimAlignmentRow({
   const predictedClaim = alignment.predictedClaim
   const statusMismatch = normalizeDisplayValue(goldClaim?.status) !== normalizeDisplayValue(predictedClaim?.status)
   const goldEvidenceUnit = firstRegionEvidenceUnit(goldClaim?.evidence_units)
+  const pipelineEvidenceByStep = groupPipelineEvidenceByStep(predictedClaim?.evidence ?? [])
   return (
     <article className={`${statusMismatch && !pipelineOnly ? 'claim-alignment-row status-mismatch' : 'claim-alignment-row'}${pipelineOnly ? ' pipeline-only' : ''}`}>
       {!pipelineOnly && <div className="alignment-score">
@@ -3272,20 +3274,22 @@ function ClaimAlignmentRow({
             </div>
             <p className="inline-note">Rationale: {predictedClaim.rationale}</p>
             <div className="evidence-snippet-list">
-              {predictedClaim.evidence.slice(0, 3).map((evidence) => {
-                const bbox = normalizeBoundingBox(evidence.bbox)
+              {pipelineEvidenceByStep.slice(0, 3).map((evidenceGroup) => {
+                const regions = evidenceGroup.evidence.flatMap((evidence) => {
+                  const bbox = normalizeBoundingBox(evidence.bbox)
+                  return bbox ? [{bbox, bboxMetadata: metadataFromPipelineEvidence(evidence)}] : []
+                })
                 return (
-                  <div key={`${predictedClaim.claim_id}-${evidence.step_index}`} className="evidence-snippet-group">
-                    <button className="evidence-snippet" onClick={() => onJumpToStep(evidence.step_index)}>
-                      <strong>Step {evidence.step_index}</strong>
-                      <span>{truncateText(evidence.visible_observation, 260)}</span>
+                  <div key={`${predictedClaim.claim_id}-${evidenceGroup.stepIndex}`} className="evidence-snippet-group">
+                    <button className="evidence-snippet" onClick={() => onJumpToStep(evidenceGroup.stepIndex)}>
+                      <strong>Step {evidenceGroup.stepIndex}</strong>
+                      <span>{truncateText(evidenceGroup.evidence.map((evidence) => evidence.visible_observation).filter(Boolean).join(' · '), 260)}</span>
                     </button>
-                    {bbox && (
-                      <EvidenceBoxPreview
-                        step={steps.find((step) => step.step_index === evidence.step_index) ?? null}
-                        bbox={bbox}
-                        label="Pipeline box"
-                        bboxMetadata={metadataFromPipelineEvidence(evidence)}
+                    {regions.length > 0 && (
+                      <EvidenceBoxesPreview
+                        step={steps.find((step) => step.step_index === evidenceGroup.stepIndex) ?? null}
+                        regions={regions}
+                        label={regions.length === 1 ? 'Pipeline box' : `${regions.length} pipeline boxes`}
                         legacyVariant="preview"
                       />
                     )}
@@ -3298,6 +3302,16 @@ function ClaimAlignmentRow({
       </div>
     </article>
   )
+}
+
+function groupPipelineEvidenceByStep(evidence: PipelineEvidenceItem[]): Array<{stepIndex: number; evidence: PipelineEvidenceItem[]}> {
+  const byStep = new Map<number, PipelineEvidenceItem[]>()
+  for (const item of evidence) {
+    byStep.set(item.step_index, [...(byStep.get(item.step_index) ?? []), item])
+  }
+  return [...byStep.entries()]
+    .sort((left, right) => left[0] - right[0])
+    .map(([stepIndex, groupedEvidence]) => ({stepIndex, evidence: groupedEvidence}))
 }
 
 function Metric({label, value}: {label: string; value: string}) {
@@ -4466,6 +4480,58 @@ function EvidenceBoxPreview({
       </div>
     </div>
   )
+}
+
+function EvidenceBoxesPreview({
+  step,
+  regions,
+  label,
+  legacyVariant = 'display',
+}: {
+  step: FlowStep | null
+  regions: Array<{bbox: BoundingBox; bboxMetadata: BoundingBoxMetadata | null}>
+  label: string
+  legacyVariant?: 'display' | 'preview'
+}) {
+  if (!step || regions.length === 0) {
+    return null
+  }
+  const image = selectBoxImage(step, regions[0].bboxMetadata, legacyVariant)
+  return (
+    <div className="evidence-box-preview">
+      <span className="mini-label">{label}</span>
+      <div className="bbox-canvas preview">
+        <img src={resolveAssetUrl(image.url)} alt={`Step ${step.step_index}`} draggable={false} />
+        {regions.map((region, index) => (
+          <BoundingBoxOverlay
+            key={`${index}-${region.bbox.x1}-${region.bbox.y1}-${region.bbox.x2}-${region.bbox.y2}`}
+            bbox={scaleBoxForPreviewImage(region.bbox, region.bboxMetadata, image.width, image.height)}
+            imageWidth={image.width}
+            imageHeight={image.height}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function scaleBoxForPreviewImage(
+  bbox: BoundingBox,
+  metadata: BoundingBoxMetadata | null,
+  targetWidth?: number | null,
+  targetHeight?: number | null,
+): BoundingBox {
+  const sourceWidth = metadata?.image_width
+  const sourceHeight = metadata?.image_height
+  if (!sourceWidth || !sourceHeight || !targetWidth || !targetHeight || (sourceWidth === targetWidth && sourceHeight === targetHeight)) {
+    return bbox
+  }
+  return {
+    x1: bbox.x1 * targetWidth / sourceWidth,
+    y1: bbox.y1 * targetHeight / sourceHeight,
+    x2: bbox.x2 * targetWidth / sourceWidth,
+    y2: bbox.y2 * targetHeight / sourceHeight,
+  }
 }
 
 function selectBoxImage(

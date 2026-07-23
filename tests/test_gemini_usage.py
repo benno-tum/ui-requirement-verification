@@ -5,7 +5,12 @@ from types import SimpleNamespace
 
 import pytest
 
-from ui_verifier.requirements.gemini_client import _request_timeout_ms, _thinking_budget
+from ui_verifier.requirements.gemini_client import (
+    _effective_thinking_options,
+    _request_timeout_ms,
+    _thinking_budget,
+    _thinking_level,
+)
 from ui_verifier.requirements.gemini_usage import (
     estimate_cost_usd,
     extract_usage_metadata,
@@ -30,6 +35,24 @@ def test_gemini_thinking_budget_can_be_disabled(monkeypatch) -> None:
     monkeypatch.setenv("GEMINI_THINKING_BUDGET", "0")
 
     assert _thinking_budget() == 0
+
+
+def test_gemini_thinking_level_high_is_supported(monkeypatch) -> None:
+    monkeypatch.setenv("GEMINI_THINKING_LEVEL", "high")
+
+    assert _thinking_level() == "high"
+
+
+def test_explicit_thinking_level_ignores_environment_budget(monkeypatch) -> None:
+    monkeypatch.setenv("GEMINI_THINKING_BUDGET", "0")
+
+    level, budget = _effective_thinking_options(
+        thinking_level="low",
+        thinking_budget=None,
+    )
+
+    assert level == "low"
+    assert budget is None
 
 
 def test_extract_usage_metadata_from_sdk_like_response() -> None:
@@ -61,6 +84,15 @@ def test_estimate_cost_usd_for_gemini_25_flash_lite() -> None:
     )
 
     assert cost == 0.34
+
+
+def test_estimate_cost_usd_for_gemini_36_flash() -> None:
+    cost = estimate_cost_usd(
+        "gemini-3.6-flash",
+        {"input_tokens": 1_000_000, "output_tokens": 500_000, "thoughts_tokens": 100_000},
+    )
+
+    assert cost == 6.0
 
 
 def test_record_gemini_usage_writes_log_and_summary(tmp_path, monkeypatch) -> None:

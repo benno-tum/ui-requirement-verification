@@ -6,7 +6,6 @@ from copy import deepcopy
 from datetime import datetime, timezone
 import json
 import math
-import os
 from pathlib import Path
 from typing import Any
 
@@ -14,6 +13,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 from ui_verifier.common.json_utils import parse_json_response
 from ui_verifier.requirements.gemini_client import run_gemini_with_usage
+from ui_verifier.requirements.gemini_usage import estimate_cost_usd
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
@@ -33,12 +33,14 @@ RECOVERY_TASKS_PER_CALL = 5
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Select OmniParser/OCR marks semantically with Gemini 2.5 Flash.")
+    parser = argparse.ArgumentParser(description="Select OmniParser/OCR marks semantically with Gemini.")
     parser.add_argument("--source-run", type=Path, default=DEFAULT_SOURCE_RUN)
     parser.add_argument("--candidates", type=Path, default=DEFAULT_CANDIDATES)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--work-dir", type=Path, default=DEFAULT_WORK_DIR)
     parser.add_argument("--model", default="gemini-2.5-flash")
+    parser.add_argument("--thinking-level", choices=("minimal", "low", "medium", "high"))
+    parser.add_argument("--max-output-tokens", type=int, default=4096)
     parser.add_argument("--cost-ceiling-usd", type=float, default=0.10)
     parser.add_argument("--prepare-only", action="store_true")
     return parser.parse_args()
@@ -383,9 +385,18 @@ def main() -> None:
             )
         )
     estimated_text_tokens = math.ceil(prompt_characters / 4)
-    max_output_tokens = int(os.environ.get("GEMINI_MAX_OUTPUT_TOKENS", "4096"))
+    max_output_tokens = args.max_output_tokens
     maximum_output_tokens = max_output_tokens * len(tasks_by_step)
-    estimated_max_cost = (estimated_image_tokens + estimated_text_tokens) * 0.30 / 1_000_000 + maximum_output_tokens * 2.50 / 1_000_000
+    estimated_max_cost = estimate_cost_usd(
+        args.model,
+        {
+            "input_tokens": estimated_image_tokens + estimated_text_tokens,
+            "output_tokens": maximum_output_tokens,
+            "thoughts_tokens": 0,
+        },
+    )
+    if estimated_max_cost is None:
+        raise ValueError(f"No audited pricing configured for {args.model}.")
     estimate = {
         "model": args.model,
         "calls": len(tasks_by_step),
@@ -447,6 +458,8 @@ def main() -> None:
                         "grounding_only": True,
                         "recovery_batch": True,
                     },
+                    thinking_level=args.thinking_level,
+                    max_output_tokens=args.max_output_tokens,
                 )
                 parsed = parse_json_response(result.text)
                 new_response = normalize_response(parsed)
@@ -513,7 +526,7 @@ def main() -> None:
             if not isinstance(bbox, list) or len(bbox) != 4:
                 continue
             source_name = "gemini_visual_grounding_omnimark_selection"
-            description = f"Gemini 2.5 selected {candidate_id}: {selection.get('rationale') or 'supporting marked region'}"
+            description = f"{args.model} selected {candidate_id}: {selection.get('rationale') or 'supporting marked region'}"
             evidence_by_claim[(meta["result_index"], meta["claim_index"])].append(
                 {
                     **template,
@@ -610,11 +623,12 @@ def main() -> None:
         "created_at": created_at,
         "configuration": {
             "model": args.model,
+            "thinking_level": args.thinking_level,
             "requested_execution_mode": "grouped-candidate-mark-grounding",
             "image_variant": "preferred-original",
             "claim_decomposition_policy": "provided/preserved",
             "aggregation": "preserved from Gemini 3.1 Pro source run",
-            "grounding": "Gemini 2.5 Flash selects OmniParser UI and OCR IDs from clean plus separately marked target screenshots, with normalized supplemental fallback",
+            "grounding": f"{args.model} selects OmniParser UI and OCR IDs from clean plus separately marked target screenshots, with normalized supplemental fallback",
             "estimated_cost_usd": cumulative_cost,
             "prompt_version": effective_prompt_version,
         },

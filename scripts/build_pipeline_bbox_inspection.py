@@ -228,7 +228,11 @@ def main() -> None:
     flow_label = "flow" if flow_count == 1 else "flows"
     bbox_sources = summary.get("totals", {}).get("bbox_sources", {})
     prompt_version = str(configuration.get("prompt_version") or "")
-    if prompt_version == "GEMINI25_OMNIMARK_SELECTION_V7_CLAIM_FACT_COVERAGE_MAX2":
+    if configuration.get("claim_decomposition_policy") == "disabled" and configuration.get("top_k") == 4:
+        grounding_label = "REALISTIC TOP-K: Gemini 3.1 Flash-Lite, raw requirements, no claim decomposition, joint UI/fulfillment/grounding"
+    elif str(configuration.get("model") or "") == "gemini-3.1-flash-lite" and "CANDIDATE_MARKS" in prompt_version:
+        grounding_label = "JOINT RUN: Gemini 3.1 Flash-Lite verifies claims and selects OmniParser/OCR regions in one prompt"
+    elif prompt_version == "GEMINI25_OMNIMARK_SELECTION_V7_CLAIM_FACT_COVERAGE_MAX2":
         grounding_label = "PILOT V7 FACT COVERAGE: Gemini 2.5 Flash + OmniParser/OCR, claim-derived evidence coverage, max 2"
     elif prompt_version == "GEMINI25_OMNIMARK_SELECTION_V6_GENERAL_SUFFICIENCY_MAX2":
         grounding_label = "PILOT V6 GENERAL: Gemini 2.5 Flash + OmniParser/OCR, containment and sufficiency, max 2"

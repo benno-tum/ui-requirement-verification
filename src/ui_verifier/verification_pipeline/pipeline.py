@@ -84,15 +84,33 @@ class EvidenceFirstVerificationPipeline:
             claim_count = len(requirement_understanding.claims)
             claim_results = verified_claims[claim_offset : claim_offset + claim_count]
             claim_offset += claim_count
+            model_ui_values = [
+                str(result.metadata.get("model_ui_evaluability") or "")
+                for result in claim_results
+                if isinstance(result, ClaimVerificationResult)
+                and result.metadata.get("model_ui_evaluability")
+            ]
+            effective_ui_evaluability = requirement_understanding.ui_evaluability
+            used_model_ui_evaluability = bool(
+                model_ui_values and len(set(model_ui_values)) == 1
+            )
+            if used_model_ui_evaluability:
+                effective_ui_evaluability = type(effective_ui_evaluability)(model_ui_values[0])
             result = self.label_aggregator.aggregate(
                 requirement=requirement_understanding.requirement,
-                ui_evaluability=requirement_understanding.ui_evaluability,
+                ui_evaluability=effective_ui_evaluability,
                 claim_results=claim_results,
                 requirement_uncertainty_reasons=requirement_understanding.uncertainty_reasons,
                 screens_available=bool(screens),
                 metadata={
                     "requirement_understanding_rationale": requirement_understanding.rationale,
                     "decomposition_source": requirement_understanding.decomposition_source,
+                    "ui_evaluability_source": (
+                        "model_joint_prompt"
+                        if used_model_ui_evaluability
+                        else "requirement_understanding"
+                    ),
+                    "model_ui_evaluability_values": model_ui_values,
                 },
             )
             results.append(result)

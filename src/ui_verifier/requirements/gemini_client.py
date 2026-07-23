@@ -44,6 +44,33 @@ def _thinking_budget() -> int | None:
     return value
 
 
+def _thinking_level() -> str | None:
+    raw = os.environ.get("GEMINI_THINKING_LEVEL", "").strip().lower()
+    if not raw:
+        return None
+    if raw not in {"minimal", "low", "medium", "high"}:
+        raise ValueError("GEMINI_THINKING_LEVEL must be minimal, low, medium, or high.")
+    return raw
+
+
+def _effective_thinking_options(
+    *,
+    thinking_level: str | None,
+    thinking_budget: int | None,
+) -> tuple[str | None, int | None]:
+    if thinking_budget is not None and thinking_level is not None:
+        raise ValueError("Set only one explicit thinking_budget or thinking_level.")
+    if thinking_budget is not None:
+        return None, thinking_budget
+    if thinking_level is not None:
+        return thinking_level, None
+    effective_thinking_budget = _thinking_budget()
+    effective_thinking_level = _thinking_level()
+    if effective_thinking_budget is not None and effective_thinking_level is not None:
+        raise ValueError("Set only one of GEMINI_THINKING_BUDGET and GEMINI_THINKING_LEVEL.")
+    return effective_thinking_level, effective_thinking_budget
+
+
 @dataclass(frozen=True)
 class GeminiRunResult:
     text: str
@@ -57,6 +84,9 @@ def run_gemini_with_usage(
     model_name: str,
     temperature: float = 0.2,
     usage_context: dict[str, Any] | None = None,
+    thinking_level: str | None = None,
+    thinking_budget: int | None = None,
+    max_output_tokens: int | None = None,
 ) -> GeminiRunResult:
     from google import genai
     from google.genai import types
@@ -74,18 +104,27 @@ def run_gemini_with_usage(
     for img_bytes in image_bytes_list:
         parts.append(types.Part.from_bytes(data=img_bytes, mime_type="image/png"))
 
-    thinking_budget = _thinking_budget()
+    effective_thinking_level, effective_thinking_budget = _effective_thinking_options(
+        thinking_level=thinking_level,
+        thinking_budget=thinking_budget,
+    )
     response = client.models.generate_content(
         model=model_name,
         contents=parts,
         config=types.GenerateContentConfig(
             temperature=temperature,
             response_mime_type="application/json",
-            max_output_tokens=_max_output_tokens(),
+            max_output_tokens=(
+                max_output_tokens if max_output_tokens is not None else _max_output_tokens()
+            ),
             thinking_config=(
-                types.ThinkingConfig(thinking_budget=thinking_budget)
-                if thinking_budget is not None
-                else None
+                types.ThinkingConfig(thinking_budget=effective_thinking_budget)
+                if effective_thinking_budget is not None
+                else (
+                    types.ThinkingConfig(thinking_level=effective_thinking_level)
+                    if effective_thinking_level is not None
+                    else None
+                )
             ),
         ),
     )
@@ -106,6 +145,9 @@ def run_gemini(
     model_name: str,
     temperature: float = 0.2,
     usage_context: dict[str, Any] | None = None,
+    thinking_level: str | None = None,
+    thinking_budget: int | None = None,
+    max_output_tokens: int | None = None,
 ) -> str:
     return run_gemini_with_usage(
         prompt,
@@ -113,4 +155,7 @@ def run_gemini(
         model_name,
         temperature=temperature,
         usage_context=usage_context,
+        thinking_level=thinking_level,
+        thinking_budget=thinking_budget,
+        max_output_tokens=max_output_tokens,
     ).text

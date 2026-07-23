@@ -164,9 +164,9 @@ def load_requirements(path: Path, *, default_flow_id: str) -> list[RequirementIn
                 text=_requirement_text(item),
                 flow_id=str(item.get("flow_id") or default_flow_id),
                 metadata={
-                    **item,
                     "provided_claim_texts": _provided_claim_texts(item),
                     "source_path": str(path),
+                    "source_record_keys": sorted(str(key) for key in item),
                 },
             )
         )
@@ -238,6 +238,21 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--verifier-model", type=str, default=model_name_for("demo_image_verifier"))
     parser.add_argument("--verifier-temperature", type=float, default=temperature_for("demo_image_verifier"))
+    parser.add_argument("--verifier-thinking-level", choices=["minimal", "low", "medium", "high"])
+    parser.add_argument(
+        "--verifier-thinking-budget",
+        type=int,
+        default=None,
+        help="Gemini 2.5 thinking token budget; use 0 to disable. Mutually exclusive with thinking level.",
+    )
+    parser.add_argument("--verifier-max-output-tokens", type=int, default=None)
+    parser.add_argument("--grounding-candidates", type=Path, default=None)
+    parser.add_argument("--grounding-assets-dir", type=Path, default=None)
+    parser.add_argument(
+        "--verifier-predict-ui-evaluability",
+        action="store_true",
+        help="Hide the pipeline UI-evaluability label and ask the visual verifier to predict it jointly.",
+    )
     parser.add_argument("--max-verifier-images", type=int, default=6)
     parser.add_argument(
         "--max-verifier-group-images",
@@ -283,6 +298,8 @@ def main() -> None:
         load_dotenv(BASE_DIR / ".env")
 
     args = parse_args()
+    if args.verifier_thinking_level is not None and args.verifier_thinking_budget is not None:
+        raise ValueError("--verifier-thinking-level and --verifier-thinking-budget are mutually exclusive")
     screenshots = discover_screenshot_steps(args.flow_dir, image_variant=args.image_variant)
     if not screenshots:
         raise ValueError(f"No step_*.png screenshots found in {args.flow_dir}")
@@ -325,6 +342,9 @@ def main() -> None:
             "max_retries": args.gemini_max_retries,
             "max_api_calls": None if args.max_gemini_api_calls < 0 else args.max_gemini_api_calls,
             "include_sequence_context": not args.no_sequence_context,
+            "thinking_level": args.verifier_thinking_level,
+            "thinking_budget": args.verifier_thinking_budget,
+            "max_output_tokens": args.verifier_max_output_tokens,
         }
         if args.execution_mode == "per-claim":
             claim_verifier = GeminiImageClaimVerifier(**verifier_kwargs)
@@ -335,6 +355,9 @@ def main() -> None:
                 max_images_per_group=None if args.max_verifier_group_images < 0 else args.max_verifier_group_images,
                 max_claims_per_group=None if args.max_verifier_group_claims < 0 else args.max_verifier_group_claims,
                 group_workers=args.claim_workers,
+                candidate_package=args.grounding_candidates,
+                marked_assets_dir=args.grounding_assets_dir,
+                predict_ui_evaluability=args.verifier_predict_ui_evaluability,
             )
     else:
         claim_verifier = ClaimVerifier()
@@ -372,6 +395,12 @@ def main() -> None:
                 "max_verifier_group_claims": args.max_verifier_group_claims if args.verifier == "gemini-image" else None,
                 "include_sequence_context": not args.no_sequence_context if args.verifier == "gemini-image" else None,
                 "claim_workers": args.claim_workers,
+                "verifier_thinking_level": args.verifier_thinking_level,
+                "verifier_thinking_budget": args.verifier_thinking_budget,
+                "verifier_max_output_tokens": args.verifier_max_output_tokens,
+                "grounding_candidates": str(args.grounding_candidates) if args.grounding_candidates else None,
+                "grounding_assets_dir": str(args.grounding_assets_dir) if args.grounding_assets_dir else None,
+                "verifier_predict_ui_evaluability": args.verifier_predict_ui_evaluability,
             },
         )
     )
