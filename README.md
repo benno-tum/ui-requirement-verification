@@ -53,9 +53,13 @@ Add:
 
 ```bash
 GEMINI_API_KEY=your_gemini_api_key_here
+OPENROUTER_API_KEY=your_openrouter_api_key_here
 GEMINI_EUR_PER_USD=0.92
 DEEPSEEK_API_KEY=your_deepseek_api_key_here
 ```
+
+`OPENROUTER_API_KEY` is needed only for the hosted Qwen open-weight baseline.
+Never commit `.env`; it is ignored by Git.
 
 Gemini API calls through the repository wrapper are logged locally under
 `data/generated/gemini_usage/`. The app exposes the aggregate via:
@@ -154,6 +158,65 @@ Run the Python test suite from the repository root:
 ```bash
 pytest
 ```
+
+Validate the frontend production build:
+
+```bash
+cd frontend
+npm ci
+npm run build
+```
+
+For the exact evaluation environment used on 23 July 2026, install the regular
+project extras with the pinned constraints:
+
+```bash
+pip install -e ".[llm,data,dev]" -c constraints-thesis-eval.txt
+```
+
+Local SmolVLM experiments use the separate pinned
+`requirements-open-vlm.txt` environment because PyTorch and Transformers are
+not runtime requirements of the main application.
+
+## Thesis experiment reproduction
+
+The current experiment definitions are:
+
+- `configs/thesis_final_experiments.json`: completed controlled matrix and model roles;
+- `configs/thesis_remaining_runs.json`: prepared stability repetitions and optional oracle diagnostics.
+
+Generate a preflight manifest without making API calls:
+
+```bash
+python scripts/run_thesis_final_experiments.py \
+  --config configs/thesis_remaining_runs.json \
+  --tiers core \
+  --manifest-out data/generated/thesis_final_experiments/stability_preflight_manifest.json
+```
+
+The manifest records the Git state, benchmark and source hashes, exact commands,
+model parameters, expected coverage, and conservative cost bounds. Paid calls
+require both `--execute` and an explicit `--cost-ceiling-usd`. The ceiling is an
+authorization guard, not a provider-side billing limit.
+
+Each repeated execution has a separate output and verifier-cache directory.
+Do not use `--force` to create a reported repetition from an already completed
+directory; use a new repetition ID instead. After the prepared `r2` and `r3`
+runs finish, summarize them with:
+
+```bash
+python scripts/analyze_thesis_run_stability.py
+```
+
+In the current lexical top-k implementation, `top-4` means a shared four-image
+cap for a batch of up to eight claims. It must not be described as an
+independent per-requirement top-4 condition.
+
+Generated runs remain under `data/generated/` and are not committed wholesale.
+The release-facing replication package is curated under
+`artifacts/thesis_evaluation/`; its README defines the licensing, privacy, and
+path-sanitization gate that must be satisfied before publishing model traces or
+Mind2Web-derived artifacts.
 
 ## Data workflows
 
