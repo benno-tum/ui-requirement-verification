@@ -309,6 +309,29 @@ The repository contains stale summary metrics generated against older benchmark 
 
 The pipeline provides mature step-level evidence and implemented but not yet human-validated region grounding. Screenshots cannot establish hidden backend truth, global absence, long-term persistence, external delivery, or complete result correctness. The completed 2x2 matrix isolates claim and screenshot policy for one model, but it does not show that evidence-first design uniformly improves false fulfillment. These are substantive boundaries and should not be hidden behind a general claim that evidence grounding automatically makes the model safer.
 
+### 8.6 Dataset Licensing and Artifact Availability
+
+All 13 primary flows belong to the Mind2Web `test_task` split. Mind2Web is
+identified by its maintainers as CC BY 4.0, but the official repository also
+asks users not to redistribute unzipped test files online and not to place
+benchmark data in training corpora. The public replication artifact is
+therefore restricted to code, configurations, citations, and aggregate results.
+It excludes original screenshots, HTML, MHTML, HAR files, traces, videos,
+processed trajectories, test records, and per-item raw model interactions.
+Exact test identifiers and detailed annotations remain available only for
+examination under controlled access unless the maintainers approve broader
+release.
+
+PURE has a different rights limitation. Its curators collected requirements
+documents from third-party Web sources and explicitly state that they are not
+aware of license agreements or intellectual-property rights governing the
+source requirements. Consequently, the public artifact excludes PURE PDFs, XML
+files, extracted figures, substantial text passages, and per-item outputs that
+reproduce those passages. It may contain document identifiers, hashes,
+author-created non-textual labels, aggregate metrics, and code that requires
+users to obtain PURE independently. These conservative boundaries support
+replication without asserting rights over third-party source content.
+
 ## 9 Current Preliminary Summary
 
 The current evaluation shows that automated UI requirement verification from ordered screenshot flows is feasible but not solved. In the controlled 258-item Gemini 3.1 Flash-Lite matrix, raw requirements with the complete screenshot flow reach 79.5% accuracy and 0.514 macro-F1. Gated automatic decomposition with all screenshots reaches 79.1% accuracy and 0.536 macro-F1. Restricting evidence to lexical top-4 lowers accuracy to 71.3% for raw requirements and 73.6% for gated decomposition. The effects of decomposition are metric-dependent, while top-4 selection clearly loses information and produces almost no cost saving in the current implementation.
@@ -321,7 +344,7 @@ The results support a measured thesis claim. Ordered screenshot flows provide a 
 - Cheng, K. et al. (2024). *SeeClick: Harnessing GUI Grounding for Advanced Visual GUI Agents*. ACL 2024. DOI: 10.18653/v1/2024.acl-long.505.
 - Cleland-Huang, J. et al. (2014). *Software Traceability: Trends and Future Directions*. FOSE 2014. DOI: 10.1145/2593882.2593891.
 - Deng, X. et al. (2023). *Mind2Web: Towards a Generalist Agent for the Web*. NeurIPS 2023. arXiv:2306.06070.
-- Ferrari, A., Spagnolo, G. O., and Gnesi, S. (2017). *PURE: A Dataset of Public Requirements Documents*. IEEE RE 2017. DOI: 10.1109/RE.2017.29. Dataset DOI: 10.5281/zenodo.1414117.
+- Ferrari, A., Spagnolo, G. O., and Gnesi, S. (2017). *PURE: A Dataset of Public Requirements Documents*. IEEE RE 2017. DOI: 10.1109/RE.2017.29. Current dataset record: 10.5281/zenodo.7118517; original archived version: 10.5281/zenodo.1414117.
 - Hendrickx, K. et al. (2024). *Machine Learning with a Reject Option: A Survey*. Machine Learning 113, 3073–3110. DOI: 10.1007/s10994-024-06534-x.
 - Jimenez, C. E. et al. (2024). *SWE-bench: Can Language Models Resolve Real-World GitHub Issues?* ICLR 2024. arXiv:2310.06770.
 - Kretzer, F., Kolthoff, K., Bartelt, C., Ponzetto, S. P., and Maedche, A. (2025). *Closing the Loop between User Stories and GUI Prototypes: An LLM-Based Assistant for Cross-Functional Integration in Software Development*. CHI 2025, Article 879. DOI: 10.1145/3706598.3713932.

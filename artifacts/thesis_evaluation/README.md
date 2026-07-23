@@ -1,7 +1,8 @@
 # Thesis Evaluation Replication Package
 
 Status: aggregate replication package prepared after the final stability runs;
-public redistribution review remains pending.
+classified as supervisor-only pending dataset permission and a repository code
+license decision.
 
 This directory is the intended versioned, curated replication package for the
 Bachelor's thesis evaluation. `data/generated/` remains local working state and
@@ -37,13 +38,16 @@ approved.
 
 Before publishing this package:
 
-1. confirm the Mind2Web and PURE redistribution boundary with the supervisor;
-2. replace absolute repository paths with repository-relative paths;
-3. scan JSON and text files for secrets and personal data;
-4. state the exact model identifier, provider, execution date, parameters,
+1. follow `DATASET_NOTICE.md` and `release_classification.json`;
+2. obtain written permission before releasing per-item Mind2Web test
+   derivatives or PURE text/figure derivatives;
+3. replace absolute repository paths with repository-relative paths;
+4. scan JSON and text files for secrets and personal data;
+5. state the exact model identifier, provider, execution date, parameters,
    prompt version, benchmark hash, item coverage, failures, tokens, and cost;
-5. verify every reported metric against the frozen 258-item Mind2Web gold set;
-6. record whether an artifact is public, supervisor-only, or local-only.
+6. verify every reported metric against the frozen 258-item Mind2Web gold set;
+7. build a separate public artifact from an explicit allowlist instead of
+   publishing this supervisor package wholesale.
 
 Run the automated path and secret gate before committing:
 

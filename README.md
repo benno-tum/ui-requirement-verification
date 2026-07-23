@@ -2,6 +2,29 @@
 
 Code and repository data for deriving and verifying UI-facing software requirements from screenshot flows.
 
+## Licensing and dataset boundary
+
+This public repository currently has no root software `LICENSE`; public
+visibility alone does not make the code open source. A code license must be
+selected before redistribution rights are claimed.
+
+The numbered flows and their annotations are derived from the Mind2Web
+`test_task` split. Mind2Web identifies its dataset as CC BY 4.0 but also asks
+users not to redistribute unzipped test files online or place benchmark data in
+training corpora. Do not commit screenshots, test records, HTML/MHTML, HAR
+files, traces, videos, or per-item raw model interactions.
+
+PURE source documents were collected from third-party Web sources whose
+individual licensing status is not guaranteed by the PURE curators. Do not
+commit PURE PDFs, XML files, extracted figures, substantial source passages, or
+per-item prompts and outputs reproducing them.
+
+The conservative release policy and attribution language are documented in
+`docs/dataset_licensing_and_release_policy_2026-07-23.md`. The curated
+`artifacts/thesis_evaluation/` package is supervisor-only pending written
+permission for broader per-item release. Public releases should be
+aggregate-only and built from an explicit allowlist.
+
 ## Repository layout
 
 The repository now separates versioned requirement data from local flow data:

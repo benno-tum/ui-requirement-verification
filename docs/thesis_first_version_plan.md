@@ -184,7 +184,10 @@ Summarize completed contributions and provide concise final RQ answers. Limit fu
 - [ ] Add the final statistical-method citation and decide how to characterize
   uncertainty from only 13 flow clusters.
 - Decide whether bounding boxes are an evaluated contribution or an exploratory extension.
-- Document Mind2Web/PURE licensing and artifact-release boundaries.
+- [x] Document a conservative aggregate-only Mind2Web/PURE release boundary.
+- [ ] Obtain written permission before releasing Mind2Web test-derived per-item
+  annotations or PURE text/figure derivatives.
+- [ ] Select a repository code license with the supervisor or chair.
 
 ## 8. Current Main Argument
 

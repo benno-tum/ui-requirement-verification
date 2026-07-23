@@ -1,0 +1,51 @@
+{
+  "schema_version": "thesis_dataset_release_classification_v1",
+  "status": "supervisor_only_pending_permission_and_code_license",
+  "reviewed_at": "2026-07-23",
+  "sources": {
+    "mind2web": {
+      "official_repository": "https://github.com/OSU-NLP-Group/Mind2Web",
+      "declared_dataset_license": "CC-BY-4.0",
+      "repository_code_license": "MIT",
+      "thesis_split": "test_task",
+      "additional_instruction": "Do not redistribute unzipped test files online; do not place benchmark data in training corpora.",
+      "written_permission_for_derived_test_annotations": false
+    },
+    "pure": {
+      "zenodo_record": "https://zenodo.org/records/7118517",
+      "dataset_paper_doi": "10.1109/RE.2017.29",
+      "underlying_document_rights": "unclear_per_curator_notice",
+      "written_permission_for_text_and_figure_derivatives": false
+    }
+  },
+  "public_candidate": [
+    "author-created source code after a root code license is selected",
+    "experiment configurations",
+    "aggregate metrics",
+    "aggregate bootstrap and stability summaries",
+    "documentation without source screenshots or substantial source text"
+  ],
+  "supervisor_only": [
+    "exact Mind2Web test identifiers and benchmark hashes",
+    "Mind2Web-derived per-item requirements and verification annotations",
+    "PURE-derived per-item annotations containing full requirement text",
+    "per-item predictions and raw model responses",
+    "second-review forms and adjudication material",
+    "sanitized launch manifests containing test identifiers"
+  ],
+  "excluded_from_public_release": [
+    "Mind2Web test archives and unzipped records",
+    "Mind2Web screenshots, HTML, MHTML, HAR, traces, videos, and session data",
+    "PURE PDFs, XML files, extracted figures, and embedded images",
+    "substantial PURE source text",
+    "API keys, secrets, account data, and billing identifiers"
+  ],
+  "required_before_public_release": [
+    "supervisor approval of aggregate-only boundary",
+    "root code license decision",
+    "dataset notice and citations",
+    "allowlist-based public package build",
+    "path, secret, personal-data, and source-content audit",
+    "written permission for any broader per-item release"
+  ]
+}

@@ -302,7 +302,9 @@ A visible search form can establish that the user can enter criteria and submit 
 - Apply the frozen RQ3 taxonomy to final errors and count every category with an
   explicit denominator. Five qualitative cases are now prespecified.
 - Decide whether the completed 10,000-sample flow-cluster bootstrap is sufficient given only 13 clusters, and document the chosen statistical method and citation.
-- Document Mind2Web/PURE licenses and specify which derived artifacts can be released.
+- Apply the documented aggregate-only release policy. Mind2Web per-item
+  `test_task` derivatives and PURE text/figure derivatives remain
+  supervisor-only pending written permission.
 - Either perform a prediction-independent relevance and sufficiency review of the bounding boxes or classify region grounding as exploratory rather than a validated contribution.
 
 ### Recommended

@@ -46,4 +46,6 @@ Status: stability runs completed; human review and release decision remain,
 - [x] five qualitative examples and the RQ3 error taxonomy frozen;
 - [x] blinded, stratified second-review form prepared;
 - [ ] independent reviewer responses and adjudication recorded;
-- [ ] release/licensing decision documented before publishing derived artifacts.
+- [x] conservative Mind2Web/PURE release boundary and dataset notice documented;
+- [ ] written permission obtained for any per-item derived-data release;
+- [ ] repository code license selected before calling the code open source.

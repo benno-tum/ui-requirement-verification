@@ -1,12 +1,17 @@
 {
   "schema_version": "thesis_replication_artifact_manifest_v1",
-  "created_at": "2026-07-23T21:22:07.735052+00:00",
+  "created_at": "2026-07-23T21:32:18.968230+00:00",
   "root": "thesis_evaluation",
   "files": [
     {
+      "path": "DATASET_NOTICE.md",
+      "sha256": "c96ebc96165427e0a40c692d968edda558b9fbec4c0b423741831a2517bd54f0",
+      "bytes": 1971
+    },
+    {
       "path": "README.md",
-      "sha256": "72ae649241b23a84882d3c6ccb5d4f60618b53271c58eaaed10ce40f33ed30a3",
-      "bytes": 2598
+      "sha256": "8234e095509685e7f4d9b0524f663195e6b3e727f299e3a94cea5945fdd0fa27",
+      "bytes": 2803
     },
     {
       "path": "configs/thesis_final_experiments.json",
@@ -27,6 +32,11 @@
       "path": "manifests/stability_open_weight_execution_manifest.json",
       "sha256": "684ccdec7a0c087d32f3a04b4486f01195c7b170c70e90f30142160ead6159da",
       "bytes": 35156
+    },
+    {
+      "path": "release_classification.json",
+      "sha256": "1461a1b968f297d48184deb18f8854dbf4c47c0e2205edf24b153023bb6e186b",
+      "bytes": 2219
     },
     {
       "path": "results/controlled_matrix_cluster_bootstrap.json",
