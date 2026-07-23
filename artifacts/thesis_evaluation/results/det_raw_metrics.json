@@ -1,0 +1,278 @@
+{
+  "gold_count": 258,
+  "prediction_count": 258,
+  "flow_id_pattern": "^[0-9]{2}_",
+  "full_coverage_required": true,
+  "label_metrics": {
+    "total": 258,
+    "accuracy": 0.44573643410852715,
+    "macro_f1": 0.2931295948814175,
+    "weighted_f1": 0.47215142091838136,
+    "per_class": {
+      "FULFILLED": {
+        "precision": 0.6666666666666666,
+        "recall": 0.5116279069767442,
+        "f1": 0.5789473684210527,
+        "support": 172,
+        "predicted": 132,
+        "tp": 88,
+        "fp": 44,
+        "fn": 84
+      },
+      "PARTIALLY_FULFILLED": {
+        "precision": 0.16,
+        "recall": 0.35555555555555557,
+        "f1": 0.22068965517241382,
+        "support": 45,
+        "predicted": 100,
+        "tp": 16,
+        "fp": 84,
+        "fn": 29
+      },
+      "NOT_FULFILLED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 8,
+        "predicted": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 8
+      },
+      "ABSTAIN": {
+        "precision": 0.4230769230769231,
+        "recall": 0.3333333333333333,
+        "f1": 0.3728813559322034,
+        "support": 33,
+        "predicted": 26,
+        "tp": 11,
+        "fp": 15,
+        "fn": 22
+      }
+    },
+    "confusion_matrix": {
+      "FULFILLED": {
+        "FULFILLED": 88,
+        "PARTIALLY_FULFILLED": 76,
+        "NOT_FULFILLED": 0,
+        "ABSTAIN": 8
+      },
+      "PARTIALLY_FULFILLED": {
+        "FULFILLED": 24,
+        "PARTIALLY_FULFILLED": 16,
+        "NOT_FULFILLED": 0,
+        "ABSTAIN": 5
+      },
+      "NOT_FULFILLED": {
+        "FULFILLED": 3,
+        "PARTIALLY_FULFILLED": 3,
+        "NOT_FULFILLED": 0,
+        "ABSTAIN": 2
+      },
+      "ABSTAIN": {
+        "FULFILLED": 17,
+        "PARTIALLY_FULFILLED": 5,
+        "NOT_FULFILLED": 0,
+        "ABSTAIN": 11
+      }
+    },
+    "abstain_rate": 0.10077519379844961,
+    "false_fulfillment_rate": 0.3333333333333333,
+    "false_fulfilled": 44,
+    "predicted_fulfilled": 132,
+    "prediction_coverage": 1.0,
+    "missing_predictions": 0,
+    "skipped_gold_without_label": 0
+  },
+  "evidence_metrics": {
+    "total_with_gold_evidence": 258,
+    "mrr": 0.4667312661498708,
+    "precision_at_1": 0.2868217054263566,
+    "recall_at_1": 0.10980681678356097,
+    "hit_at_1": 0.2868217054263566,
+    "precision_at_3": 0.3449612403100775,
+    "recall_at_3": 0.40411129568106313,
+    "hit_at_3": 0.6395348837209303
+  },
+  "claim_status_metrics": {
+    "total": 541,
+    "accuracy": 0.17375231053604437,
+    "macro_f1": 0.0545760085572398,
+    "weighted_f1": 0.17788563511861802,
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 0.6805555555555556,
+        "recall": 0.12342569269521411,
+        "f1": 0.20895522388059704,
+        "support": 397,
+        "predicted": 72,
+        "tp": 49,
+        "fp": 23,
+        "fn": 348
+      },
+      "SUPPORTED_WITH_CAVEAT": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 19,
+        "predicted": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 19
+      },
+      "PARTIALLY_SUPPORTED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0,
+        "predicted": 49,
+        "tp": 0,
+        "fp": 49,
+        "fn": 0
+      },
+      "MISSING": {
+        "precision": 0.10784313725490197,
+        "recall": 0.6984126984126984,
+        "f1": 0.18683651804670912,
+        "support": 63,
+        "predicted": 408,
+        "tp": 44,
+        "fp": 364,
+        "fn": 19
+      },
+      "CONTRADICTED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 15,
+        "predicted": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 15
+      },
+      "HIDDEN": {
+        "precision": 0.08333333333333333,
+        "recall": 0.02702702702702703,
+        "f1": 0.04081632653061225,
+        "support": 37,
+        "predicted": 12,
+        "tp": 1,
+        "fp": 11,
+        "fn": 36
+      },
+      "AMBIGUOUS": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 6,
+        "predicted": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 6
+      },
+      "OUT_OF_SCOPE": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 4,
+        "predicted": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 4
+      }
+    },
+    "confusion_matrix": {
+      "SUPPORTED": {
+        "SUPPORTED": 49,
+        "SUPPORTED_WITH_CAVEAT": 0,
+        "PARTIALLY_SUPPORTED": 34,
+        "MISSING": 309,
+        "CONTRADICTED": 0,
+        "HIDDEN": 5,
+        "AMBIGUOUS": 0,
+        "OUT_OF_SCOPE": 0
+      },
+      "SUPPORTED_WITH_CAVEAT": {
+        "SUPPORTED": 2,
+        "SUPPORTED_WITH_CAVEAT": 0,
+        "PARTIALLY_SUPPORTED": 2,
+        "MISSING": 15,
+        "CONTRADICTED": 0,
+        "HIDDEN": 0,
+        "AMBIGUOUS": 0,
+        "OUT_OF_SCOPE": 0
+      },
+      "PARTIALLY_SUPPORTED": {
+        "SUPPORTED": 0,
+        "SUPPORTED_WITH_CAVEAT": 0,
+        "PARTIALLY_SUPPORTED": 0,
+        "MISSING": 0,
+        "CONTRADICTED": 0,
+        "HIDDEN": 0,
+        "AMBIGUOUS": 0,
+        "OUT_OF_SCOPE": 0
+      },
+      "MISSING": {
+        "SUPPORTED": 10,
+        "SUPPORTED_WITH_CAVEAT": 0,
+        "PARTIALLY_SUPPORTED": 4,
+        "MISSING": 44,
+        "CONTRADICTED": 0,
+        "HIDDEN": 5,
+        "AMBIGUOUS": 0,
+        "OUT_OF_SCOPE": 0
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 3,
+        "SUPPORTED_WITH_CAVEAT": 0,
+        "PARTIALLY_SUPPORTED": 2,
+        "MISSING": 10,
+        "CONTRADICTED": 0,
+        "HIDDEN": 0,
+        "AMBIGUOUS": 0,
+        "OUT_OF_SCOPE": 0
+      },
+      "HIDDEN": {
+        "SUPPORTED": 7,
+        "SUPPORTED_WITH_CAVEAT": 0,
+        "PARTIALLY_SUPPORTED": 6,
+        "MISSING": 23,
+        "CONTRADICTED": 0,
+        "HIDDEN": 1,
+        "AMBIGUOUS": 0,
+        "OUT_OF_SCOPE": 0
+      },
+      "AMBIGUOUS": {
+        "SUPPORTED": 0,
+        "SUPPORTED_WITH_CAVEAT": 0,
+        "PARTIALLY_SUPPORTED": 1,
+        "MISSING": 4,
+        "CONTRADICTED": 0,
+        "HIDDEN": 1,
+        "AMBIGUOUS": 0,
+        "OUT_OF_SCOPE": 0
+      },
+      "OUT_OF_SCOPE": {
+        "SUPPORTED": 1,
+        "SUPPORTED_WITH_CAVEAT": 0,
+        "PARTIALLY_SUPPORTED": 0,
+        "MISSING": 3,
+        "CONTRADICTED": 0,
+        "HIDDEN": 0,
+        "AMBIGUOUS": 0,
+        "OUT_OF_SCOPE": 0
+      }
+    },
+    "abstain_rate": 0.0,
+    "false_fulfillment_rate": 0.0,
+    "false_fulfilled": 0,
+    "predicted_fulfilled": 0,
+    "prediction_coverage": 1.0,
+    "missing_predictions": 0,
+    "skipped_gold_without_label": 0,
+    "gold_claim_count": 541,
+    "prediction_claim_count": 258,
+    "matched_claims": 139,
+    "claim_match_recall": 0.25693160813308685
+  }
+}

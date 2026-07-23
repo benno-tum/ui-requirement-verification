@@ -1,0 +1,114 @@
+{
+  "schema_version": "thesis_replication_artifact_manifest_v1",
+  "created_at": "2026-07-23T21:18:42.292103+00:00",
+  "root": "thesis_evaluation",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "5642c03d083fe13fbe3189560fe82167993d351d99ee262cf67c0449e12d3a18",
+      "bytes": 2405
+    },
+    {
+      "path": "configs/thesis_final_experiments.json",
+      "sha256": "380b13107fb3baa88667227907d177c00099bb87ee6c31da32f5aeea5a662b10",
+      "bytes": 13649
+    },
+    {
+      "path": "configs/thesis_remaining_runs.json",
+      "sha256": "55796b2b73422e4fdaccfffd20b1e6783d9dc0c1e21304ef3dd0984726457a53",
+      "bytes": 6887
+    },
+    {
+      "path": "manifests/stability_gemini_execution_manifest.json",
+      "sha256": "03f9314006561232b60687eded49552ede04f36e256088236983bfe1762881d5",
+      "bytes": 115156
+    },
+    {
+      "path": "manifests/stability_open_weight_execution_manifest.json",
+      "sha256": "684ccdec7a0c087d32f3a04b4486f01195c7b170c70e90f30142160ead6159da",
+      "bytes": 35156
+    },
+    {
+      "path": "results/controlled_matrix_cluster_bootstrap.json",
+      "sha256": "e0e7c9a84cf7c3517107e7253694da61d32bbe22e7356ef80bc0032fbaeadbd4",
+      "bytes": 11564
+    },
+    {
+      "path": "results/det_gated_forced_decision_metrics.json",
+      "sha256": "8014a8aa2b2f5a2d0a7505a211558af27c3d8dadc7868cd9d50a666c3d39ef66",
+      "bytes": 6658
+    },
+    {
+      "path": "results/det_gated_metrics.json",
+      "sha256": "b8c51585a815eb5acefc8e6b77efd71ee7e4c95914b065afe6f076b2a445ca23",
+      "bytes": 6691
+    },
+    {
+      "path": "results/det_raw_forced_decision_metrics.json",
+      "sha256": "1925458b705f676729f2dbc3972dc9aa1e3d0f42051157be3a1e37d739da0d7c",
+      "bytes": 6676
+    },
+    {
+      "path": "results/det_raw_metrics.json",
+      "sha256": "9b487f3290e558e9c8971bb35b56e77d2bd0083bc2b0e6bebd6feba8997b98e5",
+      "bytes": 6706
+    },
+    {
+      "path": "results/fl_gated_all_metrics.json",
+      "sha256": "e4a3b915fbb34ab2205205cfb8412c363266613b370a4d7447c50698733a37b5",
+      "bytes": 6761
+    },
+    {
+      "path": "results/fl_gated_top4_forced_decision_metrics.json",
+      "sha256": "6709c21cd31b35f80094c68b4607d384a652613b93c6060df37b69ea03adff09",
+      "bytes": 6659
+    },
+    {
+      "path": "results/fl_gated_top4_metrics.json",
+      "sha256": "185a42c7a656d6fe8fd1b345334d17c4a0f77d8ed76d6a4a24957be423cb930d",
+      "bytes": 6706
+    },
+    {
+      "path": "results/fl_raw_all_forced_decision_metrics.json",
+      "sha256": "e7538651b8942867418bb07a35d8f8b60c4e23ba93f896ba6483b3040ccb90ba",
+      "bytes": 6694
+    },
+    {
+      "path": "results/fl_raw_all_metrics.json",
+      "sha256": "392380dad4eafeec087f2532901ab95ec16a77e80c358f5d2040a006b980d1b2",
+      "bytes": 6721
+    },
+    {
+      "path": "results/fl_raw_top4_metrics.json",
+      "sha256": "2cbc51c067aa030004edaeab556801e8ed4195fec55690f720b22163196141fb",
+      "bytes": 6644
+    },
+    {
+      "path": "results/g25_raw_all_forced_decision_metrics.json",
+      "sha256": "35380d1e3afa05b33a06a526669cee606cd1d1eccc6b094ea24fffd533e1956b",
+      "bytes": 6696
+    },
+    {
+      "path": "results/g25_raw_all_metrics.json",
+      "sha256": "d013517717481235c63520f0fe320d963e550339919ce2168286984131b7dac4",
+      "bytes": 6724
+    },
+    {
+      "path": "results/qwen3vl8b_openrouter_raw_top4_metrics.json",
+      "sha256": "6785f0ccb79717712239f5bd38c098c0ecef48286427f3c318bd7340062687fb",
+      "bytes": 6626
+    },
+    {
+      "path": "results/stability_execution_summary.json",
+      "sha256": "074891e44673c18f3c8fdff0c7c2b0f378aa01faf4860bea1bfc474a37c5c4ef",
+      "bytes": 3337
+    },
+    {
+      "path": "results/stability_summary.json",
+      "sha256": "46d7560ab7fcf9e358b4f6a518d24724b578f54db9554986f019fd1862947cb0",
+      "bytes": 7819
+    }
+  ],
+  "findings": [],
+  "release_gate_passed": true
+}

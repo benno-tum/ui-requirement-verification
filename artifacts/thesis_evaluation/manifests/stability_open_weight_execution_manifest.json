@@ -1,0 +1,890 @@
+{
+  "schema_version": "thesis_final_preflight_manifest_v1",
+  "created_at": "2026-07-23T20:59:58.880367+00:00",
+  "status": "execution_requested",
+  "config_path": "configs/thesis_remaining_runs.json",
+  "config_sha256": "55796b2b73422e4fdaccfffd20b1e6783d9dc0c1e21304ef3dd0984726457a53",
+  "resolved_config_sha256": "b015dba0fe2f0942e157ea8d982fba2d50f588f8e50e7778cae50bfd5c318f6d",
+  "repository_state": {
+    "git_commit": "cf243be2dd641e4b90e844eccbbe97bd0325f3c6",
+    "git_dirty": false,
+    "python_version": "3.12.13",
+    "google_genai_version": "1.68.0",
+    "platform": "macOS-14.2-arm64-arm-64bit"
+  },
+  "research_questions": {
+    "RQ1": "How accurately can multimodal models apply a provided, application-specific verification label schema to UI-observable textual requirements using ordered screenshot flows?",
+    "RQ2": "How do claim decomposition and screenshot selection affect label accuracy, evidence traceability, and cost relative to direct whole-flow verification?",
+    "RQ3": "Which requirement and evidence patterns cause verification errors, abstentions, or unsafe FULFILLED predictions?"
+  },
+  "label_schema": {
+    "requirement_labels": [
+      "FULFILLED",
+      "PARTIALLY_FULFILLED",
+      "NOT_FULFILLED",
+      "ABSTAIN"
+    ],
+    "policy": "The supplied schema and its evidence contract are fixed across models. UI evaluability is distinct from fulfillment. Missing predictions are coverage failures and must never be converted into semantic ABSTAIN labels."
+  },
+  "reporting_compliance": {
+    "guideline": "LLM Guidelines for Software Engineering",
+    "model_version_guideline": "https://llm-guidelines.org/guidelines/model-version/",
+    "checklist": "https://llm-guidelines.org/checklist/",
+    "prompting": "zero-shot structured verification with a fixed output-schema template; no task demonstrations",
+    "prompt_reuse": "The same verifier prompt version and label contract are reused across the two Gemini models.",
+    "commercial_model_limitation": "Provider-side model weights, serving stack, and system fingerprint are unavailable; exact API identifiers, execution dates, parameters, code hashes, prompts, outputs, and usage are archived.",
+    "open_model_status": "hosted_open_weight_baseline_completed_2026-07-23",
+    "open_model_exception": "A local SmolVLM2 timing pilot on the 16 GB M1 Pro required 323 seconds for a capped 128-token response and did not return a complete parseable group. The replacement hosted Qwen3-VL-8B-Instruct run completed through OpenRouter on Alibaba infrastructure with 258/258 predictions, 39 successful calls, no failures, and USD 0.041223 recorded inference cost. Hosted open-weight inference remains less reproducible than self-hosting because the provider serving stack and quantization are not exposed.",
+    "artifact_files": [
+      "scripts/run_verification_pipeline.py",
+      "scripts/run_abstention_policy_ablation.py",
+      "scripts/run_smolvlm_open_baseline.py",
+      "scripts/run_openrouter_qwen_baseline.py",
+      "scripts/run_thesis_final_experiments.py",
+      "scripts/analyze_thesis_final_matrix.py",
+      "scripts/analyze_thesis_run_stability.py",
+      "scripts/audit_thesis_replication_package.py",
+      "src/ui_verifier/evaluation/abstention_policy.py",
+      "src/ui_verifier/verification_pipeline/gemini_image_claim_verifier.py",
+      "src/ui_verifier/verification_pipeline/batched_gemini_image_claim_verifier.py",
+      "src/ui_verifier/verification_pipeline/requirement_understanding.py",
+      "src/ui_verifier/verification_pipeline/evidence_retrieval.py",
+      "src/ui_verifier/verification_pipeline/label_aggregation.py",
+      "src/ui_verifier/verification_pipeline/pipeline.py"
+    ]
+  },
+  "postprocessing_experiments": [
+    {
+      "id": "three_run_stability_summary",
+      "tier": "core",
+      "source_experiments": [
+        "fl_raw_all",
+        "fl_raw_all_r2",
+        "fl_raw_all_r3",
+        "fl_gated_top4",
+        "fl_gated_top4_r2",
+        "fl_gated_top4_r3",
+        "qwen3vl8b_openrouter_raw_top4",
+        "qwen_raw_top4_r2",
+        "qwen_raw_top4_r3"
+      ],
+      "additional_api_tokens": 0,
+      "additional_cost_usd": 0,
+      "command": "python scripts/analyze_thesis_run_stability.py",
+      "scientific_role": "Report per-run metrics, descriptive distributions, and pairwise label agreement without treating repeated executions as independent benchmark samples."
+    },
+    {
+      "id": "oracle_metric_evaluation",
+      "tier": "extended",
+      "source_experiments": [
+        "fl_oracle_all",
+        "fl_oracle_top4"
+      ],
+      "additional_api_tokens": 0,
+      "additional_cost_usd": 0,
+      "scientific_role": "Evaluate reviewed-claim upper bounds with the same strict 258-item coverage and flow-cluster bootstrap policy."
+    }
+  ],
+  "artifact_manifest": [
+    {
+      "path": "scripts/run_verification_pipeline.py",
+      "sha256": "c9bc17b742c295817cf21136b7155864fd69abc0408c36a3cce7e58038394427"
+    },
+    {
+      "path": "scripts/run_abstention_policy_ablation.py",
+      "sha256": "114ff9f65c081ee869e2e2310e7f45e3c4f3fc4620611011c0c8e5ff8426bb10"
+    },
+    {
+      "path": "scripts/run_smolvlm_open_baseline.py",
+      "sha256": "16777642bcc805e330513eacfb2ab1e74ea42af3131a81d1e06a453fda4d3644"
+    },
+    {
+      "path": "scripts/run_openrouter_qwen_baseline.py",
+      "sha256": "2214de32712588bd877069600de39bff4a33e3204cc3c22a79972a0cee302a5b"
+    },
+    {
+      "path": "scripts/run_thesis_final_experiments.py",
+      "sha256": "36dcff259e053671280979efc09b3e3b52281cc95153a26ce1a2cae845978048"
+    },
+    {
+      "path": "scripts/analyze_thesis_final_matrix.py",
+      "sha256": "9f39373f9d5b074cde370f7c6c08468d0da970b7d59e183ae203ccce43937ef3"
+    },
+    {
+      "path": "scripts/analyze_thesis_run_stability.py",
+      "sha256": "8907acdc5ea21e45d8ba295d6a15f7a77ce099ebd458c88fc7472a1fbfb71327"
+    },
+    {
+      "path": "scripts/audit_thesis_replication_package.py",
+      "sha256": "1a5b2fb8cc70cb855a2ce19d6c7a55dac6eb6db5b7e59e8f70dcb9f09bf39fcb"
+    },
+    {
+      "path": "src/ui_verifier/evaluation/abstention_policy.py",
+      "sha256": "eaa4659b2c69cf3f3dee66fd50b1c1500d9c67772828dff8c4dddd208422cc7b"
+    },
+    {
+      "path": "src/ui_verifier/verification_pipeline/gemini_image_claim_verifier.py",
+      "sha256": "69e35389d478965c29b474aff42c98dfa849b46c892c0b88d66698bf99e56919"
+    },
+    {
+      "path": "src/ui_verifier/verification_pipeline/batched_gemini_image_claim_verifier.py",
+      "sha256": "0d01d01ea265434aec8710705bce80d8cd74fe9eb2b006ea44a287cd06abd87f"
+    },
+    {
+      "path": "src/ui_verifier/verification_pipeline/requirement_understanding.py",
+      "sha256": "b1e2976da537eb7049dcf5c2d0cff2f45fde434857635fa6a0d46c575db3b598"
+    },
+    {
+      "path": "src/ui_verifier/verification_pipeline/evidence_retrieval.py",
+      "sha256": "5d5f647352047b041c6c4d685eaa41fb2eb3a857d45708fce17fd7f86e781fa3"
+    },
+    {
+      "path": "src/ui_verifier/verification_pipeline/label_aggregation.py",
+      "sha256": "d69e4a18e7d3b5fc991dc234ec549346afb1c4294098c9f7e77e24bc05c514e2"
+    },
+    {
+      "path": "src/ui_verifier/verification_pipeline/pipeline.py",
+      "sha256": "b950a0a4b76199fd6dabd07e3d46a98f3d0cdcc2aa71febf499b198653665db2"
+    }
+  ],
+  "benchmark": {
+    "requirements": 258,
+    "all_expected_requirements": 258,
+    "flows": [
+      {
+        "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+        "gold_path": "data/annotations/verification_gold/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/verification_gold.json",
+        "gold_sha256": "ed2f4ae513e97c396333f1b6761ab745dd28ddb7ea385b1084d5f5746a8181f1",
+        "requirements": 23,
+        "screenshots": 19
+      },
+      {
+        "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+        "gold_path": "data/annotations/verification_gold/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/verification_gold.json",
+        "gold_sha256": "d8f949f462444d89154eac4adf216c95af6c3b7ffc252a66601af0db37892971",
+        "requirements": 9,
+        "screenshots": 4
+      },
+      {
+        "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+        "gold_path": "data/annotations/verification_gold/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/verification_gold.json",
+        "gold_sha256": "a625a86b486237300ffb27d3588b013ea46153526ccb6536b3200c892dd4b6c0",
+        "requirements": 23,
+        "screenshots": 14
+      },
+      {
+        "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+        "gold_path": "data/annotations/verification_gold/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/verification_gold.json",
+        "gold_sha256": "f56156564020024d6f1710dc1f98129b6663633adaa7bb7c75f9652a93441d26",
+        "requirements": 21,
+        "screenshots": 9
+      },
+      {
+        "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+        "gold_path": "data/annotations/verification_gold/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/verification_gold.json",
+        "gold_sha256": "7345ee21360317007df1642bc130efd1208e0b04e6ec0a3d2b4b830753830715",
+        "requirements": 20,
+        "screenshots": 9
+      },
+      {
+        "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+        "gold_path": "data/annotations/verification_gold/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/verification_gold.json",
+        "gold_sha256": "59c7db169b5a15145cdd7ad7d38a7418b958a617a71dced2e1cac064362ba3e8",
+        "requirements": 22,
+        "screenshots": 6
+      },
+      {
+        "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+        "gold_path": "data/annotations/verification_gold/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/verification_gold.json",
+        "gold_sha256": "a9b7647c3118fe380f7397eb94552e843839eae1642bf55d39baf01f368ce581",
+        "requirements": 18,
+        "screenshots": 3
+      },
+      {
+        "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+        "gold_path": "data/annotations/verification_gold/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/verification_gold.json",
+        "gold_sha256": "450cf4db646e29f6933e323e0ed493ea05c6c641f8be7286de2a3af9a59418bc",
+        "requirements": 20,
+        "screenshots": 5
+      },
+      {
+        "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+        "gold_path": "data/annotations/verification_gold/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/verification_gold.json",
+        "gold_sha256": "3c2b067061a2eb14ab19f1f67d778d36abd00b04b3ab7260810b808ba57bcdcb",
+        "requirements": 20,
+        "screenshots": 5
+      },
+      {
+        "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+        "gold_path": "data/annotations/verification_gold/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/verification_gold.json",
+        "gold_sha256": "82aa180407cb0e80f2e344f02bb298ffb1bd410adcf6a8b6c3df7baa70fad965",
+        "requirements": 25,
+        "screenshots": 10
+      },
+      {
+        "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+        "gold_path": "data/annotations/verification_gold/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/verification_gold.json",
+        "gold_sha256": "60cdd848e7cb97426494feeda3790f26e13dd8932cc34c00039c9413157fbe7b",
+        "requirements": 20,
+        "screenshots": 9
+      },
+      {
+        "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+        "gold_path": "data/annotations/verification_gold/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/verification_gold.json",
+        "gold_sha256": "c8844b5cb2d9bcfd7a1fb7c6375dc0fff6e3cb5c8291ccac87a679a4536f079d",
+        "requirements": 18,
+        "screenshots": 4
+      },
+      {
+        "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+        "gold_path": "data/annotations/verification_gold/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/verification_gold.json",
+        "gold_sha256": "54e668fd12bb4e2dcc9039ad1dea70fd334c286fcf81c7b0baac37d1c883e622",
+        "requirements": 19,
+        "screenshots": 4
+      }
+    ]
+  },
+  "selected_experiments": [
+    {
+      "id": "qwen_raw_top4_r2",
+      "repeat_of": "qwen3vl8b_openrouter_raw_top4",
+      "source_experiment": "fl_raw_top4",
+      "repetition_index": 2,
+      "group": "stability_open_weight",
+      "tier": "core",
+      "model": "qwen/qwen3-vl-8b-instruct",
+      "claim_policy": "disabled",
+      "evidence_strategy": "top4",
+      "verifier": "openrouter-qwen",
+      "max_attempts": 2,
+      "per_flow_cost_ceiling_usd": 0.02,
+      "scientific_role": "Independent hosted open-weight repetition 2 using the frozen raw/shared-top-4 groups.",
+      "estimated_tokens": {
+        "input_lower": 230000,
+        "input_upper": 310000,
+        "output_thinking_lower": 22000,
+        "output_thinking_upper": 35000
+      },
+      "estimate": {
+        "input_tokens": {
+          "lower": 230000,
+          "upper": 310000
+        },
+        "output_and_thinking_tokens": {
+          "lower": 22000,
+          "upper": 35000
+        },
+        "total_tokens": {
+          "lower": 252000,
+          "upper": 345000
+        },
+        "estimated_cost_usd": {
+          "lower": 0.0369,
+          "upper": 0.0522
+        },
+        "basis": "Ranges extrapolated from complete Gemini runs and scaled by the selected fraction of 13 flows."
+      }
+    },
+    {
+      "id": "qwen_raw_top4_r3",
+      "repeat_of": "qwen3vl8b_openrouter_raw_top4",
+      "source_experiment": "fl_raw_top4",
+      "repetition_index": 3,
+      "group": "stability_open_weight",
+      "tier": "core",
+      "model": "qwen/qwen3-vl-8b-instruct",
+      "claim_policy": "disabled",
+      "evidence_strategy": "top4",
+      "verifier": "openrouter-qwen",
+      "max_attempts": 2,
+      "per_flow_cost_ceiling_usd": 0.02,
+      "scientific_role": "Independent hosted open-weight repetition 3 using the frozen raw/shared-top-4 groups.",
+      "estimated_tokens": {
+        "input_lower": 230000,
+        "input_upper": 310000,
+        "output_thinking_lower": 22000,
+        "output_thinking_upper": 35000
+      },
+      "estimate": {
+        "input_tokens": {
+          "lower": 230000,
+          "upper": 310000
+        },
+        "output_and_thinking_tokens": {
+          "lower": 22000,
+          "upper": 35000
+        },
+        "total_tokens": {
+          "lower": 252000,
+          "upper": 345000
+        },
+        "estimated_cost_usd": {
+          "lower": 0.0369,
+          "upper": 0.0522
+        },
+        "basis": "Ranges extrapolated from complete Gemini runs and scaled by the selected fraction of 13 flows."
+      }
+    }
+  ],
+  "selection_totals": {
+    "experiments": 2,
+    "flow_commands": 26,
+    "total_tokens": {
+      "lower": 504000,
+      "upper": 690000
+    },
+    "estimated_cost_usd": {
+      "lower": 0.0738,
+      "upper": 0.1044
+    },
+    "recommended_cost_ceiling_usd_with_30_percent_retry_reserve": 0.14
+  },
+  "commands": [
+    {
+      "experiment_id": "qwen_raw_top4_r2",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r2/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r2",
+        "--flow-id-regex",
+        "^01_sixflags_a52fcf7a\\-50aa\\-4256\\-8796\\-654b3dc3adac$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r2",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r2/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r2",
+        "--flow-id-regex",
+        "^02_gamestop_a2500e0b\\-9244\\-4f0e\\-b686\\-fa290c32b829$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r2",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r2/03_mbta_c094948f-afc6-415c-968a-9e105e2db118.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r2",
+        "--flow-id-regex",
+        "^03_mbta_c094948f\\-afc6\\-415c\\-968a\\-9e105e2db118$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r2",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r2/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r2",
+        "--flow-id-regex",
+        "^04_underarmour_18fc60d7\\-aa69\\-4c07\\-9bf1\\-64543eae52c9$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r2",
+      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r2/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r2",
+        "--flow-id-regex",
+        "^05_resy_790ba0ec\\-4e7d\\-4df0\\-ac86\\-ea52b3a73532$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r2",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r2/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r2",
+        "--flow-id-regex",
+        "^06_sixflags_19b955ba\\-fdcd\\-4345\\-b33a\\-fc6a88b5a85d$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r2",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r2/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r2",
+        "--flow-id-regex",
+        "^07_discogs_8251e820\\-4b8a\\-4221\\-b2d9\\-8158cada3dcf$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r2",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r2/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r2",
+        "--flow-id-regex",
+        "^08_amtrak_845fbfa9\\-1b98\\-4df4\\-b7c5\\-4c71ef3e5b1b$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r2",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r2/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r2",
+        "--flow-id-regex",
+        "^09_amctheatres_925a2307\\-b2b7\\-4189\\-bf25\\-e3f463c24e1c$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r2",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r2/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r2",
+        "--flow-id-regex",
+        "^10_sixflags_ee1e95ab\\-4c5d\\-44c6\\-b302\\-783fd13a471e$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r2",
+      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r2/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r2",
+        "--flow-id-regex",
+        "^11_carnival_6cf8ca9c\\-672d\\-426e\\-ab6c\\-c865475edcd4$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r2",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r2/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r2",
+        "--flow-id-regex",
+        "^12_bookdepository_c472a4fe\\-33a0\\-4b6f\\-8d42\\-adcc067ba4ed$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r2",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r2/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r2",
+        "--flow-id-regex",
+        "^13_yellowpages_34c474ef\\-389c\\-421d\\-acbf\\-de5531437083$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r3",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r3/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r3",
+        "--flow-id-regex",
+        "^01_sixflags_a52fcf7a\\-50aa\\-4256\\-8796\\-654b3dc3adac$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r3",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r3/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r3",
+        "--flow-id-regex",
+        "^02_gamestop_a2500e0b\\-9244\\-4f0e\\-b686\\-fa290c32b829$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r3",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r3/03_mbta_c094948f-afc6-415c-968a-9e105e2db118.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r3",
+        "--flow-id-regex",
+        "^03_mbta_c094948f\\-afc6\\-415c\\-968a\\-9e105e2db118$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r3",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r3/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r3",
+        "--flow-id-regex",
+        "^04_underarmour_18fc60d7\\-aa69\\-4c07\\-9bf1\\-64543eae52c9$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r3",
+      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r3/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r3",
+        "--flow-id-regex",
+        "^05_resy_790ba0ec\\-4e7d\\-4df0\\-ac86\\-ea52b3a73532$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r3",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r3/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r3",
+        "--flow-id-regex",
+        "^06_sixflags_19b955ba\\-fdcd\\-4345\\-b33a\\-fc6a88b5a85d$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r3",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r3/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r3",
+        "--flow-id-regex",
+        "^07_discogs_8251e820\\-4b8a\\-4221\\-b2d9\\-8158cada3dcf$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r3",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r3/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r3",
+        "--flow-id-regex",
+        "^08_amtrak_845fbfa9\\-1b98\\-4df4\\-b7c5\\-4c71ef3e5b1b$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r3",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r3/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r3",
+        "--flow-id-regex",
+        "^09_amctheatres_925a2307\\-b2b7\\-4189\\-bf25\\-e3f463c24e1c$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r3",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r3/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r3",
+        "--flow-id-regex",
+        "^10_sixflags_ee1e95ab\\-4c5d\\-44c6\\-b302\\-783fd13a471e$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r3",
+      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r3/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r3",
+        "--flow-id-regex",
+        "^11_carnival_6cf8ca9c\\-672d\\-426e\\-ab6c\\-c865475edcd4$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r3",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r3/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r3",
+        "--flow-id-regex",
+        "^12_bookdepository_c472a4fe\\-33a0\\-4b6f\\-8d42\\-adcc067ba4ed$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    },
+    {
+      "experiment_id": "qwen_raw_top4_r3",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "output": "./data/generated/thesis_final_experiments/qwen_raw_top4_r3/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083.json",
+      "command": [
+        "python",
+        "./scripts/run_openrouter_qwen_baseline.py",
+        "--source-dir",
+        "./data/generated/thesis_final_experiments/fl_raw_top4",
+        "--output-dir",
+        "./data/generated/thesis_final_experiments/qwen_raw_top4_r3",
+        "--flow-id-regex",
+        "^13_yellowpages_34c474ef\\-389c\\-421d\\-acbf\\-de5531437083$",
+        "--model",
+        "qwen/qwen3-vl-8b-instruct",
+        "--max-attempts",
+        "2",
+        "--cost-ceiling-usd",
+        "0.02"
+      ]
+    }
+  ]
+}

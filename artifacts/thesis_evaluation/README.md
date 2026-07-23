@@ -1,20 +1,25 @@
 # Thesis Evaluation Replication Package
 
-Status: structure prepared; final stability runs and release review are pending.
+Status: aggregate replication package prepared after the final stability runs;
+public redistribution review remains pending.
 
 This directory is the intended versioned, curated replication package for the
 Bachelor's thesis evaluation. `data/generated/` remains local working state and
 must not be committed wholesale.
 
-## Intended contents
+## Included contents
 
-- exact experiment configurations and preflight manifests;
-- benchmark and source-file checksums;
-- aggregate metrics, confidence intervals, and stability summaries;
-- prompt templates and evaluation scripts;
-- selected sanitized per-item predictions and raw responses where licensing
-  and provider terms permit redistribution;
-- a machine-readable artifact manifest with SHA-256 hashes.
+- exact experiment configurations under `configs/`;
+- sanitized clean-commit execution manifests under `manifests/`;
+- aggregate metrics, the paired flow-cluster bootstrap, and the three-run
+  stability summary under `results/`;
+- `artifact_manifest.json` with file sizes, SHA-256 hashes, and a passed path
+  and secret scan.
+
+The source code, prompt templates, and evaluators remain in the repository at
+commit `cf243be2dd641e4b90e844eccbbe97bd0325f3c6` and subsequent documentation
+commits. Full per-item predictions and raw provider responses remain local until
+redistribution is approved.
 
 ## Excluded contents
 
@@ -27,7 +32,7 @@ must not be committed wholesale.
 
 ## Release gate
 
-Before any artifact is added here:
+Before publishing this package:
 
 1. confirm the Mind2Web and PURE redistribution boundary with the supervisor;
 2. replace absolute repository paths with repository-relative paths;
