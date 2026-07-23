@@ -72,6 +72,12 @@
       "note": "",
       "error_category": null,
       "updated_at": "2026-07-20T23:54:22.504410+00:00"
+    },
+    "GBBOX-0009": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "SEMANTIC_ERROR",
+      "updated_at": "2026-07-21T08:38:09.137656+00:00"
     }
   }
 }
