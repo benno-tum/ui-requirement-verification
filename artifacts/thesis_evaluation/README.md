@@ -10,16 +10,19 @@ must not be committed wholesale.
 ## Included contents
 
 - exact experiment configurations under `configs/`;
-- sanitized clean-commit execution manifests under `manifests/`;
+- sanitized clean-commit launch manifests under `manifests/`; their
+  `execution_requested` status records the state at launch, while
+  `results/stability_execution_summary.json` records verified completion;
 - aggregate metrics, the paired flow-cluster bootstrap, and the three-run
   stability summary under `results/`;
 - `artifact_manifest.json` with file sizes, SHA-256 hashes, and a passed path
   and secret scan.
 
-The source code, prompt templates, and evaluators remain in the repository at
-commit `cf243be2dd641e4b90e844eccbbe97bd0325f3c6` and subsequent documentation
-commits. Full per-item predictions and raw provider responses remain local until
-redistribution is approved.
+The executed source code, prompt templates, and evaluators correspond to commit
+`cf243be2dd641e4b90e844eccbbe97bd0325f3c6`. Review and packaging tooling was
+added afterward without changing those stored run outputs. Full per-item
+predictions and raw provider responses remain local until redistribution is
+approved.
 
 ## Excluded contents
 

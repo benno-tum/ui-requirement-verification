@@ -1,12 +1,12 @@
 {
   "schema_version": "thesis_replication_artifact_manifest_v1",
-  "created_at": "2026-07-23T21:18:42.292103+00:00",
+  "created_at": "2026-07-23T21:22:07.735052+00:00",
   "root": "thesis_evaluation",
   "files": [
     {
       "path": "README.md",
-      "sha256": "5642c03d083fe13fbe3189560fe82167993d351d99ee262cf67c0449e12d3a18",
-      "bytes": 2405
+      "sha256": "72ae649241b23a84882d3c6ccb5d4f60618b53271c58eaaed10ce40f33ed30a3",
+      "bytes": 2598
     },
     {
       "path": "configs/thesis_final_experiments.json",
