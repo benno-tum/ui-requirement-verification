@@ -7,7 +7,7 @@ Examiner: Prof. Dr. Stefan Wagner
 Supervisor: Mohamed Ben Salha
 Registered timeframe: 2 April 2026 to 3 August 2026
 
-This plan is the current writing roadmap. Quantitative sources, historical inconsistencies, and missing experiments are maintained in [`thesis_evidence_audit.md`](thesis_evidence_audit.md). Drafted prose is maintained in [`thesis_first_draft.md`](thesis_first_draft.md). The evidence audit, rather than older progress reports, is the source of truth for counts and preliminary metrics.
+This is the current writing roadmap. The detailed subsection plan and bibliography review are in [`thesis_structure_and_bibliography_audit_2026-07-21.md`](thesis_structure_and_bibliography_audit_2026-07-21.md). Quantitative sources, inconsistencies, and missing experiments are maintained in [`thesis_evidence_audit.md`](thesis_evidence_audit.md). Drafted prose remains in [`thesis_first_draft.md`](thesis_first_draft.md).
 
 ## 1. Thesis Position
 
@@ -17,244 +17,172 @@ The main claim should be:
 
 > UI requirement verification from screenshots is not only a label-prediction task. It is a traceability and uncertainty task. A verifier must connect each decision to visible states in an ordered flow and must preserve uncertainty when those states do not establish the requirement.
 
-The thesis must not claim that screenshots prove hidden backend truth or that the current evidence-first pipeline already outperforms simpler multimodal prompting. The present controlled results show that evidence-first verification improves inspectability and makes retrieval measurable, but the current top-k configuration has worse macro-F1 and false fulfillment than the whole-flow baselines.
+The thesis must not claim that screenshots prove hidden backend truth or that an evidence-first configuration necessarily outperforms whole-flow prompting. The current evidence shows that explicit claims and evidence make decisions inspectable and failures measurable, while the strongest current label result comes from a whole-flow stronger-model configuration.
 
 ## 2. Scope and Formal Target
 
-Plan for **40 ± 5 pages of core text**, excluding front matter, bibliography, and appendices. TUM CIT does not state one universal Informatics page count, and other TUM chairs publish different orientation values. Confirm the target with the supervisor.
+Plan for approximately **42 pages of core text**, with a working range of **40 ± 5 pages**, excluding front matter, bibliography, and appendices. TUM CIT does not publish one universal Informatics page count; confirm this working target with the supervisor.
 
-The central TUM requirements to carry into the final template are:
+The final template must include:
 
-- four-month processing period for a Bachelor's Thesis in Informatics;
-- submission through the CIT Portal;
-- no matriculation number or unrelated personal information on the cover;
-- English and German title on the first page;
+- English and German titles on the first page;
 - examiner and supervisor names including academic titles;
 - submission date;
-- transparent declaration of permitted AI-tool use.
+- no matriculation number or unrelated personal information;
+- submission through the CIT Portal within the four-month Informatics timeframe;
+- a supervisor-approved and transparent declaration of AI-tool use.
 
-The thesis is written in academic English. Use author–year citations in Markdown and convert them consistently to the final LaTeX or Word citation style later.
+Use academic English and author–year citations consistently.
 
 ## 3. Research Questions
 
-**RQ1:** How accurately can multimodal models verify textual UI requirements from ordered screenshot flows?
+**RQ1:** How accurately can multimodal models apply a provided, application-specific verification label schema to UI-observable textual requirements using ordered screenshot flows?
 
-**RQ2:** How does evidence-first verification affect label quality, false fulfillment, evidence traceability, and cost compared with whole-flow and deterministic baselines?
+**RQ2:** How do claim decomposition and screenshot selection affect label accuracy, evidence traceability, and cost relative to direct whole-flow verification?
 
-**RQ3:** Which requirement and evidence patterns cause the most frequent errors or abstentions?
+**RQ3:** Which requirement and evidence patterns cause verification errors, abstentions, or unsafe `FULFILLED` predictions?
 
-**RQ4:** As an exploratory question, how well does the approach transfer to structured PURE requirements?
+RQ2 is deliberately neutral and must be answered through a factor-controlled claim-policy by screenshot-selection matrix. RQ3 characterizes observed abstentions and unsafe positive predictions; it does not require or support a causal claim that abstention itself improves safety. PURE remains exploratory material rather than a numbered research question.
 
-RQ2 is intentionally neutral. It tests whether the evidence-first architecture helps; it does not presuppose that it must outperform the whole-flow baseline.
-
-## 4. Proposed Structure and Page Budget
+## 4. Recommended Structure and Page Budget
 
 | Section | Target pages | Purpose |
 |---|---:|---|
-| Abstract | 0.5–1 | Problem, method, dataset, main result, and limitation. |
-| 1 Introduction | 3–4 | Motivation, research gap, RQs, contributions, and scope. |
-| 2 Background and Related Work | 6–7 | Requirements ambiguity/traceability, GUI testing, UI agents/grounding, multimodal verification, abstention. |
-| 3 Problem Definition | 3–4 | Formal input/output, evaluability, label policy, claims, evidence, and visible/hidden boundary. |
-| 4 Approach | 6–7 | Screen understanding, claim handling, retrieval, screenshot verification, aggregation, and implementation. |
-| 5 Dataset and Annotation | 4–5 | Mind2Web flows, construction pipeline, contrastive items, schema, review, and PURE. |
-| 6 Evaluation Design | 3–4 | Configurations, RQs, metrics, experiment manifest, and analysis procedure. |
-| 7 Results | 4–5 | Final controlled label, safety, evidence, cost, ablation, and error results. |
-| 8 Discussion and Threats | 4–5 | Meaning, limitations, validity, generalization, and practical implications. |
-| 9 Conclusion | 1.5–2 | Answer RQs, summarize contribution, and future work. |
-| **Core text** | **35–44** | Final length depends on figures and final experiment breadth. |
+| 1 Introduction | 4 | Motivation, problem, gap, RQs, contributions, and scope. |
+| 2 Foundations and Related Work | 6 | Requirements, traceability, GUI verification, UI agents, grounding, and abstention. |
+| 3 Research Design and Problem Formulation | 4 | Formal task, evaluability, labels, claims, evidence, and visible/hidden boundary. |
+| 4 Verification Approach and Implementation | 7 | Ordered screen handling, claim policy, evidence selection, verification, aggregation, grounding, and workbench. |
+| 5 Benchmark Construction and Annotation | 5 | Mind2Web-derived data, construction funnel, contrastive items, review, statistics, and PURE. |
+| 6 Evaluation | 10 | Configurations, metrics, main results, evidence, ablations, efficiency, UI evaluability, and errors. |
+| 7 Discussion | 4 | Direct RQ answers, implications, threats, and limitations. |
+| 8 Conclusion | 2 | Contributions, concise answers, and future work. |
+| **Core text** | **42** | Excludes abstracts, lists, bibliography, and appendices. |
 
-## 5. Chapter Content
+The supplied 1.0-graded chair thesis uses the same broad separation of foundations, methodology, implementation, evaluation, discussion, and conclusion. Its 52 pages of core text are a structural reference, not a mandatory target. This thesis keeps benchmark construction as its own chapter because annotation and evidence policy are central contributions.
+
+## 5. Chapter Deliverables
 
 ### 1 Introduction
 
-Open with the rapid development of AI coding agents, but qualify the productivity claim. Agent capabilities and adoption have grown quickly, while measured end-to-end productivity remains task- and context-dependent. The argument is that cheaper candidate implementation increases the relative importance of expressing intent and verifying behavior.
+Open with rapid progress in coding agents but qualify the productivity argument. Agent capabilities have advanced quickly; measured end-to-end productivity remains context-dependent. As candidate implementations become cheaper to generate, specifying intent and verifying behaviour become relatively more important.
 
-Then establish:
+Then establish the text/visual-state mismatch, incomplete observation risk, research gap, RQs, contributions, and visible-UI scope. Use Kwa et al. (2025), SWE-bench, and Becker et al. (2025) for the opening argument. Add Kretzer et al. (2025) as the closest user-story-to-GUI work.
 
-- requirements are textual, but UI behavior is visual and state-based;
-- many obligations span several screens;
-- one observed flow is incomplete evidence about the entire system;
-- unsafe over-fulfillment is more problematic than honest abstention;
-- the thesis verifies visible UI contracts, not hidden backend properties.
+### 2 Foundations and Related Work
 
-End with the research questions and five contributions: problem formulation, prototype, reviewed benchmark, evaluation framework, and error analysis.
+Organize around six themes:
 
-Status: a complete first version exists in `thesis_first_draft.md`.
+1. requirements ambiguity and traceability;
+2. GUI verification and ordered state;
+3. multimodal UI agents and trajectory datasets;
+4. requirement-to-UI and cross-modal verification;
+5. visual grounding, if retained;
+6. abstention and selective prediction.
 
-### 2 Background and Related Work
+End with a comparison table and a synthesis of the unresolved gap. Prefer final publisher versions over arXiv where available.
 
-Recommended subsections:
+### 3 Research Design and Problem Formulation
 
-1. **Requirements ambiguity and traceability.** Explain compound, quantified, contextual, and hidden obligations. Introduce requirement-to-screenshot-step trace links.
-2. **GUI testing and ordered interaction state.** Explain why UI behavior depends on state and why screenshots are weaker than executable tests.
-3. **UI agents, datasets, and grounding.** Position Mind2Web, Android in the Wild, and SeeClick. Distinguish action prediction and element grounding from requirement verification.
-4. **Multimodal software verification.** Position related screenshot/text verification work such as Massenon et al.
-5. **Reject options and abstention.** Motivate `ABSTAIN` as a required output rather than a generic failure.
+Define ordered screenshot flow, requirement, atomic claim, UI evaluability, evidence, requirement labels, claim statuses, and aggregation. State the evidence contract explicitly:
 
-Every subsection should finish by stating what it contributes to the thesis design. Avoid a catalogue of papers without synthesis.
-
-### 3 Problem Definition
-
-Define:
-
-- screenshot flow as an ordered sequence of visible UI states;
-- requirement as a textual obligation;
-- claim as an atomic semantic obligation derived from requirement text;
-- evidence as one or more screenshot steps and an observation;
-- UI evaluability separately from the final label;
-- requirement labels and claim statuses;
-- the conservative aggregation contract.
-
-Use the Amtrak dining example to show a valid visible positive. Contrast it with route applicability or account-ownership wording to show how a hidden obligation changes the decision.
-
-Important invariants:
-
-- no `FULFILLED` without evidence for every core observable claim;
+- `FULFILLED` requires support for all central observable claims;
 - missing evidence alone is not `NOT_FULFILLED`;
-- forms and buttons do not prove correct result states;
-- finite screenshot flows do not prove universal absence or completeness;
-- visible proxies must be described as proxies.
+- hidden or external outcomes remain partial or undecidable unless their visible proxy is exactly the requirement target.
 
-### 4 Approach
+Use Amtrak as the positive running example and a late-state or hidden-result case as the contrast.
 
-Describe the implemented pipeline behavior, not source files:
+### 4 Verification Approach and Implementation
 
-1. Screen understanding preserves order and constructs cached text/metadata representations.
-2. Requirement understanding estimates UI evaluability and optionally decomposes the requirement.
-3. Evidence retrieval ranks candidate screenshot steps per claim.
-4. Screenshot-grounded verification predicts claim status, evidence, uncertainty, and rationale.
-5. Deterministic aggregation produces the final requirement decision.
+Describe the implemented behaviour rather than source-file chronology:
 
-Compare whole-flow and top-k execution. Explain the trade-off between complete context, visual attention, input cost, and retrieval failure. State that the current batched grouping may attach a large union of images even when retrieval is top-3 per claim.
+1. preserve ordered screen representations;
+2. predict UI evaluability and optionally handle claims;
+3. select all screenshots or lexical top-k evidence;
+4. perform multimodal claim verification;
+5. apply deterministic safety-aware aggregation;
+6. optionally localize evidence with candidate marks;
+7. expose outputs in the annotation workbench and frozen run artifacts.
 
-Bounding boxes may be mentioned only as schema support or future work unless a final region-level experiment is added.
+Distinguish provided benchmark claims from realistic raw-requirement runs. Treat semantic aggregation as an ablation over frozen claim outputs. The current test suite passes **203 tests** as of 21 July 2026; this validates implementation consistency, not scientific correctness.
 
-### 5 Dataset and Annotation Methodology
+### 5 Benchmark Construction and Annotation
 
-Current Mind2Web source-of-truth snapshot:
+Current Mind2Web-derived snapshot:
 
 - 13 flows;
 - 100 candidate requirements;
 - 173 reviewed source requirements;
 - 85 contrastive verification items;
 - 258 accepted verification items;
-- 541 gold claims;
+- 541 claims;
 - labels: 172 fulfilled, 45 partial, 33 abstain, and 8 not fulfilled.
 
-Explain harvested, candidate, gold, contrastive, and verification-gold stages. Do not describe automatically generated requirements or intended labels as ground truth before review.
+Explain harvested, candidate, reviewed source, contrastive, and verification-gold stages. Generated text is not ground truth before review. “Accepted” means primary-author review and is not inter-annotator agreement.
 
-State explicitly that all 258 current Mind2Web items were reviewed by the primary author. “Accepted” is not inter-annotator agreement. Independent re-review remains required.
+Include temporal benchmark facts in this chapter because they justify ordered-flow verification. Keep PURE exploratory. The current material contains 31 accepted Split/Merge items with 78 claims and 11 accepted Mashboot items, but most provenance is Codex-draft and Mashboot review was post-hoc. PURE figures are intended-design artifacts rather than execution traces.
 
-Treat PURE as exploratory:
+### 6 Evaluation
 
-- Split/Merge: 29 items, 5 accepted and 24 needing review;
-- Mashboot: 11 post-hoc items, all needing review;
-- suitable for contextualization and claim-decomposition discussion, not final generalization claims in the current state.
+Every configuration table must identify the benchmark version, flows, item and prediction counts, coverage, model, prompt, claim policy, screenshot strategy, aggregation, failures, and cost basis.
 
-### 6 Evaluation Design
+Primary metrics are accuracy, macro-F1, per-class scores, false fulfillment, abstention, prediction coverage, evidence hit@k/recall@k/MRR, claim matching where meaningful, runtime, failures, and estimated cost. Add confidence intervals and account for requirements clustered within 13 flows.
 
-Primary metrics:
+Current factor-controlled full-benchmark RQ2 snapshot (Gemini 3.1 Flash-Lite, 23 July 2026):
 
-- accuracy and macro-F1;
-- per-class precision, recall, and F1;
-- confusion matrix;
-- false-fulfillment rate;
-- abstain rate and prediction coverage;
-- evidence hit@k, recall@k, precision@k, and MRR;
-- claim-match recall and claim-status macro-F1;
-- runtime, tokens, images, fallbacks, and estimated cost.
+| Configuration | Items | Accuracy | Macro-F1 | False fulfillment | Abstain | Evidence MRR |
+|---|---:|---:|---:|---:|---:|---:|
+| Raw requirements, all screenshots | 258 | 79.5% | 0.514 | 10.6% | 19.0% | 0.716 |
+| Gated automatic decomposition, all screenshots | 258 | 79.1% | 0.536 | 12.4% | 17.1% | 0.734 |
+| Raw requirements, lexical top-4 | 258 | 71.3% | 0.387 | 11.0% | 27.9% | 0.621 |
+| Gated automatic decomposition, lexical top-4 | 258 | 73.6% | 0.518 | 10.4% | 26.0% | 0.607 |
 
-Final configurations should include:
+These runs have full coverage, no recorded fallbacks or failures, and differ only in claim and screenshot policy. A paired 10,000-sample bootstrap over complete flows shows a clear loss from top-4 for raw requirements in accuracy, macro-F1, and MRR; decomposition effects are mixed and depend on screenshot policy. The results remain preliminary until the code/benchmark state is cleanly frozen and the statistical method is documented with a citation. The older 201-item comparison is historical and should not remain the headline table.
 
-1. deterministic evidence-first baseline;
-2. whole-flow Flash Lite baseline without claim decomposition;
-3. whole-flow stronger-model baseline;
-4. evidence-first top-k Flash Lite;
-5. no-decomposition ablation;
-6. all-screenshots versus top-k ablation;
-7. aggregation-policy ablation.
+For RQ1, the matched raw/all comparison gives 79.5% accuracy for Gemini 3.1 Flash-Lite and 73.3% for Gemini 2.5 Flash-Lite. The paired accuracy difference is 6.2 percentage points (flow-cluster bootstrap 95% CI 1.6 to 10.8), with 83.3% raw inter-model label agreement and Cohen's kappa 0.616. A hosted open-weight Qwen3-VL-8B-Instruct raw/shared-top-4 baseline also completed with 71.3% accuracy, 0.356 macro-F1, 18.5% false fulfillment, and 0.622 evidence MRR. Against the matched Flash-Lite raw/shared-top-4 condition, it has equal accuracy and 81.0% label agreement (kappa 0.559), but a 7.4-percentage-point higher false-fulfillment rate.
 
-Every configuration must run over the same frozen 258 items. Store exact model identifiers, prompt versions, evidence strategy, and failures in one run manifest.
+Prioritize the controlled all-screenshots versus top-k and claim-policy matrix. Region grounding belongs in the main evaluation only after prediction-independent human relevance and sufficiency review.
 
-### 7 Results
+### 7 Discussion
 
-The current controlled preliminary comparison covers 201 items from flows 01–10:
+Answer RQ1–RQ3 directly. Discuss whether the models follow the supplied label semantics, why traceability can be useful even without winning label metrics, why retrieval and reasoning are separate bottlenecks, and why finite screenshot flows cannot prove hidden outcomes. Cover construct, internal, external, and reliability validity, including generated requirements, single-author gold, flow clustering, class imbalance, model drift, PURE provenance, and licensing.
 
-| Configuration | Accuracy | Macro-F1 | False fulfillment |
-|---|---:|---:|---:|
-| Gemini Flash Lite whole-flow | 76.1% | 0.480 | 12.4% |
-| Gemini 3.1 Pro whole-flow | 81.1% | 0.573 | 9.9% |
-| Gemini Flash Lite batched top-k | 75.1% | 0.387 | 21.5% |
-| Deterministic baseline | 20.4% | 0.136 | 45.5% |
+### 8 Conclusion
 
-These values are preliminary and must not be mixed with historical 13-flow current-run reports. The final chapter must replace or confirm them after controlled flows 11–13 runs.
+Summarize completed contributions and provide concise final RQ answers. Limit future work to concrete extensions: independent review, controlled ablations, better temporal retrieval, calibrated uncertainty, larger heterogeneous data, and evaluated region grounding.
 
-Current evidence metrics are comparable only for batched top-k and deterministic outputs. Whole-flow evidence must be normalized and evaluated before the final table.
+## 6. Evidence and Reporting Rules
 
-Planned results subsections:
-
-1. Benchmark snapshot and class balance.
-2. Label prediction and confusion matrices.
-3. False fulfillment and abstention behavior.
-4. Evidence retrieval.
-5. Ablations and cost/runtime.
-6. Error categories and qualitative cases.
-7. Exploratory PURE observations.
-
-### 8 Discussion and Threats to Validity
-
-Discuss:
-
-- why explicit evidence improves inspectability even without improving current label metrics;
-- why retrieval and reasoning are separate bottlenecks;
-- why claim decomposition can localize uncertainty but can also shift meaning;
-- why screenshot verification has a principled visible/hidden boundary;
-- why generated requirements and single-author annotation create circularity and consistency risks;
-- why 13 web flows do not establish mobile or industrial generalization;
-- why model versions, retries, cached outputs, and stale metrics affect reliability.
-
-The strongest current empirical story is not that evidence-first is already more accurate. It is that the structured evaluation reveals where and why requirement verification fails.
-
-### 9 Conclusion
-
-Answer each research question directly. Summarize the problem formulation, prototype, benchmark, and observed failure patterns. Limit future work to concrete extensions: final annotation review, improved action/result retrieval, stronger uncertainty calibration, larger external datasets, and optional region grounding.
-
-## 6. Evidence and Result Rules
-
-Use only denominator-compatible results in the main tables. In particular:
-
-- Do not use 169/259 or 173/258 as final performance.
-- Do not use the stored 31.8% batched result; it scores 201 predictions against 258 gold items.
-- Do not repeat the outdated 201-accepted/57-review statement.
-- Do not combine the 100 Mind2Web candidates with 42 PURE candidates without labeling the sources.
-- Do not present post-hoc PURE Mashboot labels as blinded gold.
-- Do not interpret absent whole-flow evidence metrics as zero.
-
-Every final table must include benchmark version, flows, item count, predictions, coverage, model, prompt version, claim policy, evidence strategy, aggregation, failures, and cost assumptions.
+- Use only denominator-compatible results in main tables.
+- Never combine runs with different models, prompts, benchmark versions, claim policies, screenshot strategies, or fallback behaviour as if they were one controlled comparison.
+- Do not use 169/259, 173/258, or the stored 31.8% batched metric as current performance.
+- Do not repeat the outdated 201-accepted statement.
+- Do not combine 100 Mind2Web candidates with PURE candidates without naming both sources.
+- Do not present Mashboot as blinded gold.
+- Do not interpret absent evidence metrics as zero.
+- Do not present generated bounding boxes as correct without human evaluation.
+- Do not imply that screenshots prove backend correctness, security, persistence, completeness, external delivery, or all reachable states.
 
 ## 7. Remaining Work
 
 ### Before a Complete First Version
 
-- Draft Background and Related Work.
-- Draft Problem Definition and Approach from the implemented behavior.
-- Convert the current Introduction and Evaluation draft into the final document template.
-- Confirm the page target and AI-use disclosure with the supervisor.
+- Draft Chapters 2–4 using the new structure.
+- Move the existing dataset/evaluation prose into Chapters 5–7 and update stale PURE and result counts.
+- Correct the bibliography metadata listed in the structure and bibliography audit.
+- Confirm chapter plan, page target, and AI-use disclosure with the supervisor.
 
 ### Before Final Results
 
-- Freeze the 258-item benchmark and run manifest.
+- Freeze the 258-item benchmark and exact run manifest.
 - Independently re-review a stratified annotation sample and adjudicate disagreements.
-- Run every final configuration over flows 01–13.
-- Normalize and compute whole-flow evidence metrics.
-- Complete the requested ablations.
-- Add confidence intervals and final cost/runtime/failure statistics.
-- Freeze 3–5 qualitative cases.
-- Decide the bounding-box scope.
-- Document data licensing and artifact-release boundaries.
+- Retain and document the completed flow-cluster bootstrap, and decide whether a repeated-run stability check is affordable.
+- Add confidence intervals and final runtime, failure, token, image, and cost statistics.
+- Freeze 3–5 qualitative cases and the error-category protocol.
+- Decide whether bounding boxes are an evaluated contribution or an exploratory extension.
+- Document Mind2Web/PURE licensing and artifact-release boundaries.
 
 ## 8. Current Main Argument
 
-The thesis should conclude along the following line if the final results remain consistent with the current evidence:
+If the final results remain consistent with the present evidence, the conclusion should be approximately:
 
-> Ordered screenshot flows make visible UI requirement verification measurable, but they do not remove the uncertainty created by incomplete observation. Whole-flow multimodal models provide a strong label baseline, while explicit claim and evidence structures make decisions traceable and reveal retrieval failures. The main difficulties concentrate around partial evidence being over-generalized, decisive late states being missed, universal or comparative wording, and obligations whose truth is hidden from screenshots. Reliable verification therefore requires both stronger evidence selection and conservative reasoning about what the visible flow can actually establish.
+> Ordered screenshot flows make visible UI requirement verification measurable, but they do not remove uncertainty created by incomplete observation. Whole-flow multimodal models provide a strong label baseline, while explicit claim and evidence structures make decisions traceable and reveal retrieval and reasoning failures. The main difficulties concern partial evidence being over-generalized, decisive late states being missed, universal or comparative wording, and obligations whose truth is hidden from screenshots. Reliable verification therefore requires both effective evidence use and conservative reasoning about what the visible flow can establish.
