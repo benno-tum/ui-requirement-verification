@@ -76,7 +76,7 @@ Organize around six themes:
 2. GUI verification and ordered state;
 3. multimodal UI agents and trajectory datasets;
 4. requirement-to-UI and cross-modal verification;
-5. visual grounding, if retained;
+5. visual grounding and evidence localization;
 6. abstention and selective prediction.
 
 End with a comparison table and a synthesis of the unresolved gap. Prefer final publisher versions over arXiv where available.
@@ -100,10 +100,10 @@ Describe the implemented behaviour rather than source-file chronology:
 3. select all screenshots or lexical top-k evidence;
 4. perform multimodal claim verification;
 5. apply deterministic safety-aware aggregation;
-6. optionally localize evidence with candidate marks;
+6. localize evidence with candidate marks as a separate traceability output;
 7. expose outputs in the annotation workbench and frozen run artifacts.
 
-Distinguish provided benchmark claims from realistic raw-requirement runs. Treat semantic aggregation as an ablation over frozen claim outputs. The current test suite passes **203 tests** as of 21 July 2026; this validates implementation consistency, not scientific correctness.
+Distinguish provided benchmark claims from realistic raw-requirement runs. Treat semantic aggregation as an ablation over frozen claim outputs. The current test suite passes **225 tests** as of 23 July 2026; this validates implementation consistency, not scientific correctness.
 
 ### 5 Benchmark Construction and Annotation
 
@@ -140,7 +140,13 @@ These runs have full coverage, no recorded fallbacks or failures, and differ onl
 
 For RQ1, the matched raw/all comparison gives 79.5% accuracy for Gemini 3.1 Flash-Lite and 73.3% for Gemini 2.5 Flash-Lite. The paired accuracy difference is 6.2 percentage points (flow-cluster bootstrap 95% CI 1.6 to 10.8), with 83.3% raw inter-model label agreement and Cohen's kappa 0.616. A hosted open-weight Qwen3-VL-8B-Instruct raw/shared-top-4 baseline also completed with 71.3% accuracy, 0.356 macro-F1, 18.5% false fulfillment, and 0.622 evidence MRR. Against the matched Flash-Lite raw/shared-top-4 condition, it has equal accuracy and 81.0% label agreement (kappa 0.559), but a 7.4-percentage-point higher false-fulfillment rate.
 
-Prioritize the controlled all-screenshots versus top-k and claim-policy matrix. Region grounding belongs in the main evaluation only after prediction-independent human relevance and sufficiency review.
+Prioritize the controlled all-screenshots versus top-k and claim-policy matrix.
+Evaluate region grounding as a separate traceability output rather than an
+intervention on label accuracy. Report coordinate validity, localizability,
+coverage, relevance, sufficiency, `NO_VISIBLE_REGION`, error categories, and
+reviewer agreement after a prediction-independent review. Evaluate model UI
+evaluability separately and stratify verification errors by evaluability after
+the targeted audit is adjudicated.
 
 ### 7 Discussion
 
@@ -148,7 +154,7 @@ Answer RQ1–RQ3 directly. Discuss whether the models follow the supplied label 
 
 ### 8 Conclusion
 
-Summarize completed contributions and provide concise final RQ answers. Limit future work to concrete extensions: independent review, controlled ablations, better temporal retrieval, calibrated uncertainty, larger heterogeneous data, and evaluated region grounding.
+Summarize completed contributions and provide concise final RQ answers. Limit future work to concrete extensions: independent review, better temporal retrieval, calibrated uncertainty, larger heterogeneous data, and stronger region grounding.
 
 ## 6. Evidence and Reporting Rules
 
@@ -166,9 +172,11 @@ Summarize completed contributions and provide concise final RQ answers. Limit fu
 
 ### Before a Complete First Version
 
-- Draft Chapters 2–4 using the new structure.
-- Move the existing dataset/evaluation prose into Chapters 5–7 and update stale PURE and result counts.
-- Correct the bibliography metadata listed in the structure and bibliography audit.
+- [x] Draft Chapters 2–4 using the agreed structure.
+- [x] Expand the dataset, evaluation, discussion, and conclusion prose around
+  the frozen results.
+- [ ] Correct and export final bibliography metadata in the selected thesis
+  typesetting system.
 - Confirm chapter plan, page target, and AI-use disclosure with the supervisor.
 
 ### Before Final Results
@@ -183,7 +191,10 @@ Summarize completed contributions and provide concise final RQ answers. Limit fu
 - [ ] Obtain the independent reviewer responses and adjudicate disagreements.
 - [ ] Add the final statistical-method citation and decide how to characterize
   uncertainty from only 13 flow clusters.
-- Decide whether bounding boxes are an evaluated contribution or an exploratory extension.
+- [ ] Complete the prediction-independent region-grounding review and insert
+  relevance, sufficiency, coverage, and localization-abstention results.
+- [ ] Complete and adjudicate the targeted UI-evaluability audit and insert
+  model agreement plus performance stratification.
 - [x] Document a conservative aggregate-only Mind2Web/PURE release boundary.
 - [ ] Obtain written permission before releasing Mind2Web test-derived per-item
   annotations or PURE text/figure derivatives.

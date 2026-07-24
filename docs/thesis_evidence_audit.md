@@ -42,12 +42,20 @@ The repository contains a runnable prototype rather than only a conceptual propo
 The current automated test suite passes:
 
 ```text
-203 passed
+225 passed
 ```
 
-This was checked on 21 July 2026 with `python -m pytest -q` (`203 passed in 5.71s`). The test result supports the claim that the checked-in implementation is internally consistent and runnable. It does not establish scientific validity, model reliability, or external generalization.
+This was checked on 23 July 2026 with `pytest -q` (`225 passed in 6.07s`). The test result supports the claim that the checked-in implementation is internally consistent and runnable. It does not establish scientific validity, model reliability, or external generalization.
 
-The mature evaluated evidence granularity remains **screenshot-step-level**. The repository now contains end-to-end candidate-mark grounding runs over all 13 flows, including a July 21 joint Flash-Lite run with 588 stored boxes/evidence records and a V7 localization run with 697 valid regions. These outputs demonstrate that localization is implemented; they do not establish localization accuracy. The existing region audits are not blind human reviews, and relevance and sufficiency remain unvalidated. The thesis must either add a prediction-independent bounding-box evaluation or present region grounding only as an exploratory extension.
+The mature evaluated evidence granularity remains **screenshot-step-level**.
+The repository also contains end-to-end candidate-mark grounding runs over all
+13 flows, including a July 21 joint Flash-Lite run with 588 stored
+boxes/evidence records and a V7 localization run with 697 stored regions. Region
+grounding is retained as a separate evidence-localization evaluation, not as an
+intervention on label accuracy. Its final result requires a
+prediction-independent review of localizability, coverage, relevance,
+sufficiency, and `NO_VISIBLE_REGION`; existing mixed-method pilot judgments may
+be reported only as development evidence.
 
 ## 3. Dataset Source of Truth
 
@@ -305,7 +313,11 @@ A visible search form can establish that the user can enter criteria and submit 
 - Apply the documented aggregate-only release policy. Mind2Web per-item
   `test_task` derivatives and PURE text/figure derivatives remain
   supervisor-only pending written permission.
-- Either perform a prediction-independent relevance and sufficiency review of the bounding boxes or classify region grounding as exploratory rather than a validated contribution.
+- Complete the prediction-independent region-grounding review and report
+  localizability, coverage, relevance, sufficiency, `NO_VISIBLE_REGION`, error
+  categories, and reviewer agreement separately from label accuracy.
+- Complete and adjudicate the targeted UI-evaluability audit before reporting
+  final model agreement or performance stratification by evaluability.
 
 ### Recommended
 
