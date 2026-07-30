@@ -2,7 +2,7 @@
   "schema_version": "thesis_final_experiments_v1",
   "prepared_at": "2026-07-23",
   "research_questions": {
-    "RQ1": "How accurately can multimodal models apply a provided, application-specific verification label schema to UI-observable textual requirements using ordered screenshot flows?",
+    "RQ1": "How well can multimodal models determine the fulfillment status of written requirements from ordered sequences of UI screenshots?",
     "RQ2": "How do claim decomposition and screenshot selection affect label accuracy, evidence traceability, and cost relative to direct whole-flow verification?",
     "RQ3": "Which requirement and evidence patterns cause verification errors, abstentions, or unsafe FULFILLED predictions?"
   },
