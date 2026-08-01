@@ -1,0 +1,26 @@
+\addchap{Abstract}
+
+This thesis investigates automated verification of textual user-interface
+requirements against ordered visual UI flows. The proposed output contract
+combines a four-way requirement verdict with explicit screenshot evidence,
+claim-level decisions, uncertainty reasons, and optional region-level
+localization. The approach separates visible support from hidden system
+properties and preserves uncertainty when the available visual states do not
+justify a reliable positive or negative decision.
+
+The empirical study uses 258 reviewed verification items across 13
+Mind2Web-derived web flows. A controlled experiment varies automatic claim
+decomposition and screenshot selection independently, complemented by model
+comparisons, repeated runs, a flow-cluster bootstrap, an order-unavailable
+robustness condition, and qualitative error analysis. Complete-flow prompting
+provides the strongest label baseline in the controlled matrix. Restricting
+raw requirements to lexically selected screenshots omits decisive states and
+reduces label quality, while the effects of decomposition depend on the
+available evidence. Explicit evidence representations remain useful for
+traceability because they expose retrieval, interpretation, and aggregation
+failures separately.
+
+The evaluation uses a reviewed 13-flow benchmark and concerns what recorded
+screenshots visibly establish. It does not infer hidden backend behavior, and
+its results characterize this evidence regime rather than all UI designs and
+implementations.

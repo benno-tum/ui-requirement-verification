@@ -51,9 +51,10 @@ Assign exactly one primary category.
    be reduced to missing evidence or an observable contradiction.
 
 7. **Gold-review candidate**
-   Independent inspection indicates that the primary-author label or reviewed
-   evidence may need adjudication. This category never changes gold
-   automatically.
+   Author re-inspection indicates that the frozen label or reviewed evidence
+   may need correction. This category never changes gold automatically. Any
+   correction must be logged as a post-freeze author amendment and all affected
+   metrics must be regenerated. It is not independent adjudication.
 
 ## Requirement-pattern tags
 
@@ -94,8 +95,9 @@ Assign every applicable tag:
 4. Inspect the exact screenshots supplied to the evaluated configuration.
 5. Assign one primary outcome category and all applicable pattern tags.
 6. Record a one-sentence rationale referring only to visible evidence.
-7. Mark uncertain cases for adjudication rather than resolving them by
-   assumption.
+7. Mark uncertain cases for a separate author re-inspection rather than
+   resolving them by assumption. Record unresolved cases as limitations; do
+   not describe the re-inspection as adjudication or independent validation.
 8. Count categories once per item; report multi-valued pattern tags separately.
 
 ## Prespecified quantitative summaries

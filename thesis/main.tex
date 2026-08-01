@@ -1,0 +1,83 @@
+\documentclass[
+  headsepline,
+  footsepline,
+  footinclude=false,
+  oneside,
+  fontsize=11pt,
+  paper=a4,
+  listof=totoc,
+  bibliography=totoc,
+  DIV=12
+]{scrbook}
+
+% Thesis metadata. Keep the cover free of the matriculation number and other
+% personal data not required by the TUM CIT formatting instructions.
+\newcommand*{\getUniversity}{Technical University of Munich}
+\newcommand*{\getFaculty}{Informatics}
+\newcommand*{\getDegree}{Informatics}
+\newcommand*{\getSchool}{Computation, Information and Technology}
+\newcommand*{\getTitle}{Automated UI Requirement Verification from Ordered Screenshot Sequences}
+\newcommand*{\getTitleGer}{Automatisierte Verifikation von UI-Anforderungen anhand geordneter Screenshot-Sequenzen}
+\newcommand*{\getAuthor}{Benno Brück}
+\newcommand*{\getDoctype}{Bachelor's Thesis}
+\newcommand*{\getExaminer}{Prof.\ Dr.\ Stefan Wagner}
+\newcommand*{\getSupervisor}{M.Sc.\ Mohamed Ben Salha}
+\newcommand*{\getKeywords}{UI requirements; verification; screenshot flows; multimodal models; traceability; abstention}
+\newcommand*{\getSubmissionDate}{3 August 2026}
+\newcommand*{\getSubmissionLocation}{Munich}
+
+\input{settings}
+
+\begin{document}
+
+% Set page numbering to avoid "destination with the same identifier has been already used" warning for cover page.
+% (see https://en.wikibooks.org/wiki/LaTeX/Hyperlinks#Problems_with_Links_and_Pages).
+\pagenumbering{alph}
+\input{pages/cover}
+
+\frontmatter{}
+
+\input{pages/title}
+\input{pages/abstract_en}
+\input{pages/abstract_de}
+\microtypesetup{protrusion=false}
+\tableofcontents{}
+\microtypesetup{protrusion=true}
+
+\mainmatter{}
+
+\input{chapters/01_introduction}
+\input{chapters/02_foundations_related_work}
+\input{chapters/03_research_design}
+\input{chapters/04_verification_approach}
+\input{chapters/05_dataset_annotation}
+\input{chapters/06_evaluation}
+\input{chapters/07_discussion}
+\input{chapters/08_conclusion}
+
+\appendix{}
+
+\microtypesetup{protrusion=false}
+
+\addchap{Abbreviations}
+\begin{acronym}
+	\itemsep-.25\baselineskip
+	\acro{TUM}[TUM]{Technical University of Munich}
+	\acro{CIT}[CIT]{School of Computation, Information and Technology}
+	\acro{GUI}[GUI]{graphical user interface}
+	\acro{LLM}[LLM]{large language model}
+	\acro{MLLM}[MLLM]{multimodal large language model}
+	\acro{MRR}[MRR]{mean reciprocal rank}
+	\acro{OCR}[OCR]{optical character recognition}
+	\acro{PURE}[PURE]{Public Requirements dataset}
+	\acro{RQ}[RQ]{research question}
+	\acro{UI}[UI]{user interface}
+\end{acronym}
+
+\microtypesetup{protrusion=true}
+\printbibliography{}
+
+\backmatter{}
+\input{pages/declaration}
+
+\end{document}

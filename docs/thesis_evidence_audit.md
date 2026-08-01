@@ -52,10 +52,10 @@ The repository also contains end-to-end candidate-mark grounding runs over all
 13 flows, including a July 21 joint Flash-Lite run with 588 stored
 boxes/evidence records and a V7 localization run with 697 stored regions. Region
 grounding is retained as a separate evidence-localization evaluation, not as an
-intervention on label accuracy. Its final result requires a
-prediction-independent review of localizability, coverage, relevance,
-sufficiency, and `NO_VISIBLE_REGION`; existing mixed-method pilot judgments may
-be reported only as development evidence.
+intervention on label accuracy. The targeted 60-item author audit of
+localizability, coverage, relevance, sufficiency, and `NO_VISIBLE_REGION` is
+complete. It is an output-quality audit, not independent benchmark-wide
+localization validation.
 
 ## 3. Dataset Source of Truth
 
@@ -66,21 +66,26 @@ The current main benchmark uses 13 ordered web interaction flows derived from Mi
 | Quantity | Current value | Source |
 |---|---:|---|
 | Mind2Web flows | 13 | `data/annotations/verification_gold/01_*` through `13_*` |
-| Candidate requirements | 100 | `data/annotations/requirements_candidate/01_*` through `13_*` |
-| Reviewed source/gold requirements | 173 | `data/annotations/requirements_gold/01_*` through `13_*` |
-| Contrastive verification items | 85 | Verification items whose `source_type` is `requirements_candidate` |
+| Candidate construction records | 100 | `data/annotations/requirements_candidate/01_*` through `13_*` |
+| Reviewed source requirements | 187 | Verification items without the `contrastive` tag |
+| Reviewed contrastive requirements | 71 | Verification items with the `contrastive` tag |
 | Verification items | 258 | `data/annotations/verification_gold/01_*` through `13_*` |
 | Accepted verification items | 258 | `review_status == accepted` |
 | Gold claims | 541 | Sum of claim arrays in the 258 verification items |
 
-The 258 verification items consist of the 173 reviewed source requirements plus 85 reviewed contrastive items. The distinction matters: a contrastive item is not one of the 100 initial candidates merely because its `source_type` is `requirements_candidate`. It is a deliberately modified evaluation requirement added to create partial, negative, or undecidable cases.
+The 258 verification items consist of 187 reviewed source requirements and 71
+reviewed contrastive requirements. A source requirement is an ordinary
+requirement derived from a flow. A contrastive requirement is a deliberately
+modified, reviewed variant used to add partial, negative, or undecidable cases.
+All 187 ordinary benchmark requirements are now promoted to gold; candidate
+files remain only as construction records.
 
 Current label distribution:
 
 | Label | Count | Share |
 |---|---:|---:|
-| `FULFILLED` | 172 | 66.7% |
-| `PARTIALLY_FULFILLED` | 45 | 17.4% |
+| `FULFILLED` | 173 | 67.1% |
+| `PARTIALLY_FULFILLED` | 44 | 17.1% |
 | `ABSTAIN` | 33 | 12.8% |
 | `NOT_FULFILLED` | 8 | 3.1% |
 | **Total** | **258** | **100%** |
@@ -89,11 +94,18 @@ Current UI-evaluability distribution:
 
 | UI evaluability | Count |
 |---|---:|
-| `UI_VERIFIABLE` | 192 |
-| `PARTIALLY_UI_VERIFIABLE` | 62 |
-| `NOT_UI_VERIFIABLE` | 4 |
+| `UI_VERIFIABLE` | 220 |
+| `PARTIALLY_UI_VERIFIABLE` | 35 |
+| `NOT_UI_VERIFIABLE` | 3 |
 
-All 258 Mind2Web items are marked accepted and annotated by Benno. In the thesis, “accepted” must therefore be described as completion of the primary author's review, not agreement between independent annotators. The absence of an independent second review remains a threat to internal validity.
+All 258 Mind2Web items are marked accepted and annotated by Benno. In the
+thesis, “accepted” must therefore be described as completion of the primary
+author's review, not agreement between independent annotators. On 25 July 2026,
+the evaluation plan was explicitly scoped to a single annotator. The prepared
+44-item second-review form is retained as an unused audit artifact, but no
+independent responses, inter-rater agreement, or adjudication results are
+claimed. The absence of independent validation remains a threat to internal
+validity.
 
 ### 3.2 Requirement Construction Process
 
@@ -135,14 +147,14 @@ The final primary Gemini 3.1 Flash-Lite matrix now covers all 13 flows and produ
 
 | Configuration | Items / flows | Claim and screenshot strategy | Accuracy | Macro-F1 | False fulfillment | Abstain | Evidence MRR | Calls / failures | Tokens | Estimated cost |
 |---|---|---|---:|---:|---:|---:|---:|---|---:|---:|
-| Gemini 3.1 Flash-Lite | 258 / 01–13 | Raw requirements; all screenshots | 79.5% | 0.514 | 10.6% | 19.0% | 0.716 | 39 / 0 | 612,429 | $0.2817 |
-| Gemini 3.1 Flash-Lite | 258 / 01–13 | Gated automatic decomposition; all screenshots | 79.1% | 0.536 | 12.4% | 17.1% | 0.734 | 41 / 0 | 653,388 | $0.3002 |
-| Gemini 3.1 Flash-Lite | 258 / 01–13 | Raw requirements; lexical top-4 | 71.3% | 0.387 | 11.0% | 27.9% | 0.621 | 39 / 0 | 433,519 | $0.2778 |
-| Gemini 3.1 Flash-Lite | 258 / 01–13 | Gated automatic decomposition; lexical top-4 | 73.6% | 0.518 | 10.4% | 26.0% | 0.607 | 41 / 0 | 421,723 | $0.2394 |
+| Gemini 3.1 Flash-Lite | 258 / 01–13 | Raw requirements; all screenshots | 79.8% | 0.516 | 10.1% | 19.0% | 0.716 | 39 / 0 | 612,429 | $0.2817 |
+| Gemini 3.1 Flash-Lite | 258 / 01–13 | Gated automatic decomposition; all screenshots | 79.5% | 0.538 | 11.9% | 17.1% | 0.734 | 41 / 0 | 653,388 | $0.3002 |
+| Gemini 3.1 Flash-Lite | 258 / 01–13 | Raw requirements; lexical top-4 | 71.7% | 0.388 | 10.5% | 27.9% | 0.621 | 39 / 0 | 433,519 | $0.2778 |
+| Gemini 3.1 Flash-Lite | 258 / 01–13 | Gated automatic decomposition; lexical top-4 | 74.0% | 0.520 | 9.8% | 26.0% | 0.607 | 41 / 0 | 421,723 | $0.2394 |
 
 The complete 2x2 matrix used 160 successful API calls, recorded no fallbacks or failures, and cost approximately $1.0991. The result does not support a uniform advantage for the proposed evidence-first configuration. A paired 10,000-sample bootstrap over complete flows finds that raw top-4 is worse than raw/all in accuracy (-8.1 percentage points, 95% CI -12.0 to -3.8), macro-F1 (-0.127, -0.244 to -0.043), and MRR (-0.095, -0.148 to -0.031). Gated top-4 is also worse than gated/all in accuracy (-5.4 percentage points, -10.2 to -1.1) and MRR (-0.128, -0.187 to -0.063), while its macro-F1 interval spans zero. Gated decomposition under all screenshots has mixed differences whose accuracy, macro-F1, and MRR intervals span zero; its false-fulfillment difference is +1.9 percentage points (95% CI +0.4 to +3.3). Under top-4, decomposition improves macro-F1 by 0.131 (95% CI +0.021 to +0.193). Only 13 clusters are available, so the intervals remain descriptive rather than grounds for broad generalization.
 
-For the raw/all cell, forcing all 49 native abstentions to `NOT_FULFILLED` reduces accuracy from 79.5% to 70.2% and macro-F1 from 0.514 to 0.331 while false fulfillment remains 10.6%. For gated/top-4, forcing all 67 abstentions reduces accuracy from 73.6% to 64.3% and macro-F1 from 0.518 to 0.305 while false fulfillment remains 10.4%. These are zero-cost aggregation-policy counterfactuals, not new LLM runs. They show that blanket negative replacement is harmful but cannot establish causal safety improvement from abstention.
+For the raw/all cell, forcing all 49 native abstentions to `NOT_FULFILLED` reduces accuracy from 79.8% to 70.5% and macro-F1 from 0.516 to 0.333 while false fulfillment remains 10.1%. For gated/top-4, forcing all 67 abstentions reduces accuracy from 74.0% to 64.7% and macro-F1 from 0.520 to 0.307 while false fulfillment remains 9.8%. These are zero-cost aggregation-policy counterfactuals, not new LLM runs. They show that blanket negative replacement is harmful but cannot establish causal safety improvement from abstention.
 
 The matched raw/all model comparison supplies current RQ1 sensitivity evidence. Gemini 3.1 Flash-Lite exceeds Gemini 2.5 Flash-Lite by 6.2 percentage points accuracy (paired flow-cluster bootstrap 95% CI 1.6 to 10.8), 0.102 macro-F1 (0.006 to 0.218), and 0.121 evidence MRR (0.010 to 0.241). Their raw label agreement is 83.3% (78.5% to 88.1%) and Cohen's kappa is 0.616 (0.469 to 0.735). Both are commercial Google models, so this is not evidence of cross-provider or open-model generalization.
 
@@ -160,9 +172,9 @@ Additional disclosures are required:
 - Candidate-mark/OmniParser grounding was disabled (`grounding_candidates = null`). Bounding boxes were not disabled: the common prompt requested free-form visual regions and OCR refinement produced boxes for most cited evidence units. These boxes were neither independently reviewed nor scored. They may not be claimed as a validated contribution and their generation is part of the prompt/output workload.
 - The requirements loader reads the benchmark gold JSON but only sends requirement text, identifiers, predicted claims, and screen evidence to the verifier. Gold labels and gold evidence are not referenced by the verifier code. Nevertheless, a sanitized prediction-input file would provide stronger structural protection against accidental label leakage.
 - Exact commercial serving revisions and system fingerprints are unavailable. The exact model aliases, date, SDK, prompt, parameters, images, outputs, and usage are archived, but provider drift remains possible.
-- The benchmark is strongly imbalanced: 172 of 258 labels are `FULFILLED`, while only eight are `NOT_FULFILLED`. Accuracy must be interpreted with macro-F1 and per-class scores.
+- The benchmark is strongly imbalanced: 173 of 258 labels are `FULFILLED`, while only eight are `NOT_FULFILLED`. Accuracy must be interpreted with macro-F1 and per-class scores.
 
-The strongest cell, Gemini 3.1 raw/all, reaches 79.5% accuracy but only 0.514 macro-F1. Its per-class F1 values are 0.936 for `FULFILLED`, 0.286 for `PARTIALLY_FULFILLED`, 0.200 for `NOT_FULFILLED`, and 0.634 for `ABSTAIN`. It is therefore a useful but not production-ready verifier. The main optimization target is minority-label reasoning and evidence sufficiency, not headline accuracy.
+The strongest cell, Gemini 3.1 raw/all, reaches 79.8% accuracy but only 0.516 macro-F1. Its per-class F1 values are 0.939 for `FULFILLED`, 0.290 for `PARTIALLY_FULFILLED`, 0.200 for `NOT_FULFILLED`, and 0.634 for `ABSTAIN`. It is therefore a useful but not production-ready verifier. The main optimization target is minority-label reasoning and evidence sufficiency, not headline accuracy.
 
 ### 4.2 Completed Open-Weight Baseline
 
@@ -172,9 +184,9 @@ A hosted Qwen3-VL-8B-Instruct OpenRouter run completed on 23 July 2026 using the
 
 | Items | Accuracy | Macro-F1 | False fulfillment | Abstain | Evidence MRR | Recall@1 | Recall@3 |
 |---:|---:|---:|---:|---:|---:|---:|---:|
-| 258 | 71.3% | 0.356 | 18.5% | 23.3% | 0.622 | 0.329 | 0.417 |
+| 258 | 71.7% | 0.357 | 17.9% | 23.3% | 0.622 | 0.329 | 0.417 |
 
-The matched Gemini 3.1 Flash-Lite raw/shared-top-4 run has the same 71.3% accuracy. Qwen is 0.030 lower in macro-F1 (flow-cluster bootstrap 95% CI -0.068 to +0.007), 7.4 percentage points higher in false fulfillment (+2.5 to +12.6), and effectively equal in evidence MRR (+0.001, -0.038 to +0.038). The models agree on 81.0% of labels (75.7% to 86.7%); Cohen's kappa is 0.559 (0.444 to 0.683). Qwen predicts only two `PARTIALLY_FULFILLED` items and one `NOT_FULFILLED` item, yielding per-class F1 values of 0.043 and 0.000 for those labels. The equal headline accuracy therefore does not imply equal safety or balanced label performance.
+The matched Gemini 3.1 Flash-Lite raw/shared-top-4 run has the same 71.7% accuracy. Qwen is 0.031 lower in macro-F1 (flow-cluster bootstrap 95% CI -0.068 to +0.008), 7.5 percentage points higher in false fulfillment (+2.5 to +12.8), and effectively equal in evidence MRR (+0.001, -0.038 to +0.038). The models agree on 81.0% of labels (75.7% to 86.7%); Cohen's kappa is 0.559 (0.444 to 0.683). Qwen predicts only two `PARTIALLY_FULFILLED` items and one `NOT_FULFILLED` item, yielding per-class F1 values of 0.043 and 0.000 for those labels. The equal headline accuracy therefore does not imply equal safety or balanced label performance.
 
 The Qwen weights are Apache-2.0, but this must be described as a hosted open-weight baseline rather than a fully independently reproduced local run. The provider serving stack and quantization are not exposed. The raw response archive records the provider, model slug, usage, cost, prompts, outputs, source-manifest hashes, and preprocessing settings.
 
@@ -187,9 +199,9 @@ The six prespecified repetitions completed on 23 July 2026 from clean Git commit
 The four new Gemini runs used 160 first-attempt API calls, 2,068,262 tokens, and
 approximately USD 1.0421. They recorded zero cache hits, fallbacks, or failures.
 Across the original run and both repetitions, raw/all has identical accuracy
-(79.5%), macro-F1 (0.514), false fulfillment (10.6%), abstention (19.0%), and
+(79.8%), macro-F1 (0.516), false fulfillment (10.1%), abstention (19.0%), and
 100% pairwise label agreement. Gated/top-4 likewise has identical accuracy
-(73.6%), macro-F1 (0.518), false fulfillment (10.4%), abstention (26.0%), and
+(74.0%), macro-F1 (0.520), false fulfillment (9.8%), abstention (26.0%), and
 100% pairwise label agreement. Evidence MRR changes slightly because evidence
 steps vary even when requirement labels do not: 0.712–0.716 for raw/all and
 0.607–0.610 for gated/top-4.
@@ -197,8 +209,8 @@ steps vary even when requirement labels do not: 0.712–0.716 for raw/all and
 The two new Qwen runs used 78 first-attempt calls, 510,370 prompt tokens, 49,882
 completion tokens, and approximately USD 0.0824. Alibaba served every call,
 fallbacks were disabled, and no failure was recorded. Across three runs,
-accuracy ranges from 70.5% to 71.3%, macro-F1 from 0.345 to 0.356, false
-fulfillment from 18.5% to 18.9%, and evidence MRR from 0.622 to 0.635. Pairwise
+accuracy ranges from 70.9% to 71.7%, macro-F1 from 0.346 to 0.357, false
+fulfillment from 17.9% to 18.4%, and evidence MRR from 0.622 to 0.635. Pairwise
 label agreement is 96.5–98.8% with Cohen's κ of 0.906–0.969.
 
 The six repetitions cost approximately USD 1.1245 in recorded successful
@@ -232,7 +244,7 @@ Comparable screenshot-step evidence metrics are:
 
 The provided-claim runs each match all 541 benchmark claim texts by construction. Their claim-status macro-F1 values are 0.331 for Pro and 0.266 for Flash-Lite. These values assess claim-status prediction given benchmark claims; they do not evaluate automatic claim decomposition.
 
-The realistic raw-requirement run independently predicts UI evaluability. Against the gold UI-evaluability labels it reaches 79.5% raw agreement, macro-F1 0.420, unweighted Cohen's kappa 0.325, and ordinal-weighted kappa 0.354. Recall is 99.0% for `UI_VERIFIABLE`, 24.2% for `PARTIALLY_UI_VERIFIABLE`, and 0% for the four `NOT_UI_VERIFIABLE` items. This is useful auxiliary evidence but is strongly influenced by class imbalance.
+The realistic raw-requirement run independently predicts UI evaluability. Against the author-reinspected labels it reaches 89.1% raw agreement, macro-F1 0.504, unweighted Cohen's kappa 0.521, and ordinal-weighted kappa 0.529. Recall is 96.8% for `UI_VERIFIABLE`, 48.6% for `PARTIALLY_UI_VERIFIABLE`, and 0% for the three `NOT_UI_VERIFIABLE` items. This is useful auxiliary evidence but is strongly influenced by class imbalance.
 
 ### 4.3 Interpretation Allowed by the Data
 
@@ -242,7 +254,7 @@ The current full-benchmark snapshot supports these preliminary statements:
 - The realistic top-4 raw-requirement run abstains far more often and has lower macro-F1 and evidence recall. It has a lower false-fulfillment rate than the current Flash-Lite all-screen joint run, but a higher rate than Pro.
 - The older contextual results do not isolate those effects. The new 2x2 matrix isolates claim and screenshot policy for Gemini 3.1 Flash-Lite, but model scale and candidate grounding remain separate questions.
 - Explicit evidence output makes traceability measurable; it does not by itself prove improved label safety.
-- Accuracy alone remains misleading because 172 of 258 items are `FULFILLED` and only eight are `NOT_FULFILLED`. Macro-F1, per-class results, false fulfillment, and abstention must be reported together.
+- Accuracy alone remains misleading because 173 of 258 items are `FULFILLED` and only eight are `NOT_FULFILLED`. Macro-F1, per-class results, false fulfillment, and abstention must be reported together.
 - The current box outputs show region-generation coverage, not human-validated localization quality.
 
 ## 5. Historical and Inconsistent Artifacts
@@ -304,24 +316,37 @@ A visible search form can establish that the user can enter criteria and submit 
   stability repetitions were executed from clean commit
   `cf243be2dd641e4b90e844eccbbe97bd0325f3c6`.
 - Recompute every table from the frozen manifest rather than copying summary files by hand.
-- Complete the prepared blinded 44-item independent second review and report
-  agreement and adjudication.
-- Retain the paired flow-cluster bootstrap artifact with the frozen run manifest and add a statistical-method citation. An ordered-versus-shuffled run is optional because ordering is part of the task definition rather than a current causal RQ.
+- Retain the paired flow-cluster bootstrap artifact with the frozen run manifest and add a statistical-method citation.
+- The optional matched order-unavailable run is complete:
+  `fl_raw_all_chronology_destroyed` contains 258/258 predictions over flows
+  01–13, 39 successful Gemini 3.1 Flash-Lite calls, zero fallbacks, zero
+  failures, 622,225 tokens, and USD 0.2847 recorded estimated cost. Relative to
+  both frozen output sets rescored against the corrected reference, accuracy
+  changes from 79.8% to 75.2%, macro-F1 from 0.516 to 0.426, abstention from
+  19.0% to 24.8%, false fulfillment from 10.1% to 10.6%, and evidence MRR from
+  0.716 to 0.665. The paired flow-bootstrap accuracy interval is -7.3 to -2.0
+  percentage points. Treat this as an order-unavailable robustness result, not
+  as a misleading false-chronology experiment.
 - Apply the frozen RQ3 taxonomy to final errors and count every category with an
   explicit denominator. Five qualitative cases are now prespecified.
 - Decide whether the completed 10,000-sample flow-cluster bootstrap is sufficient given only 13 clusters, and document the chosen statistical method and citation.
 - Apply the documented aggregate-only release policy. Mind2Web per-item
   `test_task` derivatives and PURE text/figure derivatives remain
   supervisor-only pending written permission.
-- Complete the prediction-independent region-grounding review and report
-  localizability, coverage, relevance, sufficiency, `NO_VISIBLE_REGION`, error
-  categories, and reviewer agreement separately from label accuracy.
-- Complete and adjudicate the targeted UI-evaluability audit before reporting
-  final model agreement or performance stratification by evaluability.
+- The author-conducted region-grounding audit is complete for its targeted
+  60-item sample. Report its localizability, relevance, sufficiency,
+  `NO_VISIBLE_REGION`, error categories, and single-annotator limitation
+  separately from label accuracy.
+- The targeted review of all 81 UI-evaluability disagreements is complete. Its
+  30 changed labels override the earlier records. Because the items were
+  selected through disagreement and the classifier output was visible, metrics
+  for that classifier after correction remain descriptive rather than an
+  independent estimate.
 
 ### Recommended
 
-- Report metrics separately for original and contrastive requirements.
+- Keep the completed source-versus-contrastive table in the thesis and
+  regenerate it with `scripts/analyze_source_contrastive_results.py`.
 - Report metrics by UI evaluability and by requirement-pattern category.
 - Report per-flow values only as diagnostics, not as independent test samples.
 - Audit step indexing so that all stored and evaluated evidence uses the same convention.
@@ -334,6 +359,7 @@ The table below is a working register. Primary papers and official institutional
 
 | Source | Venue / identifier | Type | Thesis use |
 |---|---|---|---|
+| Field and Welsh (2007), *Bootstrapping Clustered Data* | JRSS Series B 69(3), 369–390; DOI: 10.1111/j.1467-9868.2007.00593.x | Statistical-method paper | Motivation for resampling complete flows rather than treating requirements within a flow as independent. With only 13 flows, percentile intervals remain descriptive sensitivity intervals rather than strong population-level inference. |
 | Kwa et al. (2025), *Measuring AI Ability to Complete Long Tasks* | arXiv:2503.14499 | Empirical benchmark study | Rapid growth in agent task horizons, with external-validity caveats. |
 | Jimenez et al. (2024), *SWE-bench: Can Language Models Resolve Real-World GitHub Issues?* | ICLR 2024; arXiv:2310.06770 | Benchmark paper | Real-world issue resolution as a measure of increasingly autonomous software engineering. |
 | Becker et al. (2025), *Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity* | arXiv:2507.09089 | Randomized controlled trial | Counterweight to unconditional productivity claims. |

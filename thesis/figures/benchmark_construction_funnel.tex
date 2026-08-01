@@ -1,0 +1,82 @@
+\begin{tikzpicture}[
+  generated/.style={
+    draw=TUMGray,
+    fill=TUMLightGray!24,
+    rounded corners=2pt,
+    minimum height=1.25cm,
+    align=center,
+    inner sep=5pt,
+    font=\small
+  },
+  review/.style={
+    draw=TUMSecondaryBlue,
+    fill=TUMAccentLightBlue!28,
+    rounded corners=2pt,
+    minimum height=1.25cm,
+    align=center,
+    inner sep=5pt,
+    font=\small
+  },
+  result/.style={
+    draw=TUMSecondaryBlue2,
+    fill=TUMBlue!12,
+    rounded corners=2pt,
+    minimum height=1.25cm,
+    align=center,
+    inner sep=5pt,
+    font=\small
+  },
+  flow/.style={->, >=latex, draw=TUMDarkGray, line width=0.75pt}
+]
+
+\node[generated, text width=2.55cm] (harvest) at (0,0) {
+  \textbf{Broad}\\[-1pt]
+  \textbf{harvesting}\\[2pt]
+  \scriptsize flow-grounded\\
+  \scriptsize layout-independent\\
+  \scriptsize hypotheses
+};
+
+\node[generated, text width=2.55cm] (candidate) at (3.45,0) {
+  \textbf{Candidate refinement}\\[2pt]
+  \scriptsize merge, rewrite,\\
+  \scriptsize or exclude
+};
+
+\node[review, text width=2.55cm] (source-review) at (6.9,0) {
+  \textbf{Author review}\\[2pt]
+  \scriptsize reject, edit, or promote
+};
+
+\node[result, text width=2.35cm] (source) at (10.25,0) {
+  \textbf{Source set}\\[2pt]
+  \scriptsize 187 reviewed items
+};
+
+\node[generated, text width=2.65cm] (contrast) at (6.9,-2.2) {
+  \textbf{Contrastive generation}\\[2pt]
+  \scriptsize targeted difficult\\
+  \scriptsize and non-positive\\
+  \scriptsize variants
+};
+
+\node[review, text width=2.45cm] (contrast-review) at (10.25,-2.2) {
+  \textbf{Evidence review}\\[2pt]
+  \scriptsize 71 reviewed items
+};
+
+\node[result, text width=2.55cm, minimum height=1.45cm] (gold) at (13.75,0) {
+  \textbf{Verification gold}\\[2pt]
+  \scriptsize 258 requirements\\
+  \scriptsize labels, claims, and evidence
+};
+
+\draw[flow] (harvest) -- (candidate);
+\draw[flow] (candidate) -- (source-review);
+\draw[flow] (source-review) -- (source);
+\draw[flow] (source) -- (gold);
+\draw[flow] (source-review) -- (contrast);
+\draw[flow] (contrast) -- (contrast-review);
+\draw[flow] (contrast-review) -| (gold.south);
+
+\end{tikzpicture}

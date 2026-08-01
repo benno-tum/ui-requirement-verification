@@ -144,9 +144,12 @@ Prioritize the controlled all-screenshots versus top-k and claim-policy matrix.
 Evaluate region grounding as a separate traceability output rather than an
 intervention on label accuracy. Report coordinate validity, localizability,
 coverage, relevance, sufficiency, `NO_VISIBLE_REGION`, error categories, and
-reviewer agreement after a prediction-independent review. Evaluate model UI
-evaluability separately and stratify verification errors by evaluability after
-the targeted audit is adjudicated.
+the single-author limitation after the frozen author audit. Evaluate model UI
+evaluability separately. The earlier 72-item prediction-hidden pilot was
+stopped after nine clear cases because the author had inspected prior outputs.
+Replace it with a qualitative audit of every reference-versus-deterministic-
+classifier disagreement. Do not calculate accuracy or agreement from this
+disagreement-only set.
 
 ### 7 Discussion
 
@@ -187,14 +190,24 @@ Summarize completed contributions and provide concise final RQ answers. Limit fu
   manifests, and hashes in the curated replication package.
 - [x] Freeze five qualitative cases and the RQ3 error-category protocol.
 - [x] Prepare a blinded, stratified 44-item second-review form covering every
-  flow and label.
-- [ ] Obtain the independent reviewer responses and adjudicate disagreements.
-- [ ] Add the final statistical-method citation and decide how to characterize
-  uncertainty from only 13 flow clusters.
-- [ ] Complete the prediction-independent region-grounding review and insert
-  relevance, sufficiency, coverage, and localization-abstention results.
-- [ ] Complete and adjudicate the targeted UI-evaluability audit and insert
-  model agreement plus performance stratification.
+  flow and label. The form remains unused because the final plan does not
+  require a second annotator.
+- [x] Record the resulting single-annotator limitation and prohibit claims
+  about independent validation, inter-rater agreement, or adjudication.
+- [x] Add Field and Welsh (2007) as the cluster-bootstrap method citation.
+  Treat the intervals as descriptive sensitivity intervals because only 13
+  flows are available.
+- [x] Complete the matched chronology-destroying order-unavailable robustness
+  run with Gemini 3.1 Flash-Lite. It covers 258/258 items with zero fallbacks or
+  failures and is analyzed against the ordered `fl_raw_all` baseline using
+  paired flow-cluster bootstrap intervals.
+- [ ] Complete the author-conducted region-grounding audit and insert
+  relevance, sufficiency, coverage, localization-abstention results, and the
+  single-annotator limitation.
+- [ ] Complete the 81-item author audit containing every UI-evaluability
+  disagreement across the 300 accepted Mind2Web/PURE items. Report resolution
+  categories and recurring label-boundary causes, not accuracy, kappa, or
+  prevalence.
 - [x] Document a conservative aggregate-only Mind2Web/PURE release boundary.
 - [ ] Obtain written permission before releasing Mind2Web test-derived per-item
   annotations or PURE text/figure derivatives.

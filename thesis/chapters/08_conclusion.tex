@@ -1,0 +1,95 @@
+\chapter{Conclusion}\label{conclusion}
+
+\section{Summary}\label{summary}
+
+This thesis investigated automated verification of textual UI requirements
+against ordered screenshot flows. Its output contract combines a fulfillment
+label with identifiable UI evidence and preserves uncertainty when the recorded
+flow is insufficient.
+
+To study this task, the thesis introduced an explicit four-label verification
+contract, separated UI evaluability from fulfillment, implemented a modular
+evidence-first pipeline, and constructed a reviewed 258-item benchmark over 13
+Mind2Web-derived flows. The evaluation compared models, claim policies, and
+screenshot-selection strategies while reporting label quality, unsafe positive
+predictions, abstention, traceability, stability, cost, and qualitative error
+patterns. A region-grounding extension adds spatially precise evidence without
+being treated as a cause of improved label accuracy.
+
+\section{Answers to the Research Questions}\label{answers-to-the-research-questions}
+
+For \textbf{RQ1}, multimodal models assess requirement fulfillment from ordered
+screenshot flows with useful but incomplete accuracy under the fixed
+four-label operationalization. Gemini 3.1 Flash-Lite reaches 79.5\% accuracy and
+0.514 macro-F1 in the matched raw/all configuration, compared with 73.3\% and
+0.412 for Gemini 2.5 Flash-Lite. The hosted Qwen baseline shows that equal
+headline accuracy can conceal substantially different false-fulfillment and
+minority-class behavior. Model choice therefore matters, and accuracy alone
+does not characterize fulfillment-label performance. In the order-unavailable
+robustness condition, 10.9\% of labels change and aggregate accuracy decreases
+by about 4.7 percentage points. Ordered input is therefore operationally
+relevant to the implemented verifier, although the limited subgroup evidence
+does not support a universal causal claim for every temporal requirement
+pattern.
+
+For \textbf{RQ2}, the effects of decomposition and screenshot selection are
+conditional. Gated automatic decomposition does not materially improve
+all-screenshot accuracy and increases false fulfillment in that setting, but it
+improves macro-F1 when evidence is restricted to top-4. Lexical top-4 selection
+reduces raw-requirement accuracy and evidence MRR relative to the complete flow
+while providing negligible cost savings in the current batching
+implementation. Explicit evidence remains valuable for traceability even where
+the staged configuration does not improve labels. Region-level evidence is
+evaluated as an additional traceability output rather than an accuracy factor.
+
+For \textbf{RQ3}, the main failures are systematic. Models over-generalize from a
+visible entry point to an unobserved outcome, infer hidden or external behavior
+from interface proxies, overstate universal and comparative claims, and miss
+decisive late states when retrieval favors lexical overlap. Native abstentions
+often protect against unsupported closed-world decisions: replacing all
+abstentions with negative labels substantially reduces accuracy. This does not
+prove that every abstention is calibrated, but it confirms that insufficient
+evidence and visible contradiction must remain distinct.
+
+\section{Contributions}\label{contributions}
+
+The work defines evidence-bounded UI requirement verification over ordered
+observations and makes its visible/hidden boundary and label policy explicit. A
+modular implementation covers flow ingestion, requirement understanding,
+screenshot selection, multimodal claim verification, deterministic
+aggregation, evidence localization, annotation, and experiment packaging.
+
+The accompanying benchmark records requirement labels, UI evaluability,
+claims, evidence steps, rationales, uncertainty reasons, and contrastive items.
+Its reference annotations were produced through prediction-independent
+primary-author review. The controlled experiments reveal an
+interaction between decomposition and retrieval and show that smaller
+screenshot sets can omit decisive evidence without meaningful cost savings.
+The evaluation framework keeps screenshot retrieval, region grounding, UI
+evaluability, abstention, runtime, cost, and stability as distinct outcomes.
+
+\section{Future Work}\label{future-work}
+
+The next methodological step is an evidence-sufficiency rubric that
+operationalizes the abstract labels more precisely. A general layer could
+distinguish visible states from downstream effects, bounded UI sets from
+open-world completeness, and strong visible proxies from hidden guarantees.
+Context profiles could then specify which indicators are accepted in a
+particular domain. The model would still interpret requirements and
+screenshots, but less of the decision policy would remain implicit.
+
+This work requires a larger, requirements-first benchmark. Independent
+requirements should be fixed before collecting corresponding UI drafts,
+implementations, and execution flows, ideally with several variants containing
+natural or deliberately introduced deviations. Such data would separate
+requirement ambiguity, design conformance, implementation defects, and
+incomplete execution evidence. The rubric should be developed separately from
+the evaluation applications and tested on held-out contexts. Additional flow
+clusters and reviewers would also strengthen estimates for rare classes.
+
+Evidence acquisition should become adaptive by pairing actions with result
+states, prioritizing late states, and requesting more screenshots when selected
+evidence is insufficient. Semantic retrieval must be tested against complete
+flows rather than assumed to help. Region grounding should improve proposal
+recall and multi-region or transition evidence, evaluated through reviewer
+effort and auditability.

@@ -1,0 +1,34 @@
+\begin{titlepage}
+  \centering
+
+  \IfFileExists{logos/tum-blue.pdf}{%
+    \includegraphics[height=14mm]{logos/tum-blue.pdf}\par
+  }{%
+    \vspace*{14mm}
+  }
+
+  \vspace{4mm}
+  {\Large\MakeUppercase{School of \getSchool{} --- \getFaculty{}} \par}
+
+  \vspace{3mm}
+  {\normalsize\MakeUppercase{\getUniversity{}} \par}
+
+  \vspace{10mm}
+  {\Large \getDoctype{} in \getDegree{} \par}
+
+  \vspace{10mm}
+  {\LARGE\bfseries \getTitle{} \par}
+
+  \vspace{7mm}
+  {\Large\bfseries \foreignlanguage{ngerman}{\getTitleGer{}} \par}
+
+  \vspace{10mm}
+  \begin{tabular}{l l}
+    Author:          & \getAuthor{}          \\
+    Examiner:        & \getExaminer{}        \\
+    Supervisor:      & \getSupervisor{}      \\
+    Submission Date: & \getSubmissionDate{} \\
+  \end{tabular}
+
+  \vfill{}
+\end{titlepage}

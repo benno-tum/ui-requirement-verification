@@ -1,7 +1,8 @@
 # Repository Freeze Checklist
 
-Status: stability runs completed; human review and release decision remain,
-23 July 2026.
+Status: stability runs completed; single-author audits and release decisions
+remain. The evaluation was rescoped on 25 July 2026 without an independent
+second reviewer.
 
 ## Versioned core
 
@@ -45,7 +46,12 @@ Status: stability runs completed; human review and release decision remain,
 - [x] three-run descriptive stability and pairwise label agreement generated;
 - [x] five qualitative examples and the RQ3 error taxonomy frozen;
 - [x] blinded, stratified second-review form prepared;
-- [ ] independent reviewer responses and adjudication recorded;
+- [x] second-review form retained as unused provenance; no independent-review
+  or inter-rater-agreement claim will be made;
+- [x] all 81 UI-evaluability reference-versus-classifier disagreements reviewed
+  as a targeted qualitative audit; no accuracy or agreement estimate derived
+  from the selected cases;
+- [x] author-conducted V7 region-grounding quality audit completed;
 - [x] conservative Mind2Web/PURE release boundary and dataset notice documented;
 - [ ] written permission obtained for any per-item derived-data release;
 - [ ] repository code license selected before calling the code open source.

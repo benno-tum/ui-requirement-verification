@@ -1,0 +1,268 @@
+\chapter{Foundations and Related Work}\label{foundations-and-related-work}
+
+The search for the closest cross-artifact verification work was documented
+through a targeted Google Scholar search conducted on 30 July 2026. The query
+combined terms for textual software-engineering artifacts, GUI artifacts,
+relations between those artifacts, and multimodal model families:
+
+\begin{verbatim}
+("software requirements" OR "user stories" OR "bug fixes")
+("graphical user interface" OR GUI OR prototype OR screenshot)
+(verification OR traceability OR consistency OR conformance)
+("large language model" OR LLM OR multimodal
+ OR "vision-language model")
+\end{verbatim}
+
+The relation block is intentionally broader than the final verification labels.
+\texttt{Traceability} covers work that links a requirement to the artifact used to
+justify it. \texttt{Consistency} covers cross-artifact agreement, including work that
+compares a textual claim with a prototype or other visual record without using
+the word verification. \texttt{Conformance} covers whether observed implementation
+states accord with a stated requirement. Google Scholar reported approximately
+3,920 results. The first 20 relevance-ranked results were screened. Primary
+studies were retained when they connected a textual software-engineering
+artifact to a GUI or screenshot artifact through a verification-like decision
+using an LLM or multimodal model. Studies limited to GUI generation, generic
+requirements work, code-only verification, or non-software visual tasks were
+excluded. The three closest comparison papers used in this thesis occupied
+ranks 1--3: \textcite{kretzer2025}, \textcite{massenon2026}, and
+\textcite{kolthoff2025guispector}, respectively. The following sections also draw on the
+distinct supporting literatures on requirements quality, traceability, GUI
+testing, UI-agent trajectories, visual grounding, and abstention.
+
+\section{Requirements as Verification Contracts}\label{requirements-as-verification-contracts}
+
+A software requirement states an obligation that an implementation is expected
+to satisfy. Requirements may describe functionality, quality properties,
+constraints, interactions, or externally visible outcomes. In practice, their
+role is broader than that of natural-language documentation. They coordinate
+expectations between stakeholders and provide the reference against which
+design, implementation, and testing decisions are justified. Verification
+depends on the implemented system as well as the precision and observability of
+the requirement.
+
+Natural-language requirements are attractive because stakeholders can read and
+write them without committing to a formal notation. The same flexibility makes
+them vulnerable to ambiguity. \textcite{berry2003} describe
+linguistic sources such as vague terms, implicit references, and underspecified
+quantifiers. \textcite{gervasi2019} further emphasize that ambiguity is not one
+uniform defect: it may arise from the wording, the surrounding domain context,
+or different interpretations held by the involved actors. A verifier cannot
+remove this ambiguity by inspecting the implementation. If a requirement asks
+for ``all relevant results'' without defining relevance, even complete access to
+the UI would not establish a unique expected outcome.
+
+Requirements retain their stated scope throughout the evaluation. Quantifiers
+such as ``all,'' ``only,'' ``always,'' and ``closest'' are interpreted relative to the
+domain defined by the requirement and the visible interface context. Their
+presence does not automatically prevent a \texttt{FULFILLED} decision: when the UI
+presents a bounded set as complete and the recorded screenshots establish the
+required coverage or comparison, a quantified claim can be visibly supported.
+If the domain remains open, ambiguous, or only partly observed, the unresolved
+quantifier blocks \texttt{FULFILLED}; missing evidence alone does not establish
+\texttt{NOT\_FULFILLED}. Removing the quantifier or treating observed instances as
+representative would change the target and substitute a model assumption for
+evidence.
+
+UI requirements occupy a useful but difficult subset of software requirements.
+They may constrain visible content, available controls, navigation, validation
+feedback, state changes, or the presentation of results. Some are directly
+observable in a single state, while others become observable only through a
+sequence. A requirement that a selected item appears in a cart needs at least a
+selection state and a later cart state. A requirement that a menu is reachable
+without authentication requires the navigation path and the absence of an
+intervening sign-in wall. This temporal structure motivates the use of ordered
+screenshot flows rather than isolated images.
+
+\section{Requirements Traceability}\label{requirements-traceability}
+
+Traceability links requirements to the artifacts that refine, implement, or
+verify them. \textcite{clelandhuang2014} characterize software traceability as a
+persistent challenge because projects contain heterogeneous artifacts, links
+change as systems evolve, and manual maintenance is expensive. Classical links
+may connect requirements to design elements, source code, test cases, defects,
+or other requirements. The present task adds a visual trace target: a
+requirement decision should be connected to the recorded UI states that support
+or contradict it.
+
+This link is not equivalent to a conventional document-retrieval result. A
+screenshot can contain the same words as a requirement without demonstrating
+the required behavior. Conversely, an icon, selected state, or layout change may
+provide relevant evidence without repeating the requirement vocabulary. A
+complete trace may also span several steps. The system must therefore preserve
+both semantic relevance and temporal position.
+
+Trace quality and classification accuracy are measured independently. Without
+a trace, a reviewer has to repeat the complete inspection. A cited screenshot
+step and region expose the observation on which the model relied. Correct
+labels may still have incorrect traces, and correct traces may still be
+interpreted incorrectly.
+
+\section{GUI Testing and Screenshot-Based Verification}\label{gui-testing-and-screenshot-based-verification}
+
+GUI test automation normally executes interactions and checks explicit
+assertions against a running system. It can provide strong evidence when the
+environment, selectors, input data, and expected states are controlled. In
+real-world systems, however, interfaces change, element locators become brittle,
+external services introduce nondeterminism, and visually equivalent states may
+have different internal representations. \textcite{nass2021}
+argue that several challenges of GUI test automation are inherent to the
+complexity and variability of graphical interfaces rather than temporary
+tooling deficiencies.
+
+The evaluation begins after a flow has been recorded and complements executable
+GUI tests. The original application can be unavailable, and no interaction
+script has to be replayed. A shared screenshot representation also permits
+comparison across heterogeneous websites. In exchange, the record omits the
+DOM, backend state, network effects, and paths outside the captured execution.
+
+These omissions delimit the claims available from screenshots. A confirmation
+message is evidence for the message, not for email delivery. A selected
+checkbox says nothing about a later session, and one result page cannot
+establish global completeness. The evaluation concerns conformance to the
+recorded visual evidence.
+
+\textcite{kretzer2025} provide a close requirements-oriented comparison by
+connecting user stories to GUI prototypes and studying whether a story is
+represented in the prototype. The present work differs by using ordered
+observations of an executed interface, an explicit four-label contract, and
+evidence links that may span multiple states.
+
+\textcite{kolthoff2025guispector} move closer to executable requirement verification.
+GUISpector actively explores a GUI, records the resulting trajectory, and
+returns evidence-backed met, partially met, or unmet decisions for requirements
+and their acceptance criteria. This thesis instead holds the observed
+trajectory fixed so that evidence selection and decisions under missing states
+can be evaluated separately from the quality of an exploration policy. Its
+four-label contract also represents insufficient evidence explicitly through
+\texttt{ABSTAIN}.
+
+\textcite{massenon2026} study cross-modal verification of mobile-app
+bug fixes and demonstrate the broader relevance of combining textual
+engineering artifacts with visual evidence. Their task concerns bug-fix
+consistency rather than requirement fulfillment, but it motivates treating
+multimodal verification as a software engineering problem rather than generic
+visual question answering.
+
+\section{Multimodal UI Agents and Trajectory Datasets}\label{multimodal-ui-agents-and-trajectory-datasets}
+
+Multimodal UI agents receive visual and textual observations and select actions
+in an interface. Their progress is relevant because both UI action selection and
+UI verification require models to connect language with visible state. The
+tasks nevertheless have different objectives. An agent can complete a task
+without explaining which evidence establishes a requirement, and a verifier
+does not need to choose or execute the next interaction.
+
+Mind2Web contains open-ended web tasks, action sequences, and observations from
+real websites \autocite{deng2023}. Its original purpose is to evaluate
+generalist web agents across tasks, websites, and domains. This thesis reuses a
+small set of its ordered trajectories as visual observations, not as an
+action-prediction benchmark. The original task description and action sequence
+provide context for reconstructing a flow, while the thesis benchmark adds
+separately reviewed UI requirements, fulfillment labels, and evidence
+annotations.
+
+Android in the Wild provides a related trajectory dataset for mobile-device
+control \autocite{rawles2023}. It illustrates that ordered visual interaction
+data is not limited to the web. The current evaluation remains web-based and
+uses Mind2Web trajectories.
+
+\section{Visual Grounding and Evidence Localization}\label{visual-grounding-and-evidence-localization}
+
+Visual grounding connects a linguistic expression to a spatial region. In UI
+settings, the target may be a control, text block, icon, status indicator, or
+compound arrangement. SeeClick trains and evaluates grounding capabilities
+specialized for graphical user interfaces and shows the importance of
+interface-specific localization \autocite{cheng2024}. UGround similarly treats
+GUI grounding as a dedicated capability rather than assuming it emerges
+reliably from a general-purpose vision-language model \autocite{gou2025}.
+
+Set-of-Mark prompting overlays numbered candidate regions and asks a
+multimodal model to refer to the marks instead of emitting unconstrained pixel
+coordinates \autocite{yang2023}. The approach can simplify the mapping from
+language to pixels, but its upper bound depends on the proposal generator: a
+mark-selection step cannot return a relevant region that was omitted from the
+candidate set. Mark density and placement may also obscure the interface.
+SeeAct reports that Set-of-Mark was not its strongest strategy for web-agent
+grounding and benefited from combining visual information with HTML-derived
+candidates \autocite{zheng2024}.
+
+The implemented candidate-mark variant is inspired by Set-of-Mark but uses OCR
+and UI-region detection instead of the original segmentation procedure. It is
+evaluated as evidence localization. Coordinate validity covers only geometry;
+semantic correctness additionally requires a region that is relevant to the
+claim and sufficiently specific for review. No effect on requirement-label
+accuracy is assumed.
+
+\section{Abstention and Decision-Making under Incomplete Evidence}\label{abstention-and-decision-making-under-incomplete-evidence}
+
+Classification with a reject option permits a system to withhold a concrete
+prediction when the expected cost of an error is too high or the available
+information is insufficient. \textcite{hendrickx2024} survey reject-option
+methods across machine learning, while \textcite{wen2025} discuss abstention in
+large language models. The common intuition is applicable here, but the thesis
+does not attempt to learn a calibrated confidence threshold.
+
+\texttt{ABSTAIN} is instead a semantic label in the supplied verification contract. It
+means that the screenshot flow does not justify a reliable positive or negative
+decision. This differs from a missing API output, parsing failure, or skipped
+item. Those are coverage failures and must be reported separately. \texttt{ABSTAIN}
+also differs from \texttt{NOT\_FULFILLED}. The latter requires visible counter-evidence,
+whereas abstention may follow from an omitted result state, hidden property, or
+ambiguous requirement.
+
+False positive verification claims can end a review prematurely. The evaluation
+therefore reports false fulfillment alongside accuracy. Abstention is assessed
+with the same caution: abstaining on every item would avoid many errors without
+providing a useful verifier. Coverage, per-class performance, and recorded
+reasons put the abstention rate into context.
+
+\section{Synthesis of the Research Gap}\label{synthesis-of-the-research-gap}
+
+Prior work establishes the relevance of requirements ambiguity, traceability,
+GUI automation, multimodal software verification, UI-agent trajectories,
+visual grounding, and abstention. No single line of work directly evaluates the
+following contract: given a textual requirement and an already recorded ordered
+UI flow, assess its fulfillment, identify the supporting or contradicting
+screenshot steps, optionally localize the evidence within those screenshots,
+and preserve uncertainty about hidden or missing states.
+
+Existing multimodal models can describe screenshots, but the reviewed work does
+not provide the full verification contract studied here. The missing elements
+are a controlled formulation that separates requirement semantics, flow
+coverage, evidence traces, and label aggregation. Chapter 3 defines this
+formulation.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{landscape}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1765}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1765}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1765}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2353}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2353}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Research area
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Primary input
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Typical output
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Ordered evidence
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Explicit verification uncertainty
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Requirements traceability & Requirements and engineering artifacts & Trace links & Sometimes & Not usually a fulfillment label \\
+GUI test automation & Executable UI and test oracle & Pass/fail and execution trace & Yes & Usually encoded as test outcome \\
+Mind2Web-style UI agents & Task instruction and web trajectory & Next action or task success & Yes & Not the central output \\
+SeeClick/UGround-style grounding & Instruction and UI image & Element or region & Usually no & Localization failure rather than requirement abstention \\
+User-story/prototype support & User story and prototype & Story--prototype consistency & Usually static & Task-specific \\
+This thesis & Requirement and recorded screenshot flow & Four-way label plus evidence & Yes & Explicit \texttt{ABSTAIN} and uncertainty reasons \\
+\end{longtable}
+\end{landscape}
+}

@@ -343,16 +343,8 @@ annotations.
 
 Android in the Wild provides a related trajectory dataset for mobile-device
 control (Rawles et al., 2023). It illustrates that ordered visual interaction
-data is not limited to the web. The current evaluation remains web-based because
-the reviewed benchmark and implementation were developed around Mind2Web.
-Generalization to native mobile interfaces is therefore a future validation
-question rather than an empirical claim of this thesis.
-
-The use of a recorded trajectory changes the meaning of absence. If an element
-does not appear in the flow, the system may not have visited the state in which
-it appears. The trajectory can support positive observations and visible
-contradictions, but it cannot generally establish global non-existence. This
-asymmetry is central to the label policy introduced in Chapter 3.
+data is not limited to the web. The current evaluation remains web-based and
+uses Mind2Web trajectories.
 
 ### 2.5 Visual Grounding and Evidence Localization
 
@@ -368,10 +360,11 @@ Set-of-Mark prompting overlays numbered candidate regions and asks a
 multimodal model to refer to the marks instead of emitting unconstrained pixel
 coordinates (Yang et al., 2023). The approach can simplify the mapping from
 language to pixels, but its upper bound depends on the proposal generator: a
-model cannot select a relevant region that was never proposed. Mark density and
-placement may also obscure the interface. SeeAct reports that Set-of-Mark was
-not its strongest strategy for web-agent grounding and benefited from combining
-visual information with HTML-derived candidates (Zheng et al., 2024).
+mark-selection step cannot return a relevant region that was omitted from the
+candidate set. Mark density and placement may also obscure the interface.
+SeeAct reports that Set-of-Mark was not its strongest strategy for web-agent
+grounding and benefited from combining visual information with HTML-derived
+candidates (Zheng et al., 2024).
 
 The implemented candidate-mark variant is inspired by Set-of-Mark but uses OCR
 and UI-region detection instead of the original segmentation procedure. It is
@@ -392,10 +385,10 @@ does not attempt to learn a calibrated confidence threshold.
 `ABSTAIN` is instead a semantic label in the supplied verification contract. It
 means that the screenshot flow does not justify a reliable positive or negative
 decision. This differs from a missing API output, parsing failure, or skipped
-item. Those are coverage failures and must be reported separately. It also
-differs from `NOT_FULFILLED`: a negative label requires visible
-counter-evidence, whereas abstention may follow from an omitted result state,
-hidden property, or ambiguous requirement.
+item. Those are coverage failures and must be reported separately. `ABSTAIN`
+also differs from `NOT_FULFILLED`. The latter requires visible counter-evidence,
+whereas abstention may follow from an omitted result state, hidden property, or
+ambiguous requirement.
 
 False positive verification claims can end a review prematurely. The evaluation
 therefore reports false fulfillment alongside accuracy. Abstention is assessed
@@ -467,17 +460,29 @@ metadata such as OCR or extracted page text. Let \(r\) be a textual
 requirement. The verifier implements a mapping
 
 \[
-V(r, F) \rightarrow (y, E, C, U, q),
+V(r, F) \rightarrow (y, a, E, C, U, q),
 \]
 
-where \(y\) is a requirement-level label, \(E\) is a set or ranking of evidence
-units, \(C\) is an optional set of claim-level decisions, \(U\) contains
-uncertainty reasons, and \(q\) is a rationale. The label belongs to
+where \(y\) is a requirement-level label, \(a\) is a UI-evaluability decision,
+\(E\) is a set or ranking of evidence units, \(C\) is an optional set of
+claim-level decisions, \(U\) contains uncertainty reasons, and \(q\) is a
+rationale. The labels belong to
 
 \[
 Y = \{\texttt{FULFILLED},\ \texttt{PARTIALLY\_FULFILLED},\
 \texttt{NOT\_FULFILLED},\ \texttt{ABSTAIN}\}.
 \]
+
+\[
+A = \{\texttt{UI\_VERIFIABLE},\
+\texttt{PARTIALLY\_UI\_VERIFIABLE},\
+\texttt{NOT\_UI\_VERIFIABLE}\}.
+\]
+
+Together, \(y\) and \(a\) distinguish two reasons why a requirement may not
+receive `FULFILLED`: the recorded flow may omit evidence for an otherwise
+UI-verifiable requirement, or the requirement may contain obligations that
+screenshots cannot resolve in principle.
 
 An evidence unit minimally identifies a screenshot step. It may additionally
 contain a textual observation and one or more image regions. The ordering of
@@ -506,10 +511,11 @@ fulfillment:
 Evaluability is a property of the requirement relative to the observation
 modality, not a synonym for evidence availability in one particular flow. A
 requirement can be UI-verifiable even when the recorded flow omits the needed
-state. In that case the system should usually abstain because of a flow-coverage
-gap. Conversely, a partially UI-verifiable requirement may receive a partial
-label when its visible part is supported while a material hidden obligation
-remains unresolved.
+state. Its fulfillment label then depends on the evidence that remains;
+`ABSTAIN` is appropriate only when the flow supports no reliable positive,
+partial, or negative decision. Conversely, a partially UI-verifiable
+requirement may receive a partial label when its visible part is supported
+while a material hidden obligation remains unresolved.
 
 Separating evaluability from fulfillment keeps hidden properties outside the
 visible contract while preserving the difference between an unobservable
@@ -666,10 +672,11 @@ step index and image dimensions. Original-resolution screenshots are retained
 locally alongside processed assets so that evaluation can distinguish model
 input resolution from review resolution.
 
-Screen understanding constructs a lightweight representation for each step. It
-can combine image metadata, available HTML-derived text, OCR sidecars, and
-cached summaries. The textual representation supports inexpensive retrieval,
-while the screenshot remains the authoritative visual input to the multimodal
+Screen understanding constructs a lightweight representation for each step. In
+the main benchmark, it records image dimensions and extracts visible-text
+candidates from the available Mind2Web HTML metadata. Existing OCR sidecars are
+added where available. The resulting text supports inexpensive retrieval, while
+the screenshot remains the authoritative visual input to the multimodal
 verifier. A text match is never itself interpreted as proof of fulfillment.
 
 Local flow material is separated from versioned annotations. A fresh checkout
@@ -748,8 +755,9 @@ chunks of at most eight requirements. Gemini 2.5 Flash-Lite provides a matched
 low-cost model comparison with thinking budget zero. Qwen3-VL-8B-Instruct,
 served through OpenRouter with provider fallbacks disabled, provides the hosted
 open-weight baseline. Exact provider, model, parameters, execution date,
-tokens, failures, and costs are archived according to the LLM reporting
-guidelines used by the chair.
+tokens, failures, and costs are archived following the reporting guidelines
+for empirical software-engineering studies involving LLMs proposed by Baltes
+et al. (2026).
 
 Gemini 3.1 Flash-Lite was selected as the primary experimental model because it
 supports multi-image input and structured output, was available through the
@@ -1731,6 +1739,7 @@ effort and auditability.
 
 ## References Used in This Draft
 
+- Baltes, S. et al. (2026). *Guidelines for Empirical Studies in Software Engineering involving Large Language Models*. Empirical Software Engineering. arXiv:2508.15503.
 - Becker, J. et al. (2025). *Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity*. arXiv:2507.09089.
 - Berry, D. M., Kamsties, E., and Krieger, M. M. (2003). *From Contract Drafting to Software Specification: Linguistic Sources of Ambiguity—A Handbook*. University of Waterloo Technical Report.
 - Cheng, K. et al. (2024). *SeeClick: Harnessing GUI Grounding for Advanced Visual GUI Agents*. ACL 2024. DOI: 10.18653/v1/2024.acl-long.505.

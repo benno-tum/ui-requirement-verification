@@ -38,6 +38,9 @@ data/report/
 # logs
 *.log
 
+# Microsoft Office lock files
+~$*
+
 # Frontend
 frontend/node_modules/
 frontend/dist/
