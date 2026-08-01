@@ -444,7 +444,7 @@
         1
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
@@ -516,7 +516,18 @@
       "rationale": "The visible entry point supports the feature exposure, while the actual discovery content is not visible in this screenshot flow.",
       "review_status": "accepted",
       "created_at": "2026-04-23T11:00:29+00:00",
-      "updated_at": "2026-07-11T14:07:07+00:00"
+      "updated_at": "2026-07-11T14:07:07+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-032",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-10",
@@ -534,7 +545,7 @@
         4
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "The task goal is coupon-oriented, the UI exposes a coupons section, and the flow configures a localized hair salon search. Together these cues support a plausible requirement that coupons can be sought in relation to a selected business category and place, even though the final coupon page is not shown.",
       "annotated_by": "benno",
@@ -631,7 +642,18 @@
       "rationale": "The visible setup and coupon entry support part of the requirement, but the category-and-locality-specific coupon discovery outcome is not shown.",
       "review_status": "accepted",
       "created_at": "2026-04-23T11:06:54+00:00",
-      "updated_at": "2026-07-11T14:14:50+00:00"
+      "updated_at": "2026-07-11T14:14:50+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-010",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-12",
@@ -793,12 +815,11 @@
       "text": "The system shall provide a unified search workflow in which the user can set both service type and location before launching a search.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-02",
       "source_candidate_id": "REQ-02",
       "source_harvest_id": "HARV-02",
       "step_indices": [
-        1,
         2,
         3,
         4
@@ -807,6 +828,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -875,7 +897,7 @@
       "rationale": "The flow supports setting both criteria before launching the search.",
       "review_status": "accepted",
       "created_at": "2026-04-23T10:56:54+00:00",
-      "updated_at": "2026-07-11T14:15:15+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "REQ-06",
@@ -883,7 +905,7 @@
       "text": "The system shall support searching for service categories such as hair salons within a selected city.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-06",
       "source_candidate_id": "REQ-06",
       "source_harvest_id": "HARV-06",
@@ -897,6 +919,7 @@
       "visible_subtype": "NONE",
       "annotation_notes": "Search configuration and launch mechanism are supported, while the returned-results outcome is not covered.",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [
         "FLOW_COVERAGE_GAP"
@@ -952,7 +975,7 @@
       "rationale": "Search configuration and launch mechanism are supported, while the returned-results outcome is not covered.",
       "review_status": "accepted",
       "created_at": "2026-04-23T10:56:54+00:00",
-      "updated_at": "2026-07-11T14:06:52+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "REQ-11",
@@ -960,7 +983,7 @@
       "text": "The system shall maintain consistency of user-entered search context across sequential edits so that the chosen query and location remain visible together before submission.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-11",
       "source_candidate_id": "REQ-11",
       "source_harvest_id": "HARV-11",
@@ -973,6 +996,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1041,7 +1065,7 @@
       "rationale": "The visible form state preserves the search context across sequential edits.",
       "review_status": "accepted",
       "created_at": "2026-04-23T10:56:54+00:00",
-      "updated_at": "2026-07-11T14:15:16+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "CONTR-01",
@@ -1058,7 +1082,7 @@
       "source_candidate_id": "CONTR-01",
       "step_indices": [],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
       "annotated_by": "benno",
       "intended_label": "PARTIALLY_FULFILLED",
@@ -1152,7 +1176,18 @@
       "rationale": "The relevant account areas are visible, while saving and later-use persistence are not verified.",
       "review_status": "accepted",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "updated_at": "2026-07-11T13:43:48+00:00"
+      "updated_at": "2026-07-11T13:43:48+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-025",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "CONTR-02",
@@ -1169,7 +1204,7 @@
       "source_candidate_id": "CONTR-02",
       "step_indices": [],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NAVIGATION_OUTCOME",
       "annotated_by": "benno",
       "intended_label": "PARTIALLY_FULFILLED",
@@ -1314,7 +1349,18 @@
       "rationale": "The screenshots do not contain the coupon discovery state needed to evaluate this requirement reliably.",
       "review_status": "accepted",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "updated_at": "2026-07-11T14:14:57+00:00"
+      "updated_at": "2026-07-11T14:14:57+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-040",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "CONTR-03",

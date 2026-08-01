@@ -812,7 +812,7 @@
         9
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "The product page includes descriptive text and bullet points about email delivery timing, redemption locations, no fees or expiration dates, and ineligible discounts, though screenshots do not verify the backend truth of those claims.",
       "annotated_by": "benno",
@@ -892,7 +892,18 @@
       "rationale": "The visible presentation is supported, but policy correctness and enforcement are not visible.",
       "review_status": "accepted",
       "created_at": "2026-04-21T20:23:30+00:00",
-      "updated_at": "2026-07-03T12:57:09+00:00"
+      "updated_at": "2026-07-03T12:57:09+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-035",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-13",
@@ -985,7 +996,7 @@
         9
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "The visible flow ends with a completed purchase form and an Add to Bag action, which strongly implies downstream bag state, but the actual bag update is not shown.",
       "annotated_by": "benno",
@@ -1092,7 +1103,18 @@
       "rationale": "The visible submission mechanism is supported, but the required cart outcome is not visible.",
       "review_status": "accepted",
       "created_at": "2026-04-21T20:28:24+00:00",
-      "updated_at": "2026-07-03T11:58:38+00:00"
+      "updated_at": "2026-07-03T11:58:38+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-022",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-16",
@@ -1279,7 +1301,7 @@
       "text": "The system shall preserve previously entered gift-card configuration data while the shopper continues completing later fields.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-10",
       "source_candidate_id": "REQ-10",
       "source_harvest_id": "HARV-10",
@@ -1295,6 +1317,7 @@
       "visible_subtype": "NONE",
       "annotation_notes": "The ordered screenshots support preservation of earlier configuration data during later entry.",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1393,7 +1416,7 @@
       "rationale": "The ordered screenshots support preservation of earlier configuration data during later entry.",
       "review_status": "accepted",
       "created_at": "2026-04-21T19:44:49+00:00",
-      "updated_at": "2026-07-03T12:54:49+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "REQ-12",
@@ -1401,7 +1424,7 @@
       "text": "The system shall present the selected gift-card product with clear identifying and pricing information on its purchase page.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-12",
       "source_candidate_id": "REQ-12",
       "source_harvest_id": "HARV-12",
@@ -1419,6 +1442,7 @@
       "visible_subtype": "NONE",
       "annotation_notes": "The purchase page clearly identifies the selected product and presents pricing information.",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1533,7 +1557,7 @@
       "rationale": "The purchase page clearly identifies the selected product and presents pricing information.",
       "review_status": "accepted",
       "created_at": "2026-04-21T19:44:49+00:00",
-      "updated_at": "2026-07-03T12:58:13+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "REQ-14",
@@ -1541,7 +1565,7 @@
       "text": "The system shall keep the standard shopping-site shell, including category navigation and bag access, available throughout the gift-card flow.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-14",
       "source_candidate_id": "REQ-14",
       "source_harvest_id": "HARV-14",
@@ -1559,6 +1583,7 @@
       "visible_subtype": "NONE",
       "annotation_notes": "The standard shopping-site shell and bag access are retained throughout the captured gift-card flow.",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1685,7 +1710,7 @@
       "rationale": "The standard shopping-site shell and bag access are retained throughout the captured gift-card flow.",
       "review_status": "accepted",
       "created_at": "2026-04-21T19:44:49+00:00",
-      "updated_at": "2026-07-03T13:00:55+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "CONTR-02",

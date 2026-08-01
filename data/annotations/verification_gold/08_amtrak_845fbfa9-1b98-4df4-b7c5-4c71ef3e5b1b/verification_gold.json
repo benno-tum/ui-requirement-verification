@@ -950,7 +950,7 @@
       "text": "The system shall present sample menu resources from the café service page.",
       "scope": "single_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-07",
       "source_candidate_id": "REQ-07",
       "source_harvest_id": "HARV-07",
@@ -962,6 +962,7 @@
       "visible_subtype": "NONE",
       "annotation_notes": "Sample menu resources are visibly presented from the Café page.",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1010,7 +1011,7 @@
       "rationale": "Sample menu resources are visibly presented from the Café page.",
       "review_status": "accepted",
       "created_at": "2026-04-22T13:43:45+00:00",
-      "updated_at": "2026-07-07T12:38:51+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "REQ-12",
@@ -1018,7 +1019,7 @@
       "text": "The system shall preserve contextual wayfinding by indicating the current section and subsection as users navigate deeper into onboard content.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-12",
       "source_candidate_id": "REQ-12",
       "source_harvest_id": "HARV-12",
@@ -1032,6 +1033,7 @@
       "visible_subtype": "NONE",
       "annotation_notes": "The visible navigation state preserves contextual wayfinding through the section and subsection hierarchy.",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1105,7 +1107,7 @@
       "rationale": "The visible navigation state preserves contextual wayfinding through the section and subsection hierarchy.",
       "review_status": "accepted",
       "created_at": "2026-04-22T13:43:45+00:00",
-      "updated_at": "2026-07-07T12:38:56+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "CONTR-01",
@@ -1124,7 +1126,7 @@
         5
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NAVIGATION_OUTCOME",
       "annotation_notes": "The access point is supported, while the dedicated independent viewing outcome is not shown.",
       "annotated_by": "benno",
@@ -1195,7 +1197,18 @@
       "rationale": "The access point is supported, while the dedicated independent viewing outcome is not shown.",
       "review_status": "accepted",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "updated_at": "2026-07-07T11:38:31+00:00"
+      "updated_at": "2026-07-07T11:38:31+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-045",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "CONTR-02",
@@ -1423,7 +1436,7 @@
       "source_candidate_id": "CONTR-04",
       "step_indices": [],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
       "annotated_by": "benno",
       "intended_label": "ABSTAIN",
@@ -1503,7 +1516,18 @@
       "rationale": "The requirement is partly supported by visible dining types and the Café detail page, but the universal all-types condition is not fully demonstrated.",
       "review_status": "accepted",
       "created_at": "2026-04-24T12:04:43+00:00",
-      "updated_at": "2026-07-07T12:33:22+00:00"
+      "updated_at": "2026-07-07T12:33:22+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-018",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "CONTR-05",

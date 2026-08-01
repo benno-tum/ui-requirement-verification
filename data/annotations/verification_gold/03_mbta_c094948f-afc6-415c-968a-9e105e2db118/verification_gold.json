@@ -675,7 +675,7 @@
         13
       ],
       "requirement_type": "NFR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "After the department and salary selections are active, the listings show three matching safety jobs with salaries above 100k, but full data correctness still depends on backend filtering logic.",
       "annotated_by": "benno",
@@ -740,7 +740,18 @@
       "rationale": "Visible consistency is supported, but full data/filter correctness cannot be proven from screenshots alone.",
       "review_status": "accepted",
       "created_at": "2026-04-21T19:10:52+00:00",
-      "updated_at": "2026-06-30T13:12:49+00:00"
+      "updated_at": "2026-06-30T13:12:49+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-009",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-10",
@@ -1360,7 +1371,7 @@
       "text": "The system shall provide an explicit action for applicants to begin applying from the detailed job view.",
       "scope": "single_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-14",
       "source_candidate_id": "REQ-14",
       "source_harvest_id": "HARV-14",
@@ -1372,6 +1383,7 @@
       "visible_subtype": "NONE",
       "annotation_notes": "The explicit application entry action is visible.",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1405,7 +1417,7 @@
       "rationale": "The explicit application entry action is visible.",
       "review_status": "accepted",
       "created_at": "2026-04-21T13:30:20+00:00",
-      "updated_at": "2026-06-24T12:21:20+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "REQ-15",
@@ -1413,7 +1425,7 @@
       "text": "The system shall support a downstream application workflow after the applicant selects Apply for a job.",
       "scope": "single_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-15",
       "source_candidate_id": "REQ-15",
       "source_harvest_id": "HARV-15",
@@ -1425,6 +1437,7 @@
       "visible_subtype": "NONE",
       "annotation_notes": "The entry point is supported, but the downstream workflow is missing from the flow.",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [
         "SCOPE_OR_CONTEXT_AMBIGUITY"
@@ -1460,7 +1473,7 @@
       "rationale": "The entry point is supported, but the downstream workflow is missing from the flow.",
       "review_status": "accepted",
       "created_at": "2026-04-21T13:30:20+00:00",
-      "updated_at": "2026-06-30T13:20:10+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "CONTR-01",
@@ -1482,7 +1495,7 @@
         13
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
       "annotation_notes": "The general alert capability is supported, while current-context persistence is missing or hidden.",
       "annotated_by": "benno",
@@ -1572,7 +1585,18 @@
       "rationale": "The general alert capability is supported, while current-context persistence is missing or hidden.",
       "review_status": "accepted",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "updated_at": "2026-06-24T12:19:58+00:00"
+      "updated_at": "2026-06-24T12:19:58+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-064",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "CONTR-02",
@@ -1804,7 +1828,7 @@
         14
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NAVIGATION_OUTCOME",
       "annotation_notes": "Public browsing is supported; the authentication policy before application is not verified.",
       "annotated_by": "benno",
@@ -1874,7 +1898,18 @@
       "rationale": "Public browsing is supported; the authentication policy before application is not verified.",
       "review_status": "accepted",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "updated_at": "2026-06-24T12:20:06+00:00"
+      "updated_at": "2026-06-24T12:20:06+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-061",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "CONTR-05",

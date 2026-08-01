@@ -145,7 +145,7 @@
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-23T10:50:26+00:00"
     },
@@ -215,9 +215,51 @@
       "manual_verification_label": "abstain",
       "manual_verification_notes": "missing screen with the results",
       "requirement_type": "NFR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-23T10:53:04+00:00"
+    },
+    {
+      "requirement_id": "REQ-04",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "text": "The system shall allow users to search for books by author name within the advanced search workflow.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-04",
+      "source_harvest_id": "HARV-04",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
+    },
+    {
+      "requirement_id": "REQ-06",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "text": "The system shall allow users to combine multiple advanced search criteria in a single search request, including author and language together.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        4
+      ],
+      "source_candidate_id": "REQ-06",
+      "source_harvest_id": "HARV-06",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
     }
   ]
 }

@@ -18,7 +18,7 @@
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "step_indices": [
         4,
         5,
@@ -91,7 +91,7 @@
       "scope": "single_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "step_indices": [
         3
       ],
@@ -149,7 +149,7 @@
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "step_indices": [
         1,
         2,

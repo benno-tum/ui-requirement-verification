@@ -333,16 +333,13 @@
         5
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "The visible optional mechanism is supported, but actual account association is not visible.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "verification_label": "PARTIALLY_FULFILLED",
-      "uncertainty_reasons": [
-        "UNVERIFIED_SYSTEM_OUTCOME",
-        "NONTRIVIAL_HIDDEN_PROPERTY"
-      ],
+      "verification_label": "FULFILLED",
+      "uncertainty_reasons": [],
       "notes": [],
       "claims": [
         {
@@ -428,7 +425,7 @@
       "rationale": "The visible optional mechanism is supported, but actual account association is not visible.",
       "review_status": "accepted",
       "created_at": "2026-04-23T09:38:54+00:00",
-      "updated_at": "2026-07-07T14:19:41+00:00"
+      "updated_at": "2026-07-25T15:38:47+00:00"
     },
     {
       "requirement_id": "REQ-06",
@@ -1095,7 +1092,7 @@
       "text": "The system shall maintain consistent global navigation and branding across gift card related pages.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-12",
       "source_candidate_id": "REQ-12",
       "source_harvest_id": "HARV-12",
@@ -1110,6 +1107,7 @@
       "visible_subtype": "NONE",
       "annotation_notes": "The shown gift-card related pages maintain consistent branding and global navigation.",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1203,7 +1201,7 @@
       "rationale": "The shown gift-card related pages maintain consistent branding and global navigation.",
       "review_status": "accepted",
       "created_at": "2026-04-23T09:30:12+00:00",
-      "updated_at": "2026-07-07T15:04:28+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "CONTR-01",
@@ -1528,7 +1526,7 @@
       "source_candidate_id": "CONTR-04",
       "step_indices": [],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotated_by": "benno",
       "intended_label": "ABSTAIN",
@@ -1598,7 +1596,18 @@
       "rationale": "Several paths and resources are visible, but the all-supported-paths and all-help-resources parts remain ambiguous.",
       "review_status": "accepted",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "updated_at": "2026-07-07T13:11:56+00:00"
+      "updated_at": "2026-07-07T13:11:56+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-041",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "CONTR-05",

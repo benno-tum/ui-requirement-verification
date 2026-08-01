@@ -16,7 +16,7 @@
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "step_indices": [
         1,
         2,
@@ -81,7 +81,7 @@
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "step_indices": [
         2,
         4
@@ -161,7 +161,7 @@
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "step_indices": [
         2,
         3,
@@ -241,7 +241,7 @@
       "parent_harvest_text": "The system shall provide signed-in users with access to account-level sections such as favorites, coupons, profile, and settings.",
       "grounding_scope": "INDIRECT_FLOW_GROUNDED",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "NONE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
       "task_relevance": "MEDIUM",
@@ -330,7 +330,7 @@
       "parent_harvest_text": "The system shall expose coupons as a user-facing discovery feature within the service.",
       "grounding_scope": "INDIRECT_FLOW_GROUNDED",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "EXTERNAL_INTEGRATION",
       "visible_subtype": "NAVIGATION_OUTCOME",
       "task_relevance": "MEDIUM",

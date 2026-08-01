@@ -261,6 +261,50 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-23T09:29:51+00:00"
+    },
+    {
+      "requirement_id": "REQ-07",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall present sample menu resources from the café service page.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        5
+      ],
+      "source_candidate_id": "REQ-07",
+      "source_harvest_id": "HARV-07",
+      "annotation_notes": "Sample menu resources are visibly presented from the Café page.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
+    },
+    {
+      "requirement_id": "REQ-12",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "text": "The system shall preserve contextual wayfinding by indicating the current section and subsection as users navigate deeper into onboard content.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3,
+        4,
+        5
+      ],
+      "source_candidate_id": "REQ-12",
+      "source_harvest_id": "HARV-12",
+      "annotation_notes": "The visible navigation state preserves contextual wayfinding through the section and subsection hierarchy.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
     }
   ]
 }

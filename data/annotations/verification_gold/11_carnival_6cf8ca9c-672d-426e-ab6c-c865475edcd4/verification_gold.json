@@ -1043,7 +1043,7 @@
         9
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
@@ -1114,7 +1114,18 @@
       "rationale": "The query configuration is visible, but the required result outcome is not visibly demonstrated.",
       "review_status": "accepted",
       "created_at": "2026-04-23T10:46:01+00:00",
-      "updated_at": "2026-07-10T16:31:56+00:00"
+      "updated_at": "2026-07-10T16:31:56+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-027",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-06",
@@ -1122,7 +1133,7 @@
       "text": "The system shall allow users to select sailing dates at month and year granularity across multiple years.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-06",
       "source_candidate_id": "REQ-06",
       "source_harvest_id": "HARV-06",
@@ -1134,6 +1145,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1202,7 +1214,7 @@
       "rationale": "The visible date selector supports month and year granularity across multiple years.",
       "review_status": "accepted",
       "created_at": "2026-04-23T10:31:56+00:00",
-      "updated_at": "2026-07-10T16:36:47+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "REQ-14",
@@ -1210,7 +1222,7 @@
       "text": "The system shall expose only genuinely searchable or available itinerary options for the user's query context when presenting destination, port, date, and duration choices.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-14",
       "source_candidate_id": "REQ-14",
       "source_harvest_id": "HARV-14",
@@ -1224,6 +1236,7 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotated_by": "benno",
+      "manual_verification_label": "abstain",
       "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
         "NONTRIVIAL_HIDDEN_PROPERTY"
@@ -1297,7 +1310,7 @@
       "rationale": "The core availability claim cannot be reliably judged from the visible screenshots alone.",
       "review_status": "accepted",
       "created_at": "2026-04-23T10:31:56+00:00",
-      "updated_at": "2026-07-10T16:33:53+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "CONTR-01",

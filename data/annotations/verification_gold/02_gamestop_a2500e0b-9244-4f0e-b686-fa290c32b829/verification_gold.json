@@ -762,7 +762,7 @@
         4
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "The requirement is supported for visible complete cards but not fully verified for each returned location.",
       "annotated_by": "benno",
@@ -830,7 +830,18 @@
       "rationale": "The requirement is supported for visible complete cards but not fully verified for each returned location.",
       "review_status": "accepted",
       "created_at": "2026-05-07T12:27:55+00:00",
-      "updated_at": "2026-06-23T21:32:31+00:00"
+      "updated_at": "2026-06-23T21:32:31+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-024",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     }
   ]
 }

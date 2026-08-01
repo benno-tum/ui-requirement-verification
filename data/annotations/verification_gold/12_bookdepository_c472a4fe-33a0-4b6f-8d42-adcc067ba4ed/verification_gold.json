@@ -455,7 +455,7 @@
         4
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "The visible setup is supported, but the required filtered browsing outcome is not shown and result correctness cannot be verified from the screenshots.",
       "annotated_by": "benno",
@@ -534,7 +534,18 @@
       "rationale": "The visible setup is supported, but the required filtered browsing outcome is not shown and result correctness cannot be verified from the screenshots.",
       "review_status": "accepted",
       "created_at": "2026-04-23T10:50:26+00:00",
-      "updated_at": "2026-07-10T16:45:12+00:00"
+      "updated_at": "2026-07-10T16:45:12+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-020",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-10",
@@ -784,7 +795,7 @@
         4
       ],
       "requirement_type": "NFR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "The flow emphasizes explicit configuration of author and language before search, making it a disciplined and nearby inference that those active filters should remain understandable when results are shown, even though the results page is not visible here.",
       "annotated_by": "benno",
@@ -850,7 +861,18 @@
       "rationale": "Only the pre-submission filter visibility is supported; carrying filters forward into later browsing views is not evidenced.",
       "review_status": "accepted",
       "created_at": "2026-04-23T10:53:04+00:00",
-      "updated_at": "2026-07-11T13:36:10+00:00"
+      "updated_at": "2026-07-11T13:36:10+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-023",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-04",
@@ -858,7 +880,7 @@
       "text": "The system shall allow users to search for books by author name within the advanced search workflow.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-04",
       "source_candidate_id": "REQ-04",
       "source_harvest_id": "HARV-04",
@@ -871,6 +893,7 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -934,26 +957,26 @@
       "rationale": "The visible workflow supports searching by author name in advanced search.",
       "review_status": "accepted",
       "created_at": "2026-04-23T10:46:53+00:00",
-      "updated_at": "2026-07-11T13:36:15+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "REQ-06",
       "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
       "text": "The system shall allow users to combine multiple advanced search criteria in a single search request, including author and language together.",
-      "scope": "multi_screen",
+      "scope": "single_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-06",
       "source_candidate_id": "REQ-06",
       "source_harvest_id": "HARV-06",
       "step_indices": [
-        3,
         4
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1010,7 +1033,7 @@
       "rationale": "The visible workflow supports combined criteria configuration; request construction is outside the visible verification target for this mechanism claim.",
       "review_status": "accepted",
       "created_at": "2026-04-23T10:46:53+00:00",
-      "updated_at": "2026-07-11T13:36:19+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "CONTR-01",
@@ -1208,7 +1231,7 @@
       "source_candidate_id": "CONTR-03",
       "step_indices": [],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "CONTENT_UPDATE",
       "annotated_by": "benno",
       "intended_label": "ABSTAIN",
@@ -1272,7 +1295,18 @@
       "rationale": "The central result-correctness claim cannot be reliably judged from the provided screenshots.",
       "review_status": "accepted",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "updated_at": "2026-07-10T16:42:04+00:00"
+      "updated_at": "2026-07-10T16:42:04+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-048",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "CONTR-04",

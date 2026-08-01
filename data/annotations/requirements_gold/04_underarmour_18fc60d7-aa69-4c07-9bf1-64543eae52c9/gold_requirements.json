@@ -240,7 +240,7 @@
       "manual_verification_label": "partially_fulfilled",
       "manual_verification_notes": "PF: the delivery date is set by the user and not a displayed timing by the website",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-21T20:23:30+00:00"
     },
@@ -288,7 +288,7 @@
       "annotated_by": "benno",
       "manual_verification_notes": "added: \"after confirmation\"\nsystem has to be instructed to do so",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-21T20:28:24+00:00"
     },
@@ -319,6 +319,85 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-21T20:31:44+00:00"
+    },
+    {
+      "requirement_id": "REQ-10",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall preserve previously entered gift-card configuration data while the shopper continues completing later fields.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "source_candidate_id": "REQ-10",
+      "source_harvest_id": "HARV-10",
+      "annotation_notes": "The ordered screenshots support preservation of earlier configuration data during later entry.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
+    },
+    {
+      "requirement_id": "REQ-12",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall present the selected gift-card product with clear identifying and pricing information on its purchase page.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "source_candidate_id": "REQ-12",
+      "source_harvest_id": "HARV-12",
+      "annotation_notes": "The purchase page clearly identifies the selected product and presents pricing information.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
+    },
+    {
+      "requirement_id": "REQ-14",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "text": "The system shall keep the standard shopping-site shell, including category navigation and bag access, available throughout the gift-card flow.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "source_candidate_id": "REQ-14",
+      "source_harvest_id": "HARV-14",
+      "annotation_notes": "The standard shopping-site shell and bag access are retained throughout the captured gift-card flow.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
     }
   ]
 }

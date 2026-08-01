@@ -286,6 +286,30 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-23T10:05:41+00:00"
+    },
+    {
+      "requirement_id": "REQ-12",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "text": "The system shall maintain consistent global navigation and branding across gift card related pages.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "source_candidate_id": "REQ-12",
+      "source_harvest_id": "HARV-12",
+      "annotation_notes": "The shown gift-card related pages maintain consistent branding and global navigation.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
     }
   ]
 }

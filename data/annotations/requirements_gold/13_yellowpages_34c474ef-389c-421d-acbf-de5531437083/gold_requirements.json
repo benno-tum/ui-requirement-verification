@@ -149,7 +149,7 @@
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-23T11:00:29+00:00"
     },
@@ -173,7 +173,7 @@
       "manual_verification_label": "partially_fulfilled",
       "manual_verification_notes": "coupon page is missing",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-23T11:06:54+00:00"
     },
@@ -222,6 +222,73 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-23T11:11:01+00:00"
+    },
+    {
+      "requirement_id": "REQ-02",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall provide a unified search workflow in which the user can set both service type and location before launching a search.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-02",
+      "source_harvest_id": "HARV-02",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
+    },
+    {
+      "requirement_id": "REQ-06",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall support searching for service categories such as hair salons within a selected city.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-06",
+      "source_harvest_id": "HARV-06",
+      "annotation_notes": "Search configuration and launch mechanism are supported, while the returned-results outcome is not covered.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
+    },
+    {
+      "requirement_id": "REQ-11",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "text": "The system shall maintain consistency of user-entered search context across sequential edits so that the chosen query and location remain visible together before submission.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-11",
+      "source_harvest_id": "HARV-11",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
     }
   ]
 }

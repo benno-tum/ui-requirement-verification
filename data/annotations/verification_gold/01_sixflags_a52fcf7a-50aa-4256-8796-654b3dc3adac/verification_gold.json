@@ -937,7 +937,7 @@
         19
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "An age field appears in the personal information step, and the later agreement step references date of birth, which grounds age-related data collection even though the underlying business rule is not fully visible.",
       "annotated_by": "benno",
@@ -1027,7 +1027,18 @@
       "rationale": "The UI collects age-related information, but the eligibility reason is not visible.",
       "review_status": "accepted",
       "created_at": "2026-04-21T12:49:05+00:00",
-      "updated_at": "2026-06-23T12:00:11+00:00"
+      "updated_at": "2026-06-23T12:00:11+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-013",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-13",

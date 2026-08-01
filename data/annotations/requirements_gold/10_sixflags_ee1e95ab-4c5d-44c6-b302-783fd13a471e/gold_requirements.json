@@ -297,7 +297,7 @@
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "requirement_type": "NFR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-23T10:28:49+00:00"
     },
@@ -382,9 +382,31 @@
       "annotated_by": "benno",
       "manual_verification_label": "abstain",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-23T10:31:42+00:00"
+    },
+    {
+      "requirement_id": "REQ-10",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "text": "The system shall provide visible feedback when the selected quantity changes so the pending purchase configuration remains clear.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        8,
+        9
+      ],
+      "source_candidate_id": "REQ-10",
+      "source_harvest_id": "HARV-10",
+      "annotation_notes": "The quantity change is reflected in the pending purchase configuration before cart addition.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
     }
   ]
 }

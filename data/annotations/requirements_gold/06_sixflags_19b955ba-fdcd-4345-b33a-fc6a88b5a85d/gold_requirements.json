@@ -306,6 +306,51 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-22T12:59:15+00:00"
+    },
+    {
+      "requirement_id": "REQ-03",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall present available parks in a browsable location list that helps applicants find the correct property.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        3,
+        4
+      ],
+      "source_candidate_id": "REQ-03",
+      "source_harvest_id": "HARV-03",
+      "annotation_notes": "The flow demonstrates list-based park discovery and selection.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
+    },
+    {
+      "requirement_id": "REQ-14",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "text": "The system shall make the recruiting flow understandable through consistent labeling of park, team, and role context across screens.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        4,
+        5,
+        6
+      ],
+      "source_candidate_id": "REQ-14",
+      "source_harvest_id": "HARV-14",
+      "annotation_notes": "The observed labels keep park, team, and role context coherent across the recruiting path.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "NFR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
     }
   ]
 }

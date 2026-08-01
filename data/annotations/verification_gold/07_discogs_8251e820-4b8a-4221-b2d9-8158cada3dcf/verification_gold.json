@@ -370,7 +370,7 @@
         3
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "The flow starts on a logged-in dashboard and then uses top navigation to open contribution resources, suggesting contributor help is reachable from within the user workspace.",
       "annotated_by": "benno",
@@ -434,7 +434,18 @@
       "rationale": "The visible flow supports discovery of contributor documentation from the dashboard context. Authentication itself is treated only through visible workspace cues.",
       "review_status": "accepted",
       "created_at": "2026-04-22T13:37:43+00:00",
-      "updated_at": "2026-07-06T10:52:56+00:00"
+      "updated_at": "2026-07-06T10:52:56+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-059",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-07",
@@ -451,7 +462,7 @@
         3
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "The observed UI keeps the learning path visibly separate from the release submission action.",
       "annotated_by": "benno",
@@ -509,7 +520,18 @@
       "rationale": "The observed UI keeps the learning path visibly separate from the release submission action.",
       "review_status": "accepted",
       "created_at": "2026-04-22T13:37:57+00:00",
-      "updated_at": "2026-07-06T10:52:57+00:00"
+      "updated_at": "2026-07-06T10:52:57+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-050",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-08",
@@ -734,7 +756,7 @@
         3
       ],
       "requirement_type": "NFR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "Both the dashboard and the guideline page retain prominent navigation or search affordances, suggesting help content remains integrated with broader site navigation rather than isolated.",
       "annotated_by": "benno",
@@ -810,7 +832,18 @@
       "rationale": "Some broader navigation remains visible, but the screenshots do not fully support preservation of the main site navigation while in the documentation area.",
       "review_status": "accepted",
       "created_at": "2026-04-22T13:42:02+00:00",
-      "updated_at": "2026-07-06T10:51:47+00:00"
+      "updated_at": "2026-07-06T10:51:47+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-036",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-12",
@@ -826,7 +859,7 @@
         3
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "The overview page includes an Articles in this section list and many topic links, which implies a broader help system designed for continued navigation into detailed guidance.",
       "annotated_by": "benno",
@@ -879,7 +912,18 @@
       "rationale": "The visible overview page provides continuation paths into related and more detailed documentation.",
       "review_status": "accepted",
       "created_at": "2026-04-22T13:43:39+00:00",
-      "updated_at": "2026-07-06T10:53:09+00:00"
+      "updated_at": "2026-07-06T10:53:09+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-012",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "CONTR-01",
@@ -898,7 +942,7 @@
         3
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
       "annotation_notes": "The overview context is supported, but cross-page context preservation after opening a detailed rule page is not shown.",
       "annotated_by": "benno",
@@ -954,7 +998,18 @@
       "rationale": "The overview context is supported, but cross-page context preservation after opening a detailed rule page is not shown.",
       "review_status": "accepted",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "updated_at": "2026-07-06T10:52:20+00:00"
+      "updated_at": "2026-07-06T10:52:20+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-069",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "CONTR-02",
@@ -1079,7 +1134,7 @@
       "source_candidate_id": "CONTR-03",
       "step_indices": [],
       "requirement_type": "NFR",
-      "ui_evaluability": "NOT_UI_VERIFIABLE",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotated_by": "benno",
       "intended_label": "ABSTAIN",
@@ -1127,7 +1182,18 @@
       "rationale": "The central policy-alignment and freshness obligation is external to the visible flow, so a reliable fulfilled or not-fulfilled decision is not possible.",
       "review_status": "accepted",
       "created_at": "2026-04-27T10:47:28+00:00",
-      "updated_at": "2026-07-06T10:30:13+00:00"
+      "updated_at": "2026-07-06T10:30:13+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-003",
+        "original_label": "NOT_UI_VERIFIABLE",
+        "final_label": "PARTIALLY_UI_VERIFIABLE",
+        "resolution": "CHOOSE_DIFFERENT_LABEL",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "CONTR-04",

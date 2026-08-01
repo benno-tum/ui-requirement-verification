@@ -18,7 +18,7 @@
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "step_indices": [
         6,
         7
@@ -79,7 +79,7 @@
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "step_indices": [
         2,
         4,
@@ -91,7 +91,7 @@
       "created_at": "2026-04-23T10:31:56+00:00",
       "source_harvest_id": "HARV-14",
       "candidate_origin": "DIRECT_FROM_HARVEST",
-      "benchmark_decision": "EXCLUDE_FROM_VERIFICATION_BENCHMARK",
+      "benchmark_decision": "DIRECT_INCLUDE",
       "grounding_scope": "INDIRECT_FLOW_GROUNDED",
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",

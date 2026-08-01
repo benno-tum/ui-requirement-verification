@@ -1126,7 +1126,7 @@
         10
       ],
       "requirement_type": "NFR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
@@ -1227,7 +1227,18 @@
       "rationale": "The visible screens consistently preserve the selected park context; hidden session implementation is treated as a routine dependency.",
       "review_status": "accepted",
       "created_at": "2026-04-23T10:28:49+00:00",
-      "updated_at": "2026-07-07T16:33:30+00:00"
+      "updated_at": "2026-07-07T16:33:30+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-054",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-16",
@@ -1489,7 +1500,7 @@
         10
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "The task explicitly mentions choosing a digital ticket option, and the visible flow reaches cart review where delivery or fulfillment choices commonly appear, but the explicit control is not clearly shown in the provided screenshots.",
       "annotated_by": "benno",
@@ -1544,7 +1555,18 @@
       "rationale": "The screenshots do not provide enough visible evidence to verify or contradict fulfillment-option support.",
       "review_status": "accepted",
       "created_at": "2026-04-23T10:31:42+00:00",
-      "updated_at": "2026-07-07T17:10:49+00:00"
+      "updated_at": "2026-07-07T17:10:49+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-011",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-10",
@@ -1552,7 +1574,7 @@
       "text": "The system shall provide visible feedback when the selected quantity changes so the pending purchase configuration remains clear.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-10",
       "source_candidate_id": "REQ-10",
       "source_harvest_id": "HARV-10",
@@ -1565,6 +1587,7 @@
       "visible_subtype": "NONE",
       "annotation_notes": "The quantity change is reflected in the pending purchase configuration before cart addition.",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1628,7 +1651,7 @@
       "rationale": "The quantity change is reflected in the pending purchase configuration before cart addition.",
       "review_status": "accepted",
       "created_at": "2026-04-23T10:06:31+00:00",
-      "updated_at": "2026-07-07T17:17:22+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "CONTR-01",

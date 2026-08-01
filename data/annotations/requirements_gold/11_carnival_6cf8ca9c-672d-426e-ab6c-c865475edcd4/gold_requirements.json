@@ -287,9 +287,53 @@
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-23T10:46:01+00:00"
+    },
+    {
+      "requirement_id": "REQ-06",
+      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+      "text": "The system shall allow users to select sailing dates at month and year granularity across multiple years.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        6,
+        7
+      ],
+      "source_candidate_id": "REQ-06",
+      "source_harvest_id": "HARV-06",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
+    },
+    {
+      "requirement_id": "REQ-14",
+      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+      "text": "The system shall expose only genuinely searchable or available itinerary options for the user's query context when presenting destination, port, date, and duration choices.",
+      "scope": "multi_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "source_candidate_id": "REQ-14",
+      "source_harvest_id": "HARV-14",
+      "annotated_by": "benno",
+      "manual_verification_label": "abstain",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
     }
   ]
 }
