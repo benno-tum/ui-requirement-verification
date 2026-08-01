@@ -1,0 +1,199 @@
+{
+  "schema_version": "thesis_final_experiments_v1",
+  "extends": "configs/thesis_final_experiments.json",
+  "prepared_at": "2026-07-23",
+  "package_id": "thesis_remaining_stability_and_oracle_runs_v1",
+  "execution_policy": {
+    "default_action": "preflight_only",
+    "required_order": [
+      "stability_gemini",
+      "stability_open_weight",
+      "oracle_optional"
+    ],
+    "independence": "Every repetition has a distinct output and verifier-cache directory. Existing repetition directories must not be reused when reporting independent runs.",
+    "interpretation": "The r2 and r3 outputs create three-run distributions together with the completed original run. Oracle configurations are optional upper-bound diagnostics and are not automatic decomposition results."
+  },
+  "postprocessing_experiments": [
+    {
+      "id": "three_run_stability_summary",
+      "tier": "core",
+      "source_experiments": [
+        "fl_raw_all",
+        "fl_raw_all_r2",
+        "fl_raw_all_r3",
+        "fl_gated_top4",
+        "fl_gated_top4_r2",
+        "fl_gated_top4_r3",
+        "qwen3vl8b_openrouter_raw_top4",
+        "qwen_raw_top4_r2",
+        "qwen_raw_top4_r3"
+      ],
+      "additional_api_tokens": 0,
+      "additional_cost_usd": 0,
+      "command": "python scripts/analyze_thesis_run_stability.py",
+      "scientific_role": "Report per-run metrics, descriptive distributions, and pairwise label agreement without treating repeated executions as independent benchmark samples."
+    },
+    {
+      "id": "oracle_metric_evaluation",
+      "tier": "extended",
+      "source_experiments": [
+        "fl_oracle_all",
+        "fl_oracle_top4"
+      ],
+      "additional_api_tokens": 0,
+      "additional_cost_usd": 0,
+      "scientific_role": "Evaluate reviewed-claim upper bounds with the same strict 258-item coverage and flow-cluster bootstrap policy."
+    }
+  ],
+  "experiments": [
+    {
+      "id": "fl_raw_all_r2",
+      "repeat_of": "fl_raw_all",
+      "repetition_index": 2,
+      "group": "stability_gemini",
+      "tier": "core",
+      "model": "gemini-3.1-flash-lite",
+      "max_group_claims": 8,
+      "claim_policy": "disabled",
+      "evidence_strategy": "all",
+      "verifier": "gemini-image",
+      "scientific_role": "Independent repetition 2 of the primary whole-flow raw-requirement anchor.",
+      "estimated_tokens": {
+        "input_lower": 450000,
+        "input_upper": 650000,
+        "output_thinking_lower": 90000,
+        "output_thinking_upper": 140000
+      }
+    },
+    {
+      "id": "fl_raw_all_r3",
+      "repeat_of": "fl_raw_all",
+      "repetition_index": 3,
+      "group": "stability_gemini",
+      "tier": "core",
+      "model": "gemini-3.1-flash-lite",
+      "max_group_claims": 8,
+      "claim_policy": "disabled",
+      "evidence_strategy": "all",
+      "verifier": "gemini-image",
+      "scientific_role": "Independent repetition 3 of the primary whole-flow raw-requirement anchor.",
+      "estimated_tokens": {
+        "input_lower": 450000,
+        "input_upper": 650000,
+        "output_thinking_lower": 90000,
+        "output_thinking_upper": 140000
+      }
+    },
+    {
+      "id": "fl_gated_top4_r2",
+      "repeat_of": "fl_gated_top4",
+      "repetition_index": 2,
+      "group": "stability_gemini",
+      "tier": "core",
+      "model": "gemini-3.1-flash-lite",
+      "claim_policy": "gated",
+      "evidence_strategy": "top4",
+      "verifier": "gemini-image",
+      "scientific_role": "Independent repetition 2 of the proposed evidence-first anchor.",
+      "estimated_tokens": {
+        "input_lower": 275000,
+        "input_upper": 425000,
+        "output_thinking_lower": 90000,
+        "output_thinking_upper": 140000
+      }
+    },
+    {
+      "id": "fl_gated_top4_r3",
+      "repeat_of": "fl_gated_top4",
+      "repetition_index": 3,
+      "group": "stability_gemini",
+      "tier": "core",
+      "model": "gemini-3.1-flash-lite",
+      "claim_policy": "gated",
+      "evidence_strategy": "top4",
+      "verifier": "gemini-image",
+      "scientific_role": "Independent repetition 3 of the proposed evidence-first anchor.",
+      "estimated_tokens": {
+        "input_lower": 275000,
+        "input_upper": 425000,
+        "output_thinking_lower": 90000,
+        "output_thinking_upper": 140000
+      }
+    },
+    {
+      "id": "qwen_raw_top4_r2",
+      "repeat_of": "qwen3vl8b_openrouter_raw_top4",
+      "source_experiment": "fl_raw_top4",
+      "repetition_index": 2,
+      "group": "stability_open_weight",
+      "tier": "core",
+      "model": "qwen/qwen3-vl-8b-instruct",
+      "claim_policy": "disabled",
+      "evidence_strategy": "top4",
+      "verifier": "openrouter-qwen",
+      "max_attempts": 2,
+      "per_flow_cost_ceiling_usd": 0.02,
+      "scientific_role": "Independent hosted open-weight repetition 2 using the frozen raw/shared-top-4 groups.",
+      "estimated_tokens": {
+        "input_lower": 230000,
+        "input_upper": 310000,
+        "output_thinking_lower": 22000,
+        "output_thinking_upper": 35000
+      }
+    },
+    {
+      "id": "qwen_raw_top4_r3",
+      "repeat_of": "qwen3vl8b_openrouter_raw_top4",
+      "source_experiment": "fl_raw_top4",
+      "repetition_index": 3,
+      "group": "stability_open_weight",
+      "tier": "core",
+      "model": "qwen/qwen3-vl-8b-instruct",
+      "claim_policy": "disabled",
+      "evidence_strategy": "top4",
+      "verifier": "openrouter-qwen",
+      "max_attempts": 2,
+      "per_flow_cost_ceiling_usd": 0.02,
+      "scientific_role": "Independent hosted open-weight repetition 3 using the frozen raw/shared-top-4 groups.",
+      "estimated_tokens": {
+        "input_lower": 230000,
+        "input_upper": 310000,
+        "output_thinking_lower": 22000,
+        "output_thinking_upper": 35000
+      }
+    },
+    {
+      "id": "fl_oracle_all",
+      "group": "oracle_optional",
+      "tier": "extended",
+      "model": "gemini-3.1-flash-lite",
+      "max_group_claims": 8,
+      "claim_policy": "provided",
+      "evidence_strategy": "all",
+      "verifier": "gemini-image",
+      "scientific_role": "Optional reviewed-claim oracle upper bound with all screenshots; not automatic decomposition.",
+      "estimated_tokens": {
+        "input_lower": 1200000,
+        "input_upper": 1650000,
+        "output_thinking_lower": 100000,
+        "output_thinking_upper": 150000
+      }
+    },
+    {
+      "id": "fl_oracle_top4",
+      "group": "oracle_optional",
+      "tier": "extended",
+      "model": "gemini-3.1-flash-lite",
+      "claim_policy": "provided",
+      "evidence_strategy": "top4",
+      "verifier": "gemini-image",
+      "scientific_role": "Optional reviewed-claim oracle upper bound under the shared top-4 restriction; not automatic decomposition.",
+      "estimated_tokens": {
+        "input_lower": 3800000,
+        "input_upper": 5400000,
+        "output_thinking_lower": 180000,
+        "output_thinking_upper": 300000
+      }
+    }
+  ]
+}

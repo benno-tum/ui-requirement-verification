@@ -1,0 +1,236 @@
+{
+  "schema_version": "thesis_run_stability_v1",
+  "method": "Descriptive three-run stability analysis. Runs share the same fixed benchmark and configuration; repetitions are not treated as independent benchmark samples.",
+  "flow_count": 13,
+  "item_count": 258,
+  "families": {
+    "fl_raw_all": {
+      "run_ids": [
+        "fl_raw_all",
+        "fl_raw_all_r2",
+        "fl_raw_all_r3"
+      ],
+      "per_run_metrics": {
+        "fl_raw_all": {
+          "accuracy": 0.7945736434108527,
+          "macro_f1": 0.5140371789550899,
+          "false_fulfillment_rate": 0.10582010582010581,
+          "abstain_rate": 0.18992248062015504,
+          "evidence_mrr": 0.7157622739018088
+        },
+        "fl_raw_all_r2": {
+          "accuracy": 0.7945736434108527,
+          "macro_f1": 0.5140371789550899,
+          "false_fulfillment_rate": 0.10582010582010581,
+          "abstain_rate": 0.18992248062015504,
+          "evidence_mrr": 0.7157622739018088
+        },
+        "fl_raw_all_r3": {
+          "accuracy": 0.7945736434108527,
+          "macro_f1": 0.5140371789550899,
+          "false_fulfillment_rate": 0.10582010582010581,
+          "abstain_rate": 0.18992248062015504,
+          "evidence_mrr": 0.7118863049095607
+        }
+      },
+      "metric_distribution": {
+        "accuracy": {
+          "mean": 0.7945736434108527,
+          "sample_standard_deviation": 0.0,
+          "minimum": 0.7945736434108527,
+          "maximum": 0.7945736434108527
+        },
+        "macro_f1": {
+          "mean": 0.5140371789550899,
+          "sample_standard_deviation": 0.0,
+          "minimum": 0.5140371789550899,
+          "maximum": 0.5140371789550899
+        },
+        "false_fulfillment_rate": {
+          "mean": 0.10582010582010581,
+          "sample_standard_deviation": 0.0,
+          "minimum": 0.10582010582010581,
+          "maximum": 0.10582010582010581
+        },
+        "abstain_rate": {
+          "mean": 0.18992248062015504,
+          "sample_standard_deviation": 0.0,
+          "minimum": 0.18992248062015504,
+          "maximum": 0.18992248062015504
+        },
+        "evidence_mrr": {
+          "mean": 0.7144702842377261,
+          "sample_standard_deviation": 0.002237791741045065,
+          "minimum": 0.7118863049095607,
+          "maximum": 0.7157622739018088
+        }
+      },
+      "pairwise_label_agreement": {
+        "fl_raw_all__fl_raw_all_r2": {
+          "raw_agreement": 1.0,
+          "cohen_kappa": 1.0
+        },
+        "fl_raw_all__fl_raw_all_r3": {
+          "raw_agreement": 1.0,
+          "cohen_kappa": 1.0
+        },
+        "fl_raw_all_r2__fl_raw_all_r3": {
+          "raw_agreement": 1.0,
+          "cohen_kappa": 1.0
+        }
+      }
+    },
+    "fl_gated_top4": {
+      "run_ids": [
+        "fl_gated_top4",
+        "fl_gated_top4_r2",
+        "fl_gated_top4_r3"
+      ],
+      "per_run_metrics": {
+        "fl_gated_top4": {
+          "accuracy": 0.7364341085271318,
+          "macro_f1": 0.5181257448198977,
+          "false_fulfillment_rate": 0.10404624277456648,
+          "abstain_rate": 0.2596899224806202,
+          "evidence_mrr": 0.6065891472868217
+        },
+        "fl_gated_top4_r2": {
+          "accuracy": 0.7364341085271318,
+          "macro_f1": 0.5181257448198977,
+          "false_fulfillment_rate": 0.10404624277456648,
+          "abstain_rate": 0.2596899224806202,
+          "evidence_mrr": 0.6065891472868217
+        },
+        "fl_gated_top4_r3": {
+          "accuracy": 0.7364341085271318,
+          "macro_f1": 0.5181257448198977,
+          "false_fulfillment_rate": 0.10404624277456648,
+          "abstain_rate": 0.2596899224806202,
+          "evidence_mrr": 0.6104651162790697
+        }
+      },
+      "metric_distribution": {
+        "accuracy": {
+          "mean": 0.7364341085271318,
+          "sample_standard_deviation": 0.0,
+          "minimum": 0.7364341085271318,
+          "maximum": 0.7364341085271318
+        },
+        "macro_f1": {
+          "mean": 0.5181257448198977,
+          "sample_standard_deviation": 0.0,
+          "minimum": 0.5181257448198977,
+          "maximum": 0.5181257448198977
+        },
+        "false_fulfillment_rate": {
+          "mean": 0.10404624277456648,
+          "sample_standard_deviation": 0.0,
+          "minimum": 0.10404624277456648,
+          "maximum": 0.10404624277456648
+        },
+        "abstain_rate": {
+          "mean": 0.2596899224806202,
+          "sample_standard_deviation": 0.0,
+          "minimum": 0.2596899224806202,
+          "maximum": 0.2596899224806202
+        },
+        "evidence_mrr": {
+          "mean": 0.6078811369509044,
+          "sample_standard_deviation": 0.002237791741045065,
+          "minimum": 0.6065891472868217,
+          "maximum": 0.6104651162790697
+        }
+      },
+      "pairwise_label_agreement": {
+        "fl_gated_top4__fl_gated_top4_r2": {
+          "raw_agreement": 1.0,
+          "cohen_kappa": 1.0
+        },
+        "fl_gated_top4__fl_gated_top4_r3": {
+          "raw_agreement": 1.0,
+          "cohen_kappa": 1.0
+        },
+        "fl_gated_top4_r2__fl_gated_top4_r3": {
+          "raw_agreement": 1.0,
+          "cohen_kappa": 1.0
+        }
+      }
+    },
+    "qwen_raw_top4": {
+      "run_ids": [
+        "qwen3vl8b_openrouter_raw_top4",
+        "qwen_raw_top4_r2",
+        "qwen_raw_top4_r3"
+      ],
+      "per_run_metrics": {
+        "qwen3vl8b_openrouter_raw_top4": {
+          "accuracy": 0.7131782945736435,
+          "macro_f1": 0.3562918093428511,
+          "false_fulfillment_rate": 0.18461538461538463,
+          "abstain_rate": 0.23255813953488372,
+          "evidence_mrr": 0.6217700258397932
+        },
+        "qwen_raw_top4_r2": {
+          "accuracy": 0.7054263565891473,
+          "macro_f1": 0.34527682648401825,
+          "false_fulfillment_rate": 0.18652849740932642,
+          "abstain_rate": 0.2441860465116279,
+          "evidence_mrr": 0.6353359173126615
+        },
+        "qwen_raw_top4_r3": {
+          "accuracy": 0.7131782945736435,
+          "macro_f1": 0.34901133209990753,
+          "false_fulfillment_rate": 0.18877551020408162,
+          "abstain_rate": 0.2364341085271318,
+          "evidence_mrr": 0.6346899224806202
+        }
+      },
+      "metric_distribution": {
+        "accuracy": {
+          "mean": 0.7105943152454781,
+          "sample_standard_deviation": 0.00447558348209013,
+          "minimum": 0.7054263565891473,
+          "maximum": 0.7131782945736435
+        },
+        "macro_f1": {
+          "mean": 0.35019332264225894,
+          "sample_standard_deviation": 0.00560181114254591,
+          "minimum": 0.34527682648401825,
+          "maximum": 0.3562918093428511
+        },
+        "false_fulfillment_rate": {
+          "mean": 0.18663979740959755,
+          "sample_standard_deviation": 0.0020822948868923787,
+          "minimum": 0.18461538461538463,
+          "maximum": 0.18877551020408162
+        },
+        "abstain_rate": {
+          "mean": 0.23772609819121446,
+          "sample_standard_deviation": 0.005920640432759479,
+          "minimum": 0.23255813953488372,
+          "maximum": 0.2441860465116279
+        },
+        "evidence_mrr": {
+          "mean": 0.6305986218776917,
+          "sample_standard_deviation": 0.007652607943116673,
+          "minimum": 0.6217700258397932,
+          "maximum": 0.6353359173126615
+        }
+      },
+      "pairwise_label_agreement": {
+        "qwen3vl8b_openrouter_raw_top4__qwen_raw_top4_r2": {
+          "raw_agreement": 0.9767441860465116,
+          "cohen_kappa": 0.9384395132426627
+        },
+        "qwen3vl8b_openrouter_raw_top4__qwen_raw_top4_r3": {
+          "raw_agreement": 0.9651162790697675,
+          "cohen_kappa": 0.905927156342422
+        },
+        "qwen_raw_top4_r2__qwen_raw_top4_r3": {
+          "raw_agreement": 0.9883720930232558,
+          "cohen_kappa": 0.9689056725052225
+        }
+      }
+    }
+  }
+}

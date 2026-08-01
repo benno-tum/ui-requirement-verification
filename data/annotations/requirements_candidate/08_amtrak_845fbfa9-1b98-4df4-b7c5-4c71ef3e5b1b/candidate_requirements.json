@@ -17,7 +17,7 @@
       "scope": "single_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "step_indices": [
         5
       ],
@@ -62,7 +62,7 @@
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "step_indices": [
         3,
         4,
@@ -143,7 +143,7 @@
       "parent_harvest_text": "The system shall provide access to a national café menu.",
       "grounding_scope": "DIRECT_FLOW_GROUNDED",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "EXTERNAL_INTEGRATION",
       "visible_subtype": "NAVIGATION_OUTCOME",
       "task_relevance": "MEDIUM",

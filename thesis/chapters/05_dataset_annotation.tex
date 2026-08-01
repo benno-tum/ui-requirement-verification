@@ -1,0 +1,185 @@
+\chapter{Dataset and Annotation Methodology}\label{dataset-and-annotation-methodology}
+
+\section{Main Flow Dataset}\label{main-flow-dataset}
+
+The main evaluation data consists of 13 web interaction flows derived from the Mind2Web dataset. Mind2Web was originally introduced as a benchmark for generalist web agents and contains real website tasks and interaction trajectories \autocite{deng2023}. In this study, ordered screenshots from selected trajectories serve as observations for independently represented UI requirements; the original action-prediction task is not evaluated.
+
+The selected flows cover theme-park purchases, product lookup, careers
+navigation, dining information, cinema support forms, cruise search, book
+search, and business listings. Each flow contains several meaningful states. A
+cart flow may progress from product selection through quantity changes and
+add-ons to the summary and checkout controls. Search flows contain inputs and
+later results. These sequences support requirements that a single screenshot
+cannot resolve.
+
+The benchmark contains 258 verification items across the 13 flows: 173 reviewed
+source requirements and 85 reviewed contrastive items. Their annotations
+contain 541 claims. All items completed a prediction-independent primary-author
+review workflow.
+
+The label distribution is imbalanced: 172 items are \texttt{FULFILLED}, 45 are \texttt{PARTIALLY\_\allowbreak FULFILLED}, 33 are \texttt{ABSTAIN}, and 8 are \texttt{NOT\_FULFILLED}. Approximately two thirds of the items are therefore positive. A classifier that favors \texttt{FULFILLED} can obtain a deceptively strong accuracy while failing on the three less frequent labels. This imbalance motivates macro-F1 and per-class reporting.
+
+UI evaluability is annotated separately from fulfillment. The 258 items include
+192 \texttt{UI\_VERIFIABLE}, 62 \texttt{PARTIALLY\_\allowbreak UI\_\allowbreak VERIFIABLE}, and 4
+\texttt{NOT\_UI\_VERIFIABLE} cases. Evaluability describes whether screenshots can
+resolve the requirement in principle; the final label describes what the
+recorded flow supports. An incomplete flow can leave a UI-verifiable
+requirement undecidable, while a compound requirement with visible and hidden
+parts can be only partially UI-verifiable.
+
+\section{From Candidates to Verification Gold}\label{from-candidates-to-verification-gold}
+
+Because requirements are derived from UI flows, benchmark construction uses
+staged artifacts and prediction-independent human review to separate candidate
+generation from reference annotation.
+
+Harvesting produces a broad set of requirement hypotheses, including redundant,
+ambiguous, hidden, and incompletely supported properties. Filtering and
+rewriting convert selected hypotheses into candidates. A reviewer then rejects,
+edits, or promotes each candidate; candidate status carries no correctness
+claim.
+
+The 13 Mind2Web flows currently contain 100 committed candidate requirements and 173 reviewed source requirements. These counts refer only to the Mind2Web-derived directories; combining them with PURE candidates produces a different total and must be avoided in reporting. Review promotes a text into the source requirement set, but the verification benchmark adds further information: UI evaluability, a requirement-level label, atomic claims, claim statuses, evidence steps, rationale, and uncertainty reasons.
+
+Contrastive requirements are used to increase difficulty and improve label coverage. A contrastive item may strengthen a visible requirement with a completeness condition, add a hidden persistence obligation, require a comparison that the flow does not show, or request a control that is visibly absent. The automatically proposed contrast and intended label are treated as suggestions. They become benchmark reference data only after review against the requirement wording and the screenshots.
+
+The resulting set contains more than straightforward positive descriptions, but
+its construction introduces dependencies. Source requirements and verification
+evidence originate from the same flows, and contrastive generation may
+emphasize particular hard cases. The primary-author reference review was
+performed independently of the evaluated model predictions. Source and
+contrastive requirements are reported separately where their construction is
+relevant, and flow-level resampling preserves the benchmark's clustered
+structure.
+
+\section{Annotation Schema}\label{annotation-schema}
+
+Each verification item contains a requirement-level decision and claim-level detail. The four requirement labels are interpreted as follows:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{FULFILLED}: all central observable claims are visibly supported, no central claim is contradicted, and at least one evidence item is present.
+\item
+  \texttt{PARTIALLY\_\allowbreak FULFILLED}: at least one important claim is supported while another important claim is missing, hidden, or ambiguous, with no central visible contradiction that would justify a negative label.
+\item
+  \texttt{NOT\_FULFILLED}: a central observable claim is contradicted by visible evidence.
+\item
+  \texttt{ABSTAIN}: the screenshots are insufficient for a reliable positive or negative decision, or the requirement primarily concerns non-visible properties.
+\end{itemize}
+
+Claims use statuses including \texttt{SUPPORTED}, \texttt{MISSING}, \texttt{CONTRADICTED}, \texttt{HIDDEN}, \texttt{AMBIGUOUS}, and \texttt{OUT\_OF\_SCOPE}. They are marked as core or supporting obligations and linked to screenshot steps. The claim layer is intended to expose why a compound requirement receives a partial or abstaining decision. It also creates a distinct evaluation problem: predicted claims may not have a one-to-one textual correspondence with gold claims and must be matched before their statuses are compared.
+
+The primary evidence unit for the label experiments is a screenshot step.
+Evidence-step annotation is stable across the benchmark and directly represents
+the ordered-flow setting. A step annotation identifies which screen contains
+the observation, while a textual note describes the relevant visible content.
+Region-level grounding is evaluated in a separate evidence-localization
+analysis because a correct box is a different construct from a correct
+requirement label or screenshot-step trace.
+
+\section{Running Example: Public Access to Amtrak Dining Information}\label{running-example-public-access-to-amtrak-dining-information}
+
+The following requirement illustrates a clean positive case:
+
+\begin{quote}
+The system shall make onboard dining information and café menu resources discoverable through public site navigation without requiring the user to sign in.
+\end{quote}
+
+The requirement contains two observable claims: public navigation exposes
+onboard dining and café-menu resources, and reaching them requires no sign-in.
+Step 1 establishes the public site context. Step 4 shows the Onboard Dining
+page and its route to Café content; step 5 shows the Café page and menu
+resources. No sign-in wall appears along this path. Steps 1, 4, and 5 support
+both claims.
+
+The same screenshots do not resolve a stronger requirement that route-specific
+menus appear only when applicable because no route context is visible. Account
+ownership checks would also introduce hidden access-control behavior. Such
+changes in wording can move the correct label from \texttt{FULFILLED} to
+\texttt{PARTIALLY\_\allowbreak FULFILLED} or \texttt{ABSTAIN}; the written scope determines the decision.
+
+\section{PURE as Exploratory External Material}\label{pure-as-exploratory-external-material}
+
+PURE is a corpus of public requirements documents collected from heterogeneous sources and formats \autocite{ferrari2017}. Its documents are useful because their requirements are not generated from the screenshot trajectories used in the main benchmark. They are often longer, more formal, and dependent on headings, surrounding paragraphs, figures, or system context.
+
+The pipeline extracts and contextualizes selected PURE requirements and
+associates them with UI images from the documents. The Split/Merge subset
+contains 31 accepted verification items and 78 claims, while Mashboot contains
+11 accepted items. Every accepted item received manual review independently of
+the evaluated model predictions. Candidate-generation provenance is stored
+separately from the human acceptance decision and reference annotation.
+
+PURE can support qualitative discussion about context dependence, compound
+requirements, and UI verifiability. The analysis treats the associated UI
+images as document artifacts and reports document-to-UI consistency separately
+from implementation conformance over recorded execution flows.
+
+\section{Review Workflow and Quality Controls}\label{review-workflow-and-quality-controls}
+
+Review occurs at the candidate and verification stages. Candidate review checks
+whether the text forms a meaningful, self-contained requirement for the
+intended application context. Verification review checks UI evaluability,
+label, claims, evidence steps, uncertainty reasons, and rationale against the
+ordered flow.
+
+The workbench validates structural constraints. A fulfilled item requires
+evidence and may not contain a contradicted core claim. A negative item requires
+visible counter-evidence. A partial item requires supported and unresolved
+material content. An abstention requires an insufficiency reason. These checks
+identify internally inconsistent records, but they cannot decide whether the
+reviewer's interpretation of the screenshots is correct.
+
+All 258 Mind2Web items and all accepted PURE items received manual
+primary-author review independently of the evaluated model predictions. The
+repository records review status and annotation provenance so that
+candidate-generation assistance remains distinct from human reference
+decisions. The completed primary-author decisions form the reference set used
+in the reported evaluation.
+
+UI-evaluability and region-grounding reviews use their own targeted samples.
+Separate review tasks preserve differences between fulfillment, UI
+evaluability, screenshot selection, and region sufficiency. Agreement at one
+level does not establish agreement at another.
+
+\section{Benchmark Characteristics}\label{benchmark-characteristics}
+
+The benchmark is organized by flow rather than as an unstructured pool. Items
+within one flow share application context and screenshot evidence, which
+creates statistical dependence. Flow identifiers are preserved in every
+prediction and metric artifact so that evaluation can resample or diagnose at
+the flow level.
+
+The 541 reviewed claims exceed the number of requirements because compound
+items contain multiple obligations. The distribution of claims is not uniform:
+some requirements are atomic, while others describe an interaction and its
+result, several visible fields, or a visible property combined with a hidden
+outcome. This variation makes raw-versus-decomposed comparison meaningful but
+also complicates claim matching.
+
+Reference evidence may contain one step or several steps. Multiple steps are
+common where a requirement concerns navigation, persistence across a short
+interaction, or the difference between an input state and a result state. The
+reference set is not assumed to enumerate every semantically valid alternative.
+Automated overlap metrics are therefore complemented by qualitative review.
+
+Every frozen run manifest records the expected requirement count and hashes of
+the gold files. Evaluation rejects or reports missing predictions rather than
+silently treating them as abstentions. This guard is necessary because several
+historical repository metrics were produced after the gold set had grown and
+therefore used incompatible denominators.
+
+\section{Data Governance}\label{data-governance}
+
+The 13 Mind2Web flows belong to the separately distributed \texttt{test\_task} split.
+Original screenshots, HTML, traces, videos, and unzipped test records remain
+local. The repository can recreate the working flow set from identifiers after
+the user obtains Mind2Web through the official source, but it does not mirror
+the underlying test archive.
+
+PURE source documents are likewise obtained from the original Zenodo record.
+Because the curators note uncertainty about rights in the underlying documents,
+the public artifact excludes PDFs, XML, figures, and substantial source text.
+The full working repository is maintained under controlled access, while the
+release candidate is limited to code, configurations, citations, and aggregate
+results. Section 7.7 discusses the implications for reproducibility.

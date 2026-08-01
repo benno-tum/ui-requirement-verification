@@ -1,0 +1,374 @@
+{
+  "schema_version": "thesis_final_experiments_v1",
+  "prepared_at": "2026-07-23",
+  "research_questions": {
+    "RQ1": "How well can multimodal models determine the fulfillment status of written requirements from ordered sequences of UI screenshots?",
+    "RQ2": "How do claim decomposition and screenshot selection affect label accuracy, evidence traceability, and cost relative to direct whole-flow verification?",
+    "RQ3": "Which requirement and evidence patterns cause verification errors, abstentions, or unsafe FULFILLED predictions?"
+  },
+  "label_schema": {
+    "requirement_labels": [
+      "FULFILLED",
+      "PARTIALLY_FULFILLED",
+      "NOT_FULFILLED",
+      "ABSTAIN"
+    ],
+    "policy": "The supplied schema and its evidence contract are fixed across models. UI evaluability is distinct from fulfillment. Missing predictions are coverage failures and must never be converted into semantic ABSTAIN labels."
+  },
+  "reporting_compliance": {
+    "guideline": "LLM Guidelines for Software Engineering",
+    "model_version_guideline": "https://llm-guidelines.org/guidelines/model-version/",
+    "checklist": "https://llm-guidelines.org/checklist/",
+    "prompting": "zero-shot structured verification with a fixed output-schema template; no task demonstrations",
+    "prompt_reuse": "The same verifier prompt version and label contract are reused across the two Gemini models.",
+    "commercial_model_limitation": "Provider-side model weights, serving stack, and system fingerprint are unavailable; exact API identifiers, execution dates, parameters, code hashes, prompts, outputs, and usage are archived.",
+    "open_model_status": "hosted_open_weight_baseline_completed_2026-07-23",
+    "open_model_exception": "A local SmolVLM2 timing pilot on the 16 GB M1 Pro required 323 seconds for a capped 128-token response and did not return a complete parseable group. The replacement hosted Qwen3-VL-8B-Instruct run completed through OpenRouter on Alibaba infrastructure with 258/258 predictions, 39 successful calls, no failures, and USD 0.041223 recorded inference cost. Hosted open-weight inference remains less reproducible than self-hosting because the provider serving stack and quantization are not exposed.",
+    "artifact_files": [
+      "scripts/run_verification_pipeline.py",
+      "scripts/run_abstention_policy_ablation.py",
+      "scripts/run_smolvlm_open_baseline.py",
+      "scripts/run_openrouter_qwen_baseline.py",
+      "scripts/run_thesis_final_experiments.py",
+      "scripts/analyze_thesis_final_matrix.py",
+      "scripts/analyze_thesis_run_stability.py",
+      "scripts/analyze_chronology_ablation.py",
+      "scripts/audit_thesis_replication_package.py",
+      "src/ui_verifier/evaluation/abstention_policy.py",
+      "src/ui_verifier/verification_pipeline/gemini_image_claim_verifier.py",
+      "src/ui_verifier/verification_pipeline/batched_gemini_image_claim_verifier.py",
+      "src/ui_verifier/verification_pipeline/requirement_understanding.py",
+      "src/ui_verifier/verification_pipeline/evidence_retrieval.py",
+      "src/ui_verifier/verification_pipeline/label_aggregation.py",
+      "src/ui_verifier/verification_pipeline/pipeline.py"
+    ]
+  },
+  "benchmark": {
+    "name": "mind2web_reviewed_ui_requirement_verification",
+    "flow_glob": "[0-9][0-9]_*/verification_gold.json",
+    "expected_flows": 13,
+    "expected_requirements": 258,
+    "expected_claims": {
+      "disabled": 258,
+      "gated": 281,
+      "provided": 541
+    },
+    "exclude_flow_prefixes": [
+      "pure_"
+    ]
+  },
+  "postprocessing_experiments": [
+    {
+      "id": "abstention_forced_evidence_policy",
+      "tier": "core",
+      "source_experiments": [
+        "g25_raw_all",
+        "fl_raw_all",
+        "fl_gated_top4"
+      ],
+      "additional_api_tokens": 0,
+      "additional_cost_usd": 0,
+      "scientific_role": "Matched aggregation-policy counterfactual over frozen claim outputs. Compare the native four-label policy with a forced closed-world decision policy; do not describe the forced outputs as new LLM predictions."
+    }
+  ],
+  "common": {
+    "image_variant": "preferred-original",
+    "retriever": "lexical",
+    "top_k": 4,
+    "temperature": 0.0,
+    "thinking_level": "low",
+    "max_output_tokens": 32768,
+    "max_claims": 4,
+    "max_topk_group_claims": 8,
+    "gemini_max_retries": 2,
+    "predict_ui_evaluability": true,
+    "candidate_grounding": false,
+    "sequence_context": true
+  },
+  "pricing_usd_per_1m_tokens": {
+    "gemini-2.5-flash-lite": {
+      "input": 0.1,
+      "output_including_thinking": 0.4,
+      "source": "https://ai.google.dev/gemini-api/docs/pricing",
+      "checked_at": "2026-07-23"
+    },
+    "gemini-3.1-flash-lite": {
+      "input": 0.25,
+      "output_including_thinking": 1.5,
+      "source": "https://ai.google.dev/gemini-api/docs/pricing",
+      "checked_at": "2026-07-23"
+    },
+    "gemini-3.6-flash": {
+      "input": 1.5,
+      "output_including_thinking": 7.5,
+      "source": "https://ai.google.dev/gemini-api/docs/pricing",
+      "checked_at": "2026-07-23"
+    },
+    "qwen/qwen3-vl-8b-instruct": {
+      "input": 0.117,
+      "output_including_thinking": 0.455,
+      "source": "https://openrouter.ai/qwen/qwen3-vl-8b-instruct/api",
+      "checked_at": "2026-07-23"
+    }
+  },
+  "model_choices": {
+    "low_cost_comparison": {
+      "model": "gemini-2.5-flash-lite",
+      "lifecycle": "stable",
+      "role": "low-cost matched whole-flow model comparison",
+      "rationale": "Stable multimodal model explicitly positioned for high-volume classification and structured extraction. It supports image input and structured output, is compatible with the existing Gemini adapter, and costs less than Gemini 3.1 Flash-Lite. A zero thinking budget is recorded explicitly because Gemini 2.5 uses thinking budgets rather than Gemini 3 thinking levels."
+    },
+    "primary": {
+      "model": "gemini-3.1-flash-lite",
+      "lifecycle": "stable_ga",
+      "role": "primary controlled experiment model",
+      "rationale": "Stable multimodal model with image input, structured output, thinking support, a 1M-token input window, low API cost, and successful full-benchmark pilot runs in the current implementation. Using one fixed primary model isolates pipeline factors instead of conflating them with model strength."
+    },
+    "sensitivity": {
+      "model": "gemini-3.6-flash",
+      "lifecycle": "stable_ga",
+      "role": "strong-model sensitivity check on two anchor configurations",
+      "rationale": "Current stable higher-capability Gemini model with image input, structured output, a 1M-token input window, and explicit spatial-reasoning positioning. It tests whether conclusions from the inexpensive primary model transfer to a stronger model without multiplying every ablation cell."
+    },
+    "historical_only": {
+      "model": "gemini-3.1-pro-preview",
+      "lifecycle": "preview",
+      "role": "previously executed capability reference",
+      "rationale": "Retained only as historical preliminary evidence because it is a preview model and the existing run differs in more than model identity. It is not used for the final controlled matrix."
+    },
+    "open_baseline": {
+      "model": "Qwen/Qwen3-VL-8B-Instruct",
+      "hosted_model_slug": "qwen/qwen3-vl-8b-instruct",
+      "lifecycle": "apache_2_open_weights",
+      "role": "completed hosted open-weight raw/top-4 baseline",
+      "rationale": "Qwen3-VL-8B-Instruct publishes Apache-2.0 weights, supports multi-image input, OCR, GUI understanding, and long multimodal contexts. The OpenRouter adapter reuses the frozen raw/top-4 evidence groups with fallbacks disabled and archives the returned provider, usage, prompts, and outputs. It addresses the open-weight model-sensitivity recommendation, while hosted inference remains less independently reproducible than local execution."
+    }
+  },
+  "experiments": [
+    {
+      "id": "det_raw",
+      "group": "baseline",
+      "tier": "core",
+      "model": null,
+      "claim_policy": "disabled",
+      "evidence_strategy": "top4",
+      "verifier": "deterministic",
+      "scientific_role": "Non-LLM pipeline baseline with raw requirements and lexical top-4 retrieval on the exact frozen benchmark.",
+      "estimated_tokens": {
+        "input_lower": 0,
+        "input_upper": 0,
+        "output_thinking_lower": 0,
+        "output_thinking_upper": 0
+      }
+    },
+    {
+      "id": "det_gated",
+      "group": "baseline",
+      "tier": "core",
+      "model": null,
+      "claim_policy": "gated",
+      "evidence_strategy": "top4",
+      "verifier": "deterministic",
+      "scientific_role": "Zero-cost deterministic pipeline baseline with conservative automatic claim decomposition.",
+      "estimated_tokens": {
+        "input_lower": 0,
+        "input_upper": 0,
+        "output_thinking_lower": 0,
+        "output_thinking_upper": 0
+      }
+    },
+    {
+      "id": "fl_raw_all",
+      "group": "primary",
+      "tier": "core",
+      "model": "gemini-3.1-flash-lite",
+      "max_group_claims": 8,
+      "claim_policy": "disabled",
+      "evidence_strategy": "all",
+      "verifier": "gemini-image",
+      "scientific_role": "Whole-flow raw-requirement baseline.",
+      "estimated_tokens": {
+        "input_lower": 1100000,
+        "input_upper": 1500000,
+        "output_thinking_lower": 65000,
+        "output_thinking_upper": 100000
+      }
+    },
+    {
+      "id": "fl_raw_all_chronology_destroyed",
+      "group": "order_ablation",
+      "tier": "extended",
+      "model": "gemini-3.1-flash-lite",
+      "max_group_claims": 8,
+      "claim_policy": "disabled",
+      "evidence_strategy": "all",
+      "verifier": "gemini-image",
+      "chronology_mode": "destroyed",
+      "order_seed": 20260726,
+      "matched_baseline": "fl_raw_all",
+      "scientific_role": "Controlled order-unavailable ablation. It uses the same screenshot set, requirements, model, prompt contract, chunking, and aggregation as fl_raw_all, but deterministically permutes the images, replaces original step identities with apparent local IDs, and explicitly discloses that chronology is unavailable so the model must not invent temporal facts.",
+      "estimated_tokens": {
+        "input_lower": 1100000,
+        "input_upper": 1500000,
+        "output_thinking_lower": 65000,
+        "output_thinking_upper": 100000
+      }
+    },
+    {
+      "id": "fl_gated_all",
+      "group": "primary",
+      "tier": "core",
+      "model": "gemini-3.1-flash-lite",
+      "max_group_claims": 8,
+      "claim_policy": "gated",
+      "evidence_strategy": "all",
+      "verifier": "gemini-image",
+      "scientific_role": "Automatic conservative claim decomposition with all screenshots.",
+      "estimated_tokens": {
+        "input_lower": 1100000,
+        "input_upper": 1550000,
+        "output_thinking_lower": 70000,
+        "output_thinking_upper": 110000
+      }
+    },
+    {
+      "id": "fl_oracle_all",
+      "group": "primary",
+      "tier": "extended",
+      "model": "gemini-3.1-flash-lite",
+      "max_group_claims": 8,
+      "claim_policy": "provided",
+      "evidence_strategy": "all",
+      "verifier": "gemini-image",
+      "scientific_role": "Frozen human-reviewed claims as an oracle upper bound with all screenshots.",
+      "estimated_tokens": {
+        "input_lower": 1200000,
+        "input_upper": 1650000,
+        "output_thinking_lower": 100000,
+        "output_thinking_upper": 150000
+      }
+    },
+    {
+      "id": "fl_raw_top4",
+      "group": "primary",
+      "tier": "core",
+      "model": "gemini-3.1-flash-lite",
+      "claim_policy": "disabled",
+      "evidence_strategy": "top4",
+      "verifier": "gemini-image",
+      "scientific_role": "Raw requirements with lexical top-4 evidence selection.",
+      "estimated_tokens": {
+        "input_lower": 1900000,
+        "input_upper": 2700000,
+        "output_thinking_lower": 100000,
+        "output_thinking_upper": 150000
+      }
+    },
+    {
+      "id": "fl_gated_top4",
+      "group": "primary",
+      "tier": "core",
+      "model": "gemini-3.1-flash-lite",
+      "claim_policy": "gated",
+      "evidence_strategy": "top4",
+      "verifier": "gemini-image",
+      "scientific_role": "Proposed evidence-first configuration: gated claims and lexical top-4 screenshots.",
+      "estimated_tokens": {
+        "input_lower": 2100000,
+        "input_upper": 3000000,
+        "output_thinking_lower": 110000,
+        "output_thinking_upper": 170000
+      }
+    },
+    {
+      "id": "fl_oracle_top4",
+      "group": "primary",
+      "tier": "extended",
+      "model": "gemini-3.1-flash-lite",
+      "claim_policy": "provided",
+      "evidence_strategy": "top4",
+      "verifier": "gemini-image",
+      "scientific_role": "Oracle claim upper bound under the same top-4 evidence restriction.",
+      "estimated_tokens": {
+        "input_lower": 3800000,
+        "input_upper": 5400000,
+        "output_thinking_lower": 180000,
+        "output_thinking_upper": 300000
+      }
+    },
+    {
+      "id": "g25_raw_all",
+      "group": "sensitivity",
+      "tier": "core",
+      "model": "gemini-2.5-flash-lite",
+      "thinking_level": null,
+      "thinking_budget": 0,
+      "max_group_claims": 8,
+      "claim_policy": "disabled",
+      "evidence_strategy": "all",
+      "verifier": "gemini-image",
+      "scientific_role": "Low-cost stable-model comparison for RQ1 using the matched direct whole-flow configuration.",
+      "estimated_tokens": {
+        "input_lower": 250000,
+        "input_upper": 450000,
+        "output_thinking_lower": 100000,
+        "output_thinking_upper": 160000
+      }
+    },
+    {
+      "id": "g25_raw_all_chronology_destroyed",
+      "group": "order_ablation",
+      "tier": "extended",
+      "model": "gemini-2.5-flash-lite",
+      "thinking_level": null,
+      "thinking_budget": 0,
+      "max_group_claims": 8,
+      "claim_policy": "disabled",
+      "evidence_strategy": "all",
+      "verifier": "gemini-image",
+      "chronology_mode": "destroyed",
+      "order_seed": 20260726,
+      "matched_baseline": "g25_raw_all",
+      "scientific_role": "Low-cost second-model sensitivity check for the order-unavailable effect, matched to g25_raw_all except for the fixed chronology-destroying permutation and condition disclosure.",
+      "estimated_tokens": {
+        "input_lower": 250000,
+        "input_upper": 450000,
+        "output_thinking_lower": 100000,
+        "output_thinking_upper": 160000
+      }
+    },
+    {
+      "id": "g36_raw_all",
+      "group": "sensitivity",
+      "tier": "extended",
+      "model": "gemini-3.6-flash",
+      "max_group_claims": 8,
+      "claim_policy": "disabled",
+      "evidence_strategy": "all",
+      "verifier": "gemini-image",
+      "scientific_role": "Strong-model replication of the whole-flow raw baseline.",
+      "estimated_tokens": {
+        "input_lower": 1100000,
+        "input_upper": 1500000,
+        "output_thinking_lower": 65000,
+        "output_thinking_upper": 100000
+      }
+    },
+    {
+      "id": "g36_gated_top4",
+      "group": "sensitivity",
+      "tier": "extended",
+      "model": "gemini-3.6-flash",
+      "claim_policy": "gated",
+      "evidence_strategy": "top4",
+      "verifier": "gemini-image",
+      "scientific_role": "Strong-model replication of the proposed evidence-first configuration.",
+      "estimated_tokens": {
+        "input_lower": 2100000,
+        "input_upper": 3000000,
+        "output_thinking_lower": 110000,
+        "output_thinking_upper": 170000
+      }
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+\chapter{Research Design and Problem Formulation}\label{research-design-and-problem-formulation}
+
+\section{Research Strategy}\label{research-strategy}
+
+The thesis follows a design-and-evaluation strategy. It first defines a
+verification contract and implements a modular system that realizes it. It then
+constructs a reviewed benchmark and compares system configurations through
+controlled experiments. Quantitative evaluation measures requirement labels,
+evidence-step retrieval, cost, and stability. Qualitative analysis explains
+which requirement structures and evidence patterns produce errors. Region
+grounding and UI evaluability are evaluated as auxiliary components because
+they affect traceability and the visible scope of the task.
+
+The central unit of analysis is a verification item: one textual requirement
+paired with one ordered screenshot flow and one reviewed reference decision.
+Items from the same flow are not independent because they share screenshots and
+application context. Statistical comparisons therefore resample complete flows
+rather than individual requirements. With only 13 flow clusters, intervals are
+reported as uncertainty summaries and interpreted cautiously.
+
+The main evaluation is retrospective. The system does not control the website
+or request new states; it judges an existing sequence. This choice makes the
+visual evidence reproducible but limits conclusions to the recorded path. It
+also makes it possible to evaluate failures of screenshot selection separately
+from failures of visual interpretation.
+
+\section{Formal Task Definition}\label{formal-task-definition}
+
+Let an ordered screenshot flow be
+
+\[
+F = \langle s_1, s_2, \ldots, s_n \rangle,
+\]
+
+where each \(s_i\) contains an image, a stable step index, and optional textual
+metadata such as OCR or extracted page text. Let \(r\) be a textual
+requirement. The verifier implements a mapping
+
+\[
+V(r, F) \rightarrow (y, a, E, C, U, q),
+\]
+
+where \(y\) is a requirement-level label, \(a\) is a UI-evaluability decision,
+\(E\) is a set or ranking of evidence units, \(C\) is an optional set of
+claim-level decisions, \(U\) contains uncertainty reasons, and \(q\) is a
+rationale. The labels belong to
+
+\[
+Y = \{\texttt{FULFILLED},\ \texttt{PARTIALLY\_\allowbreak FULFILLED},\
+\texttt{NOT\_FULFILLED},\ \texttt{ABSTAIN}\}.
+\]
+
+\[
+A = \{\texttt{UI\_VERIFIABLE},\
+\texttt{PARTIALLY\_\allowbreak UI\_\allowbreak VERIFIABLE},\
+\texttt{NOT\_UI\_VERIFIABLE}\}.
+\]
+
+Together, \(y\) and \(a\) distinguish two reasons why a requirement may not
+receive \texttt{FULFILLED}: the recorded flow may omit evidence for an otherwise
+UI-verifiable requirement, or the requirement may contain obligations that
+screenshots cannot resolve in principle.
+
+An evidence unit minimally identifies a screenshot step. It may additionally
+contain a textual observation and one or more image regions. The ordering of
+the flow is part of the input. Two flows containing the same screenshots in a
+different order do not necessarily express the same interaction history.
+
+The target is the conclusion supported by the recorded visual evidence. It does
+not cover every possible execution of the implementation. The label therefore
+depends on the written requirement and the evidence policy supplied to
+annotators and models.
+
+\section{UI Evaluability}\label{ui-evaluability}
+
+UI evaluability answers whether visible UI evidence can in principle resolve
+the material obligations of a requirement. It is annotated separately from
+fulfillment:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{UI\_VERIFIABLE} means that the material claims can be assessed through
+  rendered interface content or visible state changes.
+\item
+  \texttt{PARTIALLY\_\allowbreak UI\_\allowbreak VERIFIABLE} means that a material visible core exists but full
+  satisfaction also depends on hidden state, persistence, policy, business
+  logic, or an external system.
+\item
+  \texttt{NOT\_UI\_VERIFIABLE} means that the central property has no stable visual
+  manifestation or is too abstract for screenshot-based assessment.
+\end{itemize}
+
+Evaluability is a property of the requirement relative to the observation
+modality, not a synonym for evidence availability in one particular flow. A
+requirement can be UI-verifiable even when the recorded flow omits the needed
+state. Its fulfillment label then depends on the evidence that remains;
+\texttt{ABSTAIN} is appropriate only when the flow supports no reliable positive,
+partial, or negative decision. Conversely, a partially UI-verifiable
+requirement may receive a partial label when its visible part is supported
+while a material hidden obligation remains unresolved.
+
+Separating evaluability from fulfillment keeps hidden properties outside the
+visible contract while preserving the difference between an unobservable
+requirement and an incomplete trajectory. Chapter 6 measures agreement with the
+evaluability schema and stratifies verification errors by class.
+
+\section{Verification Label Semantics}\label{verification-label-semantics}
+
+\texttt{FULFILLED} is the strongest claim. It requires visible support for every
+material UI-observable obligation, at least one recorded evidence unit, no
+visible contradiction, and no unresolved material uncertainty about the
+visible behavior. Routine implementation dependencies do not block fulfillment
+when the requirement is explicitly satisfied by a visible success proxy. A
+cart badge update, for example, can establish the requested visible cart state;
+it does not prove database durability.
+
+\texttt{PARTIALLY\_\allowbreak FULFILLED} describes a compound evidence state: at least one
+important claim has visible support, while another remains missing, hidden, or
+ambiguous. For a requirement covering both a search form and complete correct
+results, the form can be supported even when result correctness and
+completeness remain unverified.
+
+\texttt{NOT\_FULFILLED} requires visible counter-evidence against a central observable
+claim. Missing evidence is insufficient. A requested control that is visibly
+absent from the relevant complete state may justify the negative label, whereas
+a flow that never visits that state does not.
+
+\texttt{ABSTAIN} is used when the evidence cannot support a reliable positive, partial,
+or negative decision. Reasons include textual ambiguity, unclear scope,
+unresolved quantifiers, missing before/after states, unverified outcomes, and
+nontrivial hidden properties. An abstention is a completed semantic prediction,
+not a missing response.
+
+\section{Claims and Deterministic Aggregation}\label{claims-and-deterministic-aggregation}
+
+Long requirements may contain several obligations connected by conjunctions,
+conditions, or outcome clauses. The pipeline may decompose a requirement into
+claims \(C_r = \{c_1,\ldots,c_m\}\). Claim text is derived from the requirement
+before the screenshots are interpreted. It must not encode what a particular
+screen happens to show, because doing so would leak the evidence into the
+contract.
+
+Each claim receives one of the evidence statuses \texttt{SUPPORTED},
+\texttt{CONTRADICTED}, \texttt{MISSING}, \texttt{HIDDEN}, \texttt{AMBIGUOUS}, or \texttt{OUT\_OF\_SCOPE}. Claims may
+also be marked as core or supporting obligations. A deterministic aggregator
+then maps the collection of statuses and the requirement's UI evaluability to a
+requirement label. In simplified form:
+
+\begin{itemize}
+\tightlist
+\item
+  all observable core claims supported and evidence present implies
+  \texttt{FULFILLED};
+\item
+  supported and unresolved important claims imply \texttt{PARTIALLY\_\allowbreak FULFILLED};
+\item
+  a contradicted observable core claim implies \texttt{NOT\_FULFILLED};
+\item
+  insufficient, hidden, or ambiguous evidence without meaningful partial
+  support implies \texttt{ABSTAIN}.
+\end{itemize}
+
+The aggregation rules standardize final-label interpretation but cannot repair
+incorrect claim statuses. They encode the additional policy choice that a
+negative decision requires visible contradiction. An offline counterfactual
+tests the alternative of converting native abstentions to negative labels.
+
+\section{Evidence Contract}\label{evidence-contract}
+
+Evidence is represented at two granularities. Screenshot-step evidence links a
+claim or requirement to one or more positions in the flow. Region-level
+evidence localizes the relevant observation within a selected screenshot. These
+levels answer different questions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Did the system identify the correct state or transition?
+\item
+  Within that state, did it identify a relevant and sufficient visual region?
+\end{enumerate}
+
+Step-level traceability is evaluated by ranked-retrieval metrics such as hit@k,
+recall@k, and mean reciprocal rank. Region-level evidence is evaluated by
+coordinate validity, applicability, coverage, relevance, and sufficiency.
+Intersection over union is useful when a reference rectangle exists, but it is
+not sufficient because several spatially different boxes may all provide valid
+evidence.
+
+Some claims are not reducible to one rectangle. A comparison may need two
+regions, a transition may need two screenshots, and a screen-wide state may not
+have a meaningful minimal box. The region-evaluation protocol therefore permits
+\texttt{SINGLE\_REGION}, \texttt{MULTI\_REGION}, \texttt{WHOLE\_\allowbreak SCREEN\_\allowbreak OR\_\allowbreak TRANSITION}, and
+\texttt{NO\_\allowbreak VISIBLE\_\allowbreak REGION}. Returning no region is treated as a localization
+abstention that can be correct when the claim has no visible support in the
+selected screenshot.
+
+\section{Operationalization of the Research Questions}\label{operationalization-of-the-research-questions}
+
+Matched full-coverage runs on the 258-item benchmark answer RQ1. Accuracy,
+macro-F1, class-specific scores, confusion matrices, false fulfillment,
+abstention, agreement, cost, and run stability cover different aspects of
+fulfillment assessment. The deterministic and hosted open-weight baselines
+provide reference points.
+
+For RQ2, a controlled two-by-two matrix crosses raw versus gated-decomposed
+requirements with complete-flow versus lexical top-4 screenshots. Model, prompt
+family, label schema, aggregation, batching, and benchmark remain fixed.
+Screenshot-step traceability and cost are evaluated alongside labels. The
+separate region-grounding analysis does not enter the accuracy comparison.
+
+RQ3 applies a predefined taxonomy to the frozen predictions. It covers
+over-fulfillment, hidden outcomes, quantifier and completeness errors, missed
+late states, label-boundary disagreements, and evidence-selection failures.
+Where sample sizes permit, counts are stratified by UI evaluability and
+requirement pattern. The analysis is descriptive and assigns no causal safety
+effect to abstention.
+
+\section{Scope and Non-Claims}\label{scope-and-non-claims}
+
+The task includes visible elements and text, navigation outcomes, short state
+transitions, visible validation, and visible interaction results. Layout is in
+scope when the requirement explicitly constrains it. Hidden backend correctness,
+security guarantees, real payment processing, external delivery, global
+availability, long-term persistence, and strict performance properties are out
+of scope unless the requirement asks only for a visible representation.
+
+The study provides neither formal verification nor exhaustive testing. A finite
+flow cannot establish global absence, and a plausible interface is no proof of
+an external effect. The results characterize one reviewed benchmark of 13 web
+flows; broader interface classes require separate evaluation.

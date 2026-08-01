@@ -1,0 +1,248 @@
+\chapter{Verification Approach and Implementation}\label{verification-approach-and-implementation}
+
+\section{Architecture}\label{architecture}
+
+The implemented system follows a modular pipeline:
+
+\[
+\begin{aligned}
+\text{flow ingestion} &\rightarrow \text{screen understanding}
+  \rightarrow \text{requirement understanding} \\
+&\rightarrow \text{evidence selection}
+  \rightarrow \text{claim verification}
+  \rightarrow \text{label aggregation}.
+\end{aligned}
+\]
+
+The stages exchange typed structured records rather than unstructured chat
+transcripts. Inputs preserve flow identifiers, step indices, screenshots, and
+requirements. Outputs preserve labels, claims, evidence units, uncertainty
+reasons, rationales, model metadata, and usage information. Dependency
+injection allows the deterministic and multimodal components to be compared
+without changing the surrounding data contract.
+
+The staged architecture exposes four failure locations: claim decomposition,
+screenshot retrieval, visual interpretation, and final aggregation. Its
+purpose is diagnostic. Accuracy relative to a direct prompt is measured in the
+experiments rather than assumed from the architecture.
+
+\section{Flow Ingestion and Screen Representation}\label{flow-ingestion-and-screen-representation}
+
+A flow directory contains a stable flow identifier, ordered screenshot files,
+task metadata, and step metadata. The ingestion layer preserves the recorded
+step index and image dimensions. Original-resolution screenshots are retained
+locally alongside processed assets so that evaluation can distinguish model
+input resolution from review resolution.
+
+Screen understanding constructs a lightweight representation for each step. In
+the main benchmark, it records image dimensions and extracts visible-text
+candidates from the available Mind2Web HTML metadata. Existing OCR sidecars are
+added where available. The resulting text supports inexpensive retrieval, while
+the screenshot remains the authoritative visual input to the multimodal
+verifier. A text match is never itself interpreted as proof of fulfillment.
+
+Local flow material is separated from versioned annotations. A fresh checkout
+contains code, requirements, manifests, and evaluation configuration, while the
+Mind2Web source data must be obtained separately and exported into the expected
+local structure. This repository layout implements the redistribution boundary
+described in Section 7.7.
+
+\section{Requirement Understanding}\label{requirement-understanding}
+
+Requirement understanding performs two optional operations: UI-evaluability
+classification and claim decomposition. The deterministic classifier uses
+rules over the requirement text and serves as a low-cost baseline. The main
+multimodal runs can instead request an evaluability judgment from the model.
+Neither prediction is silently substituted for the reviewed reference during
+evaluation.
+
+The raw claim policy treats the complete requirement as one verification unit.
+The gated policy applies deterministic decomposition only when the requirement
+contains structures that plausibly benefit from splitting. In the final
+benchmark it produces 281 claims from 258 requirements and splits 31
+requirements. An LLM decomposition fallback exists in the general application
+but is disabled in the controlled matrix so that hidden additional model calls
+do not confound the comparison.
+
+The repository also contains 541 reviewed benchmark claims. Supplying these
+claims to the verifier creates an oracle or provided-claim condition. It is
+useful for diagnosing claim-status prediction when the decomposition is fixed,
+but it must not be reported as the performance of automatic decomposition.
+
+\section{Screenshot Selection}\label{screenshot-selection}
+
+The retriever scores screenshot steps for each claim using the textual screen
+representations. The default controlled policy is lexical retrieval, chosen
+because it is deterministic, inexpensive, and easy to reproduce. Alternative
+implementations support TF-IDF, local embeddings, and text-only LLM reranking,
+but they are not mixed into the primary matrix.
+
+For the top-4 condition, the four highest-ranked steps are selected for each
+requirement or claim. Selected screenshots are grouped across several
+requirements to reduce the number of API calls. Consequently, top-4 is a
+retrieval limit at the item level, not necessarily a guarantee that every API
+request contains only four distinct images.
+
+The whole-flow condition attaches every screenshot in its recorded order. It
+avoids retrieval omission but increases image input and irrelevant context. The
+controlled comparison tests whether the smaller evidence set preserves labels
+and traces at lower cost. Late-state failures are especially relevant because
+lexical overlap may favor an early input form over a later result or summary
+screen.
+
+A separate order-unavailable robustness condition keeps the screenshot set,
+requirements, model, chunking, label contract, and aggregation matched to the
+raw whole-flow condition. For each flow, a fixed recorded permutation changes
+the attachment order and replaces original step identifiers with local apparent
+identifiers. The prompt discloses that the original chronology was removed by
+the test environment and instructs the model not to invent before/after
+relations. OCR and image metadata remain attached to the corresponding image,
+and cited apparent identifiers are mapped back to original flow steps before
+evidence scoring. This manipulation tests verification when trustworthy temporal
+order is unavailable; it does not deceive the model with a false chronology.
+
+\section{Multimodal Claim Verification}\label{multimodal-claim-verification}
+
+The multimodal verifier receives the fixed label definitions, the requirement
+or claims, ordered screenshots, and stable step identifiers. It returns
+structured JSON containing UI evaluability where requested, claim statuses,
+evidence steps, uncertainty reasons, rationales, and the fields needed for
+requirement-level aggregation. Responses are validated before they enter the
+evaluation. Missing or malformed items remain coverage failures rather than
+being converted to semantic abstentions.
+
+The final controlled matrix uses \texttt{gemini-3.1-flash-lite} with temperature zero,
+thinking level \texttt{low}, fixed prompt and aggregation versions, and deterministic
+chunks of at most eight requirements. Gemini 2.5 Flash-Lite provides a matched
+low-cost model comparison with thinking budget zero. Qwen3-VL-8B-Instruct,
+served through OpenRouter with provider fallbacks disabled, provides the hosted
+open-weight baseline. Exact provider, model, parameters, execution date,
+tokens, failures, and costs are archived following the reporting guidelines
+for empirical software-engineering studies involving LLMs proposed by \textcite{baltes2026}.
+
+Gemini 3.1 Flash-Lite was selected as the primary experimental model because it
+supports multi-image input and structured output, was available through the
+existing verified adapter, and was inexpensive enough to run the complete
+matrix and repetitions while holding the model fixed. Gemini 2.5 Flash-Lite was
+selected as a deliberately cheaper earlier-generation sensitivity baseline
+rather than a claim about frontier performance. The hosted Qwen model addresses
+the methodological value of an open-weight comparison without implying full
+local reproducibility. A local SmolVLM2 pilot was documented but not promoted
+to a benchmark result because inference on the available hardware was too slow
+and the capped response was incomplete.
+
+The historical Gemini 3.1 Pro preview run provides contextual strong-model
+evidence. Its preview status, cost, and earlier prompt and grouping
+configuration prevent its use in the controlled matrix. The model set was
+chosen for matched comparisons rather than leaderboard coverage.
+
+Temperature zero is not treated as a guarantee of determinism. The central
+Gemini and Qwen configurations were therefore repeated. Each repetition uses a
+separate output and cache directory, and the stability analysis distinguishes
+label invariance from variation in cited evidence steps.
+
+\section{Label Aggregation}\label{label-aggregation}
+
+The label aggregator is deterministic and shared across the controlled
+configurations. It receives claim statuses, claim importance, evidence
+presence, uncertainty reasons, and effective UI evaluability. It enforces the
+central safety gates: no \texttt{FULFILLED} label without evidence, no
+\texttt{NOT\_FULFILLED} label without a visible contradiction, and no fulfilled
+decision while a material hidden property remains unresolved.
+
+Deterministic aggregation reduces prompt dependence at the requirement-label
+boundary. The model still determines the semantic claim statuses, and poor
+upstream decisions remain unrecoverable. The weak deterministic baseline
+demonstrates this limitation.
+
+The offline forced-decision analysis changes only the final policy applied to
+frozen model outputs. It maps native abstentions to \texttt{NOT\_FULFILLED} without
+performing new inference. Because it cannot create a positive label, it is
+interpreted as a closed-world counterfactual rather than a test of whether the
+model learned to abstain.
+
+\section{Region-Level Evidence Grounding}\label{region-level-evidence-grounding}
+
+Region grounding follows screenshot selection and semantic verification. Early
+variants asked the multimodal model to emit normalized coordinates directly.
+These boxes were unstable and sometimes landed on nearby text rather than the
+specific evidence. OCR refinement improved text-aligned cases but could not
+represent non-text controls or repair an incorrect semantic description.
+
+The later candidate-mark pipeline generates candidate regions from OCR and UI
+detectors, overlays stable identifiers, asks the multimodal model to select the
+minimal evidence marks, and maps the selected identifiers back to pixel
+coordinates deterministically. A grid can serve as a fallback when no suitable
+candidate exists. Candidate generation and mark selection are separate sources
+of error: proposal coverage limits the best achievable grounding result, while
+the verifier may still choose the wrong available proposal.
+
+The output permits zero, one, or several boxes per claim and supports an
+explicit \texttt{NO\_\allowbreak VISIBLE\_\allowbreak REGION} response. Coordinates are stored together with the
+image path, width, height, asset hash, coordinate space, and raw and refined
+values where applicable. The review interface rescales boxes independently when
+it displays a higher-resolution copy of the screenshot.
+
+Bounding boxes provide a more precise evidence trace. Their evaluation measures
+geometric validity, relevance, and sufficiency. Label accuracy remains outside
+this comparison because region generation is not used as an accuracy
+intervention.
+
+\section{Annotation and Review Workbench}\label{annotation-and-review-workbench}
+
+The project includes a local web workbench for browsing flows, reviewing
+candidate and gold requirements, inspecting claims and evidence, running ad-hoc
+verification, and comparing predicted regions with review judgments. Review
+responses are stored separately from production outputs so that inspecting a
+prediction does not silently overwrite the benchmark.
+
+The UI-evaluability audit presents every case in which the stored author label
+differs from the deterministic classifier. It shows both labels, the
+classifier's triggered hidden-property terms, the author annotation note, claim
+composition, and a generated diagnostic hypothesis. The author then records a
+resolution and whether a later reference amendment is recommended. The region
+audit has a different purpose: it shows the frozen V7 regions and asks whether
+they are geometrically valid, semantically relevant, and sufficient for the
+stated claim.
+
+Both audits are performed by the thesis author. Their samples target observed
+disagreements and predicted regions, so their results are reported as
+qualitative boundary and output analyses. These diagnostic audits are separate
+from the prediction-independent reference-annotation workflow and do not
+define the labels used in the headline comparisons.
+
+\section{Reproducibility and Artifact Management}\label{reproducibility-and-artifact-management}
+
+Experiment configurations specify model identifiers, claim and screenshot
+policies, retrieval parameters, generation settings, cost guards, and expected
+coverage. Preflight manifests record the Git state, environment versions,
+benchmark counts, gold hashes, prompt and source hashes, and exact commands.
+Paid execution requires an explicit flag and a local cost ceiling. The ceiling
+prevents accidental launches but is not a provider-side billing limit.
+
+Run outputs archive structured predictions, raw responses, token usage, model
+metadata, errors, and timing. Metrics are regenerated from matching gold and
+prediction manifests rather than copied from historical summary files. The
+curated thesis package contains aggregate metrics and frozen configuration but
+excludes source screenshots and per-item raw interactions.
+
+Automated tests cover schemas, aggregation gates, evaluation metrics, run
+preparation, stability analysis, open-model adapters, and package auditing. Test
+success supports implementation consistency; it does not substitute for
+empirical validation of labels or evidence.
+
+\section{Implementation Boundaries}\label{implementation-boundaries}
+
+The system is a research prototype. Lexical retrieval is reproducible but not a
+strong semantic retriever. OCR quality varies with resolution and interface
+style. Hosted model behavior may change despite fixed identifiers, and
+commercial APIs do not expose their complete serving stack. The local
+open-weight pilot was too slow for a complete benchmark on the available
+hardware, so the open-weight comparison uses hosted inference and reports this
+limitation.
+
+The architecture supports uploaded screenshot flows, but the thesis benchmark
+is fixed to the reviewed Mind2Web-derived set. The implementation can display
+region-level evidence even where a final human grounding evaluation is not yet
+complete. Product functionality and validated scientific contribution are
+therefore kept distinct throughout the following chapters.

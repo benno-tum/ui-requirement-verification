@@ -1,0 +1,12 @@
+{
+  "audit_id": "gemini25flash_omnimark_atlas_bbox_flow02_20260720",
+  "title": "PILOT V2: Gemini 2.5 Flash + isolated OmniParser crop atlas — 1 flow (preferred-original input, high-resolution review)",
+  "created_at": "2026-07-20T20:01:15.133081+00:00",
+  "seed": 20260719,
+  "ui_item_count": 72,
+  "bbox_item_count": 42,
+  "blind_review": false,
+  "status": "completed_pipeline_inspection",
+  "run_id": "bbox_gemini25flash_omnimark_atlas_flow02_20260720",
+  "bbox_source": "gemini_visual_grounding_omnimark_selection"
+}

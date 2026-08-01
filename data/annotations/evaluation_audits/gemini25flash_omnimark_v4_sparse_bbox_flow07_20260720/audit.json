@@ -1,0 +1,12 @@
+{
+  "audit_id": "gemini25flash_omnimark_v4_sparse_bbox_flow07_20260720",
+  "title": "RECOMMENDED V4 SPARSE: Gemini 2.5 Flash + OmniParser/OCR, one region by default, max 2 — 1 flow (preferred-original input, high-resolution review)",
+  "created_at": "2026-07-20T21:09:12.370788+00:00",
+  "seed": 20260719,
+  "ui_item_count": 72,
+  "bbox_item_count": 56,
+  "blind_review": false,
+  "status": "completed_pipeline_inspection",
+  "run_id": "bbox_gemini25flash_omnimark_v4_sparse_flow07_20260720",
+  "bbox_source": "gemini_visual_grounding_omnimark_selection"
+}

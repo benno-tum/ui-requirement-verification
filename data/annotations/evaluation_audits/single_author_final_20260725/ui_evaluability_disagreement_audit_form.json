@@ -1,0 +1,2814 @@
+{
+  "schema_version": "single_author_ui_disagreement_audit_v1",
+  "created_at": "2026-07-26T10:24:35.143391+00:00",
+  "seed": 20260725,
+  "blind": false,
+  "reference_fields_included": true,
+  "pipeline_labels_included": true,
+  "scope": {
+    "source_item_count": 300,
+    "disagreement_item_count": 81,
+    "datasets": [
+      "mind2web",
+      "pure"
+    ],
+    "selection": "Every accepted item whose author reference label differs from the deterministic classifier label."
+  },
+  "instructions": {
+    "purpose": "Targeted qualitative audit of every author-reference versus deterministic-classifier disagreement. This is not a random sample, accuracy estimate, or independent validation.",
+    "resolutions": [
+      "KEEP_REFERENCE",
+      "ADOPT_PIPELINE",
+      "CHOOSE_DIFFERENT_LABEL",
+      "REQUIREMENT_AMBIGUOUS"
+    ],
+    "required_fields": [
+      "author_resolution",
+      "author_final_label",
+      "author_amendment_recommended"
+    ]
+  },
+  "items": [
+    {
+      "audit_item_id": "UID-001",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall send a confirmation to the purchaser's contact address after checkout that summarizes the selected park, pass tier, add-ons, and payment arrangement.",
+      "step_indices": [
+        7,
+        12,
+        17,
+        18,
+        19
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_07.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_12.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_17.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_18.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png"
+      ],
+      "reference_label": "NOT_UI_VERIFIABLE",
+      "pipeline_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement has a visible UI component, but also references hidden properties: payment processing.",
+      "detected_hidden_indicators": [
+        "payment processing"
+      ],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [
+          "NOT_UI_LABEL_HAS_OBSERVABLE_CLAIM"
+        ],
+        "original_annotation_notes": "Visible setup for a confirmation is present, but post-checkout delivery and summary outcome are not verified."
+      },
+      "divergence_hypothesis": "The classifier detected both visible and hidden vocabulary, while the reference treats the visible portion as insufficient or non-central. Check whether the visible component is independently verifiable.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "NOT_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-002",
+      "flow_id": "pure_2010_mashboot",
+      "dataset": "pure",
+      "requirement_id": "PURE-MB-SERVICE-001",
+      "requirement_text": "Mashbot shall allow Mashbot accounts to be associated with external service accounts, provide an interface for authenticating a user account to an external service account, and provide a standardized method for interacting with external service accounts.",
+      "step_indices": [],
+      "ordered_screenshots": [
+        "data/processed/flows/pure/pure_2010_mashboot/step_01.png",
+        "data/processed/flows/pure/pure_2010_mashboot/step_02.png",
+        "data/processed/flows/pure/pure_2010_mashboot/step_03.png"
+      ],
+      "reference_label": "NOT_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 0,
+        "hidden_claim_count": 3,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - mashboot.pdf, section 3.2.3 External Service Accounts, PDF page(s) [9]. Prepared after the pipeline run was inspected; use as a post-hoc review draft, not blinded gold."
+      },
+      "divergence_hypothesis": "The classifier found no configured hidden-property indicator, while the reference considers the central obligation non-visible. Check for implicit backend, persistence, security, or external-effect meaning.",
+      "author_resolution": "CHOOSE_DIFFERENT_LABEL",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-003",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall keep the release submission overview aligned with the currently applicable submission policy so contributors see up to date rules.",
+      "step_indices": [
+        3
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png"
+      ],
+      "reference_label": "NOT_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [
+          "NOT_UI_LABEL_HAS_OBSERVABLE_CLAIM"
+        ],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The classifier found no configured hidden-property indicator, while the reference considers the central obligation non-visible. Check for implicit backend, persistence, security, or external-effect meaning.",
+      "author_resolution": "CHOOSE_DIFFERENT_LABEL",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-004",
+      "flow_id": "pure_2010_split_merge",
+      "dataset": "pure",
+      "requirement_id": "PURE-REQ-001",
+      "requirement_text": "2.5 Design and Implementation Constraints PDFsam is platform independent and is written in Java. Its user interface is written with Java Swing, so anyone who wishes to work on further development of PDFsam has to know this programming language. PDFsam is GNU GPLv2 licensed and the PDFsam-console is dual licensed (GPLv2 and LGPLv2). Everyone, that does or is going to develop or use PDFsam, should agree and fully accept the terms of this kind of license.",
+      "step_indices": [
+        14,
+        15,
+        16
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/pure/pure_2010_split_merge/step_14.png",
+        "data/processed/flows/pure/pure_2010_split_merge/step_15.png",
+        "data/processed/flows/pure/pure_2010_split_merge/step_16.png"
+      ],
+      "reference_label": "NOT_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 0,
+        "hidden_claim_count": 4,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 2.5 Design and Implementation Constraints, PDF page(s) [7]. The pre-label model verdict was not inspected."
+      },
+      "divergence_hypothesis": "The classifier found no configured hidden-property indicator, while the reference considers the central obligation non-visible. Check for implicit backend, persistence, security, or external-effect meaning.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "NOT_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-005",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall provide the purchaser with a confirmation outside the product page flow that reflects the configured eGift card recipient, amount, and scheduled delivery details after the gift card is accepted for purchase progression.",
+      "step_indices": [
+        3,
+        7,
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_03.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_07.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_09.png"
+      ],
+      "reference_label": "NOT_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 3,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [
+          "NOT_UI_LABEL_HAS_OBSERVABLE_CLAIM"
+        ],
+        "original_annotation_notes": "Configuration details are supported, while the post-acceptance confirmation and acceptance outcome are not shown."
+      },
+      "divergence_hypothesis": "The classifier found no configured hidden-property indicator, while the reference considers the central obligation non-visible. Check for implicit backend, persistence, security, or external-effect meaning.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "NOT_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-006",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall disclose all monetary components that can affect the final pre-checkout charge for the selected park purchase, including any park-specific surcharges or fulfillment-related fees.",
+      "step_indices": [
+        10
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "NOT_UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement is dominated by non-visual or hidden system properties: payment processing.",
+      "detected_hidden_indicators": [
+        "payment processing"
+      ],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The classifier detected hidden-property vocabulary and no configured visible indicator, while the reference identifies a visible component. Check which UI affordance or state supplies that component.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-007",
+      "flow_id": "pure_2010_mashboot",
+      "dataset": "pure",
+      "requirement_id": "PURE-MB-CREATE-002",
+      "requirement_text": "The Create view shall let a user invoke Add Content, choose a content type populated from services accessible through stored credentials, create a section for that type, add individual elements, and schedule, edit, or delete each element.",
+      "step_indices": [
+        2
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/pure/pure_2010_mashboot/step_02.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "NOT_UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement is dominated by non-visual or hidden system properties: database.",
+      "detected_hidden_indicators": [
+        "database"
+      ],
+      "reference_basis": {
+        "observable_claim_count": 7,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - mashboot.pdf, section 4.1.1 Create, PDF page(s) [10, 12]. Prepared after the pipeline run was inspected; use as a post-hoc review draft, not blinded gold."
+      },
+      "divergence_hypothesis": "The classifier detected hidden-property vocabulary and no configured visible indicator, while the reference identifies a visible component. Check which UI affordance or state supplies that component.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-008",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall clearly indicate the downstream delivery destination or channel for digital tickets, such as email or mobile wallet, before the user proceeds to payment.",
+      "step_indices": [
+        10
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "NOT_UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement is dominated by non-visual or hidden system properties: email delivery, payment processing.",
+      "detected_hidden_indicators": [
+        "email delivery",
+        "payment processing"
+      ],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The classifier detected hidden-property vocabulary and no configured visible indicator, while the reference identifies a visible component. Check which UI affordance or state supplies that component.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-009",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-08",
+      "requirement_text": "The system shall keep the displayed result set consistent with the selected filter criteria and the reported jobs found count.",
+      "step_indices": [
+        9,
+        11,
+        13
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_09.png",
+        "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_11.png",
+        "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "After the department and salary selections are active, the listings show three matching safety jobs with salaries above 100k, but full data correctness still depends on backend filtering logic."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-010",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-10",
+      "requirement_text": "The system shall allow users to pursue coupon discovery for a searched business category within a chosen locality.",
+      "step_indices": [
+        1,
+        2,
+        4
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 3,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The task goal is coupon-oriented, the UI exposes a coupons section, and the flow configures a localized hair salon search. Together these cues support a plausible requirement that coupons can be sought in relation to a selected business category and place, even though the final coupon page is not shown."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-011",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-19",
+      "requirement_text": "The system shall support selection of a digital or mobile ticket fulfillment option as part of the purchase flow.",
+      "step_indices": [
+        10
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The task explicitly mentions choosing a digital ticket option, and the visible flow reaches cart review where delivery or fulfillment choices commonly appear, but the explicit control is not clearly shown in the provided screenshots."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-012",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-12",
+      "requirement_text": "The system shall help users continue from overview documentation into related articles when they need more detailed submission rules.",
+      "step_indices": [
+        3
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The overview page includes an Articles in this section list and many topic links, which implies a broader help system designed for continued navigation into detailed guidance."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-013",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall collect age or date-of-birth information when needed for pass purchase or financing eligibility.",
+      "step_indices": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        19
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_09.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_10.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_11.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_12.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_13.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_14.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "An age field appears in the personal information step, and the later agreement step references date of birth, which grounds age-related data collection even though the underlying business rule is not fully visible."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-014",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall preserve a user's selected home store as the default store context on all pages and on a subsequent visit.",
+      "step_indices": [
+        1,
+        2,
+        4
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_01.png",
+        "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+        "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_04.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The current-flow context is supported, while subsequent-visit preservation depends on hidden persistence outside the screenshots."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-015",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall include all currently available catalog titles that match the configured author and German-language criteria in the resulting browsing view.",
+      "step_indices": [
+        4
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_04.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-016",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall restrict scheduled eGift card delivery to valid future dates and provide user-facing feedback when an unavailable date is chosen.",
+      "step_indices": [
+        3,
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_03.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_09.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The condition needed to evaluate the restriction and feedback behavior is not exercised in the screenshots."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-017",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall surface only currently valid coupon offers that match the active business category and resolved locality.",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 2,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-018",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall provide corresponding detail or menu-entry resources for all dining service types presented from the onboard dining page.",
+      "step_indices": [
+        4,
+        5
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/original/step_04.png",
+        "data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/original/step_05.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 3,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-019",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall retain previously entered advanced search criteria when the user returns from a filtered browsing view to the advanced search workflow during the same session.",
+      "step_indices": [
+        3,
+        4
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_03.png",
+        "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_04.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 0,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The screenshots support short-term visible retention in the form, but not the stronger return-from-results persistence scenario."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-020",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-09",
+      "requirement_text": "The system shall display books matching the submitted advanced search filters so the user can browse filtered results.",
+      "step_indices": [
+        3,
+        4
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_03.png",
+        "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_04.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The visible setup is supported, but the required filtered browsing outcome is not shown and result correctness cannot be verified from the screenshots."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-021",
+      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall provide a save action for committing profile changes.",
+      "step_indices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_03.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_04.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_05.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_06.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_07.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_08.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_09.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The save mechanism is visible; successful commitment is not verified."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-022",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-15",
+      "requirement_text": "The system shall add the configured eGift card to the shopper's ongoing cart or bag session after confirmation so it can continue into downstream checkout.",
+      "step_indices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_03.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_04.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_05.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_06.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_07.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_08.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_09.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The visible flow ends with a completed purchase form and an Add to Bag action, which strongly implies downstream bag state, but the actual bag update is not shown."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-023",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-12",
+      "requirement_text": "The system shall carry active advanced search filters forward into subsequent browsing views so users can understand the basis of the shown results.",
+      "step_indices": [
+        3,
+        4
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_03.png",
+        "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_04.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The flow emphasizes explicit configuration of author and language before search, making it a disciplined and nearby inference that those active filters should remain understandable when results are shown, even though the results page is not visible here."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-024",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall show complete store detail coverage for each returned location, including address, phone contact, and operating hours.",
+      "step_indices": [
+        2,
+        4
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+        "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_04.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The requirement is supported for visible complete cards but not fully verified for each returned location."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-025",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall allow signed-in users to save coupon discoveries to favorites and revisit them from account-level areas in later use.",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-026",
+      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall present search results only for sailings that are currently available under the combined selected destination, departure port, sailing month, and duration filters, and shall show user-facing feedback when no matching cruises are available.",
+      "step_indices": [
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-027",
+      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-13",
+      "requirement_text": "The system shall return cruise results that reflect the combined selected destination, departure port, month, and duration after the search is submitted.",
+      "step_indices": [
+        5,
+        7,
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_05.png",
+        "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_07.png",
+        "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-028",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall require a signed-in account before a gift card can be attached to a user profile, while still allowing balance checks to proceed in guest mode.",
+      "step_indices": [
+        3,
+        4,
+        5
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+        "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_04.png",
+        "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-029",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall enforce any required pass-ownership or eligibility policy for park add-ons and explain that policy in the purchase flow before checkout.",
+      "step_indices": [
+        6,
+        8
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+        "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_08.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The explanatory part is visible, while enforcement of eligibility policy is not verifiable from screenshots alone."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-030",
+      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall return all cruises that satisfy the configured destination, departure port, sailing month, and duration criteria, without omitting any eligible sailings.",
+      "step_indices": [
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The completeness of returned cruises cannot be judged from the screenshots."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-031",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall remember a signed-in user's preferred storefront locale and language-related search context for later visits to the search workflow.",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_01.png",
+        "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_02.png",
+        "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_03.png",
+        "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_04.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-032",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-09",
+      "requirement_text": "The system shall expose coupons as a user-facing discovery feature within the service.",
+      "step_indices": [
+        1
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-033",
+      "flow_id": "pure_2010_split_merge",
+      "dataset": "pure",
+      "requirement_id": "PURE-REQ-006",
+      "requirement_text": "5.4 Software Quality Attributes This application provides a pleasant and user friendly graphical interface with relatively simple functions. Any user should be able to use PDFsam without any specific knowledge or experience by reading the user manuals (or the help messages that are embedded in the application). Users only need to provide some pdf documents and with just a few clicks they can perform any action.",
+      "step_indices": [
+        14,
+        15,
+        16
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/pure/pure_2010_split_merge/step_14.png",
+        "data/processed/flows/pure/pure_2010_split_merge/step_15.png",
+        "data/processed/flows/pure/pure_2010_split_merge/step_16.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 5,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 5.4 Software Quality Attributes, PDF page(s) [31]. Revised after manual reassessment of the cited screenshots."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-034",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall cover all major release submission rule categories from the overview page so contributors can discover every essential rule area from one starting point.",
+      "step_indices": [
+        3
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "Broad category coverage is supported, while the universal completeness threshold remains unsettled."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-035",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall present key gift-card fulfillment and usage information, including delivery timing, redemption channels, fees or expiration status, and discount restrictions.",
+      "step_indices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_03.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_04.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_05.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_06.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_07.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_08.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_09.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The product page includes descriptive text and bullet points about email delivery timing, redemption locations, no fees or expiration dates, and ineligible discounts, though screenshots do not verify the backend truth of those claims."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-036",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall preserve access to broader site navigation while users are exploring contribution help resources.",
+      "step_indices": [
+        1,
+        2,
+        3
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_01.png",
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_02.png",
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "Both the dashboard and the guideline page retain prominent navigation or search affordances, suggesting help content remains integrated with broader site navigation rather than isolated."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-037",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall ensure that every job shown after search and filtering satisfies all selected criteria across the complete result set, not only the initially visible listings.",
+      "step_indices": [
+        9,
+        11,
+        13
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_09.png",
+        "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_11.png",
+        "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "Visible local consistency is supported, but the universal correctness claim cannot be fully proven."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-038",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall preserve a user's decision to associate a gift card with their account through the remainder of the balance inquiry workflow and reflect that choice when the lookup completes.",
+      "step_indices": [
+        3,
+        4,
+        5
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+        "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_04.png",
+        "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 2,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The account-association option is supported, while persistence and completion reflection are not shown."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-039",
+      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall preserve saved dining preferences and dietary notes when the user later returns to the profile settings area.",
+      "step_indices": [
+        7,
+        8,
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_07.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_08.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_09.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "Visible editing support is present, but persistence across a later revisit is not verified."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-040",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall let users open a discovered coupon into a redeemable detail or outbound handoff that provides merchant-facing usage instructions.",
+      "step_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 4,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-041",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall make all supported gift card balance inquiry paths and help resources discoverable from the centralized gift card service area.",
+      "step_indices": [
+        2
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 3,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-042",
+      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-14",
+      "requirement_text": "The system shall expose only genuinely searchable or available itinerary options for the user's query context when presenting destination, port, date, and duration choices.",
+      "step_indices": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_02.png",
+        "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_04.png",
+        "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_06.png",
+        "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_08.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-043",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-16",
+      "requirement_text": "The system shall validate that required eGift card purchase information is present before accepting the item for purchase.",
+      "step_indices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_03.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_04.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_05.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_06.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_07.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_08.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_09.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The page is structured as a multi-field purchase form leading to Add to Bag, so required-field validation is a disciplined inference, even though no explicit error or success state is shown."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-044",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-08",
+      "requirement_text": "The system shall only accept valid gift card actions.",
+      "step_indices": [
+        3,
+        4,
+        5
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+        "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_04.png",
+        "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The flow shows validation before any balance result is reached and the search action remains visually subdued, which suggests invalid input should block or discourage submission even though the exact enforcement logic is not fully shown."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-045",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall allow travelers to open the national café menu in a dedicated resource that can be viewed independently of the surrounding café information page.",
+      "step_indices": [
+        5
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/original/step_05.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 3,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The access point is supported, while the dedicated independent viewing outcome is not shown."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-046",
+      "flow_id": "pure_2010_split_merge",
+      "dataset": "pure",
+      "requirement_id": "PURE-SM-FR-3_9-REQ-1",
+      "requirement_text": "Changes saved in the Settings panel take effect after PDFsam is restarted.",
+      "step_indices": [
+        13,
+        18
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/pure/pure_2010_split_merge/step_13.png",
+        "data/processed/flows/pure/pure_2010_split_merge/step_18.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.9.2-3.9.3 Stimulus/Response Sequences and Functional Requirements, PDF page(s) [21]. The pre-label model verdict was not inspected."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-047",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall support an application workflow that can be launched for a specific opening after the applicant has identified the relevant park and role.",
+      "step_indices": [
+        4,
+        5,
+        6
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+        "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_05.png",
+        "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The visible setup for launching an application is present, but the captured flow stops before a confirmed application-start page or form."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-048",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall ensure that books shown after advanced search satisfy all submitted visible constraints, including the selected author and language.",
+      "step_indices": [
+        4
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_04.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-049",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall distinguish between input format errors and lookup failures for a well-formed but unrecognized gift card, and present user-facing feedback appropriate to each case.",
+      "step_indices": [
+        5
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-050",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-07",
+      "requirement_text": "The system shall provide a clear separation between learning submission rules and performing a release submission.",
+      "step_indices": [
+        2,
+        3
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_02.png",
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The observed UI keeps the learning path visibly separate from the release submission action."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-051",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-15",
+      "requirement_text": "The system shall support a downstream application workflow after the applicant selects Apply for a job.",
+      "step_indices": [
+        14
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The entry point is supported, but the downstream workflow is missing from the flow."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-052",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall surface route-specific café menu resources only when they are applicable to the traveler's route or service context, while still preserving access to a general national menu.",
+      "step_indices": [
+        5
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/original/step_05.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-053",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall mark roles as featured or hiring only when those openings are still actively accepting applications.",
+      "step_indices": [
+        5,
+        6
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_05.png",
+        "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The core only-when correctness condition depends on non-visible job availability or application status."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-054",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-14",
+      "requirement_text": "The system shall preserve the selected park context consistently across discovery, add-on selection, and cart review screens.",
+      "step_indices": [
+        3,
+        6,
+        10
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_03.png",
+        "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+        "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 3,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-055",
+      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall apply all saved profile dining preferences consistently to every future reservation made from the account.",
+      "step_indices": [
+        7,
+        8,
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_07.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_08.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_09.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The universal future-application requirement is not verifiable from these screenshots."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-056",
+      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall allow access to editable profile settings only for the authenticated account owner.",
+      "step_indices": [
+        2,
+        3
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_02.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_03.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The central owner-only access rule cannot be judged from the captured flow."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-057",
+      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall provide the same cruise search criteria and equivalent search behavior to anonymous users and signed-in users unless a visible policy restriction is communicated.",
+      "step_indices": [
+        1,
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_01.png",
+        "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 3,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The comparative requirement cannot be reliably judged without an anonymous-user state."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-058",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall clearly distinguish which contribution resources are generally browsable and which submission work areas require an authenticated contributor account.",
+      "step_indices": [
+        1,
+        2,
+        3
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_01.png",
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_02.png",
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The related areas are visible, but the explicit access distinction required by the claim is not shown and partly depends on access policy."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-059",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-06",
+      "requirement_text": "The system shall support discovery of contributor documentation from an authenticated user workspace.",
+      "step_indices": [
+        1,
+        2,
+        3
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_01.png",
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_02.png",
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The flow starts on a logged-in dashboard and then uses top navigation to open contribution resources, suggesting contributor help is reachable from within the user workspace."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-060",
+      "flow_id": "pure_2010_split_merge",
+      "dataset": "pure",
+      "requirement_id": "PURE-REQ-005",
+      "requirement_text": "5.2 Safety Requirements The application must ensure that it leaves untouched the input pdf files. No modification is allowed to these files. Moreover, the application should function even in cases of wrong data insertion or wrong settings. In case of error it should provide users with appropriate help messages.",
+      "step_indices": [
+        1,
+        15,
+        16
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/pure/pure_2010_split_merge/step_01.png",
+        "data/processed/flows/pure/pure_2010_split_merge/step_15.png",
+        "data/processed/flows/pure/pure_2010_split_merge/step_16.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 5.2 Safety Requirements, PDF page(s) [31]. The pre-label model verdict was not inspected."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-061",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall allow public browsing of job listings and posting details, while requiring applicant authentication before entering the application workflow.",
+      "step_indices": [
+        3,
+        13,
+        14
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_03.png",
+        "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+        "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "Public browsing is supported; the authentication policy before application is not verified."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-062",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-16",
+      "requirement_text": "The system shall preserve the applicant's current discovery context while moving between pages, filtering and job detail viewing.",
+      "step_indices": [
+        13,
+        14
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+        "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The filtered context leads into a selected job detail from the same narrowed result set, but persistence behavior across all navigation cases is only partially observable."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-063",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall preserve a user-selected digital or mobile ticket fulfillment choice across cart review and the transition into checkout unless the user explicitly changes it.",
+      "step_indices": [
+        10
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-064",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall allow users to create a job alert directly from their current search and filter context so future matching openings can be delivered without re-entering the criteria.",
+      "step_indices": [
+        1,
+        2,
+        11,
+        13
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_01.png",
+        "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_02.png",
+        "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_11.png",
+        "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The general alert capability is supported, while current-context persistence is missing or hidden."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-065",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-10",
+      "requirement_text": "The system shall provide alternative channels for balance inquiries in addition to the self service web form.",
+      "step_indices": [
+        2
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The gift card page mentions checking balance through the website, at a theatre, or by phone, indicating the product supports multiple access paths for the same user need."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-066",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall present complete geographic disambiguation coverage for ambiguous location input, including all relevant city and neighborhood matches before the user commits the search.",
+      "step_indices": [
+        3,
+        4
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+        "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-067",
+      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall pass saved allergy selections and dietary notes into restaurant-facing reservation information.",
+      "step_indices": [
+        3,
+        8,
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_03.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_08.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_09.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "Visible profile data entry is supported, while the external reservation information transfer is hidden."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-068",
+      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall preserve already selected cruise search criteria when the user leaves the search flow and returns later in the same browsing session.",
+      "step_indices": [
+        3,
+        5,
+        7,
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_03.png",
+        "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_05.png",
+        "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_07.png",
+        "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-069",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall preserve documentation context when contributors open detailed rule pages from the release submission overview, including a visible path back to the originating overview section.",
+      "step_indices": [
+        3
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [
+          "PARTIAL_LABEL_MISSING_OBSERVABLE_OR_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "The overview context is supported, but cross-page context preservation after opening a detailed rule page is not shown."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-070",
+      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-13",
+      "requirement_text": "The system shall let users maintain reusable dining preferences that can inform future reservations.",
+      "step_indices": [
+        3,
+        7,
+        8,
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_03.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_07.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_08.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_09.png"
+      ],
+      "reference_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_label": "UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+      "detected_hidden_indicators": [],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The page framing and explanatory text imply that the stored profile is meant to be reused when dining or reserving, but the later reservation-time application is not shown end to end."
+      },
+      "divergence_hypothesis": "The deterministic classifier found no configured hidden-property indicator, while the author reference treats the requirement as containing both visible and non-visible obligations. Check whether the hidden meaning is implicit or the reference is too conservative.",
+      "author_resolution": "ADOPT_PIPELINE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-071",
+      "flow_id": "pure_2010_mashboot",
+      "dataset": "pure",
+      "requirement_id": "PURE-MB-EXPLORE-001",
+      "requirement_text": "The Explore view shall let users configure monitored searches for services that support keyword search through an API and shall aggregate comments on content published as part of a campaign.",
+      "step_indices": [
+        1
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/pure/pure_2010_mashboot/step_01.png"
+      ],
+      "reference_label": "UI_VERIFIABLE",
+      "pipeline_label": "NOT_UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement is dominated by non-visual or hidden system properties: backend.",
+      "detected_hidden_indicators": [
+        "backend"
+      ],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - mashboot.pdf, section 2.1.2 User Interface; 4.1.3 Explore, PDF page(s) [5, 10]. Prepared after the pipeline run was inspected; use as a post-hoc review draft, not blinded gold."
+      },
+      "divergence_hypothesis": "The classifier detected hidden-property vocabulary but no configured visible-UI indicator. Check whether the requirement nevertheless describes an observable UI state or interaction.",
+      "author_resolution": "CHOOSE_DIFFERENT_LABEL",
+      "author_final_label": "PARTIALLY_UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": true,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-072",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-21",
+      "requirement_text": "The system shall collect billing and contact details needed to complete the payment agreement workflow.",
+      "step_indices": [
+        19
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png"
+      ],
+      "reference_label": "UI_VERIFIABLE",
+      "pipeline_label": "NOT_UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement is dominated by non-visual or hidden system properties: payment processing.",
+      "detected_hidden_indicators": [
+        "payment processing"
+      ],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The UI collects billing and contact details, but sufficiency for completing the agreement is not visible."
+      },
+      "divergence_hypothesis": "The classifier detected hidden-property vocabulary but no configured visible-UI indicator. Check whether the requirement nevertheless describes an observable UI state or interaction.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-073",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall provide a final editable review step before commitment where the purchaser can inspect and revise the selected park, pass tier, passholder details, dining add-ons, and payment choice.",
+      "step_indices": [
+        19
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png"
+      ],
+      "reference_label": "UI_VERIFIABLE",
+      "pipeline_label": "NOT_UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement is dominated by non-visual or hidden system properties: payment processing.",
+      "detected_hidden_indicators": [
+        "payment processing"
+      ],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "Some inspect-and-revise support is visible, but the stronger final review step is not visibly satisfied."
+      },
+      "divergence_hypothesis": "The classifier detected hidden-property vocabulary but no configured visible-UI indicator. Check whether the requirement nevertheless describes an observable UI state or interaction.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-074",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-10",
+      "requirement_text": "The system shall support copying previously entered passholder information into billing-related information where appropriate.",
+      "step_indices": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        19
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_09.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_10.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_11.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_12.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_13.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_14.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png"
+      ],
+      "reference_label": "UI_VERIFIABLE",
+      "pipeline_label": "NOT_UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement is dominated by non-visual or hidden system properties: payment processing.",
+      "detected_hidden_indicators": [
+        "payment processing"
+      ],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The visible copy mechanism is supported, but the appropriateness condition depends on hidden business logic."
+      },
+      "divergence_hypothesis": "The classifier detected hidden-property vocabulary but no configured visible-UI indicator. Check whether the requirement nevertheless describes an observable UI state or interaction.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-075",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-20",
+      "requirement_text": "The system shall require the user to review and consent to financing-related terms before completing a flexible payment agreement.",
+      "step_indices": [
+        19
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png"
+      ],
+      "reference_label": "UI_VERIFIABLE",
+      "pipeline_label": "NOT_UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement is dominated by non-visual or hidden system properties: payment processing.",
+      "detected_hidden_indicators": [
+        "payment processing"
+      ],
+      "reference_basis": {
+        "observable_claim_count": 3,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "A terms and conditions modal explicitly instructs the user to review the agreement, sign, and consent, which directly grounds agreement review as part of financing completion."
+      },
+      "divergence_hypothesis": "The classifier detected hidden-property vocabulary but no configured visible-UI indicator. Check whether the requirement nevertheless describes an observable UI state or interaction.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-076",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-16",
+      "requirement_text": "The system shall offer a choice between full payment and a flexible installment payment plan for pass purchases.",
+      "step_indices": [
+        18
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_18.png"
+      ],
+      "reference_label": "UI_VERIFIABLE",
+      "pipeline_label": "NOT_UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement is dominated by non-visual or hidden system properties: payment processing.",
+      "detected_hidden_indicators": [
+        "payment processing"
+      ],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The visible UI offers both payment choices and supports selecting the flexible payment plan."
+      },
+      "divergence_hypothesis": "The classifier detected hidden-property vocabulary but no configured visible-UI indicator. Check whether the requirement nevertheless describes an observable UI state or interaction.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-077",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall provide a dedicated pre-checkout review step where the user can confirm or change the selected ticket fulfillment method before continuing to payment.",
+      "step_indices": [
+        10
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png"
+      ],
+      "reference_label": "UI_VERIFIABLE",
+      "pipeline_label": "NOT_UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement is dominated by non-visual or hidden system properties: payment processing.",
+      "detected_hidden_indicators": [
+        "payment processing"
+      ],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": ""
+      },
+      "divergence_hypothesis": "The classifier detected hidden-property vocabulary but no configured visible-UI indicator. Check whether the requirement nevertheless describes an observable UI state or interaction.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-078",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-17",
+      "requirement_text": "The system shall display the installment schedule and payment amounts when a flexible payment plan is offered.",
+      "step_indices": [
+        18
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_18.png"
+      ],
+      "reference_label": "UI_VERIFIABLE",
+      "pipeline_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement has a visible UI component, but also references hidden properties: payment processing.",
+      "detected_hidden_indicators": [
+        "payment processing"
+      ],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The installment dates and amounts are visibly displayed."
+      },
+      "divergence_hypothesis": "The classifier detected both visible UI vocabulary and a configured hidden-property term. Check whether that term denotes an actually hidden effect or merely a visibly inspectable UI concept in context.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-079",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "dataset": "mind2web",
+      "requirement_id": "REQ-22",
+      "requirement_text": "The system shall present prices and option details transparently enough for users to compare pass tiers, add-ons, and payment choices during checkout.",
+      "step_indices": [
+        7,
+        16,
+        17,
+        18
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_07.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_16.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_17.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_18.png"
+      ],
+      "reference_label": "UI_VERIFIABLE",
+      "pipeline_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement has a visible UI component, but also references hidden properties: payment processing.",
+      "detected_hidden_indicators": [
+        "payment processing"
+      ],
+      "reference_basis": {
+        "observable_claim_count": 2,
+        "hidden_claim_count": 1,
+        "structural_conflict_reasons": [
+          "UI_LABEL_HAS_HIDDEN_CLAIM"
+        ],
+        "original_annotation_notes": "Pricing and details are visible, but the sufficiency threshold is partly interpretive."
+      },
+      "divergence_hypothesis": "The classifier detected both visible UI vocabulary and a configured hidden-property term. Check whether that term denotes an actually hidden effect or merely a visibly inspectable UI concept in context.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-080",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-06",
+      "requirement_text": "The system shall keep the checkout pricing summary synchronized with user choices so that changing an add-on or payment plan visibly updates the relevant one-time and recurring charges.",
+      "step_indices": [
+        7,
+        16,
+        17,
+        18
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_07.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_16.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_17.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_18.png"
+      ],
+      "reference_label": "UI_VERIFIABLE",
+      "pipeline_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement has a visible UI component, but also references hidden properties: payment processing.",
+      "detected_hidden_indicators": [
+        "payment processing"
+      ],
+      "reference_basis": {
+        "observable_claim_count": 3,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The flow supports price visibility and option selection, but the stronger dynamic synchronization behavior is not directly shown."
+      },
+      "divergence_hypothesis": "The classifier detected both visible UI vocabulary and a configured hidden-property term. Check whether that term denotes an actually hidden effect or merely a visibly inspectable UI concept in context.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    },
+    {
+      "audit_item_id": "UID-081",
+      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+      "dataset": "mind2web",
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall present an explicit post-save confirmation or summary indicating that profile edits were stored.",
+      "step_indices": [
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_09.png"
+      ],
+      "reference_label": "UI_VERIFIABLE",
+      "pipeline_label": "PARTIALLY_UI_VERIFIABLE",
+      "pipeline_rationale": "The requirement has a visible UI component, but also references hidden properties: database.",
+      "detected_hidden_indicators": [
+        "database"
+      ],
+      "reference_basis": {
+        "observable_claim_count": 1,
+        "hidden_claim_count": 0,
+        "structural_conflict_reasons": [],
+        "original_annotation_notes": "The expected visible confirmation or summary is absent in the final visible state after the profile edits."
+      },
+      "divergence_hypothesis": "The classifier detected both visible UI vocabulary and a configured hidden-property term. Check whether that term denotes an actually hidden effect or merely a visibly inspectable UI concept in context.",
+      "author_resolution": "KEEP_REFERENCE",
+      "author_final_label": "UI_VERIFIABLE",
+      "author_confidence": null,
+      "author_rationale": "",
+      "author_amendment_recommended": false,
+      "author_note": ""
+    }
+  ]
+}

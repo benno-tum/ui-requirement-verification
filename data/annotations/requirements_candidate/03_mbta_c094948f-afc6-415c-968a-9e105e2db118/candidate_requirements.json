@@ -110,7 +110,7 @@
       "scope": "single_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "step_indices": [
         14
       ],
@@ -155,7 +155,7 @@
       "scope": "single_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "step_indices": [
         14
       ],
@@ -233,7 +233,7 @@
       "parent_harvest_text": "The system shall allow users to subscribe to job posting alerts for future openings.",
       "grounding_scope": "INDIRECT_FLOW_GROUNDED",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "BACKEND_HIDDEN_STATE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
       "task_relevance": "MEDIUM",
@@ -468,7 +468,7 @@
       "parent_harvest_text": "The system shall provide a dedicated careers area from which users can access job openings and related applicant resources.",
       "grounding_scope": "INDIRECT_FLOW_GROUNDED",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "SECURITY_PRIVACY",
       "visible_subtype": "NAVIGATION_OUTCOME",
       "task_relevance": "MEDIUM",

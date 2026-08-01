@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import base64
 from collections import deque
+import io
 import json
 import re
 from pathlib import Path
@@ -14,10 +16,11 @@ import uuid
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
+from PIL import Image, ImageOps, UnidentifiedImageError
+from pydantic import BaseModel, Field
 
 from ui_verifier.annotation.service import AnnotationService
-from ui_verifier.model_config import all_model_role_configs, model_config_path, model_name_for, temperature_for
+from ui_verifier.model_config import all_model_role_configs, model_config_path, model_name_for, provider_for, temperature_for
 from ui_verifier.api.flow_catalog import FlowCatalog
 from ui_verifier.requirement_inspection.schemas import UiEvaluability
 from ui_verifier.requirements.candidate_generation import generate_harvested_for_flow
@@ -29,7 +32,16 @@ from ui_verifier.requirements.schemas import RequirementReviewStatus
 from ui_verifier.common.json_utils import parse_json_response
 from ui_verifier.common.flow_utils import parse_step_number
 from ui_verifier.evaluation.prediction_coverage import coverage_for_files
-from ui_verifier.localization import TextBoxLocalizer, ensure_ocr_sidecar
+from ui_verifier.evaluation.review_audit import (
+    EvaluationAuditStore,
+    bbox_metrics,
+    classification_metrics,
+    validate_bbox_review,
+    validate_ui_review,
+    write_json,
+)
+from ui_verifier.localization import TextBoxLocalizer, ensure_ocr_sidecar, load_ocr_text_boxes
+from ui_verifier.localization.candidate_ranking import rank_candidates
 from ui_verifier.verification.schemas import (
     ClaimEvidence,
     ClaimEvidenceStatus,
@@ -41,6 +53,7 @@ from ui_verifier.verification.schemas import (
 )
 from ui_verifier.verification.service import VerificationService
 from ui_verifier.verification.storage import VerificationStorage
+from ui_verifier.verification_pipeline.requirement_understanding import RequirementUnderstanding
 
 
 def _ensure_static_dir(path: Path) -> Path:
@@ -55,11 +68,18 @@ verification_storage = VerificationStorage()
 flow_catalog = FlowCatalog(annotation_storage=annotation_service.storage, verification_storage=verification_storage)
 DEMO_VERIFICATION_ROOT = Path(__file__).resolve().parents[3] / "data" / "generated" / "demo_verification"
 VERIFICATION_PIPELINE_ROOT = Path(__file__).resolve().parents[3] / "data" / "generated" / "verification_pipeline"
+VERIFICATION_PIPELINE_RUNS_ROOT = Path(__file__).resolve().parents[3] / "data" / "generated" / "verification_pipeline_runs"
 BASE_DIR = Path(__file__).resolve().parents[3]
 GENERATED_ROOT = BASE_DIR / "data" / "generated"
 REQUIREMENTS_GOLD_ROOT = BASE_DIR / "data" / "annotations" / "requirements_gold"
 VERIFICATION_GOLD_ROOT = BASE_DIR / "data" / "annotations" / "verification_gold"
+EVALUATION_AUDIT_ROOT = BASE_DIR / "data" / "annotations" / "evaluation_audits"
+OMNIPARSER_CANDIDATE_ROOT = GENERATED_ROOT / "omniparser_candidate_marks"
 RUN_OUTPUT_DIR_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.-]{0,80}$")
+UPLOAD_PROJECT_SLUG_RE = re.compile(r"[^a-z0-9]+")
+MAX_UPLOAD_SCREENSHOTS = 20
+MAX_UPLOAD_IMAGE_BYTES = 12 * 1024 * 1024
+MAX_UPLOAD_TOTAL_BYTES = 80 * 1024 * 1024
 RUN_JOBS: dict[str, dict[str, Any]] = {}
 RUN_JOBS_LOCK = threading.Lock()
 
@@ -191,12 +211,32 @@ class StartPipelineRunRequest(BaseModel):
     verifier: str = "deterministic"
     verifier_model: str = model_name_for("demo_image_verifier")
     retriever: str = "lexical"
+    retriever_provider: str = provider_for("evidence_retrieval")
+    retriever_model: str = model_name_for("evidence_retrieval")
     requirements_source: str = "accepted"
     top_k: int = 3
+    llm_claim_fallback: bool = False
+    claim_provider: str = provider_for("claim_decomposition")
+    claim_model: str = model_name_for("claim_decomposition")
+    max_claims: int = 4
     max_images: int = 6
     max_gemini_api_calls: int = 0
+    gemini_max_retries: int = 2
     use_cache: bool = True
     output_dir_name: str = "ui_verification_runs"
+
+
+class UploadedScreenshot(BaseModel):
+    filename: str
+    content_base64: str
+
+
+class CreateUploadedFlowRequest(BaseModel):
+    project_name: str
+    requirements_content: str
+    requirements_filename: str | None = None
+    screenshots: list[UploadedScreenshot]
+    description: str | None = None
 
 
 class RegenerateExpectedClaimsRequest(BaseModel):
@@ -212,11 +252,148 @@ class BoundingBoxSuggestionRequest(BaseModel):
     tesseract_cmd: str = "tesseract"
 
 
+class UiEvaluabilityAuditReviewRequest(BaseModel):
+    reviewer_id: str
+    label: str
+    rationale: str = ""
+    confidence: float = 0.5
+    ambiguous: bool = False
+
+
+class BoundingBoxAuditReviewRequest(BaseModel):
+    reviewer_id: str
+    applicability: str
+    gold_boxes: list[dict[str, float]] = Field(default_factory=list)
+    evidence_note: str = ""
+    gold_locked: bool = False
+    relevance: str = "NOT_APPLICABLE"
+    sufficiency: str = "NOT_APPLICABLE"
+    error_categories: list[str] = Field(default_factory=list)
+
+
+class BoundingBoxInspectionJudgmentRequest(BaseModel):
+    status: str
+    note: str = ""
+    error_category: str | None = None
+
+
+class BoundingBoxCandidateSelectionRequest(BaseModel):
+    candidate_id: str
+
+
 def _repo_relative(path: Path) -> str:
     try:
         return str(path.resolve().relative_to(BASE_DIR.resolve()))
     except ValueError:
         return str(path)
+
+
+def _uploaded_project_slug(value: str) -> str:
+    normalized = UPLOAD_PROJECT_SLUG_RE.sub("-", value.strip().lower()).strip("-")
+    return (normalized[:42].strip("-") or "untitled")
+
+
+def _uploaded_requirement_items(content: str, filename: str | None) -> list[str | dict[str, Any]]:
+    content = content.strip()
+    if not content:
+        raise HTTPException(status_code=400, detail="Add at least one requirement or upload a requirements file.")
+    if len(content.encode("utf-8")) > 2 * 1024 * 1024:
+        raise HTTPException(status_code=413, detail="Requirements content must be 2 MB or smaller.")
+
+    looks_like_json = (filename or "").lower().endswith(".json") or content.startswith(("[", "{"))
+    if looks_like_json:
+        try:
+            parsed = json.loads(content)
+        except json.JSONDecodeError as exc:
+            raise HTTPException(status_code=400, detail=f"Requirements JSON is invalid: {exc.msg}.") from exc
+        if isinstance(parsed, list):
+            items = parsed
+        elif isinstance(parsed, dict):
+            nested = parsed.get("requirements", parsed.get("items"))
+            items = nested if isinstance(nested, list) else [parsed]
+        else:
+            raise HTTPException(status_code=400, detail="Requirements JSON must contain an object or list.")
+        if not items:
+            raise HTTPException(status_code=400, detail="The requirements file does not contain any requirements.")
+        return items
+
+    lines = []
+    for raw_line in content.splitlines():
+        line = re.sub(r"^\s*(?:[-*+]\s+|\d+[.)]\s+)", "", raw_line).strip()
+        if line and not re.fullmatch(r"#+\s*requirements?\s*", line, flags=re.IGNORECASE):
+            lines.append(line)
+    if not lines:
+        raise HTTPException(status_code=400, detail="The requirements file does not contain any non-empty lines.")
+    return lines
+
+
+def _normalize_uploaded_requirements(
+    content: str,
+    filename: str | None,
+    *,
+    flow_id: str,
+) -> list[dict[str, Any]]:
+    normalized: list[dict[str, Any]] = []
+    seen_ids: set[str] = set()
+    for index, item in enumerate(_uploaded_requirement_items(content, filename), start=1):
+        if isinstance(item, str):
+            data: dict[str, Any] = {"text": item}
+        elif isinstance(item, dict):
+            data = dict(item)
+        else:
+            raise HTTPException(status_code=400, detail=f"Requirement {index} must be a string or object.")
+
+        text_value = next(
+            (
+                data.get(key).strip()
+                for key in ("text", "requirement_text", "harvested_text", "claim_text")
+                if isinstance(data.get(key), str) and data.get(key).strip()
+            ),
+            None,
+        )
+        if text_value is None:
+            raise HTTPException(status_code=400, detail=f"Requirement {index} is missing a text field.")
+
+        base_id = str(data.get("requirement_id") or data.get("id") or f"REQ-{index:03d}").strip() or f"REQ-{index:03d}"
+        requirement_id = base_id
+        duplicate_index = 2
+        while requirement_id in seen_ids:
+            requirement_id = f"{base_id}-{duplicate_index}"
+            duplicate_index += 1
+        seen_ids.add(requirement_id)
+        normalized.append({**data, "requirement_id": requirement_id, "flow_id": flow_id, "text": text_value})
+    return normalized
+
+
+def _decode_uploaded_screenshot(screenshot: UploadedScreenshot) -> bytes:
+    encoded = screenshot.content_base64
+    if encoded.startswith("data:"):
+        _, separator, encoded = encoded.partition(",")
+        if not separator:
+            raise HTTPException(status_code=400, detail=f"Invalid image data for {screenshot.filename}.")
+    try:
+        raw = base64.b64decode(encoded, validate=True)
+    except (ValueError, TypeError) as exc:
+        raise HTTPException(status_code=400, detail=f"Invalid base64 image data for {screenshot.filename}.") from exc
+    if not raw:
+        raise HTTPException(status_code=400, detail=f"{screenshot.filename} is empty.")
+    if len(raw) > MAX_UPLOAD_IMAGE_BYTES:
+        raise HTTPException(status_code=413, detail=f"{screenshot.filename} exceeds the 12 MB image limit.")
+
+    try:
+        with Image.open(io.BytesIO(raw)) as source:
+            image = ImageOps.exif_transpose(source)
+            image.load()
+            if image.width < 1 or image.height < 1 or image.width * image.height > 50_000_000:
+                raise HTTPException(status_code=400, detail=f"{screenshot.filename} has unsupported dimensions.")
+            normalized = image.convert("RGBA" if "A" in image.getbands() else "RGB")
+            output = io.BytesIO()
+            normalized.save(output, format="PNG", optimize=True)
+            return output.getvalue()
+    except HTTPException:
+        raise
+    except (UnidentifiedImageError, OSError) as exc:
+        raise HTTPException(status_code=400, detail=f"{screenshot.filename} is not a supported image.") from exc
 
 
 def _require_under(path: Path, root: Path) -> Path:
@@ -254,6 +431,7 @@ def _load_json_object(path: Path) -> dict[str, Any] | None:
 def _iter_verification_run_paths() -> list[Path]:
     roots = [
         VERIFICATION_PIPELINE_ROOT,
+        VERIFICATION_PIPELINE_RUNS_ROOT,
         DEMO_VERIFICATION_ROOT,
         *(path for path in GENERATED_ROOT.glob("diagnosis*") if path.is_dir()),
         *(path for path in GENERATED_ROOT.glob("benchmark*") if path.is_dir()),
@@ -261,11 +439,22 @@ def _iter_verification_run_paths() -> list[Path]:
     ]
     paths: list[Path] = []
     seen: set[Path] = set()
+    ignored_nested_directories = {
+        "active",
+        "cache",
+        "failed_topk",
+        "fallback_single_call",
+        "intermediate",
+        "pilot",
+    }
     for root in roots:
         if not root.exists():
             continue
-        for path in root.glob("*.json"):
-            if path.name.startswith("metrics"):
+        for path in root.rglob("*.json"):
+            relative_parts = path.relative_to(root).parts[:-1]
+            if any(part in ignored_nested_directories for part in relative_parts):
+                continue
+            if path.name.startswith("metrics") or path.name in {"summary.json", "gold_01_13.json"}:
                 continue
             resolved = path.resolve()
             if resolved in seen:
@@ -282,6 +471,19 @@ def _metrics_available_for(path: Path) -> bool:
 def _run_entry_from_data(path: Path, data: dict[str, Any]) -> dict[str, Any]:
     metadata = data.get("metadata") if isinstance(data.get("metadata"), dict) else {}
     results = data.get("results") if isinstance(data.get("results"), list) else []
+    verifier_diagnostics = (
+        metadata.get("gemini_image_verifier")
+        if isinstance(metadata.get("gemini_image_verifier"), dict)
+        else {}
+    )
+    gemini_api_calls = int(verifier_diagnostics.get("api_calls") or 0)
+    gemini_cache_hits = int(verifier_diagnostics.get("cache_hits") or 0)
+    verifier_fallbacks = int(verifier_diagnostics.get("fallbacks") or 0)
+    verifier_failures = (
+        verifier_diagnostics.get("failures")
+        if isinstance(verifier_diagnostics.get("failures"), list)
+        else []
+    )
     label_distribution = metadata.get("label_distribution")
     if not isinstance(label_distribution, dict):
         label_distribution = {}
@@ -290,6 +492,31 @@ def _run_entry_from_data(path: Path, data: dict[str, Any]) -> dict[str, Any]:
                 continue
             label = str(result.get("final_label") or "UNKNOWN")
             label_distribution[label] = int(label_distribution.get(label, 0)) + 1
+
+    evidence_items: list[dict[str, Any]] = []
+    for result in results:
+        if not isinstance(result, dict):
+            continue
+        claims = result.get("claims") if isinstance(result.get("claims"), list) else []
+        claim_evidence = [
+            evidence
+            for claim in claims
+            if isinstance(claim, dict)
+            for evidence in (claim.get("evidence") if isinstance(claim.get("evidence"), list) else [])
+            if isinstance(evidence, dict)
+        ]
+        if claim_evidence:
+            evidence_items.extend(claim_evidence)
+        else:
+            evidence_items.extend(
+                evidence
+                for evidence in (result.get("evidence") if isinstance(result.get("evidence"), list) else [])
+                if isinstance(evidence, dict)
+            )
+    bbox_evidence_count = sum(
+        isinstance(evidence.get("bbox"), list) and len(evidence["bbox"]) == 4
+        for evidence in evidence_items
+    )
 
     return {
         "run_id": _run_id_for_path(path),
@@ -306,6 +533,15 @@ def _run_entry_from_data(path: Path, data: dict[str, Any]) -> dict[str, Any]:
         "requirements_count": metadata.get("requirements_count") or len(results),
         "label_distribution": label_distribution,
         "metrics_available": _metrics_available_for(path),
+        "evidence_count": len(evidence_items),
+        "bbox_evidence_count": bbox_evidence_count,
+        "has_pipeline_evidence": bool(evidence_items),
+        "has_bbox_evidence": bbox_evidence_count > 0,
+        "gemini_api_calls": gemini_api_calls,
+        "gemini_cache_hits": gemini_cache_hits,
+        "verifier_fallbacks": verifier_fallbacks,
+        "verifier_failure_count": len(verifier_failures),
+        "gemini_judgments_available": (gemini_api_calls + gemini_cache_hits) > 0,
     }
 
 
@@ -314,6 +550,9 @@ def discover_pipeline_runs(flow_id: str) -> list[dict[str, Any]]:
     for path in _iter_verification_run_paths():
         data = _load_json_object(path)
         if not data or data.get("flow_id") != flow_id or not isinstance(data.get("results"), list):
+            continue
+        metadata = data.get("metadata") if isinstance(data.get("metadata"), dict) else {}
+        if metadata.get("run_valid") is False:
             continue
         runs.append(_run_entry_from_data(path, data))
     runs.sort(key=lambda item: float(item.get("mtime") or 0.0), reverse=True)
@@ -335,7 +574,12 @@ def _step_image_path_for_localization(flow_id: str, step_index: int) -> Path:
     visible_paths = flow_catalog._visible_step_paths(dataset, flow_id, flow_dir)
     for step_path in visible_paths:
         if parse_step_number(step_path) == step_index:
-            return flow_catalog._preferred_step_image_path(flow_dir, flow_id, step_path)
+            preferred = flow_catalog._preferred_step_image_path(flow_dir, flow_id, step_path)
+            if load_ocr_text_boxes(preferred):
+                return preferred
+            if load_ocr_text_boxes(step_path):
+                return step_path
+            return preferred
     raise FileNotFoundError(f"Step {step_index} not found for flow {flow_id}.")
 
 
@@ -345,22 +589,51 @@ def build_pipeline_run_command(flow_id: str, body: StartPipelineRunRequest, *, j
         verifier = "deterministic"
     if verifier not in {"deterministic", "gemini-image"}:
         raise HTTPException(status_code=400, detail="verifier must be deterministic_rule_based or gemini-image.")
-    if body.retriever != "lexical":
-        raise HTTPException(status_code=400, detail="Only lexical retriever is supported from the UI for now.")
-    if body.requirements_source not in {"accepted", "benchmark"}:
-        raise HTTPException(status_code=400, detail="requirements_source must be accepted or benchmark.")
+    if body.retriever not in {"lexical", "tfidf", "llm"}:
+        raise HTTPException(status_code=400, detail="retriever must be lexical, tfidf, or llm.")
+    if body.retriever_provider not in {"gemini", "deepseek"}:
+        raise HTTPException(status_code=400, detail="retriever_provider must be gemini or deepseek.")
+    if body.claim_provider not in {"gemini", "deepseek"}:
+        raise HTTPException(status_code=400, detail="claim_provider must be gemini or deepseek.")
+    if body.retriever == "llm" and not body.retriever_model.strip():
+        raise HTTPException(status_code=400, detail="retriever_model is required for LLM retrieval.")
+    if body.llm_claim_fallback and not body.claim_model.strip():
+        raise HTTPException(status_code=400, detail="claim_model is required for LLM-assisted decomposition.")
+    if body.retriever == "llm" and not body.retriever_model.startswith(f"{body.retriever_provider}-"):
+        raise HTTPException(status_code=400, detail="retriever_model must match retriever_provider.")
+    if body.llm_claim_fallback and not body.claim_model.startswith(f"{body.claim_provider}-"):
+        raise HTTPException(status_code=400, detail="claim_model must match claim_provider.")
+    if verifier == "gemini-image" and not body.verifier_model.strip().startswith("gemini-"):
+        raise HTTPException(status_code=400, detail="The image verifier requires a Gemini multimodal model.")
+    if body.requirements_source not in {"accepted", "benchmark", "uploaded"}:
+        raise HTTPException(status_code=400, detail="requirements_source must be accepted, benchmark, or uploaded.")
     if body.top_k < 1 or body.top_k > 20:
         raise HTTPException(status_code=400, detail="top_k must be between 1 and 20.")
+    if body.max_claims < 1 or body.max_claims > 10:
+        raise HTTPException(status_code=400, detail="max_claims must be between 1 and 10.")
     if body.max_images < 1 or body.max_images > 20:
         raise HTTPException(status_code=400, detail="max_images must be between 1 and 20.")
     if body.max_gemini_api_calls < -1 or body.max_gemini_api_calls > 1000:
         raise HTTPException(status_code=400, detail="max_gemini_api_calls must be -1 or between 0 and 1000.")
+    if body.gemini_max_retries < 0 or body.gemini_max_retries > 5:
+        raise HTTPException(status_code=400, detail="gemini_max_retries must be between 0 and 5.")
     if verifier == "gemini-image" and body.max_gemini_api_calls == 0:
         raise HTTPException(status_code=400, detail="Gemini runs require max_gemini_api_calls greater than 0 or -1.")
 
-    _, flow_dir = flow_catalog.resolve_flow(flow_id)
+    dataset, flow_dir = flow_catalog.resolve_flow(flow_id)
     flow_dir = _require_under(flow_dir, BASE_DIR / "data")
-    if body.requirements_source == "benchmark":
+    requirements_source_arg = body.requirements_source
+    if body.requirements_source == "uploaded":
+        if dataset != "uploads":
+            raise HTTPException(status_code=400, detail="Uploaded requirements can only be used with an uploaded flow.")
+        task = _load_json_object(flow_dir / "task.json") or {}
+        uploaded_path = task.get("uploaded_requirements_path")
+        if not isinstance(uploaded_path, str) or not uploaded_path.strip():
+            raise HTTPException(status_code=404, detail=f"Uploaded requirements not found for {flow_id}.")
+        requirements_path = (BASE_DIR / uploaded_path).resolve()
+        _require_under(requirements_path, GENERATED_ROOT / "uploaded_flows")
+        requirements_source_arg = "custom"
+    elif body.requirements_source == "benchmark":
         requirements_path = VERIFICATION_GOLD_ROOT / flow_id / "verification_gold.json"
     else:
         requirements_path = REQUIREMENTS_GOLD_ROOT / flow_id / "gold_requirements.json"
@@ -371,7 +644,9 @@ def build_pipeline_run_command(flow_id: str, body: StartPipelineRunRequest, *, j
     requirements_path = _require_under(requirements_path, BASE_DIR / "data")
 
     output_dir = _safe_output_dir(body.output_dir_name)
-    output_path = _require_under(output_dir / f"{flow_id}.json", output_dir)
+    safe_job_suffix = re.sub(r"[^A-Za-z0-9_-]", "", job_id or "")[:12]
+    output_name = f"{flow_id}__{safe_job_suffix}.json" if safe_job_suffix else f"{flow_id}.json"
+    output_path = _require_under(output_dir / output_name, output_dir)
     cache_dir = _require_under(output_dir / "cache", output_dir)
     cache_name = f"{flow_id}_gemini_image_claims.json" if body.use_cache else f"{flow_id}_{job_id or 'run'}_gemini_image_claims.json"
     cache_path = _require_under(cache_dir / cache_name, cache_dir)
@@ -384,7 +659,7 @@ def build_pipeline_run_command(flow_id: str, body: StartPipelineRunRequest, *, j
         "--requirements",
         str(requirements_path),
         "--requirements-source",
-        body.requirements_source,
+        requirements_source_arg,
         "--out",
         str(output_path),
         "--retriever",
@@ -397,10 +672,34 @@ def build_pipeline_run_command(flow_id: str, body: StartPipelineRunRequest, *, j
         str(body.max_images),
         "--max-gemini-api-calls",
         str(body.max_gemini_api_calls),
+        "--gemini-max-retries",
+        str(body.gemini_max_retries),
+        "--max-claims",
+        str(body.max_claims),
         "--verifier-cache",
         str(cache_path),
-        "--no-llm-claim-fallback",
     ]
+    if body.llm_claim_fallback:
+        command.extend(
+            [
+                "--llm-claim-fallback",
+                "--claim-provider",
+                body.claim_provider,
+                "--claim-model",
+                body.claim_model.strip(),
+            ]
+        )
+    else:
+        command.append("--no-llm-claim-fallback")
+    if body.retriever == "llm":
+        command.extend(
+            [
+                "--retriever-provider",
+                body.retriever_provider,
+                "--retriever-model",
+                body.retriever_model.strip(),
+            ]
+        )
     if verifier == "gemini-image":
         command.extend(["--verifier-model", body.verifier_model.strip() or model_name_for("demo_image_verifier")])
     return command, output_path
@@ -495,6 +794,75 @@ def model_config() -> dict[str, Any]:
     }
 
 
+@app.post("/uploaded-flows")
+def create_uploaded_flow(body: CreateUploadedFlowRequest) -> dict[str, Any]:
+    project_name = body.project_name.strip()
+    if not project_name:
+        raise HTTPException(status_code=400, detail="Project name is required.")
+    if len(body.screenshots) < 1:
+        raise HTTPException(status_code=400, detail="Upload at least one screenshot.")
+    if len(body.screenshots) > MAX_UPLOAD_SCREENSHOTS:
+        raise HTTPException(status_code=413, detail=f"Upload at most {MAX_UPLOAD_SCREENSHOTS} screenshots per project.")
+
+    decoded_screenshots: list[bytes] = []
+    total_bytes = 0
+    for screenshot in body.screenshots:
+        decoded = _decode_uploaded_screenshot(screenshot)
+        total_bytes += len(decoded)
+        if total_bytes > MAX_UPLOAD_TOTAL_BYTES:
+            raise HTTPException(status_code=413, detail="The combined screenshot upload exceeds 80 MB.")
+        decoded_screenshots.append(decoded)
+
+    flow_id = f"upload-{_uploaded_project_slug(project_name)}-{uuid.uuid4().hex[:8]}"
+    requirements = _normalize_uploaded_requirements(
+        body.requirements_content,
+        body.requirements_filename,
+        flow_id=flow_id,
+    )
+
+    flow_dir = flow_catalog.flows_root / "uploads" / flow_id
+    requirements_path = GENERATED_ROOT / "uploaded_flows" / flow_id / "requirements.json"
+    flow_dir.mkdir(parents=True, exist_ok=False)
+    requirements_path.parent.mkdir(parents=True, exist_ok=False)
+
+    for index, screenshot_bytes in enumerate(decoded_screenshots, start=1):
+        (flow_dir / f"step_{index}.png").write_bytes(screenshot_bytes)
+
+    requirements_path.write_text(
+        json.dumps(
+            {
+                "dataset": "uploads",
+                "flow_id": flow_id,
+                "requirements": requirements,
+            },
+            indent=2,
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+    (flow_dir / "task.json").write_text(
+        json.dumps(
+            {
+                "website": project_name,
+                "confirmed_task": (body.description or "").strip() or f"Ad-hoc verification for {project_name}",
+                "source": "uploaded",
+                "uploaded_requirements_path": _repo_relative(requirements_path),
+                "requirements_count": len(requirements),
+            },
+            indent=2,
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+
+    return {
+        "flow": flow_catalog.get_flow(flow_id),
+        "steps": flow_catalog.get_flow_steps(flow_id),
+        "requirements": requirements,
+        "requirements_count": len(requirements),
+    }
+
+
 @app.get("/flows")
 def list_flows() -> list[dict[str, Any]]:
     return flow_catalog.list_flows()
@@ -556,6 +924,352 @@ def suggest_bounding_boxes(flow_id: str, body: BoundingBoxSuggestionRequest) -> 
         raise HTTPException(status_code=404, detail=str(e)) from e
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e)) from e
+
+
+def _audit_store() -> EvaluationAuditStore:
+    # Construct from the current module-level root so tests and local deployments can override it safely.
+    return EvaluationAuditStore(EVALUATION_AUDIT_ROOT)
+
+
+def _omniparser_candidates(flow_id: str, step_index: int) -> tuple[Path, list[dict[str, Any]]]:
+    if not OMNIPARSER_CANDIDATE_ROOT.exists():
+        raise FileNotFoundError("No local OmniParser candidate package is available.")
+    packages = sorted(
+        OMNIPARSER_CANDIDATE_ROOT.glob("*/candidates.json"),
+        key=lambda path: path.stat().st_mtime,
+        reverse=True,
+    )
+    for path in packages:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        if payload.get("flow_id") != flow_id:
+            continue
+        steps = payload.get("steps") or {}
+        candidates = steps.get(str(step_index))
+        if isinstance(candidates, list):
+            return path, candidates
+    raise FileNotFoundError(f"No local OmniParser candidates for {flow_id} step {step_index}.")
+
+
+def _bbox_audit_item(audit_id: str, item_id: str) -> dict[str, Any]:
+    manifest = _audit_store().load_public_manifest(audit_id, "bbox")
+    item = next((value for value in manifest.get("items", []) if value.get("audit_item_id") == item_id), None)
+    if item is None:
+        raise KeyError(item_id)
+    return item
+
+
+@app.get("/evaluation-audits")
+def list_evaluation_audits() -> list[dict[str, Any]]:
+    return _audit_store().list_audits()
+
+
+@app.get("/evaluation-audits/{audit_id}/ui-items")
+def get_ui_evaluability_audit_items(audit_id: str, reviewer_id: str) -> dict[str, Any]:
+    try:
+        return _audit_store().public_items_for_reviewer(audit_id, reviewer_id, "ui")
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="UI-evaluability audit bundle not found.") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.get("/evaluation-audits/{audit_id}/inspection/ui-items")
+def get_ui_evaluability_inspection_items(audit_id: str) -> dict[str, Any]:
+    """Return trusted manual labels beside deterministic pipeline labels for inspection."""
+    store = _audit_store()
+    try:
+        manifest = store.load_public_manifest(audit_id, "ui")
+        references = store.load_private_reference(audit_id, "ui").get("items", {})
+        classifier = RequirementUnderstanding()
+        items = []
+        for item in manifest.get("items", []):
+            item_id = item["audit_item_id"]
+            manual_label = references.get(item_id, {}).get("gold_label")
+            pipeline_label = classifier.classify_ui_evaluability(str(item.get("requirement_text") or "")).value
+            items.append(
+                {
+                    **item,
+                    "manual_label": manual_label,
+                    "pipeline_label": pipeline_label,
+                    "labels_match": manual_label == pipeline_label,
+                    "structural_conflict_reasons": references.get(item_id, {}).get("structural_conflict_reasons", []),
+                }
+            )
+        return {
+            **manifest,
+            "blind": False,
+            "inspection_mode": True,
+            "items": items,
+        }
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="UI-evaluability audit bundle not found.") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.put("/evaluation-audits/{audit_id}/ui-items/{item_id}")
+def save_ui_evaluability_audit_review(
+    audit_id: str,
+    item_id: str,
+    body: UiEvaluabilityAuditReviewRequest,
+) -> dict[str, Any]:
+    store = _audit_store()
+    try:
+        review = validate_ui_review(body.model_dump(exclude={"reviewer_id"}))
+        stored = store.save_review(audit_id, body.reviewer_id, "ui", item_id, review)
+        return {"audit_item_id": item_id, "review": stored}
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="UI-evaluability audit bundle not found.") from exc
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=f"UI audit item not found: {item_id}") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.get("/evaluation-audits/{audit_id}/bbox-items")
+def get_bounding_box_audit_items(audit_id: str, reviewer_id: str) -> dict[str, Any]:
+    try:
+        return _audit_store().public_items_for_reviewer(audit_id, reviewer_id, "bbox")
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="Bounding-box audit bundle not found.") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.get("/evaluation-audits/{audit_id}/inspection/bbox-items")
+def get_bounding_box_inspection_items(audit_id: str) -> dict[str, Any]:
+    """Reveal the stored OCR boxes directly; no annotation or locking is required."""
+    store = _audit_store()
+    try:
+        manifest = store.load_public_manifest(audit_id, "bbox")
+        references = store.load_private_reference(audit_id, "bbox").get("items", {})
+        judgments = store.load_bbox_inspection_judgments(audit_id).get("items", {})
+        candidate_selections = store.load_bbox_candidate_selections(audit_id).get("items", {})
+        items = []
+        for item in manifest.get("items", []):
+            reference = references.get(item["audit_item_id"], {})
+            items.append(
+                {
+                    **item,
+                    "prediction": reference.get("prediction"),
+                    "all_suggestions": reference.get("all_suggestions", []),
+                    "claim_status": reference.get("claim_status"),
+                    "claim_type": reference.get("claim_type"),
+                    "inspection_judgment": judgments.get(item["audit_item_id"]),
+                    "candidate_selection": candidate_selections.get(item["audit_item_id"]),
+                }
+            )
+        return {
+            **manifest,
+            "blind": False,
+            "inspection_mode": True,
+            "items": items,
+        }
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="Bounding-box audit bundle not found.") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.get("/evaluation-audits/{audit_id}/inspection/bbox-items/{item_id}/omniparser-candidates")
+def get_omniparser_bbox_candidates(audit_id: str, item_id: str) -> dict[str, Any]:
+    try:
+        item = _bbox_audit_item(audit_id, item_id)
+        package_path, candidates = _omniparser_candidates(str(item["flow_id"]), int(item["step_index"]))
+        width = float(item["image_width"])
+        height = float(item["image_height"])
+        valid_candidates: list[dict[str, Any]] = []
+        for candidate in candidates:
+            bbox = candidate.get("bbox")
+            if not isinstance(bbox, list) or len(bbox) != 4:
+                continue
+            x1, y1, x2, y2 = (float(value) for value in bbox)
+            if not (0 <= x1 < x2 <= width and 0 <= y1 < y2 <= height):
+                continue
+            valid_candidates.append({**candidate, "bbox": [x1, y1, x2, y2]})
+        ranked_candidates = rank_candidates(
+            valid_candidates,
+            claim_text=str(item.get("claim_text") or ""),
+            requirement_text=str(item.get("requirement_text") or ""),
+            image_width=width,
+            image_height=height,
+        )
+        serialized_candidates = [
+            {
+                **candidate,
+                "bbox": {
+                    "x1": candidate["bbox"][0],
+                    "y1": candidate["bbox"][1],
+                    "x2": candidate["bbox"][2],
+                    "y2": candidate["bbox"][3],
+                },
+            }
+            for candidate in ranked_candidates
+        ]
+        return {
+            "flow_id": item["flow_id"],
+            "step_index": item["step_index"],
+            "image_width": item["image_width"],
+            "image_height": item["image_height"],
+            "package": _repo_relative(package_path),
+            "ranking_method": "local_florence_caption_plus_ocr_tfidf_v1",
+            "candidates": serialized_candidates,
+        }
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=f"Bounding-box audit item not found: {item_id}") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.put("/evaluation-audits/{audit_id}/inspection/bbox-items/{item_id}/omniparser-selection")
+def save_omniparser_bbox_selection(
+    audit_id: str,
+    item_id: str,
+    body: BoundingBoxCandidateSelectionRequest,
+) -> dict[str, Any]:
+    try:
+        item = _bbox_audit_item(audit_id, item_id)
+        package_path, candidates = _omniparser_candidates(str(item["flow_id"]), int(item["step_index"]))
+        candidate_id = body.candidate_id.strip().upper()
+        candidate = next(
+            (value for value in candidates if str(value.get("candidate_id") or "").upper() == candidate_id),
+            None,
+        )
+        if candidate is None:
+            raise ValueError(f"Unknown OmniParser candidate: {candidate_id}")
+        bbox = candidate.get("bbox")
+        if not isinstance(bbox, list) or len(bbox) != 4:
+            raise ValueError("Candidate has no valid bounding box.")
+        x1, y1, x2, y2 = (float(value) for value in bbox)
+        width = float(item["image_width"])
+        height = float(item["image_height"])
+        if not (0 <= x1 < x2 <= width and 0 <= y1 < y2 <= height):
+            raise ValueError("Candidate bounding box is outside the audit image.")
+        stored = _audit_store().save_bbox_candidate_selection(
+            audit_id,
+            item_id,
+            {
+                "candidate_id": candidate_id,
+                "source": candidate.get("source"),
+                "text": candidate.get("text") or "",
+                "confidence": candidate.get("confidence"),
+                "bbox": {"x1": x1, "y1": y1, "x2": x2, "y2": y2},
+                "package": _repo_relative(package_path),
+            },
+        )
+        return {"audit_item_id": item_id, "candidate_selection": stored}
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=f"Bounding-box audit item not found: {item_id}") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.put("/evaluation-audits/{audit_id}/inspection/bbox-items/{item_id}")
+def save_bounding_box_inspection_judgment(
+    audit_id: str,
+    item_id: str,
+    body: BoundingBoxInspectionJudgmentRequest,
+) -> dict[str, Any]:
+    status = body.status.strip().upper()
+    if status not in {"VALID", "INCORRECT", "UNCERTAIN"}:
+        raise HTTPException(status_code=400, detail="status must be VALID, INCORRECT, or UNCERTAIN.")
+    error_category = str(body.error_category or "").strip().upper() or None
+    if error_category not in {None, "MISALIGNED", "WRONG_LOCATION", "SEMANTIC_ERROR"}:
+        raise HTTPException(status_code=400, detail="Unsupported bounding-box error category.")
+    if status != "INCORRECT":
+        error_category = None
+    try:
+        stored = _audit_store().save_bbox_inspection_judgment(
+            audit_id,
+            item_id,
+            {"status": status, "note": body.note.strip(), "error_category": error_category},
+        )
+        return {"audit_item_id": item_id, "inspection_judgment": stored}
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="Bounding-box audit bundle not found.") from exc
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=f"Bounding-box audit item not found: {item_id}") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.put("/evaluation-audits/{audit_id}/bbox-items/{item_id}")
+def save_bounding_box_audit_review(
+    audit_id: str,
+    item_id: str,
+    body: BoundingBoxAuditReviewRequest,
+) -> dict[str, Any]:
+    store = _audit_store()
+    try:
+        manifest = store.load_public_manifest(audit_id, "bbox")
+        item = next((value for value in manifest.get("items", []) if value.get("audit_item_id") == item_id), None)
+        if item is None:
+            raise KeyError(item_id)
+        previous = store.load_reviews(audit_id, body.reviewer_id, "bbox").get("items", {}).get(item_id)
+        review = validate_bbox_review(
+            body.model_dump(exclude={"reviewer_id"}),
+            image_width=int(item["image_width"]),
+            image_height=int(item["image_height"]),
+        )
+        if previous and previous.get("gold_locked"):
+            protected_fields = ("applicability", "gold_boxes", "evidence_note")
+            if any(previous.get(field) != review.get(field) for field in protected_fields):
+                raise ValueError("The blinded gold annotation is locked and cannot be changed during prediction review.")
+            review["gold_locked"] = True
+        stored = store.save_review(audit_id, body.reviewer_id, "bbox", item_id, review)
+        response = {"audit_item_id": item_id, "review": stored}
+        if stored.get("gold_locked"):
+            response["prediction"] = store.load_private_reference(audit_id, "bbox").get("items", {}).get(item_id, {}).get("prediction")
+        return response
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="Bounding-box audit bundle not found.") from exc
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=f"Bounding-box audit item not found: {item_id}") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.get("/evaluation-audits/{audit_id}/metrics")
+def get_evaluation_audit_metrics(audit_id: str, reviewer_id: str) -> dict[str, Any]:
+    store = _audit_store()
+    try:
+        ui_reference = store.load_private_reference(audit_id, "ui").get("items", {})
+        ui_reviews = store.load_reviews(audit_id, reviewer_id, "ui").get("items", {})
+        ui_pairs = [
+            (ui_reference[item_id]["gold_label"], review["label"])
+            for item_id, review in ui_reviews.items()
+            if item_id in ui_reference and review.get("label")
+        ]
+        ui_required = len(store.load_public_manifest(audit_id, "ui").get("items", []))
+        ui_agreement: dict[str, Any]
+        if len(ui_pairs) == ui_required:
+            ui_agreement = classification_metrics(ui_pairs)
+        else:
+            # Partial agreement would tell a blinded reviewer whether each submitted
+            # label matched the hidden reference, especially early in the audit.
+            ui_agreement = {
+                "status": "pending",
+                "reviewed": len(ui_pairs),
+                "required": ui_required,
+                "reason": "Agreement is withheld until the blinded UI review is complete.",
+            }
+        bbox_manifest = store.load_public_manifest(audit_id, "bbox")
+        bbox_reference = store.load_private_reference(audit_id, "bbox").get("items", {})
+        bbox_reviews = store.load_reviews(audit_id, reviewer_id, "bbox").get("items", {})
+        return {
+            "audit_id": audit_id,
+            "reviewer_id": reviewer_id,
+            "ui_evaluability_agreement": ui_agreement,
+            "bounding_box_localization": bbox_metrics(bbox_manifest.get("items", []), bbox_reference, bbox_reviews),
+        }
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="Evaluation audit bundle not found.") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 

@@ -205,7 +205,7 @@
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "created_at": "2026-05-07T12:27:55+00:00"
     }

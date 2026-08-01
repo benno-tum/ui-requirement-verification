@@ -358,7 +358,7 @@
       "parent_harvest_text": "The system shall transparently display the operating hours for each listed store, including daily breakdown.",
       "grounding_scope": "INDIRECT_FLOW_GROUNDED",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "TOO_ABSTRACT",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "task_relevance": "MEDIUM",

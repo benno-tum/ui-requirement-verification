@@ -1,0 +1,6 @@
+torch==2.7.1
+torchvision==0.22.1
+transformers==4.57.1
+accelerate==1.12.0
+num2words==0.5.14
+sentencepiece==0.2.1

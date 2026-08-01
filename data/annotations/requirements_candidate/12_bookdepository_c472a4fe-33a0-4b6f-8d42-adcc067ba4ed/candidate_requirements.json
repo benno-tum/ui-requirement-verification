@@ -19,7 +19,7 @@
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "step_indices": [
         2,
         3,
@@ -82,7 +82,7 @@
       "scope": "multi_screen",
       "tags": [],
       "origin": "model",
-      "review_status": "needs_review",
+      "review_status": "accepted",
       "step_indices": [
         3,
         4
@@ -323,7 +323,7 @@
       "parent_harvest_text": "The system shall display books matching the submitted advanced search filters so the user can browse filtered results.",
       "grounding_scope": "DIRECT_FLOW_GROUNDED",
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "non_evaluable_reason": "DATA_CORRECTNESS_NOT_VISIBLE",
       "visible_subtype": "CONTENT_UPDATE",
       "task_relevance": "MEDIUM",

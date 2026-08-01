@@ -1,0 +1,12 @@
+{
+  "audit_id": "gemini_grounded_bbox_01_13_20260719",
+  "title": "Flows 01–13 coverage — legacy direct Gemini boxes",
+  "created_at": "2026-07-19T14:10:47.716098+00:00",
+  "seed": 20260719,
+  "ui_item_count": 72,
+  "bbox_item_count": 1003,
+  "blind_review": false,
+  "status": "completed_pipeline_inspection",
+  "run_id": "bbox_gemini_grounded_regions_topk4_01_13_20260719",
+  "bbox_source": "gemini_visual_grounding"
+}

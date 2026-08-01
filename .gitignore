@@ -24,9 +24,10 @@ data/processed/
 data/generated/
 data.zip
 data_backup_before_cleanup/
-archive/
+/archive/
 tmp/
 outputs/
+output/
 
 # Versioned requirement annotations stay in data/annotations/.
 
@@ -36,6 +37,9 @@ data/report/
 
 # logs
 *.log
+
+# Microsoft Office lock files
+~$*
 
 # Frontend
 frontend/node_modules/
@@ -48,3 +52,9 @@ frontend/vite.config.js
 frontend/vite.config.d.ts
 frontend/vite.config.js.map
 frontend/vite.config.d.ts.map
+
+# Local exploratory audits with generated references and absolute image paths.
+# Keep the reviewed summary/judgment files already under version control, but do
+# not add these machine-generated reference bundles to the replication package.
+data/annotations/evaluation_audits/gemini31flashlite_joint_verification_omnimark_bbox_allflows_01_13_20260721/
+data/annotations/evaluation_audits/gemini31flashlite_realistic_topk4_no_claims_bbox_allflows_01_13_20260721/

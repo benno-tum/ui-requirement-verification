@@ -4,12 +4,22 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import shutil
+import subprocess
 import threading
 import time
 from typing import Any
 
+from PIL import Image
+
 from ui_verifier.common.json_utils import parse_json_response
 from ui_verifier.model_config import model_name_for, temperature_for
+from ui_verifier.localization.grounding_refinement import refine_text_region
+from ui_verifier.localization.text_box_localizer import (
+    OcrTextBox,
+    load_ocr_text_boxes,
+    run_tesseract_boxes,
+)
 from ui_verifier.verification_pipeline.claim_verification import ClaimVerifier
 from ui_verifier.verification_pipeline.requirement_understanding import has_hidden_indicator
 from ui_verifier.verification_pipeline.schemas import (
@@ -36,6 +46,8 @@ def _load_image_derived_ocr(path: Path) -> str | None:
         path.with_name(f"{path.stem}_ocr.json"),
         path.parent / "ocr" / f"{path.stem}.json",
     ]
+    if path.parent.name in {"original", "originals", "full", "fullres", "hires"}:
+        candidates.append(path.parent.parent / "ocr" / f"{path.stem}.json")
     for candidate in candidates:
         if not candidate.exists():
             continue
@@ -88,8 +100,43 @@ def _normalize_uncertainty_reasons(values: object) -> list[UncertaintyReason]:
     return list(dict.fromkeys(reasons))
 
 
+def _evidence_step_indices(parsed: dict[str, Any], selected_steps: list[int]) -> tuple[list[int], bool]:
+    attached = set(selected_steps)
+    raw_indices = parsed.get("evidence_step_indices")
+    if isinstance(raw_indices, list):
+        normalized: list[int] = []
+        for value in raw_indices:
+            try:
+                step = int(value)
+            except (TypeError, ValueError):
+                continue
+            if step in attached and step not in normalized:
+                normalized.append(step)
+        if normalized:
+            return normalized, False
+
+    # Gemini occasionally omits the structured field while explicitly citing
+    # screenshots in its visible observations. Recover only unambiguous numbered
+    # references and never infer an unattached step.
+    observations = parsed.get("visible_observations")
+    text_parts = [str(value) for value in observations] if isinstance(observations, list) else []
+    text_parts.append(str(parsed.get("rationale") or ""))
+    inferred: list[int] = []
+    for text in text_parts:
+        for match in re.finditer(
+            r"\b(?:screenshots?|screens?|steps?)\s+((?:#?\d+|\s|,|&|-|\band\b|\bthrough\b)+)",
+            text,
+            flags=re.IGNORECASE,
+        ):
+            for token in re.findall(r"\d+", match.group(1)):
+                step = int(token)
+                if step in attached and step not in inferred:
+                    inferred.append(step)
+    return inferred, bool(inferred)
+
+
 class GeminiImageClaimVerifier:
-    prompt_version = "GEMINI_IMAGE_CLAIM_VERIFICATION_V4"
+    prompt_version = "GEMINI_IMAGE_CLAIM_VERIFICATION_V7_GROUNDED_REGIONS"
 
     def __init__(
         self,
@@ -102,6 +149,10 @@ class GeminiImageClaimVerifier:
         max_images_per_claim: int = 6,
         max_retries: int = 0,
         max_api_calls: int | None = 10,
+        include_sequence_context: bool = True,
+        thinking_level: str | None = None,
+        thinking_budget: int | None = None,
+        max_output_tokens: int | None = None,
         fallback: ClaimVerifier | None = None,
     ) -> None:
         self.flow_id = flow_id
@@ -112,8 +163,13 @@ class GeminiImageClaimVerifier:
         self.max_images_per_claim = max_images_per_claim
         self.max_retries = max_retries
         self.max_api_calls = max_api_calls
+        self.include_sequence_context = include_sequence_context
+        self.thinking_level = thinking_level
+        self.thinking_budget = thinking_budget
+        self.max_output_tokens = max_output_tokens
         self.fallback = fallback or ClaimVerifier()
         self.cache = self._load_cache()
+        self._grounding_ocr_cache: dict[int, list[OcrTextBox]] = {}
         self._state_lock = threading.Lock()
         self._api_calls_started = 0
         self.diagnostics: dict[str, Any] = {
@@ -128,6 +184,10 @@ class GeminiImageClaimVerifier:
             "prompt_version": self.prompt_version,
             "max_retries": max_retries,
             "max_api_calls": max_api_calls,
+            "include_sequence_context": include_sequence_context,
+            "thinking_level": thinking_level,
+            "thinking_budget": thinking_budget,
+            "max_output_tokens": max_output_tokens,
         }
 
     def verify(
@@ -206,7 +266,7 @@ class GeminiImageClaimVerifier:
 
         all_steps = sorted(self.step_to_path)
         candidates = list(steps)
-        if self._needs_sequence_evidence(claim.claim_text):
+        if self.include_sequence_context and self._needs_sequence_evidence(claim.claim_text):
             candidates.extend([all_steps[0], all_steps[-1]])
 
         if len(candidates) < self.max_images_per_claim:
@@ -221,6 +281,8 @@ class GeminiImageClaimVerifier:
         candidates = sorted(set(candidates))
         if len(candidates) <= self.max_images_per_claim:
             return candidates
+        if self.max_images_per_claim == 1:
+            return [candidates[len(candidates) // 2]]
         positions = {
             round(index * (len(candidates) - 1) / (self.max_images_per_claim - 1))
             for index in range(self.max_images_per_claim)
@@ -288,9 +350,15 @@ Do not use raw HTML, DOM, backend state, database state, payment processing, ema
 Strict rules:
 - Only visible UI evidence counts.
 - Verify the exact claim wording. Do not demand a downstream outcome when the claim only asks for a visible action, control, field, or navigation affordance.
+- Strong frontend text, controls, selected states, summaries, or helper copy can support routine user-facing behavior even if the backend is not directly observable. Use SUPPORTED_WITH_CAVEAT when the hidden part is routine and directly represented by a specific UI proxy; use PARTIALLY_SUPPORTED when an important material part is still unobserved.
+- For "all", "every", "complete", or "available" claims, a bounded or closed UI set can support the quantifier when the screen presents it as the relevant complete set. Open-world completeness, freshness, external correctness, security, or eligibility scope still needs explicit visible evidence or a caveat.
 - Conversely, do not infer a downstream result, navigation outcome, submitted state, or completed action merely because a button or input form is visible. A later screenshot must visibly show that outcome.
+- Do not substitute nearby objects for the exact object in the claim. For example, preserved cart items or quantities do not prove preservation of a digital ticket fulfillment choice.
+- Digital/mobile fulfillment or delivery claims require visible fulfillment-specific evidence such as a delivery selector, digital/mobile ticket option, email delivery, mobile wallet, or selected fulfillment state. Generic ticket/cart/checkout evidence is not enough.
 - Treat every material clause as conjunctive unless the wording explicitly offers alternatives. Evidence for only one side of "and", "as well as", or "in addition to" is not enough for SUPPORTED.
-- Comparative claims about anonymous versus signed-in users, before versus after states, or leaving and returning require both compared states to be visibly present.
+- Comparative or exclusive claims about anonymous versus signed-in users, owners versus non-owners, valid versus invalid inputs, before versus after states, or leaving and returning require both compared states unless a specific visible UI proxy states the restriction or distinction.
+- Result, confirmation, or lookup-complete claims require a distinct post-action state with the relevant result or confirmation; pre-submit forms, entered values, and validation errors are not enough.
+- Direct transition or direct return claims require a visible affordance or demonstrated navigation from the relevant page/state to the claimed target. A visible menu elsewhere is not enough for a direct path unless it is open or usable in that same state.
 - Do not treat editable input fields as a separate review state, confirmation, synchronized summary, or preview unless that distinct UI component is visibly present.
 - For claims about preservation, updates, synchronization, or other state changes, compare the attached screenshots chronologically rather than judging one screenshot in isolation.
 - SUPPORTED requires clear visible screenshot evidence.
@@ -298,8 +366,12 @@ Strict rules:
 - PARTIALLY_SUPPORTED means some visible part is supported but important visible detail is missing or ambiguous.
 - MISSING means the claim could be visible but the screenshots do not show enough.
 - HIDDEN means the claim is about hidden/non-visual system behavior.
-- CONTRADICTED requires visible counter-evidence. This includes a clearly covered UI state where a required visible component or behavior should be present but is visibly absent, provided the screenshots show the relevant state completely enough to judge.
-- Incomplete flow coverage or a state that was never exercised is MISSING, not CONTRADICTED.
+- CONTRADICTED requires visible counter-evidence: an incompatible UI state, an alternative flow that conflicts with the claim, an explicit error/failure state, or visible text/control behavior that makes the claim false.
+- Mere absence of a required feature is MISSING unless the screenshots show a conflicting alternative or demonstrated behavior that contradicts the claim.
+- Incomplete flow coverage, an unopened menu/control, or a state that was never exercised is MISSING, not CONTRADICTED.
+- For every cited screenshot, identify the smallest semantically sufficient visible region or regions that support or contradict the exact claim. Do not simply box a page title, nearby keyword, or the largest OCR match when a more specific control, value, message, list, range, or state is the evidence.
+- A claim may require multiple regions. Return each necessary region separately. If evidence is inherently whole-screen/transition-based or there is no local visible region, say so instead of inventing a box.
+- `box_2d` uses `[ymin, xmin, ymax, xmax]` normalized to integers from 0 to 1000 relative to the original attached screenshot.
 
 Input JSON:
 {json.dumps(payload, indent=2, ensure_ascii=False)}
@@ -311,6 +383,15 @@ Return JSON only:
   "evidence_step_indices": [1],
   "uncertainty_reasons": ["TEXTUAL_AMBIGUITY | SCOPE_OR_CONTEXT_AMBIGUITY | QUANTIFIER_OR_COMPLETENESS_AMBIGUITY | EVIDENCE_INTERPRETATION_AMBIGUITY | FLOW_COVERAGE_GAP | UNVERIFIED_SYSTEM_OUTCOME | NONTRIVIAL_HIDDEN_PROPERTY"],
   "visible_observations": ["short visible observation tied to screenshot evidence"],
+  "evidence_regions": [
+    {{
+      "step_index": 1,
+      "box_2d": [100, 120, 240, 760],
+      "description": "specific visible indicator captured by this region",
+      "role": "SUPPORTING | CONTRADICTING | PARTIAL",
+      "localizability": "LOCAL_REGION | MULTI_REGION_PART"
+    }}
+  ],
   "rationale": "short explanation"
 }}
 """.strip()
@@ -334,6 +415,9 @@ Return JSON only:
                         "prompt_version": self.prompt_version,
                         "selected_evidence_step_indices": selected_steps,
                     },
+                    thinking_level=self.thinking_level,
+                    thinking_budget=self.thinking_budget,
+                    max_output_tokens=self.max_output_tokens,
                 )
                 parsed = parse_json_response(raw)
                 if not isinstance(parsed, dict):
@@ -354,10 +438,15 @@ Return JSON only:
         return (
             "RESOURCE_EXHAUSTED" in message
             or "UNAVAILABLE" in message
+            or "DEADLINE_EXCEEDED" in message
+            or "timed out" in message.lower()
+            or "timeout" in message.lower()
+            or "server disconnected" in message.lower()
             or "retry" in message.lower()
             or "not a JSON object" in message
             or "invalid json" in message.lower()
             or "parsed as json" in message.lower()
+            or "omitted claim records" in message.lower()
         )
 
     @staticmethod
@@ -377,14 +466,12 @@ Return JSON only:
         selected_steps: list[int],
     ) -> ClaimVerificationResult:
         status = _normalize_status(parsed.get("claim_status") or parsed.get("status"))
-        evidence_step_indices = parsed.get("evidence_step_indices")
-        if not isinstance(evidence_step_indices, list):
-            evidence_step_indices = []
-        step_indices = [
-            int(step)
-            for step in evidence_step_indices
-            if isinstance(step, int) and step in self.step_to_path and step in selected_steps
-        ]
+        step_indices, evidence_steps_inferred = _evidence_step_indices(parsed, selected_steps)
+        regions = self._normalized_evidence_regions(parsed, selected_steps)
+        for region in regions:
+            if region["step_index"] not in step_indices:
+                step_indices.append(region["step_index"])
+        step_indices.sort()
         invalid_positive_evidence = (
             status
             in {
@@ -406,17 +493,24 @@ Return JSON only:
 
         evidence: list[EvidenceItem] = []
         if status in {ClaimStatus.SUPPORTED, ClaimStatus.SUPPORTED_WITH_CAVEAT, ClaimStatus.PARTIALLY_SUPPORTED, ClaimStatus.CONTRADICTED}:
+            regions_by_step: dict[int, list[dict[str, Any]]] = {}
+            for region in regions:
+                regions_by_step.setdefault(region["step_index"], []).append(region)
             for step_index in step_indices:
-                evidence.append(
-                    EvidenceItem(
-                        step_index=step_index,
-                        screenshot_path=str(self.step_to_path[step_index]),
-                        visible_observation=observation_text,
-                        confidence=self._confidence_for_status(status),
-                        source="gemini_image",
-                        metadata={"model_name": self.model_name},
+                step_regions = regions_by_step.get(step_index) or [None]
+                for region in step_regions:
+                    evidence.append(
+                        EvidenceItem(
+                            step_index=step_index,
+                            screenshot_path=str(self.step_to_path[step_index]),
+                            visible_observation=(region or {}).get("description") or observation_text,
+                            bbox=(region or {}).get("bbox"),
+                            bbox_metadata=(region or {}).get("bbox_metadata") or {},
+                            confidence=self._confidence_for_status(status),
+                            source="gemini_image",
+                            metadata={"model_name": self.model_name},
+                        )
                     )
-                )
 
         reasons = _normalize_uncertainty_reasons(parsed.get("uncertainty_reasons"))
         if status in {ClaimStatus.MISSING, ClaimStatus.PARTIALLY_SUPPORTED, ClaimStatus.AMBIGUOUS}:
@@ -444,7 +538,111 @@ Return JSON only:
             uncertainty_reasons=reasons,
             confidence=self._confidence_for_status(status),
             rationale=rationale,
+            metadata={
+                "prompt_group_id": None,
+                "prompt_version": self.prompt_version,
+                "model_name": self.model_name,
+                "grouping_strategy": "per-claim",
+                "attached_step_indices": selected_steps,
+                "claim_selected_step_indices": selected_steps,
+                "raw_model_label": str(parsed.get("claim_status") or parsed.get("status") or ""),
+                "evidence_step_indices_inferred_from_observation": evidence_steps_inferred,
+            },
         )
+
+    def _normalized_evidence_regions(
+        self,
+        parsed: dict[str, Any],
+        selected_steps: list[int],
+    ) -> list[dict[str, Any]]:
+        raw_regions = parsed.get("evidence_regions")
+        if not isinstance(raw_regions, list):
+            return []
+        attached = set(selected_steps)
+        dimensions: dict[int, tuple[int, int]] = {}
+        regions: list[dict[str, Any]] = []
+        for raw in raw_regions:
+            if not isinstance(raw, dict):
+                continue
+            try:
+                step_index = int(raw.get("step_index"))
+            except (TypeError, ValueError):
+                continue
+            box = raw.get("box_2d")
+            if step_index not in attached or not isinstance(box, list) or len(box) != 4:
+                continue
+            try:
+                ymin, xmin, ymax, xmax = [max(0.0, min(1000.0, float(value))) for value in box]
+            except (TypeError, ValueError):
+                continue
+            if ymax <= ymin or xmax <= xmin:
+                continue
+            if step_index not in dimensions:
+                with Image.open(self.step_to_path[step_index]) as image:
+                    dimensions[step_index] = (int(image.width), int(image.height))
+            width, height = dimensions[step_index]
+            pixel_box = [
+                xmin * width / 1000.0,
+                ymin * height / 1000.0,
+                xmax * width / 1000.0,
+                ymax * height / 1000.0,
+            ]
+            description = _short_text(str(raw.get("description") or "Claim-relevant visible region."), 260)
+            refinement = refine_text_region(
+                description,
+                pixel_box,
+                self._ocr_boxes_for_grounding(step_index),
+                image_width=width,
+                image_height=height,
+            )
+            raw_pixel_box = list(pixel_box)
+            if refinement is not None:
+                pixel_box = list(refinement["bbox"])
+            regions.append(
+                {
+                    "step_index": step_index,
+                    "description": description,
+                    "bbox": pixel_box,
+                    "bbox_metadata": {
+                        "image_path": str(self.step_to_path[step_index]),
+                        "image_width": width,
+                        "image_height": height,
+                        "coordinate_space": "image_pixels",
+                        "source": (
+                            "gemini_visual_grounding_ocr_refined"
+                            if refinement is not None
+                            else "gemini_visual_grounding"
+                        ),
+                        "normalized_box_2d": [ymin, xmin, ymax, xmax],
+                        "normalized_coordinate_space": "0_1000_yxyx",
+                        "raw_gemini_pixel_bbox": raw_pixel_box,
+                        "ocr_refinement": refinement,
+                        "role": str(raw.get("role") or "").strip().upper() or None,
+                        "localizability": str(raw.get("localizability") or "LOCAL_REGION").strip().upper(),
+                        "description": description,
+                    },
+                }
+            )
+        return regions
+
+    def _ocr_boxes_for_grounding(self, step_index: int) -> list[OcrTextBox]:
+        if step_index in self._grounding_ocr_cache:
+            return self._grounding_ocr_cache[step_index]
+        image_path = self.step_to_path[step_index]
+        boxes = load_ocr_text_boxes(image_path)
+        if not boxes:
+            tesseract_path = shutil.which("tesseract")
+            if tesseract_path is not None:
+                try:
+                    boxes = run_tesseract_boxes(
+                        image_path,
+                        tesseract_path=tesseract_path,
+                        psm=6,
+                    )
+                except (OSError, RuntimeError, subprocess.SubprocessError):
+                    boxes = []
+        self._grounding_ocr_cache[step_index] = boxes
+        return boxes
 
     @staticmethod
     def _confidence_for_status(status: ClaimStatus) -> float:

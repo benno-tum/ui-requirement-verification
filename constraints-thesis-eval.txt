@@ -1,0 +1,11 @@
+# Evaluation environment recorded on 2026-07-23.
+# Install with: pip install -e ".[llm,data,dev]" -c constraints-thesis-eval.txt
+datasets==4.8.2
+fastapi==0.135.2
+google-genai==1.68.0
+pillow==12.1.1
+pydantic==2.12.5
+pytest==9.0.2
+python-dotenv==1.2.2
+setuptools==82.0.1
+uvicorn==0.42.0

@@ -31,6 +31,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--out", type=Path, default=None, help="Optional output JSON path for full metrics.")
     parser.add_argument("--k", type=int, action="append", default=None, help="Evidence top-k value. Can be repeated.")
     parser.add_argument("--no-claims", action="store_true", help="Skip claim-status metrics.")
+    parser.add_argument(
+        "--flow-id-regex",
+        type=str,
+        default=None,
+        help="Only evaluate gold and prediction records whose flow ID matches this regular expression.",
+    )
+    parser.add_argument(
+        "--require-full-coverage",
+        action="store_true",
+        help="Fail instead of converting missing predictions into semantic ABSTAIN labels.",
+    )
     return parser.parse_args()
 
 
@@ -41,6 +52,8 @@ def main() -> None:
         args.predictions,
         include_claims=not args.no_claims,
         k_values=args.k,
+        flow_id_pattern=args.flow_id_regex,
+        require_full_coverage=args.require_full_coverage,
     )
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)

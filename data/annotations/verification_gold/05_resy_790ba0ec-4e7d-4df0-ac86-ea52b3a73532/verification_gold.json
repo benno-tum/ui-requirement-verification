@@ -788,7 +788,7 @@
         9
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "The page framing and explanatory text imply that the stored profile is meant to be reused when dining or reserving, but the later reservation-time application is not shown end to end.",
       "annotated_by": "benno",
@@ -884,7 +884,18 @@
       "rationale": "The visible profile preference mechanism is supported, while future reuse remains hidden.",
       "review_status": "accepted",
       "created_at": "2026-04-22T12:26:31+00:00",
-      "updated_at": "2026-07-03T14:07:05+00:00"
+      "updated_at": "2026-07-03T14:07:05+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-070",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-05",
@@ -892,7 +903,7 @@
       "text": "The system shall support entry of birthday information using structured month, day, and year controls.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-05",
       "source_candidate_id": "REQ-05",
       "source_harvest_id": "HARV-05",
@@ -910,6 +921,7 @@
       "visible_subtype": "NONE",
       "annotation_notes": "The flow visibly demonstrates structured birthday entry.",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1036,7 +1048,7 @@
       "rationale": "The flow visibly demonstrates structured birthday entry.",
       "review_status": "accepted",
       "created_at": "2026-04-21T20:31:59+00:00",
-      "updated_at": "2026-07-03T14:17:01+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "REQ-11",
@@ -1044,7 +1056,7 @@
       "text": "The system shall provide a save action for committing profile changes.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-11",
       "source_candidate_id": "REQ-11",
       "source_harvest_id": "HARV-11",
@@ -1058,10 +1070,11 @@
         9
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "The save mechanism is visible; successful commitment is not verified.",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [
         "UNVERIFIED_SYSTEM_OUTCOME"
@@ -1187,7 +1200,18 @@
       "rationale": "The save mechanism is visible; successful commitment is not verified.",
       "review_status": "accepted",
       "created_at": "2026-04-21T20:31:59+00:00",
-      "updated_at": "2026-07-03T14:04:48+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-021",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-14",
@@ -1195,7 +1219,7 @@
       "text": "The system shall keep account-section navigation available while the user edits profile settings.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-14",
       "source_candidate_id": "REQ-14",
       "source_harvest_id": "HARV-14",
@@ -1213,6 +1237,7 @@
       "visible_subtype": "NONE",
       "annotation_notes": "The profile can be edited while account-section navigation remains available.",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1306,7 +1331,7 @@
       "rationale": "The profile can be edited while account-section navigation remains available.",
       "review_status": "accepted",
       "created_at": "2026-04-21T20:31:59+00:00",
-      "updated_at": "2026-07-03T14:21:43+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "CONTR-01",

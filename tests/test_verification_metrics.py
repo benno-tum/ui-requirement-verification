@@ -132,3 +132,41 @@ def test_missing_predictions_count_as_abstain(tmp_path: Path) -> None:
     assert metrics["label_metrics"]["missing_predictions"] == 1
     assert metrics["label_metrics"]["prediction_coverage"] == 0.5
     assert metrics["label_metrics"]["confusion_matrix"]["FULFILLED"]["ABSTAIN"] == 1
+
+
+def test_flow_filter_and_strict_coverage_exclude_other_datasets(tmp_path: Path) -> None:
+    gold_root = tmp_path / "gold"
+    for flow_id in ("01_main", "pure_other"):
+        _write_json(
+            gold_root / flow_id / "verification_gold.json",
+            {
+                "flow_id": flow_id,
+                "items": [
+                    {
+                        "requirement_id": "REQ-1",
+                        "flow_id": flow_id,
+                        "text": "x",
+                        "verification_label": "FULFILLED",
+                    }
+                ],
+            },
+        )
+    prediction_path = tmp_path / "predictions" / "01_main.json"
+    _write_json(
+        prediction_path,
+        {
+            "flow_id": "01_main",
+            "results": [{"requirement_id": "REQ-1", "final_label": "FULFILLED"}],
+        },
+    )
+
+    metrics = evaluate_predictions(
+        gold_root,
+        prediction_path,
+        flow_id_pattern=r"^[0-9]{2}_",
+        require_full_coverage=True,
+    )
+
+    assert metrics["gold_count"] == 1
+    assert metrics["prediction_count"] == 1
+    assert metrics["label_metrics"]["missing_predictions"] == 0

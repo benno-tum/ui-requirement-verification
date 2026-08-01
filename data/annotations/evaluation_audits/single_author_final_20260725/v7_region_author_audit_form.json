@@ -1,0 +1,3126 @@
+{
+  "schema_version": "single_author_v7_region_audit_v1",
+  "created_at": "2026-07-26T10:24:35.186952+00:00",
+  "seed": 20260725,
+  "sampling": {
+    "region_groups_per_flow": 4,
+    "flow_count": 13,
+    "explicit_nonmissing_no_visible_region_claims": 8,
+    "sample_size": 60,
+    "method": "Deterministic within-flow diversity sampling over claim status, region count, and region source, plus every non-missing claim with no returned region."
+  },
+  "limitations": "Author-conducted quality audit; not independent localization validation. Source outputs were generated before this form.",
+  "items": [
+    {
+      "reaudit_item_id": "V7AR-001",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "requirement_id": "REQ-19",
+      "claim_id": "REQ-19-C2",
+      "step_index": 8,
+      "requirement_text": "The system shall support stepwise progression through the checkout flow with consistent back and continue navigation controls.",
+      "claim_text": "Checkout steps provide consistent Back and Continue or Next navigation controls.",
+      "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+      "image_width": 1298,
+      "image_height": 2300,
+      "image_sha256": "4c399291e6b8bb8a9e63158d600ed869e87405737305037697dcbf9b2b6a7cac",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0045",
+          "bbox": {
+            "x1": 871.5822143554688,
+            "y1": 747.87353515625,
+            "x2": 990.62451171875,
+            "y2": 784.3024291992188
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U16"
+        },
+        {
+          "audit_item_id": "GBBOX-0046",
+          "bbox": {
+            "x1": 994.063720703125,
+            "y1": 747.9125366210938,
+            "x2": 1140.2978515625,
+            "y2": 784.07421875
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U15"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-002",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "requirement_id": "REQ-08",
+      "claim_id": "REQ-08-C3",
+      "step_index": 8,
+      "requirement_text": "The system shall collect personal information needed for passholder setup during checkout.",
+      "claim_text": "The collected fields are exactly the information needed for passholder setup.",
+      "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+      "image_width": 1298,
+      "image_height": 2300,
+      "image_sha256": "4c399291e6b8bb8a9e63158d600ed869e87405737305037697dcbf9b2b6a7cac",
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0023",
+          "bbox": {
+            "x1": 400.7166748046875,
+            "y1": 321.68927001953125,
+            "x2": 879.571044921875,
+            "y2": 351.8966369628906
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U17"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED_WITH_CAVEAT",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "SINGLE_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-003",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "requirement_id": "REQ-11",
+      "claim_id": "REQ-11-C1",
+      "step_index": 19,
+      "requirement_text": "The system shall collect age or date-of-birth information when needed for pass purchase or financing eligibility.",
+      "claim_text": "The system collects age or date-of-birth information when needed for pass purchase or financing eligibility.",
+      "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+      "image_width": 1298,
+      "image_height": 2300,
+      "image_sha256": "69e93530cf0af21c81d310366c9a6a978a424727e667da23f2dcad4b044be7b9",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0029",
+          "bbox": {
+            "x1": 895.6199999999999,
+            "y1": 802.6999999999999,
+            "x2": 1151.326,
+            "y2": 894.7
+          },
+          "source": "gemini_visual_grounding_omnimark_supplemental",
+          "description": null,
+          "candidate_id": null
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_supplemental"
+        ]
+      },
+      "author_applicability": "SINGLE_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "INVALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-004",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "requirement_id": "REQ-22",
+      "claim_id": "REQ-22-C3",
+      "step_index": 15,
+      "requirement_text": "The system shall present prices and option details transparently enough for users to compare pass tiers, add-ons, and payment choices during checkout.",
+      "claim_text": "The complete comparison process can be done during checkout.",
+      "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_15.png",
+      "image_width": 1298,
+      "image_height": 2300,
+      "image_sha256": "5fabec72efc40fe24228009ee7feee686699d17960f4dd4fb33b0bd82adbc242",
+      "claim_status": "PARTIALLY_SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0053",
+          "bbox": {
+            "x1": 301.270751953125,
+            "y1": 1269.1728515625,
+            "x2": 627.1912841796875,
+            "y2": 1330.9356689453125
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U17"
+        },
+        {
+          "audit_item_id": "GBBOX-0054",
+          "bbox": {
+            "x1": 636.1898803710938,
+            "y1": 1269.1998291015625,
+            "x2": 962.3718872070312,
+            "y2": 1331.1962890625
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U19"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "PARTIALLY_SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": null,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "PARTIALLY_RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-005",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "requirement_id": "CONTR-04",
+      "claim_id": "CONTR-04-C2",
+      "step_index": 2,
+      "requirement_text": "The system shall keep the searched location, selected radius, and resulting stores synchronized between the map view and the store list.",
+      "claim_text": "The map view updates after the location search.",
+      "image_path": "./data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+      "image_width": 1280,
+      "image_height": 2088,
+      "image_sha256": "0660bda13d83dc8ab414955723e286a267f49dc6920056ce5f58ceee53b78ae1",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0085",
+          "bbox": {
+            "x1": 12.653600692749023,
+            "y1": 473.51654052734375,
+            "x2": 1266.687744140625,
+            "y2": 872.13134765625
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U17"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "SINGLE_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-006",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "requirement_id": "CONTR-05",
+      "claim_id": "CONTR-05-C2",
+      "step_index": 2,
+      "requirement_text": "The system shall show complete store detail coverage for each returned location, including address, phone contact, and operating hours.",
+      "claim_text": "The system provides complete store detail coverage for every returned location in the result set.",
+      "image_path": "./data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+      "image_width": 1280,
+      "image_height": 2088,
+      "image_sha256": "0660bda13d83dc8ab414955723e286a267f49dc6920056ce5f58ceee53b78ae1",
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0089",
+          "bbox": {
+            "x1": 25.6,
+            "y1": 981.3599999999999,
+            "x2": 1254.4,
+            "y2": 1649.52
+          },
+          "source": "gemini_visual_grounding_omnimark_supplemental",
+          "description": null,
+          "candidate_id": null
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED_WITH_CAVEAT",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_supplemental"
+        ]
+      },
+      "author_applicability": "SINGLE_REGION",
+      "author_candidate_exists": false,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-007",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "requirement_id": "CONTR-04",
+      "claim_id": "CONTR-04-C1",
+      "step_index": 4,
+      "requirement_text": "The system shall keep the searched location, selected radius, and resulting stores synchronized between the map view and the store list.",
+      "claim_text": "The searched location and selected radius remain associated with the results.",
+      "image_path": "./data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_04.png",
+      "image_width": 1280,
+      "image_height": 2112,
+      "image_sha256": "776475c0031247060f292c09eaface18feb784aa7f5f591201ddf306ed53b379",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0083",
+          "bbox": {
+            "x1": 25.0,
+            "y1": 351.0,
+            "x2": 59.0,
+            "y2": 360.0
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "T12"
+        },
+        {
+          "audit_item_id": "GBBOX-0084",
+          "bbox": {
+            "x1": 864.2120361328125,
+            "y1": 322.3790588378906,
+            "x2": 1054.1015625,
+            "y2": 371.97650146484375
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U01"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-008",
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "requirement_id": "CONTR-04",
+      "claim_id": "CONTR-04-C3",
+      "step_index": 4,
+      "requirement_text": "The system shall keep the searched location, selected radius, and resulting stores synchronized between the map view and the store list.",
+      "claim_text": "All returned store results are synchronized with the searched map context.",
+      "image_path": "./data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_04.png",
+      "image_width": 1280,
+      "image_height": 2112,
+      "image_sha256": "776475c0031247060f292c09eaface18feb784aa7f5f591201ddf306ed53b379",
+      "claim_status": "CONTRADICTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0087",
+          "bbox": {
+            "x1": 678.4000000000001,
+            "y1": 1647.3600000000001,
+            "x2": 704.0,
+            "y2": 1689.6000000000001
+          },
+          "source": "gemini_visual_grounding_omnimark_supplemental",
+          "description": null,
+          "candidate_id": null
+        }
+      ],
+      "selection_features": {
+        "claim_status": "CONTRADICTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_supplemental"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "PARTIALLY_RELEVANT",
+      "author_evidential_sufficiency": "INSUFFICIENT",
+      "author_missing_facts": [
+        "The searched location and selected radius.",
+        "The identity and address of a returned store that conflicts with the Los Angeles map context.",
+        "The relationship between the map context and the returned store list."
+      ],
+      "author_error_categories": [
+        "TOO_NARROW",
+        "WRONG_ELEMENT",
+        "INCOMPLETE_EVIDENCE"
+      ],
+      "author_localization_abstention_appropriate": false,
+      "author_confidence": 0.95,
+      "author_note": "The box geometrically covers a store-marker icon, but the icon alone neither demonstrates nor contradicts synchronization. The visible contradiction requires multiple regions from the same screenshot, especially the 90028/15-mile map context and the returned Columbus, Ohio store card."
+    },
+    {
+      "reaudit_item_id": "V7AR-009",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "requirement_id": "REQ-11",
+      "claim_id": "REQ-11-C1",
+      "step_index": 3,
+      "requirement_text": "The system shall present summary information for each job in list view, including title, compensation, department, and a brief description.",
+      "claim_text": "Visible job cards include title, compensation, department, and brief description text.",
+      "image_path": "./data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_03.png",
+      "image_width": 1280,
+      "image_height": 2991,
+      "image_sha256": "3eb1ce6858d9f468352c66fc1a385627c230df3c8e90a8293bdb47a666186ecf",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0112",
+          "bbox": {
+            "x1": 70.99856567382812,
+            "y1": 535.8876342773438,
+            "x2": 277.59320068359375,
+            "y2": 561.72998046875
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U60"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "PARTIALLY_RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "Compensation text.",
+        "Department text.",
+        "Brief description text."
+      ],
+      "author_error_categories": [
+        "TOO_NARROW",
+        "INCOMPLETE_EVIDENCE"
+      ],
+      "author_localization_abstention_appropriate": false,
+      "author_confidence": 0.98,
+      "author_note": "The selected box correctly localizes the job title, but the claim jointly requires title, compensation, department, and a brief description. Separate candidates for the three missing fields are visible on the same job card, so the evidence selection should have used multiple regions."
+    },
+    {
+      "reaudit_item_id": "V7AR-010",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "requirement_id": "REQ-12",
+      "claim_id": "REQ-12-C1",
+      "step_index": 14,
+      "requirement_text": "The system shall allow users to navigate from a job listing to a detailed view for an individual opening.",
+      "claim_text": "A selected listing opens an individual job detail view.",
+      "image_path": "./data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+      "image_width": 1280,
+      "image_height": 1385,
+      "image_sha256": "06378c4ef6906d1c4069bc518661e5fe89a2743fb61708605cdf553a884cd5f5",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0114",
+          "bbox": {
+            "x1": 490.0,
+            "y1": 0.0,
+            "x2": 1280.0,
+            "y2": 780.0
+          },
+          "source": "gemini_visual_grounding_omnimark_supplemental",
+          "description": null,
+          "candidate_id": null
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_supplemental"
+        ]
+      },
+      "author_applicability": "SINGLE_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-011",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "requirement_id": "CONTR-05",
+      "claim_id": "CONTR-05-C2",
+      "step_index": 14,
+      "requirement_text": "The system shall provide a visible control on the detailed job view that starts the application workflow for the selected opening.",
+      "claim_text": "Starting the application after pressing Apply is a routine dependency behind the visible control.",
+      "image_path": "./data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+      "image_width": 1280,
+      "image_height": 1385,
+      "image_sha256": "06378c4ef6906d1c4069bc518661e5fe89a2743fb61708605cdf553a884cd5f5",
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0135",
+          "bbox": {
+            "x1": 1243.22119140625,
+            "y1": 22.103687286376953,
+            "x2": 1258.38330078125,
+            "y2": 38.1639518737793
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U05"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED_WITH_CAVEAT",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "SINGLE_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "INVALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-012",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "requirement_id": "REQ-05",
+      "claim_id": "REQ-05-C1",
+      "step_index": 8,
+      "requirement_text": "The system shall allow applicants to filter job openings by estimated annual salary range or threshold.",
+      "claim_text": "The filter panel provides an Estimated Annual Salary facet with selectable salary thresholds.",
+      "image_path": "./data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_08.png",
+      "image_width": 1280,
+      "image_height": 1837,
+      "image_sha256": "ba745670d15b2d1ef8bb9be5297d1543a1d142f2ea62ee57c021544b1b02a063",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0099",
+          "bbox": {
+            "x1": 831.3333129882812,
+            "y1": 0.0,
+            "x2": 1279.6751708984375,
+            "y2": 76.33390808105469
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U07"
+        },
+        {
+          "audit_item_id": "GBBOX-0100",
+          "bbox": {
+            "x1": 830.568359375,
+            "y1": 76.06211853027344,
+            "x2": 1280.0,
+            "y2": 125.6692886352539
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U06"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-013",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "requirement_id": "REQ-10",
+      "claim_id": "REQ-10-C2",
+      "step_index": 9,
+      "requirement_text": "The system shall preserve previously entered gift-card configuration data while the shopper continues completing later fields.",
+      "claim_text": "Previously entered sender and amount details are preserved while the shopper completes later configuration data.",
+      "image_path": "./data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_09.png",
+      "image_width": 1280,
+      "image_height": 1861,
+      "image_sha256": "5393913b6ea3ca933f1e22de2ecefb63b4e3230576e07eec3acfb43e96c452d9",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0167",
+          "bbox": {
+            "x1": 704.626708984375,
+            "y1": 524.0183715820312,
+            "x2": 1162.6497802734375,
+            "y2": 567.5521850585938
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U05"
+        },
+        {
+          "audit_item_id": "GBBOX-0168",
+          "bbox": {
+            "x1": 704.8541259765625,
+            "y1": 607.637939453125,
+            "x2": 925.72314453125,
+            "y2": 652.228759765625
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U02"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-014",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "requirement_id": "CONTR-05",
+      "claim_id": "CONTR-05-C1",
+      "step_index": 9,
+      "requirement_text": "The system shall provide a pre-submission review state for the configured eGift card that summarizes recipient details, sender details, amount, delivery date, and message, with an option to edit before finalizing the purchase action.",
+      "claim_text": "The system provides a pre-submission review state for the configured eGift card.",
+      "image_path": "./data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_09.png",
+      "image_width": 1280,
+      "image_height": 1861,
+      "image_sha256": "5393913b6ea3ca933f1e22de2ecefb63b4e3230576e07eec3acfb43e96c452d9",
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0184",
+          "bbox": {
+            "x1": 547.0,
+            "y1": 348.0,
+            "x2": 1170.0,
+            "y2": 738.0
+          },
+          "source": "gemini_visual_grounding_omnimark_supplemental",
+          "description": null,
+          "candidate_id": null
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED_WITH_CAVEAT",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_supplemental"
+        ]
+      },
+      "author_applicability": "SINGLE_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-015",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "requirement_id": "REQ-08",
+      "claim_id": "REQ-08-C1",
+      "step_index": 3,
+      "requirement_text": "The system shall allow a shopper to include a personalized message with the eGift card.",
+      "claim_text": "The eGift card form includes a message field.",
+      "image_path": "./data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_03.png",
+      "image_width": 1280,
+      "image_height": 1861,
+      "image_sha256": "f32010620b420d77a8ae00a8ac30ca62b815b6d01d82cb0d4203130dfc6b3013",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0152",
+          "bbox": {
+            "x1": 706.0387573242188,
+            "y1": 691.7332153320312,
+            "x2": 1162.341796875,
+            "y2": 735.6436767578125
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U02"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "SINGLE_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-016",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "requirement_id": "REQ-04",
+      "claim_id": "REQ-04-C1",
+      "step_index": 2,
+      "requirement_text": "The system shall support navigation from a gift-card discovery page to a detailed purchase page for a selected eGift card product.",
+      "claim_text": "The gift-card discovery page provides an eGift card product option.",
+      "image_path": "./data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_02.png",
+      "image_width": 1280,
+      "image_height": 2036,
+      "image_sha256": "b5cbbb2c22ff85a8c4bc3c012770f41daf18ff15d20bee82e745d328af5ab14d",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0142",
+          "bbox": {
+            "x1": 649.0535278320312,
+            "y1": 476.9664611816406,
+            "x2": 1114.4793701171875,
+            "y2": 775.6583862304688
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U19"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "SINGLE_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-017",
+      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+      "requirement_id": "REQ-01",
+      "claim_id": "REQ-01-C2",
+      "step_index": 2,
+      "requirement_text": "The system shall provide a location-specific restaurant discovery experience for signed-in users.",
+      "claim_text": "The visible session appears to be signed in through account access.",
+      "image_path": "./data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_02.png",
+      "image_width": 1280,
+      "image_height": 3576,
+      "image_sha256": "955e35ee6ba03dea5f71440095b24d54787dce983bb519a170c16d4071476e26",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0190",
+          "bbox": {
+            "x1": 855.5840454101562,
+            "y1": 2.2585079669952393,
+            "x2": 972.3303833007812,
+            "y2": 26.395586013793945
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U17"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "SINGLE_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "INVALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "INSUFFICIENT",
+      "author_missing_facts": [
+        "Sign out would have been the correct box"
+      ],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-018",
+      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+      "requirement_id": "REQ-11",
+      "claim_id": "REQ-11-C2",
+      "step_index": 3,
+      "requirement_text": "The system shall provide a save action for committing profile changes.",
+      "claim_text": "The save action commits profile changes.",
+      "image_path": "./data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_03.png",
+      "image_width": 1295,
+      "image_height": 2168,
+      "image_sha256": "aacc23b48798975e027be23e6bd4b209a95c8deea7f93e6b635117e206264a79",
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0219",
+          "bbox": {
+            "x1": 453.24999999999994,
+            "y1": 1604.32,
+            "x2": 505.05,
+            "y2": 1691.04
+          },
+          "source": "gemini_visual_grounding_omnimark_supplemental",
+          "description": null,
+          "candidate_id": null
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED_WITH_CAVEAT",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_supplemental"
+        ]
+      },
+      "author_applicability": "SINGLE_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "INVALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-019",
+      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+      "requirement_id": "REQ-14",
+      "claim_id": "REQ-14-C1",
+      "step_index": 3,
+      "requirement_text": "The system shall keep account-section navigation available while the user edits profile settings.",
+      "claim_text": "Account-section navigation remains available while profile settings are edited.",
+      "image_path": "./data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_03.png",
+      "image_width": 1295,
+      "image_height": 2168,
+      "image_sha256": "aacc23b48798975e027be23e6bd4b209a95c8deea7f93e6b635117e206264a79",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0220",
+          "bbox": {
+            "x1": 15.383142471313477,
+            "y1": 209.77284240722656,
+            "x2": 252.58380126953125,
+            "y2": 269.4761657714844
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U38"
+        },
+        {
+          "audit_item_id": "GBBOX-0221",
+          "bbox": {
+            "x1": 15.303282737731934,
+            "y1": 270.3296813964844,
+            "x2": 252.9529266357422,
+            "y2": 329.40557861328125
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U34"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-020",
+      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+      "requirement_id": "REQ-12",
+      "claim_id": "REQ-12-C2",
+      "step_index": 3,
+      "requirement_text": "The system shall communicate how profile information is used.",
+      "claim_text": "The allergies section explains that dietary information can be communicated in advance.",
+      "image_path": "./data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_03.png",
+      "image_width": 1295,
+      "image_height": 2168,
+      "image_sha256": "aacc23b48798975e027be23e6bd4b209a95c8deea7f93e6b635117e206264a79",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0210",
+          "bbox": {
+            "x1": 457.0,
+            "y1": 1435.0,
+            "x2": 989.0,
+            "y2": 1450.0
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "T52"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "SINGLE_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-021",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "requirement_id": "REQ-10",
+      "claim_id": "REQ-10-C1",
+      "step_index": 5,
+      "requirement_text": "The system shall provide a prominent action for starting an application from recruiting content and job-opening pages.",
+      "claim_text": "The park recruiting page provides prominent application-start actions.",
+      "image_path": "./data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_05.png",
+      "image_width": 1298,
+      "image_height": 6124,
+      "image_sha256": "fed9717d60bdc14592cf61b511d1d74874e4c70fb72bed660f5080af3eac87a8",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0251",
+          "bbox": {
+            "x1": 563.1023559570312,
+            "y1": 924.0443115234375,
+            "x2": 802.2490234375,
+            "y2": 998.3045654296875
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U10"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "PARTIALLY_RELEVANT",
+      "author_evidential_sufficiency": "INSUFFICIENT",
+      "author_missing_facts": [
+        "One or more prominent Apply Now application-start controls."
+      ],
+      "author_error_categories": [
+        "WRONG_ELEMENT",
+        "INCOMPLETE_EVIDENCE"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "The box tightly encloses the word 'Exciting', so its geometry is valid, but it localizes recruiting-related heading text rather than an application-start action. The visible Apply Now controls are the claim-relevant evidence."
+    },
+    {
+      "reaudit_item_id": "V7AR-022",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "requirement_id": "CONTR-06",
+      "claim_id": "CONTR-06-C1",
+      "step_index": 5,
+      "requirement_text": "The system shall provide direct in-page filtering or refinement within a selected park's opportunities, such as narrowing visible openings by department, job type, or similar criteria instead of relying only on static category entry points.",
+      "claim_text": "A selected park's opportunities provide direct in-page filtering or refinement.",
+      "image_path": "./data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_05.png",
+      "image_width": 1298,
+      "image_height": 6124,
+      "image_sha256": "fed9717d60bdc14592cf61b511d1d74874e4c70fb72bed660f5080af3eac87a8",
+      "claim_status": "CONTRADICTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0285",
+          "bbox": {
+            "x1": 30.0,
+            "y1": 196.0,
+            "x2": 1240.0,
+            "y2": 220.0
+          },
+          "source": "gemini_visual_grounding_omnimark_supplemental",
+          "description": null,
+          "candidate_id": null
+        }
+      ],
+      "selection_features": {
+        "claim_status": "CONTRADICTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_supplemental"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": false,
+      "author_geometric_validity": "INVALID",
+      "author_semantic_relevance": "IRRELEVANT",
+      "author_evidential_sufficiency": "INSUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-023",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "requirement_id": "REQ-14",
+      "claim_id": "REQ-14-C2",
+      "step_index": 6,
+      "requirement_text": "The system shall make the recruiting flow understandable through consistent labeling of park, team, and role context across screens.",
+      "claim_text": "The recruiting flow uses consistent team-context labeling.",
+      "image_path": "./data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+      "image_width": 1280,
+      "image_height": 1537,
+      "image_sha256": "d877ff16ab1da2fcdb861e2a9a9fbede46f0482ad50d7136e44f115b1b5a1ebb",
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0271",
+          "bbox": {
+            "x1": 363.0,
+            "y1": 637.0,
+            "x2": 1196.0,
+            "y2": 652.0
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "T20"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED_WITH_CAVEAT",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "SINGLE_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "A comparable team-context label from another screen in the recruiting flow is needed to establish consistency across screens."
+      ],
+      "author_error_categories": [
+        "INCOMPLETE_EVIDENCE",
+        "CROSS_SCREEN_COMPARISON_MISSING"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.98,
+      "author_note": "The selected OCR line explicitly identifies the 'Aquatics team' and is valid evidence for team-context labeling on this page. A single occurrence cannot by itself establish that labeling is consistent across the ordered recruiting flow."
+    },
+    {
+      "reaudit_item_id": "V7AR-024",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "requirement_id": "REQ-15",
+      "claim_id": "REQ-15-C1",
+      "step_index": 5,
+      "requirement_text": "The system shall support narrowing opportunities within a selected park through structured categories or similar organization rather than only a flat undifferentiated job list.",
+      "claim_text": "The selected park page organizes opportunities through structured categories or team cards.",
+      "image_path": "./data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_05.png",
+      "image_width": 1298,
+      "image_height": 6124,
+      "image_sha256": "fed9717d60bdc14592cf61b511d1d74874e4c70fb72bed660f5080af3eac87a8",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0258",
+          "bbox": {
+            "x1": 36.12171936035156,
+            "y1": 1496.208251953125,
+            "x2": 636.7688598632812,
+            "y2": 1896.228271484375
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U11"
+        },
+        {
+          "audit_item_id": "GBBOX-0259",
+          "bbox": {
+            "x1": 649.6222534179688,
+            "y1": 1496.4117431640625,
+            "x2": 1243.5919189453125,
+            "y2": 1896.0233154296875
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U12"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-025",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "requirement_id": "REQ-12",
+      "claim_id": "REQ-12-C1",
+      "step_index": 3,
+      "requirement_text": "The system shall help users continue from overview documentation into related articles when they need more detailed submission rules.",
+      "claim_text": "The overview documentation provides links into more detailed submission rule topics.",
+      "image_path": "./data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+      "image_width": 1280,
+      "image_height": 2799,
+      "image_sha256": "feda2b5777f6838d369bd252d5cf0e05d7783d1f8619ba92564d6c2a62b5575e",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0318",
+          "bbox": {
+            "x1": 416.3082275390625,
+            "y1": 510.3803405761719,
+            "x2": 604.6353149414062,
+            "y2": 532.2928466796875
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U31"
+        },
+        {
+          "audit_item_id": "GBBOX-0319",
+          "bbox": {
+            "x1": 390.6622619628906,
+            "y1": 473.998779296875,
+            "x2": 592.36767578125,
+            "y2": 496.1026916503906
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U32"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.8,
+      "author_note": ""
+    },
+    {
+      "reaudit_item_id": "V7AR-026",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "requirement_id": "REQ-11",
+      "claim_id": "REQ-11-C2",
+      "step_index": 3,
+      "requirement_text": "The system shall preserve access to broader site navigation while users are exploring contribution help resources.",
+      "claim_text": "The contribution help page preserves the broader main-site navigation seen before entering help resources.",
+      "image_path": "./data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+      "image_width": 1280,
+      "image_height": 2799,
+      "image_sha256": "feda2b5777f6838d369bd252d5cf0e05d7783d1f8619ba92564d6c2a62b5575e",
+      "claim_status": "CONTRADICTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0317",
+          "bbox": {
+            "x1": 256.0,
+            "y1": 41.985,
+            "x2": 1216.0,
+            "y2": 221.121
+          },
+          "source": "gemini_visual_grounding_omnimark_supplemental",
+          "description": null,
+          "candidate_id": null
+        }
+      ],
+      "selection_features": {
+        "claim_status": "CONTRADICTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_supplemental"
+        ]
+      },
+      "author_applicability": "WHOLE_SCREEN_OR_TRANSITION",
+      "author_candidate_exists": false,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "The broader main-site header and navigation visible before entering the contribution help page are needed for the cross-screen comparison."
+      ],
+      "author_error_categories": [
+        "INCOMPLETE_EVIDENCE",
+        "CROSS_SCREEN_COMPARISON_MISSING",
+        "NEGATIVE_EVIDENCE"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.97,
+      "author_note": "The broad supplemental region validly covers the help-page header where the previous Explore, Marketplace, and Community navigation is absent. This is relevant negative evidence, but the contradiction is established only by comparing it with the preceding main-site screen."
+    },
+    {
+      "reaudit_item_id": "V7AR-027",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "requirement_id": "CONTR-02",
+      "claim_id": "CONTR-02-C2",
+      "step_index": 3,
+      "requirement_text": "The system shall clearly distinguish which contribution resources are generally browsable and which submission work areas require an authenticated contributor account.",
+      "claim_text": "The system clearly distinguishes generally browsable contribution resources from work areas requiring an authenticated contributor account.",
+      "image_path": "./data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+      "image_width": 1280,
+      "image_height": 2799,
+      "image_sha256": "feda2b5777f6838d369bd252d5cf0e05d7783d1f8619ba92564d6c2a62b5575e",
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0330",
+          "bbox": {
+            "x1": 37.120000000000005,
+            "y1": 904.077,
+            "x2": 281.6,
+            "y2": 1097.208
+          },
+          "source": "gemini_visual_grounding_omnimark_supplemental",
+          "description": null,
+          "candidate_id": null
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED_WITH_CAVEAT",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_supplemental"
+        ]
+      },
+      "author_applicability": "WHOLE_SCREEN_OR_TRANSITION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "INVALID",
+      "author_semantic_relevance": "IRRELEVANT",
+      "author_evidential_sufficiency": "INSUFFICIENT",
+      "author_missing_facts": [
+        "A publicly browsable contribution resource.",
+        "A contribution work area that visibly requires authentication.",
+        "The distinction between those access conditions."
+      ],
+      "author_error_categories": [
+        "WRONG_ELEMENT",
+        "COOKIE_OVERLAY",
+        "INCOMPLETE_EVIDENCE"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "The supplemental box covers part of the cookie/privacy overlay rather than evidence distinguishing public contribution resources from authenticated work areas. Establishing the distinction requires broader cross-screen access evidence."
+    },
+    {
+      "reaudit_item_id": "V7AR-028",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "requirement_id": "REQ-01",
+      "claim_id": "REQ-01-C1",
+      "step_index": 2,
+      "requirement_text": "The system shall expose contribution-related actions through a top-level navigation area.",
+      "claim_text": "Contribution-related actions are available from a top-level navigation menu.",
+      "image_path": "./data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+      "image_width": 1280,
+      "image_height": 1262,
+      "image_sha256": "7bf8639d0a9def4ea66a88a5304e96e3e9bf26cd645ea3f2e460e8a11773eed6",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0288",
+          "bbox": {
+            "x1": 341.0,
+            "y1": 100.0,
+            "x2": 420.0,
+            "y2": 112.0
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "T09"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "One or more visible contribution actions inside the expanded Contribute menu."
+      ],
+      "author_error_categories": [
+        "TOO_NARROW",
+        "INCOMPLETE_EVIDENCE"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.98,
+      "author_note": "The box correctly identifies the top-level Contribute label. It does not include any of the expanded contribution actions, such as Submission Guidelines or Submit a Release, that complete the claim."
+    },
+    {
+      "reaudit_item_id": "V7AR-029",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "requirement_id": "CONTR-03",
+      "claim_id": "CONTR-03-C2",
+      "step_index": 5,
+      "requirement_text": "The system shall surface route-specific café menu resources only when they are applicable to the traveler's route or service context, while still preserving access to a general national menu.",
+      "claim_text": "Route-specific café menu resources are surfaced only when applicable to the traveler's route or service context.",
+      "image_path": "./data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/original/step_05.png",
+      "image_width": 1280,
+      "image_height": 1659,
+      "image_sha256": "d8d1a6104ca0d2c7974ea726643d101aded608d1702d9e8a47bc2e3e6df8c407",
+      "claim_status": "CONTRADICTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0383",
+          "bbox": {
+            "x1": 394.8472900390625,
+            "y1": 453.58056640625,
+            "x2": 541.4945068359375,
+            "y2": 470.7721862792969
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U32"
+        },
+        {
+          "audit_item_id": "GBBOX-0384",
+          "bbox": {
+            "x1": 395.0460510253906,
+            "y1": 475.1295166015625,
+            "x2": 590.8724365234375,
+            "y2": 491.3625793457031
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U39"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "CONTRADICTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "WHOLE_SCREEN_OR_TRANSITION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "The traveler's current route or service context, or the visible absence of such a context before route-specific links are shown.",
+        "The generic Café-page context in which the route-specific links are surfaced."
+      ],
+      "author_error_categories": [
+        "INCOMPLETE_EVIDENCE",
+        "CONTEXT_MISSING"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.97,
+      "author_note": "The selected Auto Train Coach and Auto Train Private Rooms menu links are valid route-specific examples. The boxes alone do not establish that they are being shown without a matching traveler route or service context."
+    },
+    {
+      "reaudit_item_id": "V7AR-030",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "requirement_id": "REQ-11",
+      "claim_id": "REQ-11-C2",
+      "step_index": 4,
+      "requirement_text": "The system shall support list to detail navigation from an onboard overview page to specific amenity pages.",
+      "claim_text": "The flow reaches specific amenity detail pages after the overview page.",
+      "image_path": "./data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/original/step_04.png",
+      "image_width": 1280,
+      "image_height": 2399,
+      "image_sha256": "772195a8634165c81b96b461f79317ac8600a1907bf3895b68502a762b41a24d",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0365",
+          "bbox": {
+            "x1": 342.0,
+            "y1": 148.0,
+            "x2": 612.0,
+            "y2": 184.0
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "T13"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "WHOLE_SCREEN_OR_TRANSITION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "The originating overview-page link or action that led to the Onboard Dining detail page."
+      ],
+      "author_error_categories": [
+        "INCOMPLETE_EVIDENCE",
+        "CROSS_SCREEN_COMPARISON_MISSING"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.98,
+      "author_note": "The title correctly establishes that the reached page is the Onboard Dining detail page. List-to-detail navigation additionally requires the preceding overview screen and its navigation action."
+    },
+    {
+      "reaudit_item_id": "V7AR-031",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "requirement_id": "CONTR-04",
+      "claim_id": "CONTR-04-C3",
+      "step_index": 5,
+      "requirement_text": "The system shall provide corresponding detail or menu-entry resources for all dining service types presented from the onboard dining page.",
+      "claim_text": "Corresponding detail or menu-entry resources are verified for all dining service types presented from the onboard dining page.",
+      "image_path": "./data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/original/step_05.png",
+      "image_width": 1280,
+      "image_height": 1659,
+      "image_sha256": "d8d1a6104ca0d2c7974ea726643d101aded608d1702d9e8a47bc2e3e6df8c407",
+      "claim_status": "PARTIALLY_SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0388",
+          "bbox": {
+            "x1": 394.8401794433594,
+            "y1": 403.3443908691406,
+            "x2": 517.936279296875,
+            "y2": 420.0035705566406
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U40"
+        },
+        {
+          "audit_item_id": "GBBOX-0389",
+          "bbox": {
+            "x1": 395.0460510253906,
+            "y1": 475.1295166015625,
+            "x2": 590.8724365234375,
+            "y2": 491.3625793457031
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U39"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "PARTIALLY_SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "The complete set of dining service types presented on the onboard overview page.",
+        "Corresponding detail or menu resources for the remaining service types."
+      ],
+      "author_error_categories": [
+        "INCOMPLETE_EVIDENCE",
+        "UNIVERSAL_CLAIM_UNDERCOVERED"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.98,
+      "author_note": "The two selected menu entries are valid examples, but two examples cannot verify the universal claim for all dining service types presented on the overview page."
+    },
+    {
+      "reaudit_item_id": "V7AR-032",
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "requirement_id": "CONTR-02",
+      "claim_id": "CONTR-02-C2",
+      "step_index": 5,
+      "requirement_text": "The system shall make onboard dining menu resources reachable to public users without requiring sign-in or account ownership checks.",
+      "claim_text": "Reachability of onboard dining menu resources does not require sign-in or account ownership checks before access.",
+      "image_path": "./data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b/original/step_05.png",
+      "image_width": 1280,
+      "image_height": 1659,
+      "image_sha256": "d8d1a6104ca0d2c7974ea726643d101aded608d1702d9e8a47bc2e3e6df8c407",
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0381",
+          "bbox": {
+            "x1": 394.8401794433594,
+            "y1": 403.3443908691406,
+            "x2": 517.936279296875,
+            "y2": 420.0035705566406
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U40"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED_WITH_CAVEAT",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "WHOLE_SCREEN_OR_TRANSITION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "The access transition to the public menu resource without an intervening sign-in or ownership check."
+      ],
+      "author_error_categories": [
+        "INCOMPLETE_EVIDENCE",
+        "CROSS_SCREEN_COMPARISON_MISSING",
+        "NEGATIVE_EVIDENCE"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.97,
+      "author_note": "The National Café Menu link is relevant to menu reachability, but a link on one screenshot does not by itself prove that access occurs without an authentication or ownership gate."
+    },
+    {
+      "reaudit_item_id": "V7AR-033",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "requirement_id": "CONTR-04",
+      "claim_id": "CONTR-04-C1",
+      "step_index": 2,
+      "requirement_text": "The system shall make all supported gift card balance inquiry paths and help resources discoverable from the centralized gift card service area.",
+      "claim_text": "Multiple gift card balance inquiry paths and help resources are discoverable from the centralized service area.",
+      "image_path": "./data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+      "image_width": 1280,
+      "image_height": 2660,
+      "image_sha256": "d5c14d839b85ae725c04b5dbea3ba52138b89203a895d64a0da30e3ee0ad969d",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0446",
+          "bbox": {
+            "x1": 444.3341369628906,
+            "y1": 1015.0618286132812,
+            "x2": 574.085693359375,
+            "y2": 1062.2489013671875
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U09"
+        },
+        {
+          "audit_item_id": "GBBOX-0447",
+          "bbox": {
+            "x1": 447.0,
+            "y1": 1157.0,
+            "x2": 1228.0,
+            "y2": 1185.0
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "T37"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "PARTIALLY_RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "The remainder of the balance-inquiry text containing the theatre and telephone paths.",
+        "The Check Balance action.",
+        "A relevant help resource."
+      ],
+      "author_error_categories": [
+        "WRONG_ELEMENT",
+        "INCOMPLETE_EVIDENCE",
+        "CLIPPED_TEXT"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "The long text region begins to describe balance inquiry paths, but it ends mid-sentence. The other selected region is a Buy Now control and is unrelated to balance inquiry or help resources."
+    },
+    {
+      "reaudit_item_id": "V7AR-034",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "requirement_id": "CONTR-06",
+      "claim_id": "CONTR-06-C1",
+      "step_index": 4,
+      "requirement_text": "The system shall keep the balance lookup action visibly consistent with the current validation state so users can clearly tell when the entered card information is submittable.",
+      "claim_text": "The system keeps the balance lookup action visibly consistent with the current validation state.",
+      "image_path": "./data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_04.png",
+      "image_width": 1280,
+      "image_height": 1444,
+      "image_sha256": "7527d64725fe0721467bf7e4ce9137bb80c1dec8107bc04e7a2985c421f0f5c0",
+      "claim_status": "CONTRADICTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0454",
+          "bbox": {
+            "x1": 526.1929931640625,
+            "y1": 490.354736328125,
+            "x2": 639.6410522460938,
+            "y2": 536.925048828125
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U01"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "CONTRADICTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "The current values or validation state of the gift card number and PIN fields."
+      ],
+      "author_error_categories": [
+        "INCOMPLETE_EVIDENCE",
+        "STATE_CONTEXT_MISSING"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "The Search button is correctly localized and its disabled appearance is visible. Consistency with validation state can only be judged together with the current card-number and PIN field states."
+    },
+    {
+      "reaudit_item_id": "V7AR-035",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "requirement_id": "CONTR-04",
+      "claim_id": "CONTR-04-C2",
+      "step_index": 2,
+      "requirement_text": "The system shall make all supported gift card balance inquiry paths and help resources discoverable from the centralized gift card service area.",
+      "claim_text": "All supported gift card balance inquiry paths are discoverable from the centralized service area.",
+      "image_path": "./data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+      "image_width": 1280,
+      "image_height": 2660,
+      "image_sha256": "d5c14d839b85ae725c04b5dbea3ba52138b89203a895d64a0da30e3ee0ad969d",
+      "claim_status": "PARTIALLY_SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0448",
+          "bbox": {
+            "x1": 444.3341369628906,
+            "y1": 1015.0618286132812,
+            "x2": 574.085693359375,
+            "y2": 1062.2489013671875
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U09"
+        },
+        {
+          "audit_item_id": "GBBOX-0449",
+          "bbox": {
+            "x1": 447.0,
+            "y1": 1157.0,
+            "x2": 1228.0,
+            "y2": 1185.0
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "T37"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "PARTIALLY_SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "PARTIALLY_RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "The remainder of the balance-inquiry text containing all visible theatre and telephone paths.",
+        "The Check Balance action."
+      ],
+      "author_error_categories": [
+        "WRONG_ELEMENT",
+        "INCOMPLETE_EVIDENCE",
+        "UNIVERSAL_CLAIM_UNDERCOVERED",
+        "CLIPPED_TEXT"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "One selected line partially describes balance inquiry paths, while the selected Buy Now control is unrelated. The truncated evidence cannot establish discoverability of all supported paths."
+    },
+    {
+      "reaudit_item_id": "V7AR-036",
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "requirement_id": "REQ-02",
+      "claim_id": "REQ-02-C2",
+      "step_index": 2,
+      "requirement_text": "The system shall present a centralized gift card service area that groups major gift card related actions, like purchasing gift cards, checking balances, accessing terms and FAQs, and handling membership or corporate gift card options.",
+      "claim_text": "The page also presents gift card purchase, balance check, and business ordering sections as related gift card services.",
+      "image_path": "./data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+      "image_width": 1280,
+      "image_height": 2660,
+      "image_sha256": "d5c14d839b85ae725c04b5dbea3ba52138b89203a895d64a0da30e3ee0ad969d",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0403",
+          "bbox": {
+            "x1": 444.3341369628906,
+            "y1": 1015.0618286132812,
+            "x2": 574.085693359375,
+            "y2": 1062.2489013671875
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U09"
+        },
+        {
+          "audit_item_id": "GBBOX-0404",
+          "bbox": {
+            "x1": 444.11376953125,
+            "y1": 1271.58349609375,
+            "x2": 615.93896484375,
+            "y2": 1319.4041748046875
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U04"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "The business or corporate gift card ordering section."
+      ],
+      "author_error_categories": [
+        "INCOMPLETE_EVIDENCE"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "The selected Buy Now and Check Balance controls validly cover purchase and balance-check services. The claim also requires the related business ordering section, which is visible but was not selected."
+    },
+    {
+      "reaudit_item_id": "V7AR-037",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "requirement_id": "REQ-15",
+      "claim_id": "REQ-15-C2",
+      "step_index": 10,
+      "requirement_text": "The system shall present an itemized pre-checkout order summary including subtotal, fees, tax, and total.",
+      "claim_text": "The pre-checkout summary shows subtotal, fees, tax, and total.",
+      "image_path": "./data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+      "image_width": 1298,
+      "image_height": 2126,
+      "image_sha256": "a91dd1dc5fd3ce18259c45a3b0ff48b7e1ed06a1d92ce43fd35c27ba57354a99",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0486",
+          "bbox": {
+            "x1": 901.0,
+            "y1": 469.0,
+            "x2": 955.0,
+            "y2": 481.0
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "T21"
+        },
+        {
+          "audit_item_id": "GBBOX-0487",
+          "bbox": {
+            "x1": 902.0,
+            "y1": 566.0,
+            "x2": 936.0,
+            "y2": 578.0
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "T27"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "The processing-fee label and amount.",
+        "The tax label and amount."
+      ],
+      "author_error_categories": [
+        "INCOMPLETE_EVIDENCE",
+        "CONJUNCTIVE_CLAIM_UNDERCOVERED"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "The selected Subtotal and Total labels are correct, but the claim jointly requires subtotal, fees, tax, and total. The visible processing-fee and tax rows were not selected."
+    },
+    {
+      "reaudit_item_id": "V7AR-038",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "requirement_id": "REQ-08",
+      "claim_id": "REQ-08-C1",
+      "step_index": 8,
+      "requirement_text": "The system shall disclose important product conditions such as eligibility, usage restrictions, or special purchase notes before the user commits to an add-on purchase.",
+      "claim_text": "The add-on purchase flow discloses eligibility or purchase conditions before the user commits to the add-on.",
+      "image_path": "./data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_08.png",
+      "image_width": 1298,
+      "image_height": 2126,
+      "image_sha256": "8e65965c083d6b11c5626ebad05a1ea40e12a7443784a309e4a86349b7b2777a",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0491",
+          "bbox": {
+            "x1": 202.488,
+            "y1": 1186.3080000000002,
+            "x2": 778.8,
+            "y2": 1245.836
+          },
+          "source": "gemini_visual_grounding_omnimark_supplemental",
+          "description": null,
+          "candidate_id": null
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_supplemental"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "INVALID",
+      "author_semantic_relevance": "IRRELEVANT",
+      "author_evidential_sufficiency": "INSUFFICIENT",
+      "author_missing_facts": [
+        "The height eligibility requirements.",
+        "The health and usage restrictions.",
+        "The availability and weather qualification shown before Add to Cart."
+      ],
+      "author_error_categories": [
+        "WRONG_ELEMENT",
+        "INCOMPLETE_EVIDENCE"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "The supplemental box falls on the underlying Season Drink Bottle card rather than the add-on modal's condition text. Relevant OCR candidates for height, health, availability, and weather restrictions were visible in the modal."
+    },
+    {
+      "reaudit_item_id": "V7AR-039",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "requirement_id": "REQ-04",
+      "claim_id": "REQ-04-C3",
+      "step_index": 6,
+      "requirement_text": "The system shall present optional add-on plans with enough descriptive and pricing information for users to compare them before selection.",
+      "claim_text": "The add-on options include visible prices or starting prices.",
+      "image_path": "./data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+      "image_width": 1298,
+      "image_height": 2126,
+      "image_sha256": "11077ac2c30cd51433e2b141eeaa1f7a8cc22a266d2d93cdfc4e0ae4837097ad",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0479",
+          "bbox": {
+            "x1": 156.0,
+            "y1": 685.0,
+            "x2": 304.0,
+            "y2": 703.0
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "T47"
+        },
+        {
+          "audit_item_id": "GBBOX-0480",
+          "bbox": {
+            "x1": 552.0,
+            "y1": 766.0,
+            "x2": 728.0,
+            "y2": 780.0
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "T52"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "The two regions correctly localize a fixed add-on price and a starting price for separate visible plans, directly supporting the claim."
+    },
+    {
+      "reaudit_item_id": "V7AR-040",
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "requirement_id": "REQ-02",
+      "claim_id": "REQ-02-C2",
+      "step_index": 4,
+      "requirement_text": "The system shall present park-specific passes and in-park purchase options after a park has been selected.",
+      "claim_text": "Park-specific pass or in-park purchase options are presented after selection.",
+      "image_path": "./data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_04.png",
+      "image_width": 1298,
+      "image_height": 4429,
+      "image_sha256": "c1b6c3a6ca3e379ef36071db258ba5041311b726ee5c1b4f7a826d809d6c051d",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0468",
+          "bbox": {
+            "x1": 169.64076232910156,
+            "y1": 735.49658203125,
+            "x2": 1083.7486572265625,
+            "y2": 774.7604370117188
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U23"
+        },
+        {
+          "audit_item_id": "GBBOX-0469",
+          "bbox": {
+            "x1": 294.4221496582031,
+            "y1": 788.1427001953125,
+            "x2": 422.4164123535156,
+            "y2": 913.7455444335938
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U02"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "WHOLE_SCREEN_OR_TRANSITION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "PARTIALLY_RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "A visible park-specific pass or in-park product option.",
+        "The selected park context or preceding park-selection state."
+      ],
+      "author_error_categories": [
+        "WRONG_ELEMENT",
+        "INCOMPLETE_EVIDENCE",
+        "CROSS_SCREEN_COMPARISON_MISSING"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.98,
+      "author_note": "The selected sale heading and countdown are related to pass promotion, but they do not identify an actual park-specific pass option. The claim also depends on the transition from park selection to the resulting product page."
+    },
+    {
+      "reaudit_item_id": "V7AR-041",
+      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+      "requirement_id": "CONTR-05",
+      "claim_id": "CONTR-05-C2",
+      "step_index": 9,
+      "requirement_text": "The system shall provide a dedicated pre-search review step or summary panel that lists all selected cruise criteria together and allows the user to edit any one of them before submitting the search.",
+      "claim_text": "The dedicated review step or summary panel lists all selected cruise criteria together.",
+      "image_path": "./data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+      "image_width": 1280,
+      "image_height": 2231,
+      "image_sha256": "2e9627fb8a6860c4ccb5bb9b5b9dc9429183b4c595fc773d52c5219d3bfe91eb",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0596",
+          "bbox": {
+            "x1": 164.3905487060547,
+            "y1": 604.3927001953125,
+            "x2": 365.11712646484375,
+            "y2": 689.8554077148438
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U03"
+        },
+        {
+          "audit_item_id": "GBBOX-0597",
+          "bbox": {
+            "x1": 371.646484375,
+            "y1": 604.3568115234375,
+            "x2": 571.2079467773438,
+            "y2": 689.8953247070312
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U07"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "The selected departure date.",
+        "The selected trip-duration criterion.",
+        "Evidence that the displayed criteria form a dedicated review or summary state."
+      ],
+      "author_error_categories": [
+        "INCOMPLETE_EVIDENCE",
+        "CONJUNCTIVE_CLAIM_UNDERCOVERED"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "The regions correctly show the selected destination and departure port. They omit the date and duration criteria, so they do not establish that all selected criteria are listed together."
+    },
+    {
+      "reaudit_item_id": "V7AR-042",
+      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+      "requirement_id": "CONTR-06",
+      "claim_id": "CONTR-06-C2",
+      "step_index": 8,
+      "requirement_text": "The system shall allow the user to filter cruises by an exact itinerary length in days in addition to broad duration bands.",
+      "claim_text": "The system allows filtering by an exact itinerary length in days in addition to broad duration bands.",
+      "image_path": "./data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_08.png",
+      "image_width": 1280,
+      "image_height": 2231,
+      "image_sha256": "1f6934f87c0096e72957e6a426865ca9963201326452515a762344d27ccf2013",
+      "claim_status": "CONTRADICTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0604",
+          "bbox": {
+            "x1": 169.0,
+            "y1": 732.0,
+            "x2": 1101.0,
+            "y2": 771.0
+          },
+          "source": "gemini_visual_grounding_omnimark_supplemental",
+          "description": null,
+          "candidate_id": null
+        }
+      ],
+      "selection_features": {
+        "claim_status": "CONTRADICTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_supplemental"
+        ]
+      },
+      "author_applicability": "SINGLE_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "The region covers the complete visible duration choice set: 2-5 Days, 6-9 Days, and 10+ Days. These are broad bands, and no exact-day option is present, which directly supports the contradiction."
+    },
+    {
+      "reaudit_item_id": "V7AR-043",
+      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+      "requirement_id": "CONTR-05",
+      "claim_id": "CONTR-05-C1",
+      "step_index": 9,
+      "requirement_text": "The system shall provide a dedicated pre-search review step or summary panel that lists all selected cruise criteria together and allows the user to edit any one of them before submitting the search.",
+      "claim_text": "A dedicated pre-search review step or summary panel is provided before submitting the search.",
+      "image_path": "./data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+      "image_width": 1280,
+      "image_height": 2231,
+      "image_sha256": "2e9627fb8a6860c4ccb5bb9b5b9dc9429183b4c595fc773d52c5219d3bfe91eb",
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0594",
+          "bbox": {
+            "x1": 164.3905487060547,
+            "y1": 604.3927001953125,
+            "x2": 365.11712646484375,
+            "y2": 689.8554077148438
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U03"
+        },
+        {
+          "audit_item_id": "GBBOX-0595",
+          "bbox": {
+            "x1": 371.646484375,
+            "y1": 604.3568115234375,
+            "x2": 571.2079467773438,
+            "y2": 689.8953247070312
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U07"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED_WITH_CAVEAT",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "WHOLE_SCREEN_OR_TRANSITION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "PARTIALLY_RELEVANT",
+      "author_evidential_sufficiency": "INSUFFICIENT",
+      "author_missing_facts": [
+        "Evidence that this is a dedicated review or summary state rather than the ordinary search form.",
+        "The temporal position before search submission."
+      ],
+      "author_error_categories": [
+        "WRONG_ELEMENT",
+        "INCOMPLETE_EVIDENCE",
+        "CROSS_SCREEN_COMPARISON_MISSING"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.98,
+      "author_note": "The boxes show two populated controls in the ordinary cruise search widget. They do not establish the existence of a separate pre-search review or summary state."
+    },
+    {
+      "reaudit_item_id": "V7AR-044",
+      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+      "requirement_id": "REQ-01",
+      "claim_id": "REQ-01-C1",
+      "step_index": 1,
+      "requirement_text": "The system shall support cruise discovery through a single search workflow that combines destination, departure port, departure month, and trip duration criteria.",
+      "claim_text": "A single cruise search workflow exposes controls for destination, departure port, dates, duration, and a search action.",
+      "image_path": "./data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_01.png",
+      "image_width": 1280,
+      "image_height": 2136,
+      "image_sha256": "579c76f801ad7bf7012df5b02d75ff7d8bf84bb5bb6f350ae3b84bc9c9089a72",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0525",
+          "bbox": {
+            "x1": 165.11001586914062,
+            "y1": 604.8150634765625,
+            "x2": 364.80487060546875,
+            "y2": 689.2659301757812
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U04"
+        },
+        {
+          "audit_item_id": "GBBOX-0526",
+          "bbox": {
+            "x1": 371.0848388671875,
+            "y1": 604.7249755859375,
+            "x2": 571.7437133789062,
+            "y2": 689.0679321289062
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U05"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "The date control.",
+        "The duration control.",
+        "The Search Cruises action."
+      ],
+      "author_error_categories": [
+        "INCOMPLETE_EVIDENCE",
+        "CONJUNCTIVE_CLAIM_UNDERCOVERED"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "The selected Sail To and Sail From controls correctly cover destination and departure port, but the claim also requires dates, duration, and the search action."
+    },
+    {
+      "reaudit_item_id": "V7AR-045",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "requirement_id": "REQ-10",
+      "claim_id": "REQ-10-C2",
+      "step_index": 2,
+      "requirement_text": "The system shall preserve global storefront context such as account access, order status, wishlist, cart, and locale controls while the user performs search tasks.",
+      "claim_text": "The preserved controls include account, order status, wishlist, cart, and locale-related controls.",
+      "image_path": "./data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+      "image_width": 1280,
+      "image_height": 1080,
+      "image_sha256": "9a6a26389011f40abbb86a6a806c440879ac9387168ea4496b5b5dd77be6970a",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0622",
+          "bbox": {
+            "x1": 1031.0,
+            "y1": 59.0,
+            "x2": 1076.0,
+            "y2": 69.0
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "T05"
+        },
+        {
+          "audit_item_id": "GBBOX-0623",
+          "bbox": {
+            "x1": 1099.0,
+            "y1": 59.0,
+            "x2": 1171.0,
+            "y2": 70.0
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "T06"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "Order Status.",
+        "The cart control.",
+        "The language and currency locale controls."
+      ],
+      "author_error_categories": [
+        "INCOMPLETE_EVIDENCE",
+        "CONJUNCTIVE_CLAIM_UNDERCOVERED"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "Wishlist and My Account are correctly localized, but the five-part claim additionally requires order status, cart, and locale-related controls."
+    },
+    {
+      "reaudit_item_id": "V7AR-046",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "requirement_id": "CONTR-05",
+      "claim_id": "CONTR-05-C3",
+      "step_index": 4,
+      "requirement_text": "The system shall provide a dedicated review state before executing advanced search in which the configured bibliographic and language criteria can be checked, edited, or cleared.",
+      "claim_text": "The dedicated review state provides a visible way to clear criteria.",
+      "image_path": "./data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_04.png",
+      "image_width": 1280,
+      "image_height": 1080,
+      "image_sha256": "0abe694b4943bb70e37cfb811fec17138e71f8e27f1b1d3ec98b82c1fbdd0240",
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0646",
+          "bbox": {
+            "x1": 40.0,
+            "y1": 343.0,
+            "x2": 1239.0,
+            "y2": 446.0
+          },
+          "source": "gemini_visual_grounding_omnimark_supplemental",
+          "description": null,
+          "candidate_id": null
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED_WITH_CAVEAT",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_supplemental"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "PARTIALLY_RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "An explicit Clear, Reset, or remove-criterion control."
+      ],
+      "author_error_categories": [
+        "INCOMPLETE_EVIDENCE",
+        "IMPLICIT_CLEARING_ONLY"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.97,
+      "author_note": "The broad region shows editable configured Author and Language fields, which implies that values can be removed manually. It does not show an explicit clear or reset affordance, so the visible clearing mechanism remains only partially established."
+    },
+    {
+      "reaudit_item_id": "V7AR-047",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "requirement_id": "REQ-03",
+      "claim_id": "REQ-03-C2",
+      "step_index": 2,
+      "requirement_text": "The system shall allow users to search for books using multiple bibliographic fields, including keyword, title, author, publisher, and ISBN.",
+      "claim_text": "The visible bibliographic fields include keyword, title, author, publisher, and ISBN.",
+      "image_path": "./data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+      "image_width": 1280,
+      "image_height": 1080,
+      "image_sha256": "9a6a26389011f40abbb86a6a806c440879ac9387168ea4496b5b5dd77be6970a",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0610",
+          "bbox": {
+            "x1": 41.0,
+            "y1": 321.0,
+            "x2": 95.0,
+            "y2": 335.0
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "T19"
+        },
+        {
+          "audit_item_id": "GBBOX-0611",
+          "bbox": {
+            "x1": 447.0,
+            "y1": 321.0,
+            "x2": 473.0,
+            "y2": 332.0
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "T20"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "The Author field.",
+        "The Publisher field.",
+        "The ISBN field."
+      ],
+      "author_error_categories": [
+        "INCOMPLETE_EVIDENCE",
+        "CONJUNCTIVE_CLAIM_UNDERCOVERED"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "Keyword and Title are correctly localized, but the claim explicitly enumerates five bibliographic fields. Author, Publisher, and ISBN remain unselected."
+    },
+    {
+      "reaudit_item_id": "V7AR-048",
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "requirement_id": "REQ-10",
+      "claim_id": "REQ-10-C1",
+      "step_index": 2,
+      "requirement_text": "The system shall preserve global storefront context such as account access, order status, wishlist, cart, and locale controls while the user performs search tasks.",
+      "claim_text": "Global storefront controls remain available during homepage and advanced search use.",
+      "image_path": "./data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+      "image_width": 1280,
+      "image_height": 1080,
+      "image_sha256": "9a6a26389011f40abbb86a6a806c440879ac9387168ea4496b5b5dd77be6970a",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0620",
+          "bbox": {
+            "x1": 965.9188842773438,
+            "y1": 101.96305847167969,
+            "x2": 1103.5897216796875,
+            "y2": 143.72885131835938
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U05"
+        },
+        {
+          "audit_item_id": "GBBOX-0621",
+          "bbox": {
+            "x1": 276.21234130859375,
+            "y1": 101.18436431884766,
+            "x2": 949.8381958007812,
+            "y2": 144.19801330566406
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U06"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "WHOLE_SCREEN_OR_TRANSITION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "IRRELEVANT",
+      "author_evidential_sufficiency": "INSUFFICIENT",
+      "author_missing_facts": [
+        "Account access.",
+        "Order Status.",
+        "Wishlist.",
+        "The cart control.",
+        "Language and currency controls.",
+        "A comparison showing preservation across homepage and advanced-search states."
+      ],
+      "author_error_categories": [
+        "WRONG_ELEMENT",
+        "INCOMPLETE_EVIDENCE",
+        "CROSS_SCREEN_COMPARISON_MISSING"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "The selected regions are the book-search input and Search button, not the global storefront controls named by the claim. Preservation additionally requires comparison across search states."
+    },
+    {
+      "reaudit_item_id": "V7AR-049",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "requirement_id": "REQ-06",
+      "claim_id": "REQ-06-C1",
+      "step_index": 4,
+      "requirement_text": "The system shall support searching for service categories such as hair salons within a selected city.",
+      "claim_text": "The system supports searching for service categories such as hair salons within a selected city.",
+      "image_path": "./data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png",
+      "image_width": 1280,
+      "image_height": 2078,
+      "image_sha256": "f6d945d0606a1805a213e197c0294bb1870871ec2a1077d50fcaad1e8b44c530",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0675",
+          "bbox": {
+            "x1": 190.5625457763672,
+            "y1": 287.4569396972656,
+            "x2": 520.3289184570312,
+            "y2": 347.2025451660156
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U21"
+        },
+        {
+          "audit_item_id": "GBBOX-0676",
+          "bbox": {
+            "x1": 520.0698852539062,
+            "y1": 287.3960266113281,
+            "x2": 749.9954833984375,
+            "y2": 342.9522399902344
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U19"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "The two regions correctly cover the service-category query 'hair salon' and the selected city 'San Diego, CA', directly matching the UI-observable claim."
+    },
+    {
+      "reaudit_item_id": "V7AR-050",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "requirement_id": "REQ-11",
+      "claim_id": "REQ-11-C1",
+      "step_index": 3,
+      "requirement_text": "The system shall maintain consistency of user-entered search context across sequential edits so that the chosen query and location remain visible together before submission.",
+      "claim_text": "The chosen query is maintained across sequential search-context edits.",
+      "image_path": "./data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+      "image_width": 1280,
+      "image_height": 2078,
+      "image_sha256": "5969d6820061ea44189ff842630173d238f01858a9562808a960629711ca1017",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0678",
+          "bbox": {
+            "x1": 190.50718688964844,
+            "y1": 287.4642639160156,
+            "x2": 520.2879028320312,
+            "y2": 347.252197265625
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U17"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 1,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "WHOLE_SCREEN_OR_TRANSITION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "The same query value on the preceding screen before the location edit."
+      ],
+      "author_error_categories": [
+        "INCOMPLETE_EVIDENCE",
+        "CROSS_SCREEN_COMPARISON_MISSING"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "The region validly shows that 'hair salon' is present after the location field has been edited. Maintaining the value across sequential edits requires comparison with the preceding state."
+    },
+    {
+      "reaudit_item_id": "V7AR-051",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "requirement_id": "CONTR-04",
+      "claim_id": "CONTR-04-C3",
+      "step_index": 4,
+      "requirement_text": "The system shall present complete geographic disambiguation coverage for ambiguous location input, including all relevant city and neighborhood matches before the user commits the search.",
+      "claim_text": "The geographic disambiguation coverage includes all relevant city and neighborhood matches.",
+      "image_path": "./data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png",
+      "image_width": 1280,
+      "image_height": 2078,
+      "image_sha256": "f6d945d0606a1805a213e197c0294bb1870871ec2a1077d50fcaad1e8b44c530",
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0690",
+          "bbox": {
+            "x1": 532.0,
+            "y1": 394.0,
+            "x2": 627.0,
+            "y2": 408.0
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "T18"
+        },
+        {
+          "audit_item_id": "GBBOX-0691",
+          "bbox": {
+            "x1": 588.0,
+            "y1": 430.0,
+            "x2": 706.0,
+            "y2": 444.0
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "T19"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED_WITH_CAVEAT",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "PARTIALLY_SUFFICIENT",
+      "author_missing_facts": [
+        "The remaining visible city and neighborhood suggestions in the geographic disambiguation list."
+      ],
+      "author_error_categories": [
+        "INCOMPLETE_EVIDENCE",
+        "UNIVERSAL_CLAIM_UNDERCOVERED"
+      ],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "The selected entries are valid examples of city and neighborhood disambiguation, but two entries cannot establish complete coverage of all relevant matches in the much longer visible list."
+    },
+    {
+      "reaudit_item_id": "V7AR-052",
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "requirement_id": "CONTR-03",
+      "claim_id": "CONTR-03-C1",
+      "step_index": 4,
+      "requirement_text": "The system shall surface only currently valid coupon offers that match the active business category and resolved locality.",
+      "claim_text": "An active business category and resolved locality are available as search context.",
+      "image_path": "./data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png",
+      "image_width": 1280,
+      "image_height": 2078,
+      "image_sha256": "f6d945d0606a1805a213e197c0294bb1870871ec2a1077d50fcaad1e8b44c530",
+      "claim_status": "SUPPORTED",
+      "regions": [
+        {
+          "audit_item_id": "GBBOX-0684",
+          "bbox": {
+            "x1": 190.5625457763672,
+            "y1": 287.4569396972656,
+            "x2": 520.3289184570312,
+            "y2": 347.2025451660156
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U21"
+        },
+        {
+          "audit_item_id": "GBBOX-0685",
+          "bbox": {
+            "x1": 520.0698852539062,
+            "y1": 287.3960266113281,
+            "x2": 749.9954833984375,
+            "y2": 342.9522399902344
+          },
+          "source": "gemini_visual_grounding_omnimark_selection",
+          "description": null,
+          "candidate_id": "U19"
+        }
+      ],
+      "selection_features": {
+        "claim_status": "SUPPORTED",
+        "region_count": 2,
+        "sources": [
+          "gemini_visual_grounding_omnimark_selection"
+        ]
+      },
+      "author_applicability": "MULTI_REGION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "VALID",
+      "author_semantic_relevance": "RELEVANT",
+      "author_evidential_sufficiency": "SUFFICIENT",
+      "author_missing_facts": [],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": null,
+      "author_confidence": 0.99,
+      "author_note": "The selected query and location controls directly show an active hair-salon category and the San Diego locality as the current search context."
+    },
+    {
+      "reaudit_item_id": "V7AR-053",
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "requirement_id": "CONTR-02",
+      "claim_id": "CONTR-02-C3",
+      "requirement_text": "The system shall send a confirmation to the purchaser's contact address after checkout that summarizes the selected park, pass tier, add-ons, and payment arrangement.",
+      "claim_text": "A confirmation is sent to the contact address after checkout.",
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "selected_step_indices": [
+        1,
+        8,
+        18,
+        19
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_01.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_18.png",
+        "data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png"
+      ],
+      "regions": [],
+      "selection_features": {
+        "explicit_no_visible_region": true
+      },
+      "author_applicability": "NO_VISIBLE_REGION",
+      "author_candidate_exists": false,
+      "author_geometric_validity": "NOT_APPLICABLE",
+      "author_semantic_relevance": "NOT_APPLICABLE",
+      "author_evidential_sufficiency": "NOT_APPLICABLE",
+      "author_missing_facts": [
+        "External evidence that a confirmation was actually delivered to the purchaser's contact address after checkout."
+      ],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": true,
+      "author_confidence": 0.99,
+      "author_note": "Sending or delivering a confirmation to an external contact address is not a visible screenshot region. A UI confirmation message could be localized, but it would still not prove external delivery."
+    },
+    {
+      "reaudit_item_id": "V7AR-054",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "requirement_id": "CONTR-06",
+      "claim_id": "CONTR-06-C1",
+      "requirement_text": "The system shall display a synchronized purchase summary on the eGift card purchase page that visibly updates the currently selected amount and entered delivery details as the shopper configures the card.",
+      "claim_text": "The eGift card purchase page displays a synchronized purchase summary.",
+      "claim_status": "CONTRADICTED",
+      "selected_step_indices": [
+        1,
+        2,
+        8,
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_01.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_02.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_08.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_09.png"
+      ],
+      "regions": [],
+      "selection_features": {
+        "explicit_no_visible_region": true
+      },
+      "author_applicability": "WHOLE_SCREEN_OR_TRANSITION",
+      "author_candidate_exists": false,
+      "author_geometric_validity": "NOT_APPLICABLE",
+      "author_semantic_relevance": "NOT_APPLICABLE",
+      "author_evidential_sufficiency": "NOT_APPLICABLE",
+      "author_missing_facts": [
+        "The complete eGift-card configuration page showing whether a dedicated purchase summary is present or absent."
+      ],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": true,
+      "author_confidence": 0.98,
+      "author_note": "This contradicted claim concerns the absence of a synchronized summary. There is no positive summary element to localize; the appropriate evidence unit is the relevant whole-screen configuration state."
+    },
+    {
+      "reaudit_item_id": "V7AR-055",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "requirement_id": "CONTR-06",
+      "claim_id": "CONTR-06-C2",
+      "requirement_text": "The system shall display a synchronized purchase summary on the eGift card purchase page that visibly updates the currently selected amount and entered delivery details as the shopper configures the card.",
+      "claim_text": "The purchase summary updates the currently selected amount as the shopper configures the card.",
+      "claim_status": "CONTRADICTED",
+      "selected_step_indices": [
+        1,
+        3,
+        8,
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_01.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_03.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_08.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_09.png"
+      ],
+      "regions": [],
+      "selection_features": {
+        "explicit_no_visible_region": true
+      },
+      "author_applicability": "WHOLE_SCREEN_OR_TRANSITION",
+      "author_candidate_exists": false,
+      "author_geometric_validity": "NOT_APPLICABLE",
+      "author_semantic_relevance": "NOT_APPLICABLE",
+      "author_evidential_sufficiency": "NOT_APPLICABLE",
+      "author_missing_facts": [
+        "Before-and-after configuration states showing an amount change and the corresponding purchase-summary state."
+      ],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": true,
+      "author_confidence": 0.98,
+      "author_note": "Updating a summary with the selected amount is a transition claim. Because no purchase summary is present to box, abstaining from region localization is appropriate; evaluation requires comparison across amount-selection states."
+    },
+    {
+      "reaudit_item_id": "V7AR-056",
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "requirement_id": "CONTR-06",
+      "claim_id": "CONTR-06-C3",
+      "requirement_text": "The system shall display a synchronized purchase summary on the eGift card purchase page that visibly updates the currently selected amount and entered delivery details as the shopper configures the card.",
+      "claim_text": "The purchase summary updates the entered delivery details as the shopper configures the card.",
+      "claim_status": "CONTRADICTED",
+      "selected_step_indices": [
+        1,
+        2,
+        8,
+        9
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_01.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_02.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_08.png",
+        "data/processed/flows/mind2web/04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9/original/step_09.png"
+      ],
+      "regions": [],
+      "selection_features": {
+        "explicit_no_visible_region": true
+      },
+      "author_applicability": "WHOLE_SCREEN_OR_TRANSITION",
+      "author_candidate_exists": false,
+      "author_geometric_validity": "NOT_APPLICABLE",
+      "author_semantic_relevance": "NOT_APPLICABLE",
+      "author_evidential_sufficiency": "NOT_APPLICABLE",
+      "author_missing_facts": [
+        "Before-and-after configuration states showing changed delivery details and the corresponding purchase-summary state."
+      ],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": true,
+      "author_confidence": 0.98,
+      "author_note": "Updating a summary with delivery details is a transition claim. Because no purchase summary is present to box, abstaining from region localization is appropriate; evaluation requires comparison across delivery-detail states."
+    },
+    {
+      "reaudit_item_id": "V7AR-057",
+      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+      "requirement_id": "REQ-13",
+      "claim_id": "REQ-13-C3",
+      "requirement_text": "The system shall let users maintain reusable dining preferences that can inform future reservations.",
+      "claim_text": "The preferences are reusable for future reservations after this flow.",
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "selected_step_indices": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_03.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_04.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_05.png",
+        "data/processed/flows/mind2web/05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532/original/step_06.png"
+      ],
+      "regions": [],
+      "selection_features": {
+        "explicit_no_visible_region": true
+      },
+      "author_applicability": "NO_VISIBLE_REGION",
+      "author_candidate_exists": false,
+      "author_geometric_validity": "NOT_APPLICABLE",
+      "author_semantic_relevance": "NOT_APPLICABLE",
+      "author_evidential_sufficiency": "NOT_APPLICABLE",
+      "author_missing_facts": [
+        "Evidence from a later reservation showing that the previously stored preferences are available for reuse."
+      ],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": true,
+      "author_confidence": 0.99,
+      "author_note": "The current flow can show preference entry or saving, but it cannot visibly establish reuse in a future reservation after this flow. No present screenshot region can prove the future behavior."
+    },
+    {
+      "reaudit_item_id": "V7AR-058",
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "requirement_id": "CONTR-01",
+      "claim_id": "CONTR-01-C2",
+      "requirement_text": "The system shall keep the selected park context attached when an applicant proceeds from recruiting content into the application-start flow for a specific opening.",
+      "claim_text": "The selected park context remains attached inside the application-start flow for the specific opening.",
+      "claim_status": "PARTIALLY_SUPPORTED",
+      "selected_step_indices": [
+        1,
+        2,
+        5,
+        6
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_01.png",
+        "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_02.png",
+        "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_05.png",
+        "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png"
+      ],
+      "regions": [],
+      "selection_features": {
+        "explicit_no_visible_region": true
+      },
+      "author_applicability": "WHOLE_SCREEN_OR_TRANSITION",
+      "author_candidate_exists": true,
+      "author_geometric_validity": "NOT_APPLICABLE",
+      "author_semantic_relevance": "NOT_APPLICABLE",
+      "author_evidential_sufficiency": "NOT_APPLICABLE",
+      "author_missing_facts": [
+        "The visible White Water Atlanta park context and Lifeguard opening on the application-start page.",
+        "The preceding selected-park state required to establish preservation across the transition."
+      ],
+      "author_error_categories": [
+        "MISSED_VISIBLE_EVIDENCE",
+        "CROSS_SCREEN_COMPARISON_MISSING"
+      ],
+      "author_localization_abstention_appropriate": false,
+      "author_confidence": 0.99,
+      "author_note": "The target job page visibly contains both the specific Lifeguard opening and White Water Atlanta, so suitable target-screen candidates exist. The complete preservation claim additionally requires comparison with the preceding selected-park state; returning no region at all misses useful visible evidence."
+    },
+    {
+      "reaudit_item_id": "V7AR-059",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "requirement_id": "CONTR-05",
+      "claim_id": "CONTR-05-C1",
+      "requirement_text": "The system shall provide an explicit transition from the release submission overview into the actual submission workflow so contributors can proceed directly from learning the rules to starting a release submission.",
+      "claim_text": "The release submission overview provides an explicit transition into the actual submission workflow.",
+      "claim_status": "CONTRADICTED",
+      "selected_step_indices": [
+        1,
+        2,
+        3
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_01.png",
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_02.png",
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png"
+      ],
+      "regions": [],
+      "selection_features": {
+        "explicit_no_visible_region": true
+      },
+      "author_applicability": "WHOLE_SCREEN_OR_TRANSITION",
+      "author_candidate_exists": false,
+      "author_geometric_validity": "NOT_APPLICABLE",
+      "author_semantic_relevance": "NOT_APPLICABLE",
+      "author_evidential_sufficiency": "NOT_APPLICABLE",
+      "author_missing_facts": [
+        "An explicit submission-start action or link on the release submission overview."
+      ],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": true,
+      "author_confidence": 0.99,
+      "author_note": "The contradicted claim concerns the absence of an explicit transition from the guidelines overview into the submission workflow. No corresponding transition control exists to localize; the relevant evidence is the overview screen as a whole."
+    },
+    {
+      "reaudit_item_id": "V7AR-060",
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "requirement_id": "CONTR-05",
+      "claim_id": "CONTR-05-C2",
+      "requirement_text": "The system shall provide an explicit transition from the release submission overview into the actual submission workflow so contributors can proceed directly from learning the rules to starting a release submission.",
+      "claim_text": "Contributors can proceed directly from learning the rules to starting a release submission.",
+      "claim_status": "CONTRADICTED",
+      "selected_step_indices": [
+        1,
+        2,
+        3
+      ],
+      "ordered_screenshots": [
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_01.png",
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_02.png",
+        "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png"
+      ],
+      "regions": [],
+      "selection_features": {
+        "explicit_no_visible_region": true
+      },
+      "author_applicability": "WHOLE_SCREEN_OR_TRANSITION",
+      "author_candidate_exists": false,
+      "author_geometric_validity": "NOT_APPLICABLE",
+      "author_semantic_relevance": "NOT_APPLICABLE",
+      "author_evidential_sufficiency": "NOT_APPLICABLE",
+      "author_missing_facts": [
+        "A direct action taking the contributor from the rules overview to release submission."
+      ],
+      "author_error_categories": [],
+      "author_localization_abstention_appropriate": true,
+      "author_confidence": 0.99,
+      "author_note": "No direct release-submission transition is visible on the rules overview. Since the contradiction is based on an absent action and the failed transition, whole-screen or transition evidence is appropriate rather than a positive element box."
+    }
+  ]
+}

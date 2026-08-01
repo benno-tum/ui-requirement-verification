@@ -13,7 +13,7 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_valida
 from ui_verifier.model_config import model_name_for, provider_for, temperature_for
 
 
-CLAIM_DECOMPOSITION_PROMPT_VERSION = "CLAIM_DECOMPOSITION_RULE_GUIDED_V2"
+CLAIM_DECOMPOSITION_PROMPT_VERSION = "CLAIM_DECOMPOSITION_RULE_GUIDED_V3"
 DEFAULT_LLM_CACHE_DIR = Path("data/generated/cache/claim_decomposition_llm")
 
 
@@ -1028,6 +1028,12 @@ Instructions:
 - Decompose the requirement into 1 to 5 atomic claims.
 - Treat the max_claims value in the rule-guided input as the upper bound.
 - Use only information contained in the requirement text.
+- Do not improve, generalize, strengthen, weaken, or reinterpret the requirement.
+- Prefer one original-style claim over any decomposition that changes the requirement semantics.
+- Preserve modality, conditions, scope, chronology, comparisons, and quantifiers such as "all", "only", "any", "each", "before", "after", "while", "without", "route-specific", "valid", "invalid", "authenticated", "authorized", "owner", and "guest".
+- Do not add exclusivity. For example, "authenticated users can access settings" must not become "only authenticated users can access settings" unless the original requirement says "only".
+- Do not turn an affordance claim into an outcome claim. For example, "open a menu resource" must not become "the menu page is shown" unless the original requires the opened page to be shown.
+- Preserve hidden/backend obligations as hidden or mixed claims instead of converting them into visible-only claims.
 - Do not invent UI behavior, controls, visibility, screenshots, images, or evidence.
 - Do not make a claim more UI-specific than the requirement itself.
 - Do not add "UI" to claim text unless the requirement itself uses "UI".

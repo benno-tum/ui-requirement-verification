@@ -1,0 +1,12 @@
+{
+  "audit_id": "gemini_grounded_bbox_highres_flow01_rerun_20260719",
+  "title": "Superseded flow-01 pilot — direct Gemini boxes",
+  "created_at": "2026-07-19T14:33:12.067431+00:00",
+  "seed": 20260719,
+  "ui_item_count": 72,
+  "bbox_item_count": 52,
+  "blind_review": false,
+  "status": "completed_pipeline_inspection",
+  "run_id": "bbox_gemini_grounded_regions_highres_topk4_flow01_rerun_20260719",
+  "bbox_source": "gemini_visual_grounding"
+}

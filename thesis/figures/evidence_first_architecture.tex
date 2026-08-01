@@ -1,0 +1,82 @@
+\begin{tikzpicture}[
+  stage/.style={
+    draw=TUMSecondaryBlue,
+    fill=TUMAccentLightBlue!28,
+    rounded corners=2pt,
+    minimum height=1.5cm,
+    align=center,
+    inner sep=5pt,
+    font=\small
+  },
+  boundary/.style={
+    draw=TUMGray,
+    fill=TUMLightGray!24,
+    rounded corners=2pt,
+    minimum height=1.5cm,
+    align=center,
+    inner sep=5pt,
+    font=\small
+  },
+  result/.style={
+    draw=TUMSecondaryBlue2,
+    fill=TUMBlue!12,
+    rounded corners=2pt,
+    minimum height=1.5cm,
+    align=center,
+    inner sep=5pt,
+    font=\small
+  },
+  flow/.style={->, >=latex, draw=TUMDarkGray, line width=0.75pt},
+  trace/.style={->, >=latex, draw=TUMGray, line width=0.75pt, dashed}
+]
+
+\node[boundary, text width=2.75cm] (input) at (0,0) {
+  \textbf{Pipeline input}\\[2pt]
+  \scriptsize\texttt{ScreenshotStep[]}\\[1pt]
+  \scriptsize\texttt{RequirementInput[]}
+};
+
+\node[stage, text width=3.35cm] (understanding) at (3.65,0) {
+  \textbf{Input understanding}\\[2pt]
+  \scriptsize\texttt{ScreenRepresentation[]}\\[1pt]
+  \scriptsize\texttt{RequirementClaim[]}\\[1pt]
+  \scriptsize\texttt{UIEvaluability}
+};
+
+\node[stage, text width=2.6cm] (selection) at (7.25,0) {
+  \textbf{Screenshot selection}\\[2pt]
+  \scriptsize complete flow or ranked top-$k$\\[1pt]
+  \scriptsize\texttt{EvidenceItem[]}
+};
+
+\node[stage, text width=2.8cm] (verification) at (10.7,0) {
+  \textbf{Multimodal verification}\\[2pt]
+  \scriptsize claim status and cited steps\\[1pt]
+  \scriptsize\texttt{ClaimVerification}\\[-2pt]
+  \scriptsize\texttt{Result[]}
+};
+
+\node[result, text width=3.05cm] (output) at (14.5,0) {
+  \textbf{Deterministic aggregation}\\[2pt]
+  \scriptsize conservative label gates\\[1pt]
+  \scriptsize\texttt{Requirement}\\[-2pt]
+  \scriptsize\texttt{VerificationResult[]}\\[-1pt]
+  \scriptsize in \texttt{PipelineOutput}
+};
+
+\node[stage, text width=2.8cm, minimum height=1.05cm] (grounding) at (10.7,-2.45) {
+  \textbf{Region grounding}\\[2pt]
+  \scriptsize optional \texttt{EvidenceItem.bbox}
+};
+
+\draw[flow] (input) -- (understanding);
+\draw[flow] (understanding) -- (selection);
+\draw[flow] (selection) -- (verification);
+\draw[flow] (verification) -- (output);
+
+\draw[trace] (verification) -- (grounding);
+\draw[trace] (grounding.east) -| (output.south);
+\node[font=\scriptsize, text=TUMGray, align=center, fill=\bg, inner sep=1pt] at (14.15,-2.15)
+  {traceability only;\\not used for the label};
+
+\end{tikzpicture}

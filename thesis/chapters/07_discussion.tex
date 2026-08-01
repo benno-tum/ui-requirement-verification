@@ -1,0 +1,145 @@
+\chapter{Discussion and Threats to Validity}\label{discussion-and-threats-to-validity}
+
+\section{Interpretation and Practical Implications}\label{interpretation-and-practical-implications}
+
+Adding pipeline stages does not consistently improve verification. Raw
+requirements with all screenshots produce the highest accuracy in the primary
+Flash-Lite matrix. Lexical top-4 omits decisive information and saves almost no
+money under the implemented batching strategy. Automatic decomposition
+improves macro-F1 under restricted evidence, but all-screenshot accuracy remains
+unchanged and false fulfillment increases. Requirement understanding and
+screenshot selection consequently need separate evaluation.
+
+The evidence-first representation primarily improves inspectability. It records
+selected screenshots, supported and unresolved claims, uncertainty reasons, and
+localized evidence. A reviewer can then separate retrieval errors from visual
+interpretation and label-policy disagreements. Direct whole-flow prompting and
+staged verification can therefore differ in label quality and diagnostic
+detail.
+
+For a practical deployment, the results favor an adaptive rather than fixed
+retrieval policy. Complete flows are appropriate while flows remain short
+enough for the model context and budget. Retrieval becomes useful when flows
+grow, but it should monitor evidence sufficiency and fall back to additional
+screens when outcome states, transitions, or multiple obligations are
+unresolved. Late-screen priors and action/result pairing are concrete
+improvements suggested by the observed failures.
+
+The evidential threshold for fulfillment is context-dependent. A
+safety-critical setting may prefer more abstention, while another project may
+classify missing required evidence as failure. In this study, the four label
+definitions are fixed across all applications and flows, supplied to the model,
+enforced by the aggregator, and evaluated with safety-oriented metrics. Other
+risk policies can be compared by changing these explicit rules instead of
+folding them into a binary score.
+
+\section{Internal Validity}\label{internal-validity}
+
+All current Mind2Web verification items were reviewed by the primary author
+independently of the evaluated model predictions. The documented reference
+standard includes requirement labels, claim boundaries, evidence sets, and
+UI-evaluability judgments. Reported model metrics quantify agreement with this
+reviewed reference standard. A separate disagreement-focused author audit
+provides qualitative analysis of recurring boundary interpretations.
+
+The requirements are derived from the same flows against which they are
+evaluated. Prediction-independent manual review keeps evaluated outputs
+separate from reference decisions. Separate reporting for original and
+contrastive requirements, flow-level resampling, and the exploratory PURE
+document comparison make the construction and evidence sources visible in the
+analysis.
+
+Model outputs are sensitive to model version, prompt text, image preparation, retries, and aggregation. Historical repository reports combine different current-per-flow runs and are useful for diagnosis but not controlled comparison. Final experiments require an immutable run manifest and exact model identifiers.
+
+\section{Construct Validity}\label{construct-validity}
+
+The four labels operationalize a conservative interpretation of screenshot-based verification. Other projects might define missing evidence as failure or treat visible success messages as sufficient proof of a backend outcome. The adopted label policy is therefore a deliberate construct tied to the intended safety goal rather than the only possible definition.
+
+The label definitions specify the meaning of the four verdicts, but they do not
+fully specify when visible evidence is sufficient for assigning them. When a
+control, message, or interface state suggests the required behavior, the
+verifier must decide whether that cue establishes the behavior or merely makes
+it plausible. With only generic evidence guidance, part of this decision is
+supplied by the model's implicit assumptions. The observed cross-model
+disagreements are consistent with such model-dependent interpretation, even
+though repeated executions of the same Gemini configuration produced stable
+labels. The study retained one generic evidence policy because the 13-flow
+benchmark was too narrow to derive detailed sufficiency criteria without
+risking calibration to its particular applications and items.
+
+Screenshot-step overlap is an incomplete measure of evidence quality. Human annotations may contain several valid screens, and a prediction may cite a semantically valid alternative that is absent from the reference set. Conversely, retrieving a gold step does not prove that the model used the correct region or interpretation. Manual evidence inspection should complement the automated metrics.
+
+Region-level review introduces a related construct question. A visually tight
+box is not necessarily the most useful explanation, and some claims require a
+whole-screen state, multiple regions, or a transition. The grounding evaluation
+therefore combines geometric measures with human relevance and sufficiency
+judgments instead of defining correctness only through intersection over union.
+
+UI evaluability is also a constructed boundary. The difference between a
+routine hidden dependency behind a visible success proxy and a nontrivial
+hidden property can depend on the application risk model. This boundary
+therefore requires the same explicit evidence guidance as the fulfillment
+labels.
+
+Claim matching introduces additional uncertainty. Two decompositions can be semantically equivalent while using different granularity. Low claim-status performance may reflect a poor decomposition, poor text matching, or poor status prediction. The final report should separate claim-match recall from status quality on matched claims.
+
+\section{External Validity}\label{external-validity}
+
+Thirteen web flows are a small sample of the variety of real interfaces and requirements. The selected tasks do not establish generalization to native mobile applications, desktop software, accessibility requirements, or industrial specifications. Mind2Web trajectories reflect one recorded interaction path and may omit alternative states relevant to a requirement.
+
+The primary benchmark also reverses the usual requirements-first development
+order. Its source requirements were reconstructed from already observed web
+flows, so the contract and its evidence are not independent. This construction
+supports controlled evaluation of evidence interpretation, but it favors
+requirements that align with established interface behavior and does not
+reproduce a setting in which an independently authored requirement precedes a
+design or implementation that may violate it. The study neither generated UI
+drafts nor seeded implementation defects. Contrastive items introduce
+unsupported and contradictory cases, but they are constructed deviations
+rather than observed implementation defects. The results therefore do not
+estimate defect-detection performance in requirements-driven development.
+
+PURE broadens the source domain with realistic requirements documents. Its
+results are framed as document-to-UI consistency and reported separately from
+implementation-conformance results over recorded execution flows.
+
+\section{Reliability and Reproducibility}\label{reliability-and-reproducibility}
+
+Model APIs can return malformed responses, change behavior between versions, or fail transiently. Older flow runs contained API fallbacks, and cached responses may hide differences between repeated executions. Final reporting should include retries, failures, fallbacks, token counts, image counts, runtime, cache policy, and pricing assumptions.
+
+The repository contains stale summary metrics generated against older benchmark snapshots. For example, one stored batched-top-k metric reports 31.8\% accuracy because it evaluates 201 predictions against all 258 current gold items and counts the 57 absent predictions as abstentions. Recomputed metrics restricted to the actual 201-item run give 75.1\% accuracy. This discrepancy demonstrates why each thesis table must be generated from a frozen manifest with matching prediction and gold sets.
+
+\section{Current Scope Limitations}\label{current-scope-limitations}
+
+The pipeline provides mature step-level evidence and implemented region
+grounding whose final human evaluation is reported separately once complete.
+Bounding boxes are not treated as an accuracy intervention. Screenshots cannot
+establish hidden backend truth, global absence, long-term persistence, external
+delivery, or complete result correctness. The completed 2x2 matrix isolates
+claim and screenshot policy for one model, but it does not show that
+evidence-first design uniformly improves false fulfillment. The reported
+conclusions remain within these limits; evidence grounding alone does not
+establish safer labels.
+
+\section{Dataset Licensing and Artifact Availability}\label{dataset-licensing-and-artifact-availability}
+
+All 13 primary flows belong to the Mind2Web \texttt{test\_task} split. Mind2Web is
+identified by its maintainers as CC BY 4.0, but the official repository also
+asks users not to redistribute unzipped test files online and not to place
+benchmark data in training corpora. The public replication artifact is
+therefore restricted to code, configurations, citations, and aggregate results.
+It excludes original screenshots, HTML, MHTML, HAR files, traces, videos,
+processed trajectories, test records, and per-item raw model interactions.
+Exact test identifiers and detailed annotations remain available only for
+examination under controlled access unless the maintainers approve broader
+release.
+
+PURE has a different rights limitation. Its curators collected requirements
+documents from third-party Web sources and explicitly state that they are not
+aware of license agreements or intellectual-property rights governing the
+source requirements. Consequently, the public artifact excludes PURE PDFs, XML
+files, extracted figures, substantial text passages, and per-item outputs that
+reproduce those passages. It may contain document identifiers, hashes,
+author-created non-textual labels, aggregate metrics, and code that requires
+users to obtain PURE independently. These conservative boundaries support
+replication without asserting rights over third-party source content.

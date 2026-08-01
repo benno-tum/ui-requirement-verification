@@ -1,0 +1,175 @@
+\chapter{Introduction}\label{introduction}
+
+\section{Motivation}\label{motivation}
+
+Generative AI systems are now used for software-development tasks beyond code completion. Coding agents can inspect repositories, edit multiple files, execute tools, and iteratively respond to test results. \textcite{kwa2025}, for example, propose a task-completion time horizon that relates an agent's success to the time required by a human expert and report an approximately exponential historical increase on their studied software and reasoning tasks. Benchmarks such as SWE-bench have likewise moved evaluation from isolated code completion toward the resolution of real issues drawn from software repositories \autocite{jimenez2024}. These developments reduce the effort required to generate candidate implementations and make increasingly autonomous implementation workflows technically plausible.
+
+Evidence for end-to-end productivity is less clear than benchmark progress. In
+a randomized controlled trial, experienced open-source developers worked on
+repositories they already knew. The early-2025 tools tested by \textcite{becker2025} increased their task completion time. Benchmark capability and observed
+delivery speed are thus separate empirical outcomes. Generated code still has
+to be placed in repository context, checked against the intended behavior, and
+reviewed.
+
+This thesis starts from a narrower observation. When producing a candidate
+implementation becomes cheaper, requirements clarification and verification
+account for a larger share of the remaining effort. An agent can turn
+underspecified text into code before the tacit clarifications of a development
+team have occurred. A higher volume of generated changes also increases the
+amount of behavior that must be checked. Faster implementation consequently
+raises the value of precise requirements and efficient verification, even
+though its effect on total engineering time varies between settings.
+
+UI requirements expose this shift clearly because the contract and its evidence
+use different modalities. The contract is usually written in natural language;
+the evidence appears in visible states and transitions. For example, a
+requirement may concern unauthenticated menu access, a filter that remains
+selected, or fees displayed in a cart summary. No single source-code location
+necessarily establishes any of these behaviors.
+
+Manual review can interpret such behavior but takes time and may vary between
+reviewers. Conventional GUI automation provides repeatable interactions when
+an executable system, robust selectors, and explicit oracles are available.
+\textcite{nass2021} describe practical challenges arising from
+the complexity and variability of graphical interfaces. Recorded screenshot
+sequences preserve concrete states and their order without requiring a live
+deployment. Their evidential scope is narrower: they contain one observed
+trajectory and omit other reachable states and hidden implementation
+properties.
+
+\section{Problem Statement}\label{problem-statement}
+
+This thesis studies requirements-based review of UI flows. An ordered screenshot sequence records the successive interface states available to the reviewer and is paired with a collection of textual requirements. The screenshots are therefore the evidence representation for the review, rather than the object of the requirements themselves. For each requirement, the system should produce a verification label and point to the screenshot steps that justify its decision. The label set is \texttt{FULFILLED}, \texttt{PARTIALLY\_\allowbreak FULFILLED}, \texttt{NOT\_FULFILLED}, and \texttt{ABSTAIN}. The output may additionally contain smaller requirement claims, claim-level evidence statuses, uncertainty reasons, a natural-language rationale, and bounding boxes that localize visible supporting or contradicting evidence.
+
+The technical problem is to construct a trace from the requirement to the
+available evidence. Related work connects user stories with GUI prototypes,
+performs agent-driven requirement verification in interactive GUIs, and
+combines textual and visual evidence for mobile-app bug-fix verification
+\autocite{kretzer2025,kolthoff2025guispector,massenon2026}.
+The setting studied here fixes the evidence artifact in advance as an ordered
+set of UI states. Verification therefore requires a decision about
+observability, identification of the relevant states, localization of evidence
+within those states, and a boundary between visible support and inference.
+
+The label boundary is clearest when a requirement explicitly asks for an
+observable outcome. In one reviewed benchmark item, the flow shows a configured
+eGift card and an \texttt{Add\ to\ Bag} control, but no updated bag or checkout state.
+This supports the availability of the submission mechanism, not the requirement
+that the configured card be added to the ongoing bag and proceed to checkout.
+A \texttt{FULFILLED} label would therefore claim an outcome absent from the recorded
+flow.
+
+The label policy follows this evidential boundary. \texttt{FULFILLED} requires support
+for all central observable parts. \texttt{NOT\_FULFILLED} requires visible
+counter-evidence; an omitted state is insufficient. Support for one material
+part combined with a missing, hidden, or ambiguous part can justify
+\texttt{PARTIALLY\_\allowbreak FULFILLED}. When the flow supports no reliable positive or negative
+decision, the output is \texttt{ABSTAIN}. This last case follows the reject-option
+principle for decisions under insufficient information \autocite{hendrickx2024,wen2025}.
+
+The task requires a boundary between visible UI behavior and hidden system
+truth. Backend correctness, security guarantees, payment processing, email
+delivery, database persistence, catalog completeness, long-term availability,
+and external effects lie outside screenshot evidence unless the requirement
+targets their visible representation. A success message can serve as a visible
+proxy for the message shown to the user, without establishing the underlying
+operation. Predictions and reference labels follow this boundary.
+
+\section{Research Gap and Approach}\label{research-gap-and-approach}
+
+Existing work covers several neighboring tasks. \textcite{kretzer2025} connect user stories with GUI prototypes and study whether a story is represented in a prototype. More directly, GUISpector uses a multimodal agent to operationalize natural-language requirements, explore interactive GUI applications, record verification trajectories, and classify requirements as met, partially met, or unmet \autocite{kolthoff2025guispector}. UI-agent datasets such as Mind2Web represent ordered interaction trajectories for language-conditioned action selection \autocite{deng2023}, while SeeClick studies the localization of interface elements from language instructions \autocite{cheng2024}. Cross-modal software-verification research also combines textual and visual artifacts to assess mobile-app bug fixes \autocite{massenon2026}. Requirements traceability explains why links between statements and artifacts matter, while abstention research explains why a model should sometimes decline a definite decision.
+
+The evidence regime and output contract distinguish the setting studied here.
+GUISpector creates evidence by operating an application; this thesis begins with
+a previously recorded flow and asks what that fixed, incomplete record
+establishes. Its label contract adds \texttt{ABSTAIN} and reserves \texttt{NOT\_FULFILLED} for
+visible contradiction, thereby separating insufficient evidence from
+requirement violation. The task also differs from action selection and element
+localization. Screenshot order matters whenever an action appears in one state
+and its result in a later state.
+
+The implementation converts each screenshot into a lightweight representation
+and assesses the requirement's UI evaluability. Depending on the experimental
+condition, it keeps the requirement intact or decomposes it into claims. A
+retriever selects candidate steps, the multimodal verifier assigns claim
+statuses, and deterministic rules aggregate them into a requirement label.
+Stored intermediate outputs expose retrieval and reasoning errors separately.
+
+``Evidence-first'' names this architecture; its performance remains an empirical
+question. In the current experiments, the staged configurations do not
+consistently outperform direct whole-flow verification. Their demonstrated
+benefit is diagnostic: evidence quality can be measured, and omitted states can
+be distinguished from errors made after the correct state was supplied.
+
+\section{Research Questions}\label{research-questions}
+
+The thesis is organized around three research questions:
+
+\textbf{RQ1: How well can multimodal models determine the fulfillment status of written requirements from ordered sequences of UI screenshots?}
+
+RQ1 measures end-to-end agreement with the evidence-bounded four-label
+operationalization defined in Section 3.4. The analysis uses accuracy,
+macro-F1, per-class measures, confusion matrices, inter-model agreement, and
+false fulfillment.
+
+\textbf{RQ2: How do claim decomposition and screenshot selection affect label accuracy, evidence traceability, and cost relative to direct whole-flow verification?}
+
+RQ2 varies claim decomposition and screenshot selection independently. A
+controlled matrix compares raw and decomposed requirements under complete-flow
+and top-k input. Label correctness, evidence overlap, runtime, token usage, and
+cost are reported separately.
+
+\textbf{RQ3: Which requirement and evidence patterns cause verification errors, abstentions, or unsafe \texttt{FULFILLED} predictions?}
+
+RQ3 applies a predefined error taxonomy to schema violations, reasoning errors,
+retrieval failures, insufficient evidence, and label-boundary disagreements.
+The analysis covers universal and comparative wording, late result states,
+hidden outcomes, and cross-step persistence. It characterizes observed
+abstentions without assigning them a causal safety effect.
+
+\section{Contributions and Scope}\label{contributions-and-scope}
+
+The intended contributions of the thesis are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A problem formulation for verifying textual UI requirements against ordered
+  screenshot flows, including a separation between UI evaluability and
+  fulfillment.
+\item
+  An evidence-first prototype that decomposes requirements, retrieves
+  screenshot evidence, performs screenshot-grounded claim verification, and
+  applies conservative aggregation.
+\item
+  A reviewed benchmark over 13 Mind2Web-derived flows containing requirement
+  labels, claims, evidence steps, rationales, uncertainty reasons, and
+  contrastive items.
+\item
+  An evaluation framework for label quality, false fulfillment, abstention,
+  coverage, evidence retrieval, claim matching, runtime, and cost.
+\item
+  An empirical analysis of the requirement structures and flow patterns behind
+  unsafe or uncertain decisions.
+\end{enumerate}
+
+Screenshot-step evidence and region-level evidence are evaluated as two
+different outputs. Screenshot-step retrieval is evaluated automatically against
+the reviewed evidence steps. Region-level grounding is not treated as a cause of
+better label accuracy; it is an additional traceability output whose relevance,
+sufficiency, and coverage require human evaluation. The repository contains
+candidate-mark grounding runs over all 13 flows and the review infrastructure
+needed for this evaluation. PURE provides a separate exploratory
+document-to-UI consistency analysis; the primary benchmark remains the 13
+recorded execution flows.
+
+The empirical scope is limited to 13 flows and does not establish industrial
+readiness or broad generalization. The study makes the task and its failure
+modes measurable, compares concrete verifier designs, and identifies the claims
+supported by screenshot evidence.
+
+The remainder of the thesis first establishes the conceptual and technical
+foundations, formalizes the verification task, describes the implemented
+pipeline, and then presents the benchmark, evaluation, results, limitations, and
+conclusions.

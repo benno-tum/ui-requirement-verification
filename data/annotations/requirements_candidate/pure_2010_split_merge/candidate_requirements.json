@@ -1,0 +1,7 @@
+{
+  "dataset": "pure",
+  "flow_id": "pure_2010_split_merge",
+  "flow_overview": "Adjudicated PURE Split/Merge candidate queue; accepted source items were moved to the benchmark.",
+  "capability_summary": [],
+  "requirements": []
+}

@@ -35,7 +35,12 @@
           "evidence_steps": [
             1
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The user can set a business or service query and a geographic location together in the search form.",
@@ -47,7 +52,20 @@
             3,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -74,10 +92,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:57:23+00:00",
       "evidence_note": "The UI shows a two-field search form and the entered query 'hair salon' with San Diego location context.",
-      "rationale": "All visible core claims for searchable local discovery are supported by the search form and entered search context."
+      "rationale": "All visible core claims for searchable local discovery are supported by the search form and entered search context.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:57:23+00:00",
+      "updated_at": "2026-07-11T14:15:15+00:00"
     },
     {
       "requirement_id": "REQ-03",
@@ -109,7 +128,12 @@
           "evidence_steps": [
             2
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -121,10 +145,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:58:03+00:00",
       "evidence_note": "After 'hair salon' is entered, a quick-results panel appears with related suggestions.",
-      "rationale": "The autocomplete or quick-result behavior is directly visible while the query field contains the typed service term."
+      "rationale": "The autocomplete or quick-result behavior is directly visible while the query field contains the typed service term.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:58:03+00:00",
+      "updated_at": "2026-07-11T14:15:16+00:00"
     },
     {
       "requirement_id": "REQ-04",
@@ -158,7 +183,16 @@
             3,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -175,10 +209,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:58:09+00:00",
       "evidence_note": "The location field shows San Diego input and a quick-location dropdown with multiple San Diego-related places.",
-      "rationale": "The visible dropdown directly supports location autocomplete or quick-location suggestions."
+      "rationale": "The visible dropdown directly supports location autocomplete or quick-location suggestions.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:58:09+00:00",
+      "updated_at": "2026-07-11T14:15:16+00:00"
     },
     {
       "requirement_id": "REQ-05",
@@ -212,7 +247,16 @@
             3,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -229,10 +273,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:58:43+00:00",
       "evidence_note": "The location field changes from 'San Diego' to 'San Diego, CA'.",
-      "rationale": "The visible search context shows a more specific location label after location editing."
+      "rationale": "The visible search context shows a more specific location label after location editing.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:58:43+00:00",
+      "updated_at": "2026-07-11T14:15:16+00:00"
     },
     {
       "requirement_id": "REQ-07",
@@ -267,7 +312,12 @@
           "evidence_steps": [
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -291,10 +341,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:59:35+00:00",
       "evidence_note": "The 'Find' button is visible next to the filled query and location fields.",
-      "rationale": "The visible 'Find' action satisfies the requirement for an explicit search submission mechanism."
+      "rationale": "The visible 'Find' action satisfies the requirement for an explicit search submission mechanism.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:59:35+00:00",
+      "updated_at": "2026-07-11T14:15:16+00:00"
     },
     {
       "requirement_id": "REQ-08",
@@ -329,7 +380,12 @@
           "evidence_steps": [
             1
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The signed-in account area provides access entries for favorites, coupons, profile, and settings.",
@@ -339,7 +395,12 @@
           "evidence_steps": [
             1
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -363,10 +424,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:59:44+00:00",
       "evidence_note": "The right-side account panel says 'Hi James S.' and lists Favorites, Coupons, Profile, and Settings.",
-      "rationale": "The visible signed-in menu provides the requested account-level sections."
+      "rationale": "The visible signed-in menu provides the requested account-level sections.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:59:44+00:00",
+      "updated_at": "2026-07-11T14:15:16+00:00"
     },
     {
       "requirement_id": "REQ-09",
@@ -382,7 +444,7 @@
         1
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
@@ -400,7 +462,12 @@
           "evidence_steps": [
             1
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The system exposes coupon discovery content or coupon results inside the service.",
@@ -413,7 +480,24 @@
             3,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -428,10 +512,22 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T11:00:29+00:00",
       "evidence_note": "A Coupons entry is visible in the signed-in account panel, but no coupon listing or coupon discovery page is shown.",
-      "rationale": "The visible entry point supports the feature exposure, while the actual discovery content is not visible in this screenshot flow."
+      "rationale": "The visible entry point supports the feature exposure, while the actual discovery content is not visible in this screenshot flow.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T11:00:29+00:00",
+      "updated_at": "2026-07-11T14:07:07+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-032",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-10",
@@ -449,7 +545,7 @@
         4
       ],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "The task goal is coupon-oriented, the UI exposes a coupons section, and the flow configures a localized hair salon search. Together these cues support a plausible requirement that coupons can be sought in relation to a selected business category and place, even though the final coupon page is not shown.",
       "annotated_by": "benno",
@@ -469,7 +565,12 @@
           "evidence_steps": [
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The interface exposes coupons as a possible user-facing area.",
@@ -479,7 +580,12 @@
           "evidence_steps": [
             1
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The system provides coupon discovery results or a coupon path for the selected category and locality.",
@@ -492,7 +598,24 @@
             3,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 2,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -517,8 +640,20 @@
       ],
       "evidence_note": "The flow configures 'hair salon' with 'San Diego, CA' and shows a Coupons entry, but it does not show coupon results for that search.",
       "rationale": "The visible setup and coupon entry support part of the requirement, but the category-and-locality-specific coupon discovery outcome is not shown.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T11:06:54+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T11:06:54+00:00",
+      "updated_at": "2026-07-11T14:14:50+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-010",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "REQ-12",
@@ -552,7 +687,16 @@
             3,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         },
         {
           "claim": "The location suggestions include both city-level and neighborhood or area-level options.",
@@ -563,7 +707,16 @@
             3,
             4
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 3,
+              "evidence_type": "screen"
+            },
+            {
+              "step_index": 4,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -580,10 +733,11 @@
           "evidence_type": "screen"
         }
       ],
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T11:09:21+00:00",
       "evidence_note": "The dropdown includes city-level entries such as San Diego, CA and San Diego, TX, plus area entries such as Mission Hills, Serra Mesa, Downtown, and other San Diego neighborhoods.",
-      "rationale": "The visible quick-location list supports geographic disambiguation with multiple city and neighborhood-level options."
+      "rationale": "The visible quick-location list supports geographic disambiguation with multiple city and neighborhood-level options.",
+      "review_status": "accepted",
+      "created_at": "2026-04-23T11:09:21+00:00",
+      "updated_at": "2026-07-11T14:15:16+00:00"
     },
     {
       "requirement_id": "REQ-13",
@@ -620,7 +774,12 @@
           "evidence_steps": [
             1
           ],
-          "note": null
+          "evidence_units": [
+            {
+              "step_index": 1,
+              "evidence_type": "screen"
+            }
+          ]
         }
       ],
       "evidence_steps": [
@@ -646,8 +805,9 @@
       ],
       "evidence_note": "The page shows shortcuts such as Find People, Restaurants, Auto Repair, Dentists, Veterinarians, and Attorneys.",
       "rationale": "The visible category shortcuts provide alternative entry points from the main page.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T11:11:01+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T11:11:01+00:00",
+      "updated_at": "2026-07-11T14:15:16+00:00"
     },
     {
       "requirement_id": "REQ-02",
@@ -655,12 +815,11 @@
       "text": "The system shall provide a unified search workflow in which the user can set both service type and location before launching a search.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-02",
       "source_candidate_id": "REQ-02",
       "source_harvest_id": "HARV-02",
       "step_indices": [
-        1,
         2,
         3,
         4
@@ -668,6 +827,8 @@
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -734,8 +895,9 @@
       ],
       "evidence_note": "Steps 2 to 4 show the service type and location being set in the same search workflow, with a Find action still present.",
       "rationale": "The flow supports setting both criteria before launching the search.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:56:54+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:56:54+00:00",
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "REQ-06",
@@ -743,25 +905,29 @@
       "text": "The system shall support searching for service categories such as hair salons within a selected city.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-06",
       "source_candidate_id": "REQ-06",
       "source_harvest_id": "HARV-06",
       "step_indices": [
         2,
+        3,
         4
       ],
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "annotation_notes": "Search configuration and launch mechanism are supported, while the returned-results outcome is not covered.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "verification_label": "FULFILLED",
       "uncertainty_reasons": [
         "FLOW_COVERAGE_GAP"
       ],
       "notes": [],
       "claims": [
         {
-          "claim": "Users can configure a hair salon search within a selected city.",
+          "claim": "The system supports searching for service categories such as hair salons within a selected city.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -779,36 +945,6 @@
               "step_index": 3,
               "evidence_type": "screen"
             },
-            {
-              "step_index": 4,
-              "evidence_type": "screen"
-            }
-          ]
-        },
-        {
-          "claim": "Users can launch the configured hair salon search.",
-          "status": "SUPPORTED",
-          "claim_type": "OBSERVABLE",
-          "importance": "CORE",
-          "evidence_steps": [
-            4
-          ],
-          "evidence_units": [
-            {
-              "step_index": 4,
-              "evidence_type": "screen"
-            }
-          ]
-        },
-        {
-          "claim": "Search results for hair salons within the selected city are returned after launch.",
-          "status": "MISSING",
-          "claim_type": "OBSERVABLE",
-          "importance": "CORE",
-          "evidence_steps": [
-            4
-          ],
-          "evidence_units": [
             {
               "step_index": 4,
               "evidence_type": "screen"
@@ -837,8 +973,9 @@
       ],
       "evidence_note": "The flow configures a hair salon search in San Diego, CA and shows the Find action, but no result page is shown after submission.",
       "rationale": "Search configuration and launch mechanism are supported, while the returned-results outcome is not covered.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:56:54+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:56:54+00:00",
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "REQ-11",
@@ -846,7 +983,7 @@
       "text": "The system shall maintain consistency of user-entered search context across sequential edits so that the chosen query and location remain visible together before submission.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-11",
       "source_candidate_id": "REQ-11",
       "source_harvest_id": "HARV-11",
@@ -858,6 +995,8 @@
       "requirement_type": "NFR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -924,8 +1063,9 @@
       ],
       "evidence_note": "The hair salon query remains present while the location is edited, and step 4 shows hair salon with San Diego, CA together before search submission.",
       "rationale": "The visible form state preserves the search context across sequential edits.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-23T10:56:54+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-23T10:56:54+00:00",
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "CONTR-01",
@@ -942,8 +1082,9 @@
       "source_candidate_id": "CONTR-01",
       "step_indices": [],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "annotated_by": "benno",
       "intended_label": "PARTIALLY_FULFILLED",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
@@ -1033,8 +1174,20 @@
       ],
       "evidence_note": "Favorites and Coupons are visible in the account area, but no coupon discovery, save action, saved coupon, or later revisit state is shown.",
       "rationale": "The relevant account areas are visible, while saving and later-use persistence are not verified.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-11T13:43:48+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-025",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "CONTR-02",
@@ -1051,8 +1204,9 @@
       "source_candidate_id": "CONTR-02",
       "step_indices": [],
       "requirement_type": "FR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NAVIGATION_OUTCOME",
+      "annotated_by": "benno",
       "intended_label": "PARTIALLY_FULFILLED",
       "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
@@ -1193,8 +1347,20 @@
       ],
       "evidence_note": "The flow shows only a Coupons entry. It does not show a discovered coupon, an opened coupon, redemption details, merchant-facing instructions, or an outbound handoff.",
       "rationale": "The screenshots do not contain the coupon discovery state needed to evaluate this requirement reliably.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-11T14:14:57+00:00",
+      "ui_evaluability_author_reinspection": {
+        "audit_schema": "single_author_ui_disagreement_audit_v1",
+        "audit_item_id": "UID-040",
+        "original_label": "PARTIALLY_UI_VERIFIABLE",
+        "final_label": "UI_VERIFIABLE",
+        "resolution": "ADOPT_PIPELINE",
+        "confidence": null,
+        "rationale": "",
+        "note": "",
+        "audit_completed_at": "2026-07-26T10:24:35.143391+00:00"
+      }
     },
     {
       "requirement_id": "CONTR-03",
@@ -1213,6 +1379,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "CONTENT_UPDATE",
+      "annotated_by": "benno",
       "intended_label": "ABSTAIN",
       "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
@@ -1310,8 +1477,9 @@
       ],
       "evidence_note": "The search context is visible, but no coupon offers are shown. Offer validity and match correctness cannot be verified from the screenshots.",
       "rationale": "The core coupon-offer behavior is not present in the flow, so a reliable positive or negative verdict is not possible.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-11T13:51:18+00:00"
     },
     {
       "requirement_id": "CONTR-04",
@@ -1330,6 +1498,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "annotated_by": "benno",
       "intended_label": "ABSTAIN",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
@@ -1403,8 +1572,9 @@
       ],
       "evidence_note": "The flow shows many San Diego-related city and neighborhood or area suggestions, but completeness over all relevant matches cannot be established from screenshots alone.",
       "rationale": "The visible disambiguation behavior is supported, while the strengthened completeness obligation is not fully verifiable.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-11T14:15:13+00:00"
     },
     {
       "requirement_id": "CONTR-05",
@@ -1423,6 +1593,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NAVIGATION_OUTCOME",
+      "annotated_by": "benno",
       "intended_label": "NOT_FULFILLED",
       "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
@@ -1547,8 +1718,9 @@
       ],
       "evidence_note": "Step 4 shows the configured search context, but the flow does not show the search being submitted or any later coupon results or review step.",
       "rationale": "Missing a post-submission state is not visible counter-evidence, so the safest label is abstain.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-11T13:51:34+00:00"
     },
     {
       "requirement_id": "CONTR-06",
@@ -1567,6 +1739,7 @@
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
+      "annotated_by": "benno",
       "intended_label": "NOT_FULFILLED",
       "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
@@ -1706,8 +1879,9 @@
       ],
       "evidence_note": "The active search term and resolved location are visible before submission, but the flow contains no later coupon discovery view.",
       "rationale": "There is not enough visible evidence to judge whether the context is carried forward or revisable later.",
-      "review_status": "needs_review",
-      "created_at": "2026-04-27T10:47:28+00:00"
+      "review_status": "accepted",
+      "created_at": "2026-04-27T10:47:28+00:00",
+      "updated_at": "2026-07-11T13:52:08+00:00"
     }
   ]
 }

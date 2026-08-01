@@ -1,0 +1,155 @@
+{
+  "schema_version": "bbox_inspection_judgments_v1",
+  "items": {
+    "GBBOX-0002": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T14:32:12.187726+00:00"
+    },
+    "GBBOX-0001": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T14:32:27.412624+00:00"
+    },
+    "GBBOX-0003": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T14:32:35.940068+00:00"
+    },
+    "GBBOX-0005": {
+      "status": "UNCERTAIN",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T14:32:53.894432+00:00"
+    },
+    "GBBOX-0004": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T14:33:37.403475+00:00"
+    },
+    "GBBOX-0006": {
+      "status": "UNCERTAIN",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T14:33:52.026309+00:00"
+    },
+    "GBBOX-0007": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "SEMANTIC_ERROR",
+      "updated_at": "2026-07-20T14:34:16.305797+00:00"
+    },
+    "GBBOX-0008": {
+      "status": "UNCERTAIN",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T14:34:42.314974+00:00"
+    },
+    "GBBOX-0009": {
+      "status": "UNCERTAIN",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T14:34:43.380569+00:00"
+    },
+    "GBBOX-0010": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T14:34:51.429891+00:00"
+    },
+    "GBBOX-0012": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "SEMANTIC_ERROR",
+      "updated_at": "2026-07-20T14:35:31.057717+00:00"
+    },
+    "GBBOX-0011": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "WRONG_LOCATION",
+      "updated_at": "2026-07-20T14:42:33.048896+00:00"
+    },
+    "GBBOX-0013": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T14:42:43.701015+00:00"
+    },
+    "GBBOX-0014": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "WRONG_LOCATION",
+      "updated_at": "2026-07-20T14:42:56.221472+00:00"
+    },
+    "GBBOX-0015": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "WRONG_LOCATION",
+      "updated_at": "2026-07-20T14:42:56.233512+00:00"
+    },
+    "GBBOX-0016": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T14:43:07.130975+00:00"
+    },
+    "GBBOX-0017": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T14:43:07.138673+00:00"
+    },
+    "GBBOX-0018": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T14:43:16.896525+00:00"
+    },
+    "GBBOX-0020": {
+      "status": "UNCERTAIN",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T14:43:33.229213+00:00"
+    },
+    "GBBOX-0019": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T14:47:29.877469+00:00"
+    },
+    "GBBOX-0021": {
+      "status": "UNCERTAIN",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T14:47:04.748346+00:00"
+    },
+    "GBBOX-0022": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T14:48:46.429419+00:00"
+    },
+    "GBBOX-0023": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "SEMANTIC_ERROR",
+      "updated_at": "2026-07-20T14:49:11.913578+00:00"
+    },
+    "GBBOX-0024": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "SEMANTIC_ERROR",
+      "updated_at": "2026-07-20T14:49:11.928724+00:00"
+    },
+    "GBBOX-0025": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "SEMANTIC_ERROR",
+      "updated_at": "2026-07-20T14:49:20.408514+00:00"
+    }
+  }
+}

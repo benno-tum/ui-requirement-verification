@@ -205,7 +205,7 @@
       "manual_verification_label": "partially_fulfilled",
       "manual_verification_notes": "The UI implementation doesn't depend on requirement",
       "requirement_type": "NFR",
-      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-04-21T19:10:52+00:00"
     },
@@ -392,6 +392,48 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "created_at": "2026-05-07T12:47:22+00:00"
+    },
+    {
+      "requirement_id": "REQ-14",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "text": "The system shall provide an explicit action for applicants to begin applying from the detailed job view.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        14
+      ],
+      "source_candidate_id": "REQ-14",
+      "source_harvest_id": "HARV-14",
+      "annotation_notes": "The explicit application entry action is visible.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
+    },
+    {
+      "requirement_id": "REQ-15",
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "text": "The system shall support a downstream application workflow after the applicant selects Apply for a job.",
+      "scope": "single_screen",
+      "tags": [],
+      "origin": "human",
+      "review_status": "accepted",
+      "step_indices": [
+        14
+      ],
+      "source_candidate_id": "REQ-15",
+      "source_harvest_id": "HARV-15",
+      "annotation_notes": "The entry point is supported, but the downstream workflow is missing from the flow.",
+      "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "visible_subtype": "NONE",
+      "created_at": "2026-08-01T10:20:05+00:00"
     }
   ]
 }

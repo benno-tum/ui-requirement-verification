@@ -1,12 +1,18 @@
-import {useEffect, useMemo, useState, type ReactNode} from 'react'
+import {useEffect, useMemo, useRef, useState, type ReactNode} from 'react'
 import {
   ApiError,
   api,
   resolveAssetUrl,
   type BoundingBox,
   type BoundingBoxMetadata,
+  type CreateUploadedFlowResponse,
+  type BoundingBoxAuditBundle,
+  type BoundingBoxAuditItem,
+  type OmniParserCandidateBundle,
   type EvidenceUnit,
+  type EvaluationAuditSummary,
   type PipelineVerificationRun,
+  type PipelineEvidenceItem,
   type PipelineRunJob,
   type PipelineRunSummary,
   type StartPipelineRunPayload,
@@ -15,6 +21,7 @@ import {
   type HarvestedRequirement,
   type Requirement,
   type RequirementPayload,
+  type UiEvaluabilityAuditBundle,
   type VerificationClaim,
   type VerificationGoldItem,
   type VerificationGoldPayload,
@@ -113,7 +120,76 @@ const REVIEW_CATEGORY_OPTIONS: Array<{id: ReviewCategoryId; label: string}> = [
   {id: 'label_mismatch', label: 'Any label mismatch'},
 ]
 
+const GEMINI_VERIFIER_MODELS = [
+  {value: 'gemini-3.1-flash-lite', label: 'Gemini 3.1 Flash-Lite (recommended)'},
+  {value: 'gemini-2.5-flash-lite', label: 'Gemini 2.5 Flash-Lite (lowest cost)'},
+  {value: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash'},
+  {value: 'gemini-3.6-flash', label: 'Gemini 3.6 Flash (stronger)'},
+  {value: 'gemini-3.1-pro-preview', label: 'Gemini 3.1 Pro Preview (historical)'},
+]
+
+const TEXT_MODELS_BY_PROVIDER: Record<'gemini' | 'deepseek', Array<{value: string; label: string}>> = {
+  gemini: [
+    {value: 'gemini-3.1-flash-lite', label: 'Gemini 3.1 Flash-Lite'},
+    {value: 'gemini-2.5-flash-lite', label: 'Gemini 2.5 Flash-Lite'},
+    {value: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash'},
+    {value: 'gemini-3.6-flash', label: 'Gemini 3.6 Flash'},
+  ],
+  deepseek: [
+    {value: 'deepseek-chat', label: 'DeepSeek Chat'},
+    {value: 'deepseek-v4-flash', label: 'DeepSeek V4 Flash'},
+    {value: 'deepseek-v4-pro', label: 'DeepSeek V4 Pro'},
+  ],
+}
+
+function defaultTextModel(provider: 'gemini' | 'deepseek'): string {
+  return TEXT_MODELS_BY_PROVIDER[provider][0].value
+}
+
+type AppRoute = 'workbench' | 'upload' | 'evaluation'
+
+function routeFromLocation(): AppRoute {
+  if (window.location.pathname.startsWith('/verify/new')) return 'upload'
+  if (window.location.pathname.startsWith('/evaluation')) return 'evaluation'
+  return 'workbench'
+}
+
 function App() {
+  const [route, setRoute] = useState<AppRoute>(routeFromLocation)
+
+  useEffect(() => {
+    const handlePopState = () => setRoute(routeFromLocation())
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
+
+  function navigate(nextRoute: AppRoute, flowId?: string) {
+    const path = nextRoute === 'upload'
+      ? `/verify/new${flowId ? `?flow_id=${encodeURIComponent(flowId)}` : ''}`
+      : nextRoute === 'evaluation'
+        ? '/evaluation'
+        : '/'
+    window.history.pushState({}, '', path)
+    setRoute(nextRoute)
+  }
+
+  if (route === 'upload') {
+    return <UploadVerificationPage onBack={() => navigate('workbench')} onProjectCreated={(flowId) => navigate('upload', flowId)} />
+  }
+  if (route === 'evaluation') {
+    return <EvaluationAuditPage onBack={() => navigate('workbench')} />
+  }
+  return <AnnotationWorkbench onOpenUpload={() => navigate('upload')} onOpenEvaluation={() => navigate('evaluation')} />
+}
+
+function isThesisEvaluationFlow(flow: FlowSummary): boolean {
+  const match = /^(\d{2})_/.exec(flow.flow_id)
+  if (flow.dataset !== 'mind2web' || !match) return false
+  const flowNumber = Number(match[1])
+  return flowNumber >= 1 && flowNumber <= 13
+}
+
+function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: () => void; onOpenEvaluation: () => void}) {
   const [flows, setFlows] = useState<FlowSummary[]>([])
   const [flowsState, setFlowsState] = useState<LoadState>('idle')
   const [selectedFlowId, setSelectedFlowId] = useState<string>('')
@@ -161,7 +237,7 @@ function App() {
   async function loadFlows() {
     setFlowsState('loading')
     try {
-      const data = await api.listFlows()
+      const data = (await api.listFlows()).filter(isThesisEvaluationFlow)
       setFlows(data)
       setFlowsState('idle')
       if (data.length === 0) {
@@ -218,7 +294,7 @@ function App() {
       setDetailsState('idle')
     } catch (error) {
       if (error instanceof ApiError && error.status === 404) {
-        const data = await api.listFlows()
+        const data = (await api.listFlows()).filter(isThesisEvaluationFlow)
         setFlows(data)
         const fallback = data.find((flow) => flow.flow_id !== flowId) ?? data[0]
         setSelectedFlowId(fallback?.flow_id ?? '')
@@ -515,6 +591,15 @@ function App() {
           Refresh flows
         </button>
 
+        <button className="upload-route-button" onClick={onOpenUpload}>
+          <span>＋</span>
+          New screenshot verification
+        </button>
+
+        <button className="secondary-button audit-route-button" onClick={onOpenEvaluation}>
+          Historical evaluation inspection (optional)
+        </button>
+
         <div className="flow-list">
           {flowsState === 'loading' && <p>Loading flows...</p>}
           {flows.map((flow) => (
@@ -652,6 +737,7 @@ function App() {
             steps={steps}
             pipelineRun={pipelineRun}
             verificationGold={verificationGold}
+            defaultRequirementsSource={selectedFlow.dataset === 'uploads' ? 'uploaded' : 'benchmark'}
             onJumpToStep={jumpToStep}
             onEditVerificationGold={(requirement) => setEditor({mode: 'verification_gold', requirement})}
             onAcceptVerificationGold={(requirement) => handleAcceptVerificationGoldFromPipeline(requirement)}
@@ -684,6 +770,1112 @@ function App() {
           }
         />
       )}
+    </div>
+  )
+}
+
+type AuditMode = 'ui' | 'bbox'
+type BboxDisplayRegion = {bbox: BoundingBox; label: string; items: BoundingBoxAuditItem[]}
+type BboxRequirementGroup = {
+  key: string
+  flowId: string
+  requirementId: string
+  requirementText: string
+  claims: Array<{claimId: string; text: string; status: string | null}>
+  screens: Array<{
+    stepIndex: number
+    item: BoundingBoxAuditItem
+    items: BoundingBoxAuditItem[]
+    regions: BboxDisplayRegion[]
+  }>
+  omittedScreens: number
+}
+
+function normalizedRegionKey(item: BoundingBoxAuditItem): string {
+  if (!item.prediction || item.image_width <= 0 || item.image_height <= 0) return `${item.claim_id}:missing`
+  const box = item.prediction.bbox
+  const normalized = [
+    box.x1 / item.image_width,
+    box.y1 / item.image_height,
+    box.x2 / item.image_width,
+    box.y2 / item.image_height,
+  ].map((value) => value.toFixed(3)).join(',')
+  return `${item.claim_id}:${normalized}`
+}
+
+function shortClaimLabel(claimId: string): string {
+  const match = claimId.match(/-C\d+$/)
+  return match ? match[0].slice(1) : claimId
+}
+
+function mergeAdjacentOcrRegions(regions: BboxDisplayRegion[], imageWidth: number, imageHeight: number): BboxDisplayRegion[] {
+  const pending = regions.map((region) => ({...region, items: [...region.items]}))
+  const verticalGapLimit = Math.max(14, imageHeight * 0.008)
+  const horizontalGapLimit = Math.max(18, imageWidth * 0.015)
+  let changed = true
+  while (changed) {
+    changed = false
+    for (let leftIndex = 0; leftIndex < pending.length && !changed; leftIndex += 1) {
+      for (let rightIndex = leftIndex + 1; rightIndex < pending.length; rightIndex += 1) {
+        const left = pending[leftIndex]
+        const right = pending[rightIndex]
+        const leftClaims = [...new Set(left.items.map((item) => item.claim_id))].sort().join('|')
+        const rightClaims = [...new Set(right.items.map((item) => item.claim_id))].sort().join('|')
+        const allOcr = [...left.items, ...right.items].every((item) => item.prediction?.candidate_source === 'tesseract_line')
+        if (!allOcr || leftClaims !== rightClaims) continue
+        const horizontalOverlap = left.bbox.x1 < right.bbox.x2 && left.bbox.x2 > right.bbox.x1
+        const verticalOverlap = left.bbox.y1 < right.bbox.y2 && left.bbox.y2 > right.bbox.y1
+        const verticalGap = Math.max(0, Math.max(left.bbox.y1, right.bbox.y1) - Math.min(left.bbox.y2, right.bbox.y2))
+        const horizontalGap = Math.max(0, Math.max(left.bbox.x1, right.bbox.x1) - Math.min(left.bbox.x2, right.bbox.x2))
+        if (!((horizontalOverlap && verticalGap <= verticalGapLimit) || (verticalOverlap && horizontalGap <= horizontalGapLimit))) continue
+        pending[leftIndex] = {
+          bbox: {
+            x1: Math.min(left.bbox.x1, right.bbox.x1),
+            y1: Math.min(left.bbox.y1, right.bbox.y1),
+            x2: Math.max(left.bbox.x2, right.bbox.x2),
+            y2: Math.max(left.bbox.y2, right.bbox.y2),
+          },
+          label: [...new Set([...left.items, ...right.items].map((item) => item.claim_id))].map(shortClaimLabel).join('+'),
+          items: [...left.items, ...right.items],
+        }
+        pending.splice(rightIndex, 1)
+        changed = true
+        break
+      }
+    }
+  }
+  return pending
+}
+
+function groupBboxItemsByRequirement(items: BoundingBoxAuditItem[]): BboxRequirementGroup[] {
+  const requirementItems = new Map<string, BoundingBoxAuditItem[]>()
+  for (const item of items) {
+    const key = `${item.flow_id}:${item.requirement_id}`
+    requirementItems.set(key, [...(requirementItems.get(key) ?? []), item])
+  }
+  return [...requirementItems.entries()].map(([key, groupedItems]) => {
+    const first = groupedItems[0]
+    const claims = new Map<string, {claimId: string; text: string; status: string | null}>()
+    const byStep = new Map<number, BoundingBoxAuditItem[]>()
+    for (const item of groupedItems) {
+      claims.set(item.claim_id, {claimId: item.claim_id, text: item.claim_text, status: item.claim_status ?? null})
+      byStep.set(item.step_index, [...(byStep.get(item.step_index) ?? []), item])
+    }
+    const seenScreenSignatures = new Set<string>()
+    let omittedScreens = 0
+    const screens: BboxRequirementGroup['screens'] = []
+    for (const [stepIndex, screenItems] of [...byStep.entries()].sort((left, right) => left[0] - right[0])) {
+      const screenSignature = screenItems.map(normalizedRegionKey).sort().join('|')
+      if (seenScreenSignatures.has(screenSignature)) {
+        omittedScreens += 1
+        continue
+      }
+      seenScreenSignatures.add(screenSignature)
+      const regionItems = new Map<string, {bbox: BoundingBox; items: BoundingBoxAuditItem[]}>()
+      for (const item of screenItems) {
+        if (!item.prediction) continue
+        const boxKey = normalizedRegionKey({...item, claim_id: ''})
+        const existing = regionItems.get(boxKey)
+        if (existing) {
+          existing.items.push(item)
+        } else {
+          regionItems.set(boxKey, {bbox: item.prediction.bbox, items: [item]})
+        }
+      }
+      const exactRegions = [...regionItems.values()].map((region) => ({
+        bbox: region.bbox,
+        label: [...new Set(region.items.map((item) => item.claim_id))].map(shortClaimLabel).join('+'),
+        items: region.items,
+      }))
+      screens.push({
+        stepIndex,
+        item: screenItems[0],
+        items: screenItems,
+        regions: mergeAdjacentOcrRegions(exactRegions, screenItems[0].image_width, screenItems[0].image_height),
+      })
+    }
+    return {
+      key,
+      flowId: first.flow_id,
+      requirementId: first.requirement_id,
+      requirementText: first.requirement_text,
+      claims: [...claims.values()].sort((left, right) => left.claimId.localeCompare(right.claimId, undefined, {numeric: true})),
+      screens,
+      omittedScreens,
+    }
+  }).sort((left, right) => {
+    const flowOrder = left.flowId.localeCompare(right.flowId, undefined, {numeric: true})
+    if (flowOrder) return flowOrder
+    const leftContrastive = left.requirementId.startsWith('CONTR-') ? 1 : 0
+    const rightContrastive = right.requirementId.startsWith('CONTR-') ? 1 : 0
+    if (leftContrastive !== rightContrastive) return leftContrastive - rightContrastive
+    return left.requirementId.localeCompare(right.requirementId, undefined, {numeric: true})
+  })
+}
+
+function EvaluationAuditPage({onBack}: {onBack: () => void}) {
+  const [audits, setAudits] = useState<EvaluationAuditSummary[]>([])
+  const [selectedAuditId, setSelectedAuditId] = useState('')
+  const [mode, setMode] = useState<AuditMode>('ui')
+  const [uiBundle, setUiBundle] = useState<UiEvaluabilityAuditBundle | null>(null)
+  const [bboxBundle, setBboxBundle] = useState<BoundingBoxAuditBundle | null>(null)
+  const [uiFilter, setUiFilter] = useState<'differences' | 'all' | 'matches'>('differences')
+  const [bboxFilter, setBboxFilter] = useState<'all' | 'incorrect' | 'missing' | 'low_score'>('all')
+  const [message, setMessage] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [savingBoxIds, setSavingBoxIds] = useState<Set<string>>(new Set())
+
+  useEffect(() => {
+    void api.listEvaluationAudits().then((items) => {
+      setAudits(items)
+      if (items.length > 0) setSelectedAuditId((current) => current || items[0].audit_id)
+    }).catch((error) => setMessage(error instanceof Error ? error.message : 'Failed to load evaluation audits'))
+  }, [])
+
+  useEffect(() => {
+    if (!selectedAuditId) return
+    setLoading(true)
+    Promise.all([
+      api.getUiInspectionItems(selectedAuditId),
+      api.getBboxInspectionItems(selectedAuditId),
+    ]).then(([ui, bbox]) => {
+      setUiBundle(ui)
+      setBboxBundle(bbox)
+      setMessage('')
+    }).catch((error) => setMessage(error instanceof Error ? error.message : 'Failed to load inspection data')).finally(() => setLoading(false))
+  }, [selectedAuditId])
+
+  const uiItems = (uiBundle?.items ?? []).filter((item) =>
+    uiFilter === 'all' || (uiFilter === 'matches' ? item.labels_match : !item.labels_match),
+  )
+  const bboxItems = (bboxBundle?.items ?? []).filter((item) => {
+    if (bboxFilter === 'incorrect') return item.inspection_judgment?.status === 'INCORRECT'
+    if (bboxFilter === 'missing') return !item.prediction
+    if (bboxFilter === 'low_score') return item.prediction != null && item.prediction.score < 0.25
+    return true
+  })
+  const bboxRequirementGroups = useMemo(() => groupBboxItemsByRequirement(bboxItems), [bboxItems])
+  const matchCount = uiBundle?.items.filter((item) => item.labels_match).length ?? 0
+  const differenceCount = (uiBundle?.items.length ?? 0) - matchCount
+  const boxCount = bboxBundle?.items.filter((item) => item.prediction).length ?? 0
+  const incorrectBoxCount = bboxBundle?.items.filter((item) => item.inspection_judgment?.status === 'INCORRECT').length ?? 0
+
+  async function saveBboxJudgment(item: BoundingBoxAuditItem, status: 'VALID' | 'INCORRECT' | 'UNCERTAIN', note: string) {
+    try {
+      const response = await api.saveBboxInspectionJudgment(selectedAuditId, item.audit_item_id, {status, note})
+      setBboxBundle((current) => current ? {
+        ...current,
+        items: current.items.map((candidate) => candidate.audit_item_id === item.audit_item_id
+          ? {...candidate, inspection_judgment: response.inspection_judgment}
+          : candidate),
+      } : current)
+      setMessage(`Marked ${item.claim_id} as ${humanizeStatus(status)}.`)
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : 'Failed to save bounding-box judgment')
+    }
+  }
+
+  async function judgeBboxRegion(
+    items: BoundingBoxAuditItem[],
+    status: 'VALID' | 'INCORRECT',
+    errorCategory: 'MISALIGNED' | 'WRONG_LOCATION' | 'SEMANTIC_ERROR' | null = null,
+    note?: string,
+  ) {
+    const pending = items.filter((item) =>
+      item.inspection_judgment?.status !== status
+      || (status === 'INCORRECT' && item.inspection_judgment?.error_category !== errorCategory)
+      || (note !== undefined && item.inspection_judgment?.note !== note),
+    )
+    if (pending.length === 0) return
+    const pendingIds = new Set(pending.map((item) => item.audit_item_id))
+    setSavingBoxIds((current) => new Set([...current, ...pendingIds]))
+    try {
+      const saved = []
+      for (const item of pending) {
+        saved.push(await api.saveBboxInspectionJudgment(selectedAuditId, item.audit_item_id, {
+          status,
+          note: note ?? item.inspection_judgment?.note ?? '',
+          error_category: status === 'INCORRECT' ? errorCategory : null,
+        }))
+      }
+      const judgments = new Map(saved.map((response) => [response.audit_item_id, response.inspection_judgment]))
+      setBboxBundle((current) => current ? {
+        ...current,
+        items: current.items.map((candidate) => judgments.has(candidate.audit_item_id)
+          ? {...candidate, inspection_judgment: judgments.get(candidate.audit_item_id)}
+          : candidate),
+      } : current)
+      const claims = [...new Set(pending.map((item) => item.claim_id))].join(', ')
+      setMessage(status === 'VALID' ? `Accepted bounding box for ${claims}.` : `Marked bounding box as incorrect for ${claims}.`)
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : 'Failed to save bounding-box judgment')
+    } finally {
+      setSavingBoxIds((current) => {
+        const next = new Set(current)
+        pendingIds.forEach((id) => next.delete(id))
+        return next
+      })
+    }
+  }
+
+  async function saveCandidateSelection(item: BoundingBoxAuditItem, candidateId: string) {
+    setSavingBoxIds((current) => new Set([...current, item.audit_item_id]))
+    try {
+      const response = await api.saveOmniParserSelection(selectedAuditId, item.audit_item_id, candidateId)
+      setBboxBundle((current) => current ? {
+        ...current,
+        items: current.items.map((candidate) => candidate.audit_item_id === item.audit_item_id
+          ? {...candidate, candidate_selection: response.candidate_selection}
+          : candidate),
+      } : current)
+      setMessage(`Saved ${response.candidate_selection.candidate_id} as the local candidate for ${item.claim_id}.`)
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : 'Failed to save OmniParser candidate')
+    } finally {
+      setSavingBoxIds((current) => {
+        const next = new Set(current)
+        next.delete(item.audit_item_id)
+        return next
+      })
+    }
+  }
+
+  return (
+    <div className="audit-page">
+      <header className="upload-nav">
+        <button className="brand-button" onClick={onBack} aria-label="Back to annotation workbench">
+          <span className="brand-mark">UV</span>
+          <span><strong>Evidence inspection</strong><small>Quick comparison and acceptance workspace</small></span>
+        </button>
+        <button className="secondary-button" onClick={onBack}>Back to workbench</button>
+      </header>
+
+      <main className="audit-main">
+        <section className="card audit-toolbar">
+          <div>
+            <span className="eyebrow">Quick visual audit</span>
+            <h1>Compare labels and inspect bounding boxes</h1>
+            <p>No relabeling is required. Manual UI-verifiability labels are treated as the reference, and the selected inspection dataset's pipeline regions are shown directly.</p>
+          </div>
+          <div className="toolbar-grid audit-controls">
+            <label>Audit<select value={selectedAuditId} onChange={(event) => setSelectedAuditId(event.target.value)}>{audits.map((audit) => <option key={audit.audit_id} value={audit.audit_id}>{audit.title}</option>)}</select></label>
+            <Metric label="UI matches" value={`${matchCount} / ${uiBundle?.items.length ?? 0}`} />
+            <Metric label="UI differences" value={String(differenceCount)} />
+            <Metric label="Boxes / incorrect" value={`${boxCount} / ${incorrectBoxCount}`} />
+          </div>
+          <div className="tab-row">
+            <button className={mode === 'ui' ? 'tab-button active' : 'tab-button'} onClick={() => setMode('ui')}>UI-verifiability comparison</button>
+            <button className={mode === 'bbox' ? 'tab-button active' : 'tab-button'} onClick={() => setMode('bbox')}>Bounding-box gallery</button>
+          </div>
+        </section>
+        {message && <section className="message card">{message}</section>}
+        {loading && <section className="card">Loading inspection data…</section>}
+
+        {!loading && mode === 'ui' && (
+          <section className="inspection-section">
+            <div className="card inspection-filter-row">
+              <strong>Show</strong>
+              {(['differences', 'all', 'matches'] as const).map((filter) => <button key={filter} className={uiFilter === filter ? 'tab-button active' : 'tab-button'} onClick={() => setUiFilter(filter)}>{humanizeStatus(filter)}</button>)}
+              <span>{uiItems.length} requirements</span>
+            </div>
+            <div className="ui-comparison-list">
+              {uiItems.map((item) => (
+                <article className={`card ui-comparison-card ${item.labels_match ? 'match' : 'difference'}`} key={item.audit_item_id}>
+                  <div className="panel-header"><div><h3>{item.requirement_id}</h3><span>{item.flow_id} · {item.dataset}</span></div><span className={`comparison-result ${item.labels_match ? 'match' : 'difference'}`}>{item.labels_match ? 'Match' : 'Different'}</span></div>
+                  <p>{item.requirement_text}</p>
+                  <div className="label-comparison-grid">
+                    <div><small>Manual reference</small><span className={`status-pill ${statusClass(item.manual_label)}`}>{humanizeStatus(item.manual_label)}</span></div>
+                    <div><small>Pipeline classifier</small><span className={`status-pill ${statusClass(item.pipeline_label)}`}>{humanizeStatus(item.pipeline_label)}</span></div>
+                  </div>
+                  {(item.structural_conflict_reasons?.length ?? 0) > 0 && <p className="helper-text">Audit signal: {item.structural_conflict_reasons?.map(humanizeStatus).join(', ')}</p>}
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {!loading && mode === 'bbox' && (
+          <section className="inspection-section">
+            <div className="card inspection-filter-row">
+              <strong>Show</strong>
+              {(['all', 'incorrect', 'missing', 'low_score'] as const).map((filter) => <button key={filter} className={bboxFilter === filter ? 'tab-button active' : 'tab-button'} onClick={() => setBboxFilter(filter)}>{humanizeStatus(filter)}</button>)}
+              <span>{bboxRequirementGroups.length} requirements · {bboxItems.length} claim–screenshot regions</span>
+            </div>
+            <div className="card bbox-run-context">
+              <strong>Displayed prediction source</strong>
+              <span>{bboxBundle?.source_run_id ?? 'Legacy audit bundle'}</span>
+              {bboxBundle?.source_run_created_at && <span>Source run completed {formatTimestamp(bboxBundle.source_run_created_at)}</span>}
+              {bboxBundle?.created_at && <span>Inspection package built {formatTimestamp(bboxBundle.created_at)}</span>}
+              <small>Hover over a box to see its claims. Click the box to accept it; use the controls below for incorrect or uncertain regions. High-resolution originals are used for display with deterministically converted coordinates.</small>
+            </div>
+            <div className="bbox-requirement-list">
+              {bboxRequirementGroups.map((group) => (
+                <article className="card bbox-requirement-card" key={group.key}>
+                  <div className="panel-header">
+                    <div><h3>{group.requirementId}</h3><span>{group.flowId} · {group.claims.length} claims</span></div>
+                    <div className="review-mini-stack">
+                      <span className={`status-pill ${group.requirementId.startsWith('CONTR-') ? 'boundary' : 'neutral'}`}>{group.requirementId.startsWith('CONTR-') ? 'Contrastive audit requirement' : 'Source requirement'}</span>
+                      <span>{group.screens.length} screens shown{group.omittedScreens > 0 ? ` · ${group.omittedScreens} repeated screens hidden` : ''}</span>
+                    </div>
+                  </div>
+                  <p className="audit-requirement-text"><strong>Requirement:</strong> {group.requirementText}</p>
+                  <div className="bbox-claim-summary">
+                    {group.claims.map((claim) => (
+                      <div key={claim.claimId}>
+                        <strong>{claim.claimId}</strong>
+                        {claim.status
+                          ? <span className={`status-pill ${statusClass(claim.status)}`}>{humanizeStatus(claim.status)}</span>
+                          : <span className="status-pill neutral">Not specified</span>}
+                        <span>{claim.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="bbox-requirement-screens">
+                    {group.screens.map((screen) => (
+                      <section className="bbox-screen-group" key={`${group.key}-${screen.stepIndex}`}>
+                        <div className="panel-header">
+                          <div><h4>Step {screen.stepIndex}</h4><span>{screen.item.image_width}×{screen.item.image_height} · {screen.regions.length} distinct regions</span></div>
+                          <a className="secondary-button full-resolution-link" href={resolveAssetUrl(screen.item.image_url)} target="_blank" rel="noreferrer">Open full-resolution screenshot</a>
+                        </div>
+                        <AuditBoundingBoxCanvas
+                          item={screen.item}
+                          predictions={screen.regions}
+                          savingBoxIds={savingBoxIds}
+                          onAccept={(items) => void judgeBboxRegion(items, 'VALID')}
+                          onIncorrect={(items, category, note) => void judgeBboxRegion(items, 'INCORRECT', category, note)}
+                        />
+                        <OmniParserCandidatePicker
+                          auditId={selectedAuditId}
+                          imageItem={screen.item}
+                          claimItems={screen.items}
+                          savingBoxIds={savingBoxIds}
+                          onSelect={(item, candidateId) => void saveCandidateSelection(item, candidateId)}
+                        />
+                        <div className="bbox-region-list">
+                          {screen.items.map((item) => (
+                            <div className="bbox-region-review" key={item.audit_item_id}>
+                              <div className="bbox-prediction-meta">
+                                <strong>{item.claim_id}: {item.prediction ? `“${item.prediction.matched_text}”` : 'No region proposed'}</strong>
+                                {item.prediction && <><span>{humanizeStatus(item.prediction.source)} · confidence {item.prediction.score.toFixed(3)}</span><code>{Math.round(item.prediction.bbox.x1)}, {Math.round(item.prediction.bbox.y1)} → {Math.round(item.prediction.bbox.x2)}, {Math.round(item.prediction.bbox.y2)}</code></>}
+                              </div>
+                              <BoundingBoxInspectionControls item={item} onSave={(status, note) => void saveBboxJudgment(item, status, note)} />
+                            </div>
+                          ))}
+                        </div>
+                      </section>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+      </main>
+    </div>
+  )
+}
+
+function BoundingBoxInspectionControls({item, onSave}: {
+  item: BoundingBoxAuditItem
+  onSave: (status: 'VALID' | 'INCORRECT' | 'UNCERTAIN', note: string) => void
+}) {
+  const [note, setNote] = useState(item.inspection_judgment?.note ?? '')
+
+  useEffect(() => setNote(item.inspection_judgment?.note ?? ''), [item.audit_item_id, item.inspection_judgment?.updated_at])
+
+  return (
+    <div className="bbox-inspection-controls">
+      <strong>Quick judgment</strong>
+      <div className="button-row">
+        {(['VALID', 'INCORRECT', 'UNCERTAIN'] as const).map((status) => (
+          <button
+            key={status}
+            className={item.inspection_judgment?.status === status ? `judgment-button active ${status.toLowerCase()}` : 'secondary-button judgment-button'}
+            onClick={() => onSave(status, note)}
+          >
+            {status === 'VALID' ? '✓ Valid' : status === 'INCORRECT' ? '✕ Incorrect' : '? Unsure'}
+          </button>
+        ))}
+      </div>
+      <label>Optional note<textarea rows={3} value={note} onChange={(event) => setNote(event.target.value)} placeholder="For example: box highlights the title, but the supporting dietary links are in the left navigation." /></label>
+      {item.inspection_judgment && <small>Saved as {humanizeStatus(item.inspection_judgment.status)}</small>}
+    </div>
+  )
+}
+
+function AuditBoundingBoxCanvas({item, predictions, savingBoxIds, onAccept, onIncorrect}: {
+  item: BoundingBoxAuditItem
+  predictions: Array<{bbox: BoundingBox; label: string; items: BoundingBoxAuditItem[]}>
+  savingBoxIds: Set<string>
+  onAccept: (items: BoundingBoxAuditItem[]) => void
+  onIncorrect: (items: BoundingBoxAuditItem[], category: 'MISALIGNED' | 'WRONG_LOCATION' | 'SEMANTIC_ERROR', note: string) => void
+}) {
+  const [openPredictionKey, setOpenPredictionKey] = useState<string | null>(null)
+  const [overlaysHidden, setOverlaysHidden] = useState(false)
+  const [notes, setNotes] = useState<Record<string, string>>({})
+  const closeTimer = useRef<number | null>(null)
+
+  const orderedPredictions = useMemo(() => predictions
+    .map((prediction, sourceIndex) => ({
+      ...prediction,
+      sourceIndex,
+      area: Math.max(0, prediction.bbox.x2 - prediction.bbox.x1) * Math.max(0, prediction.bbox.y2 - prediction.bbox.y1),
+    }))
+    .sort((left, right) => right.area - left.area || left.sourceIndex - right.sourceIndex), [predictions])
+
+  const overlappingPredictions = useMemo(() => orderedPredictions
+    .filter((candidate, candidateIndex) => orderedPredictions.some((other, otherIndex) => {
+      if (candidateIndex === otherIndex) return false
+      return candidate.bbox.x1 < other.bbox.x2
+        && candidate.bbox.x2 > other.bbox.x1
+        && candidate.bbox.y1 < other.bbox.y2
+        && candidate.bbox.y2 > other.bbox.y1
+    }))
+    .sort((left, right) => left.area - right.area || left.sourceIndex - right.sourceIndex), [orderedPredictions])
+
+  function cancelClose() {
+    if (closeTimer.current !== null) {
+      window.clearTimeout(closeTimer.current)
+      closeTimer.current = null
+    }
+  }
+
+  function openPopover(key: string) {
+    cancelClose()
+    setOpenPredictionKey(key)
+  }
+
+  function scheduleClose() {
+    cancelClose()
+    closeTimer.current = window.setTimeout(() => setOpenPredictionKey(null), 300)
+  }
+
+  useEffect(() => () => cancelClose(), [])
+
+  const overlayStyle = (box: BoundingBox) => ({
+    left: `${(box.x1 / item.image_width) * 100}%`, top: `${(box.y1 / item.image_height) * 100}%`,
+    width: `${((box.x2 - box.x1) / item.image_width) * 100}%`, height: `${((box.y2 - box.y1) / item.image_height) * 100}%`,
+  })
+
+  return (
+    <div className="audit-bbox-stack">
+      <div className="bbox-canvas-display-controls">
+        <button type="button" onClick={() => setOverlaysHidden((hidden) => !hidden)}>
+          {overlaysHidden ? 'Show bounding boxes' : 'Hide bounding boxes'}
+        </button>
+        <span>Box labels appear on hover or selection.</span>
+      </div>
+      {overlappingPredictions.length > 0 && (
+        <div className="bbox-overlap-picker" aria-label="Overlapping bounding-box selector">
+          <strong>Overlapping regions</strong>
+          <span>Smallest regions are in front. Select a label here if the desired box is still covered.</span>
+          <div>
+            {overlappingPredictions.map((prediction) => {
+              const predictionKey = `${prediction.label}-${prediction.sourceIndex}`
+              return (
+                <button
+                  type="button"
+                  key={predictionKey}
+                  className={openPredictionKey === predictionKey ? 'active' : ''}
+                  aria-pressed={openPredictionKey === predictionKey}
+                  title={`${prediction.label}: ${Math.round(prediction.bbox.x1)}, ${Math.round(prediction.bbox.y1)} → ${Math.round(prediction.bbox.x2)}, ${Math.round(prediction.bbox.y2)}`}
+                  onClick={() => {
+                    cancelClose()
+                    setOpenPredictionKey((current) => current === predictionKey ? null : predictionKey)
+                  }}
+                >
+                  {prediction.label}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      )}
+      <div className="audit-bbox-canvas">
+        <img src={resolveAssetUrl(item.image_url)} alt={`Evidence step ${item.step_index}`} draggable={false} />
+        {!overlaysHidden && orderedPredictions.map((prediction) => {
+        const predictionKey = `${prediction.label}-${prediction.sourceIndex}`
+        const accepted = prediction.items.every((candidate) => candidate.inspection_judgment?.status === 'VALID')
+        const incorrect = prediction.items.every((candidate) => candidate.inspection_judgment?.status === 'INCORRECT')
+        const saving = prediction.items.some((candidate) => savingBoxIds.has(candidate.audit_item_id))
+        const displayedClaims = [...new Map(
+          prediction.items.map((candidate) => [candidate.claim_id, candidate] as const),
+        ).values()]
+        const claimSummary = displayedClaims.map((candidate) => `${candidate.claim_id}: ${candidate.claim_text}`).join('\n')
+        const savedCategory = prediction.items.find((candidate) => candidate.inspection_judgment?.error_category)?.inspection_judgment?.error_category
+        const note = notes[predictionKey] ?? prediction.items.find((candidate) => candidate.inspection_judgment?.note)?.inspection_judgment?.note ?? ''
+        return (
+          <div
+            key={predictionKey}
+            className={`audit-box prediction clickable${accepted ? ' accepted' : ''}${incorrect ? ' incorrect' : ''}${saving ? ' saving' : ''}${openPredictionKey === predictionKey ? ' popover-open' : ''}`}
+            style={overlayStyle(prediction.bbox)}
+            role="button"
+            tabIndex={0}
+            aria-label={`${accepted ? 'Accepted' : 'Accept'} bounding box for ${claimSummary}`}
+            onMouseEnter={() => openPopover(predictionKey)}
+            onMouseLeave={scheduleClose}
+            onFocus={() => openPopover(predictionKey)}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) scheduleClose()
+            }}
+            onClick={() => {
+              if (!incorrect) onAccept(prediction.items)
+              openPopover(predictionKey)
+            }}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault()
+                if (!incorrect) onAccept(prediction.items)
+              }
+            }}
+          >
+            <span>{saving ? 'Saving…' : accepted ? `✓ ${prediction.label}` : incorrect ? `✕ ${prediction.label}` : prediction.label}</span>
+            <div
+              className="audit-box-tooltip"
+              onMouseEnter={cancelClose}
+              onMouseLeave={scheduleClose}
+              onClick={(event) => event.stopPropagation()}
+              onKeyDown={(event) => event.stopPropagation()}
+            >
+              {displayedClaims.map((candidate) => (
+                <div key={candidate.claim_id}>
+                  <strong>{candidate.claim_id}</strong>
+                  <span>{candidate.claim_text}</span>
+                </div>
+              ))}
+              <label className="bbox-hover-note">
+                Optional note
+                <textarea
+                  rows={2}
+                  value={note}
+                  placeholder="What is wrong with this region?"
+                  onChange={(event) => setNotes((current) => ({...current, [predictionKey]: event.target.value}))}
+                />
+              </label>
+              <div className="audit-box-tooltip-actions">
+                <button
+                  type="button"
+                  className="bbox-hover-action accept"
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    onAccept(prediction.items)
+                  }}
+                  onKeyDown={(event) => event.stopPropagation()}
+                >
+                  ✓ Accept
+                </button>
+                <button
+                  type="button"
+                  className={`bbox-hover-action incorrect${savedCategory === 'MISALIGNED' ? ' active' : ''}`}
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    onIncorrect(prediction.items, 'MISALIGNED', note)
+                  }}
+                  onKeyDown={(event) => event.stopPropagation()}
+                >
+                  Misaligned
+                </button>
+                <button
+                  type="button"
+                  className={`bbox-hover-action incorrect${savedCategory === 'WRONG_LOCATION' ? ' active' : ''}`}
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    onIncorrect(prediction.items, 'WRONG_LOCATION', note)
+                  }}
+                  onKeyDown={(event) => event.stopPropagation()}
+                >
+                  Wrong location
+                </button>
+                <button
+                  type="button"
+                  className={`bbox-hover-action incorrect${savedCategory === 'SEMANTIC_ERROR' ? ' active' : ''}`}
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    onIncorrect(prediction.items, 'SEMANTIC_ERROR', note)
+                  }}
+                  onKeyDown={(event) => event.stopPropagation()}
+                >
+                  Semantic error
+                </button>
+              </div>
+              <small>
+                {saving
+                  ? 'Saving judgment…'
+                  : accepted
+                    ? 'Saved as accepted'
+                    : incorrect
+                      ? `Saved as ${humanizeStatus(savedCategory ?? 'INCORRECT')}`
+                      : 'Click the box or choose Accept'}
+              </small>
+            </div>
+          </div>
+        )
+        })}
+      </div>
+    </div>
+  )
+}
+
+function OmniParserCandidatePicker({auditId, imageItem, claimItems, savingBoxIds, onSelect}: {
+  auditId: string
+  imageItem: BoundingBoxAuditItem
+  claimItems: BoundingBoxAuditItem[]
+  savingBoxIds: Set<string>
+  onSelect: (item: BoundingBoxAuditItem, candidateId: string) => void
+}) {
+  const [expanded, setExpanded] = useState(false)
+  const [bundle, setBundle] = useState<OmniParserCandidateBundle | null>(null)
+  const [bundleItemId, setBundleItemId] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [sourceFilter, setSourceFilter] = useState<'top5' | 'omniparser_ui' | 'tesseract_line' | 'all'>('top5')
+  const [selectedItemId, setSelectedItemId] = useState(claimItems[0]?.audit_item_id ?? '')
+
+  if (!imageItem.flow_id.startsWith('02_gamestop_')) return null
+
+  const selectedItem = claimItems.find((item) => item.audit_item_id === selectedItemId) ?? claimItems[0]
+  const shownCandidates = sourceFilter === 'top5'
+    ? (bundle?.candidates ?? []).slice(0, 5)
+    : (bundle?.candidates ?? []).filter((candidate) => sourceFilter === 'all' || candidate.source === sourceFilter)
+
+  const overlayStyle = (box: BoundingBox) => ({
+    left: `${(box.x1 / imageItem.image_width) * 100}%`,
+    top: `${(box.y1 / imageItem.image_height) * 100}%`,
+    width: `${((box.x2 - box.x1) / imageItem.image_width) * 100}%`,
+    height: `${((box.y2 - box.y1) / imageItem.image_height) * 100}%`,
+  })
+
+  async function loadBundle(itemId: string) {
+    if (!itemId || (bundle && bundleItemId === itemId) || loading) return
+    setLoading(true)
+    setError('')
+    setBundle(null)
+    try {
+      setBundle(await api.getOmniParserCandidates(auditId, itemId))
+      setBundleItemId(itemId)
+    } catch (candidateError) {
+      setError(candidateError instanceof Error ? candidateError.message : 'Failed to load local candidates')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  async function toggle() {
+    const nextExpanded = !expanded
+    setExpanded(nextExpanded)
+    if (!nextExpanded || !selectedItem) return
+    await loadBundle(selectedItem.audit_item_id)
+  }
+
+  return (
+    <section className="omniparser-picker">
+      <button type="button" className="secondary-button" onClick={() => void toggle()}>
+        {expanded ? 'Hide local OmniParser candidates' : 'Try local OmniParser candidates'}
+      </button>
+      {expanded && (
+        <div className="omniparser-picker-body">
+          <div className="omniparser-picker-copy">
+            <strong>Local claim-specific region ranking</strong>
+            <span>Florence captions and OCR are ranked against the selected claim. Only the five best clean-image candidates are shown initially; selections remain separate from the pipeline prediction.</span>
+          </div>
+          <div className="omniparser-picker-controls">
+            <label>
+              Pick a region for
+              <select value={selectedItem?.audit_item_id ?? ''} onChange={(event) => {
+                const itemId = event.target.value
+                setSelectedItemId(itemId)
+                void loadBundle(itemId)
+              }}>
+                {claimItems.map((item) => <option key={item.audit_item_id} value={item.audit_item_id}>{item.claim_id}: {item.claim_text}</option>)}
+              </select>
+            </label>
+            <div className="button-row">
+              {([
+                ['top5', 'Ranked top 5'],
+                ['omniparser_ui', 'UI regions'],
+                ['tesseract_line', 'OCR text lines'],
+                ['all', 'All'],
+              ] as const).map(([value, label]) => (
+                <button key={value} type="button" className={sourceFilter === value ? 'tab-button active' : 'tab-button'} onClick={() => setSourceFilter(value)}>{label}</button>
+              ))}
+            </div>
+          </div>
+          {loading && <span>Loading local candidates…</span>}
+          {error && <span className="helper-text">{error}</span>}
+          {bundle && selectedItem && (
+            <>
+              <div className="audit-bbox-canvas omniparser-candidate-canvas">
+                <img src={resolveAssetUrl(imageItem.image_url)} alt={`OmniParser candidates for step ${imageItem.step_index}`} draggable={false} />
+                {shownCandidates.map((candidate) => {
+                  const selected = selectedItem.candidate_selection?.candidate_id === candidate.candidate_id
+                  const saving = savingBoxIds.has(selectedItem.audit_item_id)
+                  return (
+                    <button
+                      type="button"
+                      key={candidate.candidate_id}
+                      className={`omniparser-candidate ${candidate.source === 'tesseract_line' ? 'text' : 'ui'}${selected ? ' selected' : ''}`}
+                      style={overlayStyle(candidate.bbox)}
+                      title={`${candidate.candidate_id} · rank ${candidate.rank ?? '?'} · score ${(candidate.rank_score ?? 0).toFixed(3)}${candidate.caption ? ` · ${candidate.caption}` : ''}${candidate.text ? ` · OCR: ${candidate.text}` : ''}`}
+                      aria-label={`Use ranked candidate ${candidate.candidate_id} for ${selectedItem.claim_id}`}
+                      disabled={saving}
+                      onClick={() => onSelect(selectedItem, candidate.candidate_id)}
+                    >
+                      <span>{selected ? '✓ ' : ''}#{candidate.rank ?? '?'} {candidate.candidate_id}</span>
+                    </button>
+                  )
+                })}
+              </div>
+              <div className="omniparser-selection-summary">
+                <span>{shownCandidates.length} candidates shown · {bundle.ranking_method ?? 'local ranking'}</span>
+                {selectedItem.candidate_selection
+                  ? <strong>Saved for {selectedItem.claim_id}: {selectedItem.candidate_selection.candidate_id}{selectedItem.candidate_selection.text ? ` — ${selectedItem.candidate_selection.text}` : ''}</strong>
+                  : <span>No local replacement selected for {selectedItem.claim_id}.</span>}
+              </div>
+              {sourceFilter === 'top5' && (
+                <ol className="omniparser-ranked-list">
+                  {shownCandidates.map((candidate) => (
+                    <li key={`rank-${candidate.candidate_id}`}>
+                      <button type="button" disabled={savingBoxIds.has(selectedItem.audit_item_id)} onClick={() => onSelect(selectedItem, candidate.candidate_id)}>
+                        <strong>#{candidate.rank} {candidate.candidate_id}</strong>
+                        <span>{candidate.caption || candidate.text || candidate.associated_text || 'No semantic description available'}</span>
+                        <small>score {(candidate.rank_score ?? 0).toFixed(3)}</small>
+                      </button>
+                    </li>
+                  ))}
+                </ol>
+              )}
+            </>
+          )}
+        </div>
+      )}
+    </section>
+  )
+}
+
+function UploadVerificationPage({
+  onBack,
+  onProjectCreated,
+}: {
+  onBack: () => void
+  onProjectCreated: (flowId: string) => void
+}) {
+  const [projectName, setProjectName] = useState('')
+  const [description, setDescription] = useState('')
+  const [requirementsContent, setRequirementsContent] = useState('')
+  const [requirementsFilename, setRequirementsFilename] = useState<string | undefined>()
+  const [screenshots, setScreenshots] = useState<File[]>([])
+  const [dragActive, setDragActive] = useState(false)
+  const [creating, setCreating] = useState(false)
+  const [loadingProject, setLoadingProject] = useState(false)
+  const [message, setMessage] = useState('')
+  const [project, setProject] = useState<CreateUploadedFlowResponse | null>(null)
+  const [pipelineRun, setPipelineRun] = useState<PipelineVerificationRun | null>(null)
+
+  useEffect(() => {
+    const flowId = new URLSearchParams(window.location.search).get('flow_id')
+    if (!flowId) {
+      return
+    }
+    let cancelled = false
+    setLoadingProject(true)
+    Promise.all([api.getFlow(flowId), api.getSteps(flowId), api.getLatestPipelineVerification(flowId).catch(() => null)])
+      .then(([flow, steps, latestRun]) => {
+        if (cancelled) {
+          return
+        }
+        setProject({
+          flow,
+          steps,
+          requirements: [],
+          requirements_count: Number(flow.task?.requirements_count ?? 0),
+        })
+        setPipelineRun(latestRun)
+      })
+      .catch((error) => {
+        if (!cancelled) {
+          setMessage(error instanceof Error ? error.message : 'Failed to load the uploaded project')
+        }
+      })
+      .finally(() => {
+        if (!cancelled) {
+          setLoadingProject(false)
+        }
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  function addScreenshots(files: File[]) {
+    const imageFiles = files.filter((file) => file.type.startsWith('image/'))
+    if (imageFiles.length !== files.length) {
+      setMessage('Only image files were added. Unsupported files were skipped.')
+    } else {
+      setMessage('')
+    }
+    setScreenshots((current) => [...current, ...imageFiles].slice(0, 20))
+  }
+
+  function moveScreenshot(index: number, direction: -1 | 1) {
+    const nextIndex = index + direction
+    if (nextIndex < 0 || nextIndex >= screenshots.length) {
+      return
+    }
+    setScreenshots((current) => {
+      const next = [...current]
+      const [file] = next.splice(index, 1)
+      next.splice(nextIndex, 0, file)
+      return next
+    })
+  }
+
+  async function handleRequirementsFile(file: File | undefined) {
+    if (!file) {
+      return
+    }
+    try {
+      const content = await file.text()
+      setRequirementsContent(content)
+      setRequirementsFilename(file.name)
+      setMessage('')
+    } catch {
+      setMessage('Could not read the requirements file.')
+    }
+  }
+
+  async function createProject() {
+    setMessage('')
+    if (!projectName.trim() || screenshots.length === 0 || !requirementsContent.trim()) {
+      setMessage('Add a project name, at least one screenshot, and at least one requirement.')
+      return
+    }
+    setCreating(true)
+    try {
+      const encodedScreenshots = await Promise.all(
+        screenshots.map(async (file) => ({
+          filename: file.name,
+          content_base64: await fileToBase64(file),
+        })),
+      )
+      const created = await api.createUploadedFlow({
+        project_name: projectName.trim(),
+        description: description.trim() || undefined,
+        requirements_content: requirementsContent,
+        requirements_filename: requirementsFilename,
+        screenshots: encodedScreenshots,
+      })
+      setProject(created)
+      setPipelineRun(null)
+      onProjectCreated(created.flow.flow_id)
+      setMessage(`Project ready with ${created.steps.length} screenshots and ${created.requirements_count} requirements.`)
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : 'Failed to create the verification project')
+    } finally {
+      setCreating(false)
+    }
+  }
+
+  function startAnotherProject() {
+    setProject(null)
+    setPipelineRun(null)
+    setProjectName('')
+    setDescription('')
+    setRequirementsContent('')
+    setRequirementsFilename(undefined)
+    setScreenshots([])
+    setMessage('')
+    window.history.pushState({}, '', '/verify/new')
+  }
+
+  const currentStep = project ? 3 : screenshots.length > 0 || requirementsContent ? 2 : 1
+
+  return (
+    <div className="upload-page">
+      <header className="upload-nav">
+        <button className="brand-button" onClick={onBack} aria-label="Back to annotation workbench">
+          <span className="brand-mark">UV</span>
+          <span><strong>UI Verifier</strong><small>Verification studio</small></span>
+        </button>
+        <div className="button-row">
+          {project && <button className="secondary-button" onClick={startAnotherProject}>New project</button>}
+          <button className="secondary-button" onClick={onBack}>Back to workbench</button>
+        </div>
+      </header>
+
+      <main className="upload-main">
+        <section className="upload-hero">
+          <div>
+            <span className="eyebrow">Ad-hoc verification</span>
+            <h1>Turn screenshots into inspectable evidence.</h1>
+            <p>Upload an ordered UI flow, add requirements, and run the evidence-first pipeline. Every result stays connected to its source screen, including localized bounding boxes when available.</p>
+          </div>
+          <div className="bbox-feature-card">
+            <span className="bbox-feature-icon"><span /></span>
+            <div><strong>Bounding boxes included</strong><span>Localized regions are overlaid at the correct image scale.</span></div>
+          </div>
+        </section>
+
+        <ol className="upload-progress" aria-label="Verification setup progress">
+          {['Add inputs', 'Review setup', 'Run & inspect'].map((label, index) => {
+            const step = index + 1
+            return <li key={label} className={currentStep >= step ? 'active' : ''}><span>{currentStep > step ? '✓' : step}</span>{label}</li>
+          })}
+        </ol>
+
+        {message && <section className="upload-message">{message}</section>}
+        {loadingProject && <section className="upload-card">Loading uploaded project…</section>}
+
+        {!project && !loadingProject && (
+          <section className="upload-form-grid">
+            <div className="upload-card upload-card-wide">
+              <div className="upload-section-heading">
+                <span className="section-number">1</span>
+                <div><h2>Project details</h2><p>Give this verification run a recognizable name.</p></div>
+              </div>
+              <div className="project-fields">
+                <label>Project name<input value={projectName} onChange={(event) => setProjectName(event.target.value)} placeholder="Checkout confirmation flow" /></label>
+                <label>Context <span className="optional-label">Optional</span><input value={description} onChange={(event) => setDescription(event.target.value)} placeholder="What should this UI flow demonstrate?" /></label>
+              </div>
+            </div>
+
+            <div className="upload-card">
+              <div className="upload-section-heading">
+                <span className="section-number">2</span>
+                <div><h2>Screenshots</h2><p>Order them as the user experiences the flow.</p></div>
+              </div>
+              <label
+                className={dragActive ? 'drop-zone active' : 'drop-zone'}
+                onDragEnter={(event) => { event.preventDefault(); setDragActive(true) }}
+                onDragOver={(event) => event.preventDefault()}
+                onDragLeave={() => setDragActive(false)}
+                onDrop={(event) => {
+                  event.preventDefault()
+                  setDragActive(false)
+                  addScreenshots(Array.from(event.dataTransfer.files))
+                }}
+              >
+                <input type="file" accept="image/*" multiple onChange={(event) => addScreenshots(Array.from(event.target.files ?? []))} />
+                <span className="drop-icon">↑</span>
+                <strong>Drop screenshots here</strong>
+                <span>or click to browse · PNG, JPG, WebP · up to 20</span>
+              </label>
+              {screenshots.length > 0 && (
+                <div className="upload-thumbnail-list">
+                  {screenshots.map((file, index) => (
+                    <UploadThumbnail
+                      key={`${file.name}-${file.lastModified}-${index}`}
+                      file={file}
+                      index={index}
+                      count={screenshots.length}
+                      onMove={moveScreenshot}
+                      onRemove={() => setScreenshots((current) => current.filter((_, fileIndex) => fileIndex !== index))}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="upload-card">
+              <div className="upload-section-heading">
+                <span className="section-number">3</span>
+                <div><h2>Requirements</h2><p>One per line, or upload JSON, TXT, or Markdown.</p></div>
+              </div>
+              <textarea
+                className="requirements-input"
+                value={requirementsContent}
+                onChange={(event) => { setRequirementsContent(event.target.value); setRequirementsFilename(undefined) }}
+                rows={10}
+                placeholder={'The confirmation page shall show the order number.\nThe user shall be able to return to the store.'}
+              />
+              <label className="requirements-file-button">
+                <input type="file" accept=".json,.txt,.md,application/json,text/plain,text/markdown" onChange={(event) => void handleRequirementsFile(event.target.files?.[0])} />
+                <span>Attach requirements file</span>
+                <strong>{requirementsFilename ?? 'No file selected'}</strong>
+              </label>
+              <p className="format-hint">JSON may be a list of strings or objects with <code>text</code> and optional metadata.</p>
+            </div>
+
+            <div className="upload-submit-card upload-card-wide">
+              <div><strong>Ready to create your verification workspace?</strong><span>Inputs stay local under this repository.</span></div>
+              <button onClick={() => void createProject()} disabled={creating}>{creating ? 'Preparing workspace…' : 'Create project & continue →'}</button>
+            </div>
+          </section>
+        )}
+
+        {project && (
+          <section className="uploaded-workspace">
+            <section className="upload-card workspace-summary">
+              <div>
+                <span className="eyebrow">Project ready</span>
+                <h2>{project.flow.website ?? project.flow.flow_id}</h2>
+                <p>{project.flow.confirmed_task}</p>
+              </div>
+              <div className="workspace-stats">
+                <Metric label="Screenshots" value={String(project.steps.length)} />
+                <Metric label="Requirements" value={String(project.requirements_count)} />
+                <Metric label="Evidence regions" value="Enabled" />
+              </div>
+            </section>
+
+            <section className="upload-card">
+              <div className="panel-header"><h3>Uploaded flow</h3><span>Step order used by the pipeline</span></div>
+              <div className="uploaded-step-strip">
+                {project.steps.map((step) => (
+                  <figure key={step.step_index} id={`uploaded-step-${step.step_index}`}>
+                    <img src={resolveAssetUrl(step.image_url)} alt={`Uploaded step ${step.step_index}`} />
+                    <figcaption>Step {step.step_index}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            </section>
+
+            <VerificationRunPanel
+              key={project.flow.flow_id}
+              flowId={project.flow.flow_id}
+              steps={project.steps}
+              pipelineRun={pipelineRun}
+              verificationGold={[]}
+              defaultRequirementsSource="uploaded"
+              onJumpToStep={(stepIndex) => document.getElementById(`uploaded-step-${stepIndex}`)?.scrollIntoView({behavior: 'smooth', block: 'center'})}
+              onEditVerificationGold={() => undefined}
+              onAcceptVerificationGold={async () => undefined}
+            />
+          </section>
+        )}
+      </main>
+    </div>
+  )
+}
+
+function UploadThumbnail({
+  file,
+  index,
+  count,
+  onMove,
+  onRemove,
+}: {
+  file: File
+  index: number
+  count: number
+  onMove: (index: number, direction: -1 | 1) => void
+  onRemove: () => void
+}) {
+  const [previewUrl, setPreviewUrl] = useState('')
+  useEffect(() => {
+    const url = URL.createObjectURL(file)
+    setPreviewUrl(url)
+    return () => URL.revokeObjectURL(url)
+  }, [file])
+  return (
+    <div className="upload-thumbnail">
+      <span className="thumbnail-order">{index + 1}</span>
+      {previewUrl && <img src={previewUrl} alt={`Screenshot ${index + 1}: ${file.name}`} />}
+      <div><strong title={file.name}>{file.name}</strong><span>{formatFileSize(file.size)}</span></div>
+      <div className="thumbnail-actions">
+        <button type="button" className="secondary-button" onClick={() => onMove(index, -1)} disabled={index === 0} aria-label="Move screenshot earlier">←</button>
+        <button type="button" className="secondary-button" onClick={() => onMove(index, 1)} disabled={index === count - 1} aria-label="Move screenshot later">→</button>
+        <button type="button" className="secondary-button remove" onClick={onRemove} aria-label="Remove screenshot">×</button>
+      </div>
     </div>
   )
 }
@@ -1193,6 +2385,7 @@ function VerificationRunPanel({
   steps,
   pipelineRun,
   verificationGold,
+  defaultRequirementsSource = 'benchmark',
   onJumpToStep,
   onEditVerificationGold,
   onAcceptVerificationGold,
@@ -1201,6 +2394,7 @@ function VerificationRunPanel({
   steps: FlowStep[]
   pipelineRun: PipelineVerificationRun | null
   verificationGold: VerificationGoldItem[]
+  defaultRequirementsSource?: StartPipelineRunPayload['requirements_source']
   onJumpToStep: (stepIndex: number) => void
   onEditVerificationGold: (requirement: VerificationGoldItem) => void
   onAcceptVerificationGold: (requirement: VerificationGoldItem) => Promise<void>
@@ -1215,13 +2409,20 @@ function VerificationRunPanel({
   const [acceptingRequirementId, setAcceptingRequirementId] = useState<string | null>(null)
   const [reviewCategoryId, setReviewCategoryId] = useState<ReviewCategoryId>('needs_review')
   const [runForm, setRunForm] = useState<StartPipelineRunPayload>({
-    verifier: 'deterministic_rule_based',
-    verifier_model: 'gemini-2.5-flash-lite',
+    verifier: 'gemini-image',
+    verifier_model: 'gemini-3.1-flash-lite',
     retriever: 'lexical',
-    requirements_source: 'benchmark',
+    retriever_provider: 'deepseek',
+    retriever_model: 'deepseek-chat',
+    requirements_source: defaultRequirementsSource,
     top_k: 3,
+    llm_claim_fallback: false,
+    claim_provider: 'deepseek',
+    claim_model: 'deepseek-chat',
+    max_claims: 4,
     max_images: 6,
-    max_gemini_api_calls: 0,
+    max_gemini_api_calls: 10,
+    gemini_max_retries: 2,
     use_cache: true,
     output_dir_name: 'ui_verification_runs',
   })
@@ -1234,6 +2435,10 @@ function VerificationRunPanel({
   useEffect(() => {
     setSelectedRun(pipelineRun)
   }, [pipelineRun])
+
+  useEffect(() => {
+    setRunForm((current) => ({...current, requirements_source: defaultRequirementsSource}))
+  }, [flowId, defaultRequirementsSource])
 
   useEffect(() => {
     void refreshRuns()
@@ -1308,6 +2513,16 @@ function VerificationRunPanel({
     }
   }
 
+  function selectVerifier(verifier: StartPipelineRunPayload['verifier']) {
+    setRunForm((current) => ({
+      ...current,
+      verifier,
+      max_gemini_api_calls: verifier === 'gemini-image' && current.max_gemini_api_calls === 0
+        ? 10
+        : current.max_gemini_api_calls,
+    }))
+  }
+
   async function acceptBenchmarkItem(requirement: VerificationGoldItem) {
     setRunMessage('')
     setAcceptingRequirementId(requirement.requirement_id)
@@ -1323,10 +2538,40 @@ function VerificationRunPanel({
 
   const requirementsPath = runForm.requirements_source === 'benchmark'
     ? `data/annotations/verification_gold/${flowId}/verification_gold.json`
-    : `data/annotations/requirements_gold/${flowId}/gold_requirements.json`
-  const cliCommand = `PYTHONPATH=src:. python scripts/run_verification_pipeline.py --flow-dir data/processed/flows/mind2web/${flowId} --requirements ${requirementsPath} --requirements-source ${runForm.requirements_source} --out data/generated/${runForm.output_dir_name}/${flowId}.json --retriever lexical --verifier ${runForm.verifier === 'deterministic_rule_based' ? 'deterministic' : 'gemini-image'} --verifier-model ${runForm.verifier_model} --max-verifier-images ${runForm.max_images} --max-gemini-api-calls ${runForm.max_gemini_api_calls} --no-llm-claim-fallback`
+    : runForm.requirements_source === 'uploaded'
+      ? `data/generated/uploaded_flows/${flowId}/requirements.json`
+      : `data/annotations/requirements_gold/${flowId}/gold_requirements.json`
+  const flowPath = runForm.requirements_source === 'uploaded'
+    ? `data/processed/flows/uploads/${flowId}`
+    : `data/processed/flows/mind2web/${flowId}`
+  const cliRequirementsSource = runForm.requirements_source === 'uploaded' ? 'custom' : runForm.requirements_source
+  const usesGeminiVerifier = runForm.verifier === 'gemini-image'
+  const cliGeminiOptions = usesGeminiVerifier
+    ? ` --verifier-model ${runForm.verifier_model} --max-verifier-images ${runForm.max_images} --max-gemini-api-calls ${runForm.max_gemini_api_calls} --gemini-max-retries ${runForm.gemini_max_retries}`
+    : ''
+  const cliRetrieverOptions = runForm.retriever === 'llm'
+    ? ` --retriever-provider ${runForm.retriever_provider} --retriever-model ${runForm.retriever_model}`
+    : ''
+  const cliClaimOptions = runForm.llm_claim_fallback
+    ? ` --llm-claim-fallback --claim-provider ${runForm.claim_provider} --claim-model ${runForm.claim_model}`
+    : ' --no-llm-claim-fallback'
+  const cliCommand = `PYTHONPATH=src:. python scripts/run_verification_pipeline.py --flow-dir ${flowPath} --requirements ${requirementsPath} --requirements-source ${cliRequirementsSource} --out data/generated/${runForm.output_dir_name}/${flowId}.json --retriever ${runForm.retriever}${cliRetrieverOptions} --top-k ${runForm.top_k} --max-claims ${runForm.max_claims}${cliClaimOptions} --verifier ${usesGeminiVerifier ? 'gemini-image' : 'deterministic'}${cliGeminiOptions}`
 
   const metadata = activeRun?.metadata ?? {}
+  const geminiDiagnostics = metadata.gemini_image_verifier && typeof metadata.gemini_image_verifier === 'object'
+    ? metadata.gemini_image_verifier as Record<string, unknown>
+    : null
+  const geminiApiCalls = Number(geminiDiagnostics?.api_calls ?? 0)
+  const geminiCacheHits = Number(geminiDiagnostics?.cache_hits ?? 0)
+  const verifierFallbacks = Number(geminiDiagnostics?.fallbacks ?? 0)
+  const verifierFailures = Array.isArray(geminiDiagnostics?.failures)
+    ? geminiDiagnostics.failures.filter((failure): failure is Record<string, unknown> => Boolean(failure) && typeof failure === 'object')
+    : []
+  const allGeminiVerificationFailed = metadata.verifier === 'gemini-image'
+    && Boolean(geminiDiagnostics)
+    && geminiApiCalls + geminiCacheHits === 0
+    && verifierFallbacks > 0
+  const selectedRunSummary = runs.find((run) => run.run_id === selectedRunId) ?? runs[0] ?? null
   const labelDistribution = (metadata.label_distribution ?? labelDistributionForResults(activeRun?.results ?? [])) as Record<string, number>
   const claimStatusDistribution = (metadata.claim_status_distribution ?? claimStatusDistributionForResults(activeRun?.results ?? [])) as Record<string, number>
   const comparisonRows = useMemo(() => {
@@ -1362,10 +2607,9 @@ function VerificationRunPanel({
   const reviewCategoryCounts = useMemo(() => {
     const counts = new Map<ReviewCategoryId, number>()
     for (const row of comparisonRows) {
-      if (row.review_status !== 'needs_review') {
-        continue
+      if (row.review_status === 'needs_review') {
+        counts.set('needs_review', (counts.get('needs_review') ?? 0) + 1)
       }
-      counts.set('needs_review', (counts.get('needs_review') ?? 0) + 1)
       for (const categoryId of row.category_ids) {
         counts.set(categoryId, (counts.get(categoryId) ?? 0) + 1)
       }
@@ -1379,7 +2623,7 @@ function VerificationRunPanel({
     return comparisonRows.filter((row) =>
       reviewCategoryId === 'needs_review'
         ? row.review_status === 'needs_review'
-        : row.review_status === 'needs_review' && row.category_ids.includes(reviewCategoryId),
+        : row.category_ids.includes(reviewCategoryId),
     )
   }, [comparisonRows, reviewCategoryId])
   const comparisonSummary = useMemo(() => {
@@ -1405,52 +2649,83 @@ function VerificationRunPanel({
         {runMessage && <p className="inline-note">{runMessage}</p>}
         {runs.length > 0 ? (
           <>
-            <label>
-              Select run
-              <select
-                value={selectedRunId}
-                onChange={(event) => {
-                  void selectRun(event.target.value)
-                }}
-              >
-                {runs.map((run) => (
-                  <option key={run.run_id} value={run.run_id}>
-                    {runLabel(run)} | {run.verifier ?? 'unknown'} | {run.retriever ?? 'unknown'} | {run.requirements_count} reqs | {formatDistribution(run.label_distribution)}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <div className="demo-table">
-              <div className="demo-table-header">
-                <span>Source</span>
-                <span>Verifier</span>
-                <span>Retriever</span>
-                <span>Labels</span>
+            {selectedRunSummary && (
+              <div className="selected-verification-run">
+                <span className="eyebrow">Selected run</span>
+                <strong>{runLabel(selectedRunSummary)}</strong>
+                <span>{selectedRunSummary.verifier ?? 'unknown'} · {selectedRunSummary.verifier_model ?? 'default'} · {selectedRunSummary.requirements_count} requirements</span>
+                <span className="run-metadata">
+                  {selectedRunSummary.has_pipeline_evidence && <span>{selectedRunSummary.evidence_count ?? 0} evidence records</span>}
+                  {runHasBboxHint(selectedRunSummary) && <span className="status-pill supported run-evidence-pill">Bounding boxes</span>}
+                  {(selectedRunSummary.verifier_failure_count ?? 0) > 0 && (
+                    <span className="status-pill missing">{selectedRunSummary.verifier_failure_count} verifier failure(s)</span>
+                  )}
+                  {(selectedRunSummary.verifier_fallbacks ?? 0) > 0 && (
+                    <span className="status-pill abstain">{selectedRunSummary.verifier_fallbacks} fallback(s)</span>
+                  )}
+                  <span>{formatTimestamp(selectedRunSummary.timestamp)}</span>
+                </span>
               </div>
-              {runs.map((run) => (
-                <button
-                  key={run.run_id}
-                  className="demo-table-row comparison-row-button"
-                  onClick={() => void selectRun(run.run_id)}
-                >
-                  <span className="review-mini-stack">
-                    <strong title={run.path}>{runLabel(run)}</strong>
-                    <span title={run.path}>{run.source}</span>
-                    {runHasBboxHint(run) && <span className="status-pill supported">Bbox evidence</span>}
-                    <span>{formatTimestamp(run.timestamp)}</span>
-                  </span>
-                  <span className="review-mini-stack">
-                    <strong>{run.verifier ?? 'unknown'}</strong>
-                    <span>{run.verifier_model ?? 'default'}</span>
-                  </span>
-                  <span>{run.retriever ?? 'unknown'}</span>
-                  <span className="review-mini-stack">
-                    <span>{formatCompactDistribution(run.label_distribution)}</span>
-                    <span>{run.metrics_available ? 'metrics available' : 'no metrics file'}</span>
-                  </span>
-                </button>
-              ))}
-            </div>
+            )}
+            <details className="verification-runs-disclosure">
+              <summary>
+                <span><strong>Browse all verification runs</strong><small>{runs.length} runs available</small></span>
+                <span className="disclosure-hint">Expand</span>
+              </summary>
+              <div className="verification-runs-disclosure-content">
+                <label>
+                  Select run
+                  <select
+                    value={selectedRunId}
+                    onChange={(event) => {
+                      void selectRun(event.target.value)
+                    }}
+                  >
+                    {runs.map((run) => (
+                      <option key={run.run_id} value={run.run_id}>
+                        {runLabel(run)} | {run.verifier ?? 'unknown'} | {run.retriever ?? 'unknown'} | {run.requirements_count} reqs | {formatDistribution(run.label_distribution)}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <div className="demo-table verification-runs-table">
+                  <div className="demo-table-header">
+                    <span>Source</span>
+                    <span>Verifier</span>
+                    <span>Retriever</span>
+                    <span>Labels</span>
+                  </div>
+                  {runs.map((run) => (
+                    <button
+                      key={run.run_id}
+                      className={`demo-table-row comparison-row-button${run.run_id === selectedRunId ? ' selected' : ''}`}
+                      onClick={() => void selectRun(run.run_id)}
+                    >
+                      <span className="review-mini-stack">
+                        <strong title={run.path}>{runLabel(run)}</strong>
+                        <span title={run.path}>{run.source}</span>
+                        <span className="run-metadata">
+                          {run.has_pipeline_evidence && <span>{run.evidence_count ?? 0} evidence records</span>}
+                          {runHasBboxHint(run) && <span className="status-pill supported run-evidence-pill">Bounding boxes</span>}
+                          {(run.verifier_failure_count ?? 0) > 0 && <span className="status-pill missing">Verifier failed</span>}
+                          {(run.verifier_fallbacks ?? 0) > 0 && <span>{run.verifier_fallbacks} fallback(s)</span>}
+                          <span>{formatTimestamp(run.timestamp)}</span>
+                        </span>
+                      </span>
+                      <span className="review-mini-stack">
+                        <strong>{run.verifier ?? 'unknown'}</strong>
+                        <span>{run.verifier_model ?? 'default'}</span>
+                      </span>
+                      <span>{run.retriever ?? 'unknown'}</span>
+                      <span className="review-mini-stack">
+                        <span>{formatCompactDistribution(run.label_distribution)}</span>
+                        <span>{run.metrics_available ? 'metrics available' : 'no metrics file'}</span>
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </details>
           </>
         ) : (
           <p className="empty-text">No generated verification pipeline output exists for this flow yet.</p>
@@ -1460,37 +2735,114 @@ function VerificationRunPanel({
       <section className="card">
         <div className="panel-header">
           <h3>Run pipeline</h3>
-          <span>Starting a Gemini run is an explicit action and may consume API quota.</span>
+          <span>{usesGeminiVerifier
+            ? 'Visual verification uses Gemini and may consume API quota.'
+            : 'The lexical baseline does not inspect image content and commonly abstains.'}</span>
         </div>
         <div className="toolbar-grid">
           <label>
             Verifier
             <select
               value={runForm.verifier}
-              onChange={(event) => setRunForm({...runForm, verifier: event.target.value as StartPipelineRunPayload['verifier']})}
+              onChange={(event) => selectVerifier(event.target.value as StartPipelineRunPayload['verifier'])}
             >
-              <option value="deterministic_rule_based">deterministic_rule_based</option>
-              <option value="gemini-image">gemini-image</option>
+              <option value="gemini-image">Visual verification (Gemini)</option>
+              <option value="deterministic_rule_based">Lexical baseline (limited)</option>
             </select>
           </label>
-          <label>
-            Verifier model
-            <input value={runForm.verifier_model} onChange={(event) => setRunForm({...runForm, verifier_model: event.target.value})} />
-          </label>
+          {usesGeminiVerifier && (
+            <label>
+              Screenshot verifier model
+              <select value={runForm.verifier_model} onChange={(event) => setRunForm({...runForm, verifier_model: event.target.value})}>
+                {GEMINI_VERIFIER_MODELS.map((model) => <option key={model.value} value={model.value}>{model.label}</option>)}
+              </select>
+            </label>
+          )}
           <label>
             Retriever
-            <select value={runForm.retriever} onChange={() => setRunForm({...runForm, retriever: 'lexical'})}>
-              <option value="lexical">lexical</option>
+            <select
+              value={runForm.retriever}
+              onChange={(event) => setRunForm({...runForm, retriever: event.target.value as StartPipelineRunPayload['retriever']})}
+            >
+              <option value="lexical">Lexical / OCR overlap</option>
+              <option value="tfidf">TF-IDF text ranking</option>
+              <option value="llm">LLM text reranking</option>
             </select>
           </label>
+          {runForm.retriever === 'llm' && (
+            <>
+              <label>
+                Retriever provider
+                <select
+                  value={runForm.retriever_provider}
+                  onChange={(event) => {
+                    const provider = event.target.value as StartPipelineRunPayload['retriever_provider']
+                    setRunForm({...runForm, retriever_provider: provider, retriever_model: defaultTextModel(provider)})
+                  }}
+                >
+                  <option value="deepseek">DeepSeek</option>
+                  <option value="gemini">Gemini</option>
+                </select>
+              </label>
+              <label>
+                Retriever model
+                <select value={runForm.retriever_model} onChange={(event) => setRunForm({...runForm, retriever_model: event.target.value})}>
+                  {TEXT_MODELS_BY_PROVIDER[runForm.retriever_provider].map((model) => (
+                    <option key={model.value} value={model.value}>{model.label}</option>
+                  ))}
+                </select>
+              </label>
+            </>
+          )}
+          <label>
+            Requirement decomposition
+            <select
+              value={runForm.llm_claim_fallback ? 'llm' : 'rules'}
+              onChange={(event) => setRunForm({...runForm, llm_claim_fallback: event.target.value === 'llm'})}
+            >
+              <option value="rules">Rule-based only</option>
+              <option value="llm">LLM-assisted fallback</option>
+            </select>
+          </label>
+          {runForm.llm_claim_fallback && (
+            <>
+              <label>
+                Decomposition provider
+                <select
+                  value={runForm.claim_provider}
+                  onChange={(event) => {
+                    const provider = event.target.value as StartPipelineRunPayload['claim_provider']
+                    setRunForm({...runForm, claim_provider: provider, claim_model: defaultTextModel(provider)})
+                  }}
+                >
+                  <option value="deepseek">DeepSeek</option>
+                  <option value="gemini">Gemini</option>
+                </select>
+              </label>
+              <label>
+                Decomposition model
+                <select value={runForm.claim_model} onChange={(event) => setRunForm({...runForm, claim_model: event.target.value})}>
+                  {TEXT_MODELS_BY_PROVIDER[runForm.claim_provider].map((model) => (
+                    <option key={model.value} value={model.value}>{model.label}</option>
+                  ))}
+                </select>
+              </label>
+            </>
+          )}
           <label>
             Requirements
             <select
               value={runForm.requirements_source}
               onChange={(event) => setRunForm({...runForm, requirements_source: event.target.value as StartPipelineRunPayload['requirements_source']})}
             >
-              <option value="benchmark">verification benchmark</option>
-              <option value="accepted">accepted requirements</option>
+              {defaultRequirementsSource === 'uploaded' ? (
+                <option value="uploaded">uploaded requirements</option>
+              ) : (
+                <>
+                  <option value="benchmark">verification benchmark</option>
+                  <option value="accepted">accepted requirements</option>
+                </>
+              )}
             </select>
           </label>
           <label>
@@ -1498,34 +2850,57 @@ function VerificationRunPanel({
             <input value={runForm.output_dir_name} onChange={(event) => setRunForm({...runForm, output_dir_name: event.target.value})} />
           </label>
           <label>
-            Top-k
+            Retrieved screenshots (top-k)
             <input type="number" min={1} max={20} value={runForm.top_k} onChange={(event) => setRunForm({...runForm, top_k: Number(event.target.value)})} />
           </label>
           <label>
-            Max images
-            <input type="number" min={1} max={20} value={runForm.max_images} onChange={(event) => setRunForm({...runForm, max_images: Number(event.target.value)})} />
+            Max claims per requirement
+            <input type="number" min={1} max={10} value={runForm.max_claims} onChange={(event) => setRunForm({...runForm, max_claims: Number(event.target.value)})} />
           </label>
-          <label>
-            Max Gemini API calls
-            <input
-              type="number"
-              min={-1}
-              max={1000}
-              value={runForm.max_gemini_api_calls}
-              onChange={(event) => setRunForm({...runForm, max_gemini_api_calls: Number(event.target.value)})}
-            />
-          </label>
-          <label>
-            Use cache
-            <select value={runForm.use_cache ? 'true' : 'false'} onChange={(event) => setRunForm({...runForm, use_cache: event.target.value === 'true'})}>
-              <option value="true">true</option>
-              <option value="false">false</option>
-            </select>
-          </label>
+          {usesGeminiVerifier && (
+            <>
+              <label>
+                Max images per claim
+                <input type="number" min={1} max={20} value={runForm.max_images} onChange={(event) => setRunForm({...runForm, max_images: Number(event.target.value)})} />
+              </label>
+              <label>
+                Gemini API call limit
+                <input
+                  type="number"
+                  min={-1}
+                  max={1000}
+                  value={runForm.max_gemini_api_calls}
+                  onChange={(event) => setRunForm({...runForm, max_gemini_api_calls: Number(event.target.value)})}
+                />
+              </label>
+              <label>
+                Retries for temporary Gemini errors
+                <input
+                  type="number"
+                  min={0}
+                  max={5}
+                  value={runForm.gemini_max_retries}
+                  onChange={(event) => setRunForm({...runForm, gemini_max_retries: Number(event.target.value)})}
+                />
+              </label>
+              <label>
+                Reuse cached responses
+                <select value={runForm.use_cache ? 'true' : 'false'} onChange={(event) => setRunForm({...runForm, use_cache: event.target.value === 'true'})}>
+                  <option value="true">yes</option>
+                  <option value="false">no</option>
+                </select>
+              </label>
+            </>
+          )}
         </div>
+        <p className="inline-note">
+          {usesGeminiVerifier
+            ? `${runForm.retriever === 'llm' ? 'LLM reranking makes a separate text-model request. ' : ''}${runForm.llm_claim_fallback ? 'LLM-assisted decomposition may make additional text-model requests for compound requirements. ' : ''}Text-model requests are not counted by the Gemini verifier call limit. Gemini evaluates the selected screenshots; failed or capped groups are reported in the run diagnostics below.`
+            : 'Use this baseline for offline diagnostics only. It scores lexical/OCR overlap, cannot interpret the screenshots semantically, and is expected to abstain when visible evidence is weak.'}
+        </p>
         <div className="button-row">
           <button onClick={() => void startRun()} disabled={runJob?.status === 'running'}>
-            Run pipeline
+            {usesGeminiVerifier ? 'Run visual verification' : 'Run lexical baseline'}
           </button>
         </div>
         {runJob && (
@@ -1558,6 +2933,31 @@ function VerificationRunPanel({
           <h3>Verification pipeline run</h3>
           <span>{activeRun.flow_id}</span>
         </div>
+        {geminiDiagnostics && (
+          <div className={`verifier-diagnostics${allGeminiVerificationFailed ? ' error' : ''}`}>
+            <strong>{allGeminiVerificationFailed
+              ? 'Gemini produced no judgments for this run'
+              : 'Gemini verifier diagnostics'}</strong>
+            <span>
+              {geminiApiCalls} successful API call(s) · {geminiCacheHits} cache hit(s) · {verifierFallbacks} fallback decision(s)
+            </span>
+            {allGeminiVerificationFailed && (
+              <p>Every displayed label came from the rule-based fallback. Treat the resulting MISSING and ABSTAIN labels as a failed verifier run, not as Gemini judgments.</p>
+            )}
+            {verifierFailures.length > 0 && (
+              <details open={allGeminiVerificationFailed}>
+                <summary>{verifierFailures.length} verifier failure(s)</summary>
+                <ul>
+                  {verifierFailures.slice(0, 5).map((failure, index) => (
+                    <li key={`${String(failure.group_id ?? 'failure')}-${index}`}>
+                      {failure.group_id ? `${String(failure.group_id)}: ` : ''}{String(failure.error ?? 'Unknown verifier failure')}
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            )}
+          </div>
+        )}
         <div className="metric-grid">
           <Metric label="Requirements" value={String(metadata.requirements_count ?? activeRun.results.length)} />
           <Metric label="Claims" value={String(metadata.claim_count ?? activeRun.results.reduce((sum, result) => sum + result.claims.length, 0))} />
@@ -1579,10 +2979,10 @@ function VerificationRunPanel({
         </div>
       </section>
 
-      <section className="card">
+      {verificationGold.length > 0 && <section className="card">
         <div className="panel-header">
           <h3>Reviewed-label comparison</h3>
-          <span>{filteredComparisonRows.length} shown. Review queues use open verification-gold items only.</span>
+          <span>{filteredComparisonRows.length} shown. Disagreement categories include accepted benchmark items.</span>
         </div>
         <div className="review-category-toolbar">
           {REVIEW_CATEGORY_OPTIONS.map((category) => {
@@ -1700,7 +3100,7 @@ function VerificationRunPanel({
         ) : (
           <p className="empty-text">No reviewed reference comparison was available.</p>
         )}
-      </section>
+      </section>}
 
       <section className="card">
         <div className="panel-header">
@@ -1734,7 +3134,7 @@ function VerificationRunPanel({
               </div>
               <div className="button-row left">
                 <button className="secondary-button" onClick={() => setSelectedRequirementId(result.requirement_id)}>
-                  Inspect manual vs pipeline
+                  {goldById.get(result.requirement_id) ? 'Inspect manual vs pipeline' : 'Inspect evidence & bounding boxes'}
                 </button>
                 {goldById.get(result.requirement_id) && (
                   <button
@@ -1836,19 +3236,19 @@ function VerificationComparisonModal({
       <div className="modal-card comparison-modal-card" onClick={(event) => event.stopPropagation()}>
         <div className="panel-header align-start">
           <div>
-            <h3>Manual vs pipeline comparison</h3>
+            <h3>{gold ? 'Manual vs pipeline comparison' : 'Evidence inspection'}</h3>
             <span>{result.requirement_id}</span>
           </div>
           <div className="button-row wrap">
-            <button
-              type="button"
-              className="secondary-button"
-              disabled={!onEditBenchmarkItem}
-              title={onEditBenchmarkItem ? 'Edit current verification benchmark item' : 'Benchmark item is missing or changed since this run'}
-              onClick={onEditBenchmarkItem}
-            >
-              Edit benchmark item
-            </button>
+            {gold && <button
+                type="button"
+                className="secondary-button"
+                disabled={!onEditBenchmarkItem}
+                title={onEditBenchmarkItem ? 'Edit current verification benchmark item' : 'Benchmark item changed since this run'}
+                onClick={onEditBenchmarkItem}
+              >
+                Edit benchmark item
+              </button>}
             {onAcceptBenchmarkItem && (
               <button type="button" disabled={accepting} title="Accept this verification benchmark item" onClick={onAcceptBenchmarkItem}>
                 {accepting ? 'Accepting...' : 'Accept item'}
@@ -1865,18 +3265,18 @@ function VerificationComparisonModal({
             <span className="mini-label">Requirement</span>
             <p>{gold?.text ?? result.requirement_text}</p>
           </div>
-          <div className="comparison-verdict-strip">
-            <div>
+          <div className={gold ? 'comparison-verdict-strip' : 'comparison-verdict-strip pipeline-only'}>
+            {gold && <div>
               <span>Manual benchmark</span>
               <strong className={`status-pill ${statusClass(goldLabel)}`}>{humanizeStatus(goldLabel)}</strong>
-            </div>
+            </div>}
             <div>
               <span>Pipeline decision</span>
               <strong className={`status-pill ${statusClass(predictedLabel)}`}>{humanizeStatus(predictedLabel)}</strong>
             </div>
             <div>
-              <span>Risk</span>
-              <strong>{falseFulfillment ? 'False fulfillment' : labelMismatch ? 'Label mismatch' : 'Label aligned'}</strong>
+              <span>{gold ? 'Risk' : 'Evidence screens'}</span>
+              <strong>{gold ? (falseFulfillment ? 'False fulfillment' : labelMismatch ? 'Label mismatch' : 'Label aligned') : (predictedEvidenceSteps.join(', ') || 'None')}</strong>
             </div>
           </div>
         </section>
@@ -1886,13 +3286,13 @@ function VerificationComparisonModal({
             <h4>Final label and claim composition</h4>
             <span>The pipeline label is produced by the aggregation step, not by copying one claim.</span>
           </div>
-          <div className="composition-grid">
-            <article className="composition-card">
+          <div className={gold ? 'composition-grid' : 'composition-grid pipeline-only'}>
+            {gold && <article className="composition-card">
               <span className="mini-label">Manual final label</span>
               <strong className={`status-pill ${statusClass(goldLabel)}`}>{humanizeStatus(goldLabel)}</strong>
               <p>Claim labels: {formatDistribution(manualClaimDistribution)}</p>
               <p>Ambiguity: {formatReasons(gold?.uncertainty_reasons ?? [])}</p>
-            </article>
+            </article>}
             <article className="composition-card">
               <span className="mini-label">Pipeline final label</span>
               <strong className={`status-pill ${statusClass(predictedLabel)}`}>{humanizeStatus(predictedLabel)}</strong>
@@ -1910,7 +3310,7 @@ function VerificationComparisonModal({
         </section>
 
         <section className="comparison-grid">
-          <ComparisonColumn
+          {gold && <ComparisonColumn
             title="Manual benchmark"
             label={goldLabel}
             uiEvaluability={gold?.ui_evaluability}
@@ -1919,7 +3319,7 @@ function VerificationComparisonModal({
             rationale={gold?.rationale}
             evidenceNote={gold?.evidence_note}
             onJumpToStep={onJumpToStep}
-          />
+          />}
           <ComparisonColumn
             title="Pipeline output"
             label={predictedLabel}
@@ -1932,7 +3332,7 @@ function VerificationComparisonModal({
           />
         </section>
 
-        <section className="comparison-section">
+        {gold && <section className="comparison-section">
           <div className="panel-header">
             <h4>Why the decision differs</h4>
             <span>Evidence overlap: {evidenceOverlap.length > 0 ? evidenceOverlap.join(', ') : 'none'}</span>
@@ -1944,13 +3344,13 @@ function VerificationComparisonModal({
               </div>
             ))}
           </div>
-        </section>
+        </section>}
 
         <section className="comparison-section">
           <div className="panel-header">
             <div>
-              <h4>Claim alignment</h4>
-              <span>Manual claims are aligned to pipeline claims by token overlap.</span>
+              <h4>{gold ? 'Claim alignment' : 'Claim evidence'}</h4>
+              <span>{gold ? 'Manual claims are aligned to pipeline claims by token overlap.' : 'Inspect retrieved evidence and localized regions for each pipeline claim.'}</span>
             </div>
             {onAcceptBenchmarkItem && (
               <button type="button" disabled={accepting} title="Accept this verification benchmark item" onClick={onAcceptBenchmarkItem}>
@@ -1965,6 +3365,7 @@ function VerificationComparisonModal({
                 alignment={alignment}
                 steps={steps}
                 onJumpToStep={onJumpToStep}
+                pipelineOnly={!gold}
               />
             ))}
           </div>
@@ -2014,22 +3415,25 @@ function ClaimAlignmentRow({
   alignment,
   steps,
   onJumpToStep,
+  pipelineOnly = false,
 }: {
   alignment: ClaimAlignment
   steps: FlowStep[]
   onJumpToStep: (stepIndex: number) => void
+  pipelineOnly?: boolean
 }) {
   const goldClaim = alignment.goldClaim
   const predictedClaim = alignment.predictedClaim
   const statusMismatch = normalizeDisplayValue(goldClaim?.status) !== normalizeDisplayValue(predictedClaim?.status)
   const goldEvidenceUnit = firstRegionEvidenceUnit(goldClaim?.evidence_units)
+  const pipelineEvidenceByStep = groupPipelineEvidenceByStep(predictedClaim?.evidence ?? [])
   return (
-    <article className={statusMismatch ? 'claim-alignment-row status-mismatch' : 'claim-alignment-row'}>
-      <div className="alignment-score">
+    <article className={`${statusMismatch && !pipelineOnly ? 'claim-alignment-row status-mismatch' : 'claim-alignment-row'}${pipelineOnly ? ' pipeline-only' : ''}`}>
+      {!pipelineOnly && <div className="alignment-score">
         <span>match</span>
         <strong>{alignment.score.toFixed(2)}</strong>
-      </div>
-      <div className="aligned-claim manual">
+      </div>}
+      {!pipelineOnly && <div className="aligned-claim manual">
         <div className="comparison-column-header">
           <strong>Manual claim</strong>
           {goldClaim?.status && <span className={`status-pill ${statusClass(goldClaim.status)}`}>{humanizeStatus(goldClaim.status)}</span>}
@@ -2055,7 +3459,7 @@ function ClaimAlignmentRow({
             legacyVariant="display"
           />
         )}
-      </div>
+      </div>}
       <div className="aligned-claim predicted">
         <div className="comparison-column-header">
           <strong>Pipeline claim</strong>
@@ -2075,20 +3479,22 @@ function ClaimAlignmentRow({
             </div>
             <p className="inline-note">Rationale: {predictedClaim.rationale}</p>
             <div className="evidence-snippet-list">
-              {predictedClaim.evidence.slice(0, 3).map((evidence) => {
-                const bbox = normalizeBoundingBox(evidence.bbox)
+              {pipelineEvidenceByStep.slice(0, 3).map((evidenceGroup) => {
+                const regions = evidenceGroup.evidence.flatMap((evidence) => {
+                  const bbox = normalizeBoundingBox(evidence.bbox)
+                  return bbox ? [{bbox, bboxMetadata: metadataFromPipelineEvidence(evidence)}] : []
+                })
                 return (
-                  <div key={`${predictedClaim.claim_id}-${evidence.step_index}`} className="evidence-snippet-group">
-                    <button className="evidence-snippet" onClick={() => onJumpToStep(evidence.step_index)}>
-                      <strong>Step {evidence.step_index}</strong>
-                      <span>{truncateText(evidence.visible_observation, 260)}</span>
+                  <div key={`${predictedClaim.claim_id}-${evidenceGroup.stepIndex}`} className="evidence-snippet-group">
+                    <button className="evidence-snippet" onClick={() => onJumpToStep(evidenceGroup.stepIndex)}>
+                      <strong>Step {evidenceGroup.stepIndex}</strong>
+                      <span>{truncateText(evidenceGroup.evidence.map((evidence) => evidence.visible_observation).filter(Boolean).join(' · '), 260)}</span>
                     </button>
-                    {bbox && (
-                      <EvidenceBoxPreview
-                        step={steps.find((step) => step.step_index === evidence.step_index) ?? null}
-                        bbox={bbox}
-                        label="Pipeline box"
-                        bboxMetadata={metadataFromPipelineEvidence(evidence)}
+                    {regions.length > 0 && (
+                      <EvidenceBoxesPreview
+                        step={steps.find((step) => step.step_index === evidenceGroup.stepIndex) ?? null}
+                        regions={regions}
+                        label={regions.length === 1 ? 'Pipeline box' : `${regions.length} pipeline boxes`}
                         legacyVariant="preview"
                       />
                     )}
@@ -2101,6 +3507,16 @@ function ClaimAlignmentRow({
       </div>
     </article>
   )
+}
+
+function groupPipelineEvidenceByStep(evidence: PipelineEvidenceItem[]): Array<{stepIndex: number; evidence: PipelineEvidenceItem[]}> {
+  const byStep = new Map<number, PipelineEvidenceItem[]>()
+  for (const item of evidence) {
+    byStep.set(item.step_index, [...(byStep.get(item.step_index) ?? []), item])
+  }
+  return [...byStep.entries()]
+    .sort((left, right) => left[0] - right[0])
+    .map(([stepIndex, groupedEvidence]) => ({stepIndex, evidence: groupedEvidence}))
 }
 
 function Metric({label, value}: {label: string; value: string}) {
@@ -2159,6 +3575,9 @@ function fileNameFromPath(path: string | null | undefined): string {
 }
 
 function runHasBboxHint(run: PipelineRunSummary): boolean {
+  if (run.has_bbox_evidence || Number(run.bbox_evidence_count ?? 0) > 0) {
+    return true
+  }
   const label = `${runLabel(run)} ${run.path ?? ''}`.toLowerCase()
   return label.includes('with_bboxes') || label.includes('bbox')
 }
@@ -3268,6 +4687,58 @@ function EvidenceBoxPreview({
   )
 }
 
+function EvidenceBoxesPreview({
+  step,
+  regions,
+  label,
+  legacyVariant = 'display',
+}: {
+  step: FlowStep | null
+  regions: Array<{bbox: BoundingBox; bboxMetadata: BoundingBoxMetadata | null}>
+  label: string
+  legacyVariant?: 'display' | 'preview'
+}) {
+  if (!step || regions.length === 0) {
+    return null
+  }
+  const image = selectBoxImage(step, regions[0].bboxMetadata, legacyVariant)
+  return (
+    <div className="evidence-box-preview">
+      <span className="mini-label">{label}</span>
+      <div className="bbox-canvas preview">
+        <img src={resolveAssetUrl(image.url)} alt={`Step ${step.step_index}`} draggable={false} />
+        {regions.map((region, index) => (
+          <BoundingBoxOverlay
+            key={`${index}-${region.bbox.x1}-${region.bbox.y1}-${region.bbox.x2}-${region.bbox.y2}`}
+            bbox={scaleBoxForPreviewImage(region.bbox, region.bboxMetadata, image.width, image.height)}
+            imageWidth={image.width}
+            imageHeight={image.height}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function scaleBoxForPreviewImage(
+  bbox: BoundingBox,
+  metadata: BoundingBoxMetadata | null,
+  targetWidth?: number | null,
+  targetHeight?: number | null,
+): BoundingBox {
+  const sourceWidth = metadata?.image_width
+  const sourceHeight = metadata?.image_height
+  if (!sourceWidth || !sourceHeight || !targetWidth || !targetHeight || (sourceWidth === targetWidth && sourceHeight === targetHeight)) {
+    return bbox
+  }
+  return {
+    x1: bbox.x1 * targetWidth / sourceWidth,
+    y1: bbox.y1 * targetHeight / sourceHeight,
+    x2: bbox.x2 * targetWidth / sourceWidth,
+    y2: bbox.y2 * targetHeight / sourceHeight,
+  }
+}
+
 function selectBoxImage(
   step: FlowStep,
   metadata: BoundingBoxMetadata | null,
@@ -3432,6 +4903,28 @@ function parseTags(value: string): string[] {
     .split(',')
     .map((tag) => tag.trim())
     .filter(Boolean)
+}
+
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => {
+      const result = String(reader.result ?? '')
+      resolve(result.includes(',') ? result.split(',', 2)[1] : result)
+    }
+    reader.onerror = () => reject(reader.error ?? new Error(`Could not read ${file.name}`))
+    reader.readAsDataURL(file)
+  })
+}
+
+function formatFileSize(bytes: number): string {
+  if (bytes < 1024) {
+    return `${bytes} B`
+  }
+  if (bytes < 1024 * 1024) {
+    return `${Math.round(bytes / 1024)} KB`
+  }
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
 }
 
 function humanizeStatus(value: string | null | undefined): string {

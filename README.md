@@ -2,6 +2,29 @@
 
 Code and repository data for deriving and verifying UI-facing software requirements from screenshot flows.
 
+## Licensing and dataset boundary
+
+This public repository currently has no root software `LICENSE`; public
+visibility alone does not make the code open source. A code license must be
+selected before redistribution rights are claimed.
+
+The numbered flows and their annotations are derived from the Mind2Web
+`test_task` split. Mind2Web identifies its dataset as CC BY 4.0 but also asks
+users not to redistribute unzipped test files online or place benchmark data in
+training corpora. Do not commit screenshots, test records, HTML/MHTML, HAR
+files, traces, videos, or per-item raw model interactions.
+
+PURE source documents were collected from third-party Web sources whose
+individual licensing status is not guaranteed by the PURE curators. Do not
+commit PURE PDFs, XML files, extracted figures, substantial source passages, or
+per-item prompts and outputs reproducing them.
+
+The conservative release policy and attribution language are documented in
+`docs/dataset_licensing_and_release_policy_2026-07-23.md`. The curated
+`artifacts/thesis_evaluation/` package is supervisor-only pending written
+permission for broader per-item release. Public releases should be
+aggregate-only and built from an explicit allowlist.
+
 ## Repository layout
 
 The repository now separates versioned requirement data from local flow data:
@@ -53,9 +76,13 @@ Add:
 
 ```bash
 GEMINI_API_KEY=your_gemini_api_key_here
+OPENROUTER_API_KEY=your_openrouter_api_key_here
 GEMINI_EUR_PER_USD=0.92
 DEEPSEEK_API_KEY=your_deepseek_api_key_here
 ```
+
+`OPENROUTER_API_KEY` is needed only for the hosted Qwen open-weight baseline.
+Never commit `.env`; it is ignored by Git.
 
 Gemini API calls through the repository wrapper are logged locally under
 `data/generated/gemini_usage/`. The app exposes the aggregate via:
@@ -136,6 +163,17 @@ npm run dev
 
 By default the frontend calls `http://127.0.0.1:8000`. To override this, set `VITE_API_BASE_URL`.
 
+### Ad-hoc screenshot verification
+
+Open `http://127.0.0.1:5173/verify/new` (or choose **New screenshot verification** in the workbench) to:
+
+- upload and order up to 20 screenshots;
+- paste requirements or import a JSON, TXT, or Markdown requirements file;
+- run the deterministic or Gemini image verification pipeline; and
+- inspect requirement decisions, claim evidence, run history, and localized bounding boxes.
+
+Uploaded flows are stored locally under `data/processed/flows/uploads/`. Their normalized requirements and pipeline outputs stay under `data/generated/`.
+
 ## Tests
 
 Run the Python test suite from the repository root:
@@ -143,6 +181,65 @@ Run the Python test suite from the repository root:
 ```bash
 pytest
 ```
+
+Validate the frontend production build:
+
+```bash
+cd frontend
+npm ci
+npm run build
+```
+
+For the exact evaluation environment used on 23 July 2026, install the regular
+project extras with the pinned constraints:
+
+```bash
+pip install -e ".[llm,data,dev]" -c constraints-thesis-eval.txt
+```
+
+Local SmolVLM experiments use the separate pinned
+`requirements-open-vlm.txt` environment because PyTorch and Transformers are
+not runtime requirements of the main application.
+
+## Thesis experiment reproduction
+
+The current experiment definitions are:
+
+- `configs/thesis_final_experiments.json`: completed controlled matrix and model roles;
+- `configs/thesis_remaining_runs.json`: prepared stability repetitions and optional oracle diagnostics.
+
+Generate a preflight manifest without making API calls:
+
+```bash
+python scripts/run_thesis_final_experiments.py \
+  --config configs/thesis_remaining_runs.json \
+  --tiers core \
+  --manifest-out data/generated/thesis_final_experiments/stability_preflight_manifest.json
+```
+
+The manifest records the Git state, benchmark and source hashes, exact commands,
+model parameters, expected coverage, and conservative cost bounds. Paid calls
+require both `--execute` and an explicit `--cost-ceiling-usd`. The ceiling is an
+authorization guard, not a provider-side billing limit.
+
+Each repeated execution has a separate output and verifier-cache directory.
+Do not use `--force` to create a reported repetition from an already completed
+directory; use a new repetition ID instead. After the prepared `r2` and `r3`
+runs finish, summarize them with:
+
+```bash
+python scripts/analyze_thesis_run_stability.py
+```
+
+In the current lexical top-k implementation, `top-4` means a shared four-image
+cap for a batch of up to eight claims. It must not be described as an
+independent per-requirement top-4 condition.
+
+Generated runs remain under `data/generated/` and are not committed wholesale.
+The release-facing replication package is curated under
+`artifacts/thesis_evaluation/`; its README defines the licensing, privacy, and
+path-sanitization gate that must be satisfied before publishing model traces or
+Mind2Web-derived artifacts.
 
 ## Data workflows
 

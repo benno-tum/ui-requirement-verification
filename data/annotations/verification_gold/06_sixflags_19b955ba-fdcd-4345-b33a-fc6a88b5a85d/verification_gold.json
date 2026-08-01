@@ -1110,7 +1110,7 @@
       "text": "The system shall present available parks in a browsable location list that helps applicants find the correct property.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-03",
       "source_candidate_id": "REQ-03",
       "source_harvest_id": "HARV-03",
@@ -1123,6 +1123,7 @@
       "visible_subtype": "NONE",
       "annotation_notes": "The flow demonstrates list-based park discovery and selection.",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1181,7 +1182,7 @@
       "rationale": "The flow demonstrates list-based park discovery and selection.",
       "review_status": "accepted",
       "created_at": "2026-04-21T21:22:47+00:00",
-      "updated_at": "2026-07-04T12:49:49+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "REQ-14",
@@ -1189,7 +1190,7 @@
       "text": "The system shall make the recruiting flow understandable through consistent labeling of park, team, and role context across screens.",
       "scope": "multi_screen",
       "tags": [],
-      "source_type": "requirements_candidate",
+      "source_type": "requirements_gold",
       "source_id": "REQ-14",
       "source_candidate_id": "REQ-14",
       "source_harvest_id": "HARV-14",
@@ -1203,6 +1204,7 @@
       "visible_subtype": "NONE",
       "annotation_notes": "The observed labels keep park, team, and role context coherent across the recruiting path.",
       "annotated_by": "benno",
+      "manual_verification_label": "fulfilled",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1291,7 +1293,7 @@
       "rationale": "The observed labels keep park, team, and role context coherent across the recruiting path.",
       "review_status": "accepted",
       "created_at": "2026-04-21T21:22:47+00:00",
-      "updated_at": "2026-07-04T12:54:00+00:00"
+      "updated_at": "2026-08-01T10:20:05+00:00"
     },
     {
       "requirement_id": "CONTR-01",

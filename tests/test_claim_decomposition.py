@@ -175,7 +175,7 @@ def test_rule_guided_llm_sends_structured_rule_context(tmp_path) -> None:
     result = RuleGuidedLLMClaimDecomposer(fake, cache_dir=tmp_path).decompose(text)
 
     assert result.source == "rule_guided_llm"
-    assert result.prompt_version == "CLAIM_DECOMPOSITION_RULE_GUIDED_V2"
+    assert result.prompt_version == "CLAIM_DECOMPOSITION_RULE_GUIDED_V3"
     assert result.model_name == "fake-llm"
     assert "LLM_USED" in result.quality_flags
     prompt = fake.prompts[0]

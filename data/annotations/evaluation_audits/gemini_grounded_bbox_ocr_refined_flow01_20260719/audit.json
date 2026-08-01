@@ -1,0 +1,12 @@
+{
+  "audit_id": "gemini_grounded_bbox_ocr_refined_flow01_20260719",
+  "title": "Recommended for flow 01 — Gemini + OCR-refined boxes",
+  "created_at": "2026-07-19T14:47:55.284275+00:00",
+  "seed": 20260719,
+  "ui_item_count": 72,
+  "bbox_item_count": 54,
+  "blind_review": false,
+  "status": "completed_pipeline_inspection",
+  "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+  "bbox_source": "gemini_visual_grounding"
+}

@@ -1,0 +1,879 @@
+{
+  "dataset": "pure",
+  "flow_id": "pure_2010_mashboot",
+  "flow_overview": "Document-contextualized Mashboot requirements grounded only in the 2010 Mashboot SRS.",
+  "capability_summary": [],
+  "requirements": [
+    {
+      "requirement_id": "PURE-MB-NAV-001",
+      "flow_id": "pure_2010_mashboot",
+      "text": "The Mashbot web interface shall provide tabbed navigation for Dashboard, Create, Schedule, and Explore workflows.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_requirement:contextualized_feature"
+      ],
+      "origin": "human",
+      "review_status": "candidate",
+      "step_indices": [
+        1,
+        2,
+        3
+      ],
+      "rationale": "Composed only from cited Mashboot PDF sections and numbered requirements; requires manual verification review.",
+      "confidence": "MEDIUM",
+      "created_at": "2026-07-16T10:35:24+00:00",
+      "source_harvest_id": "composed:mashboot::2.1.2+mashboot::4",
+      "candidate_origin": "VISIBLE_CORE_REWRITE",
+      "benchmark_decision": "REWRITE_TO_VISIBLE_CORE",
+      "parent_harvest_text": "Contextual source records: mashboot::2.1.2, mashboot::4\n\nThe user interface consists of a web front end with tabs to separate the various workflow areas. To create content, the user is provided with a calendar scheduling tool and a content editor. Additionally, there is a monitoring dashboard which gives the user a view on responses to the content in any given campaign. Finally, there is an explore view that gives the user a portal with which they can keep tabs on topics of interest in social media.\n\nThe user interface will consist of a tabbed navigation bar that unifies the sitewide navigation, as well as module specific navigation as needed. Tabs: Dashboard, Create, Schedule, Explore.",
+      "grounding_scope": "DIRECT_FLOW_GROUNDED",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "non_evaluable_reason": "NONE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "task_relevance": "HIGH",
+      "claims": [
+        {
+          "claim_id": "PURE-MB-NAV-001-C1",
+          "claim": "The Mashbot web interface provides a Dashboard navigation tab.",
+          "claim_text": "The Mashbot web interface provides a Dashboard navigation tab.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-NAV-001-C2",
+          "claim": "The Mashbot web interface provides a Create navigation tab.",
+          "claim_text": "The Mashbot web interface provides a Create navigation tab.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-NAV-001-C3",
+          "claim": "The Mashbot web interface provides a Schedule navigation tab.",
+          "claim_text": "The Mashbot web interface provides a Schedule navigation tab.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-NAV-001-C4",
+          "claim": "The Mashbot web interface provides an Explore navigation tab.",
+          "claim_text": "The Mashbot web interface provides an Explore navigation tab.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        3
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "Candidate evidence hints only; not a manual verification decision."
+    },
+    {
+      "requirement_id": "PURE-MB-DASHBOARD-001",
+      "flow_id": "pure_2010_mashboot",
+      "text": "The Dashboard shall summarize campaign performance through graphs and metrics including clickthrough rate, page views, number of comments, and plugin-defined specialized metrics, and shall provide additional information for the selected metric.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_requirement:contextualized_feature"
+      ],
+      "origin": "human",
+      "review_status": "candidate",
+      "step_indices": [
+        1
+      ],
+      "rationale": "Composed only from cited Mashboot PDF sections and numbered requirements; requires manual verification review.",
+      "confidence": "MEDIUM",
+      "created_at": "2026-07-16T10:35:24+00:00",
+      "source_harvest_id": "composed:mashboot::4.1",
+      "candidate_origin": "VISIBLE_CORE_REWRITE",
+      "benchmark_decision": "REWRITE_TO_VISIBLE_CORE",
+      "parent_harvest_text": "Contextual source records: mashboot::4.1\n\nThe dashboard consists of graphs and charts to give the user a quick view on how their campaigns are performing. Metrics include clickthrough rate, page views, and number of comments. Service plugins can define additional specialized metrics to track. A panel is available to give more information on each metric as it is selected.",
+      "grounding_scope": "DIRECT_FLOW_GROUNDED",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "non_evaluable_reason": "NONE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "task_relevance": "HIGH",
+      "claims": [
+        {
+          "claim_id": "PURE-MB-DASHBOARD-001-C1",
+          "claim": "The Dashboard summarizes campaign performance through graphs.",
+          "claim_text": "The Dashboard summarizes campaign performance through graphs.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-DASHBOARD-001-C2",
+          "claim": "The Dashboard includes clickthrough rate as a campaign-performance metric.",
+          "claim_text": "The Dashboard includes clickthrough rate as a campaign-performance metric.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-DASHBOARD-001-C3",
+          "claim": "The Dashboard includes page views as a campaign-performance metric.",
+          "claim_text": "The Dashboard includes page views as a campaign-performance metric.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-DASHBOARD-001-C4",
+          "claim": "The Dashboard includes number of comments as a campaign-performance metric.",
+          "claim_text": "The Dashboard includes number of comments as a campaign-performance metric.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-DASHBOARD-001-C5",
+          "claim": "The Dashboard includes plugin-defined specialized campaign-performance metrics.",
+          "claim_text": "The Dashboard includes plugin-defined specialized campaign-performance metrics.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-DASHBOARD-001-C6",
+          "claim": "The Dashboard provides additional information for the selected metric.",
+          "claim_text": "The Dashboard provides additional information for the selected metric.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        }
+      ],
+      "evidence_steps": [
+        1
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "Candidate evidence hints only; not a manual verification decision."
+    },
+    {
+      "requirement_id": "PURE-MB-DASHBOARD-002",
+      "flow_id": "pure_2010_mashboot",
+      "text": "The monitoring Dashboard shall give users a view of responses to content in a campaign.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_requirement:contextualized_feature"
+      ],
+      "origin": "human",
+      "review_status": "rejected",
+      "step_indices": [
+        1
+      ],
+      "rationale": "Composed only from cited Mashboot PDF sections and numbered requirements; requires manual verification review.",
+      "confidence": "MEDIUM",
+      "created_at": "2026-07-16T10:35:24+00:00",
+      "source_harvest_id": "composed:mashboot::2.1.2+mashboot::4.1",
+      "candidate_origin": "VISIBLE_CORE_REWRITE",
+      "benchmark_decision": "REWRITE_TO_VISIBLE_CORE",
+      "parent_harvest_text": "Contextual source records: mashboot::2.1.2, mashboot::4.1\n\nThe user interface consists of a web front end with tabs to separate the various workflow areas. To create content, the user is provided with a calendar scheduling tool and a content editor. Additionally, there is a monitoring dashboard which gives the user a view on responses to the content in any given campaign. Finally, there is an explore view that gives the user a portal with which they can keep tabs on topics of interest in social media.\n\nThe dashboard consists of graphs and charts to give the user a quick view on how their campaigns are performing. Metrics include clickthrough rate, page views, and number of comments. Service plugins can define additional specialized metrics to track. A panel is available to give more information on each metric as it is selected.",
+      "grounding_scope": "DIRECT_FLOW_GROUNDED",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "non_evaluable_reason": "NONE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "task_relevance": "HIGH",
+      "claims": [
+        {
+          "claim_id": "PURE-MB-DASHBOARD-002-C1",
+          "claim": "The monitoring Dashboard gives users a view of responses to content in a campaign.",
+          "claim_text": "The monitoring Dashboard gives users a view of responses to content in a campaign.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        }
+      ],
+      "evidence_steps": [
+        1
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "Candidate evidence hints only; not a manual verification decision."
+    },
+    {
+      "requirement_id": "PURE-MB-CREATE-001",
+      "flow_id": "pure_2010_mashboot",
+      "text": "The Create view shall allow users to create campaigns, edit existing campaigns, and fill campaigns with content.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_requirement:contextualized_feature"
+      ],
+      "origin": "human",
+      "review_status": "candidate",
+      "step_indices": [
+        2
+      ],
+      "rationale": "Composed only from cited Mashboot PDF sections and numbered requirements; requires manual verification review.",
+      "confidence": "MEDIUM",
+      "created_at": "2026-07-16T10:35:24+00:00",
+      "source_harvest_id": "composed:2010 - mashboot::3.2::3.2.2/req-0480+2010 - mashboot::3.2::3.2.2/req-0490+mashboot::4.1.1",
+      "candidate_origin": "VISIBLE_CORE_REWRITE",
+      "benchmark_decision": "REWRITE_TO_VISIBLE_CORE",
+      "parent_harvest_text": "Contextual source records: 2010 - mashboot::3.2::3.2.2/req-0480, 2010 - mashboot::3.2::3.2.2/req-0490, mashboot::4.1.1\n\nA campaign has the following components:\n\nName\n\nThis view allows users to create campaigns and fill them with content. This view is also used when users need to edit an existing campaign. A user can add content via the add content button near the top of the view. This prompts the user to select the content type, populated by services the user currently has access to. It creates a section that allows the user to add individual elements of that content type, each individually scheduled. Each row allows the user to schedule, edit, or delete that content type.",
+      "grounding_scope": "DIRECT_FLOW_GROUNDED",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "non_evaluable_reason": "NONE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "task_relevance": "HIGH",
+      "claims": [
+        {
+          "claim_id": "PURE-MB-CREATE-001-C1",
+          "claim": "The Create view allows a user to create a campaign.",
+          "claim_text": "The Create view allows a user to create a campaign.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-CREATE-001-C2",
+          "claim": "The Create view allows a user to edit an existing campaign.",
+          "claim_text": "The Create view allows a user to edit an existing campaign.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-CREATE-001-C3",
+          "claim": "The Create view allows a user to fill a campaign with content.",
+          "claim_text": "The Create view allows a user to fill a campaign with content.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        }
+      ],
+      "evidence_steps": [
+        2
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "Candidate evidence hints only; not a manual verification decision."
+    },
+    {
+      "requirement_id": "PURE-MB-CREATE-002",
+      "flow_id": "pure_2010_mashboot",
+      "text": "The Create view shall let a user invoke Add Content, choose a content type populated from services accessible through stored credentials, create a section for that type, add individual elements, and schedule, edit, or delete each element.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_requirement:contextualized_feature"
+      ],
+      "origin": "human",
+      "review_status": "candidate",
+      "step_indices": [
+        2
+      ],
+      "rationale": "Composed only from cited Mashboot PDF sections and numbered requirements; requires manual verification review.",
+      "confidence": "MEDIUM",
+      "created_at": "2026-07-16T10:35:24+00:00",
+      "source_harvest_id": "composed:mashboot::4.1.1",
+      "candidate_origin": "VISIBLE_CORE_REWRITE",
+      "benchmark_decision": "REWRITE_TO_VISIBLE_CORE",
+      "parent_harvest_text": "Contextual source records: mashboot::4.1.1\n\nThis view allows users to create campaigns and fill them with content. This view is also used when users need to edit an existing campaign. A user can add content via the add content button near the top of the view. This prompts the user to select the content type, populated by services the user currently has access to. It creates a section that allows the user to add individual elements of that content type, each individually scheduled. Each row allows the user to schedule, edit, or delete that content type.",
+      "grounding_scope": "DIRECT_FLOW_GROUNDED",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "non_evaluable_reason": "NONE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "task_relevance": "HIGH",
+      "claims": [
+        {
+          "claim_id": "PURE-MB-CREATE-002-C1",
+          "claim": "The Create view provides an Add Content action.",
+          "claim_text": "The Create view provides an Add Content action.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-CREATE-002-C2",
+          "claim": "In the Create view, invoking Add Content prompts the user to select a content type.",
+          "claim_text": "In the Create view, invoking Add Content prompts the user to select a content type.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-CREATE-002-C3",
+          "claim": "In the Create view's Add Content prompt, the content-type choices are populated from services the user can access through credentials stored in the system.",
+          "claim_text": "In the Create view's Add Content prompt, the content-type choices are populated from services the user can access through credentials stored in the system.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-CREATE-002-C4",
+          "claim": "In the Create view, selecting a content type creates a section for the selected content type.",
+          "claim_text": "In the Create view, selecting a content type creates a section for the selected content type.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-CREATE-002-C5",
+          "claim": "In the Create view, the selected content-type section allows the user to add individual content elements.",
+          "claim_text": "In the Create view, the selected content-type section allows the user to add individual content elements.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-CREATE-002-C6",
+          "claim": "In the Create view, each content-element row provides a scheduling action.",
+          "claim_text": "In the Create view, each content-element row provides a scheduling action.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-CREATE-002-C7",
+          "claim": "In the Create view, each content-element row provides an edit action.",
+          "claim_text": "In the Create view, each content-element row provides an edit action.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-CREATE-002-C8",
+          "claim": "In the Create view, each content-element row provides a delete action.",
+          "claim_text": "In the Create view, each content-element row provides a delete action.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        }
+      ],
+      "evidence_steps": [
+        2
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "Candidate evidence hints only; not a manual verification decision."
+    },
+    {
+      "requirement_id": "PURE-MB-SCHEDULE-001",
+      "flow_id": "pure_2010_mashboot",
+      "text": "The Schedule view shall let users drag content from the content bucket to the calendar, assign the dragged content a default go-live time of 12am on the selected day, and select scheduled content to assign a different go-live time.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_requirement:contextualized_feature"
+      ],
+      "origin": "human",
+      "review_status": "candidate",
+      "step_indices": [
+        3
+      ],
+      "rationale": "Composed only from cited Mashboot PDF sections and numbered requirements; requires manual verification review.",
+      "confidence": "MEDIUM",
+      "created_at": "2026-07-16T10:35:24+00:00",
+      "source_harvest_id": "composed:2010 - mashboot::3.2::3.2.2/req-0530+mashboot::4.1.2",
+      "candidate_origin": "VISIBLE_CORE_REWRITE",
+      "benchmark_decision": "REWRITE_TO_VISIBLE_CORE",
+      "parent_harvest_text": "Contextual source records: 2010 - mashboot::3.2::3.2.2/req-0530, mashboot::4.1.2\n\nA schedule is a mapping of times to publishing actions. It may contain any actions a publisher can perform, and these actions are performed at the associated time.\n\nUsers can drag items from the left hand bucket of content to the calendar to schedule content. The content receives a default go-live time of 12am on the day it is dragged. The user may click scheduled content and assign a different time. The calendar manages when content goes live and visually represents actions taken on content, including when it is deleted. The user can page month to month to schedule content to any desired day.",
+      "grounding_scope": "DIRECT_FLOW_GROUNDED",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "non_evaluable_reason": "NONE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "task_relevance": "HIGH",
+      "claims": [
+        {
+          "claim_id": "PURE-MB-SCHEDULE-001-C1",
+          "claim": "In the Schedule view, users can drag content from the content bucket to the calendar.",
+          "claim_text": "In the Schedule view, users can drag content from the content bucket to the calendar.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-SCHEDULE-001-C2",
+          "claim": "In the Schedule view, content dragged to the calendar receives a default go-live time of 12am on the selected day.",
+          "claim_text": "In the Schedule view, content dragged to the calendar receives a default go-live time of 12am on the selected day.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-SCHEDULE-001-C3",
+          "claim": "In the Schedule view, users can select scheduled content and assign a different go-live time.",
+          "claim_text": "In the Schedule view, users can select scheduled content and assign a different go-live time.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        }
+      ],
+      "evidence_steps": [
+        3
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "Candidate evidence hints only; not a manual verification decision."
+    },
+    {
+      "requirement_id": "PURE-MB-SCHEDULE-002",
+      "flow_id": "pure_2010_mashboot",
+      "text": "The Schedule-view calendar shall visually represent when content goes live and when content is deleted, let users page between months, and let users schedule content on a desired day.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_requirement:contextualized_feature"
+      ],
+      "origin": "human",
+      "review_status": "candidate",
+      "step_indices": [
+        3
+      ],
+      "rationale": "Composed only from cited Mashboot PDF sections and numbered requirements; requires manual verification review.",
+      "confidence": "MEDIUM",
+      "created_at": "2026-07-16T10:35:24+00:00",
+      "source_harvest_id": "composed:mashboot::4.1.2",
+      "candidate_origin": "VISIBLE_CORE_REWRITE",
+      "benchmark_decision": "REWRITE_TO_VISIBLE_CORE",
+      "parent_harvest_text": "Contextual source records: mashboot::4.1.2\n\nUsers can drag items from the left hand bucket of content to the calendar to schedule content. The content receives a default go-live time of 12am on the day it is dragged. The user may click scheduled content and assign a different time. The calendar manages when content goes live and visually represents actions taken on content, including when it is deleted. The user can page month to month to schedule content to any desired day.",
+      "grounding_scope": "DIRECT_FLOW_GROUNDED",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "non_evaluable_reason": "NONE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "task_relevance": "HIGH",
+      "claims": [
+        {
+          "claim_id": "PURE-MB-SCHEDULE-002-C1",
+          "claim": "The Schedule-view calendar visually represents when content goes live.",
+          "claim_text": "The Schedule-view calendar visually represents when content goes live.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-SCHEDULE-002-C2",
+          "claim": "The Schedule-view calendar visually represents when content is deleted.",
+          "claim_text": "The Schedule-view calendar visually represents when content is deleted.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-SCHEDULE-002-C3",
+          "claim": "The Schedule-view calendar lets users page between months.",
+          "claim_text": "The Schedule-view calendar lets users page between months.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-SCHEDULE-002-C4",
+          "claim": "The Schedule-view calendar lets users schedule content on a desired day.",
+          "claim_text": "The Schedule-view calendar lets users schedule content on a desired day.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        }
+      ],
+      "evidence_steps": [
+        3
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "Candidate evidence hints only; not a manual verification decision."
+    },
+    {
+      "requirement_id": "PURE-MB-CAMPAIGN-001",
+      "flow_id": "pure_2010_mashboot",
+      "text": "A Mashbot campaign shall contain a name, pieces of content, a schedule, and user or group permissions.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_requirement:contextualized_feature"
+      ],
+      "origin": "human",
+      "review_status": "candidate",
+      "step_indices": [
+        1,
+        2,
+        3
+      ],
+      "rationale": "Composed only from cited Mashboot PDF sections and numbered requirements; requires manual verification review.",
+      "confidence": "MEDIUM",
+      "created_at": "2026-07-16T10:35:24+00:00",
+      "source_harvest_id": "composed:2010 - mashboot::3.2::3.2.2/req-0480+2010 - mashboot::3.2::3.2.2/req-0490+2010 - mashboot::3.2::3.2.2/req-0500+2010 - mashboot::3.2::3.2.2/req-0510+2010 - mashboot::3.2::3.2.2/req-0520",
+      "candidate_origin": "VISIBLE_CORE_REWRITE",
+      "benchmark_decision": "REWRITE_TO_VISIBLE_CORE",
+      "parent_harvest_text": "Contextual source records: 2010 - mashboot::3.2::3.2.2/req-0480, 2010 - mashboot::3.2::3.2.2/req-0490, 2010 - mashboot::3.2::3.2.2/req-0500, 2010 - mashboot::3.2::3.2.2/req-0510, 2010 - mashboot::3.2::3.2.2/req-0520\n\nA campaign has the following components:\n\nName\n\nPieces of content\n\nSchedule\n\nUser/Group Permissions",
+      "grounding_scope": "DIRECT_FLOW_GROUNDED",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "non_evaluable_reason": "NONE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "task_relevance": "HIGH",
+      "claims": [
+        {
+          "claim_id": "PURE-MB-CAMPAIGN-001-C1",
+          "claim": "A campaign includes a name.",
+          "claim_text": "A campaign includes a name.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-CAMPAIGN-001-C2",
+          "claim": "A campaign includes pieces of content.",
+          "claim_text": "A campaign includes pieces of content.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-CAMPAIGN-001-C3",
+          "claim": "A campaign includes a schedule.",
+          "claim_text": "A campaign includes a schedule.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-CAMPAIGN-001-C4",
+          "claim": "A campaign includes user or group permissions.",
+          "claim_text": "A campaign includes user or group permissions.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2,
+        3
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "Candidate evidence hints only; not a manual verification decision."
+    },
+    {
+      "requirement_id": "PURE-MB-CONTENT-001",
+      "flow_id": "pure_2010_mashboot",
+      "text": "Mashbot campaign content shall support text, image, audio, and video forms.",
+      "scope": "multi_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_requirement:contextualized_feature"
+      ],
+      "origin": "human",
+      "review_status": "candidate",
+      "step_indices": [
+        1,
+        2
+      ],
+      "rationale": "Composed only from cited Mashboot PDF sections and numbered requirements; requires manual verification review.",
+      "confidence": "MEDIUM",
+      "created_at": "2026-07-16T10:35:24+00:00",
+      "source_harvest_id": "composed:2010 - mashboot::3.2::3.2.2/req-0540+2010 - mashboot::3.2::3.2.2/req-0550+2010 - mashboot::3.2::3.2.2/req-0560+2010 - mashboot::3.2::3.2.2/req-0570+2010 - mashboot::3.2::3.2.2/req-0580",
+      "candidate_origin": "VISIBLE_CORE_REWRITE",
+      "benchmark_decision": "REWRITE_TO_VISIBLE_CORE",
+      "parent_harvest_text": "Contextual source records: 2010 - mashboot::3.2::3.2.2/req-0540, 2010 - mashboot::3.2::3.2.2/req-0550, 2010 - mashboot::3.2::3.2.2/req-0560, 2010 - mashboot::3.2::3.2.2/req-0570, 2010 - mashboot::3.2::3.2.2/req-0580\n\nA piece of content may take the following forms:\n\nText\n\nImage\n\nAudio\n\nVideo",
+      "grounding_scope": "DIRECT_FLOW_GROUNDED",
+      "requirement_type": "FR",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "non_evaluable_reason": "NONE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "task_relevance": "HIGH",
+      "claims": [
+        {
+          "claim_id": "PURE-MB-CONTENT-001-C1",
+          "claim": "Campaign content supports text.",
+          "claim_text": "Campaign content supports text.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-CONTENT-001-C2",
+          "claim": "Campaign content supports images.",
+          "claim_text": "Campaign content supports images.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-CONTENT-001-C3",
+          "claim": "Campaign content supports audio.",
+          "claim_text": "Campaign content supports audio.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-CONTENT-001-C4",
+          "claim": "Campaign content supports video.",
+          "claim_text": "Campaign content supports video.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        }
+      ],
+      "evidence_steps": [
+        1,
+        2
+      ],
+      "uncertainty_reasons": [],
+      "evidence_note": "Candidate evidence hints only; not a manual verification decision."
+    },
+    {
+      "requirement_id": "PURE-MB-EXPLORE-001",
+      "flow_id": "pure_2010_mashboot",
+      "text": "The Explore view shall let users configure monitored searches for services that support keyword search through an API and shall aggregate comments on content published as part of a campaign.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_requirement:contextualized_feature"
+      ],
+      "origin": "human",
+      "review_status": "candidate",
+      "step_indices": [],
+      "rationale": "Composed only from cited Mashboot PDF sections and numbered requirements; requires manual verification review.",
+      "confidence": "MEDIUM",
+      "created_at": "2026-07-16T10:35:24+00:00",
+      "source_harvest_id": "composed:mashboot::2.1.2+mashboot::4.1.3",
+      "candidate_origin": "VISIBLE_CORE_REWRITE",
+      "benchmark_decision": "REWRITE_TO_VISIBLE_CORE",
+      "parent_harvest_text": "Contextual source records: mashboot::2.1.2, mashboot::4.1.3\n\nThe user interface consists of a web front end with tabs to separate the various workflow areas. To create content, the user is provided with a calendar scheduling tool and a content editor. Additionally, there is a monitoring dashboard which gives the user a view on responses to the content in any given campaign. Finally, there is an explore view that gives the user a portal with which they can keep tabs on topics of interest in social media.\n\nThe Explore view allows users to get a pulse on social-media information, set up monitored searches for services supporting keyword search through an API, and aggregate comments on content published as part of a campaign.",
+      "grounding_scope": "DIRECT_FLOW_GROUNDED",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "non_evaluable_reason": "NONE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "task_relevance": "HIGH",
+      "claims": [
+        {
+          "claim_id": "PURE-MB-EXPLORE-001-C1",
+          "claim": "The Explore view lets users configure monitored searches for services that support keyword search through an API.",
+          "claim_text": "The Explore view lets users configure monitored searches for services that support keyword search through an API.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-EXPLORE-001-C2",
+          "claim": "The Explore view aggregates comments on content published as part of a campaign.",
+          "claim_text": "The Explore view aggregates comments on content published as part of a campaign.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        }
+      ],
+      "evidence_steps": [],
+      "uncertainty_reasons": [],
+      "evidence_note": "Candidate evidence hints only; not a manual verification decision."
+    },
+    {
+      "requirement_id": "PURE-MB-SERVICE-001",
+      "flow_id": "pure_2010_mashboot",
+      "text": "Mashbot shall allow Mashbot accounts to be associated with external service accounts, provide an interface for authenticating a user account to an external service account, and provide a standardized method for interacting with external service accounts.",
+      "scope": "single_screen",
+      "tags": [
+        "pure",
+        "pure_doc:2010 - mashboot",
+        "pure_extraction:document_contextualization",
+        "pure_requirement:contextualized_feature"
+      ],
+      "origin": "human",
+      "review_status": "candidate",
+      "step_indices": [],
+      "rationale": "Composed only from cited Mashboot PDF sections and numbered requirements; requires manual verification review.",
+      "confidence": "MEDIUM",
+      "created_at": "2026-07-16T10:35:24+00:00",
+      "source_harvest_id": "composed:2010 - mashboot::3.2::3.2.3/req-0590+2010 - mashboot::3.2::3.2.3/req-0600+2010 - mashboot::3.2::3.2.3/req-0610",
+      "candidate_origin": "VISIBLE_CORE_REWRITE",
+      "benchmark_decision": "REWRITE_TO_VISIBLE_CORE",
+      "parent_harvest_text": "Contextual source records: 2010 - mashboot::3.2::3.2.3/req-0590, 2010 - mashboot::3.2::3.2.3/req-0600, 2010 - mashboot::3.2::3.2.3/req-0610\n\nMashbot will allow for the association of Mashbot accounts with external service accounts.\n\nMashbot will provide an interface for authenticating a user account to an external service account\n\nMashbot will provide a standardized method of interacting with external service accounts",
+      "grounding_scope": "DIRECT_FLOW_GROUNDED",
+      "requirement_type": "FR",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "non_evaluable_reason": "NONE",
+      "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
+      "task_relevance": "HIGH",
+      "claims": [
+        {
+          "claim_id": "PURE-MB-SERVICE-001-C1",
+          "claim": "Mashbot allows Mashbot accounts to be associated with external service accounts.",
+          "claim_text": "Mashbot allows Mashbot accounts to be associated with external service accounts.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-SERVICE-001-C2",
+          "claim": "Mashbot provides an interface for authenticating a user account to an external service account.",
+          "claim_text": "Mashbot provides an interface for authenticating a user account to an external service account.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        },
+        {
+          "claim_id": "PURE-MB-SERVICE-001-C3",
+          "claim": "Mashbot provides a standardized method for interacting with external service accounts.",
+          "claim_text": "Mashbot provides a standardized method for interacting with external service accounts.",
+          "claim_kind": "OBSERVABLE_CORE",
+          "claim_type": "OBSERVABLE",
+          "importance": "CORE",
+          "status": "MISSING",
+          "source": "document_contextualization",
+          "evidence_steps": []
+        }
+      ],
+      "evidence_steps": [],
+      "uncertainty_reasons": [],
+      "evidence_note": "Candidate evidence hints only; not a manual verification decision."
+    }
+  ]
+}

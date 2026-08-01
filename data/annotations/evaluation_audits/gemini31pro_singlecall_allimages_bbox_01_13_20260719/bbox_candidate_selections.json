@@ -1,0 +1,19 @@
+{
+  "schema_version": "bbox_candidate_selections_v1",
+  "items": {
+    "GBBOX-0052": {
+      "candidate_id": "U07",
+      "source": "omniparser_ui",
+      "text": "",
+      "confidence": 0.8629229068756104,
+      "bbox": {
+        "x1": 715.302978515625,
+        "y1": 1195.2008056640625,
+        "x2": 871.5304565429688,
+        "y2": 1241.5653076171875
+      },
+      "package": "data/generated/omniparser_candidate_marks/flow02_20260720/candidates.json",
+      "updated_at": "2026-07-20T13:52:14.177440+00:00"
+    }
+  }
+}

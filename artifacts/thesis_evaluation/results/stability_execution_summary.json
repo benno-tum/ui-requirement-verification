@@ -1,0 +1,119 @@
+{
+  "schema_version": "thesis_stability_execution_summary_v1",
+  "execution_date": "2026-07-23",
+  "git_commit": "cf243be2dd641e4b90e844eccbbe97bd0325f3c6",
+  "git_dirty_at_preflight": false,
+  "benchmark": {
+    "flows": 13,
+    "items": 258
+  },
+  "gemini_repetitions": [
+    {
+      "run_id": "fl_raw_all_r2",
+      "model": "gemini-3.1-flash-lite",
+      "flow_files": 13,
+      "predictions": 258,
+      "api_calls": 39,
+      "api_attempts": 39,
+      "cache_hits": 0,
+      "fallbacks": 0,
+      "failures": 0,
+      "input_tokens": 509567,
+      "output_tokens": 60590,
+      "thoughts_tokens": 42272,
+      "total_tokens": 612429,
+      "estimated_cost_usd": 0.2816855
+    },
+    {
+      "run_id": "fl_raw_all_r3",
+      "model": "gemini-3.1-flash-lite",
+      "flow_files": 13,
+      "predictions": 258,
+      "api_calls": 39,
+      "api_attempts": 39,
+      "cache_hits": 0,
+      "fallbacks": 0,
+      "failures": 0,
+      "input_tokens": 509567,
+      "output_tokens": 60604,
+      "thoughts_tokens": 42523,
+      "total_tokens": 612694,
+      "estimated_cost_usd": 0.28208225
+    },
+    {
+      "run_id": "fl_gated_top4_r2",
+      "model": "gemini-3.1-flash-lite",
+      "flow_files": 13,
+      "predictions": 258,
+      "api_calls": 41,
+      "api_attempts": 41,
+      "cache_hits": 0,
+      "fallbacks": 0,
+      "failures": 0,
+      "input_tokens": 314542,
+      "output_tokens": 62980,
+      "thoughts_tokens": 44201,
+      "total_tokens": 421723,
+      "estimated_cost_usd": 0.239407
+    },
+    {
+      "run_id": "fl_gated_top4_r3",
+      "model": "gemini-3.1-flash-lite",
+      "flow_files": 13,
+      "predictions": 258,
+      "api_calls": 41,
+      "api_attempts": 41,
+      "cache_hits": 0,
+      "fallbacks": 0,
+      "failures": 0,
+      "input_tokens": 314542,
+      "output_tokens": 62862,
+      "thoughts_tokens": 44012,
+      "total_tokens": 421416,
+      "estimated_cost_usd": 0.2389465
+    }
+  ],
+  "qwen_repetitions": [
+    {
+      "run_id": "qwen_raw_top4_r2",
+      "model": "qwen/qwen3-vl-8b-instruct",
+      "host": "OpenRouter",
+      "provider": "Alibaba",
+      "provider_fallbacks_allowed": false,
+      "flow_files": 13,
+      "predictions": 258,
+      "api_calls": 39,
+      "first_attempt_calls": 39,
+      "failures": 0,
+      "prompt_tokens": 255185,
+      "completion_tokens": 24975,
+      "runtime_seconds": 249.22855124878697,
+      "recorded_cost_usd": 0.04122027
+    },
+    {
+      "run_id": "qwen_raw_top4_r3",
+      "model": "qwen/qwen3-vl-8b-instruct",
+      "host": "OpenRouter",
+      "provider": "Alibaba",
+      "provider_fallbacks_allowed": false,
+      "flow_files": 13,
+      "predictions": 258,
+      "api_calls": 39,
+      "first_attempt_calls": 39,
+      "failures": 0,
+      "prompt_tokens": 255185,
+      "completion_tokens": 24907,
+      "runtime_seconds": 230.16341158305295,
+      "recorded_cost_usd": 0.04118933
+    }
+  ],
+  "totals": {
+    "new_runs": 6,
+    "flow_executions": 78,
+    "predictions": 1548,
+    "api_calls": 238,
+    "failures": 0,
+    "recorded_successful_inference_cost_usd": 1.12453085
+  },
+  "cost_note": "Gemini cost is reconstructed from recorded input, output, and thinking tokens using the documented synchronous prices. Qwen cost is the provider-reported upstream inference cost. Earlier smoke tests, account fees, and taxes are excluded."
+}

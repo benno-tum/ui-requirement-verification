@@ -18,17 +18,61 @@ def test_run_discovery_finds_diagnosis_and_demo_outputs(tmp_path: Path, monkeypa
     monkeypatch.setattr(api_app, "BASE_DIR", base_dir)
     monkeypatch.setattr(api_app, "GENERATED_ROOT", generated_root)
     monkeypatch.setattr(api_app, "VERIFICATION_PIPELINE_ROOT", generated_root / "verification_pipeline")
+    monkeypatch.setattr(api_app, "VERIFICATION_PIPELINE_RUNS_ROOT", generated_root / "verification_pipeline_runs")
     monkeypatch.setattr(api_app, "DEMO_VERIFICATION_ROOT", generated_root / "demo_verification")
 
     payload = {
         "flow_id": flow_id,
         "results": [{"requirement_id": "REQ-1", "final_label": "FULFILLED", "claims": [{"status": "SUPPORTED"}]}],
-        "metadata": {"verifier": "gemini-image", "verifier_model": "gemini-2.5-flash-lite", "retriever": "lexical"},
+        "metadata": {
+            "verifier": "gemini-image",
+            "verifier_model": "gemini-2.5-flash-lite",
+            "retriever": "lexical",
+            "gemini_image_verifier": {
+                "api_calls": 0,
+                "cache_hits": 0,
+                "fallbacks": 1,
+                "failures": [{"group_id": "G1", "error": "503 UNAVAILABLE"}],
+            },
+        },
     }
     _write_json(generated_root / "diagnosis_strict_aggregation_noapi" / f"{flow_id}.json", payload)
     _write_json(generated_root / "diagnosis_strict_gemini_flash_lite" / f"{flow_id}.json", payload)
     _write_json(generated_root / "benchmark_coverage_gemini_flash_lite" / f"{flow_id}.json", payload)
     _write_json(generated_root / "demo_verification" / f"{flow_id}.json", payload)
+    _write_json(generated_root / "verification_pipeline_runs" / f"{flow_id}_gemini25_single_call.json", payload)
+    nested_payload = {
+        **payload,
+        "results": [
+            {
+                "requirement_id": "REQ-1",
+                "final_label": "FULFILLED",
+                "claims": [
+                    {
+                        "status": "SUPPORTED",
+                        "evidence": [
+                            {
+                                "step_index": 1,
+                                "bbox": [1, 2, 10, 12],
+                            }
+                        ],
+                    }
+                ],
+            }
+        ],
+    }
+    _write_json(
+        generated_root / "verification_pipeline_runs" / "bbox_topk_package" / f"{flow_id}.json",
+        nested_payload,
+    )
+    _write_json(
+        generated_root / "verification_pipeline_runs" / "bbox_topk_package" / "active" / f"{flow_id}.json",
+        nested_payload,
+    )
+    _write_json(
+        generated_root / "verification_pipeline_runs" / f"{flow_id}_invalid.json",
+        {**payload, "metadata": {**payload["metadata"], "run_valid": False}},
+    )
     _write_json(generated_root / "diagnosis_strict_gemini_flash_lite" / "metrics_with_claims.json", {"label_metrics": {}})
 
     runs = api_app.discover_pipeline_runs(flow_id)
@@ -38,8 +82,19 @@ def test_run_discovery_finds_diagnosis_and_demo_outputs(tmp_path: Path, monkeypa
     assert "diagnosis_strict_gemini_flash_lite" in sources
     assert "benchmark_coverage_gemini_flash_lite" in sources
     assert "demo_verification" in sources
+    assert "verification_pipeline_runs" in sources
+    assert all(not run["path"].endswith("_invalid.json") for run in runs)
     assert any(run["metrics_available"] for run in runs if run["source"] == "diagnosis_strict_gemini_flash_lite")
     assert all(run["requirements_count"] == 1 for run in runs)
+    packaged = [run for run in runs if run["source"] == "bbox_topk_package"]
+    assert len(packaged) == 1
+    assert packaged[0]["has_pipeline_evidence"] is True
+    assert packaged[0]["evidence_count"] == 1
+    assert packaged[0]["has_bbox_evidence"] is True
+    assert packaged[0]["bbox_evidence_count"] == 1
+    assert packaged[0]["gemini_judgments_available"] is False
+    assert packaged[0]["verifier_fallbacks"] == 1
+    assert packaged[0]["verifier_failure_count"] == 1
 
 
 def test_selected_run_loader_restricts_to_generated_json(tmp_path: Path, monkeypatch) -> None:
@@ -90,11 +145,18 @@ def test_pipeline_start_command_uses_safe_subprocess_args(tmp_path: Path, monkey
 
     body = api_app.StartPipelineRunRequest(
         verifier="gemini-image",
-        verifier_model="gemini-2.5-flash-lite",
-        retriever="lexical",
+        verifier_model="gemini-3.1-flash-lite",
+        retriever="llm",
+        retriever_provider="deepseek",
+        retriever_model="deepseek-v4-flash",
         top_k=3,
+        llm_claim_fallback=True,
+        claim_provider="deepseek",
+        claim_model="deepseek-v4-pro",
+        max_claims=5,
         max_images=6,
         max_gemini_api_calls=5,
+        gemini_max_retries=2,
         use_cache=True,
         output_dir_name="safe_runs",
     )
@@ -107,7 +169,16 @@ def test_pipeline_start_command_uses_safe_subprocess_args(tmp_path: Path, monkey
     assert "--requirements-source" in command
     assert "accepted" in command
     assert "gemini-image" in command
-    assert output_path == (generated_root / "safe_runs" / f"{flow_id}.json").resolve()
+    assert command[command.index("--verifier-model") + 1] == "gemini-3.1-flash-lite"
+    assert command[command.index("--retriever") + 1] == "llm"
+    assert command[command.index("--retriever-provider") + 1] == "deepseek"
+    assert command[command.index("--retriever-model") + 1] == "deepseek-v4-flash"
+    assert command[command.index("--claim-provider") + 1] == "deepseek"
+    assert command[command.index("--claim-model") + 1] == "deepseek-v4-pro"
+    assert command[command.index("--max-claims") + 1] == "5"
+    assert "--llm-claim-fallback" in command
+    assert command[command.index("--gemini-max-retries") + 1] == "2"
+    assert output_path == (generated_root / "safe_runs" / f"{flow_id}__job123.json").resolve()
     assert all(";" not in part for part in command)
 
 

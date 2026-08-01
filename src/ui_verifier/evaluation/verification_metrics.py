@@ -470,13 +470,31 @@ def evaluate_predictions(
     *,
     include_claims: bool = True,
     k_values: list[int] | None = None,
+    flow_id_pattern: str | None = None,
+    require_full_coverage: bool = False,
 ) -> dict[str, Any]:
     gold = load_gold_root(gold_root)
     predictions = load_prediction_root(predictions_path)
+    if flow_id_pattern is not None:
+        pattern = re.compile(flow_id_pattern)
+        gold = {key: record for key, record in gold.items() if pattern.search(record.flow_id)}
+        predictions = {
+            key: record for key, record in predictions.items() if pattern.search(record.flow_id)
+        }
+    if require_full_coverage:
+        missing = sorted(set(gold) - set(predictions))
+        unexpected = sorted(set(predictions) - set(gold))
+        if missing or unexpected:
+            raise ValueError(
+                "Prediction coverage does not match the filtered gold benchmark: "
+                f"missing={len(missing)} unexpected={len(unexpected)}"
+            )
     label_metrics = classification_metrics(gold, predictions)
     result: dict[str, Any] = {
         "gold_count": len(gold),
         "prediction_count": len(predictions),
+        "flow_id_pattern": flow_id_pattern,
+        "full_coverage_required": require_full_coverage,
         "label_metrics": label_metrics,
         "evidence_metrics": evidence_metrics(gold, predictions, k_values=k_values),
     }

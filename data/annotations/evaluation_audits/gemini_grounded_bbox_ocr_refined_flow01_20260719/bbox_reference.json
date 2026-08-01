@@ -1,0 +1,3287 @@
+{
+  "schema_version": "bbox_inspection_reference_v1",
+  "created_at": "2026-07-19T14:47:55.284275+00:00",
+  "source_run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+  "items": {
+    "GBBOX-0001": {
+      "prediction": {
+        "bbox": {
+          "x1": 400.2,
+          "y1": 2480.8,
+          "x2": 566.8,
+          "y2": 2507.2
+        },
+        "matched_text": "The heading 'Select Your Park'.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_01.png",
+        "image_width": 1280,
+        "image_height": 2971,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_01.png",
+        "source_image_width": 1280,
+        "source_image_height": 2971,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          179.2,
+          831.88,
+          537.6,
+          1069.56
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            400.2,
+            2480.8,
+            566.8,
+            2507.2
+          ],
+          "matched_text": "Select Park",
+          "ocr_word_boxes": [
+            {
+              "text": "Select",
+              "bbox": {
+                "x1": 441.0,
+                "y1": 2488.0,
+                "x2": 481.0,
+                "y2": 2500.0
+              },
+              "confidence": 0.95636398,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Park",
+              "bbox": {
+                "x1": 498.0,
+                "y1": 2488.0,
+                "x2": 526.0,
+                "y2": 2500.0
+              },
+              "confidence": 0.85424301,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0002": {
+      "prediction": {
+        "bbox": {
+          "x1": 640.0,
+          "y1": 831.88,
+          "x2": 998.4,
+          "y2": 950.72
+        },
+        "matched_text": "The dropdown control labeled 'Browse the Parks Below'.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_01.png",
+        "image_width": 1280,
+        "image_height": 2971,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_01.png",
+        "source_image_width": 1280,
+        "source_image_height": 2971,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          640.0,
+          831.88,
+          998.4,
+          950.72
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0003": {
+      "prediction": {
+        "bbox": {
+          "x1": 400.2,
+          "y1": 2480.8,
+          "x2": 566.8,
+          "y2": 2507.2
+        },
+        "matched_text": "The 'Select Your Park' heading.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_01.png",
+        "image_width": 1280,
+        "image_height": 2971,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_01.png",
+        "source_image_width": 1280,
+        "source_image_height": 2971,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          179.2,
+          831.88,
+          537.6,
+          1069.56
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            400.2,
+            2480.8,
+            566.8,
+            2507.2
+          ],
+          "matched_text": "Select Park",
+          "ocr_word_boxes": [
+            {
+              "text": "Select",
+              "bbox": {
+                "x1": 441.0,
+                "y1": 2488.0,
+                "x2": 481.0,
+                "y2": 2500.0
+              },
+              "confidence": 0.95636398,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Park",
+              "bbox": {
+                "x1": 498.0,
+                "y1": 2488.0,
+                "x2": 526.0,
+                "y2": 2500.0
+              },
+              "confidence": 0.85424301,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0004": {
+      "prediction": {
+        "bbox": {
+          "x1": 199.4,
+          "y1": 20.6,
+          "x2": 440.6,
+          "y2": 62.4
+        },
+        "matched_text": "The park name 'Six Flags Great Escape' displayed in the header.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "image_width": 1298,
+        "image_height": 4701,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "source_image_width": 1298,
+        "source_image_height": 4701,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          220.66,
+          470.1,
+          493.24,
+          611.13
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            199.4,
+            20.6,
+            440.6,
+            62.4
+          ],
+          "matched_text": "Great Escape",
+          "ocr_word_boxes": [
+            {
+              "text": "Great",
+              "bbox": {
+                "x1": 264.0,
+                "y1": 32.0,
+                "x2": 310.0,
+                "y2": 46.0
+              },
+              "confidence": 0.96628899,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Escape",
+              "bbox": {
+                "x1": 318.0,
+                "y1": 32.0,
+                "x2": 376.0,
+                "y2": 51.0
+              },
+              "confidence": 0.96598007,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0005": {
+      "prediction": {
+        "bbox": {
+          "x1": 1025.42,
+          "y1": 1175.25,
+          "x2": 1246.08,
+          "y2": 1316.28
+        },
+        "matched_text": "The 'View Pass Options' button, which appears after a park is implicitly selected.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "image_width": 1298,
+        "image_height": 4701,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "source_image_width": 1298,
+        "source_image_height": 4701,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          1025.42,
+          1175.25,
+          1246.08,
+          1316.28
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0006": {
+      "prediction": {
+        "bbox": {
+          "x1": 199.4,
+          "y1": 20.6,
+          "x2": 440.6,
+          "y2": 62.4
+        },
+        "matched_text": "The text 'Six Flags Great Escape' in the page header.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "image_width": 1298,
+        "image_height": 4701,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "source_image_width": 1298,
+        "source_image_height": 4701,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          220.66,
+          470.1,
+          493.24,
+          611.13
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            199.4,
+            20.6,
+            440.6,
+            62.4
+          ],
+          "matched_text": "Great Escape",
+          "ocr_word_boxes": [
+            {
+              "text": "Great",
+              "bbox": {
+                "x1": 264.0,
+                "y1": 32.0,
+                "x2": 310.0,
+                "y2": 46.0
+              },
+              "confidence": 0.96628899,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Escape",
+              "bbox": {
+                "x1": 318.0,
+                "y1": 32.0,
+                "x2": 376.0,
+                "y2": 51.0
+              },
+              "confidence": 0.96598007,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0007": {
+      "prediction": {
+        "bbox": {
+          "x1": 199.4,
+          "y1": 20.6,
+          "x2": 440.6,
+          "y2": 62.4
+        },
+        "matched_text": "The park name 'Six Flags Great Escape' in the header.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "image_width": 1298,
+        "image_height": 4701,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "source_image_width": 1298,
+        "source_image_height": 4701,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          220.66,
+          470.1,
+          493.24,
+          611.13
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            199.4,
+            20.6,
+            440.6,
+            62.4
+          ],
+          "matched_text": "Great Escape",
+          "ocr_word_boxes": [
+            {
+              "text": "Great",
+              "bbox": {
+                "x1": 264.0,
+                "y1": 32.0,
+                "x2": 310.0,
+                "y2": 46.0
+              },
+              "confidence": 0.96628899,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Escape",
+              "bbox": {
+                "x1": 318.0,
+                "y1": 32.0,
+                "x2": 376.0,
+                "y2": 51.0
+              },
+              "confidence": 0.96598007,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0008": {
+      "prediction": {
+        "bbox": {
+          "x1": 866.0,
+          "y1": 1866.0,
+          "x2": 1293.0,
+          "y2": 1910.0
+        },
+        "matched_text": "The heading 'All New Events at Six Flags Great Escape', indicating park-specific content.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "image_width": 1298,
+        "image_height": 4701,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "source_image_width": 1298,
+        "source_image_height": 4701,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          129.8,
+          1786.38,
+          649.0,
+          1927.41
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            866.0,
+            1866.0,
+            1293.0,
+            1910.0
+          ],
+          "matched_text": "events at Six Flags Great",
+          "ocr_word_boxes": [
+            {
+              "text": "Flags",
+              "bbox": {
+                "x1": 1133.0,
+                "y1": 1878.0,
+                "x2": 1174.0,
+                "y2": 1898.0
+              },
+              "confidence": 0.95847954,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Six",
+              "bbox": {
+                "x1": 1103.0,
+                "y1": 1879.0,
+                "x2": 1127.0,
+                "y2": 1893.0
+              },
+              "confidence": 0.95847954,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Great",
+              "bbox": {
+                "x1": 1181.0,
+                "y1": 1879.0,
+                "x2": 1225.0,
+                "y2": 1893.0
+              },
+              "confidence": 0.96991974,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "events",
+              "bbox": {
+                "x1": 934.0,
+                "y1": 1880.0,
+                "x2": 986.0,
+                "y2": 1893.0
+              },
+              "confidence": 0.96852341,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "at",
+              "bbox": {
+                "x1": 1083.0,
+                "y1": 1880.0,
+                "x2": 1098.0,
+                "y2": 1893.0
+              },
+              "confidence": 0.9693267799999999,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0009": {
+      "prediction": {
+        "bbox": {
+          "x1": 497.4,
+          "y1": 2361.6,
+          "x2": 1255.6,
+          "y2": 2480.4
+        },
+        "matched_text": "The heading 'Lodge & Indoor Waterpark', indicating park-specific content.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "image_width": 1298,
+        "image_height": 4701,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "source_image_width": 1298,
+        "source_image_height": 4701,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          674.96,
+          2444.52,
+          1012.44,
+          2585.55
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            497.4,
+            2361.6,
+            1255.6,
+            2480.4
+          ],
+          "matched_text": "§~=Lodge Indoor",
+          "ocr_word_boxes": [
+            {
+              "text": "§~=Lodge",
+              "bbox": {
+                "x1": 681.0,
+                "y1": 2394.0,
+                "x2": 831.0,
+                "y2": 2448.0
+              },
+              "confidence": 0.0,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Indoor",
+              "bbox": {
+                "x1": 910.0,
+                "y1": 2394.0,
+                "x2": 1072.0,
+                "y2": 2434.0
+              },
+              "confidence": 0.9631778,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0010": {
+      "prediction": {
+        "bbox": {
+          "x1": 220.66,
+          "y1": 230.0,
+          "x2": 493.24,
+          "y2": 299.0
+        },
+        "matched_text": "The park name 'Great Escape' in the header of the pass comparison page.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          220.66,
+          230.0,
+          493.24,
+          299.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0011": {
+      "prediction": {
+        "bbox": {
+          "x1": 129.8,
+          "y1": 299.0,
+          "x2": 1272.04,
+          "y2": 1334.0
+        },
+        "matched_text": "The entire section displaying multiple pass tiers side by side for comparison.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          129.8,
+          299.0,
+          1272.04,
+          1334.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0012": {
+      "prediction": {
+        "bbox": {
+          "x1": 110.6,
+          "y1": 269.4,
+          "x2": 311.4,
+          "y2": 293.6
+        },
+        "matched_text": "Benefit information listed under the '2023 Diamond Pass' tier.",
+        "score": 0.6,
+        "confidence": 0.6,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          246.62,
+          414.0,
+          584.1,
+          1150.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            110.6,
+            269.4,
+            311.4,
+            293.6
+          ],
+          "matched_text": "2023 Diamond Pass",
+          "ocr_word_boxes": [
+            {
+              "text": "Diamond",
+              "bbox": {
+                "x1": 184.0,
+                "y1": 276.0,
+                "x2": 239.0,
+                "y2": 287.0
+              },
+              "confidence": 0.96864616,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "2023",
+              "bbox": {
+                "x1": 148.0,
+                "y1": 277.0,
+                "x2": 179.0,
+                "y2": 287.0
+              },
+              "confidence": 0.67952599,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Pass",
+              "bbox": {
+                "x1": 244.0,
+                "y1": 277.0,
+                "x2": 274.0,
+                "y2": 287.0
+              },
+              "confidence": 0.84226311,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "PARTIALLY_SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0013": {
+      "prediction": {
+        "bbox": {
+          "x1": 584.1,
+          "y1": 414.0,
+          "x2": 908.6,
+          "y2": 1150.0
+        },
+        "matched_text": "Benefit information listed under the '2023 Platinum Pass' tier.",
+        "score": 0.6,
+        "confidence": 0.6,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          584.1,
+          414.0,
+          908.6,
+          1150.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "PARTIALLY_SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0014": {
+      "prediction": {
+        "bbox": {
+          "x1": 921.58,
+          "y1": 414.0,
+          "x2": 1246.08,
+          "y2": 1150.0
+        },
+        "matched_text": "Benefit information listed under the '2023 Gold Pass' tier.",
+        "score": 0.6,
+        "confidence": 0.6,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          921.58,
+          414.0,
+          1246.08,
+          1150.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "PARTIALLY_SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0015": {
+      "prediction": {
+        "bbox": {
+          "x1": 1025.42,
+          "y1": 1175.25,
+          "x2": 1246.08,
+          "y2": 1316.28
+        },
+        "matched_text": "The 'View Pass Options' button.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "image_width": 1298,
+        "image_height": 4701,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "source_image_width": 1298,
+        "source_image_height": 4701,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          1025.42,
+          1175.25,
+          1246.08,
+          1316.28
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0016": {
+      "prediction": {
+        "bbox": {
+          "x1": 61.20000000000002,
+          "y1": 751.8,
+          "x2": 463.79999999999995,
+          "y2": 877.2
+        },
+        "matched_text": "The 'View Pass Options' button, serving as the entry point.",
+        "score": 0.72,
+        "confidence": 0.72,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "image_width": 1298,
+        "image_height": 4701,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "source_image_width": 1298,
+        "source_image_height": 4701,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          1025.42,
+          1175.25,
+          1246.08,
+          1316.28
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            61.20000000000002,
+            751.8,
+            463.79999999999995,
+            877.2
+          ],
+          "matched_text": "5 1 1 1 15 3 304 802 20 24 13.077946 \\‘ 5 1 1 1 15 4 444 811 2 11 29.027592 | 4 1 1 1 16 0 26 978 1205 42 -1 5 1 1 1 16 1 26 994 75 18 96.877258 Passes 5 1 1 1 16 2 110 995 91 24 96.049706 starting 5 1 1 1 16 3 210 996 22 16 96.921829 at 5 1 1 1 16 4 243 994 78 19 96.328186 $59.99 5 1 1 1 16 5 640 997 5 9 79.591454 t 5 1 1 1 16 6 742 1000 39 13 34.288811 oe 5 1 1 1 16 7 791 978 41 35 50.601051 ie 5 1 1 1 16 8 838 989 17 31 21.796732 zs 5 1 1 1 16 9 863 995 73 21 0.000000 ——- 5 1 1 1 16 10 998 998 49 21 48.663006 SES 5 1 1 1 16 11 1065 1015 2 2 37.324341 ic 5 1 1 1 16 12 1150 997 81 16 36.027100 ES 4 1 1 1 17 0 688 1036 394 33 -1 5 1 1 1 17 1 642 1043 60 12 27.136230 tere 5 1 1 1 17 2 731 1040 53 19 0.000000 he 5 1 1 1 17 3 802 1044 1 10 0.000000 / 5 1 1 1 17 4 826 1048 5 21 19.652472 ye 5 1 1 1 17 5 864 1037 72 22 30.033922 OE 5 1 1 1 17 6 1017 1036 65 25 30.056152 TRS 4 1 1 1 18 0 65 1046 994 51 -1 5 1 1 1 18 1 65 1046 108 47 95.986679 023 5 1 1 1 18 2 197 1047 195 46 96.580132 Passes 5 1 1 1 18 3 717 1048 249 49 37.892242 Pe) 5 1 1 1 18 4 1193 1072 38 25 26.994810 wy 4 1 1 1 19 0 763 1092 468 30 -1 5 1 1 1 19 1 763 1092 188 30 24.540453 Po) 5 1 1 1 19 2 1055 1097 22 16 53.015705 RE 5 1 1 1 19 3 1133 1096 8 8 28.827791 ce 4 1 1 1 20 0 26 1151 1108 35 -1 5 1 1 1 20 1 26 1154 29 14 96.551384 Get 5 1 1 1 20 2 62 1153 77 15 96.551384 unlimited 5 1 1 1 20 3 146 1153 88 17 96.625801 admission, 5 1 1 1 20 4 242 1153 101 20 96.302376 parking, 5 1 1 1 20 5 318 1149 26 28 96.853226 and 5 1 1 1 20 6 351 1158 43 10 96.873619 more 5 1 1 1 20 7 400 1153 50 15 96.629646 with 5 1 1 1 20 8 444 1149 10 28 96.790466 a 5 1 1 1 20 9 459 1154 42 14 92.823219 2023 5 1 1 1 20 10 711 1165 14 12 54.520798 a 5 1 1 1 20 11 855 1152 49 25 0.000000 cp. 5 1 1 1 20 12 946 1151 9 35 0.000000 y 5 1 1 1 20 13 981 1163 17 7 34.006233 IP 5 1 1 1 20 14 1040 1167 4 4 32.260788 i 5 1 1 1 20 15 1056 1162 33 10 28.902159 io 5 1 1 1 20 16 1125 1158 9 3 38.257427 ell 4 1 1 1 21 0 109 1163 1059 24 -1 5 1 1 1 21 1 109 1179 2 4 0.000000 . 5 1 1 1 21 2 472 1179 2 2 0.000000 . 5 1 1 1 21 3 676 1168 158 17 27.069874 eee 5 1 1 1 21 4 861 1171 30 16 40.300270 TY 5 1 1 1 21 5 1017 1163 38 20 22.405519 AAFP 5 1 1 1 21 6 1094 1166 24 12 42.129898 in 5 1 1 1 21 7 1126 1163 42 19 20.646481 Vi 4 1 1 1 22 0 26 1178 1226 33 -1 5 1 1 1 22 1 26 1179 40 14 95.323395 Pass! 5 1 1 1 22 2 74 1179 44 14 86.991562 Don't 5 1 1 1 22 3 125 1178 51 20 96.942154 forget 5 1 1 1 22 4 182 1180 17 13 96.995476 to 5 1 1 1 22 5 206 1178 29 15 96.948349 add 5 1 1 1 22 6 239 1174 7 28 96.926270 a 5 1 1 1 22 7 258 1178 49 20 96.854607 dining 5 1 1 1 22 8 315 1178 33 20 96.884148 plan 5 1 1 1 22 9 355 1178 24 15 96.884148 for 5 1 1 1 22 10 385 1178 26 15 96.687103 the 5 1 1 1 22 11 419 1178 35 15 96.763771 best 5 1 1 1 22 12 461 1179 23 14 96.981567 Six 5 1 1 1 22 13 684 1183 35 6 20.314121 a 5 1 1 1 22 14 736 1183 42 18 34.313278 pane 5 1 1 1 22 15 791 1184 81 15 0.290642 ene 5 1 1 1 22 16 879 1186 51 25 14.579344 cx 5 1 1 1 22 17 954 1197 2 2 23.100710 oe 5 1 1 1 22 18 1127 1183 58 15 0.347433 pe 4 1 1 1 23 0 27 1200 1025 25 -1 5 1 1 1 23 1 27 1203 42 20 96.737206 Flags 5 1 1 1 23 2 76 1204 94 19 96.515823 experience. 5 1 1 1 23 3 642 1213 57 12 25.957031 —— 5 1 1 1 23 4 878 1200 90 21 37.415306 rap 5 1 1 1 23 5 1049 1217 3 3 42.418892 p 4 1 1 1 24 0 60 1516 659 23 -1 5 1 1 1 24 1 60 1518 14 8 0.000000 . 5 1 1 1 24 2 426 1516 104 23 64.750877 jeer 5 1 1 1 24 3 688 1517 31 11 38.568974 a 4 1 1 1 25 0 122 1533 633 11 -1 5 1 1 1 25 1 122 1536 5 2 10.482025 as 5 1 1 1 25 2 200 1534 6 5 87.301163 g 5 1 1 1 25 3 641 1536 34 7 26.445335 fia 5 1 1 1 25 4 746 1533 9 9 0.000000",
+          "ocr_word_boxes": [
+            {
+              "text": "5 1 1 1 15 3 304 802 20 24 13.077946 \\‘ 5 1 1 1 15 4 444 811 2 11 29.027592 | 4 1 1 1 16 0 26 978 1205 42 -1 5 1 1 1 16 1 26 994 75 18 96.877258 Passes 5 1 1 1 16 2 110 995 91 24 96.049706 starting 5 1 1 1 16 3 210 996 22 16 96.921829 at 5 1 1 1 16 4 243 994 78 19 96.328186 $59.99 5 1 1 1 16 5 640 997 5 9 79.591454 t 5 1 1 1 16 6 742 1000 39 13 34.288811 oe 5 1 1 1 16 7 791 978 41 35 50.601051 ie 5 1 1 1 16 8 838 989 17 31 21.796732 zs 5 1 1 1 16 9 863 995 73 21 0.000000 ——- 5 1 1 1 16 10 998 998 49 21 48.663006 SES 5 1 1 1 16 11 1065 1015 2 2 37.324341 ic 5 1 1 1 16 12 1150 997 81 16 36.027100 ES 4 1 1 1 17 0 688 1036 394 33 -1 5 1 1 1 17 1 642 1043 60 12 27.136230 tere 5 1 1 1 17 2 731 1040 53 19 0.000000 he 5 1 1 1 17 3 802 1044 1 10 0.000000 / 5 1 1 1 17 4 826 1048 5 21 19.652472 ye 5 1 1 1 17 5 864 1037 72 22 30.033922 OE 5 1 1 1 17 6 1017 1036 65 25 30.056152 TRS 4 1 1 1 18 0 65 1046 994 51 -1 5 1 1 1 18 1 65 1046 108 47 95.986679 023 5 1 1 1 18 2 197 1047 195 46 96.580132 Passes 5 1 1 1 18 3 717 1048 249 49 37.892242 Pe) 5 1 1 1 18 4 1193 1072 38 25 26.994810 wy 4 1 1 1 19 0 763 1092 468 30 -1 5 1 1 1 19 1 763 1092 188 30 24.540453 Po) 5 1 1 1 19 2 1055 1097 22 16 53.015705 RE 5 1 1 1 19 3 1133 1096 8 8 28.827791 ce 4 1 1 1 20 0 26 1151 1108 35 -1 5 1 1 1 20 1 26 1154 29 14 96.551384 Get 5 1 1 1 20 2 62 1153 77 15 96.551384 unlimited 5 1 1 1 20 3 146 1153 88 17 96.625801 admission, 5 1 1 1 20 4 242 1153 101 20 96.302376 parking, 5 1 1 1 20 5 318 1149 26 28 96.853226 and 5 1 1 1 20 6 351 1158 43 10 96.873619 more 5 1 1 1 20 7 400 1153 50 15 96.629646 with 5 1 1 1 20 8 444 1149 10 28 96.790466 a 5 1 1 1 20 9 459 1154 42 14 92.823219 2023 5 1 1 1 20 10 711 1165 14 12 54.520798 a 5 1 1 1 20 11 855 1152 49 25 0.000000 cp. 5 1 1 1 20 12 946 1151 9 35 0.000000 y 5 1 1 1 20 13 981 1163 17 7 34.006233 IP 5 1 1 1 20 14 1040 1167 4 4 32.260788 i 5 1 1 1 20 15 1056 1162 33 10 28.902159 io 5 1 1 1 20 16 1125 1158 9 3 38.257427 ell 4 1 1 1 21 0 109 1163 1059 24 -1 5 1 1 1 21 1 109 1179 2 4 0.000000 . 5 1 1 1 21 2 472 1179 2 2 0.000000 . 5 1 1 1 21 3 676 1168 158 17 27.069874 eee 5 1 1 1 21 4 861 1171 30 16 40.300270 TY 5 1 1 1 21 5 1017 1163 38 20 22.405519 AAFP 5 1 1 1 21 6 1094 1166 24 12 42.129898 in 5 1 1 1 21 7 1126 1163 42 19 20.646481 Vi 4 1 1 1 22 0 26 1178 1226 33 -1 5 1 1 1 22 1 26 1179 40 14 95.323395 Pass! 5 1 1 1 22 2 74 1179 44 14 86.991562 Don't 5 1 1 1 22 3 125 1178 51 20 96.942154 forget 5 1 1 1 22 4 182 1180 17 13 96.995476 to 5 1 1 1 22 5 206 1178 29 15 96.948349 add 5 1 1 1 22 6 239 1174 7 28 96.926270 a 5 1 1 1 22 7 258 1178 49 20 96.854607 dining 5 1 1 1 22 8 315 1178 33 20 96.884148 plan 5 1 1 1 22 9 355 1178 24 15 96.884148 for 5 1 1 1 22 10 385 1178 26 15 96.687103 the 5 1 1 1 22 11 419 1178 35 15 96.763771 best 5 1 1 1 22 12 461 1179 23 14 96.981567 Six 5 1 1 1 22 13 684 1183 35 6 20.314121 a 5 1 1 1 22 14 736 1183 42 18 34.313278 pane 5 1 1 1 22 15 791 1184 81 15 0.290642 ene 5 1 1 1 22 16 879 1186 51 25 14.579344 cx 5 1 1 1 22 17 954 1197 2 2 23.100710 oe 5 1 1 1 22 18 1127 1183 58 15 0.347433 pe 4 1 1 1 23 0 27 1200 1025 25 -1 5 1 1 1 23 1 27 1203 42 20 96.737206 Flags 5 1 1 1 23 2 76 1204 94 19 96.515823 experience. 5 1 1 1 23 3 642 1213 57 12 25.957031 —— 5 1 1 1 23 4 878 1200 90 21 37.415306 rap 5 1 1 1 23 5 1049 1217 3 3 42.418892 p 4 1 1 1 24 0 60 1516 659 23 -1 5 1 1 1 24 1 60 1518 14 8 0.000000 . 5 1 1 1 24 2 426 1516 104 23 64.750877 jeer 5 1 1 1 24 3 688 1517 31 11 38.568974 a 4 1 1 1 25 0 122 1533 633 11 -1 5 1 1 1 25 1 122 1536 5 2 10.482025 as 5 1 1 1 25 2 200 1534 6 5 87.301163 g 5 1 1 1 25 3 641 1536 34 7 26.445335 fia 5 1 1 1 25 4 746 1533 9 9 0.000000",
+              "bbox": {
+                "x1": 255.0,
+                "y1": 786.0,
+                "x2": 270.0,
+                "y2": 843.0
+              },
+              "confidence": 0.04659014,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0017": {
+      "prediction": {
+        "bbox": {
+          "x1": 220.66,
+          "y1": 230.0,
+          "x2": 493.24,
+          "y2": 299.0
+        },
+        "matched_text": "The park name 'Great Escape' in the header of the pass options page.",
+        "score": 0.72,
+        "confidence": 0.72,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          220.66,
+          230.0,
+          493.24,
+          299.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0018": {
+      "prediction": {
+        "bbox": {
+          "x1": 129.8,
+          "y1": 299.0,
+          "x2": 1272.04,
+          "y2": 1334.0
+        },
+        "matched_text": "The section displaying various pass options for comparison.",
+        "score": 0.72,
+        "confidence": 0.72,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          129.8,
+          299.0,
+          1272.04,
+          1334.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0019": {
+      "prediction": {
+        "bbox": {
+          "x1": 110.6,
+          "y1": 269.4,
+          "x2": 311.4,
+          "y2": 293.6
+        },
+        "matched_text": "A 'Purchase Pass' button for the '2023 Diamond Pass' tier.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          298.54,
+          1242.0,
+          519.2,
+          1311.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            110.6,
+            269.4,
+            311.4,
+            293.6
+          ],
+          "matched_text": "2023 Diamond Pass",
+          "ocr_word_boxes": [
+            {
+              "text": "Diamond",
+              "bbox": {
+                "x1": 184.0,
+                "y1": 276.0,
+                "x2": 239.0,
+                "y2": 287.0
+              },
+              "confidence": 0.96864616,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "2023",
+              "bbox": {
+                "x1": 148.0,
+                "y1": 277.0,
+                "x2": 179.0,
+                "y2": 287.0
+              },
+              "confidence": 0.67952599,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Pass",
+              "bbox": {
+                "x1": 244.0,
+                "y1": 277.0,
+                "x2": 274.0,
+                "y2": 287.0
+              },
+              "confidence": 0.84226311,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0020": {
+      "prediction": {
+        "bbox": {
+          "x1": 636.02,
+          "y1": 1242.0,
+          "x2": 856.68,
+          "y2": 1311.0
+        },
+        "matched_text": "A 'Purchase Pass' button for the '2023 Platinum Pass' tier.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          636.02,
+          1242.0,
+          856.68,
+          1311.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0021": {
+      "prediction": {
+        "bbox": {
+          "x1": 973.5,
+          "y1": 1242.0,
+          "x2": 1194.16,
+          "y2": 1311.0
+        },
+        "matched_text": "A 'Purchase Pass' button for the '2023 Gold Pass' tier.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          973.5,
+          1242.0,
+          1194.16,
+          1311.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0022": {
+      "prediction": {
+        "bbox": {
+          "x1": 298.54,
+          "y1": 1242.0,
+          "x2": 519.2,
+          "y2": 1311.0
+        },
+        "matched_text": "A 'Purchase Pass' button, which initiates the purchase flow.",
+        "score": 0.6,
+        "confidence": 0.6,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          298.54,
+          1242.0,
+          519.2,
+          1311.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "PARTIALLY_SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0023": {
+      "prediction": {
+        "bbox": {
+          "x1": 370.6,
+          "y1": 324.4,
+          "x2": 606.4,
+          "y2": 348.6
+        },
+        "matched_text": "The 'PERSONAL INFORMATION' modal, which is part of the checkout process.",
+        "score": 0.6,
+        "confidence": 0.6,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          376.42,
+          276.0,
+          1142.24,
+          1150.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            370.6,
+            324.4,
+            606.4,
+            348.6
+          ],
+          "matched_text": "PERSONAL INFORMATION",
+          "ocr_word_boxes": [
+            {
+              "text": "PERSONAL",
+              "bbox": {
+                "x1": 408.0,
+                "y1": 331.0,
+                "x2": 477.0,
+                "y2": 342.0
+              },
+              "confidence": 0.92984726,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "INFORMATION",
+              "bbox": {
+                "x1": 480.0,
+                "y1": 331.0,
+                "x2": 569.0,
+                "y2": 342.0
+              },
+              "confidence": 0.92984726,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "PARTIALLY_SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0024": {
+      "prediction": {
+        "bbox": {
+          "x1": 436.6,
+          "y1": 321.4,
+          "x2": 653.4,
+          "y2": 345.6
+        },
+        "matched_text": "The 'Terms and Conditions' modal, which is part of the checkout process.",
+        "score": 0.6,
+        "confidence": 0.6,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          376.42,
+          276.0,
+          1142.24,
+          1150.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            436.6,
+            321.4,
+            653.4,
+            345.6
+          ],
+          "matched_text": "Terms and Conditions",
+          "ocr_word_boxes": [
+            {
+              "text": "Terms",
+              "bbox": {
+                "x1": 474.0,
+                "y1": 328.0,
+                "x2": 515.0,
+                "y2": 339.0
+              },
+              "confidence": 0.89963722,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "and",
+              "bbox": {
+                "x1": 521.0,
+                "y1": 328.0,
+                "x2": 543.0,
+                "y2": 339.0
+              },
+              "confidence": 0.96683449,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Conditions",
+              "bbox": {
+                "x1": 549.0,
+                "y1": 328.0,
+                "x2": 616.0,
+                "y2": 339.0
+              },
+              "confidence": 0.95779976,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "PARTIALLY_SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0025": {
+      "prediction": {
+        "bbox": {
+          "x1": 370.6,
+          "y1": 324.4,
+          "x2": 606.4,
+          "y2": 348.6
+        },
+        "matched_text": "The 'Name' input field within the 'PERSONAL INFORMATION' modal.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_09.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_09.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          389.4,
+          460.0,
+          882.64,
+          529.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            370.6,
+            324.4,
+            606.4,
+            348.6
+          ],
+          "matched_text": "PERSONAL INFORMATION",
+          "ocr_word_boxes": [
+            {
+              "text": "PERSONAL",
+              "bbox": {
+                "x1": 408.0,
+                "y1": 331.0,
+                "x2": 477.0,
+                "y2": 342.0
+              },
+              "confidence": 0.94310326,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "INFORMATION",
+              "bbox": {
+                "x1": 480.0,
+                "y1": 331.0,
+                "x2": 569.0,
+                "y2": 342.0
+              },
+              "confidence": 0.94310326,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0026": {
+      "prediction": {
+        "bbox": {
+          "x1": 850.0,
+          "y1": 363.0,
+          "x2": 1055.0,
+          "y2": 396.0
+        },
+        "matched_text": "The 'PERSONAL INFORMATION' modal displaying fields for Name, Email Address, and Zip/Postal Code.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_09.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_09.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          363.44,
+          322.0,
+          934.56,
+          805.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            850.0,
+            363.0,
+            1055.0,
+            396.0
+          ],
+          "matched_text": "Zip/Postal Code",
+          "ocr_word_boxes": [
+            {
+              "text": "Zip/Postal",
+              "bbox": {
+                "x1": 901.0,
+                "y1": 372.0,
+                "x2": 966.0,
+                "y2": 387.0
+              },
+              "confidence": 0.96739777,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Code",
+              "bbox": {
+                "x1": 972.0,
+                "y1": 373.0,
+                "x2": 1004.0,
+                "y2": 384.0
+              },
+              "confidence": 0.9280510700000001,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0027": {
+      "prediction": {
+        "bbox": {
+          "x1": 490.0,
+          "y1": 408.0,
+          "x2": 742.0,
+          "y2": 430.0
+        },
+        "matched_text": "Text 'Signer: Enter name and date of birth.' within the 'Terms and Conditions' modal.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          506.22,
+          345.0,
+          778.8,
+          414.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            490.0,
+            408.0,
+            742.0,
+            430.0
+          ],
+          "matched_text": "Enter and date of birth.",
+          "ocr_word_boxes": [
+            {
+              "text": "and",
+              "bbox": {
+                "x1": 619.0,
+                "y1": 414.0,
+                "x2": 638.0,
+                "y2": 424.0
+              },
+              "confidence": 0.96659592,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "date",
+              "bbox": {
+                "x1": 643.0,
+                "y1": 414.0,
+                "x2": 666.0,
+                "y2": 424.0
+              },
+              "confidence": 0.95069466,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "of",
+              "bbox": {
+                "x1": 672.0,
+                "y1": 414.0,
+                "x2": 681.0,
+                "y2": 424.0
+              },
+              "confidence": 0.96920738,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "birth.",
+              "bbox": {
+                "x1": 685.0,
+                "y1": 414.0,
+                "x2": 708.0,
+                "y2": 424.0
+              },
+              "confidence": 0.94898148,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Enter",
+              "bbox": {
+                "x1": 524.0,
+                "y1": 415.0,
+                "x2": 552.0,
+                "y2": 424.0
+              },
+              "confidence": 0.96573372,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0028": {
+      "prediction": {
+        "bbox": {
+          "x1": 0.0,
+          "y1": 410.0,
+          "x2": 541.0,
+          "y2": 487.0
+        },
+        "matched_text": "The 'Tickets & Passes' page title, representing an initial step.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_06.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_06.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          0.0,
+          414.0,
+          259.6,
+          506.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            0.0,
+            410.0,
+            541.0,
+            487.0
+          ],
+          "matched_text": "Tickets Passes",
+          "ocr_word_boxes": [
+            {
+              "text": "Tickets",
+              "bbox": {
+                "x1": 56.0,
+                "y1": 431.0,
+                "x2": 208.0,
+                "y2": 466.0
+              },
+              "confidence": 0.8003778800000001,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Passes",
+              "bbox": {
+                "x1": 276.0,
+                "y1": 433.0,
+                "x2": 422.0,
+                "y2": 466.0
+              },
+              "confidence": 0.96834648,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0029": {
+      "prediction": {
+        "bbox": {
+          "x1": 370.6,
+          "y1": 324.4,
+          "x2": 606.4,
+          "y2": 348.6
+        },
+        "matched_text": "The 'PERSONAL INFORMATION' modal, representing a distinct step in the flow.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_09.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_09.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          363.44,
+          322.0,
+          934.56,
+          805.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            370.6,
+            324.4,
+            606.4,
+            348.6
+          ],
+          "matched_text": "PERSONAL INFORMATION",
+          "ocr_word_boxes": [
+            {
+              "text": "PERSONAL",
+              "bbox": {
+                "x1": 408.0,
+                "y1": 331.0,
+                "x2": 477.0,
+                "y2": 342.0
+              },
+              "confidence": 0.94310326,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "INFORMATION",
+              "bbox": {
+                "x1": 480.0,
+                "y1": 331.0,
+                "x2": 569.0,
+                "y2": 342.0
+              },
+              "confidence": 0.94310326,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0030": {
+      "prediction": {
+        "bbox": {
+          "x1": 674.96,
+          "y1": 736.0,
+          "x2": 895.62,
+          "y2": 782.0
+        },
+        "matched_text": "The 'Back' and 'Continue' buttons, indicating progression.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_09.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_09.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          674.96,
+          736.0,
+          895.62,
+          782.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0031": {
+      "prediction": {
+        "bbox": {
+          "x1": 436.6,
+          "y1": 321.4,
+          "x2": 653.4,
+          "y2": 345.6
+        },
+        "matched_text": "The 'Terms and Conditions' modal, representing another distinct step in the flow.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          480.26,
+          276.0,
+          817.74,
+          644.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            436.6,
+            321.4,
+            653.4,
+            345.6
+          ],
+          "matched_text": "Terms and Conditions",
+          "ocr_word_boxes": [
+            {
+              "text": "Terms",
+              "bbox": {
+                "x1": 474.0,
+                "y1": 328.0,
+                "x2": 515.0,
+                "y2": 339.0
+              },
+              "confidence": 0.89963722,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "and",
+              "bbox": {
+                "x1": 521.0,
+                "y1": 328.0,
+                "x2": 543.0,
+                "y2": 339.0
+              },
+              "confidence": 0.96683449,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Conditions",
+              "bbox": {
+                "x1": 549.0,
+                "y1": 328.0,
+                "x2": 616.0,
+                "y2": 339.0
+              },
+              "confidence": 0.95779976,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0032": {
+      "prediction": {
+        "bbox": {
+          "x1": 571.12,
+          "y1": 552.0,
+          "x2": 791.78,
+          "y2": 598.0
+        },
+        "matched_text": "The 'Back' and 'Continue' buttons, indicating progression.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          571.12,
+          552.0,
+          791.78,
+          598.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0033": {
+      "prediction": {
+        "bbox": {
+          "x1": 370.6,
+          "y1": 324.4,
+          "x2": 606.4,
+          "y2": 348.6
+        },
+        "matched_text": "The 'Back' and 'Continue' buttons at the bottom of the 'PERSONAL INFORMATION' modal.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_09.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_09.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          674.96,
+          736.0,
+          895.62,
+          782.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            370.6,
+            324.4,
+            606.4,
+            348.6
+          ],
+          "matched_text": "PERSONAL INFORMATION",
+          "ocr_word_boxes": [
+            {
+              "text": "PERSONAL",
+              "bbox": {
+                "x1": 408.0,
+                "y1": 331.0,
+                "x2": 477.0,
+                "y2": 342.0
+              },
+              "confidence": 0.94310326,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "INFORMATION",
+              "bbox": {
+                "x1": 480.0,
+                "y1": 331.0,
+                "x2": 569.0,
+                "y2": 342.0
+              },
+              "confidence": 0.94310326,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0034": {
+      "prediction": {
+        "bbox": {
+          "x1": 436.6,
+          "y1": 321.4,
+          "x2": 653.4,
+          "y2": 345.6
+        },
+        "matched_text": "The 'Back' and 'Continue' buttons at the bottom of the 'Terms and Conditions' modal.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          571.12,
+          552.0,
+          791.78,
+          598.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            436.6,
+            321.4,
+            653.4,
+            345.6
+          ],
+          "matched_text": "Terms and Conditions",
+          "ocr_word_boxes": [
+            {
+              "text": "Terms",
+              "bbox": {
+                "x1": 474.0,
+                "y1": 328.0,
+                "x2": 515.0,
+                "y2": 339.0
+              },
+              "confidence": 0.89963722,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "and",
+              "bbox": {
+                "x1": 521.0,
+                "y1": 328.0,
+                "x2": 543.0,
+                "y2": 339.0
+              },
+              "confidence": 0.96683449,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Conditions",
+              "bbox": {
+                "x1": 549.0,
+                "y1": 328.0,
+                "x2": 616.0,
+                "y2": 339.0
+              },
+              "confidence": 0.95779976,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0035": {
+      "prediction": {
+        "bbox": {
+          "x1": 110.6,
+          "y1": 269.4,
+          "x2": 311.4,
+          "y2": 293.6
+        },
+        "matched_text": "Title '2023 Diamond Pass'",
+        "score": 0.6,
+        "confidence": 0.6,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          184.316,
+          294.4,
+          389.4,
+          437.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            110.6,
+            269.4,
+            311.4,
+            293.6
+          ],
+          "matched_text": "2023 Diamond Pass",
+          "ocr_word_boxes": [
+            {
+              "text": "Diamond",
+              "bbox": {
+                "x1": 184.0,
+                "y1": 276.0,
+                "x2": 239.0,
+                "y2": 287.0
+              },
+              "confidence": 0.96864616,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "2023",
+              "bbox": {
+                "x1": 148.0,
+                "y1": 277.0,
+                "x2": 179.0,
+                "y2": 287.0
+              },
+              "confidence": 0.67952599,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Pass",
+              "bbox": {
+                "x1": 244.0,
+                "y1": 277.0,
+                "x2": 274.0,
+                "y2": 287.0
+              },
+              "confidence": 0.84226311,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "PARTIALLY_SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0036": {
+      "prediction": {
+        "bbox": {
+          "x1": 0.0,
+          "y1": 1414.8,
+          "x2": 166.8,
+          "y2": 1441.2
+        },
+        "matched_text": "List of benefits for the Diamond Pass",
+        "score": 0.6,
+        "confidence": 0.6,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          389.4,
+          851.0,
+          630.828,
+          1191.4
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            0.0,
+            1414.8,
+            166.8,
+            1441.2
+          ],
+          "matched_text": "Pass benefits",
+          "ocr_word_boxes": [
+            {
+              "text": "benefits",
+              "bbox": {
+                "x1": 70.0,
+                "y1": 1422.0,
+                "x2": 126.0,
+                "y2": 1434.0
+              },
+              "confidence": 0.9341742700000001,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Pass",
+              "bbox": {
+                "x1": 35.0,
+                "y1": 1423.0,
+                "x2": 65.0,
+                "y2": 1434.0
+              },
+              "confidence": 0.96267235,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "PARTIALLY_SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0037": {
+      "prediction": {
+        "bbox": {
+          "x1": 436.6,
+          "y1": 321.4,
+          "x2": 653.4,
+          "y2": 345.6
+        },
+        "matched_text": "Title 'Terms and Conditions'",
+        "score": 0.72,
+        "confidence": 0.72,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          389.4,
+          294.4,
+          636.02,
+          345.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            436.6,
+            321.4,
+            653.4,
+            345.6
+          ],
+          "matched_text": "Terms and Conditions",
+          "ocr_word_boxes": [
+            {
+              "text": "Terms",
+              "bbox": {
+                "x1": 474.0,
+                "y1": 328.0,
+                "x2": 515.0,
+                "y2": 339.0
+              },
+              "confidence": 0.89963722,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "and",
+              "bbox": {
+                "x1": 521.0,
+                "y1": 328.0,
+                "x2": 543.0,
+                "y2": 339.0
+              },
+              "confidence": 0.96683449,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Conditions",
+              "bbox": {
+                "x1": 549.0,
+                "y1": 328.0,
+                "x2": 616.0,
+                "y2": 339.0
+              },
+              "confidence": 0.95779976,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0038": {
+      "prediction": {
+        "bbox": {
+          "x1": 585.0,
+          "y1": 408.0,
+          "x2": 742.0,
+          "y2": 430.0
+        },
+        "matched_text": "Instructions to 'Scroll: Review the agreements', 'Sign: Enter name and date of birth', and 'Consent: Agree to the electronic signature option by clicking 'OK''.",
+        "score": 0.72,
+        "confidence": 0.72,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          389.4,
+          368.0,
+          882.64,
+          552.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            585.0,
+            408.0,
+            742.0,
+            430.0
+          ],
+          "matched_text": "and date of birth.",
+          "ocr_word_boxes": [
+            {
+              "text": "and",
+              "bbox": {
+                "x1": 619.0,
+                "y1": 414.0,
+                "x2": 638.0,
+                "y2": 424.0
+              },
+              "confidence": 0.96659592,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "date",
+              "bbox": {
+                "x1": 643.0,
+                "y1": 414.0,
+                "x2": 666.0,
+                "y2": 424.0
+              },
+              "confidence": 0.95069466,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "of",
+              "bbox": {
+                "x1": 672.0,
+                "y1": 414.0,
+                "x2": 681.0,
+                "y2": 424.0
+              },
+              "confidence": 0.96920738,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "birth.",
+              "bbox": {
+                "x1": 685.0,
+                "y1": 414.0,
+                "x2": 708.0,
+                "y2": 424.0
+              },
+              "confidence": 0.94898148,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED_WITH_CAVEAT",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0039": {
+      "prediction": {
+        "bbox": {
+          "x1": 400.2,
+          "y1": 2480.8,
+          "x2": 566.8,
+          "y2": 2507.2
+        },
+        "matched_text": "Text 'Select Your Park'",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_01.png",
+        "image_width": 1280,
+        "image_height": 2971,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_01.png",
+        "source_image_width": 1280,
+        "source_image_height": 2971,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          185.6,
+          846.735,
+          435.2,
+          906.155
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            400.2,
+            2480.8,
+            566.8,
+            2507.2
+          ],
+          "matched_text": "Select Park",
+          "ocr_word_boxes": [
+            {
+              "text": "Select",
+              "bbox": {
+                "x1": 441.0,
+                "y1": 2488.0,
+                "x2": 481.0,
+                "y2": 2500.0
+              },
+              "confidence": 0.95636398,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Park",
+              "bbox": {
+                "x1": 498.0,
+                "y1": 2488.0,
+                "x2": 526.0,
+                "y2": 2500.0
+              },
+              "confidence": 0.85424301,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0040": {
+      "prediction": {
+        "bbox": {
+          "x1": 618.4,
+          "y1": 2526.6,
+          "x2": 1033.6,
+          "y2": 2601.4
+        },
+        "matched_text": "Text 'Great Escape' next to 'Plan Your Thrills at'",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "image_width": 1298,
+        "image_height": 4701,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "source_image_width": 1298,
+        "source_image_height": 4701,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          246.62,
+          94.02,
+          467.28,
+          188.04
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            618.4,
+            2526.6,
+            1033.6,
+            2601.4
+          ],
+          "matched_text": "your to Great Escape!",
+          "ocr_word_boxes": [
+            {
+              "text": "your",
+              "bbox": {
+                "x1": 734.0,
+                "y1": 2547.0,
+                "x2": 759.0,
+                "y2": 2581.0
+              },
+              "confidence": 0.9667183699999999,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Great",
+              "bbox": {
+                "x1": 824.0,
+                "y1": 2560.0,
+                "x2": 861.0,
+                "y2": 2571.0
+              },
+              "confidence": 0.9476306200000001,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Escape!",
+              "bbox": {
+                "x1": 867.0,
+                "y1": 2560.0,
+                "x2": 918.0,
+                "y2": 2576.0
+              },
+              "confidence": 0.8590802,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "to",
+              "bbox": {
+                "x1": 802.0,
+                "y1": 2561.0,
+                "x2": 816.0,
+                "y2": 2571.0
+              },
+              "confidence": 0.9476306200000001,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0041": {
+      "prediction": {
+        "bbox": {
+          "x1": 246.62,
+          "y1": 46.0,
+          "x2": 467.28,
+          "y2": 92.0
+        },
+        "matched_text": "Text 'Great Escape' at the top left of the purchase page.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          246.62,
+          46.0,
+          467.28,
+          92.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0042": {
+      "prediction": {
+        "bbox": {
+          "x1": 246.62,
+          "y1": 46.0,
+          "x2": 467.28,
+          "y2": 92.0
+        },
+        "matched_text": "Text 'Great Escape' at the top left of the purchase page.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          246.62,
+          46.0,
+          467.28,
+          92.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0043": {
+      "prediction": {
+        "bbox": {
+          "x1": 436.6,
+          "y1": 321.4,
+          "x2": 653.4,
+          "y2": 345.6
+        },
+        "matched_text": "Text 'Great Escape' visible in the background of the terms and conditions pop-up.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          246.62,
+          46.0,
+          467.28,
+          92.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            436.6,
+            321.4,
+            653.4,
+            345.6
+          ],
+          "matched_text": "Terms and Conditions",
+          "ocr_word_boxes": [
+            {
+              "text": "Terms",
+              "bbox": {
+                "x1": 474.0,
+                "y1": 328.0,
+                "x2": 515.0,
+                "y2": 339.0
+              },
+              "confidence": 0.89963722,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "and",
+              "bbox": {
+                "x1": 521.0,
+                "y1": 328.0,
+                "x2": 543.0,
+                "y2": 339.0
+              },
+              "confidence": 0.96683449,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Conditions",
+              "bbox": {
+                "x1": 549.0,
+                "y1": 328.0,
+                "x2": 616.0,
+                "y2": 339.0
+              },
+              "confidence": 0.95779976,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0044": {
+      "prediction": {
+        "bbox": {
+          "x1": 434.4,
+          "y1": 1870.6,
+          "x2": 1272.6,
+          "y2": 1901.4
+        },
+        "matched_text": "Text 'Great Escape' at the top left.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "image_width": 1298,
+        "image_height": 4701,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_04.png",
+        "source_image_width": 1298,
+        "source_image_height": 4701,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          246.62,
+          94.02,
+          467.28,
+          188.04
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            434.4,
+            1870.6,
+            1272.6,
+            1901.4
+          ],
+          "matched_text": "at at Great",
+          "ocr_word_boxes": [
+            {
+              "text": "Great",
+              "bbox": {
+                "x1": 1181.0,
+                "y1": 1879.0,
+                "x2": 1225.0,
+                "y2": 1893.0
+              },
+              "confidence": 0.96991974,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "at",
+              "bbox": {
+                "x1": 482.0,
+                "y1": 1880.0,
+                "x2": 497.0,
+                "y2": 1893.0
+              },
+              "confidence": 0.96336601,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "at",
+              "bbox": {
+                "x1": 1083.0,
+                "y1": 1880.0,
+                "x2": 1098.0,
+                "y2": 1893.0
+              },
+              "confidence": 0.9693267799999999,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0045": {
+      "prediction": {
+        "bbox": {
+          "x1": 246.62,
+          "y1": 46.0,
+          "x2": 467.28,
+          "y2": 92.0
+        },
+        "matched_text": "Text 'Great Escape' at the top left of the purchase page.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          246.62,
+          46.0,
+          467.28,
+          92.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0046": {
+      "prediction": {
+        "bbox": {
+          "x1": 436.6,
+          "y1": 321.4,
+          "x2": 653.4,
+          "y2": 345.6
+        },
+        "matched_text": "Text 'Great Escape' visible in the background of the terms and conditions pop-up.",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          246.62,
+          46.0,
+          467.28,
+          92.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            436.6,
+            321.4,
+            653.4,
+            345.6
+          ],
+          "matched_text": "Terms and Conditions",
+          "ocr_word_boxes": [
+            {
+              "text": "Terms",
+              "bbox": {
+                "x1": 474.0,
+                "y1": 328.0,
+                "x2": 515.0,
+                "y2": 339.0
+              },
+              "confidence": 0.89963722,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "and",
+              "bbox": {
+                "x1": 521.0,
+                "y1": 328.0,
+                "x2": 543.0,
+                "y2": 339.0
+              },
+              "confidence": 0.96683449,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Conditions",
+              "bbox": {
+                "x1": 549.0,
+                "y1": 328.0,
+                "x2": 616.0,
+                "y2": 339.0
+              },
+              "confidence": 0.95779976,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0047": {
+      "prediction": {
+        "bbox": {
+          "x1": 615.2,
+          "y1": 364.8,
+          "x2": 787.8,
+          "y2": 391.2
+        },
+        "matched_text": "Label 'Email Address'",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          649.0,
+          368.0,
+          765.82,
+          414.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            615.2,
+            364.8,
+            787.8,
+            391.2
+          ],
+          "matched_text": "Email Address",
+          "ocr_word_boxes": [
+            {
+              "text": "Email",
+              "bbox": {
+                "x1": 656.0,
+                "y1": 372.0,
+                "x2": 689.0,
+                "y2": 384.0
+              },
+              "confidence": 0.9536744699999999,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Address",
+              "bbox": {
+                "x1": 695.0,
+                "y1": 373.0,
+                "x2": 747.0,
+                "y2": 384.0
+              },
+              "confidence": 0.7146786500000001,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0048": {
+      "prediction": {
+        "bbox": {
+          "x1": 850.0,
+          "y1": 363.0,
+          "x2": 1055.0,
+          "y2": 396.0
+        },
+        "matched_text": "Label 'Zip/Postal Code'",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding_ocr_refined",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_08.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          882.64,
+          437.0,
+          1025.42,
+          483.0
+        ],
+        "ocr_refinement": {
+          "bbox": [
+            850.0,
+            363.0,
+            1055.0,
+            396.0
+          ],
+          "matched_text": "Zip/Postal Code",
+          "ocr_word_boxes": [
+            {
+              "text": "Zip/Postal",
+              "bbox": {
+                "x1": 901.0,
+                "y1": 372.0,
+                "x2": 966.0,
+                "y2": 387.0
+              },
+              "confidence": 0.96931213,
+              "level": "word",
+              "source": "tesseract"
+            },
+            {
+              "text": "Code",
+              "bbox": {
+                "x1": 972.0,
+                "y1": 373.0,
+                "x2": 1004.0,
+                "y2": 384.0
+              },
+              "confidence": 0.9687745700000001,
+              "level": "word",
+              "source": "tesseract"
+            }
+          ]
+        }
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0049": {
+      "prediction": {
+        "bbox": {
+          "x1": 155.76,
+          "y1": 368.0,
+          "x2": 311.52,
+          "y2": 414.0
+        },
+        "matched_text": "Label 'STREET ADDRESS'",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          155.76,
+          368.0,
+          311.52,
+          414.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0050": {
+      "prediction": {
+        "bbox": {
+          "x1": 155.76,
+          "y1": 437.0,
+          "x2": 207.68,
+          "y2": 483.0
+        },
+        "matched_text": "Label 'CITY'",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          155.76,
+          437.0,
+          207.68,
+          483.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0051": {
+      "prediction": {
+        "bbox": {
+          "x1": 389.4,
+          "y1": 437.0,
+          "x2": 571.12,
+          "y2": 483.0
+        },
+        "matched_text": "Label 'STATE / PROVINCE'",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          389.4,
+          437.0,
+          571.12,
+          483.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0052": {
+      "prediction": {
+        "bbox": {
+          "x1": 649.0,
+          "y1": 437.0,
+          "x2": 804.76,
+          "y2": 483.0
+        },
+        "matched_text": "Label 'ZIP/POSTAL CODE'",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          649.0,
+          437.0,
+          804.76,
+          483.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0053": {
+      "prediction": {
+        "bbox": {
+          "x1": 649.0,
+          "y1": 506.0,
+          "x2": 713.9,
+          "y2": 552.0
+        },
+        "matched_text": "Label 'EMAIL'",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          649.0,
+          506.0,
+          713.9,
+          552.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    },
+    "GBBOX-0054": {
+      "prediction": {
+        "bbox": {
+          "x1": 882.64,
+          "y1": 506.0,
+          "x2": 947.54,
+          "y2": 552.0
+        },
+        "matched_text": "Label 'PHONE'",
+        "score": 0.85,
+        "confidence": 0.85,
+        "source": "gemini_visual_grounding",
+        "level": "LOCAL_REGION",
+        "image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "image_width": 1298,
+        "image_height": 2300,
+        "coordinate_space": "image_pixels",
+        "source_image_path": "./data/processed/flows/mind2web/01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac/original/step_19.png",
+        "source_image_width": 1298,
+        "source_image_height": 2300,
+        "scale_x": 1.0,
+        "scale_y": 1.0,
+        "raw_gemini_pixel_bbox": [
+          882.64,
+          506.0,
+          947.54,
+          552.0
+        ],
+        "ocr_refinement": null
+      },
+      "all_suggestions": [],
+      "claim_status": "SUPPORTED",
+      "claim_type": "OBSERVABLE",
+      "source_group": "pipeline_verification",
+      "run_id": "bbox_gemini_grounded_regions_ocr_refined_flow01_20260719",
+      "execution_mode": "batched-topk"
+    }
+  }
+}

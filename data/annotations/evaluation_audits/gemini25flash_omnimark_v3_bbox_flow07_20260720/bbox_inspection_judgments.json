@@ -1,0 +1,185 @@
+{
+  "schema_version": "bbox_inspection_judgments_v1",
+  "items": {
+    "GBBOX-0002": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:12:37.601334+00:00"
+    },
+    "GBBOX-0003": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:12:38.926293+00:00"
+    },
+    "GBBOX-0004": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:12:40.459629+00:00"
+    },
+    "GBBOX-0005": {
+      "status": "INCORRECT",
+      "note": "I don't now if help translate and discogs are good",
+      "error_category": "SEMANTIC_ERROR",
+      "updated_at": "2026-07-20T20:13:20.549080+00:00"
+    },
+    "GBBOX-0001": {
+      "status": "INCORRECT",
+      "note": "this box might be too big and should be absent i think",
+      "error_category": "SEMANTIC_ERROR",
+      "updated_at": "2026-07-20T20:13:49.712210+00:00"
+    },
+    "GBBOX-0006": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:13:57.707083+00:00"
+    },
+    "GBBOX-0007": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:14:00.874074+00:00"
+    },
+    "GBBOX-0008": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:14:00.900285+00:00"
+    },
+    "GBBOX-0009": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:14:05.972607+00:00"
+    },
+    "GBBOX-0010": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:14:05.986380+00:00"
+    },
+    "GBBOX-0012": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:14:23.377566+00:00"
+    },
+    "GBBOX-0011": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:14:28.188545+00:00"
+    },
+    "GBBOX-0014": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:14:44.016099+00:00"
+    },
+    "GBBOX-0013": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:14:54.888739+00:00"
+    },
+    "GBBOX-0015": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:14:54.909578+00:00"
+    },
+    "GBBOX-0016": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:15:14.683010+00:00"
+    },
+    "GBBOX-0018": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:15:22.019072+00:00"
+    },
+    "GBBOX-0017": {
+      "status": "INCORRECT",
+      "note": "",
+      "error_category": "SEMANTIC_ERROR",
+      "updated_at": "2026-07-20T20:15:25.522559+00:00"
+    },
+    "GBBOX-0020": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:25:05.246248+00:00"
+    },
+    "GBBOX-0021": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:25:06.251904+00:00"
+    },
+    "GBBOX-0022": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:25:48.979822+00:00"
+    },
+    "GBBOX-0023": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:25:54.115257+00:00"
+    },
+    "GBBOX-0024": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:25:56.218496+00:00"
+    },
+    "GBBOX-0028": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:26:01.656613+00:00"
+    },
+    "GBBOX-0025": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:26:05.465280+00:00"
+    },
+    "GBBOX-0027": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:26:09.024538+00:00"
+    },
+    "GBBOX-0026": {
+      "status": "INCORRECT",
+      "note": "duplicate box i think",
+      "error_category": "SEMANTIC_ERROR",
+      "updated_at": "2026-07-20T20:26:33.769522+00:00"
+    },
+    "GBBOX-0029": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:27:28.502387+00:00"
+    },
+    "GBBOX-0031": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:27:35.762726+00:00"
+    },
+    "GBBOX-0030": {
+      "status": "VALID",
+      "note": "",
+      "error_category": null,
+      "updated_at": "2026-07-20T20:27:40.643770+00:00"
+    }
+  }
+}
