@@ -1064,6 +1064,71 @@ def test_batched_verifier_single_call_uses_all_screenshots(tmp_path: Path, monke
     assert results[0].status == ClaimStatus.MISSING
 
 
+def test_destroyed_chronology_hides_original_order_and_maps_evidence_back(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    image_paths = []
+    for index in range(1, 5):
+        image_path = tmp_path / f"step_{index:02d}.png"
+        Image.new("RGB", (16, 16), color=(index * 20, 0, 0)).save(image_path)
+        image_paths.append(image_path)
+
+    verifier = BatchedGeminiImageClaimVerifier(
+        flow_id="flow-1",
+        screenshot_steps=[
+            ScreenshotStep(step_index=index, screenshot_path=str(path))
+            for index, path in enumerate(image_paths, start=1)
+        ],
+        cache_path=tmp_path / "cache.json",
+        grouping_strategy="single-call",
+        chronology_mode="destroyed",
+        order_seed=20260726,
+    )
+    observed: dict = {}
+
+    def fake_call(payload, selected_steps):
+        observed["payload"] = payload
+        observed["selected_steps"] = selected_steps
+        return (
+            {
+                "claims": [
+                    {
+                        "claim_id": payload["claims"][0]["claim_id"],
+                        "claim_status": "SUPPORTED",
+                        "evidence_step_indices": [1],
+                        "uncertainty_reasons": [],
+                        "visible_observations": ["Apparent step 1 contains the visible control."],
+                        "rationale": "The visible control is present without relying on chronology.",
+                    }
+                ]
+            },
+            "{}",
+            {},
+        )
+
+    monkeypatch.setattr(verifier, "_call_gemini_group", fake_call)
+    results = verifier.verify_many(
+        [
+            (
+                _claim(claim_id="REQ-1-C1", text="The page shows a help control."),
+                [_evidence(2)],
+                UIEvaluability.UI_VERIFIABLE,
+            )
+        ]
+    )
+
+    payload = observed["payload"]
+    assert payload["chronology_mode"] == "destroyed"
+    assert payload["attached_step_indices"] == [1, 2, 3, 4]
+    assert observed["selected_steps"] != [1, 2, 3, 4]
+    assert [asset["step_index"] for asset in payload["screenshot_assets"]] == [1, 2, 3, 4]
+    assert "original chronology was deliberately removed" in verifier._prompt(payload)
+    expected_original = verifier.diagnostics["groups"][0]["model_to_original_step"][1]
+    assert [item.step_index for item in results[0].evidence] == [expected_original]
+    assert results[0].metadata["chronology_mode"] == "destroyed"
+
+
 def test_single_call_claim_chunks_each_keep_all_screenshots(tmp_path: Path) -> None:
     image_paths = []
     for index in range(1, 4):

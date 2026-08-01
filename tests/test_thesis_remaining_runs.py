@@ -81,3 +81,41 @@ def test_oracle_runs_use_provided_claims_and_are_extended() -> None:
     assert len(oracle) == 2
     assert all(item["claim_policy"] == "provided" for item in oracle)
     assert all(item["tier"] == "extended" for item in oracle)
+
+
+def test_order_ablation_is_matched_to_raw_all_and_passes_destroyed_chronology() -> None:
+    config = MODULE.load_config(BASE_DIR / "configs/thesis_final_experiments.json")
+    flow = _flow(config)
+    experiment = next(
+        item
+        for item in config["experiments"]
+        if item["id"] == "fl_raw_all_chronology_destroyed"
+    )
+    command = MODULE.command_for(experiment, flow, config)
+    rendered = " ".join(command)
+
+    assert experiment["matched_baseline"] == "fl_raw_all"
+    assert experiment["model"] == "gemini-3.1-flash-lite"
+    assert experiment["claim_policy"] == "disabled"
+    assert experiment["evidence_strategy"] == "all"
+    assert "--verifier-chronology-mode destroyed" in rendered
+    assert "--verifier-order-seed 20260726" in rendered
+
+
+def test_low_cost_order_ablation_matches_gemini_25_baseline() -> None:
+    config = MODULE.load_config(BASE_DIR / "configs/thesis_final_experiments.json")
+    flow = _flow(config)
+    experiment = next(
+        item
+        for item in config["experiments"]
+        if item["id"] == "g25_raw_all_chronology_destroyed"
+    )
+    command = MODULE.command_for(experiment, flow, config)
+    rendered = " ".join(command)
+
+    assert experiment["matched_baseline"] == "g25_raw_all"
+    assert experiment["model"] == "gemini-2.5-flash-lite"
+    assert experiment["thinking_budget"] == 0
+    assert "--verifier-chronology-mode destroyed" in rendered
+    assert "--verifier-thinking-budget 0" in rendered
+    assert "--verifier-thinking-level" not in rendered

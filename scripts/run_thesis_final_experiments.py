@@ -291,6 +291,16 @@ def command_for(
         command.append("--verifier-predict-ui-evaluability")
     if not common.get("sequence_context", True):
         command.append("--no-sequence-context")
+    chronology_mode = str(experiment.get("chronology_mode", "chronological"))
+    if chronology_mode != "chronological":
+        command.extend(
+            [
+                "--verifier-chronology-mode",
+                chronology_mode,
+                "--verifier-order-seed",
+                str(experiment.get("order_seed", 20260726)),
+            ]
+        )
     return command
 
 

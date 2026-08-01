@@ -32,6 +32,7 @@
       "scripts/run_thesis_final_experiments.py",
       "scripts/analyze_thesis_final_matrix.py",
       "scripts/analyze_thesis_run_stability.py",
+      "scripts/analyze_chronology_ablation.py",
       "scripts/audit_thesis_replication_package.py",
       "src/ui_verifier/evaluation/abstention_policy.py",
       "src/ui_verifier/verification_pipeline/gemini_image_claim_verifier.py",
@@ -194,6 +195,26 @@
       }
     },
     {
+      "id": "fl_raw_all_chronology_destroyed",
+      "group": "order_ablation",
+      "tier": "extended",
+      "model": "gemini-3.1-flash-lite",
+      "max_group_claims": 8,
+      "claim_policy": "disabled",
+      "evidence_strategy": "all",
+      "verifier": "gemini-image",
+      "chronology_mode": "destroyed",
+      "order_seed": 20260726,
+      "matched_baseline": "fl_raw_all",
+      "scientific_role": "Controlled order-unavailable ablation. It uses the same screenshot set, requirements, model, prompt contract, chunking, and aggregation as fl_raw_all, but deterministically permutes the images, replaces original step identities with apparent local IDs, and explicitly discloses that chronology is unavailable so the model must not invent temporal facts.",
+      "estimated_tokens": {
+        "input_lower": 1100000,
+        "input_upper": 1500000,
+        "output_thinking_lower": 65000,
+        "output_thinking_upper": 100000
+      }
+    },
+    {
       "id": "fl_gated_all",
       "group": "primary",
       "tier": "core",
@@ -287,6 +308,28 @@
       "evidence_strategy": "all",
       "verifier": "gemini-image",
       "scientific_role": "Low-cost stable-model comparison for RQ1 using the matched direct whole-flow configuration.",
+      "estimated_tokens": {
+        "input_lower": 250000,
+        "input_upper": 450000,
+        "output_thinking_lower": 100000,
+        "output_thinking_upper": 160000
+      }
+    },
+    {
+      "id": "g25_raw_all_chronology_destroyed",
+      "group": "order_ablation",
+      "tier": "extended",
+      "model": "gemini-2.5-flash-lite",
+      "thinking_level": null,
+      "thinking_budget": 0,
+      "max_group_claims": 8,
+      "claim_policy": "disabled",
+      "evidence_strategy": "all",
+      "verifier": "gemini-image",
+      "chronology_mode": "destroyed",
+      "order_seed": 20260726,
+      "matched_baseline": "g25_raw_all",
+      "scientific_role": "Low-cost second-model sensitivity check for the order-unavailable effect, matched to g25_raw_all except for the fixed chronology-destroying permutation and condition disclosure.",
       "estimated_tokens": {
         "input_lower": 250000,
         "input_upper": 450000,

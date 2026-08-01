@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor
+import hashlib
 import json
 from pathlib import Path
+import random
 from typing import Any
 
 from PIL import Image
@@ -13,6 +15,7 @@ from ui_verifier.verification_pipeline.evidence_assets import build_screenshot_a
 from ui_verifier.verification_pipeline.gemini_image_claim_verifier import (
     GeminiImageClaimVerifier,
     _cache_key,
+    _evidence_step_indices,
 )
 from ui_verifier.verification_pipeline.requirement_understanding import has_hidden_indicator
 from ui_verifier.verification_pipeline.schemas import (
@@ -45,6 +48,8 @@ class BatchedGeminiImageClaimVerifier(GeminiImageClaimVerifier):
         candidate_package: Path | None = None,
         marked_assets_dir: Path | None = None,
         predict_ui_evaluability: bool = False,
+        chronology_mode: str = "chronological",
+        order_seed: int = 20260726,
         **kwargs: Any,
     ) -> None:
         super().__init__(
@@ -60,6 +65,10 @@ class BatchedGeminiImageClaimVerifier(GeminiImageClaimVerifier):
             raise ValueError("group_workers must be at least 1")
         if max_claims_per_group is not None and max_claims_per_group < 1:
             raise ValueError("max_claims_per_group must be at least 1 when set")
+        if chronology_mode not in {"chronological", "destroyed"}:
+            raise ValueError("chronology_mode must be 'chronological' or 'destroyed'")
+        if chronology_mode == "destroyed" and candidate_package is not None:
+            raise ValueError("Destroyed chronology is not supported with candidate-mark grounding.")
         self.grouping_strategy = grouping_strategy
         self.max_images_per_group = max_images_per_group
         self.max_claims_per_group = max_claims_per_group
@@ -67,6 +76,8 @@ class BatchedGeminiImageClaimVerifier(GeminiImageClaimVerifier):
         self.candidate_package_path = candidate_package
         self.marked_assets_dir = marked_assets_dir
         self.predict_ui_evaluability = predict_ui_evaluability
+        self.chronology_mode = chronology_mode
+        self.order_seed = order_seed
         self.candidates_by_step: dict[str, list[dict[str, Any]]] = {}
         if candidate_package is not None:
             package = json.loads(candidate_package.read_text(encoding="utf-8"))
@@ -97,6 +108,8 @@ class BatchedGeminiImageClaimVerifier(GeminiImageClaimVerifier):
                 "candidate_package": str(candidate_package) if candidate_package else None,
                 "marked_assets_dir": str(marked_assets_dir) if marked_assets_dir else None,
                 "predict_ui_evaluability": predict_ui_evaluability,
+                "chronology_mode": chronology_mode,
+                "order_seed": order_seed,
             }
         )
 
@@ -223,6 +236,8 @@ class BatchedGeminiImageClaimVerifier(GeminiImageClaimVerifier):
         step_indices = [step for step in step_indices if step in self.step_to_path]
         if self.max_images_per_group is not None and len(step_indices) > self.max_images_per_group:
             step_indices = self._sample_steps(step_indices, self.max_images_per_group)
+        order_plan = self._order_plan(step_indices)
+        original_to_model = order_plan["original_to_model"]
         claim_payloads = []
         for item in jobs:
             claim: RequirementClaim = item["claim"]
@@ -231,7 +246,11 @@ class BatchedGeminiImageClaimVerifier(GeminiImageClaimVerifier):
                     "requirement_id": claim.requirement_id,
                     "requirement_text": claim.source_requirement_text,
                     "claim_text": claim.claim_text,
-                    "selected_evidence_step_indices": item["selected_steps"],
+                    "selected_evidence_step_indices": [
+                        original_to_model[step]
+                        for step in item["selected_steps"]
+                        if step in original_to_model
+                    ],
                 }
             if not self.predict_ui_evaluability:
                 claim_payload["ui_evaluability"] = item["ui_evaluability"].value
@@ -240,17 +259,29 @@ class BatchedGeminiImageClaimVerifier(GeminiImageClaimVerifier):
             "group_id": group_id,
             "jobs": jobs,
             "step_indices": step_indices,
+            "attachment_step_indices": order_plan["attachment_step_indices"],
+            "model_step_indices": order_plan["model_step_indices"],
+            "model_to_original_step": order_plan["model_to_original_step"],
             "payload": {
                 "prompt_version": self.prompt_version,
                 "flow_id": self.flow_id,
                 "model_name": self.model_name,
                 "group_id": group_id,
                 "grouping_strategy": self.grouping_strategy,
-                "attached_step_indices": step_indices,
+                "chronology_mode": self.chronology_mode,
+                "order_seed": self.order_seed if self.chronology_mode == "destroyed" else None,
+                "permutation_id": order_plan["permutation_id"],
+                "attached_step_indices": order_plan["model_step_indices"],
                 "screenshot_assets": [
-                    self.assets[step].to_prompt_hint()
-                    for step in step_indices
-                    if step in self.assets
+                    {
+                        **self.assets[original_step].to_prompt_hint(),
+                        "step_index": model_step,
+                    }
+                    for model_step, original_step in zip(
+                        order_plan["model_step_indices"],
+                        order_plan["attachment_step_indices"],
+                    )
+                    if original_step in self.assets
                 ],
                 "claims": claim_payloads,
             },
@@ -281,6 +312,42 @@ class BatchedGeminiImageClaimVerifier(GeminiImageClaimVerifier):
                 for step in step_indices
             ]
         return payload
+
+    def _order_plan(self, step_indices: list[int]) -> dict[str, Any]:
+        chronological = list(step_indices)
+        if self.chronology_mode == "chronological":
+            attachment_steps = chronological
+            model_steps = chronological
+        else:
+            attachment_steps = list(chronological)
+            seed_material = (
+                f"{self.order_seed}:{self.flow_id}:"
+                + ",".join(str(step) for step in chronological)
+            )
+            seed_digest = hashlib.sha256(seed_material.encode("utf-8")).digest()
+            random.Random(int.from_bytes(seed_digest[:8], "big")).shuffle(attachment_steps)
+            if len(attachment_steps) > 1 and attachment_steps == chronological:
+                attachment_steps = [*attachment_steps[1:], attachment_steps[0]]
+            model_steps = list(range(1, len(attachment_steps) + 1))
+
+        original_to_model = {
+            original_step: model_step
+            for model_step, original_step in zip(model_steps, attachment_steps)
+        }
+        model_to_original = {
+            model_step: original_step
+            for model_step, original_step in zip(model_steps, attachment_steps)
+        }
+        permutation_id = hashlib.sha256(
+            json.dumps(attachment_steps, separators=(",", ":")).encode("utf-8")
+        ).hexdigest()[:16]
+        return {
+            "attachment_step_indices": attachment_steps,
+            "model_step_indices": model_steps,
+            "original_to_model": original_to_model,
+            "model_to_original_step": model_to_original,
+            "permutation_id": permutation_id,
+        }
 
     @staticmethod
     def _sample_steps(step_indices: list[int], max_steps: int) -> list[int]:
@@ -321,7 +388,10 @@ class BatchedGeminiImageClaimVerifier(GeminiImageClaimVerifier):
                 self._record_group_fallback(group, f"Gemini image API call cap reached ({self.max_api_calls}).")
                 return self._fallback_group(group)
             try:
-                parsed, raw, usage = self._call_gemini_group(payload, group["step_indices"])
+                parsed, raw, usage = self._call_gemini_group(
+                    payload,
+                    group["attachment_step_indices"],
+                )
                 with self._state_lock:
                     self.cache[key] = {"payload": payload, "parsed": parsed, "raw": raw, "usage": usage}
                     self._save_cache()
@@ -343,6 +413,7 @@ class BatchedGeminiImageClaimVerifier(GeminiImageClaimVerifier):
                 )
                 continue
             try:
+                parsed_claim = self._translate_model_steps(parsed_claim, group)
                 result = self._result_from_batched_gemini(claim, parsed_claim, group)
             except Exception as exc:
                 self._record_fallback(claim.claim_id, str(exc))
@@ -359,6 +430,11 @@ class BatchedGeminiImageClaimVerifier(GeminiImageClaimVerifier):
                     "group_id": payload["group_id"],
                     "claim_ids": [item["claim"].claim_id for item in group["jobs"]],
                     "attached_step_indices": group["step_indices"],
+                    "attachment_step_indices": group["attachment_step_indices"],
+                    "model_step_indices": group["model_step_indices"],
+                    "model_to_original_step": group["model_to_original_step"],
+                    "chronology_mode": self.chronology_mode,
+                    "permutation_id": payload.get("permutation_id"),
                     "image_count": len(group["step_indices"]),
                     "cache_hit": cache_hit,
                     "include_sequence_context": self.include_sequence_context,
@@ -366,6 +442,44 @@ class BatchedGeminiImageClaimVerifier(GeminiImageClaimVerifier):
                 }
             )
         return results
+
+    def _translate_model_steps(
+        self,
+        parsed: dict[str, Any],
+        group: dict[str, Any],
+    ) -> dict[str, Any]:
+        if self.chronology_mode != "destroyed":
+            return parsed
+
+        translated = dict(parsed)
+        model_to_original = group["model_to_original_step"]
+        model_evidence_steps, _ = _evidence_step_indices(
+            parsed,
+            group["model_step_indices"],
+        )
+        translated["evidence_step_indices"] = [
+            model_to_original[step]
+            for step in model_evidence_steps
+            if step in model_to_original
+        ]
+        raw_regions = parsed.get("evidence_regions")
+        if isinstance(raw_regions, list):
+            translated_regions: list[dict[str, Any]] = []
+            for raw_region in raw_regions:
+                if not isinstance(raw_region, dict):
+                    continue
+                region = dict(raw_region)
+                try:
+                    model_step = int(region.get("step_index"))
+                except (TypeError, ValueError):
+                    continue
+                original_step = model_to_original.get(model_step)
+                if original_step is None:
+                    continue
+                region["step_index"] = original_step
+                translated_regions.append(region)
+            translated["evidence_regions"] = translated_regions
+        return translated
 
     def _call_gemini_group(
         self,
@@ -493,6 +607,12 @@ class BatchedGeminiImageClaimVerifier(GeminiImageClaimVerifier):
                     "model_name": self.model_name,
                     "grouping_strategy": self.grouping_strategy,
                     "attached_step_indices": group["step_indices"],
+                    "attachment_step_indices": group["attachment_step_indices"],
+                    "model_step_indices": group["model_step_indices"],
+                    "model_to_original_step": group["model_to_original_step"],
+                    "chronology_mode": self.chronology_mode,
+                    "order_seed": self.order_seed if self.chronology_mode == "destroyed" else None,
+                    "permutation_id": group["payload"].get("permutation_id"),
                     "claim_selected_step_indices": next(
                         (
                             item["selected_steps"]
@@ -567,6 +687,19 @@ alone as proof that the requirement itself is non-UI-verifiable.
             ui_evaluability_schema = (
                 '      "ui_evaluability": "UI_VERIFIABLE | PARTIALLY_UI_VERIFIABLE | NOT_UI_VERIFIABLE",\n'
             )
+        chronology_instructions = ""
+        if self.chronology_mode == "destroyed":
+            chronology_instructions = """
+ORDER-ABLATION TEST CONDITION:
+- The original chronology was deliberately removed by the test environment.
+- The attached images contain the same observed UI states as the original flow, but their attachment order and
+  apparent step IDs do NOT represent the real before/after sequence.
+- Treat the images as an unordered set of visible states. Do not reconstruct or invent a likely chronology.
+- Apparent step IDs are valid only for citing visible evidence in this prompt.
+- A temporal, transition, persistence, update, synchronization, or causal claim is supportable only if one image
+  explicitly and specifically states that relation without relying on order. Otherwise return MISSING or
+  PARTIALLY_SUPPORTED as appropriate; do not present a shuffled transition as a real observed fact.
+"""
         return f"""
 You are verifying multiple UI requirement claims from shared screenshot images.
 
@@ -576,7 +709,8 @@ The attached screenshot images are shared evidence for this prompt. They are att
 Verify each claim independently. Shared screenshots are context, not automatic evidence for every claim.
 Each claim also lists the top-k evidence steps selected for that claim; you may use any attached screenshot if it is visibly relevant.
 OCR hints are optional image-derived Tesseract OCR. Treat OCR as a hint only; verify against the screenshots.
-`evidence_step_indices` must contain only original step indices from the attached list above. Do not renumber attachments by position.
+`evidence_step_indices` must contain only step IDs from the attached list above. Do not invent or renumber IDs.
+{chronology_instructions}
 
 Strict label rules:
 - Verify the exact claim wording. Do not improve, generalize, strengthen, or reinterpret it.
@@ -586,6 +720,7 @@ Strict label rules:
 - Treat every material clause as conjunctive unless the wording explicitly offers alternatives.
 - A bounded or closed UI set can support "all" or "complete"; open-world completeness, freshness, security, eligibility, or external correctness needs explicit visible evidence or a caveat.
 - Result, confirmation, lookup-complete, synchronization, preservation, or state-change claims require the relevant state or a strong visible proxy.
+- When chronology is available, compare screenshots chronologically for preservation, update, synchronization, transition, and other state-change claims.
 - Direct transition claims require a visible affordance or demonstrated navigation from the relevant state.
 - NOT_FULFILLED requires contradiction: an incompatible UI state, a conflicting alternative, explicit failure, or visible behavior that makes the claim false.
 - Mere missing evidence usually means ABSTAIN at the requirement level, so use MISSING for a claim unless there is visible counter-evidence.

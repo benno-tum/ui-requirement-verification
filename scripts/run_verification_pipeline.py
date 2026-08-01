@@ -271,6 +271,21 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Do not automatically add first/last screenshots for sequence-like claims. Useful for staged grouping ablations.",
     )
+    parser.add_argument(
+        "--verifier-chronology-mode",
+        choices=["chronological", "destroyed"],
+        default="chronological",
+        help=(
+            "Use destroyed only for the controlled order ablation: images are deterministically permuted, "
+            "original step identities are hidden from the model, and evidence IDs are mapped back after inference."
+        ),
+    )
+    parser.add_argument(
+        "--verifier-order-seed",
+        type=int,
+        default=20260726,
+        help="Stable seed used to derive the per-flow permutation for destroyed chronology.",
+    )
     parser.add_argument("--gemini-max-retries", type=int, default=0)
     parser.add_argument("--max-gemini-api-calls", type=int, default=10, help="Use -1 for no cap.")
     parser.add_argument(
@@ -300,6 +315,8 @@ def main() -> None:
     args = parse_args()
     if args.verifier_thinking_level is not None and args.verifier_thinking_budget is not None:
         raise ValueError("--verifier-thinking-level and --verifier-thinking-budget are mutually exclusive")
+    if args.verifier_chronology_mode != "chronological" and args.execution_mode == "per-claim":
+        raise ValueError("Destroyed chronology currently requires batched-topk or single-call execution.")
     screenshots = discover_screenshot_steps(args.flow_dir, image_variant=args.image_variant)
     if not screenshots:
         raise ValueError(f"No step_*.png screenshots found in {args.flow_dir}")
@@ -358,6 +375,8 @@ def main() -> None:
                 candidate_package=args.grounding_candidates,
                 marked_assets_dir=args.grounding_assets_dir,
                 predict_ui_evaluability=args.verifier_predict_ui_evaluability,
+                chronology_mode=args.verifier_chronology_mode,
+                order_seed=args.verifier_order_seed,
             )
     else:
         claim_verifier = ClaimVerifier()
@@ -401,6 +420,12 @@ def main() -> None:
                 "grounding_candidates": str(args.grounding_candidates) if args.grounding_candidates else None,
                 "grounding_assets_dir": str(args.grounding_assets_dir) if args.grounding_assets_dir else None,
                 "verifier_predict_ui_evaluability": args.verifier_predict_ui_evaluability,
+                "verifier_chronology_mode": (
+                    args.verifier_chronology_mode if args.verifier == "gemini-image" else None
+                ),
+                "verifier_order_seed": (
+                    args.verifier_order_seed if args.verifier == "gemini-image" else None
+                ),
             },
         )
     )
