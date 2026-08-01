@@ -52,34 +52,6 @@ body {
   grid-template-columns: minmax(220px, 2fr) minmax(180px, 1fr) minmax(140px, 1fr) minmax(180px, 1fr);
 }
 
-.audit-review-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(320px, 0.8fr);
-  gap: 1rem;
-  align-items: start;
-}
-
-.audit-evidence-card,
-.audit-form-card {
-  display: grid;
-  gap: 1rem;
-}
-
-.audit-form-card {
-  position: sticky;
-  top: 1rem;
-}
-
-.audit-form-card label {
-  display: grid;
-  gap: 0.4rem;
-  font-weight: 600;
-}
-
-.audit-form-card .checkbox-row {
-  display: flex;
-}
-
 .audit-requirement-text {
   font-size: 1.08rem;
   line-height: 1.65;
@@ -87,34 +59,6 @@ body {
   border-radius: 14px;
   border: 1px solid #dbe2ec;
   background: #f8fafc;
-}
-
-.audit-screenshot-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 0.8rem;
-}
-
-.audit-screenshot-grid figure {
-  margin: 0;
-  overflow: hidden;
-  border: 1px solid #dbe2ec;
-  border-radius: 14px;
-  background: #fff;
-}
-
-.audit-screenshot-grid img {
-  display: block;
-  width: 100%;
-  max-height: 520px;
-  object-fit: contain;
-  background: #e5e7eb;
-}
-
-.audit-screenshot-grid figcaption {
-  padding: 0.45rem 0.7rem;
-  color: #5b6472;
-  font-size: 0.85rem;
 }
 
 .audit-bbox-canvas {
@@ -779,7 +723,6 @@ body {
 }
 
 @media (max-width: 980px) {
-  .audit-review-grid,
   .audit-controls,
   .bbox-inspection-card {
     grid-template-columns: 1fr;
@@ -789,10 +732,6 @@ body {
   .bbox-claim-summary > div,
   .omniparser-picker-controls {
     grid-template-columns: 1fr;
-  }
-
-  .audit-form-card {
-    position: static;
   }
 
   .bbox-inspection-copy {
@@ -1026,6 +965,37 @@ textarea {
 .message {
   background: #eef2ff;
   border-color: #c7d2fe;
+}
+
+.verifier-diagnostics {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid #bfdbfe;
+  border-radius: 14px;
+  color: #1e3a8a;
+  background: #eff6ff;
+}
+
+.verifier-diagnostics.error {
+  border-color: #fca5a5;
+  color: #991b1b;
+  background: #fef2f2;
+}
+
+.verifier-diagnostics p,
+.verifier-diagnostics ul {
+  margin: 0;
+}
+
+.verifier-diagnostics ul {
+  margin-top: 0.5rem;
+  padding-left: 1.25rem;
+}
+
+.verifier-diagnostics li {
+  overflow-wrap: anywhere;
 }
 
 .content-grid {

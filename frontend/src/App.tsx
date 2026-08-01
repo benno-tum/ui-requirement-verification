@@ -120,6 +120,32 @@ const REVIEW_CATEGORY_OPTIONS: Array<{id: ReviewCategoryId; label: string}> = [
   {id: 'label_mismatch', label: 'Any label mismatch'},
 ]
 
+const GEMINI_VERIFIER_MODELS = [
+  {value: 'gemini-3.1-flash-lite', label: 'Gemini 3.1 Flash-Lite (recommended)'},
+  {value: 'gemini-2.5-flash-lite', label: 'Gemini 2.5 Flash-Lite (lowest cost)'},
+  {value: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash'},
+  {value: 'gemini-3.6-flash', label: 'Gemini 3.6 Flash (stronger)'},
+  {value: 'gemini-3.1-pro-preview', label: 'Gemini 3.1 Pro Preview (historical)'},
+]
+
+const TEXT_MODELS_BY_PROVIDER: Record<'gemini' | 'deepseek', Array<{value: string; label: string}>> = {
+  gemini: [
+    {value: 'gemini-3.1-flash-lite', label: 'Gemini 3.1 Flash-Lite'},
+    {value: 'gemini-2.5-flash-lite', label: 'Gemini 2.5 Flash-Lite'},
+    {value: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash'},
+    {value: 'gemini-3.6-flash', label: 'Gemini 3.6 Flash'},
+  ],
+  deepseek: [
+    {value: 'deepseek-chat', label: 'DeepSeek Chat'},
+    {value: 'deepseek-v4-flash', label: 'DeepSeek V4 Flash'},
+    {value: 'deepseek-v4-pro', label: 'DeepSeek V4 Pro'},
+  ],
+}
+
+function defaultTextModel(provider: 'gemini' | 'deepseek'): string {
+  return TEXT_MODELS_BY_PROVIDER[provider][0].value
+}
+
 type AppRoute = 'workbench' | 'upload' | 'evaluation'
 
 function routeFromLocation(): AppRoute {
@@ -142,7 +168,7 @@ function App() {
       ? `/verify/new${flowId ? `?flow_id=${encodeURIComponent(flowId)}` : ''}`
       : nextRoute === 'evaluation'
         ? '/evaluation'
-      : '/'
+        : '/'
     window.history.pushState({}, '', path)
     setRoute(nextRoute)
   }
@@ -154,6 +180,13 @@ function App() {
     return <EvaluationAuditPage onBack={() => navigate('workbench')} />
   }
   return <AnnotationWorkbench onOpenUpload={() => navigate('upload')} onOpenEvaluation={() => navigate('evaluation')} />
+}
+
+function isThesisEvaluationFlow(flow: FlowSummary): boolean {
+  const match = /^(\d{2})_/.exec(flow.flow_id)
+  if (flow.dataset !== 'mind2web' || !match) return false
+  const flowNumber = Number(match[1])
+  return flowNumber >= 1 && flowNumber <= 13
 }
 
 function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: () => void; onOpenEvaluation: () => void}) {
@@ -204,7 +237,7 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
   async function loadFlows() {
     setFlowsState('loading')
     try {
-      const data = await api.listFlows()
+      const data = (await api.listFlows()).filter(isThesisEvaluationFlow)
       setFlows(data)
       setFlowsState('idle')
       if (data.length === 0) {
@@ -261,7 +294,7 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
       setDetailsState('idle')
     } catch (error) {
       if (error instanceof ApiError && error.status === 404) {
-        const data = await api.listFlows()
+        const data = (await api.listFlows()).filter(isThesisEvaluationFlow)
         setFlows(data)
         const fallback = data.find((flow) => flow.flow_id !== flowId) ?? data[0]
         setSelectedFlowId(fallback?.flow_id ?? '')
@@ -564,7 +597,7 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
         </button>
 
         <button className="secondary-button audit-route-button" onClick={onOpenEvaluation}>
-          Review evaluation audit
+          Historical evaluation inspection (optional)
         </button>
 
         <div className="flow-list">
@@ -704,6 +737,7 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
             steps={steps}
             pipelineRun={pipelineRun}
             verificationGold={verificationGold}
+            defaultRequirementsSource={selectedFlow.dataset === 'uploads' ? 'uploaded' : 'benchmark'}
             onJumpToStep={jumpToStep}
             onEditVerificationGold={(requirement) => setEditor({mode: 'verification_gold', requirement})}
             onAcceptVerificationGold={(requirement) => handleAcceptVerificationGoldFromPipeline(requirement)}
@@ -2375,13 +2409,20 @@ function VerificationRunPanel({
   const [acceptingRequirementId, setAcceptingRequirementId] = useState<string | null>(null)
   const [reviewCategoryId, setReviewCategoryId] = useState<ReviewCategoryId>('needs_review')
   const [runForm, setRunForm] = useState<StartPipelineRunPayload>({
-    verifier: 'deterministic_rule_based',
-    verifier_model: 'gemini-2.5-flash-lite',
+    verifier: 'gemini-image',
+    verifier_model: 'gemini-3.1-flash-lite',
     retriever: 'lexical',
+    retriever_provider: 'deepseek',
+    retriever_model: 'deepseek-chat',
     requirements_source: defaultRequirementsSource,
     top_k: 3,
+    llm_claim_fallback: false,
+    claim_provider: 'deepseek',
+    claim_model: 'deepseek-chat',
+    max_claims: 4,
     max_images: 6,
-    max_gemini_api_calls: 0,
+    max_gemini_api_calls: 10,
+    gemini_max_retries: 2,
     use_cache: true,
     output_dir_name: 'ui_verification_runs',
   })
@@ -2394,6 +2435,10 @@ function VerificationRunPanel({
   useEffect(() => {
     setSelectedRun(pipelineRun)
   }, [pipelineRun])
+
+  useEffect(() => {
+    setRunForm((current) => ({...current, requirements_source: defaultRequirementsSource}))
+  }, [flowId, defaultRequirementsSource])
 
   useEffect(() => {
     void refreshRuns()
@@ -2468,6 +2513,16 @@ function VerificationRunPanel({
     }
   }
 
+  function selectVerifier(verifier: StartPipelineRunPayload['verifier']) {
+    setRunForm((current) => ({
+      ...current,
+      verifier,
+      max_gemini_api_calls: verifier === 'gemini-image' && current.max_gemini_api_calls === 0
+        ? 10
+        : current.max_gemini_api_calls,
+    }))
+  }
+
   async function acceptBenchmarkItem(requirement: VerificationGoldItem) {
     setRunMessage('')
     setAcceptingRequirementId(requirement.requirement_id)
@@ -2490,9 +2545,32 @@ function VerificationRunPanel({
     ? `data/processed/flows/uploads/${flowId}`
     : `data/processed/flows/mind2web/${flowId}`
   const cliRequirementsSource = runForm.requirements_source === 'uploaded' ? 'custom' : runForm.requirements_source
-  const cliCommand = `PYTHONPATH=src:. python scripts/run_verification_pipeline.py --flow-dir ${flowPath} --requirements ${requirementsPath} --requirements-source ${cliRequirementsSource} --out data/generated/${runForm.output_dir_name}/${flowId}.json --retriever lexical --verifier ${runForm.verifier === 'deterministic_rule_based' ? 'deterministic' : 'gemini-image'} --verifier-model ${runForm.verifier_model} --max-verifier-images ${runForm.max_images} --max-gemini-api-calls ${runForm.max_gemini_api_calls} --no-llm-claim-fallback`
+  const usesGeminiVerifier = runForm.verifier === 'gemini-image'
+  const cliGeminiOptions = usesGeminiVerifier
+    ? ` --verifier-model ${runForm.verifier_model} --max-verifier-images ${runForm.max_images} --max-gemini-api-calls ${runForm.max_gemini_api_calls} --gemini-max-retries ${runForm.gemini_max_retries}`
+    : ''
+  const cliRetrieverOptions = runForm.retriever === 'llm'
+    ? ` --retriever-provider ${runForm.retriever_provider} --retriever-model ${runForm.retriever_model}`
+    : ''
+  const cliClaimOptions = runForm.llm_claim_fallback
+    ? ` --llm-claim-fallback --claim-provider ${runForm.claim_provider} --claim-model ${runForm.claim_model}`
+    : ' --no-llm-claim-fallback'
+  const cliCommand = `PYTHONPATH=src:. python scripts/run_verification_pipeline.py --flow-dir ${flowPath} --requirements ${requirementsPath} --requirements-source ${cliRequirementsSource} --out data/generated/${runForm.output_dir_name}/${flowId}.json --retriever ${runForm.retriever}${cliRetrieverOptions} --top-k ${runForm.top_k} --max-claims ${runForm.max_claims}${cliClaimOptions} --verifier ${usesGeminiVerifier ? 'gemini-image' : 'deterministic'}${cliGeminiOptions}`
 
   const metadata = activeRun?.metadata ?? {}
+  const geminiDiagnostics = metadata.gemini_image_verifier && typeof metadata.gemini_image_verifier === 'object'
+    ? metadata.gemini_image_verifier as Record<string, unknown>
+    : null
+  const geminiApiCalls = Number(geminiDiagnostics?.api_calls ?? 0)
+  const geminiCacheHits = Number(geminiDiagnostics?.cache_hits ?? 0)
+  const verifierFallbacks = Number(geminiDiagnostics?.fallbacks ?? 0)
+  const verifierFailures = Array.isArray(geminiDiagnostics?.failures)
+    ? geminiDiagnostics.failures.filter((failure): failure is Record<string, unknown> => Boolean(failure) && typeof failure === 'object')
+    : []
+  const allGeminiVerificationFailed = metadata.verifier === 'gemini-image'
+    && Boolean(geminiDiagnostics)
+    && geminiApiCalls + geminiCacheHits === 0
+    && verifierFallbacks > 0
   const selectedRunSummary = runs.find((run) => run.run_id === selectedRunId) ?? runs[0] ?? null
   const labelDistribution = (metadata.label_distribution ?? labelDistributionForResults(activeRun?.results ?? [])) as Record<string, number>
   const claimStatusDistribution = (metadata.claim_status_distribution ?? claimStatusDistributionForResults(activeRun?.results ?? [])) as Record<string, number>
@@ -2579,6 +2657,12 @@ function VerificationRunPanel({
                 <span className="run-metadata">
                   {selectedRunSummary.has_pipeline_evidence && <span>{selectedRunSummary.evidence_count ?? 0} evidence records</span>}
                   {runHasBboxHint(selectedRunSummary) && <span className="status-pill supported run-evidence-pill">Bounding boxes</span>}
+                  {(selectedRunSummary.verifier_failure_count ?? 0) > 0 && (
+                    <span className="status-pill missing">{selectedRunSummary.verifier_failure_count} verifier failure(s)</span>
+                  )}
+                  {(selectedRunSummary.verifier_fallbacks ?? 0) > 0 && (
+                    <span className="status-pill abstain">{selectedRunSummary.verifier_fallbacks} fallback(s)</span>
+                  )}
                   <span>{formatTimestamp(selectedRunSummary.timestamp)}</span>
                 </span>
               </div>
@@ -2623,6 +2707,8 @@ function VerificationRunPanel({
                         <span className="run-metadata">
                           {run.has_pipeline_evidence && <span>{run.evidence_count ?? 0} evidence records</span>}
                           {runHasBboxHint(run) && <span className="status-pill supported run-evidence-pill">Bounding boxes</span>}
+                          {(run.verifier_failure_count ?? 0) > 0 && <span className="status-pill missing">Verifier failed</span>}
+                          {(run.verifier_fallbacks ?? 0) > 0 && <span>{run.verifier_fallbacks} fallback(s)</span>}
                           <span>{formatTimestamp(run.timestamp)}</span>
                         </span>
                       </span>
@@ -2649,29 +2735,100 @@ function VerificationRunPanel({
       <section className="card">
         <div className="panel-header">
           <h3>Run pipeline</h3>
-          <span>Starting a Gemini run is an explicit action and may consume API quota.</span>
+          <span>{usesGeminiVerifier
+            ? 'Visual verification uses Gemini and may consume API quota.'
+            : 'The lexical baseline does not inspect image content and commonly abstains.'}</span>
         </div>
         <div className="toolbar-grid">
           <label>
             Verifier
             <select
               value={runForm.verifier}
-              onChange={(event) => setRunForm({...runForm, verifier: event.target.value as StartPipelineRunPayload['verifier']})}
+              onChange={(event) => selectVerifier(event.target.value as StartPipelineRunPayload['verifier'])}
             >
-              <option value="deterministic_rule_based">deterministic_rule_based</option>
-              <option value="gemini-image">gemini-image</option>
+              <option value="gemini-image">Visual verification (Gemini)</option>
+              <option value="deterministic_rule_based">Lexical baseline (limited)</option>
             </select>
           </label>
-          <label>
-            Verifier model
-            <input value={runForm.verifier_model} onChange={(event) => setRunForm({...runForm, verifier_model: event.target.value})} />
-          </label>
+          {usesGeminiVerifier && (
+            <label>
+              Screenshot verifier model
+              <select value={runForm.verifier_model} onChange={(event) => setRunForm({...runForm, verifier_model: event.target.value})}>
+                {GEMINI_VERIFIER_MODELS.map((model) => <option key={model.value} value={model.value}>{model.label}</option>)}
+              </select>
+            </label>
+          )}
           <label>
             Retriever
-            <select value={runForm.retriever} onChange={() => setRunForm({...runForm, retriever: 'lexical'})}>
-              <option value="lexical">lexical</option>
+            <select
+              value={runForm.retriever}
+              onChange={(event) => setRunForm({...runForm, retriever: event.target.value as StartPipelineRunPayload['retriever']})}
+            >
+              <option value="lexical">Lexical / OCR overlap</option>
+              <option value="tfidf">TF-IDF text ranking</option>
+              <option value="llm">LLM text reranking</option>
             </select>
           </label>
+          {runForm.retriever === 'llm' && (
+            <>
+              <label>
+                Retriever provider
+                <select
+                  value={runForm.retriever_provider}
+                  onChange={(event) => {
+                    const provider = event.target.value as StartPipelineRunPayload['retriever_provider']
+                    setRunForm({...runForm, retriever_provider: provider, retriever_model: defaultTextModel(provider)})
+                  }}
+                >
+                  <option value="deepseek">DeepSeek</option>
+                  <option value="gemini">Gemini</option>
+                </select>
+              </label>
+              <label>
+                Retriever model
+                <select value={runForm.retriever_model} onChange={(event) => setRunForm({...runForm, retriever_model: event.target.value})}>
+                  {TEXT_MODELS_BY_PROVIDER[runForm.retriever_provider].map((model) => (
+                    <option key={model.value} value={model.value}>{model.label}</option>
+                  ))}
+                </select>
+              </label>
+            </>
+          )}
+          <label>
+            Requirement decomposition
+            <select
+              value={runForm.llm_claim_fallback ? 'llm' : 'rules'}
+              onChange={(event) => setRunForm({...runForm, llm_claim_fallback: event.target.value === 'llm'})}
+            >
+              <option value="rules">Rule-based only</option>
+              <option value="llm">LLM-assisted fallback</option>
+            </select>
+          </label>
+          {runForm.llm_claim_fallback && (
+            <>
+              <label>
+                Decomposition provider
+                <select
+                  value={runForm.claim_provider}
+                  onChange={(event) => {
+                    const provider = event.target.value as StartPipelineRunPayload['claim_provider']
+                    setRunForm({...runForm, claim_provider: provider, claim_model: defaultTextModel(provider)})
+                  }}
+                >
+                  <option value="deepseek">DeepSeek</option>
+                  <option value="gemini">Gemini</option>
+                </select>
+              </label>
+              <label>
+                Decomposition model
+                <select value={runForm.claim_model} onChange={(event) => setRunForm({...runForm, claim_model: event.target.value})}>
+                  {TEXT_MODELS_BY_PROVIDER[runForm.claim_provider].map((model) => (
+                    <option key={model.value} value={model.value}>{model.label}</option>
+                  ))}
+                </select>
+              </label>
+            </>
+          )}
           <label>
             Requirements
             <select
@@ -2693,34 +2850,57 @@ function VerificationRunPanel({
             <input value={runForm.output_dir_name} onChange={(event) => setRunForm({...runForm, output_dir_name: event.target.value})} />
           </label>
           <label>
-            Top-k
+            Retrieved screenshots (top-k)
             <input type="number" min={1} max={20} value={runForm.top_k} onChange={(event) => setRunForm({...runForm, top_k: Number(event.target.value)})} />
           </label>
           <label>
-            Max images
-            <input type="number" min={1} max={20} value={runForm.max_images} onChange={(event) => setRunForm({...runForm, max_images: Number(event.target.value)})} />
+            Max claims per requirement
+            <input type="number" min={1} max={10} value={runForm.max_claims} onChange={(event) => setRunForm({...runForm, max_claims: Number(event.target.value)})} />
           </label>
-          <label>
-            Max Gemini API calls
-            <input
-              type="number"
-              min={-1}
-              max={1000}
-              value={runForm.max_gemini_api_calls}
-              onChange={(event) => setRunForm({...runForm, max_gemini_api_calls: Number(event.target.value)})}
-            />
-          </label>
-          <label>
-            Use cache
-            <select value={runForm.use_cache ? 'true' : 'false'} onChange={(event) => setRunForm({...runForm, use_cache: event.target.value === 'true'})}>
-              <option value="true">true</option>
-              <option value="false">false</option>
-            </select>
-          </label>
+          {usesGeminiVerifier && (
+            <>
+              <label>
+                Max images per claim
+                <input type="number" min={1} max={20} value={runForm.max_images} onChange={(event) => setRunForm({...runForm, max_images: Number(event.target.value)})} />
+              </label>
+              <label>
+                Gemini API call limit
+                <input
+                  type="number"
+                  min={-1}
+                  max={1000}
+                  value={runForm.max_gemini_api_calls}
+                  onChange={(event) => setRunForm({...runForm, max_gemini_api_calls: Number(event.target.value)})}
+                />
+              </label>
+              <label>
+                Retries for temporary Gemini errors
+                <input
+                  type="number"
+                  min={0}
+                  max={5}
+                  value={runForm.gemini_max_retries}
+                  onChange={(event) => setRunForm({...runForm, gemini_max_retries: Number(event.target.value)})}
+                />
+              </label>
+              <label>
+                Reuse cached responses
+                <select value={runForm.use_cache ? 'true' : 'false'} onChange={(event) => setRunForm({...runForm, use_cache: event.target.value === 'true'})}>
+                  <option value="true">yes</option>
+                  <option value="false">no</option>
+                </select>
+              </label>
+            </>
+          )}
         </div>
+        <p className="inline-note">
+          {usesGeminiVerifier
+            ? `${runForm.retriever === 'llm' ? 'LLM reranking makes a separate text-model request. ' : ''}${runForm.llm_claim_fallback ? 'LLM-assisted decomposition may make additional text-model requests for compound requirements. ' : ''}Text-model requests are not counted by the Gemini verifier call limit. Gemini evaluates the selected screenshots; failed or capped groups are reported in the run diagnostics below.`
+            : 'Use this baseline for offline diagnostics only. It scores lexical/OCR overlap, cannot interpret the screenshots semantically, and is expected to abstain when visible evidence is weak.'}
+        </p>
         <div className="button-row">
           <button onClick={() => void startRun()} disabled={runJob?.status === 'running'}>
-            Run pipeline
+            {usesGeminiVerifier ? 'Run visual verification' : 'Run lexical baseline'}
           </button>
         </div>
         {runJob && (
@@ -2753,6 +2933,31 @@ function VerificationRunPanel({
           <h3>Verification pipeline run</h3>
           <span>{activeRun.flow_id}</span>
         </div>
+        {geminiDiagnostics && (
+          <div className={`verifier-diagnostics${allGeminiVerificationFailed ? ' error' : ''}`}>
+            <strong>{allGeminiVerificationFailed
+              ? 'Gemini produced no judgments for this run'
+              : 'Gemini verifier diagnostics'}</strong>
+            <span>
+              {geminiApiCalls} successful API call(s) · {geminiCacheHits} cache hit(s) · {verifierFallbacks} fallback decision(s)
+            </span>
+            {allGeminiVerificationFailed && (
+              <p>Every displayed label came from the rule-based fallback. Treat the resulting MISSING and ABSTAIN labels as a failed verifier run, not as Gemini judgments.</p>
+            )}
+            {verifierFailures.length > 0 && (
+              <details open={allGeminiVerificationFailed}>
+                <summary>{verifierFailures.length} verifier failure(s)</summary>
+                <ul>
+                  {verifierFailures.slice(0, 5).map((failure, index) => (
+                    <li key={`${String(failure.group_id ?? 'failure')}-${index}`}>
+                      {failure.group_id ? `${String(failure.group_id)}: ` : ''}{String(failure.error ?? 'Unknown verifier failure')}
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            )}
+          </div>
+        )}
         <div className="metric-grid">
           <Metric label="Requirements" value={String(metadata.requirements_count ?? activeRun.results.length)} />
           <Metric label="Claims" value={String(metadata.claim_count ?? activeRun.results.reduce((sum, result) => sum + result.claims.length, 0))} />

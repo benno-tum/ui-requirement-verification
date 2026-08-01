@@ -454,6 +454,11 @@ export type PipelineRunSummary = {
   bbox_evidence_count?: number
   has_pipeline_evidence?: boolean
   has_bbox_evidence?: boolean
+  gemini_api_calls?: number
+  gemini_cache_hits?: number
+  verifier_fallbacks?: number
+  verifier_failure_count?: number
+  gemini_judgments_available?: boolean
 }
 
 export type PipelineRunList = {
@@ -489,11 +494,18 @@ export type CreateUploadedFlowResponse = {
 export type StartPipelineRunPayload = {
   verifier: 'deterministic_rule_based' | 'gemini-image'
   verifier_model: string
-  retriever: 'lexical'
+  retriever: 'lexical' | 'tfidf' | 'llm'
+  retriever_provider: 'gemini' | 'deepseek'
+  retriever_model: string
   requirements_source: 'accepted' | 'benchmark' | 'uploaded'
   top_k: number
+  llm_claim_fallback: boolean
+  claim_provider: 'gemini' | 'deepseek'
+  claim_model: string
+  max_claims: number
   max_images: number
   max_gemini_api_calls: number
+  gemini_max_retries: number
   use_cache: boolean
   output_dir_name: string
 }

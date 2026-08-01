@@ -20,7 +20,7 @@ from PIL import Image, ImageOps, UnidentifiedImageError
 from pydantic import BaseModel, Field
 
 from ui_verifier.annotation.service import AnnotationService
-from ui_verifier.model_config import all_model_role_configs, model_config_path, model_name_for, temperature_for
+from ui_verifier.model_config import all_model_role_configs, model_config_path, model_name_for, provider_for, temperature_for
 from ui_verifier.api.flow_catalog import FlowCatalog
 from ui_verifier.requirement_inspection.schemas import UiEvaluability
 from ui_verifier.requirements.candidate_generation import generate_harvested_for_flow
@@ -38,6 +38,7 @@ from ui_verifier.evaluation.review_audit import (
     classification_metrics,
     validate_bbox_review,
     validate_ui_review,
+    write_json,
 )
 from ui_verifier.localization import TextBoxLocalizer, ensure_ocr_sidecar, load_ocr_text_boxes
 from ui_verifier.localization.candidate_ranking import rank_candidates
@@ -210,10 +211,17 @@ class StartPipelineRunRequest(BaseModel):
     verifier: str = "deterministic"
     verifier_model: str = model_name_for("demo_image_verifier")
     retriever: str = "lexical"
+    retriever_provider: str = provider_for("evidence_retrieval")
+    retriever_model: str = model_name_for("evidence_retrieval")
     requirements_source: str = "accepted"
     top_k: int = 3
+    llm_claim_fallback: bool = False
+    claim_provider: str = provider_for("claim_decomposition")
+    claim_model: str = model_name_for("claim_decomposition")
+    max_claims: int = 4
     max_images: int = 6
     max_gemini_api_calls: int = 0
+    gemini_max_retries: int = 2
     use_cache: bool = True
     output_dir_name: str = "ui_verification_runs"
 
@@ -463,6 +471,19 @@ def _metrics_available_for(path: Path) -> bool:
 def _run_entry_from_data(path: Path, data: dict[str, Any]) -> dict[str, Any]:
     metadata = data.get("metadata") if isinstance(data.get("metadata"), dict) else {}
     results = data.get("results") if isinstance(data.get("results"), list) else []
+    verifier_diagnostics = (
+        metadata.get("gemini_image_verifier")
+        if isinstance(metadata.get("gemini_image_verifier"), dict)
+        else {}
+    )
+    gemini_api_calls = int(verifier_diagnostics.get("api_calls") or 0)
+    gemini_cache_hits = int(verifier_diagnostics.get("cache_hits") or 0)
+    verifier_fallbacks = int(verifier_diagnostics.get("fallbacks") or 0)
+    verifier_failures = (
+        verifier_diagnostics.get("failures")
+        if isinstance(verifier_diagnostics.get("failures"), list)
+        else []
+    )
     label_distribution = metadata.get("label_distribution")
     if not isinstance(label_distribution, dict):
         label_distribution = {}
@@ -516,6 +537,11 @@ def _run_entry_from_data(path: Path, data: dict[str, Any]) -> dict[str, Any]:
         "bbox_evidence_count": bbox_evidence_count,
         "has_pipeline_evidence": bool(evidence_items),
         "has_bbox_evidence": bbox_evidence_count > 0,
+        "gemini_api_calls": gemini_api_calls,
+        "gemini_cache_hits": gemini_cache_hits,
+        "verifier_fallbacks": verifier_fallbacks,
+        "verifier_failure_count": len(verifier_failures),
+        "gemini_judgments_available": (gemini_api_calls + gemini_cache_hits) > 0,
     }
 
 
@@ -563,16 +589,34 @@ def build_pipeline_run_command(flow_id: str, body: StartPipelineRunRequest, *, j
         verifier = "deterministic"
     if verifier not in {"deterministic", "gemini-image"}:
         raise HTTPException(status_code=400, detail="verifier must be deterministic_rule_based or gemini-image.")
-    if body.retriever != "lexical":
-        raise HTTPException(status_code=400, detail="Only lexical retriever is supported from the UI for now.")
+    if body.retriever not in {"lexical", "tfidf", "llm"}:
+        raise HTTPException(status_code=400, detail="retriever must be lexical, tfidf, or llm.")
+    if body.retriever_provider not in {"gemini", "deepseek"}:
+        raise HTTPException(status_code=400, detail="retriever_provider must be gemini or deepseek.")
+    if body.claim_provider not in {"gemini", "deepseek"}:
+        raise HTTPException(status_code=400, detail="claim_provider must be gemini or deepseek.")
+    if body.retriever == "llm" and not body.retriever_model.strip():
+        raise HTTPException(status_code=400, detail="retriever_model is required for LLM retrieval.")
+    if body.llm_claim_fallback and not body.claim_model.strip():
+        raise HTTPException(status_code=400, detail="claim_model is required for LLM-assisted decomposition.")
+    if body.retriever == "llm" and not body.retriever_model.startswith(f"{body.retriever_provider}-"):
+        raise HTTPException(status_code=400, detail="retriever_model must match retriever_provider.")
+    if body.llm_claim_fallback and not body.claim_model.startswith(f"{body.claim_provider}-"):
+        raise HTTPException(status_code=400, detail="claim_model must match claim_provider.")
+    if verifier == "gemini-image" and not body.verifier_model.strip().startswith("gemini-"):
+        raise HTTPException(status_code=400, detail="The image verifier requires a Gemini multimodal model.")
     if body.requirements_source not in {"accepted", "benchmark", "uploaded"}:
         raise HTTPException(status_code=400, detail="requirements_source must be accepted, benchmark, or uploaded.")
     if body.top_k < 1 or body.top_k > 20:
         raise HTTPException(status_code=400, detail="top_k must be between 1 and 20.")
+    if body.max_claims < 1 or body.max_claims > 10:
+        raise HTTPException(status_code=400, detail="max_claims must be between 1 and 10.")
     if body.max_images < 1 or body.max_images > 20:
         raise HTTPException(status_code=400, detail="max_images must be between 1 and 20.")
     if body.max_gemini_api_calls < -1 or body.max_gemini_api_calls > 1000:
         raise HTTPException(status_code=400, detail="max_gemini_api_calls must be -1 or between 0 and 1000.")
+    if body.gemini_max_retries < 0 or body.gemini_max_retries > 5:
+        raise HTTPException(status_code=400, detail="gemini_max_retries must be between 0 and 5.")
     if verifier == "gemini-image" and body.max_gemini_api_calls == 0:
         raise HTTPException(status_code=400, detail="Gemini runs require max_gemini_api_calls greater than 0 or -1.")
 
@@ -600,7 +644,9 @@ def build_pipeline_run_command(flow_id: str, body: StartPipelineRunRequest, *, j
     requirements_path = _require_under(requirements_path, BASE_DIR / "data")
 
     output_dir = _safe_output_dir(body.output_dir_name)
-    output_path = _require_under(output_dir / f"{flow_id}.json", output_dir)
+    safe_job_suffix = re.sub(r"[^A-Za-z0-9_-]", "", job_id or "")[:12]
+    output_name = f"{flow_id}__{safe_job_suffix}.json" if safe_job_suffix else f"{flow_id}.json"
+    output_path = _require_under(output_dir / output_name, output_dir)
     cache_dir = _require_under(output_dir / "cache", output_dir)
     cache_name = f"{flow_id}_gemini_image_claims.json" if body.use_cache else f"{flow_id}_{job_id or 'run'}_gemini_image_claims.json"
     cache_path = _require_under(cache_dir / cache_name, cache_dir)
@@ -626,10 +672,34 @@ def build_pipeline_run_command(flow_id: str, body: StartPipelineRunRequest, *, j
         str(body.max_images),
         "--max-gemini-api-calls",
         str(body.max_gemini_api_calls),
+        "--gemini-max-retries",
+        str(body.gemini_max_retries),
+        "--max-claims",
+        str(body.max_claims),
         "--verifier-cache",
         str(cache_path),
-        "--no-llm-claim-fallback",
     ]
+    if body.llm_claim_fallback:
+        command.extend(
+            [
+                "--llm-claim-fallback",
+                "--claim-provider",
+                body.claim_provider,
+                "--claim-model",
+                body.claim_model.strip(),
+            ]
+        )
+    else:
+        command.append("--no-llm-claim-fallback")
+    if body.retriever == "llm":
+        command.extend(
+            [
+                "--retriever-provider",
+                body.retriever_provider,
+                "--retriever-model",
+                body.retriever_model.strip(),
+            ]
+        )
     if verifier == "gemini-image":
         command.extend(["--verifier-model", body.verifier_model.strip() or model_name_for("demo_image_verifier")])
     return command, output_path

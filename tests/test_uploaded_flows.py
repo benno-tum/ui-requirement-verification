@@ -61,7 +61,7 @@ def test_create_uploaded_flow_and_build_pipeline_command(tmp_path: Path, monkeyp
     )
     assert command[command.index("--requirements-source") + 1] == "custom"
     assert command[command.index("--requirements") + 1] == str(requirements_path)
-    assert output_path == generated_root / "ui_verification_runs" / f"{flow_id}.json"
+    assert output_path == generated_root / "ui_verification_runs" / f"{flow_id}__job-1.json"
 
 
 def test_plain_text_requirements_remove_list_markers() -> None:
