@@ -182,7 +182,16 @@ function App() {
   return <AnnotationWorkbench onOpenUpload={() => navigate('upload')} onOpenEvaluation={() => navigate('evaluation')} />
 }
 
+const THESIS_PURE_FLOW_IDS = new Set([
+  'pure_2010_mashboot',
+  'pure_2010_split_merge',
+])
+
 function isThesisEvaluationFlow(flow: FlowSummary): boolean {
+  if (flow.dataset === 'pure') {
+    return THESIS_PURE_FLOW_IDS.has(flow.flow_id)
+  }
+
   const match = /^(\d{2})_/.exec(flow.flow_id)
   if (flow.dataset !== 'mind2web' || !match) return false
   const flowNumber = Number(match[1])
