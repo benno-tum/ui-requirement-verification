@@ -174,25 +174,25 @@ evidence-first design uniformly improves false fulfillment. The reported
 conclusions remain within these limits; evidence grounding alone does not
 establish safer labels, and no benchmark-wide region-quality rate is claimed.
 
+\clearpage
+
 \section{Dataset Licensing and Artifact Availability}\label{dataset-licensing-and-artifact-availability}
 
 All 13 primary flows belong to the Mind2Web \texttt{test\_task} split. Mind2Web is
 identified by its maintainers as CC BY 4.0, but the official repository also
 asks users not to redistribute unzipped test files online and not to place
 benchmark data in training corpora. The public replication artifact is
-therefore restricted to code, configurations, citations, and aggregate results.
-It excludes original screenshots, HTML, MHTML, HAR files, traces, videos,
-processed trajectories, test records, and per-item raw model interactions.
-Exact test identifiers and detailed annotations remain available only for
-examination under controlled access unless the maintainers approve broader
-release.
+therefore limited to reviewed derived annotations, sanitized predictions, code,
+configurations, citations, and aggregate results. It excludes original
+screenshots, HTML, MHTML, HAR files, traces, videos, processed trajectories,
+complete test records, and raw model interactions.
 
-PURE has a different rights limitation. Its curators collected requirements
-documents from third-party Web sources and explicitly state that they are not
-aware of license agreements or intellectual-property rights governing the
-source requirements. Consequently, the public artifact excludes PURE PDFs, XML
-files, extracted figures, substantial text passages, and per-item outputs that
-reproduce those passages. It may contain document identifiers, hashes,
-author-created non-textual labels, aggregate metrics, and code that requires
-users to obtain PURE independently. These conservative boundaries support
-replication without asserting rights over third-party source content.
+PURE 2.0 is marked CC BY 4.0 in its Zenodo metadata \autocite{purezenodo2018}. The
+public artifact may therefore include selected and contextualized requirements, reviewed
+annotations, and evaluation results with attribution and an indication of
+changes. The PURE record also states that its curators did not verify the
+license agreements or intellectual-property rights governing every original
+Web document and provides a contact for takedown requests. The release retains
+that caveat and does not apply the repository's MIT software license to
+PURE-derived content. A setup command downloads and verifies the original PURE
+archives directly from Zenodo when full reproduction is required.

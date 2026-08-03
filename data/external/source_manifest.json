@@ -12,5 +12,41 @@
     "path": "data/external/user_stories/neodataset_issues.csv",
     "bytes": 21914131,
     "note": "NeoDataset user-story/issues CSV from Hugging Face."
+  },
+  "pure_xml": {
+    "url": "https://zenodo.org/api/records/7118517/files/requirements-xml.zip/content",
+    "source_page": "https://zenodo.org/records/7118517",
+    "path": "data/raw/pure/requirements-xml.zip",
+    "bytes": 378737,
+    "md5": "c81235c40f88a2c947ae66e0eddad585",
+    "license": "CC-BY-4.0",
+    "provenance_notice": "The PURE record states that its curators did not verify the underlying rights of every collected Web document and provides a contact for takedown requests.",
+    "extracted_to": "data/raw/pure",
+    "extracted_files": 18,
+    "note": "PURE 2.0 XML archive from Zenodo (DOI 10.5281/zenodo.7118517)."
+  },
+  "pure_documents": {
+    "url": "https://zenodo.org/api/records/7118517/files/requirements.zip/content",
+    "source_page": "https://zenodo.org/records/7118517",
+    "path": "data/raw/pure/requirements.zip",
+    "bytes": 33623628,
+    "md5": "bc319fe28619f6290badff328ca159dd",
+    "license": "CC-BY-4.0",
+    "provenance_notice": "The PURE record states that its curators did not verify the underlying rights of every collected Web document and provides a contact for takedown requests.",
+    "extracted_to": "data/raw/pure",
+    "extracted_files": 79,
+    "note": "PURE 2.0 source-document archive from Zenodo (DOI 10.5281/zenodo.7118517)."
+  },
+  "pure_schema": {
+    "url": "https://zenodo.org/api/records/7118517/files/req_document.xsd/content",
+    "source_page": "https://zenodo.org/records/7118517",
+    "path": "data/raw/pure/req_document.xsd",
+    "bytes": 5355,
+    "md5": "f44c255db9414afb7c39265697abcb33",
+    "license": "CC-BY-4.0",
+    "provenance_notice": "The PURE record states that its curators did not verify the underlying rights of every collected Web document and provides a contact for takedown requests.",
+    "extracted_to": null,
+    "extracted_files": null,
+    "note": "XML schema distributed with PURE 2.0."
   }
 }

@@ -10,8 +10,16 @@ It does **not** apply to:
   Benno Brück unless stated otherwise;
 - files inherited or adapted from `TUM-Dev/tum-thesis-latex`, which remain
   under CC BY-SA 4.0 as documented in `thesis/TEMPLATE_ATTRIBUTION.md`;
-- Mind2Web or PURE source material, identifiers, or derived annotations; or
+- Mind2Web or PURE source material and dataset-derived annotations; or
 - any other third-party content, which remains subject to its original terms.
+
+PURE 2.0 is distributed by its Zenodo record under CC BY 4.0. PURE-derived
+annotations and results in this repository are published with that attribution
+and an indication that they were selected, contextualized, annotated, or
+evaluated for this thesis. The Zenodo record warns that the curators did not
+verify every underlying Web document's rights; no warranty or endorsement is
+implied, and takedown requests should follow the contact provided by the PURE
+record.
 
 The dataset-specific attribution and redistribution boundary is documented in
 `docs/dataset_licensing_and_release_policy_2026-07-23.md` and

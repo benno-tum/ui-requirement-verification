@@ -1233,12 +1233,12 @@ local. The repository can recreate the working flow set from identifiers after
 the user obtains Mind2Web through the official source, but it does not mirror
 the underlying test archive.
 
-PURE source documents are likewise obtained from the original Zenodo record.
-Because the curators note uncertainty about rights in the underlying documents,
-the public artifact excludes PDFs, XML, figures, and substantial source text.
-The full working repository is maintained under controlled access, while the
-release candidate is limited to code, configurations, citations, and aggregate
-results. Section 7.7 discusses the implications for reproducibility.
+PURE 2.0 is obtained from Zenodo under CC BY 4.0 [@purezenodo2018]. Reviewed
+annotations and aggregate results are published with attribution and a change
+notice. Because the curators did not verify the rights of every collected Web
+document, the release retains their provenance and takedown caveat. Original
+archives are installed directly from Zenodo rather than duplicated. Section 7.7
+discusses the implications for reproducibility.
 
 ## 6 Evaluation
 
@@ -1939,28 +1939,28 @@ evidence-first design uniformly improves false fulfillment. The reported
 conclusions remain within these limits; evidence grounding alone does not
 establish safer labels, and no benchmark-wide region-quality rate is claimed.
 
+\clearpage
+
 ### 7.7 Dataset Licensing and Artifact Availability
 
 All 13 primary flows belong to the Mind2Web `test_task` split. Mind2Web is
 identified by its maintainers as CC BY 4.0, but the official repository also
 asks users not to redistribute unzipped test files online and not to place
 benchmark data in training corpora. The public replication artifact is
-therefore restricted to code, configurations, citations, and aggregate results.
-It excludes original screenshots, HTML, MHTML, HAR files, traces, videos,
-processed trajectories, test records, and per-item raw model interactions.
-Exact test identifiers and detailed annotations remain available only for
-examination under controlled access unless the maintainers approve broader
-release.
+therefore limited to reviewed derived annotations, sanitized predictions, code,
+configurations, citations, and aggregate results. It excludes original
+screenshots, HTML, MHTML, HAR files, traces, videos, processed trajectories,
+complete test records, and raw model interactions.
 
-PURE has a different rights limitation. Its curators collected requirements
-documents from third-party Web sources and explicitly state that they are not
-aware of license agreements or intellectual-property rights governing the
-source requirements. Consequently, the public artifact excludes PURE PDFs, XML
-files, extracted figures, substantial text passages, and per-item outputs that
-reproduce those passages. It may contain document identifiers, hashes,
-author-created non-textual labels, aggregate metrics, and code that requires
-users to obtain PURE independently. These conservative boundaries support
-replication without asserting rights over third-party source content.
+PURE 2.0 is marked CC BY 4.0 in its Zenodo metadata [@purezenodo2018]. The
+public artifact may therefore include selected and contextualized requirements, reviewed
+annotations, and evaluation results with attribution and an indication of
+changes. The PURE record also states that its curators did not verify the
+license agreements or intellectual-property rights governing every original
+Web document and provides a contact for takedown requests. The release retains
+that caveat and does not apply the repository's MIT software license to
+PURE-derived content. A setup command downloads and verifies the original PURE
+archives directly from Zenodo when full reproduction is required.
 
 ## 8 Conclusion
 

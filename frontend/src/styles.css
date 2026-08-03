@@ -830,6 +830,13 @@ textarea {
   margin-top: 1rem;
 }
 
+.dataset-availability-note {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
 .flow-item {
   text-align: left;
   display: grid;
@@ -861,23 +868,6 @@ textarea {
 .topbar {
   display: grid;
   gap: 1rem;
-}
-
-.topbar-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: flex-start;
-}
-
-.dual-status-explainer {
-  display: grid;
-  gap: 0.15rem;
-  min-width: 280px;
-  padding: 0.75rem 1rem;
-  border-radius: 16px;
-  background: #f8fafc;
-  border: 1px solid #dbe2ec;
 }
 
 .toolbar-grid {
@@ -2568,10 +2558,6 @@ button:disabled {
   .claim-advanced-row,
   .claim-editor-row {
     grid-template-columns: 1fr;
-  }
-
-  .topbar-header {
-    flex-direction: column;
   }
 
   .claim-status-field {

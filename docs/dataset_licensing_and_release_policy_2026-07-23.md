@@ -1,13 +1,11 @@
 # Dataset Licensing and Release Policy
 
-Status: conservative release decision based on official source information,
-23 July 2026, updated 3 August 2026 after supervisor confirmation of the
-Mind2Web licensing approach. This is a research-artifact policy, not legal
-advice.
+Status: release decision based on official source information, 23 July 2026,
+updated 3 August 2026 after supervisor confirmation of the Mind2Web approach
+and verification of PURE's Zenodo license metadata. This is a research-artifact
+policy, not legal advice.
 
 ## Decision
-
-Until written permission or an institutional legal review says otherwise:
 
 - the repository may publish source code, experiment configurations, aggregate
   metrics, statistical summaries, and documentation created by the thesis
@@ -17,9 +15,12 @@ Until written permission or an institutional legal review says otherwise:
 - Mind2Web screenshots, HTML, MHTML, HAR files, videos, traces, `task.json`,
   `steps.json`, complete test records, raw per-item prompts, and raw provider
   responses are not published;
-- PURE source PDFs, XML files, extracted figures, embedded screenshots,
-  substantial text extracts, and annotations reproducing full requirement text
-  are not published;
+- PURE-derived requirements, annotations, and evaluation results may be
+  published under the dataset record's CC BY 4.0 terms with attribution and an
+  indication of changes;
+- PURE source archives may be downloaded and used through the documented setup
+  command; they remain outside the repository's MIT license and are not
+  duplicated in Git by default;
 - curated per-item predictions must exclude source-page text and must not
   enable reconstruction of screenshots or complete test records;
 - no release is described as training data, and Mind2Web test-derived material
@@ -63,7 +64,7 @@ these derived annotations and explicitly sanitized prediction artifacts are
 published with attribution under the boundary described here. This does not
 authorize redistribution of the source test files.
 
-### Required attribution if permission is granted
+### Required attribution
 
 > This work uses and adapts the Mind2Web dataset by Deng et al., licensed under
 > CC BY 4.0. Changes include selection of 13 `test_task` trajectories,
@@ -84,22 +85,28 @@ The thesis must also cite:
 ### Official information
 
 The current Zenodo record for PURE describes 79 public requirements documents
-collected from the Web. Crucially, the curator states that the dataset creators
-are not aware of license agreements or intellectual-property rights governing
-the source requirements and provide a takedown contact for possible copyright
-claims.
+collected from the Web. Its API metadata assigns the deposited dataset
+`CC-BY-4.0`. That license permits sharing and adaptation for any purpose when
+appropriate credit, a license link, and an indication of changes are supplied.
+
+The same record states that the curators are not aware of the license agreements
+or intellectual-property rights governing the original Web requirements and
+provides a takedown contact for possible claims. This is a material provenance
+and warranty caveat. It should be preserved in downstream notices, but the
+repository should not misstate the deposited dataset as unlicensed.
 
 Sources:
 
 - <https://zenodo.org/records/7118517>
+- License metadata: <https://zenodo.org/api/records/7118517>
+- <https://creativecommons.org/licenses/by/4.0/>
 - DOI: <https://doi.org/10.5281/zenodo.7118517>
 - Paper DOI: <https://doi.org/10.1109/RE.2017.29>
 
-The fact that a record is openly downloadable from Zenodo is not sufficient
-evidence that every underlying third-party requirements document can be
-relicensed or redistributed in a new public package. Zenodo itself states that
-reuse is subject to the license of the deposited object, while the PURE record
-expressly identifies uncertainty over rights in the collected documents.
+The release policy therefore relies on the explicit CC BY 4.0 metadata for
+research reuse while retaining the curator's warning. It does not relicense
+PURE content under the repository's MIT license or imply that the curators or
+original document authors endorse this thesis.
 
 ### Repository-specific finding
 
@@ -108,49 +115,67 @@ The repository uses full PURE source text and figures from at least:
 - `2010 - split merge`;
 - `2010 - mashboot`.
 
-The local source PDFs and extracted images are correctly ignored by Git. Some
-tracked verification annotations reproduce complete requirement passages.
-Those files must remain supervisor-only unless the PURE curator or original
-document rightsholder confirms redistribution permission.
+The local source PDFs and extracted images remain ignored by Git to avoid
+duplicating the source corpus. The tracked candidate and verification
+annotations are adaptations of the CC BY 4.0 dataset and may be public when the
+required attribution and change notice accompany them.
 
-### Permitted conservative public form
+### Public form and attribution
 
-Without additional permission, a public artifact may contain:
+The public repository may contain:
 
 - PURE dataset and document identifiers;
 - source page and section references;
 - cryptographic hashes;
-- author-created labels and category counts that do not reproduce the source
-  wording;
-- aggregate metrics;
+- selected or contextualized requirement text with source attribution;
+- author-created labels, claims, evidence references, and category counts;
+- aggregate and per-item evaluation results;
 - extraction and evaluation code;
-- a script requiring the user to obtain PURE independently from Zenodo.
+- an automated setup script that downloads the original archives from Zenodo.
 
-It must exclude:
+Every public PURE-derived package must:
 
-- the original PDFs or XML documents;
-- extracted figures or screenshots;
-- full or substantial requirement passages;
-- per-item model prompts or outputs containing those passages;
-- a newly assigned open license over third-party PURE text.
+- credit Ferrari, Spagnolo, and Gnesi and link the Zenodo record;
+- identify the source dataset as CC BY 4.0 and link the license;
+- state that this thesis selected, contextualized, annotated, or evaluated the
+  material;
+- retain the curator's underlying-rights and takedown caveat;
+- avoid implying endorsement or applying the repository's MIT license to the
+  PURE-derived content.
+
+Raw provider responses, credentials, personal paths, and caches remain excluded
+for privacy and repository-hygiene reasons, not because PURE results are barred
+from publication.
+
+Suggested attribution:
+
+> This work uses and adapts PURE 2.0 by Alessio Ferrari, Giorgio Oronzo
+> Spagnolo, and Stefania Gnesi, distributed through Zenodo under CC BY 4.0.
+> Changes include selecting two documents, contextualizing requirements,
+> assigning UI-evaluability and verification labels, linking visual evidence,
+> and evaluating model outputs. The PURE curators do not endorse this work.
+> Dataset: <https://doi.org/10.5281/zenodo.7118517>. License:
+> <https://creativecommons.org/licenses/by/4.0/>. The PURE record notes that
+> the curators did not verify the underlying rights of every collected Web
+> document and provides a contact for takedown requests.
 
 ### Thesis use
 
-The thesis may cite PURE and discuss aggregate results. Any requirement excerpt
-or figure included in the thesis should be limited to what is necessary for the
-academic argument, attributed to its source, and confirmed with the supervisor
-or TUM publication guidance before a publicly accessible thesis copy is
-released. Thesis quotation practice and dataset redistribution are separate
-questions.
+The thesis may cite PURE and publish its selected examples and results with the
+same attribution and provenance notice. Figures should identify the PURE source
+document and any author-added annotations.
 
 ## 3. Release classes
 
-### Public candidate under the repository's MIT code license
+### Public repository content
 
 - `src/`, `scripts/`, `tests/`, and frontend source;
 - experiment configuration files;
 - aggregate metric JSON files;
 - aggregate bootstrap and stability summaries;
+- reviewed PURE-derived candidate and verification annotations under CC BY 4.0
+  attribution;
+- PURE aggregate and sanitized per-item evaluation results;
 - curated Mind2Web-derived prediction and bounding-box outputs that exclude
   screenshots, source-page text, raw provider responses, caches, secrets, and
   absolute local paths;
@@ -158,24 +183,24 @@ questions.
 - hashes and counts that do not expose source content.
 
 The repository has a root MIT `LICENSE` covering the author's original
-software. `NOTICE.md` excludes the thesis, datasets, derived annotations,
-screenshots, and other third-party material from that license. Publishing code
-under MIT does not grant redistribution rights for those excluded materials.
+software. PURE-derived content instead retains the CC BY 4.0 attribution in
+`data/annotations/PURE_ATTRIBUTION.md`. `NOTICE.md` excludes the thesis,
+datasets, derived annotations, screenshots, and other third-party material from
+the MIT license.
 
 ### Supervisor-only
 
-- unpublished PURE per-item annotations containing source requirement text;
 - the 44-item second-review form;
 - uncurated per-item predictions and raw responses;
 - uncurated source-derived evidence descriptions and absolute screenshot paths;
 - reviewer working material not included in the public allowlist.
 
-### Never redistribute without explicit permission
+### Excluded from this repository's default public package
 
 - Mind2Web test archives and their unzipped contents;
 - Mind2Web screenshots, HTML/MHTML, HAR, trace, video, and session data;
-- PURE source PDFs/XML;
-- PURE embedded or extracted figures;
+- PURE source archives and extracted figures, which are installed directly from
+  Zenodo by the setup script instead of duplicated in Git;
 - secrets, API keys, account data, or billing identifiers.
 
 ## 4. Final release gate
@@ -185,13 +210,14 @@ A public thesis artifact is allowed only when all of the following are true:
 1. the supervisor approves the curated Mind2Web-derived release boundary;
 2. a root code license is selected;
 3. `DATASET_NOTICE.md` and dataset citations are included;
-4. public files contain no source screenshots, documents, substantial source
-   text, test records, per-item raw responses, or personal data;
+4. public files contain no Mind2Web source screenshots or test records, no
+   duplicated PURE source archives, and no raw provider responses, secrets, or
+   personal data;
 5. the path/secret audit passes;
 6. the public package is built from an explicit allowlist rather than by
    publishing the complete working repository;
-7. any release of Mind2Web source files or PURE source-derived content is
-   supported by separate explicit permission.
+7. PURE-derived releases carry CC BY 4.0 attribution, change identification,
+   and the curator's provenance caveat.
 
 ## 5. Thesis disclosure text
 
@@ -202,9 +228,10 @@ A public thesis artifact is allowed only when all of the following are true:
 > replication material contains code, configurations, hashes, aggregate
 > results, reviewed derived annotations, and explicitly sanitized prediction
 > artifacts, but no original screenshots, HTML, trajectories, or complete test
-> records. PURE contains requirements documents collected from third-party Web
-> sources whose individual licensing status is not guaranteed by the dataset
-> curators. PURE source documents, figures, substantial text extracts, and
-> per-item model outputs are therefore excluded from the public artifact. Full
-> internal artifacts are retained only for examination and reproducibility
-> review under controlled access.
+> records. PURE 2.0 is distributed through Zenodo under CC BY 4.0. The released
+> replication material includes selected and contextualized requirements,
+> reviewed annotations, and aggregate results with attribution and an
+> indication of changes. The PURE record notes that the curators did not verify
+> the underlying rights of every collected Web document; this provenance and
+> takedown caveat is retained. Original PURE archives are installed directly
+> from Zenodo rather than duplicated in the repository.

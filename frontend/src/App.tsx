@@ -18,7 +18,6 @@ import {
   type StartPipelineRunPayload,
   type FlowStep,
   type FlowSummary,
-  type HarvestedRequirement,
   type Requirement,
   type RequirementPayload,
   type UiEvaluabilityAuditBundle,
@@ -28,7 +27,7 @@ import {
 } from './api'
 
 type LoadState = 'idle' | 'loading' | 'error'
-type ViewMode = 'single' | 'multi' | 'overview' | 'harvested' | 'verification'
+type ViewMode = 'overview' | 'verification'
 type EditorMode = 'candidate' | 'verification_gold'
 type RequirementLike = Requirement | VerificationGoldItem
 
@@ -86,10 +85,7 @@ type RequirementFormState = {
 }
 
 const VIEW_TABS: Array<{id: ViewMode; label: string}> = [
-  {id: 'single', label: 'Single-screen review'},
-  {id: 'multi', label: 'Multi-screen review'},
   {id: 'overview', label: 'Overview'},
-  {id: 'harvested', label: 'Harvested'},
   {id: 'verification', label: 'Verification run'},
 ]
 
@@ -204,19 +200,12 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
   const [selectedFlowId, setSelectedFlowId] = useState<string>('')
   const [selectedFlow, setSelectedFlow] = useState<FlowSummary | null>(null)
   const [steps, setSteps] = useState<FlowStep[]>([])
-  const [harvested, setHarvested] = useState<HarvestedRequirement[]>([])
   const [candidates, setCandidates] = useState<Requirement[]>([])
   const [verificationGold, setVerificationGold] = useState<VerificationGoldItem[]>([])
   const [pipelineRun, setPipelineRun] = useState<PipelineVerificationRun | null>(null)
   const [detailsState, setDetailsState] = useState<LoadState>('idle')
   const [message, setMessage] = useState<string>('')
-  const [annotatedBy, setAnnotatedBy] = useState<string>('benno')
-  const [annotationNotes, setAnnotationNotes] = useState<string>('')
-  const [maxImages, setMaxImages] = useState<number>(4)
-  const [harvestModel, setHarvestModel] = useState<string>('gemini-2.5-flash')
-  const [harvestTemperature, setHarvestTemperature] = useState<number>(0.7)
-  const [harvestImageMaxSide, setHarvestImageMaxSide] = useState<number>(1280)
-  const [viewMode, setViewMode] = useState<ViewMode>('single')
+  const [viewMode, setViewMode] = useState<ViewMode>('overview')
   const [highlightedStep, setHighlightedStep] = useState<number | null>(null)
   const [zoomStep, setZoomStep] = useState<FlowStep | null>(null)
   const [editor, setEditor] = useState<EditorState | null>(null)
@@ -267,7 +256,6 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
     setMessage('')
     setSelectedFlow(null)
     setSteps([])
-    setHarvested([])
     setCandidates([])
     setVerificationGold([])
     setPipelineRun(null)
@@ -276,9 +264,8 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
       const flow = await api.getFlow(flowId)
       setSelectedFlow(flow)
 
-      const [stepsResult, harvestedResult, candidatesResult, verificationGoldResult, pipelineRunResult] = await Promise.allSettled([
+      const [stepsResult, candidatesResult, verificationGoldResult, pipelineRunResult] = await Promise.allSettled([
         api.getSteps(flowId),
-        api.listHarvested(flowId),
         api.listCandidates(flowId),
         api.listVerificationGold(flowId),
         api.getLatestPipelineVerification(flowId),
@@ -286,9 +273,6 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
 
       if (stepsResult.status === 'fulfilled') {
         setSteps(stepsResult.value)
-      }
-      if (harvestedResult.status === 'fulfilled') {
-        setHarvested(harvestedResult.value)
       }
       if (candidatesResult.status === 'fulfilled') {
         setCandidates(candidatesResult.value)
@@ -331,15 +315,9 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
     setMessage('')
     try {
       if (action === 'accept') {
-        await api.acceptCandidate(selectedFlowId, requirement.requirement_id, {
-          annotation_notes: annotationNotes || undefined,
-          annotated_by: annotatedBy || undefined,
-        })
+        await api.acceptCandidate(selectedFlowId, requirement.requirement_id, {})
       } else if (action === 'reject') {
-        await api.rejectCandidate(selectedFlowId, requirement.requirement_id, {
-          reason: annotationNotes || undefined,
-          annotated_by: annotatedBy || undefined,
-        })
+        await api.rejectCandidate(selectedFlowId, requirement.requirement_id, {})
       } else {
         await api.markNeedsReview(selectedFlowId, requirement.requirement_id)
         setEditor({mode: 'candidate', requirement: {...requirement, review_status: 'needs_review'}})
@@ -413,40 +391,6 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
     }
   }
 
-  async function handleGenerateHarvestedRequirements() {
-    if (!selectedFlowId) {
-      return
-    }
-    setMessage('')
-    try {
-      const result = await api.generateHarvestedRequirements(selectedFlowId, {
-        max_images: maxImages,
-        image_max_side: harvestImageMaxSide,
-        model_name: harvestModel,
-        temperature: harvestTemperature,
-      })
-      await loadFlowDetails(selectedFlowId)
-      setViewMode('harvested')
-      setMessage(`Generated ${result.harvested_count} harvested requirements.`)
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : 'Failed to generate harvested requirements')
-    }
-  }
-
-  async function handleMaterializeCandidatesFromHarvested() {
-    if (!selectedFlowId) {
-      return
-    }
-    setMessage('')
-    try {
-      const result = await api.rebuildCandidatesFromHarvested(selectedFlowId)
-      await loadFlowDetails(selectedFlowId)
-      setViewMode('single')
-      setMessage(`Rebuilt ${result.candidate_count} candidate requirements from harvested items.`)
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : 'Failed to rebuild candidates from harvested requirements')
-    }
-  }
 
   async function handleRegenerateExpectedClaims() {
     if (!selectedFlowId || regeneratingClaims) {
@@ -487,8 +431,6 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
     try {
       const updated = await api.updateVerificationGold(selectedFlowId, requirement.requirement_id, {
         review_status: 'accepted',
-        annotation_notes: annotationNotes || undefined,
-        annotated_by: annotatedBy || undefined,
       })
       setVerificationGold((items) =>
         items.map((item) => (item.requirement_id === updated.requirement_id ? updated : item)),
@@ -514,28 +456,6 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
     [candidates, representedCandidateIds],
   )
   const orderedVerificationGold = useMemo(() => orderReviewItemsFirst(verificationGold), [verificationGold])
-  const isPureFlow = selectedFlow?.dataset === 'pure'
-
-  const singleScreenCandidates = useMemo(
-    () => activeCandidates.filter((candidate) => candidate.step_indices.length <= 1),
-    [activeCandidates],
-  )
-  const multiScreenCandidates = useMemo(
-    () => activeCandidates.filter((candidate) => candidate.step_indices.length > 1),
-    [activeCandidates],
-  )
-  const singleScreenGold = useMemo(
-    () => orderedVerificationGold.filter((item) => item.step_indices.length <= 1),
-    [orderedVerificationGold],
-  )
-  const multiScreenGold = useMemo(
-    () => orderedVerificationGold.filter((item) => item.step_indices.length > 1),
-    [orderedVerificationGold],
-  )
-
-  const candidateGroupsByStep = useMemo(() => groupRequirementsBySingleStep(singleScreenCandidates), [singleScreenCandidates])
-  const goldGroupsByStep = useMemo(() => groupRequirementsBySingleStep(singleScreenGold), [singleScreenGold])
-
   function openNextNeedsReviewItem() {
     const currentPosition = editor ?? reviewCursor
     const currentRequirementId = currentPosition?.requirement.requirement_id
@@ -611,6 +531,10 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
           </button>
         )}
 
+        <p className="dataset-availability-note">
+          PURE source data can be installed separately, but PURE screenshot flows and verification runs are not included in the public viewer.
+        </p>
+
         <div className="flow-list">
           {flowsState === 'loading' && <p>Loading flows...</p>}
           {flows.map((flow) => (
@@ -632,33 +556,9 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
 
       <main className="main-content">
         <section className="topbar card">
-          <div className="topbar-header">
-            <div>
-              <h2>{selectedFlow?.flow_id ?? 'Select a flow'}</h2>
-              <p>{selectedFlow?.confirmed_task ?? 'No task loaded yet.'}</p>
-            </div>
-            <div className="dual-status-explainer">
-              <strong>Dual axes</strong>
-              <span>Verification label judges the shown outcome. UI evaluability judges whether screenshots can verify the claim at all.</span>
-            </div>
-          </div>
-
-          <div className="toolbar-grid">
-            <label>
-              Annotated by
-              <input value={annotatedBy} onChange={(event) => setAnnotatedBy(event.target.value)} placeholder="annotator" />
-            </label>
-            <label>
-              Notes
-              <input value={annotationNotes} onChange={(event) => setAnnotationNotes(event.target.value)} placeholder="optional note" />
-            </label>
-            <label>
-              Max images
-              <input type="number" min={1} value={maxImages} onChange={(event) => setMaxImages(Number(event.target.value) || 1)} />
-            </label>
-            <button className="secondary-button" onClick={openNextNeedsReviewItem} disabled={!selectedFlow}>
-              Next needs review
-            </button>
+          <div>
+            <h2>{selectedFlow?.flow_id ?? 'Select a flow'}</h2>
+            <p>{selectedFlow?.confirmed_task ?? 'No task loaded yet.'}</p>
           </div>
         </section>
 
@@ -679,36 +579,6 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
         {message && <section className="message card">{message}</section>}
         {detailsState === 'loading' && <section className="card">Loading flow details...</section>}
 
-        {selectedFlow && viewMode === 'single' && (
-          <SingleScreenReview
-            steps={steps}
-            highlightedStep={highlightedStep}
-            candidatesByStep={candidateGroupsByStep}
-            goldByStep={goldGroupsByStep}
-            onOpenZoom={setZoomStep}
-            onJumpToStep={jumpToStep}
-            onPromote={(requirement) => void handleCandidateAction('accept', requirement)}
-            onEditCandidate={(requirement) => setEditor({mode: 'candidate', requirement})}
-            onReject={(requirement) => void handleCandidateAction('reject', requirement)}
-            onEditGold={(requirement) => setEditor({mode: 'verification_gold', requirement})}
-            unlinkedCandidates={singleScreenCandidates.filter((candidate) => candidate.step_indices.length === 0)}
-            unlinkedGold={singleScreenGold.filter((item) => item.step_indices.length === 0)}
-          />
-        )}
-
-        {selectedFlow && viewMode === 'multi' && (
-          <MultiScreenReview
-            steps={steps}
-            candidates={multiScreenCandidates}
-            gold={multiScreenGold}
-            onJumpToStep={jumpToStep}
-            onEditCandidate={(requirement) => setEditor({mode: 'candidate', requirement})}
-            onPromote={(requirement) => void handleCandidateAction('accept', requirement)}
-            onReject={(requirement) => void handleCandidateAction('reject', requirement)}
-            onEditGold={(requirement) => setEditor({mode: 'verification_gold', requirement})}
-          />
-        )}
-
         {selectedFlow && viewMode === 'overview' && (
           <OverviewPanel
             steps={steps}
@@ -723,22 +593,6 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
             onDeleteGold={(requirement) => void handleDeleteGoldRequirement(requirement)}
             onRegenerateExpectedClaims={() => void handleRegenerateExpectedClaims()}
             regeneratingClaims={regeneratingClaims}
-          />
-        )}
-
-        {selectedFlow && viewMode === 'harvested' && (
-          <HarvestedPanel
-            harvested={harvested}
-            harvestModel={harvestModel}
-            harvestTemperature={harvestTemperature}
-            harvestImageMaxSide={harvestImageMaxSide}
-            supportsGeneration={!isPureFlow}
-            onHarvestModelChange={setHarvestModel}
-            onHarvestTemperatureChange={setHarvestTemperature}
-            onHarvestImageMaxSideChange={setHarvestImageMaxSide}
-            onJumpToStep={jumpToStep}
-            onGenerate={() => void handleGenerateHarvestedRequirements()}
-            onMaterialize={() => void handleMaterializeCandidatesFromHarvested()}
           />
         )}
 
@@ -767,7 +621,7 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
           mode={editor.mode}
           requirement={editor.requirement}
           availableSteps={steps}
-          defaultAnnotatedBy={annotatedBy}
+          defaultAnnotatedBy="benno"
           onClose={() => setEditor(null)}
           onSave={(action, payload, openNext) => void handleSaveEditor(action, payload, openNext)}
           onDelete={
@@ -1891,304 +1745,6 @@ function UploadThumbnail({
   )
 }
 
-function SingleScreenReview({
-  steps,
-  highlightedStep,
-  candidatesByStep,
-  goldByStep,
-  unlinkedCandidates,
-  unlinkedGold,
-  onOpenZoom,
-  onJumpToStep,
-  onPromote,
-  onEditCandidate,
-  onReject,
-  onEditGold,
-}: {
-  steps: FlowStep[]
-  highlightedStep: number | null
-  candidatesByStep: Map<number, Requirement[]>
-  goldByStep: Map<number, VerificationGoldItem[]>
-  unlinkedCandidates: Requirement[]
-  unlinkedGold: VerificationGoldItem[]
-  onOpenZoom: (step: FlowStep) => void
-  onJumpToStep: (stepIndex: number) => void
-  onPromote: (requirement: Requirement) => void
-  onEditCandidate: (requirement: Requirement) => void
-  onReject: (requirement: Requirement) => void
-  onEditGold: (requirement: VerificationGoldItem) => void
-}) {
-  return (
-    <section className="stack-layout">
-      <section className="card sticky-card">
-        <div className="panel-header">
-          <h3>Flow screens</h3>
-          <span>Click a step to jump. Click an image to zoom.</span>
-        </div>
-        {steps.length > 0 ? (
-          <div className="chip-row">
-            {steps.map((step) => (
-              <button key={step.step_index} className="step-chip" onClick={() => onJumpToStep(step.step_index)}>
-                Step {step.step_index}
-              </button>
-            ))}
-          </div>
-        ) : (
-          <p className="empty-text">No UI images were extracted for this flow. Requirements are still available below.</p>
-        )}
-      </section>
-
-      {steps.length === 0 && (
-        <section className="content-grid">
-          <section className="card">
-            <div className="panel-header">
-              <h3>Pending candidate requirements</h3>
-              <span>{unlinkedCandidates.length}</span>
-            </div>
-            <div className="requirement-list compact-list">
-              {unlinkedCandidates.length > 0 ? (
-                unlinkedCandidates.map((requirement) => (
-                  <RequirementCard
-                    key={requirement.requirement_id}
-                    requirement={requirement}
-                    onJumpToStep={onJumpToStep}
-                    actions={
-                      <div className="button-row left wrap">
-                        <button onClick={() => onPromote(requirement)}>Promote to gold</button>
-                        <button className="secondary-button" onClick={() => onEditCandidate(requirement)}>
-                          Edit / review
-                        </button>
-                        <button className="danger-button" onClick={() => onReject(requirement)}>
-                          Reject
-                        </button>
-                      </div>
-                    }
-                  />
-                ))
-              ) : (
-                <p className="empty-text">No pending candidates.</p>
-              )}
-            </div>
-          </section>
-
-          <section className="card">
-            <div className="panel-header">
-              <h3>Verification benchmark items</h3>
-              <span>{unlinkedGold.length}</span>
-            </div>
-            <div className="requirement-list compact-list">
-              {unlinkedGold.length > 0 ? (
-                unlinkedGold.map((requirement) => (
-                  <RequirementCard
-                    key={requirement.requirement_id}
-                    requirement={requirement}
-                    onJumpToStep={onJumpToStep}
-                    actions={
-                      <div className="button-row left wrap">
-                        <button className="secondary-button" onClick={() => onEditGold(requirement)}>
-                          Edit verification labels
-                        </button>
-                      </div>
-                    }
-                  />
-                ))
-              ) : (
-                <p className="empty-text">No verification benchmark items yet.</p>
-              )}
-            </div>
-          </section>
-        </section>
-      )}
-
-      {steps.map((step) => {
-        const stepCandidates = candidatesByStep.get(step.step_index) ?? []
-        const stepGold = goldByStep.get(step.step_index) ?? []
-        return (
-          <article
-            key={step.step_index}
-            id={`step-${step.step_index}`}
-            className={highlightedStep === step.step_index ? 'card step-focus-card highlighted' : 'card step-focus-card'}
-          >
-            <div className="panel-header align-start">
-              <div>
-                <h3>Step {step.step_index}</h3>
-                <span>{stepCandidates.length} pending single-screen candidates · {stepGold.length} verification items</span>
-                {step.artifact_label && <span className="artifact-badge">{step.artifact_label}{step.artifact_page ? ` · page ${step.artifact_page}` : ''}</span>}
-              </div>
-              <button className="secondary-button" onClick={() => onOpenZoom(step)}>
-                Open larger view
-              </button>
-            </div>
-
-            <img
-              className="step-image-large"
-              src={resolveAssetUrl(step.image_url)}
-              alt={`Step ${step.step_index}`}
-              loading="lazy"
-              onClick={() => onOpenZoom(step)}
-            />
-
-            <div className="step-linked-grid">
-              <section className="linked-column">
-                <div className="subsection-header">
-                  <h4>Pending candidate requirements</h4>
-                  <span>{stepCandidates.length}</span>
-                </div>
-                {stepCandidates.length > 0 ? (
-                  <div className="requirement-list compact-list">
-                    {stepCandidates.map((requirement) => (
-                      <RequirementCard
-                        key={requirement.requirement_id}
-                        requirement={requirement}
-                        onJumpToStep={onJumpToStep}
-                        actions={
-                          <div className="button-row left wrap">
-                            <button onClick={() => onPromote(requirement)}>Promote to gold</button>
-                            <button className="secondary-button" onClick={() => onEditCandidate(requirement)}>
-                              Edit / review
-                            </button>
-                            <button className="danger-button" onClick={() => onReject(requirement)}>
-                              Reject
-                            </button>
-                          </div>
-                        }
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <p className="empty-text">No pending single-screen candidates linked to this step.</p>
-                )}
-              </section>
-
-              <section className="linked-column">
-                <div className="subsection-header">
-                  <h4>Verification benchmark items</h4>
-                  <span>{stepGold.length}</span>
-                </div>
-                {stepGold.length > 0 ? (
-                  <div className="requirement-list compact-list">
-                    {stepGold.map((requirement) => (
-                      <RequirementCard
-                        key={requirement.requirement_id}
-                        requirement={requirement}
-                        onJumpToStep={onJumpToStep}
-                        actions={
-                          <div className="button-row left wrap">
-                            <button className="secondary-button" onClick={() => onEditGold(requirement)}>
-                              Edit verification labels
-                            </button>
-                          </div>
-                        }
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <p className="empty-text">No verification benchmark item linked to this step yet.</p>
-                )}
-              </section>
-            </div>
-          </article>
-        )
-      })}
-    </section>
-  )
-}
-
-function MultiScreenReview({
-  steps,
-  candidates,
-  gold,
-  onJumpToStep,
-  onEditCandidate,
-  onPromote,
-  onReject,
-  onEditGold,
-}: {
-  steps: FlowStep[]
-  candidates: Requirement[]
-  gold: VerificationGoldItem[]
-  onJumpToStep: (stepIndex: number) => void
-  onEditCandidate: (requirement: Requirement) => void
-  onPromote: (requirement: Requirement) => void
-  onReject: (requirement: Requirement) => void
-  onEditGold: (requirement: VerificationGoldItem) => void
-}) {
-  return (
-    <section className="content-grid">
-      <section className="card panel-wide">
-        <div className="panel-header">
-          <h3>Flow step navigator</h3>
-          <span>{steps.length} screens</span>
-        </div>
-        <div className="chip-row">
-          {steps.map((step) => (
-            <button key={step.step_index} className="step-chip" onClick={() => onJumpToStep(step.step_index)}>
-              Step {step.step_index}
-            </button>
-          ))}
-        </div>
-      </section>
-
-      <section className="card">
-        <div className="panel-header">
-          <h3>Pending multi-screen candidates</h3>
-          <span>{candidates.length}</span>
-        </div>
-        <div className="requirement-list compact-list">
-          {candidates.length > 0 ? (
-            candidates.map((requirement) => (
-              <RequirementCard
-                key={requirement.requirement_id}
-                requirement={requirement}
-                onJumpToStep={onJumpToStep}
-                actions={
-                  <div className="button-row left wrap">
-                    <button onClick={() => onPromote(requirement)}>Promote to gold</button>
-                    <button className="secondary-button" onClick={() => onEditCandidate(requirement)}>
-                      Edit / review
-                    </button>
-                    <button className="danger-button" onClick={() => onReject(requirement)}>
-                      Reject
-                    </button>
-                  </div>
-                }
-              />
-            ))
-          ) : (
-            <p className="empty-text">No pending multi-screen candidates.</p>
-          )}
-        </div>
-      </section>
-
-      <section className="card">
-        <div className="panel-header">
-          <h3>Verification benchmark items</h3>
-          <span>{gold.length}</span>
-        </div>
-        <div className="requirement-list compact-list">
-          {gold.length > 0 ? (
-            gold.map((requirement) => (
-              <RequirementCard
-                key={requirement.requirement_id}
-                requirement={requirement}
-                onJumpToStep={onJumpToStep}
-                actions={
-                  <div className="button-row left wrap">
-                    <button className="secondary-button" onClick={() => onEditGold(requirement)}>
-                      Edit verification labels
-                    </button>
-                  </div>
-                }
-              />
-            ))
-          ) : (
-            <p className="empty-text">No multi-screen verification benchmark items yet.</p>
-          )}
-        </div>
-      </section>
-    </section>
-  )
-}
 
 function OverviewPanel({
   steps,
@@ -2299,97 +1855,6 @@ function OverviewPanel({
   )
 }
 
-function HarvestedPanel({
-  harvested,
-  harvestModel,
-  harvestTemperature,
-  harvestImageMaxSide,
-  supportsGeneration,
-  onHarvestModelChange,
-  onHarvestTemperatureChange,
-  onHarvestImageMaxSideChange,
-  onJumpToStep,
-  onGenerate,
-  onMaterialize,
-}: {
-  harvested: HarvestedRequirement[]
-  harvestModel: string
-  harvestTemperature: number
-  harvestImageMaxSide: number
-  supportsGeneration: boolean
-  onHarvestModelChange: (value: string) => void
-  onHarvestTemperatureChange: (value: number) => void
-  onHarvestImageMaxSideChange: (value: number) => void
-  onJumpToStep: (stepIndex: number) => void
-  onGenerate: () => void
-  onMaterialize: () => void
-}) {
-  return (
-    <section className="content-grid">
-      <section className="card panel-wide">
-        <div className="panel-header">
-          <div>
-            <h3>Harvested requirement hypotheses</h3>
-            <span>{harvested.length} items</span>
-          </div>
-          {supportsGeneration ? (
-            <div className="button-row wrap">
-              <label>
-                Harvest model
-                <select value={harvestModel} onChange={(event) => onHarvestModelChange(event.target.value)}>
-                  <option value="gemini-2.5-flash">gemini-2.5-flash</option>
-                  <option value="gemini-2.5-flash-lite">gemini-2.5-flash-lite</option>
-                </select>
-              </label>
-              <label>
-                Harvest temperature
-                <input type="number" min={0} max={1} step={0.1} value={harvestTemperature} onChange={(event) => onHarvestTemperatureChange(Number(event.target.value))} />
-              </label>
-              <label>
-                Harvest image max side
-                <input type="number" min={512} max={2048} step={128} value={harvestImageMaxSide} onChange={(event) => onHarvestImageMaxSideChange(Number(event.target.value) || 1280)} />
-              </label>
-              <button onClick={onGenerate}>Generate harvested requirements</button>
-              <button onClick={onMaterialize} disabled={harvested.length === 0}>
-                Replace candidates from harvested
-              </button>
-            </div>
-          ) : (
-            <p className="inline-note">Requirement generation from screenshots is disabled for PURE flows. These candidates come from the PURE source document export.</p>
-          )}
-        </div>
-        {supportsGeneration && <p className="inline-note">These are the broader hypotheses produced from the UI flow before candidate normalization.</p>}
-        {harvested.length > 0 ? (
-          <div className="requirement-list compact-list">
-            {harvested.map((item) => (
-              <article key={item.harvest_id} className="requirement-card">
-                <div className="requirement-header">
-                  <strong>{item.harvest_id}</strong>
-                  <div className="pill-row">
-                    <span className={`status-pill ${statusClass(item.ui_evaluability)}`}>{humanizeStatus(item.ui_evaluability)}</span>
-                    <span className="status-pill">{item.visible_subtype}</span>
-                    <span className="status-pill">{item.task_relevance}</span>
-                  </div>
-                </div>
-                <p>{item.harvested_text}</p>
-                <div className="meta-block">
-                  <span>Type: {item.requirement_type}</span>
-                  <span>Confidence: {item.confidence ?? 'n/a'}</span>
-                  <span>Steps: <StepChipList stepIndices={item.step_indices} onJumpToStep={onJumpToStep} /></span>
-                </div>
-                {item.visible_core_candidate && <p className="inline-note">Visible-core rewrite suggestion: {item.visible_core_candidate}</p>}
-                {item.non_evaluable_reason && item.non_evaluable_reason !== 'NONE' && <p className="inline-note">Limitation: {humanizeStatus(item.non_evaluable_reason)}</p>}
-                {item.rationale && <p className="inline-note">Rationale: {item.rationale}</p>}
-              </article>
-            ))}
-          </div>
-        ) : (
-          <p className="empty-text">No harvested requirements available for this flow yet.</p>
-        )}
-      </section>
-    </section>
-  )
-}
 
 function VerificationRunPanel({
   flowId,
@@ -4816,19 +4281,6 @@ function BoundingBoxOverlay({bbox, imageWidth, imageHeight}: {bbox: BoundingBox;
   )
 }
 
-function groupRequirementsBySingleStep<T extends {step_indices: number[]}>(requirements: T[]): Map<number, T[]> {
-  const groups = new Map<number, T[]>()
-  requirements.forEach((requirement) => {
-    const stepIndex = requirement.step_indices[0]
-    if (stepIndex === undefined) {
-      return
-    }
-    const current = groups.get(stepIndex) ?? []
-    current.push(requirement)
-    groups.set(stepIndex, current)
-  })
-  return groups
-}
 
 function orderReviewItemsFirst<T extends {review_status?: string; requirement_id: string}>(items: T[]): T[] {
   return [...items].sort((a, b) => {

@@ -1,0 +1,65 @@
+{
+  "schema_version": "pure_exploratory_summary_v1",
+  "source": {
+    "dataset": "PURE 2.0",
+    "zenodo_record": "https://zenodo.org/records/7118517",
+    "doi": "10.5281/zenodo.7118517",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "documents": [
+      "2010 - split merge",
+      "2010 - mashboot"
+    ],
+    "changes": "Selected and contextualized requirements, author-reviewed labels and claims, and linked document-to-UI evidence.",
+    "provenance_notice": "The PURE record states that its curators did not verify the underlying rights of every collected Web document and provides a contact for takedown requests."
+  },
+  "reviewed_subsets": {
+    "pure_2010_split_merge": {
+      "accepted_items": 31,
+      "claims": 78,
+      "verification_labels": {
+        "FULFILLED": 22,
+        "PARTIALLY_FULFILLED": 4,
+        "NOT_FULFILLED": 0,
+        "ABSTAIN": 5
+      },
+      "ui_evaluability": {
+        "UI_VERIFIABLE": 27,
+        "PARTIALLY_UI_VERIFIABLE": 3,
+        "NOT_UI_VERIFIABLE": 1
+      },
+      "gold_sha256": "2c7b8b5d62e58048ca5bf8ea6030a0c0decfc48527792df412c8fa0b219681c6"
+    },
+    "pure_2010_mashboot": {
+      "accepted_items": 11,
+      "claims": 42,
+      "verification_labels": {
+        "FULFILLED": 3,
+        "PARTIALLY_FULFILLED": 5,
+        "NOT_FULFILLED": 0,
+        "ABSTAIN": 3
+      },
+      "ui_evaluability": {
+        "UI_VERIFIABLE": 8,
+        "PARTIALLY_UI_VERIFIABLE": 3,
+        "NOT_UI_VERIFIABLE": 0
+      },
+      "gold_sha256": "7abb38b0d74d58d6f49f24b52c5a09d16162fa3032d0dc0b12039602c268463e"
+    }
+  },
+  "total": {
+    "accepted_items": 42,
+    "claims": 120,
+    "verification_labels": {
+      "FULFILLED": 25,
+      "PARTIALLY_FULFILLED": 9,
+      "NOT_FULFILLED": 0,
+      "ABSTAIN": 8
+    },
+    "ui_evaluability": {
+      "UI_VERIFIABLE": 35,
+      "PARTIALLY_UI_VERIFIABLE": 6,
+      "NOT_UI_VERIFIABLE": 1
+    }
+  }
+}

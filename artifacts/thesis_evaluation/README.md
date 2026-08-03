@@ -33,6 +33,7 @@ per-item run set is published under `data/published/`.
   explicitly permitted;
 - absolute local home-directory paths containing a user name;
 - unreviewed local bounding-box reference bundles;
+- original PURE archives and extracted document figures;
 - caches, virtual environments, frontend build output, and temporary PDFs.
 
 ## Release controls
@@ -40,13 +41,15 @@ per-item run set is published under `data/published/`.
 When updating this package:
 
 1. follow `DATASET_NOTICE.md` and `release_classification.json`;
-2. never add Mind2Web source files or PURE text/figure derivatives;
+2. do not add Mind2Web source files; retain CC BY 4.0 attribution, change
+   identification, and the curator provenance caveat for PURE-derived material;
 3. replace absolute repository paths with repository-relative paths;
 4. scan JSON and text files for secrets and personal data;
 5. state the exact model identifier, provider, execution date, parameters,
    prompt version, benchmark hash, item coverage, failures, tokens, and cost;
 6. verify every reported metric against the frozen 258-item Mind2Web gold set;
-7. continue using an explicit allowlist instead of copying local generated
+7. verify PURE summaries against the two versioned reviewed gold files;
+8. continue using an explicit allowlist instead of copying local generated
    directories wholesale.
 
 Run the automated path and secret gate before committing:

@@ -6,13 +6,21 @@ The commands below are written to run from this `docs/` directory, because markd
 
 ## External Data Setup
 
-PURE is not committed because the source documents have uncertain
-redistribution rights. Obtain it independently from the official
-[PURE Zenodo record](https://zenodo.org/records/7118517), then extract the XML
-archive so that the actual XML files are under `../data/raw/pure/XMLZIPFile/`.
-The local `../data/raw/` tree is ignored by Git.
+PURE 2.0 is distributed through Zenodo with CC BY 4.0 metadata. Download and
+extract its XML, schema, and source-document archives reproducibly with:
 
-PROMISE+ and user-story datasets are not committed. Download public external datasets with:
+```bash
+python ../scripts/setup_external_requirement_data.py --dataset pure
+```
+
+This creates `../data/raw/pure/XMLZIPFile/`, `../data/raw/pure/req/`, and
+`../data/raw/pure/req_document.xsd`. It verifies the checksums published by the
+[PURE Zenodo record](https://zenodo.org/records/7118517) and records the source,
+license, and local paths in `../data/external/source_manifest.json`. The raw
+archives are ignored by Git to avoid duplicating the source corpus. Reviewed
+derived annotations and aggregate thesis results are versioned separately.
+
+Download every supported public external dataset, including PURE, with:
 
 ```bash
 python ../scripts/setup_external_requirement_data.py --dataset all
@@ -21,6 +29,9 @@ python ../scripts/setup_external_requirement_data.py --dataset all
 This creates:
 
 ```text
+../data/raw/pure/XMLZIPFile/*.xml
+../data/raw/pure/req/*
+../data/raw/pure/req_document.xsd
 ../data/external/promise_exp/PROMISE_exp.arff
 ../data/external/user_stories/neodataset_issues.csv
 ../data/external/source_manifest.json

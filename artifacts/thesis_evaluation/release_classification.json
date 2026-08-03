@@ -14,9 +14,11 @@
     },
     "pure": {
       "zenodo_record": "https://zenodo.org/records/7118517",
+      "zenodo_api_record": "https://zenodo.org/api/records/7118517",
+      "declared_dataset_license": "CC-BY-4.0",
       "dataset_paper_doi": "10.1109/RE.2017.29",
-      "underlying_document_rights": "unclear_per_curator_notice",
-      "written_permission_for_text_and_figure_derivatives": false
+      "underlying_document_rights": "not_verified_per_curator_notice",
+      "release_basis": "Zenodo CC-BY-4.0 metadata with attribution, change notice, and retained provenance caveat"
     }
   },
   "public_candidate": [
@@ -24,12 +26,13 @@
     "experiment configurations",
     "aggregate metrics",
     "aggregate bootstrap and stability summaries",
+    "reviewed PURE-derived annotations under CC-BY-4.0 attribution",
+    "PURE aggregate and sanitized per-item results under CC-BY-4.0 attribution",
     "documentation without source screenshots or substantial source text",
     "reviewed Mind2Web-derived annotations with attribution",
     "explicitly sanitized Mind2Web-derived predictions and bounding boxes"
   ],
   "supervisor_only": [
-    "PURE-derived per-item annotations containing full requirement text",
     "uncurated per-item predictions and raw model responses",
     "second-review forms and adjudication material",
     "unpublished reviewer working material"
@@ -37,8 +40,7 @@
   "excluded_from_public_release": [
     "Mind2Web test archives and unzipped records",
     "Mind2Web screenshots, HTML, MHTML, HAR, traces, videos, and session data",
-    "PURE PDFs, XML files, extracted figures, and embedded images",
-    "substantial PURE source text",
+    "PURE source archives duplicated from Zenodo rather than installed through the setup command",
     "API keys, secrets, account data, and billing identifiers"
   ],
   "required_before_public_release": [
@@ -47,6 +49,7 @@
     "dataset notice and citations",
     "allowlist-based public package build",
     "path, secret, personal-data, and source-content audit",
-    "separate permission for Mind2Web source files or PURE source-derived content"
+    "separate permission for Mind2Web source files",
+    "CC-BY-4.0 attribution, change identification, and provenance notice for PURE-derived content"
   ]
 }

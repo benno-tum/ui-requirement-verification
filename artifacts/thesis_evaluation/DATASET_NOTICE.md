@@ -27,22 +27,29 @@ records, processed trajectories, per-item prompts, and raw responses.
 PURE is described at:
 
 - <https://zenodo.org/records/7118517>
+- <https://creativecommons.org/licenses/by/4.0/>
 - <https://doi.org/10.1109/RE.2017.29>
 
-The PURE record states that the curators are not aware of license agreements or
-intellectual-property rights for the third-party requirements documents
-collected from the Web. The public artifact therefore excludes PURE source PDFs,
-XML files, extracted figures, embedded images, substantial source text, and
-per-item prompts or outputs reproducing that text.
+Zenodo's metadata assigns PURE 2.0 CC BY 4.0. Changes made for this thesis
+include selecting Split/Merge and Mashboot, contextualizing requirements,
+assigning UI-evaluability and verification labels, linking visual evidence, and
+calculating exploratory results. The PURE curators do not endorse this work.
+
+The PURE record also states that the curators did not verify the underlying
+license agreements or intellectual-property rights for every third-party Web
+document and provides a takedown contact. This package retains that provenance
+caveat. The original source archives are installed directly from Zenodo rather
+than duplicated here.
 
 ## Package boundary
 
-This package is limited to author-created configurations, aggregate metrics,
-statistical summaries, sanitized manifests, and documentation that does not
-reproduce source screenshots or substantial source text. The repository also
-contains reviewed derived annotations and one explicitly sanitized prediction
-set under `data/published/`; raw prompts, raw responses, and reviewer working
-materials remain local.
+This package contains author-created configurations, aggregate metrics,
+statistical summaries, sanitized manifests, and documentation. Its PURE summary
+is derived from the versioned reviewed annotations and is distributed with the
+CC BY 4.0 attribution above. The repository also contains reviewed derived
+annotations and one explicitly sanitized Mind2Web prediction set under
+`data/published/`; raw prompts, raw responses, and reviewer working materials
+remain local.
 
 The repository's MIT license covers original software only. No file in this
 package should be interpreted as relicensing third-party dataset content.

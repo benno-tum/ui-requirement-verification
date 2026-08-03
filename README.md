@@ -10,9 +10,10 @@ Code and repository data for deriving and verifying UI-facing software requireme
 ## Licensing and dataset boundary
 
 Original software in this repository is available under the MIT License. The
-license does not cover the thesis text, the CC BY-SA thesis template,
-Mind2Web/PURE material, or other third-party content. See [`LICENSE`](LICENSE)
-and [`NOTICE.md`](NOTICE.md) for the exact scope.
+license does not cover the thesis text, the CC BY-SA thesis template, or
+third-party dataset material. Mind2Web- and PURE-derived artifacts retain their
+dataset attribution and license notices. See [`LICENSE`](LICENSE) and
+[`NOTICE.md`](NOTICE.md) for the exact scope.
 
 The numbered flows and their annotations are derived from the Mind2Web
 `test_task` split. Mind2Web identifies its dataset as CC BY 4.0 but also asks
@@ -20,10 +21,14 @@ users not to redistribute unzipped test files online or place benchmark data in
 training corpora. Do not commit screenshots, test records, HTML/MHTML, HAR
 files, traces, videos, or per-item raw model interactions.
 
-PURE source documents were collected from third-party Web sources whose
-individual licensing status is not guaranteed by the PURE curators. Do not
-commit PURE PDFs, XML files, extracted figures, substantial source passages, or
-per-item prompts and outputs reproducing them.
+PURE 2.0 is marked CC BY 4.0 in the official Zenodo metadata. This permits
+sharing and adaptation with attribution and an indication of changes, so the
+repository publishes its reviewed PURE-derived annotations and aggregate
+results. The Zenodo record also warns that the curators did not verify the
+underlying rights of every Web document. The source archives therefore remain
+separately attributed third-party material rather than MIT-licensed project
+content; see [`data/annotations/PURE_ATTRIBUTION.md`](data/annotations/PURE_ATTRIBUTION.md)
+for attribution, changes, provenance, and the takedown boundary.
 
 The release policy and attribution language are documented in
 `docs/dataset_licensing_and_release_policy_2026-07-23.md`. The public
@@ -271,10 +276,33 @@ Mind2Web-derived artifacts.
 
 ## Data workflows
 
-Optional PURE experiments require a separately obtained local copy of PURE;
-the source documents are intentionally not included in a fresh clone. See
+Reviewed PURE-derived annotations and the aggregate exploratory summary are
+included in a fresh clone. Install the original PURE 2.0 XML, schema, and source
+documents directly from Zenodo when reproducing extraction or visual-evidence
+experiments:
+
+```bash
+python scripts/setup_external_requirement_data.py --dataset pure
+```
+
+The command verifies Zenodo's published checksums, extracts the archives under
+`data/raw/pure/`, and records source URLs and CC BY 4.0 metadata in
+`data/external/source_manifest.json`. The downloaded archives remain ignored to
+avoid duplicating the 34 MB source corpus in Git; this is a repository-size
+choice, not a requirement for users to locate PURE manually. See
 [`docs/claim_decomposition_external_eval.md`](docs/claim_decomposition_external_eval.md)
-for the expected directory layout and extraction commands.
+for reproduction commands. The publishable aggregate result is
+[`artifacts/thesis_evaluation/results/pure_exploratory_summary.json`](artifacts/thesis_evaluation/results/pure_exploratory_summary.json);
+its source annotations are under
+`data/annotations/verification_gold/pure_2010_split_merge/` and
+`data/annotations/verification_gold/pure_2010_mashboot/`.
+
+The PURE download does not recreate the thesis's curated screenshot flows or
+per-flow verification runs, which depend on separately prepared visual
+artifacts. PURE therefore does not appear as an interactive flow in a fresh
+clone; the application shows a short notice explaining this. After running the
+Mind2Web export command above, all 13 versioned Mind2Web verification runs are
+available in **Verification run**.
 
 ### Versioned requirement data
 

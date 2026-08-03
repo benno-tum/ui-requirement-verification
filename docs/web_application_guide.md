@@ -7,20 +7,24 @@ clone, how to inspect the benchmark, and how to create verification results.
 ## 1. What a Fresh Clone Contains
 
 A fresh clone contains the application, the reviewed requirement annotations,
-the verification benchmark for the 13 numbered Mind2Web flows, and one curated
-published verification run set with bounding boxes. It does not contain the
-following local artifacts:
+the verification benchmark for the 13 numbered Mind2Web flows, one curated
+published Mind2Web verification-run set with bounding boxes, and the reviewed
+PURE-derived annotations and aggregate exploratory summary. It does not contain
+the following local artifacts:
 
 - Mind2Web screenshots, which must be exported locally;
 - additional generated verification runs, raw model responses, caches, and
   usage logs;
 - uploaded user projects; or
-- PURE source documents and figures.
+- PURE source documents, screenshot flows, or per-flow verification runs.
 
 Consequently, the flow list and reviewed benchmark become available after the
 Mind2Web export. **Verification runs** then includes the curated published run
-for each numbered flow. Locally generated runs are additional reproducible
-outputs under `data/generated/`, which remains intentionally ignored by Git.
+for each numbered Mind2Web flow. Installing PURE makes its original documents
+available to the extraction scripts, but does not add PURE flows to the viewer;
+the sidebar states this limitation. Locally generated runs are additional
+reproducible outputs under `data/generated/`, which remains intentionally
+ignored by Git.
 
 ## 2. Install and Start
 
@@ -70,12 +74,9 @@ Run the export and server commands separately.
 ## 3. Inspect the Existing Benchmark
 
 1. Select one of the numbered flows in the left sidebar.
-2. Use **Overview** to inspect the ordered screenshots and flow metadata.
-3. Use **Single-screen review** and **Multi-screen review** to inspect the
-   reviewed requirements, labels, evidence steps, and uncertainty reasons.
-4. Use **Harvested** to inspect available generated source requirements, when
-   present.
-5. Use **Verification run** to create or inspect model predictions.
+2. Use **Overview** to inspect the ordered screenshots, reviewed requirements,
+   labels, evidence steps, uncertainty reasons, and flow metadata.
+3. Use **Verification run** to create or inspect model predictions.
 
 The workbench is also an annotation editor. An evaluator who only wants to
 inspect the repository should avoid **Accept**, **Edit benchmark item**, and
@@ -166,13 +167,23 @@ not to redistribute unzipped test files online or include the benchmark in
 training corpora. This repository therefore exports the selected screenshots on
 the evaluator's machine instead of committing them.
 
-PURE has a different provenance issue. The
-[PURE Zenodo record](https://zenodo.org/records/7118517) explains that its
-curators collected public requirements documents from third-party Web sources
-and are not aware of the underlying license agreements or intellectual-property
-rights. The repository therefore does not distribute PURE source PDFs, XML
-documents, or extracted figures. PURE experiments require a separately obtained
-local copy.
+The [PURE Zenodo record](https://zenodo.org/records/7118517) marks PURE 2.0 as
+CC BY 4.0, so this repository publishes reviewed derived annotations and
+aggregate evaluation results with attribution. The record also warns that its
+curators did not verify the underlying rights of every collected Web document.
+Raw PURE archives are therefore kept as separately attributed third-party data
+rather than covered by the repository's MIT license. Install them directly from
+Zenodo with:
+
+```bash
+python scripts/setup_external_requirement_data.py --dataset pure
+```
+
+The command verifies Zenodo checksums and extracts the files into the paths used
+by the PURE workflows. It does not construct the thesis's curated PURE
+screenshot flows or make PURE verification runs appear in the application. The
+versioned aggregate result remains available at
+`artifacts/thesis_evaluation/results/pure_exploratory_summary.json`.
 
 See [Dataset Licensing and Release Policy](dataset_licensing_and_release_policy_2026-07-23.md)
 and the root [NOTICE](../NOTICE.md) for the complete boundary.
