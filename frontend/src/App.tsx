@@ -211,7 +211,6 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
   const [editor, setEditor] = useState<EditorState | null>(null)
   const [reviewCursor, setReviewCursor] = useState<EditorState | null>(null)
   const [openNextAfterSave, setOpenNextAfterSave] = useState<boolean>(false)
-  const [regeneratingClaims, setRegeneratingClaims] = useState<boolean>(false)
 
   useEffect(() => {
     void loadFlows()
@@ -392,36 +391,6 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
   }
 
 
-  async function handleRegenerateExpectedClaims() {
-    if (!selectedFlowId || regeneratingClaims) {
-      return
-    }
-
-    const confirmed = window.confirm(
-      'Regenerate expected claims for all verification benchmark items in this flow? Existing claim statuses and evidence will be preserved by claim position.',
-    )
-    if (!confirmed) {
-      return
-    }
-
-    setMessage('')
-    setRegeneratingClaims(true)
-    try {
-      const result = await api.regenerateExpectedClaims(selectedFlowId, {
-        max_claims: 4,
-        preserve_existing_decisions: true,
-      })
-      setVerificationGold(result.items)
-      await loadFlowDetails(selectedFlowId)
-      setEditor(null)
-      setMessage(`Regenerated expected claims for ${result.changed_item_count} items (${result.changed_claim_count} claim changes).`)
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : 'Failed to regenerate expected claims')
-    } finally {
-      setRegeneratingClaims(false)
-    }
-  }
-
   async function handleAcceptVerificationGoldFromPipeline(requirement: VerificationGoldItem) {
     if (!selectedFlowId) {
       return
@@ -591,8 +560,6 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
             onReject={(requirement) => void handleCandidateAction('reject', requirement)}
             onEditGold={(requirement) => setEditor({mode: 'verification_gold', requirement})}
             onDeleteGold={(requirement) => void handleDeleteGoldRequirement(requirement)}
-            onRegenerateExpectedClaims={() => void handleRegenerateExpectedClaims()}
-            regeneratingClaims={regeneratingClaims}
           />
         )}
 
@@ -1757,8 +1724,6 @@ function OverviewPanel({
   onReject,
   onEditGold,
   onDeleteGold,
-  onRegenerateExpectedClaims,
-  regeneratingClaims,
 }: {
   steps: FlowStep[]
   activeCandidates: Requirement[]
@@ -1770,8 +1735,6 @@ function OverviewPanel({
   onReject: (requirement: Requirement) => void
   onEditGold: (requirement: VerificationGoldItem) => void
   onDeleteGold: (requirement: VerificationGoldItem) => void
-  onRegenerateExpectedClaims: () => void
-  regeneratingClaims: boolean
 }) {
   return (
     <section className="content-grid">
@@ -1827,9 +1790,6 @@ function OverviewPanel({
             <h3>Verification benchmark items</h3>
             <span>{gold.length}</span>
           </div>
-          <button className="secondary-button" onClick={onRegenerateExpectedClaims} disabled={gold.length === 0 || regeneratingClaims}>
-            {regeneratingClaims ? 'Regenerating claims...' : 'Regenerate expected claims'}
-          </button>
         </div>
         <div className="requirement-list compact-list">
           {gold.map((requirement) => (
@@ -3570,7 +3530,6 @@ function RequirementEditorModal({
   const editableVerification = isVerificationGold || mode === 'candidate'
   const availableStepIndices = availableSteps.map((step) => step.step_index)
   const [rephrasingClaimIndex, setRephrasingClaimIndex] = useState<number | null>(null)
-  const [rephrasingAllClaims, setRephrasingAllClaims] = useState<boolean>(false)
   const [form, setForm] = useState<RequirementFormState>(() => ({
     text: requirement.text,
     stepIndices: [...requirement.step_indices],
@@ -3697,40 +3656,6 @@ function RequirementEditorModal({
       window.alert(error instanceof Error ? error.message : 'Failed to rephrase claim')
     } finally {
       setRephrasingClaimIndex(null)
-    }
-  }
-
-  async function rephraseAllClaims() {
-    const requirementText = form.text.trim()
-    if (!requirementText || rephrasingAllClaims) {
-      return
-    }
-    setRephrasingAllClaims(true)
-    try {
-      const response = await api.decomposeClaims({
-        requirement_text: requirementText,
-        max_claims: 4,
-      })
-      const nextClaims = response.claims.map((claim, index) => {
-        const existing = form.claims[index] ?? form.claims[form.claims.length - 1] ?? emptyClaimFormState()
-        return {
-          ...existing,
-          claimId: '',
-          claim: sentenceCase(stripRequirementBoilerplate(claim.claim_text ?? claim.claim)),
-          claimType: claim.claim_type ?? existing.claimType,
-          importance: existing.importance || claim.importance || 'CORE',
-        }
-      }).filter((claim) => claim.claim)
-      if (nextClaims.length > 0) {
-        setForm((current) => ({
-          ...current,
-          claims: nextClaims,
-        }))
-      }
-    } catch (error) {
-      window.alert(error instanceof Error ? error.message : 'Failed to rephrase all claims')
-    } finally {
-      setRephrasingAllClaims(false)
     }
   }
 
@@ -3908,14 +3833,6 @@ function RequirementEditorModal({
                   </div>
                   <button type="button" className="secondary-button" onClick={addClaim}>
                     Add claim
-                  </button>
-                  <button
-                    type="button"
-                    className="secondary-button"
-                    onClick={() => void rephraseAllClaims()}
-                    disabled={rephrasingAllClaims || rephrasingClaimIndex !== null}
-                  >
-                    {rephrasingAllClaims ? 'Rephrasing all...' : 'Rephrase all claims'}
                   </button>
                 </div>
                 {form.claims.length === 0 && <p className="empty-text">No claim rows yet.</p>}
