@@ -208,8 +208,8 @@ Natural-language requirements are attractive because stakeholders can read and
 write them without committing to a formal notation. The requirements studied
 here are natural-language artifacts and therefore retain ambiguities arising
 from wording, domain context, and interpretation. Linguistic sources include
-vague terms, implicit references, and underspecified quantifiers (Berry,
-Kamsties, and Krieger, 2003; Gervasi et al., 2019). Inspecting an implementation
+vague terms, implicit references, and underspecified quantifiers
+[@berry2003; @gervasi2019]. Inspecting an implementation
 cannot by itself resolve an underspecified target. If a requirement asks for
 “all relevant results” without defining relevance, even complete access to the
 UI would not establish a unique expected outcome.
@@ -345,7 +345,7 @@ grounding and benefited from combining visual information with HTML-derived
 candidates (Zheng et al., 2024).
 
 The auxiliary candidate-mark implementation uses OmniParser-derived UI
-proposals together with OCR candidates (Lu et al., 2024). The main
+proposals together with OCR candidates [@lu2024omniparser]. The main
 label-evaluation matrix instead uses direct model-generated regions and does
 not depend on candidate-mark grounding. The auxiliary variant is evaluated as
 evidence localization. Coordinate validity covers only geometry; semantic
@@ -439,8 +439,8 @@ The central unit of analysis is a verification item: one textual requirement
 paired with one ordered screenshot flow and one reviewed reference decision.
 Items from the same flow are not independent because they share screenshots and
 application context. Statistical comparisons therefore use a cluster bootstrap
-that resamples complete flows rather than individual requirements (Field and
-Welsh, 2007). With only 13 flow clusters, intervals are
+that resamples complete flows rather than individual requirements
+[@fieldwelsh2007]. With only 13 flow clusters, intervals are
 reported as uncertainty summaries and interpreted cautiously.
 
 The main evaluation is retrospective. The system does not control the website
@@ -1320,8 +1320,8 @@ Qualitative error analysis assigns errors to recurring categories rather than tr
 The primary comparisons are paired because every configuration predicts the
 same requirements from the same flows. To preserve the dependence among items
 within an application flow, uncertainty intervals are generated with a cluster
-bootstrap that resamples the 13 complete flows with replacement (Field and
-Welsh, 2007). Each bootstrap replicate reconstructs
+bootstrap that resamples the 13 complete flows with replacement
+[@fieldwelsh2007]. Each bootstrap replicate reconstructs
 the compared result sets from the sampled flows and recalculates the metric
 difference. The reported percentile intervals therefore describe variation
 across the observed flow clusters rather than treating 258 correlated items as
@@ -1946,11 +1946,15 @@ establish safer labels, and no benchmark-wide region-quality rate is claimed.
 All 13 primary flows belong to the Mind2Web `test_task` split. Mind2Web is
 identified by its maintainers as CC BY 4.0, but the official repository also
 asks users not to redistribute unzipped test files online and not to place
-benchmark data in training corpora. The public replication artifact is
+benchmark data in training corpora [@mind2webrepo2023]. The public replication artifact is
 therefore limited to reviewed derived annotations, sanitized predictions, code,
 configurations, citations, and aggregate results. It excludes original
 screenshots, HTML, MHTML, HAR files, traces, videos, processed trajectories,
 complete test records, and raw model interactions.
+
+The source code and permitted replication materials are available in the public
+GitHub repository [@brueck2026artifact]. Frozen run manifests record the exact
+repository revisions used for the reported experiments.
 
 PURE 2.0 is marked CC BY 4.0 in its Zenodo metadata [@purezenodo2018]. The
 public artifact may therefore include selected and contextualized requirements, reviewed
@@ -2089,9 +2093,10 @@ auditability rather than assumed to improve the verification label.
 - Cheng, K. et al. (2024). *SeeClick: Harnessing GUI Grounding for Advanced Visual GUI Agents*. ACL 2024. DOI: 10.18653/v1/2024.acl-long.505.
 - Cleland-Huang, J. et al. (2014). *Software Traceability: Trends and Future Directions*. FOSE 2014. DOI: 10.1145/2593882.2593891.
 - Deng, X. et al. (2023). *Mind2Web: Towards a Generalist Agent for the Web*. NeurIPS 2023. arXiv:2306.06070.
+- OSU NLP Group (2023). *Mind2Web: Dataset, Code, and Models*. GitHub repository: https://github.com/OSU-NLP-Group/Mind2Web.
 - Ferrari, A., Spagnolo, G. O., and Gnesi, S. (2017). *PURE: A Dataset of Public Requirements Documents*. IEEE RE 2017. DOI: 10.1109/RE.2017.29. Current dataset record: 10.5281/zenodo.7118517; original archived version: 10.5281/zenodo.1414117.
 - Gervasi, V., Ferrari, A., Zowghi, D., and Spoletini, P. (2019). *Ambiguity in Requirements Engineering: Towards a Unifying Framework*. LNCS 11865, 191–210. DOI: 10.1007/978-3-030-30985-5_12.
-- Gou, B. et al. (2025). *UGround: Universal Visual Grounding for GUI Agents*. ICLR 2025.
+- Gou, B. et al. (2025). *Navigating the Digital World as Humans Do: Universal Visual Grounding for GUI Agents*. ICLR 2025.
 - Hendrickx, K. et al. (2024). *Machine Learning with a Reject Option: A Survey*. Machine Learning 113, 3073–3110. DOI: 10.1007/s10994-024-06534-x.
 - Jimenez, C. E. et al. (2024). *SWE-bench: Can Language Models Resolve Real-World GitHub Issues?* ICLR 2024. arXiv:2310.06770.
 - Kretzer, F., Kolthoff, K., Bartelt, C., Ponzetto, S. P., and Maedche, A. (2025). *Closing the Loop between User Stories and GUI Prototypes: An LLM-Based Assistant for Cross-Functional Integration in Software Development*. CHI 2025, Article 879. DOI: 10.1145/3706598.3713932.
@@ -2099,7 +2104,7 @@ auditability rather than assumed to improve the verification label.
 - Massenon, R., Gambo, I., and Khan, J. A. (2026). *Toward an Automated Cross-Multimodal Verification of Mobile App Bug Fixes*. Information and Software Technology 191, 107996. DOI: 10.1016/j.infsof.2025.107996.
 - Nass, M., Alégroth, E., and Feldt, R. (2021). *Why Many Challenges with GUI Test Automation (Will) Remain*. Information and Software Technology. DOI: 10.1016/j.infsof.2021.106625.
 - Lu, Y., Yang, J., Shen, Y., and Awadallah, A. (2024). *OmniParser for Pure Vision Based GUI Agent*. arXiv:2408.00203.
-- Rawles, C. et al. (2023). *Android in the Wild: A Large-Scale Dataset for Android Device Control*. NeurIPS 2023. arXiv:2307.10088.
 - Wen, B. et al. (2025). *Know Your Limits: A Survey of Abstention in Large Language Models*. Transactions of the Association for Computational Linguistics 13, 529–556. DOI: 10.1162/tacl_a_00754.
 - Yang, J. et al. (2023). *Set-of-Mark Prompting Unleashes Extraordinary Visual Grounding in GPT-4V*. arXiv:2310.11441.
-- Zheng, B. et al. (2024). *SeeAct: GPT-4V(ision) is a Generalist Web Agent, if Grounded*. ICML 2024, PMLR 235.
+- Zheng, B. et al. (2024). *GPT-4V(ision) is a Generalist Web Agent, if Grounded*. ICML 2024, PMLR 235.
+- Brück, B. (2026). *UI Requirement Verification: Source Code and Replication Materials*. GitHub repository: https://github.com/benno-tum/ui-requirement-verification.

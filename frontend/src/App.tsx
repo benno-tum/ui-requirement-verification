@@ -1402,6 +1402,20 @@ function UploadVerificationPage({
   const [message, setMessage] = useState('')
   const [project, setProject] = useState<CreateUploadedFlowResponse | null>(null)
   const [pipelineRun, setPipelineRun] = useState<PipelineVerificationRun | null>(null)
+  const workspaceRef = useRef<HTMLElement | null>(null)
+  const focusWorkspaceAfterCreate = useRef(false)
+
+  useEffect(() => {
+    if (!project || !focusWorkspaceAfterCreate.current) {
+      return
+    }
+    focusWorkspaceAfterCreate.current = false
+    const frame = window.requestAnimationFrame(() => {
+      workspaceRef.current?.focus({preventScroll: true})
+      workspaceRef.current?.scrollIntoView({behavior: 'smooth', block: 'start'})
+    })
+    return () => window.cancelAnimationFrame(frame)
+  }, [project])
 
   useEffect(() => {
     const flowId = new URLSearchParams(window.location.search).get('flow_id')
@@ -1496,6 +1510,7 @@ function UploadVerificationPage({
         requirements_filename: requirementsFilename,
         screenshots: encodedScreenshots,
       })
+      focusWorkspaceAfterCreate.current = true
       setProject(created)
       setPipelineRun(null)
       onProjectCreated(created.flow.flow_id)
@@ -1554,7 +1569,7 @@ function UploadVerificationPage({
           })}
         </ol>
 
-        {message && <section className="upload-message">{message}</section>}
+        {message && <section className="upload-message" role="status" aria-live="polite">{message}</section>}
         {loadingProject && <section className="upload-card">Loading uploaded project…</section>}
 
         {!project && !loadingProject && (
@@ -1565,7 +1580,7 @@ function UploadVerificationPage({
                 <div><h2>Project details</h2><p>Give this verification run a recognizable name.</p></div>
               </div>
               <div className="project-fields">
-                <label>Project name<input value={projectName} onChange={(event) => setProjectName(event.target.value)} placeholder="Checkout confirmation flow" /></label>
+                <label>Project name <span className="required-label">Required</span><input required value={projectName} onChange={(event) => setProjectName(event.target.value)} placeholder="Checkout confirmation flow" /></label>
                 <label>Context <span className="optional-label">Optional</span><input value={description} onChange={(event) => setDescription(event.target.value)} placeholder="What should this UI flow demonstrate?" /></label>
               </div>
             </div>
@@ -1628,14 +1643,14 @@ function UploadVerificationPage({
             </div>
 
             <div className="upload-submit-card upload-card-wide">
-              <div><strong>Ready to create your verification workspace?</strong><span>Inputs stay local under this repository.</span></div>
-              <button onClick={() => void createProject()} disabled={creating}>{creating ? 'Preparing workspace…' : 'Create project & continue →'}</button>
+              <div><strong>Ready to create your verification workspace?</strong><span>After creation, configure and start verification in the workspace below.</span></div>
+              <button onClick={() => void createProject()} disabled={creating}>{creating ? 'Creating workspace…' : 'Create verification workspace'}</button>
             </div>
           </section>
         )}
 
         {project && (
-          <section className="uploaded-workspace">
+          <section className="uploaded-workspace" ref={workspaceRef} tabIndex={-1} aria-label="Created verification workspace">
             <section className="upload-card workspace-summary">
               <div>
                 <span className="eyebrow">Project ready</span>

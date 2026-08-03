@@ -2305,6 +2305,12 @@ textarea {
   font-weight: 500;
 }
 
+.required-label {
+  display: inline;
+  color: #b45309;
+  font-weight: 650;
+}
+
 .drop-zone {
   min-height: 180px;
   display: grid;

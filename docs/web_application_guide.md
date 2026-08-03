@@ -150,8 +150,10 @@ Choose **New screenshot verification** or open
 2. Upload up to 20 PNG, JPEG, or WebP screenshots.
 3. Arrange them in the order experienced by the user.
 4. Enter one requirement per line, or attach a JSON, TXT, or Markdown file.
-5. Select **Create project & continue**.
-6. Run either the offline lexical baseline or visual Gemini verification.
+5. Select **Create verification workspace**. The page opens and focuses the
+   newly created workspace below the form.
+6. Configure and run either the offline lexical baseline or visual Gemini
+   verification in that workspace.
 7. Inspect requirement decisions, claims, evidence steps, and bounding boxes.
 
 Uploaded screenshots are stored under `data/processed/flows/uploads/`.
