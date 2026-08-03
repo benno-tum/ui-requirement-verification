@@ -16,6 +16,7 @@ def _run(tmp_path: Path, *args: str) -> subprocess.CompletedProcess[str]:
     # An explicit empty value prevents dotenv from reintroducing a key from a
     # private-package .env file while exercising the unavailable-LLM path.
     env["GEMINI_API_KEY"] = ""
+    env["DEEPSEEK_API_KEY"] = ""
     return subprocess.run(
         [sys.executable, str(SCRIPT), *args],
         cwd=Path(__file__).resolve().parents[1],
