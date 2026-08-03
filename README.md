@@ -2,6 +2,11 @@
 
 Code and repository data for deriving and verifying UI-facing software requirements from screenshot flows.
 
+> **Using the web application:** See the
+> [Web Application Guide](docs/web_application_guide.md) for a professor-facing
+> walkthrough, the fresh-clone data boundary, verification-run instructions,
+> and troubleshooting.
+
 ## Licensing and dataset boundary
 
 Original software in this repository is available under the MIT License. The
@@ -49,10 +54,13 @@ Requirements:
 Run this from the repository root:
 
 ```bash
+git clone https://github.com/benno-tum/ui-requirement-verification.git
+cd ui-requirement-verification
+
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
-pip install -e ".[llm,data,dev]"
+python -m pip install -e ".[llm,data,dev]"
 
 # This export scans the Mind2Web split and can take a few minutes.
 python scripts/export_mind2web.py --split test_task --max-flows 0 --allowed-flows-file data/annotations/flow_manifests/mind2web_repo_dataset_annotation_ids.txt
