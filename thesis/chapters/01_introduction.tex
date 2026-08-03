@@ -2,7 +2,7 @@
 
 \section{Motivation}\label{motivation}
 
-Generative AI systems are now used for software-development tasks beyond code completion. Coding agents can inspect repositories, edit multiple files, execute tools, and iteratively respond to test results. \textcite{kwa2025}, for example, propose a task-completion time horizon that relates an agent's success to the time required by a human expert and report an approximately exponential historical increase on their studied software and reasoning tasks. Benchmarks such as SWE-bench have likewise moved evaluation from isolated code completion toward the resolution of real issues drawn from software repositories \autocite{jimenez2024}. These developments reduce the effort required to generate candidate implementations and make increasingly autonomous implementation workflows technically plausible.
+Large language models (LLMs) are used in software development for more than code completion. Coding agents can inspect repositories, edit multiple files, execute tools, and iteratively respond to test results. \textcite{kwa2025}, for example, propose a task-completion time horizon that relates an agent's success to the time required by a human expert and report an approximately exponential historical increase on their studied software and reasoning tasks. Benchmarks such as SWE-bench have likewise moved evaluation from isolated code completion toward the resolution of real issues drawn from software repositories \autocite{jimenez2024}. These developments expand the scope of implementation work that can be delegated to models and make increasingly autonomous implementation workflows technically plausible.
 
 Evidence for end-to-end productivity is less clear than benchmark progress. In
 a randomized controlled trial, experienced open-source developers worked on
@@ -69,7 +69,8 @@ principle for decisions under insufficient information \autocite{hendrickx2024,w
 
 The task requires a boundary between visible UI behavior and hidden system
 truth. Backend correctness, security guarantees, payment processing, email
-delivery, database persistence, catalog completeness, long-term availability,
+delivery, database persistence, global result-set or data completeness,
+long-term availability,
 and external effects lie outside screenshot evidence unless the requirement
 targets their visible representation. A success message can serve as a visible
 proxy for the message shown to the user, without establishing the underlying
@@ -116,7 +117,7 @@ false fulfillment.
 
 RQ2 varies claim decomposition and screenshot selection independently. A
 controlled matrix compares raw and decomposed requirements under complete-flow
-and top-k input. Label correctness, evidence overlap, runtime, token usage, and
+and shared top-k input. Label correctness, evidence overlap, runtime, token usage, and
 cost are reported separately.
 
 \textbf{RQ3: Which requirement and evidence patterns cause verification errors, abstentions, or unsafe \texttt{FULFILLED} predictions?}

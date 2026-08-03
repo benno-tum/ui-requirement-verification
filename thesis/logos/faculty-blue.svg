@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="28.745279pt" height="29.963461pt" viewBox="0 0 28.745279 29.963461">
+  <defs>
+    <clipPath id="faculty-logo-clip">
+      <path d="M 0 0.113281 H 28.492188 V 29.8125 H 0 Z"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#faculty-logo-clip)" fill="none" stroke="#64A0C8" stroke-linecap="butt" stroke-linejoin="miter">
+    <ellipse cx="14.246094" cy="15.567891" rx="14.048828" ry="14.047852" stroke-width="0.395"/>
+    <path d="M 14.246094 0.113281 V 28.207031" stroke="#ffffff" stroke-width="1.9"/>
+    <path d="M 14.246094 0.113281 V 28.207031" stroke-width="0.395"/>
+  </g>
+</svg>

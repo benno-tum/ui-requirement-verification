@@ -43,6 +43,7 @@ normalize_citations() {
     s/\(Nass, Alégroth, and Feldt, 2021\)/[\@nass2021]/g;
     s/\(Berry, Kamsties, and Krieger, 2003\)/[\@berry2003]/g;
     s/\(Ferrari, Spagnolo, and Gnesi, 2017\)/[\@ferrari2017]/g;
+    s/\(Field and Welsh, 2007\)/[\@fieldwelsh2007]/g;
     s/\(Massenon, Gambo, and Khan, 2026\)/[\@massenon2026]/g;
     s/\(Baltes et al\., 2026\)/[\@baltes2026]/g;
     s/\(Becker et al\., 2025\)/[\@becker2025]/g;
@@ -68,6 +69,7 @@ normalize_citations() {
     s/\bCleland-Huang et al\. \(2014\)/\@clelandhuang2014/g;
     s/\bDeng et al\. \(2023\)/\@deng2023/g;
     s/\bFerrari et al\. \(2017\)/\@ferrari2017/g;
+    s/\bField and Welsh \(2007\)/\@fieldwelsh2007/g;
     s/\bGervasi et al\. \(2019\)/\@gervasi2019/g;
     s/\bGou et al\. \(2025\)/\@gou2025/g;
     s/\bHendrickx et al\. \(2024\)/\@hendrickx2024/g;
@@ -120,17 +122,37 @@ for index in "${!chapter_files[@]}"; do
       --wrap=preserve
   } > "${latex_file}"
 
-  # Wide Markdown tables are easier to read on landscape pages than when
-  # squeezed into portrait-width columns.
+  # Keep the compact comparison tables in the document's normal reading
+  # orientation. The generated proportional columns already span \linewidth;
+  # forcing every longtable into pdflscape created mostly empty rotated pages.
   LC_ALL=C perl -0pi -e '
-    s/\\begin\{longtable\}/\\begin{landscape}\n\\begin{longtable}/g;
-    s/\\end\{longtable\}/\\end{longtable}\n\\end{landscape}/g;
     s/PARTIALLY\\_FULFILLED/PARTIALLY\\_\\allowbreak FULFILLED/g;
     s/PARTIALLY\\_UI\\_VERIFIABLE/PARTIALLY\\_\\allowbreak UI\\_\\allowbreak VERIFIABLE/g;
     s/WHOLE\\_SCREEN\\_OR\\_TRANSITION/WHOLE\\_\\allowbreak SCREEN\\_\\allowbreak OR\\_\\allowbreak TRANSITION/g;
     s/NO\\_VISIBLE\\_REGION/NO\\_\\allowbreak VISIBLE\\_\\allowbreak REGION/g;
   ' "${latex_file}"
 done
+
+# These figures are authored as standalone TikZ assets but must remain linked
+# from the canonical Markdown source. Fail immediately if synchronization would
+# silently orphan any retained asset again.
+if ! grep -Fq '\input{figures/evidence_first_architecture}' \
+  "${chapter_dir}/04_verification_approach.tex"; then
+  echo "Architecture figure was lost during Markdown synchronization." >&2
+  exit 1
+fi
+
+if ! grep -Fq '\input{figures/benchmark_construction_funnel}' \
+  "${chapter_dir}/05_dataset_annotation.tex"; then
+  echo "Benchmark-construction figure was lost during Markdown synchronization." >&2
+  exit 1
+fi
+
+if ! grep -Fq '\input{figures/amtrak_running_example}' \
+  "${chapter_dir}/05_dataset_annotation.tex"; then
+  echo "Amtrak running-example figure was lost during Markdown synchronization." >&2
+  exit 1
+fi
 
 {
   printf '# Pending notes retained from the Markdown source\n\n'

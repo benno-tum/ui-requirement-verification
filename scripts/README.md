@@ -25,6 +25,21 @@ frozen entry points below rather than copying an older wrapper.
   reference-versus-deterministic-classifier UI-disagreement audit and the
   frozen 60-item V7 region quality audit. These are targeted qualitative and
   quality checks, not accuracy estimates or independent validation.
+- `prepare_rq3_error_audit.py`: freeze a model-identity-blinded RQ3 review
+  queue from the first stored run of each prespecified condition, together
+  with an automatic trigger inventory that is explicitly not a causal coding.
+- `analyze_rq3_error_audit.py`: validate the completed RQ3 author review and
+  report category and pattern-tag counts with explicit denominators;
+  incomplete forms produce progress only.
+- `prepare_rq3_multimodal_chatgpt_batches.py` and
+  `merge_rq3_multimodal_chatgpt_results.py`: prepare, validate, and merge the
+  screenshot-aware LLM coding batches without overwriting canonical
+  author-review fields.
+- `analyze_rq3_visual_coding.py`: validate the repaired 653-row visual coding,
+  apply and validate the targeted primary-author review of all initial boundary
+  rows, reject obsolete benchmark-review outcomes, produce the final descriptive
+  RQ3 tables, and compare them with the separate deterministic heuristic as a
+  post-hoc consistency check.
 - `build_verification_second_review_sample.py`: deterministic blinded,
   label-stratified 44-item independent-review form. Retained as unused
   provenance after the evaluation was scoped to one annotator.
@@ -40,7 +55,11 @@ frozen entry points below rather than copying an older wrapper.
   retained to reproduce the July 21 contextual run.
 - `run_gemini25_omnimark_grounding.py` and related OmniParser scripts:
   exploratory region-grounding experiments, not final label-evaluation entry
-  points.
+  points. `run_omniparser_candidate_grounding.py --detector-output` can rebuild
+  OCR candidates from a preserved OmniParser detector result without requiring
+  the temporary detector environment. `run_gemini25_omnimark_grounding.py
+  --task-id` restricts a diagnostic retry to an exact claim-step task while
+  preserving evidence for all non-target claims.
 
 Do not silently change a historical runner and reuse its old run identifier.
 Create a new experiment ID, output directory, cache directory, and preflight

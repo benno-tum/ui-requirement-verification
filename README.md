@@ -4,9 +4,10 @@ Code and repository data for deriving and verifying UI-facing software requireme
 
 ## Licensing and dataset boundary
 
-This public repository currently has no root software `LICENSE`; public
-visibility alone does not make the code open source. A code license must be
-selected before redistribution rights are claimed.
+Original software in this repository is available under the MIT License. The
+license does not cover the thesis text, the CC BY-SA thesis template,
+Mind2Web/PURE material, or other third-party content. See [`LICENSE`](LICENSE)
+and [`NOTICE.md`](NOTICE.md) for the exact scope.
 
 The numbered flows and their annotations are derived from the Mind2Web
 `test_task` split. Mind2Web identifies its dataset as CC BY 4.0 but also asks
@@ -43,7 +44,7 @@ The repository therefore defines one canonical local flow set that can be recrea
 Requirements:
 
 - Python 3.12
-- Node.js 18+
+- Node.js 20.19+ (or 22.12+)
 
 Run this from the repository root:
 
@@ -62,7 +63,7 @@ In a second terminal:
 
 ```bash
 cd frontend
-npm install
+npm ci
 npm run dev
 ```
 
@@ -157,7 +158,7 @@ A lightweight React + Vite + TypeScript frontend is available in `frontend/`.
 
 ```bash
 cd frontend
-npm install
+npm ci
 npm run dev
 ```
 
@@ -201,6 +202,20 @@ Local SmolVLM experiments use the separate pinned
 `requirements-open-vlm.txt` environment because PyTorch and Transformers are
 not runtime requirements of the main application.
 
+## Build the thesis
+
+The thesis uses the TUM LaTeX template and is built independently from the
+application. A complete TeX installation with `latexmk` is required:
+
+```bash
+cd thesis
+make all
+```
+
+The resulting PDF is written to `thesis/build/main.pdf` and is intentionally
+ignored by Git. See [`thesis/README.md`](thesis/README.md) for template
+attribution and additional build details.
+
 ## Thesis experiment reproduction
 
 The current experiment definitions are:
@@ -243,6 +258,11 @@ Mind2Web-derived artifacts.
 
 ## Data workflows
 
+Optional PURE experiments require a separately obtained local copy of PURE;
+the source documents are intentionally not included in a fresh clone. See
+[`docs/claim_decomposition_external_eval.md`](docs/claim_decomposition_external_eval.md)
+for the expected directory layout and extraction commands.
+
 ### Versioned requirement data
 
 - Candidate requirement snapshots are read from `data/annotations/requirements_candidate/` when present.
@@ -269,6 +289,6 @@ python scripts/generate_candidate_requirements.py --flow-dir data/processed/flow
 - `ValueError: 'data/...' is not in the subpath of '...repo...'`
   Update to the current branch head and rerun the export. Older versions of `scripts/export_mind2web.py` mishandled relative allowlist paths.
 - `sh: vite: command not found`
-  Run `npm install` inside `frontend/` first.
+  Run `npm ci` inside `frontend/` first.
 - Backend starts but `/flows` is empty
   You have not exported the local flow data yet. Run the one-line `python scripts/export_mind2web.py ...` command from `Install flow data`.

@@ -4,6 +4,8 @@ from collections import Counter
 import json
 from pathlib import Path
 
+import pytest
+
 from scripts.prepare_single_author_thesis_audits import (
     build_region_form,
     build_ui_form,
@@ -11,7 +13,18 @@ from scripts.prepare_single_author_thesis_audits import (
 from scripts.apply_single_author_ui_evaluability_audit import reviewed_evidence_steps
 
 
+BASE_DIR = Path(__file__).resolve().parents[1]
+PURE_FLOW_ROOT = BASE_DIR / "data/processed/flows/pure/pure_2010_split_merge"
+V7_RUN_ROOT = (
+    BASE_DIR
+    / "data/generated/verification_pipeline_runs"
+    / "bbox_gemini25flash_omnimark_v7_factcoverage_allflows_01_13_20260721"
+)
+
+
 def test_ui_disagreement_audit_contains_every_mismatch_and_explanations() -> None:
+    if not PURE_FLOW_ROOT.exists():
+        pytest.skip("optional PURE screenshots are not installed")
     form = build_ui_form()
 
     # The completed 81-item reinspection adopted the classifier label in 27
@@ -48,6 +61,8 @@ def test_completed_ui_reinspection_preserves_all_original_decisions() -> None:
 
 
 def test_region_audit_has_four_groups_per_flow_and_all_no_region_cases() -> None:
+    if not any(V7_RUN_ROOT.glob("[0-1][0-9]_*.json")):
+        pytest.skip("optional generated V7 verification run is not installed")
     form = build_region_form(4)
     regular = [
         item

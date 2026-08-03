@@ -674,16 +674,17 @@
       "requirement_type": "FR",
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "STATE_CHANGE_ACROSS_SCREENS",
-      "annotation_notes": "The visible counter-evidence contradicts full synchronization between the map context and every returned store in the list.",
+      "annotation_notes": "The universal synchronization condition is contradicted by one visible counterexample: the 90028 search and Los Angeles map are shown together with a pinned home-store result in Columbus, Ohio.",
       "annotated_by": "benno",
-      "manual_verification_label": "fulfilled",
+      "manual_verification_label": "not_fulfilled",
+      "manual_verification_notes": "Post-hoc author amendment on 2026-08-02 after a qualitative grounding audit: corrected the requirement label from FULFILLED to NOT_FULFILLED and the universal claim from SUPPORTED_WITH_CAVEAT to CONTRADICTED. The visible Columbus home-store result is a counterexample to 'all'; evaluation metrics were recomputed from unchanged stored predictions.",
       "intended_label": "NOT_FULFILLED",
-      "verification_label": "FULFILLED",
+      "verification_label": "NOT_FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
       "claims": [
         {
-          "claim": "The searched location and selected radius remain associated with the results.",
+          "claim": "The searched location 90028 and selected 15-mile radius remain visible after the search.",
           "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
@@ -714,7 +715,7 @@
         },
         {
           "claim": "All returned store results are synchronized with the searched map context.",
-          "status": "SUPPORTED_WITH_CAVEAT",
+          "status": "CONTRADICTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
@@ -726,7 +727,7 @@
               "evidence_type": "screen"
             }
           ],
-          "note": "The home store is still present but the rest is sychronized"
+          "note": "The first listed result is the pinned Polaris Fashion Place Mall home store in Columbus, Ohio, which is outside the 90028 Los Angeles map context. One counterexample is sufficient to contradict the universal quantifier."
         }
       ],
       "evidence_steps": [
@@ -738,11 +739,11 @@
           "evidence_type": "screen"
         }
       ],
-      "evidence_note": "Step 4 shows a Los Angeles map for 90028, but the first visible result remains Polaris Fashion Place Mall in Columbus, Ohio, while other results are Los Angeles area stores.",
-      "rationale": "The visible counter-evidence contradicts full synchronization between the map context and every returned store in the list.",
+      "evidence_note": "Step 4 shows the search location 90028, a 15-mile radius, and a Los Angeles map. The first listed result is nevertheless the pinned Polaris Fashion Place Mall home store at 1500 Polaris Pkwy, Columbus, OH 43240; the other visible results are in the Los Angeles area.",
+      "rationale": "The requirement is not fulfilled. Although the search controls and map are synchronized with Los Angeles, the store list is not fully synchronized because it includes the pinned Columbus home store. This single visible counterexample contradicts the core claim that all returned stores match the searched map context.",
       "review_status": "accepted",
       "created_at": "2026-05-07T12:24:43+00:00",
-      "updated_at": "2026-06-23T21:30:28+00:00"
+      "updated_at": "2026-08-02T13:05:54+02:00"
     },
     {
       "requirement_id": "CONTR-05",

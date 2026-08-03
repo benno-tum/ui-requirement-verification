@@ -39,7 +39,7 @@ def test_mashboot_gold_preserves_every_candidate_claim_regardless_of_manual_stat
         Path("data/annotations/verification_gold/pure_2010_mashboot/verification_gold.json")
     )
     candidates = json.loads(
-        Path("data/generated/candidate_requirements/pure_2010_mashboot/candidate_requirements.json").read_text(
+        Path("data/annotations/requirements_candidate/pure_2010_mashboot/candidate_requirements.json").read_text(
             encoding="utf-8"
         )
     )

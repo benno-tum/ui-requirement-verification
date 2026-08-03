@@ -1,0 +1,94 @@
+\chapter{Operational Label Definitions}\label{appendix-label-definitions}
+
+This appendix consolidates the operational definitions used for annotation and
+model evaluation. UI evaluability concerns what screenshots could establish in
+principle. The verification label concerns what the recorded flow establishes
+for a particular requirement.
+
+\section{UI Evaluability}
+
+\vspace{0.5\baselineskip}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.29\textwidth}>{\raggedright\arraybackslash}p{0.65\textwidth}@{}}
+  \toprule
+  \textbf{Label} & \textbf{Operational definition} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Label} & \textbf{Operational definition} \\
+  \midrule
+  \endhead
+  \texttt{UI\_VERIFIABLE} & All material claims can be assessed through rendered content or visible state changes. \\
+  \texttt{PARTIALLY\_\allowbreak UI\_\allowbreak VERIFIABLE} & A material visible core exists, but full satisfaction also depends on hidden state, persistence, policy, business logic, or an external system. \\
+  \texttt{NOT\_UI\_\allowbreak VERIFIABLE} & The central property has no stable visual manifestation or is too abstract for screenshot-based assessment. \\
+  \bottomrule
+\end{longtable}
+
+\section{Verification Labels}
+
+\vspace{0.5\baselineskip}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.29\textwidth}>{\raggedright\arraybackslash}p{0.65\textwidth}@{}}
+  \toprule
+  \textbf{Label} & \textbf{Use when} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Label} & \textbf{Use when} \\
+  \midrule
+  \endhead
+  \texttt{FULFILLED} & Every UI-observable core claim is visibly supported, at least one evidence unit is recorded, no observable core claim is contradicted, and no material uncertainty remains about visible behavior. \\
+  \texttt{PARTIALLY\_\allowbreak FULFILLED} & At least one important claim is supported and at least one important claim remains missing, hidden, or ambiguous. A contradicted core claim instead requires \texttt{NOT\_FULFILLED}. \\
+  \texttt{NOT\_FULFILLED} & Visible counter-evidence contradicts at least one observable core claim. Missing evidence alone is insufficient. \\
+  \texttt{ABSTAIN} & The recorded screenshots support no reliable positive, partial, or negative decision. This is a completed semantic prediction, not a missing output. \\
+  \bottomrule
+\end{longtable}
+
+Routine hidden dependencies do not block \texttt{FULFILLED} when the requested
+visible outcome is shown. By contrast, an unverified system outcome or a
+nontrivial hidden property blocks a full positive verdict.
+
+\section{Uncertainty Reasons}
+
+\vspace{0.5\baselineskip}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.39\textwidth}>{\raggedright\arraybackslash}p{0.55\textwidth}@{}}
+  \toprule
+  \textbf{Reason} & \textbf{Meaning} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Reason} & \textbf{Meaning} \\
+  \midrule
+  \endhead
+  \texttt{TEXTUAL\_AMBIGUITY} & The requirement wording is unclear or vague. \\
+  \texttt{SCOPE\_OR\_CONTEXT\_\allowbreak AMBIGUITY} & The relevant screen, item, role, or flow segment is unclear. \\
+  \texttt{QUANTIFIER\_OR\_\allowbreak COMPLETENESS\_\allowbreak AMBIGUITY} & Terms such as ``all,'' ``each,'' ``only,'' ``always,'' or ``closest'' are not visibly settled. \\
+  \texttt{EVIDENCE\_\allowbreak INTERPRETATION\_\allowbreak AMBIGUITY} & Evidence is visible, but its meaning or causal interpretation is unclear. \\
+  \texttt{FLOW\_COVERAGE\_GAP} & A necessary before, during, or after state is absent from the recorded flow. \\
+  \texttt{UNVERIFIED\_SYSTEM\_\allowbreak OUTCOME} & A mechanism is shown, but the required success outcome is not. \\
+  \texttt{NONTRIVIAL\_HIDDEN\_\allowbreak PROPERTY} & The requirement depends on a hidden property that screenshots cannot establish. \\
+  \bottomrule
+\end{longtable}
+
+\section{Consistency Gates}
+
+The following gates make the label policy testable:
+
+\begin{itemize}
+  \item \texttt{FULFILLED} requires recorded evidence and support for all
+    observable core claims, and forbids a contradicted core claim or unresolved
+    material uncertainty.
+  \item \texttt{PARTIALLY\_FULFILLED} requires both meaningful support and an
+    important missing, hidden, or ambiguous part.
+  \item \texttt{NOT\_FULFILLED} requires visible counter-evidence against an
+    observable core claim.
+  \item \texttt{ABSTAIN} requires an insufficiency reason but no positive
+    evidence.
+\end{itemize}
+
+At claim level, \texttt{SUPPORTED}, \texttt{CONTRADICTED}, \texttt{MISSING},
+\texttt{HIDDEN}, \texttt{AMBIGUOUS}, and \texttt{OUT\_OF\_SCOPE} distinguish
+positive evidence, counter-evidence, absent evidence, non-visible obligations,
+unstable interpretations, and routine internal effects outside the visible
+contract.

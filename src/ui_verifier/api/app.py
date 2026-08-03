@@ -461,6 +461,19 @@ def _iter_verification_run_paths() -> list[Path]:
                 continue
             seen.add(resolved)
             paths.append(path)
+
+    # The upload workbench intentionally allows a user-defined output folder.
+    # API-created run files are written directly inside that folder, so include
+    # direct JSON children of every generated-data directory without recursively
+    # traversing unrelated caches or large experiment trees.
+    for path in GENERATED_ROOT.glob("*/*.json"):
+        if path.name.startswith("metrics") or path.name in {"summary.json", "gold_01_13.json"}:
+            continue
+        resolved = path.resolve()
+        if resolved in seen:
+            continue
+        seen.add(resolved)
+        paths.append(path)
     return paths
 
 

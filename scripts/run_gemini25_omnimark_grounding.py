@@ -27,7 +27,7 @@ DEFAULT_SOURCE_RUN = (
 DEFAULT_CANDIDATES = BASE_DIR / "data/generated/omniparser_candidate_marks/flow02_20260720/candidates.json"
 DEFAULT_OUTPUT_DIR = BASE_DIR / "data/generated/verification_pipeline_runs" / RUN_ID
 DEFAULT_WORK_DIR = BASE_DIR / "data/generated/gemini25_omnimark_grounding/flow02_atlas_20260720"
-PROMPT_VERSION = "GEMINI25_OMNIMARK_SELECTION_V7_CLAIM_FACT_COVERAGE_MAX2"
+PROMPT_VERSION = "GEMINI25_OMNIMARK_SELECTION_V10_SOURCE_REGION_TRACE_MAX2"
 MAX_REGIONS_PER_TASK = 2
 RECOVERY_TASKS_PER_CALL = 5
 
@@ -42,6 +42,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--thinking-level", choices=("minimal", "low", "medium", "high"))
     parser.add_argument("--max-output-tokens", type=int, default=4096)
     parser.add_argument("--cost-ceiling-usd", type=float, default=0.10)
+    parser.add_argument(
+        "--task-id",
+        action="append",
+        default=[],
+        help="Ground only the exact task ID; may be supplied more than once.",
+    )
     parser.add_argument("--prepare-only", action="store_true")
     return parser.parse_args()
 
@@ -74,12 +80,13 @@ def collect_tasks(run: dict[str, Any]) -> tuple[dict[int, list[dict[str, Any]]],
     metadata: dict[str, dict[str, Any]] = {}
     for result_index, result in enumerate(run.get("results", [])):
         for claim_index, claim in enumerate(result.get("claims", [])):
-            first_by_step: dict[int, dict[str, Any]] = {}
+            evidence_by_step: dict[int, list[dict[str, Any]]] = defaultdict(list)
             for evidence in claim.get("evidence", []):
                 step = int(evidence.get("step_index") or 0)
                 if step > 0:
-                    first_by_step.setdefault(step, evidence)
-            for step, evidence in sorted(first_by_step.items()):
+                    evidence_by_step[step].append(evidence)
+            for step, step_evidence in sorted(evidence_by_step.items()):
+                evidence = step_evidence[0]
                 identifier = f"{result.get('requirement_id')}::{claim.get('claim_id')}::S{step}"
                 task = {
                     "task_id": identifier,
@@ -88,6 +95,25 @@ def collect_tasks(run: dict[str, Any]) -> tuple[dict[int, list[dict[str, Any]]],
                     "claim_id": claim.get("claim_id"),
                     "claim_text": claim.get("claim_text"),
                     "claim_status": claim.get("status"),
+                    "verifier_rationale": claim.get("rationale"),
+                    "existing_visible_observations": [
+                        item.get("visible_observation")
+                        for item in step_evidence
+                        if item.get("visible_observation")
+                    ],
+                    "existing_evidence_regions": [
+                        {
+                            "visible_observation": item.get("visible_observation"),
+                            "bbox_xyxy": item.get("bbox"),
+                            "ocr_matched_text": (
+                                ((item.get("bbox_metadata") or {}).get("ocr_refinement") or {}).get(
+                                    "matched_text"
+                                )
+                            ),
+                        }
+                        for item in step_evidence
+                        if item.get("bbox")
+                    ],
                 }
                 by_step[step].append(task)
                 metadata[identifier] = {
@@ -224,7 +250,7 @@ def prompt_for_step(step: int, tasks: list[dict[str, Any]], candidates: list[dic
         for candidate in candidates
     ]
     return f"""
-You are grounding already-verified UI claims in target screenshot step {step}. Use screenshot pixels only; do not infer HTML or hidden state.
+You are grounding already-verified UI claims in target screenshot step {step}. Use screenshot pixels only; do not infer HTML or hidden state. The upstream claim status and verifier rationale are frozen semantic decisions. Localize the concrete visible facts that actually support that decision instead of inventing a different interpretation. Existing visible observations are localization hypotheses: verify them against the clean screenshot and correct their spatial extent when necessary.
 
 Images after this prompt are ordered as follows:
 1. Clean target screenshot step {step}. Use it to understand the UI without mark obstruction.
@@ -245,13 +271,13 @@ Before returning each task, perform this merge check: if you selected two or mor
 
 Prefer OmniParser U-regions when they cover the meaningful component or container. Use T-regions for precise textual evidence. Inspect both the clean and marked versions before deciding.
 
-First derive a short list called required_visible_facts from the requirement text, claim text, and claim_status. Include every distinct visible fact needed to justify that status; do not weaken or paraphrase away conjunctions, comparisons, relationships, state, or context in the claim. Base localization on those texts and screenshot pixels, not on assumptions about what an earlier verifier may have noticed.
+First derive a short list called required_visible_facts from the requirement text, claim text, claim_status, verifier_rationale, existing_visible_observations, and existing_evidence_regions. Include every distinct visible fact needed to justify that status; do not weaken or paraphrase away conjunctions, comparisons, relationships, state, or context in the claim. The rationale tells you which already-verified semantic contrast to ground, but every returned region must still contain the named screenshot pixels. Existing evidence boxes are coarse upstream localization hypotheses; use their OCR-matched text and coordinates to find the corresponding candidate marks, while correcting their extent if the screenshot shows that they are wrong.
 
 Apply two independent checks before selecting an ID:
 1. CONTAINMENT: the exact visible indicator named in the rationale must be inside the region. Semantic proximity or partial overlap is insufficient. Reject a candidate that crosses substantially into unrelated content or omits a relevant part of the component.
 2. SUFFICIENCY: the pixels inside the returned region must, by themselves, provide enough visible information to justify the supplied claim_status for the claim. A heading, keyword, icon, or isolated value is insufficient when the claim depends on its surrounding options, context, relationship, or state.
 
-If a candidate passes containment but fails sufficiency, prefer one enclosing candidate that includes the necessary context. If none exists, draw a tight supplemental box around the complete relevant component. Use a second spatially separate region only when no single rectangle can honestly contain the jointly required evidence. The union of the returned regions must visibly cover every required_visible_fact. For each returned region, report which fact numbers it covers. If any required fact remains uncovered, revise the selection before responding. Your rationale must name only content actually enclosed by the returned region. Do not use website-, domain-, or flow-specific assumptions; apply these criteria uniformly to every task.
+If a candidate passes containment but fails sufficiency, prefer one enclosing candidate that includes the necessary context. If none exists, draw a tight supplemental box around the complete relevant component. Use a second spatially separate region only when no single rectangle can honestly contain the jointly required evidence. The union of the returned regions must visibly cover every required_visible_fact. For each returned region, report which fact numbers it covers. If any required fact remains uncovered, revise the selection before responding. Your rationale must name only content actually enclosed by the returned region. Do not use website-, domain-, or flow-specific assumptions; apply these criteria uniformly to every task. For a contradiction based on two conflicting values or contexts, spend the available regions on the two sides of that conflict; do not replace one side with a nearby title or icon. Your response is invalid unless the union of region_fact_coverage contains every integer from 1 through the number of required_visible_facts.
 
 If no listed ID covers necessary visible evidence, return a supplemental region using [ymin, xmin, ymax, xmax] normalized to 0–1000 relative to the CLEAN TARGET screenshot. Supplemental regions are a fallback, not a replacement for a suitable ID.
 
@@ -355,6 +381,25 @@ def normalize_response(value: Any) -> dict[str, list[dict[str, Any]]]:
     return {"selections": [item for item in items if isinstance(item, dict)]}
 
 
+def selection_covers_required_facts(item: dict[str, Any]) -> bool:
+    if item.get("applicability") == "NO_VISIBLE_REGION":
+        return True
+    required_facts = item.get("required_visible_facts")
+    coverage = item.get("region_fact_coverage")
+    if not isinstance(required_facts, list) or not required_facts:
+        return False
+    if not isinstance(coverage, dict):
+        return False
+    covered: set[int] = set()
+    for fact_indices in coverage.values():
+        if not isinstance(fact_indices, list):
+            continue
+        for value in fact_indices:
+            if isinstance(value, int):
+                covered.add(value)
+    return set(range(1, len(required_facts) + 1)).issubset(covered)
+
+
 def main() -> None:
     args = parse_args()
     source_run = load_json(args.source_run)
@@ -366,6 +411,21 @@ def main() -> None:
     candidates_by_step = package.get("steps") or {}
     run = deepcopy(source_run)
     tasks_by_step, task_metadata = collect_tasks(run)
+    if args.task_id:
+        requested_task_ids = set(args.task_id)
+        unknown_task_ids = sorted(requested_task_ids - set(task_metadata))
+        if unknown_task_ids:
+            raise ValueError("Unknown task IDs: " + ", ".join(unknown_task_ids))
+        task_metadata = {
+            identifier: metadata
+            for identifier, metadata in task_metadata.items()
+            if identifier in requested_task_ids
+        }
+        tasks_by_step = {
+            step: [task for task in tasks if str(task.get("task_id")) in requested_task_ids]
+            for step, tasks in tasks_by_step.items()
+        }
+        tasks_by_step = {step: tasks for step, tasks in tasks_by_step.items() if tasks}
     images = source_images(run)
     args.work_dir.mkdir(parents=True, exist_ok=True)
     assets, context_path = prepare_assets(args.work_dir, images, candidates_by_step)
@@ -427,6 +487,12 @@ def main() -> None:
         except ValueError:
             response_data = {"selections": []}
         requested_ids = {str(task["task_id"]) for task in tasks}
+        response_data["selections"] = [
+            item
+            for item in response_data["selections"]
+            if str(item.get("task_id") or "") in requested_ids
+            and selection_covers_required_facts(item)
+        ]
         returned_ids = {
             str(item.get("task_id") or "")
             for item in response_data["selections"]
@@ -463,7 +529,12 @@ def main() -> None:
                 )
                 parsed = parse_json_response(result.text)
                 new_response = normalize_response(parsed)
-                response_data["selections"].extend(new_response["selections"])
+                response_data["selections"].extend(
+                    item
+                    for item in new_response["selections"]
+                    if str(item.get("task_id") or "") in requested_ids
+                    and selection_covers_required_facts(item)
+                )
                 step_usage.append(result.usage_record)
                 checkpoints[str(step)] = {"response": response_data, "usage": step_usage}
                 checkpoint_path.write_text(json.dumps(checkpoints, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -599,9 +670,13 @@ def main() -> None:
             )
             source_counts[source_name] += 1
 
+    regrounded_claims = {
+        (int(meta["result_index"]), int(meta["claim_index"])) for meta in task_metadata.values()
+    }
     for result_index, result in enumerate(run.get("results", [])):
         for claim_index, claim in enumerate(result.get("claims", [])):
-            claim["evidence"] = evidence_by_claim.get((result_index, claim_index), [])
+            if (result_index, claim_index) in regrounded_claims:
+                claim["evidence"] = evidence_by_claim.get((result_index, claim_index), [])
         result["evidence"] = [evidence for claim in result.get("claims", []) for evidence in claim.get("evidence", [])]
 
     created_at = utc_now()
@@ -613,6 +688,7 @@ def main() -> None:
         "grounding_method": "gemini25_omnimark_selection",
         "grounding_model": args.model,
         "candidate_package": str(args.candidates.resolve()),
+        "grounding_task_filter": list(args.task_id),
     }
     claims = [claim for result in run.get("results", []) for claim in result.get("claims", [])]
     box_count = sum(len(claim.get("evidence", [])) for claim in claims)
@@ -631,6 +707,7 @@ def main() -> None:
             "grounding": f"{args.model} selects OmniParser UI and OCR IDs from clean plus separately marked target screenshots, with normalized supplemental fallback",
             "estimated_cost_usd": cumulative_cost,
             "prompt_version": effective_prompt_version,
+            "task_filter": list(args.task_id),
         },
         "fallback_flows": [],
         "totals": {

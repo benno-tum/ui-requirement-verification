@@ -21,12 +21,13 @@ being treated as a cause of improved label accuracy.
 For \textbf{RQ1}, multimodal models assess requirement fulfillment from ordered
 screenshot flows with useful but incomplete accuracy under the fixed
 four-label operationalization. Gemini 3.1 Flash-Lite reaches 79.5\% accuracy and
-0.514 macro-F1 in the matched raw/all configuration, compared with 73.3\% and
-0.412 for Gemini 2.5 Flash-Lite. The hosted Qwen baseline shows that equal
+0.511 macro-F1 in the matched raw/all configuration, compared with 73.3\% and
+0.413 for Gemini 2.5 Flash-Lite. The hosted Qwen baseline shows that equal
 headline accuracy can conceal substantially different false-fulfillment and
 minority-class behavior. Model choice therefore matters, and accuracy alone
-does not characterize fulfillment-label performance. In the order-unavailable
-robustness condition, 10.9\% of labels change and aggregate accuracy decreases
+does not characterize fulfillment-label performance.
+
+In the order-unavailable robustness condition, 10.9\% of labels change and aggregate accuracy decreases
 by about 4.7 percentage points. Ordered input is therefore operationally
 relevant to the implemented verifier, although the limited subgroup evidence
 does not support a universal causal claim for every temporal requirement
@@ -35,8 +36,8 @@ pattern.
 For \textbf{RQ2}, the effects of decomposition and screenshot selection are
 conditional. Gated automatic decomposition does not materially improve
 all-screenshot accuracy and increases false fulfillment in that setting, but it
-improves macro-F1 when evidence is restricted to top-4. Lexical top-4 selection
-reduces raw-requirement accuracy and evidence MRR relative to the complete flow
+improves macro-F1 when evidence is restricted to top-4. Shared top-4 selection
+reduces raw-requirement accuracy and chronological evidence-trace alignment relative to the complete flow
 while providing negligible cost savings in the current batching
 implementation. Explicit evidence remains valuable for traceability even where
 the staged configuration does not improve labels. Region-level evidence is
@@ -45,11 +46,22 @@ evaluated as an additional traceability output rather than an accuracy factor.
 For \textbf{RQ3}, the main failures are systematic. Models over-generalize from a
 visible entry point to an unobserved outcome, infer hidden or external behavior
 from interface proxies, overstate universal and comparative claims, and miss
-decisive late states when retrieval favors lexical overlap. Native abstentions
-often protect against unsupported closed-world decisions: replacing all
-abstentions with negative labels substantially reduces accuracy. This does not
-prove that every abstention is calibrated, but it confirms that insufficient
-evidence and visible contradiction must remain distinct.
+decisive late states when retrieval favors lexical overlap.
+
+Native abstentions often protect against unsupported closed-world decisions:
+replacing all abstentions with negative labels substantially reduces accuracy.
+This does not prove that every abstention is calibrated, but it confirms that
+insufficient evidence and visible contradiction must remain distinct.
+
+The completed
+screenshot-aware audit assigns 142 of 392 label errors (36.2\%) to unsafe
+over-fulfillment, 138 (35.2\%) to excessive abstention, and 57 (14.5\%) to
+evidence-selection misses. Multi-screen composition, late result states, hidden
+or external behavior, and cross-step persistence are the most frequent
+overlapping requirement patterns. The results answer RQ3 descriptively for the
+frozen 13-flow benchmark; repeated conditions and the LLM-assisted coding with
+targeted primary-author boundary review do not support population-level
+prevalence or independent-human reliability claims.
 
 \section{Contributions}\label{contributions}
 
@@ -70,13 +82,16 @@ evaluability, abstention, runtime, cost, and stability as distinct outcomes.
 
 \section{Future Work}\label{future-work}
 
-The next methodological step is an evidence-sufficiency rubric that
-operationalizes the abstract labels more precisely. A general layer could
-distinguish visible states from downstream effects, bounded UI sets from
-open-world completeness, and strong visible proxies from hidden guarantees.
-Context profiles could then specify which indicators are accepted in a
-particular domain. The model would still interpret requirements and
-screenshots, but less of the decision policy would remain implicit.
+The next methodological step is an error-driven refinement loop for the label
+policy. After each evaluation, the primary error categories can be inspected
+for recurring mechanisms and translated into general evidence-sufficiency
+rules. For example, the rubric could distinguish visible states from downstream
+effects, bounded UI sets from open-world completeness, and strong visible
+proxies from hidden guarantees. The revised guide, prompt, and deterministic
+gates would then be evaluated on held-out flows, and the remaining errors would
+start the next iteration. This process could reduce model-dependent assumptions
+without treating the observed categories as universal causes or assuming that
+each iteration must improve accuracy.
 
 This work requires a larger, requirements-first benchmark. Independent
 requirements should be fixed before collecting corresponding UI drafts,
@@ -84,12 +99,17 @@ implementations, and execution flows, ideally with several variants containing
 natural or deliberately introduced deviations. Such data would separate
 requirement ambiguity, design conformance, implementation defects, and
 incomplete execution evidence. The rubric should be developed separately from
-the evaluation applications and tested on held-out contexts. Additional flow
-clusters and reviewers would also strengthen estimates for rare classes.
+the evaluation applications and tested on held-out contexts. More diverse
+interfaces, requirements from real projects, additional flow clusters, and
+several reviewers would also strengthen estimates for rare classes and reveal
+whether refined rules transfer beyond the current benchmark.
 
-Evidence acquisition should become adaptive by pairing actions with result
-states, prioritizing late states, and requesting more screenshots when selected
-evidence is insufficient. Semantic retrieval must be tested against complete
-flows rather than assumed to help. Region grounding should improve proposal
-recall and multi-region or transition evidence, evaluated through reviewer
-effort and auditability.
+For short flows, future systems should retain direct complete-flow verification
+as the baseline because neither mandatory claim decomposition nor shared
+lexical top-k selection improved the strongest configuration here. Adaptive evidence
+acquisition becomes relevant when flows exceed practical context limits. It
+should pair actions with result states, prioritize late states, and request more
+screenshots when evidence is insufficient. Finally, region grounding should
+improve proposal coverage and support multi-region or transition evidence. Its
+success should be measured through relevance, sufficiency, reviewer effort, and
+auditability rather than assumed to improve the verification label.

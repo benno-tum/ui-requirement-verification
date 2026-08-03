@@ -8,8 +8,9 @@
 \usepackage[autostyle]{csquotes}
 \usepackage[%
   backend=bibtex,
-  style=authoryear,
-  sorting=nyt,
+  style=numeric,
+  sorting=none,
+  sortcites=true,
   url=true,
   doi=true,
   maxcitenames=2,
@@ -22,6 +23,7 @@
 \usepackage{listings}
 \usepackage{lstautogobble}
 \usepackage{tikz}
+\usetikzlibrary{fit}
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
 \usepackage{booktabs}
@@ -31,6 +33,7 @@
 \usepackage{calc}
 \usepackage[final]{microtype}
 \usepackage{caption}
+\usepackage{placeins}
 \usepackage[printonlyused]{acronym}
 \usepackage{ifthen}
 \usepackage{xurl}
@@ -86,7 +89,7 @@
 
 % Pandoc uses a non-numbered longtable caption type for Markdown tables.
 \newcounter{none}
-\AtBeginEnvironment{longtable}{\small}
+\AtBeginEnvironment{longtable}{\small\setlength{\tabcolsep}{3pt}}
 
 % Improve line breaking for long inline identifiers and URLs.
 \setlength{\emergencystretch}{3em}

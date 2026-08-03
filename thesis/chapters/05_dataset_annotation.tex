@@ -4,28 +4,38 @@
 
 The main evaluation data consists of 13 web interaction flows derived from the Mind2Web dataset. Mind2Web was originally introduced as a benchmark for generalist web agents and contains real website tasks and interaction trajectories \autocite{deng2023}. In this study, ordered screenshots from selected trajectories serve as observations for independently represented UI requirements; the original action-prediction task is not evaluated.
 
-The selected flows cover theme-park purchases, product lookup, careers
-navigation, dining information, cinema support forms, cruise search, book
-search, and business listings. Each flow contains several meaningful states. A
+The 13 flows form a purposive convenience sample from 39 locally processed
+flows. They were selected for complete screenshot sequences and coverage of
+search, navigation, forms, carts, checkout, and result states; they are neither
+random nor representative of web interfaces in general. The sample covers
+theme-park purchases, product lookup, careers navigation, dining information,
+cinema support forms, cruise search, book search, and business listings. Each
+flow contains several meaningful states. A
 cart flow may progress from product selection through quantity changes and
 add-ons to the summary and checkout controls. Search flows contain inputs and
 later results. These sequences support requirements that a single screenshot
 cannot resolve.
 
-The benchmark contains 258 verification items across the 13 flows: 173 reviewed
-source requirements and 85 reviewed contrastive items. Their annotations
-contain 541 claims. All items completed a prediction-independent primary-author
-review workflow.
+The benchmark contains 258 verification items across the 13 flows. Of these,
+187 are reviewed source requirements derived from the recorded flows. The
+remaining 71 are reviewed contrastive requirements: text-only variants proposed
+from the source requirements and broader hypotheses about similar systems, then
+reviewed against the screenshots. Their annotations contain 541 claims. All
+items completed a prediction-independent primary-author review workflow. A
+later qualitative grounding audit exposed one internally inconsistent GameStop
+annotation. The resulting post-hoc author amendment is logged in the item
+metadata; all reported metrics were recomputed against the corrected reference
+while leaving stored model predictions unchanged.
 
-The label distribution is imbalanced: 172 items are \texttt{FULFILLED}, 45 are \texttt{PARTIALLY\_\allowbreak FULFILLED}, 33 are \texttt{ABSTAIN}, and 8 are \texttt{NOT\_FULFILLED}. Approximately two thirds of the items are therefore positive. A classifier that favors \texttt{FULFILLED} can obtain a deceptively strong accuracy while failing on the three less frequent labels. This imbalance motivates macro-F1 and per-class reporting.
+The label distribution is imbalanced: 172 items are \texttt{FULFILLED}, 44 are \texttt{PARTIALLY\_\allowbreak FULFILLED}, 33 are \texttt{ABSTAIN}, and 9 are \texttt{NOT\_FULFILLED}. Approximately two thirds of the items are therefore positive. This skew is consistent with deriving requirements from observed, functioning UI flows, but it is not an estimate of label prevalence in production systems. A classifier that favors \texttt{FULFILLED} can still obtain a deceptively strong accuracy while failing on the three less frequent labels. This imbalance motivates macro-F1 and per-class reporting.
 
 UI evaluability is annotated separately from fulfillment. The 258 items include
-192 \texttt{UI\_VERIFIABLE}, 62 \texttt{PARTIALLY\_\allowbreak UI\_\allowbreak VERIFIABLE}, and 4
+220 \texttt{UI\_VERIFIABLE}, 35 \texttt{PARTIALLY\_\allowbreak UI\_\allowbreak VERIFIABLE}, and 3
 \texttt{NOT\_UI\_VERIFIABLE} cases. Evaluability describes whether screenshots can
 resolve the requirement in principle; the final label describes what the
-recorded flow supports. An incomplete flow can leave a UI-verifiable
-requirement undecidable, while a compound requirement with visible and hidden
-parts can be only partially UI-verifiable.
+recorded flow supports. A requirement may therefore be UI-verifiable in
+principle even when the recorded flow does not contain enough evidence for a
+decision.
 
 \section{From Candidates to Verification Gold}\label{from-candidates-to-verification-gold}
 
@@ -33,15 +43,40 @@ Because requirements are derived from UI flows, benchmark construction uses
 staged artifacts and prediction-independent human review to separate candidate
 generation from reference annotation.
 
-Harvesting produces a broad set of requirement hypotheses, including redundant,
-ambiguous, hidden, and incompletely supported properties. Filtering and
-rewriting convert selected hypotheses into candidates. A reviewer then rejects,
-edits, or promotes each candidate; candidate status carries no correctness
-claim.
+Harvesting uses the recorded UI flows to produce a broad set of requirement
+hypotheses, including redundant, ambiguous, hidden, and incompletely supported
+properties. Filtering and rewriting convert selected hypotheses into
+candidates. A reviewer then rejects, edits, or promotes each candidate;
+candidate status carries no correctness claim. Because these hypotheses are
+derived from observed UI states, harvesting alone tends to produce requirements
+that the same flows fulfill.
 
-The 13 Mind2Web flows currently contain 100 committed candidate requirements and 173 reviewed source requirements. These counts refer only to the Mind2Web-derived directories; combining them with PURE candidates produces a different total and must be avoided in reporting. Review promotes a text into the source requirement set, but the verification benchmark adds further information: UI evaluability, a requirement-level label, atomic claims, claim statuses, evidence steps, rationale, and uncertainty reasons.
+Items with the explicit \texttt{contrastive} tag form the 71 contrastive cases; the
+other 187 items form the source set. Review promotes a text into the benchmark
+and adds UI evaluability, a requirement-level label, atomic claims, claim
+statuses, evidence steps, rationale, and uncertainty reasons.
 
-Contrastive requirements are used to increase difficulty and improve label coverage. A contrastive item may strengthen a visible requirement with a completeness condition, add a hidden persistence obligation, require a comparison that the flow does not show, or request a control that is visibly absent. The automatically proposed contrast and intended label are treated as suggestions. They become benchmark reference data only after review against the requirement wording and the screenshots.
+Contrastive requirements are used to increase difficulty and improve label
+coverage. Their generation receives the reviewed source requirements and task
+context, but no screenshots. A contrastive item may strengthen a visible
+requirement with a completeness condition, add a hidden persistence obligation,
+require a comparison that the flow does not show, or request a control that is
+visibly absent. The proposed contrast and intended label are only suggestions.
+They become benchmark reference data after review against the requirement
+wording and the screenshots.
+
+Figure \ref{fig:benchmark-construction-funnel} summarizes this construction and
+keeps generated proposals separate from reviewed reference data.
+
+\begin{figure}[htbp]
+  \centering
+  \resizebox{\textwidth}{!}{\input{figures/benchmark_construction_funnel}}
+  \caption{Construction of the 258-item verification benchmark. Generated
+  source candidates first enter source review. The resulting reviewed source
+  set then seeds contrastive generation, whose variants undergo a separate
+  evidence review before entering the verification gold.}
+  \label{fig:benchmark-construction-funnel}
+\end{figure}
 
 The resulting set contains more than straightforward positive descriptions, but
 its construction introduces dependencies. Source requirements and verification
@@ -78,42 +113,151 @@ Region-level grounding is evaluated in a separate evidence-localization
 analysis because a correct box is a different construct from a correct
 requirement label or screenshot-step trace.
 
-\section{Running Example: Public Access to Amtrak Dining Information}\label{running-example-public-access-to-amtrak-dining-information}
+\section{Quantified Counterexample: GameStop Store Synchronization}\label{quantified-counterexample-gamestop-store-synchronization}
+
+The following contrastive requirement illustrates why quantifier scope changes
+the label even when most visible UI state is correct:
+
+\begin{quote}
+The system shall keep the searched location, selected radius, and resulting stores synchronized between the map view and the store list.
+\end{quote}
+
+Step 4 retains the search location 90028 and a 15-mile radius, and the map is
+centered on Los Angeles. Most visible results are also in the Los Angeles area.
+The first result, however, is the pinned Polaris Fashion Place Mall home store
+in Columbus, Ohio. The core claim states that \emph{all} returned store results must
+match the searched map context. One visible counterexample therefore
+contradicts that universal claim and yields \texttt{NOT\_FULFILLED}; it is not an
+accepted caveat and does not require inspection of the last list entry.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.96\textwidth]{figures/gamestop_quantifier_counterexample.png}
+  \caption{Two-region evidence for the quantified GameStop counterexample.
+  Region A is the Los Angeles map context selected as OmniParser candidate
+  \texttt{U44}; region B is OCR candidate \texttt{T108}, which contains the
+  conflicting address ``COLUMBUS, OH 43240.'' Together they localize both sides
+  of the contradiction without treating the sixth visible store title as
+  evidence of completeness.}
+  \label{fig:gamestop-quantifier-counterexample}
+\end{figure}
+\clearpage
+
+\section{Running Example: Amtrak Navigation}\label{running-example-amtrak-navigation}
 
 The following requirement illustrates a clean positive case:
 
 \begin{quote}
-The system shall make onboard dining information and café menu resources discoverable through public site navigation without requiring the user to sign in.
+The system shall expose major travel experience categories from the primary site navigation.
 \end{quote}
 
-The requirement contains two observable claims: public navigation exposes
-onboard dining and café-menu resources, and reaching them requires no sign-in.
-Step 1 establishes the public site context. Step 4 shows the Onboard Dining
-page and its route to Café content; step 5 shows the Café page and menu
-resources. No sign-in wall appears along this path. Steps 1, 4, and 5 support
-both claims.
+This is Amtrak \texttt{REQ-01} in the reviewed benchmark. Step 1 shows the
+Experience entry in the primary navigation, and step 2 shows its expanded menu
+with the major travel-experience categories. Both claims are directly visible,
+so the accepted label is \texttt{FULFILLED}.
 
-The same screenshots do not resolve a stronger requirement that route-specific
-menus appear only when applicable because no route context is visible. Account
-ownership checks would also introduce hidden access-control behavior. Such
-changes in wording can move the correct label from \texttt{FULFILLED} to
-\texttt{PARTIALLY\_\allowbreak FULFILLED} or \texttt{ABSTAIN}; the written scope determines the decision.
+\begin{figure}[htbp]
+  \centering
+  \resizebox{0.94\textwidth}{!}{\input{figures/amtrak_running_example}}
+  \caption{Running verification example. Step 1 exposes the Experience entry in
+  the primary navigation, while step 2 exposes the corresponding travel
+  categories.}
+  \label{fig:amtrak-running-example}
+\end{figure}
+
+The same menu would not establish that every experience category has a complete
+detail page or that access-control rules are enforced. Such stronger wording
+would require additional evidence and could justify a partial or abstaining
+decision.
+
+\section{Wording and Temporal Scope: Book Depository}\label{wording-and-temporal-scope-book-depository}
+
+A Book Depository pair makes this wording boundary concrete while holding the
+application, screenshots, and visible data constant. Both items use steps 3
+and 4, where the author criterion ``Stephen King'' remains in the advanced search
+form and ``German'' is added as a language criterion. The pair is a supplementary
+annotation example, not one of the five prespecified RQ3 cases; its inclusion
+does not change the taxonomy or the reported category counts.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{REQ-08} --- \texttt{FULFILLED}: ``The system shall keep configured advanced search
+  criteria visibly reflected in the search form before submission.'' Both named
+  criteria remain visible in the required pre-submission state.
+\item
+  \texttt{REQ-12} --- \texttt{PARTIALLY\_\allowbreak FULFILLED}: ``The system shall carry active advanced
+  search filters forward into subsequent browsing views so users can understand
+  the basis of the shown results.'' The same form state supports the active-filter
+  part, but no later browsing or results view is recorded.
+\end{itemize}
+
+The second item is not an abstention because an important part of its actual
+obligation---the active filters---is visibly supported. It is not fulfilled because
+its temporal scope extends beyond the recorded form state.
+
+\section{Missing, Hidden, and Contradicted: Carnival Search}\label{missing-hidden-and-contradicted-carnival-search}
+
+Three requirements over the Carnival cruise-search flow illustrate why the
+absence of positive evidence does not always imply the same label:
+They were selected during later author review as supplementary calibration
+examples, not as part of the prespecified RQ3 case set.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{REQ-13} --- \texttt{PARTIALLY\_\allowbreak FULFILLED}: The requirement asks the system to return
+  cruise results reflecting destination, departure port, month, and duration.
+  Step 9 shows all four configured criteria and the submission control, but not
+  the returned results. One core part is supported and the result outcome is
+  missing.
+\item
+  \texttt{REQ-14} --- \texttt{ABSTAIN}: The requirement allows only itinerary options that are
+  genuinely searchable or available. The flow shows option values, but their
+  genuine availability depends on hidden inventory and searchability logic.
+  Visible option presentation is only supporting context for the unresolved
+  core property.
+\item
+  \texttt{CONTR-05} --- \texttt{NOT\_FULFILLED}: The requirement demands a dedicated pre-search
+  review step or summary panel that lists all criteria and permits editing.
+  Steps 1--9 expose the complete pre-submission sequence: criteria remain
+  editable in the ordinary search form, but the required dedicated review stage
+  is absent. Here the observed sequence provides counter-evidence rather than
+  merely stopping too early.
+\end{itemize}
+
+The three labels follow from the relation between the requirement and the
+recorded evidence: supported core plus missing outcome yields partial
+fulfillment; a hidden core property yields abstention; and a visible completed
+sequence incompatible with a required component yields non-fulfillment. This
+distinction was one of the main judgment problems during author review.
 
 \section{PURE as Exploratory External Material}\label{pure-as-exploratory-external-material}
 
-PURE is a corpus of public requirements documents collected from heterogeneous sources and formats \autocite{ferrari2017}. Its documents are useful because their requirements are not generated from the screenshot trajectories used in the main benchmark. They are often longer, more formal, and dependent on headings, surrounding paragraphs, figures, or system context.
+PURE is a corpus of public requirements documents collected from heterogeneous sources and formats \autocite{ferrari2017}. Its documents are useful because their requirements are not generated from the screenshot trajectories used in the main benchmark. The selected documents examined here contain longer, more formal requirements and cases that depend on headings, surrounding paragraphs, figures, or system context.
 
-The pipeline extracts and contextualizes selected PURE requirements and
-associates them with UI images from the documents. The Split/Merge subset
-contains 31 accepted verification items and 78 claims, while Mashboot contains
-11 accepted items. Every accepted item received manual review independently of
-the evaluated model predictions. Candidate-generation provenance is stored
-separately from the human acceptance decision and reference annotation.
+The pipeline first extracts selected PURE requirements deterministically and
+then uses AI assistance to contextualize fragments that are not self-contained.
+It associates the resulting candidates with UI images from the documents. The
+Split/Merge subset contains 31 accepted verification items and 78 claims, while
+Mashboot contains 11 accepted items. Across both subsets, 25 items are
+fulfilled, nine are partially fulfilled, and eight require abstention. Every
+accepted formulation, label, claim set, and evidence link received
+primary-author review independently of the evaluated model predictions. The
+longer and often compound PURE requirements also motivated the claim
+decomposition stage used in the main approach.
 
 PURE can support qualitative discussion about context dependence, compound
 requirements, and UI verifiability. The analysis treats the associated UI
 images as document artifacts and reports document-to-UI consistency separately
 from implementation conformance over recorded execution flows.
+
+One Split/Merge item illustrates the difference. Its requirement specifies
+exactly two input PDF documents. Step 5 shows one configuration with two
+documents, while step 23 shows the empty input table and its add and remove
+controls. This supports the intended two-document workflow but does not show
+whether the application rejects one or three inputs. The accepted label is
+therefore \texttt{PARTIALLY\_\allowbreak FULFILLED}, not \texttt{FULFILLED}.
 
 \section{Review Workflow and Quality Controls}\label{review-workflow-and-quality-controls}
 
@@ -144,7 +288,7 @@ level does not establish agreement at another.
 
 \section{Benchmark Characteristics}\label{benchmark-characteristics}
 
-The benchmark is organized by flow rather than as an unstructured pool. Items
+The benchmark is organized by flow. Items
 within one flow share application context and screenshot evidence, which
 creates statistical dependence. Flow identifiers are preserved in every
 prediction and metric artifact so that evaluation can resample or diagnose at
@@ -164,10 +308,8 @@ reference set is not assumed to enumerate every semantically valid alternative.
 Automated overlap metrics are therefore complemented by qualitative review.
 
 Every frozen run manifest records the expected requirement count and hashes of
-the gold files. Evaluation rejects or reports missing predictions rather than
-silently treating them as abstentions. This guard is necessary because several
-historical repository metrics were produced after the gold set had grown and
-therefore used incompatible denominators.
+the gold files. Evaluation reports missing predictions explicitly and never
+treats them as abstentions.
 
 \section{Data Governance}\label{data-governance}
 

@@ -2,24 +2,33 @@
 
 \section{Architecture}\label{architecture}
 
-The implemented system follows a modular pipeline:
+Figure \ref{fig:evidence-first-architecture} shows the implemented system as a
+UML-style component architecture. Dashed subsystem boundaries separate input
+preparation, evidence reasoning, and decision and trace generation. The
+solid connectors denote verdict-bearing component dependencies. Dashed
+connectors distinguish the localization trace: the region grounder is a
+first-class component, but its coordinates are carried through aggregation as
+evidence metadata rather than used to determine the requirement label.
 
-\[
-\begin{aligned}
-\text{flow ingestion} &\rightarrow \text{screen understanding}
-  \rightarrow \text{requirement understanding} \\
-&\rightarrow \text{evidence selection}
-  \rightarrow \text{claim verification}
-  \rightarrow \text{label aggregation}.
-\end{aligned}
-\]
+\begin{figure}[htbp]
+  \centering
+  \resizebox{\textwidth}{!}{\input{figures/evidence_first_architecture}}
+  \caption{UML-style component view of the evidence-first verifier. Dashed
+  boundaries group related components; solid connectors show verdict-bearing
+  dependencies, while dashed connectors carry region-level trace metadata.}
+  \label{fig:evidence-first-architecture}
+\end{figure}
 
-The stages exchange typed structured records rather than unstructured chat
-transcripts. Inputs preserve flow identifiers, step indices, screenshots, and
-requirements. Outputs preserve labels, claims, evidence units, uncertainty
-reasons, rationales, model metadata, and usage information. Dependency
-injection allows the deterministic and multimodal components to be compared
-without changing the surrounding data contract.
+Each component consumes and emits typed structured records rather than an
+unstructured chat transcript. Inputs preserve flow identifiers, step indices,
+screenshots, and requirements. Outputs preserve labels, claims, evidence
+units, uncertainty reasons, rationales, model metadata, and usage information.
+This record contract is already represented by the component dependencies in
+Figure \ref{fig:evidence-first-architecture}; a second linear data-flow diagram
+would repeat the same transformation at a different level of abstraction.
+
+Dependency injection allows the deterministic and multimodal components to be
+compared without changing this data contract.
 
 The staged architecture exposes four failure locations: claim decomposition,
 screenshot retrieval, visual interpretation, and final aggregation. Its
@@ -77,18 +86,33 @@ because it is deterministic, inexpensive, and easy to reproduce. Alternative
 implementations support TF-IDF, local embeddings, and text-only LLM reranking,
 but they are not mixed into the primary matrix.
 
-For the top-4 condition, the four highest-ranked steps are selected for each
-requirement or claim. Selected screenshots are grouped across several
-requirements to reduce the number of API calls. Consequently, top-4 is a
-retrieval limit at the item level, not necessarily a guarantee that every API
-request contains only four distinct images.
+For the top-4 condition, lexical retrieval first produces item-level candidate
+steps. For each verification batch of up to eight items, these candidates are
+then compressed into a shared set of at most four attached screenshots. The
+condition therefore evaluates retrieval together with batch-level evidence
+compression; it does not guarantee four independently selected screenshots for
+each requirement or claim.
+
+The evaluated flows do not require retrieval to fit within the model input
+limit. The longest flow contains 19 screenshots and remains well within this
+limit. Shared top-k selection instead places a fixed bound on the visual input and
+produces an explicit evidence ranking. The comparison tests whether this
+smaller evidence set preserves labels and traces at lower cost without omitting
+decisive screenshots. These properties may become more important for longer
+flows or models with smaller context windows.
+
+The capacity check used during system design reaches the same conclusion. Even
+a conservative 1,000-line, 20-screenshot stress case fits within the documented
+native context of Qwen3-VL-8B-Instruct and the input limits of Gemini 2.5
+Flash-Lite and Gemini 3.1 Flash-Lite \autocite{qwen3vl8b2025,googlegemini25flashlite2026,googlegemini31flashlite2026}. Retrieval is
+consequently evaluated as a bounded evidence and efficiency policy, not as a
+necessary workaround for the present benchmark. Section 6.3 reports whether
+that policy preserves decisive evidence and reduces end-to-end cost.
 
 The whole-flow condition attaches every screenshot in its recorded order. It
 avoids retrieval omission but increases image input and irrelevant context. The
-controlled comparison tests whether the smaller evidence set preserves labels
-and traces at lower cost. Late-state failures are especially relevant because
-lexical overlap may favor an early input form over a later result or summary
-screen.
+late-state failures are especially relevant because lexical overlap may favor
+an early input form over a later result or summary screen.
 
 A separate order-unavailable robustness condition keeps the screenshot set,
 requirements, model, chunking, label contract, and aggregation matched to the

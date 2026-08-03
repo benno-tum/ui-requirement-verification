@@ -14,8 +14,9 @@ they affect traceability and the visible scope of the task.
 The central unit of analysis is a verification item: one textual requirement
 paired with one ordered screenshot flow and one reviewed reference decision.
 Items from the same flow are not independent because they share screenshots and
-application context. Statistical comparisons therefore resample complete flows
-rather than individual requirements. With only 13 flow clusters, intervals are
+application context. Statistical comparisons therefore use a cluster bootstrap
+that resamples complete flows rather than individual requirements (Field and
+Welsh, 2007). With only 13 flow clusters, intervals are
 reported as uncertainty summaries and interpreted cautiously.
 
 The main evaluation is retrospective. The system does not control the website
@@ -40,8 +41,8 @@ requirement. The verifier implements a mapping
 V(r, F) \rightarrow (y, a, E, C, U, q),
 \]
 
-where \(y\) is a requirement-level label, \(a\) is a UI-evaluability decision,
-\(E\) is a set or ranking of evidence units, \(C\) is an optional set of
+where \(y\in Y\) is a requirement-level label, \(a\in A\) is a UI-evaluability
+decision, \(E\) is a set of evidence units, \(C\) is an optional set of
 claim-level decisions, \(U\) contains uncertainty reasons, and \(q\) is a
 rationale. The labels belong to
 
@@ -61,10 +62,11 @@ receive \texttt{FULFILLED}: the recorded flow may omit evidence for an otherwise
 UI-verifiable requirement, or the requirement may contain obligations that
 screenshots cannot resolve in principle.
 
-An evidence unit minimally identifies a screenshot step. It may additionally
-contain a textual observation and one or more image regions. The ordering of
-the flow is part of the input. Two flows containing the same screenshots in a
-different order do not necessarily express the same interaction history.
+An evidence unit minimally identifies a screenshot step and may additionally
+contain a textual observation and one or more regions, represented by bounding
+boxes and region metadata. The ordering of the flow is part of the input. Two
+flows containing the same screenshots in a different order do not necessarily
+express the same interaction history.
 
 The target is the conclusion supported by the recorded visual evidence. It does
 not cover every possible execution of the implementation. The label therefore
@@ -90,6 +92,9 @@ fulfillment:
   \texttt{NOT\_UI\_VERIFIABLE} means that the central property has no stable visual
   manifestation or is too abstract for screenshot-based assessment.
 \end{itemize}
+
+For the complete operational definitions, uncertainty reasons, and consistency
+gates, see Appendix A.
 
 Evaluability is a property of the requirement relative to the observation
 modality, not a synonym for evidence availability in one particular flow. A
@@ -168,10 +173,12 @@ tests the alternative of converting native abstentions to negative labels.
 
 \section{Evidence Contract}\label{evidence-contract}
 
-Evidence is represented at two granularities. Screenshot-step evidence links a
-claim or requirement to one or more positions in the flow. Region-level
-evidence localizes the relevant observation within a selected screenshot. These
-levels answer different questions:
+Evidence is represented at two nested granularities. Step-level evidence
+identifies the relevant screenshot or transition. Region-level evidence can
+then refine that trace by localizing an observation within a selected
+screenshot. In the final multimodal runs, step indices, textual observations,
+and optional regions are returned jointly in the same model response, but their
+quality is evaluated separately:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -182,9 +189,13 @@ levels answer different questions:
   Within that state, did it identify a relevant and sufficient visual region?
 \end{enumerate}
 
-Step-level traceability is evaluated by ranked-retrieval metrics such as hit@k,
-recall@k, and mean reciprocal rank. Region-level evidence is evaluated by
-coordinate validity, applicability, coverage, relevance, and sufficiency.
+Step-level traceability is evaluated through overlap between returned and
+reviewed evidence steps. The evaluator reports hit@k, recall@k, precision@k,
+and a reciprocal first-hit summary. Requirement-level evidence is normalized
+into chronological step order, so position-based values describe alignment of
+the ordered trace rather than a confidence or lexical-retrieval ranking.
+Region-level evidence is evaluated by coordinate validity, applicability,
+coverage, relevance, and sufficiency.
 Intersection over union is useful when a reference rectangle exists, but it is
 not sufficient because several spatially different boxes may all provide valid
 evidence.
@@ -194,8 +205,8 @@ regions, a transition may need two screenshots, and a screen-wide state may not
 have a meaningful minimal box. The region-evaluation protocol therefore permits
 \texttt{SINGLE\_REGION}, \texttt{MULTI\_REGION}, \texttt{WHOLE\_\allowbreak SCREEN\_\allowbreak OR\_\allowbreak TRANSITION}, and
 \texttt{NO\_\allowbreak VISIBLE\_\allowbreak REGION}. Returning no region is treated as a localization
-abstention that can be correct when the claim has no visible support in the
-selected screenshot.
+abstention. It can be appropriate when the claim has no localizable visible
+support; otherwise it is a localization failure.
 
 \section{Operationalization of the Research Questions}\label{operationalization-of-the-research-questions}
 
@@ -203,31 +214,27 @@ Matched full-coverage runs on the 258-item benchmark answer RQ1. Accuracy,
 macro-F1, class-specific scores, confusion matrices, false fulfillment,
 abstention, agreement, cost, and run stability cover different aspects of
 fulfillment assessment. The deterministic and hosted open-weight baselines
-provide reference points.
+provide reference points. RQ1 additionally compares matched configurations
+across different models to assess model sensitivity.
 
 For RQ2, a controlled two-by-two matrix crosses raw versus gated-decomposed
-requirements with complete-flow versus lexical top-4 screenshots. Model, prompt
+requirements with complete-flow versus shared lexical top-4 screenshots. Model, prompt
 family, label schema, aggregation, batching, and benchmark remain fixed.
 Screenshot-step traceability and cost are evaluated alongside labels. The
 separate region-grounding analysis does not enter the accuracy comparison.
 
-RQ3 applies a predefined taxonomy to the frozen predictions. It covers
-over-fulfillment, hidden outcomes, quantifier and completeness errors, missed
-late states, label-boundary disagreements, and evidence-selection failures.
-Where sample sizes permit, counts are stratified by UI evaluability and
-requirement pattern. The analysis is descriptive and assigns no causal safety
-effect to abstention.
+RQ3 applies a predefined taxonomy to frozen predictions. A screenshot-aware
+coding pass assigns one primary outcome and optional pattern tags, while a
+deterministic heuristic serves only as a separate consistency check. Counts are
+descriptive for the reviewed flows and do not support population-level or
+causal claims.
 
 \section{Scope and Non-Claims}\label{scope-and-non-claims}
 
-The task includes visible elements and text, navigation outcomes, short state
-transitions, visible validation, and visible interaction results. Layout is in
-scope when the requirement explicitly constrains it. Hidden backend correctness,
-security guarantees, real payment processing, external delivery, global
-availability, long-term persistence, and strict performance properties are out
-of scope unless the requirement asks only for a visible representation.
-
-The study provides neither formal verification nor exhaustive testing. A finite
-flow cannot establish global absence, and a plausible interface is no proof of
-an external effect. The results characterize one reviewed benchmark of 13 web
-flows; broader interface classes require separate evaluation.
+The task covers visible content, controls, navigation outcomes, short state
+transitions, validation, and visible interaction results. It does not establish
+hidden backend correctness, security, external delivery, global availability,
+long-term persistence, or strict performance properties unless a requirement
+concerns only their visible representation. Accordingly, the study provides
+neither formal verification nor exhaustive testing; it evaluates what a finite
+recorded flow supports.

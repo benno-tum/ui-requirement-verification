@@ -1,0 +1,55 @@
+\begin{tikzpicture}[
+  screen/.style={
+    draw=TUMGray,
+    line width=0.5pt,
+    rounded corners=1pt,
+    minimum width=6.65cm,
+    minimum height=5.15cm,
+    inner sep=0pt
+  },
+  context/.style={
+    draw=TUMSecondaryBlue,
+    fill=TUMAccentLightBlue!18,
+    rounded corners=2pt,
+    minimum width=13.8cm,
+    minimum height=0.82cm,
+    align=center,
+    font=\scriptsize
+  },
+  steplabel/.style={font=\small\bfseries, text=TUMSecondaryBlue2},
+  evidence/.style={font=\scriptsize, align=center, text width=6.45cm}
+]
+
+\def\amtrakflowdir{../data/processed/flows/mind2web/08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b}
+
+\node[context] at (3.55,3.65) {
+  \textbf{Amtrak REQ-01:} major travel-experience categories are exposed from
+  the primary navigation
+};
+
+\IfFileExists{\amtrakflowdir/step_01.png}{
+  \node[screen, path picture={
+    \node[anchor=north, inner sep=0pt] at (path picture bounding box.north)
+      {\includegraphics[width=6.65cm]{\amtrakflowdir/step_01.png}};
+  }] (stepone) at (0,0) {};
+  \node[screen, path picture={
+    \node[anchor=north, inner sep=0pt] at (path picture bounding box.north)
+      {\includegraphics[width=6.65cm]{\amtrakflowdir/step_02.png}};
+  }] (steptwo) at (7.1,0) {};
+}{
+  \node[screen, fill=TUMLightGray!18, align=center, font=\small] (stepone) at (0,0)
+    {Primary Amtrak navigation};
+  \node[screen, fill=TUMLightGray!18, align=center, font=\small] (steptwo) at (7.1,0)
+    {Expanded Experience menu};
+}
+
+\node[steplabel] at (0,2.88) {Step 1};
+\node[steplabel] at (7.1,2.88) {Step 2};
+\node[evidence] at (0,-3.05) {The primary navigation contains the Experience entry};
+\node[evidence] at (7.1,-3.05) {The expanded menu shows the main experience categories};
+
+\node[context] at (3.55,-4.05) {
+  \textbf{FULFILLED:} both observable navigation claims are directly supported
+};
+
+\end{tikzpicture}

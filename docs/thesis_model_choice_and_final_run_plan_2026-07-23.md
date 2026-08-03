@@ -210,16 +210,16 @@ The primary 2x2 RQ2 matrix completed on 23 July 2026 over the same 13 flows and 
 
 | Configuration | Items | Accuracy | Macro-F1 | False fulfillment | Abstain | Evidence MRR | Recall@1 | Recall@3 | Calls | Tokens | Est. cost |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| Raw requirements, all screenshots | 258 | 79.5% | 0.514 | 10.6% | 19.0% | 0.716 | 0.401 | 0.475 | 39 | 612,429 | $0.2817 |
-| Gated automatic decomposition, all screenshots | 258 | 79.1% | 0.536 | 12.4% | 17.1% | 0.734 | 0.414 | 0.493 | 41 | 653,388 | $0.3002 |
+| Raw requirements, all screenshots | 258 | 79.5% | 0.511 | 10.6% | 19.0% | 0.716 | 0.401 | 0.475 | 39 | 612,429 | $0.2817 |
+| Gated automatic decomposition, all screenshots | 258 | 79.1% | 0.532 | 12.4% | 17.1% | 0.734 | 0.414 | 0.493 | 41 | 653,388 | $0.3002 |
 | Raw requirements, lexical top-4 | 258 | 71.3% | 0.387 | 11.0% | 27.9% | 0.621 | 0.334 | 0.378 | 39 | 433,519 | $0.2778 |
-| Gated automatic decomposition, lexical top-4 | 258 | 73.6% | 0.518 | 10.4% | 26.0% | 0.607 | 0.317 | 0.375 | 41 | 421,723 | $0.2394 |
+| Gated automatic decomposition, lexical top-4 | 258 | 73.6% | 0.511 | 10.4% | 26.0% | 0.607 | 0.317 | 0.375 | 41 | 421,723 | $0.2394 |
 
-The controlled result does not support a simple claim that either automatic decomposition or top-4 selection is uniformly better. A paired 10,000-sample percentile bootstrap that resamples the 13 complete flows gives the following 95% intervals. With all screenshots fixed, gated decomposition changes accuracy by -0.4 percentage points (95% CI -3.7 to +2.2) and macro-F1 by +0.022 (-0.075 to +0.109); neither interval excludes zero. Its false-fulfillment difference is +1.9 percentage points (+0.4 to +3.3). With raw requirements fixed, top-4 selection reduces accuracy by 8.1 percentage points (-12.0 to -3.8), macro-F1 by 0.127 (-0.244 to -0.043), and evidence MRR by 0.095 (-0.148 to -0.031) while saving only about $0.004. Under top-4 evidence, gated decomposition improves accuracy by 2.3 percentage points (0.0 to +4.9) and macro-F1 by 0.131 (+0.021 to +0.193), although its MRR difference of -0.015 has an interval spanning zero. With only 13 clusters, these intervals still warrant cautious interpretation.
+The controlled result does not support a simple claim that either automatic decomposition or top-4 selection is uniformly better. A paired 10,000-sample percentile bootstrap that resamples the 13 complete flows gives the following 95% intervals. With all screenshots fixed, gated decomposition changes accuracy by -0.4 percentage points (95% CI -3.7 to +2.2) and macro-F1 by +0.021 (-0.070 to +0.103); neither interval excludes zero. Its false-fulfillment difference is +1.9 percentage points (+0.4 to +3.3). With raw requirements fixed, top-4 selection reduces accuracy by 8.1 percentage points (-12.0 to -3.8), macro-F1 by 0.123 (-0.226 to -0.043), and evidence MRR by 0.095 (-0.148 to -0.031) while saving only about $0.004. Under top-4 evidence, gated decomposition improves accuracy by 2.3 percentage points (0.0 to +4.9) and macro-F1 by 0.123 (+0.021 to +0.183), although its MRR difference of -0.015 has an interval spanning zero. With only 13 clusters, these intervals still warrant cautious interpretation.
 
 The four cells cost approximately $1.0991 in total based on recorded successful-call token usage. Together with the valid Gemini 2.5 baseline below, the completed paid package cost approximately $1.1701. Provider billing for earlier invalid smoke attempts is not contained in these successful-run totals.
 
-The offline forced-decision counterfactual was also applied to two prespecified Gemini 3.1 outputs. Replacing all 49 native abstentions in `fl_raw_all` with `NOT_FULFILLED` reduced accuracy from 79.5% to 70.2% and macro-F1 from 0.514 to 0.331. Replacing all 67 abstentions in `fl_gated_top4` reduced accuracy from 73.6% to 64.3% and macro-F1 from 0.518 to 0.305. False fulfillment stayed at 10.6% and 10.4%, respectively, because this counterfactual never creates a positive prediction. It therefore shows that blanket closed-world replacement is harmful; it does not establish causal safety benefits or calibration of every native abstention.
+The offline forced-decision counterfactual was also applied to two prespecified Gemini 3.1 outputs. Replacing all 49 native abstentions in `fl_raw_all` with `NOT_FULFILLED` reduced accuracy from 79.5% to 70.2% and macro-F1 from 0.511 to 0.332. Replacing all 67 abstentions in `fl_gated_top4` reduced accuracy from 73.6% to 64.3% and macro-F1 from 0.511 to 0.306. False fulfillment stayed at 10.6% and 10.4%, respectively, because this counterfactual never creates a positive prediction. It therefore shows that blanket closed-world replacement is harmful; it does not establish causal safety benefits or calibration of every native abstention.
 
 ## 9. Completed low-cost model baseline
 
@@ -227,7 +227,7 @@ The final chunked `gemini-2.5-flash-lite` whole-flow baseline completed on 23 Ju
 
 | Items | Accuracy | Macro-F1 | False fulfillment | Abstain rate | Evidence MRR |
 |---:|---:|---:|---:|---:|---:|
-| 258 | 73.3% | 0.412 | 13.7% | 22.1% | 0.595 |
+| 258 | 73.3% | 0.413 | 13.7% | 22.1% | 0.595 |
 
 Against the matched Gemini 3.1 Flash-Lite raw/all cell, Gemini 2.5 is 6.2 percentage points lower in accuracy (paired flow-cluster bootstrap 95% CI 1.6 to 10.8), 0.102 lower in macro-F1 (0.006 to 0.218), and 0.121 lower in evidence MRR (0.010 to 0.241). The two models agree on 83.3% of item labels (95% CI 78.5% to 88.1%); Cohen's kappa is 0.616 (0.469 to 0.735). This supplies a low-cost model-sensitivity result for RQ1, while remaining limited to two commercial models from one provider.
 
@@ -271,8 +271,8 @@ The descriptive three-run analysis gives:
 
 | Three-run family | Accuracy mean (SD; range) | Macro-F1 mean (SD; range) | Pairwise label agreement |
 |---|---|---|---|
-| Gemini raw/all | 79.5% (0.0; 79.5–79.5%) | 0.514 (0.000; 0.514–0.514) | 100% in every pair |
-| Gemini gated/top-4 | 73.6% (0.0; 73.6–73.6%) | 0.518 (0.000; 0.518–0.518) | 100% in every pair |
+| Gemini raw/all | 79.5% (0.0; 79.5–79.5%) | 0.511 (0.000; 0.511–0.511) | 100% in every pair |
+| Gemini gated/top-4 | 73.6% (0.0; 73.6–73.6%) | 0.511 (0.000; 0.511–0.511) | 100% in every pair |
 | Qwen raw/shared-top-4 | 71.1% (0.4 pp; 70.5–71.3%) | 0.350 (0.006; 0.345–0.356) | 96.5–98.8%; κ 0.906–0.969 |
 
 Gemini's requirement labels were exactly stable, although evidence MRR varied
@@ -304,6 +304,6 @@ The two deterministic 258-item baselines were executed on 23 July 2026 with full
 | Deterministic raw requirements, lexical top-4 | 258 | 44.6% | 0.293 | 33.3% | 10.1% | 0.467 |
 | Deterministic gated decomposition, lexical top-4 | 258 | 45.3% | 0.301 | 32.8% | 9.7% | 0.464 |
 
-Gated decomposition therefore changes this baseline only marginally: +0.8 percentage points accuracy, +0.008 macro-F1, and -0.5 percentage points false fulfillment. Neither deterministic configuration predicts any of the eight `NOT_FULFILLED` items correctly.
+Gated decomposition therefore changes this baseline only marginally: +0.8 percentage points accuracy, +0.008 macro-F1, and -0.5 percentage points false fulfillment. Neither deterministic configuration predicts any of the nine `NOT_FULFILLED` items correctly.
 
 The forced-decision smoke test converted all 26 raw-baseline abstentions and all 25 gated-baseline abstentions to `NOT_FULFILLED`. Accuracy fell from 44.6% to 41.1% for raw requirements and from 45.3% to 41.9% for gated decomposition; macro-F1 fell to 0.229 and 0.237. False fulfillment stayed unchanged because this forced policy never converts an abstention into `FULFILLED`. This validates the offline ablation mechanics. The corresponding LLM counterfactuals are reported in Section 8 and lead to the same qualitative conclusion: forcing every uncertain case to a negative label harms label quality and does not change false fulfillment under this particular policy.

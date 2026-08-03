@@ -14,7 +14,7 @@ quantitative source of truth remains
 
 ### 1.1 Motivation
 
-Generative AI systems are now used for software-development tasks beyond code completion. Coding agents can inspect repositories, edit multiple files, execute tools, and iteratively respond to test results. Kwa et al. (2025), for example, propose a task-completion time horizon that relates an agent's success to the time required by a human expert and report an approximately exponential historical increase on their studied software and reasoning tasks. Benchmarks such as SWE-bench have likewise moved evaluation from isolated code completion toward the resolution of real issues drawn from software repositories (Jimenez et al., 2024). These developments reduce the effort required to generate candidate implementations and make increasingly autonomous implementation workflows technically plausible.
+Large language models (LLMs) are used in software development for more than code completion. Coding agents can inspect repositories, edit multiple files, execute tools, and iteratively respond to test results. Kwa et al. (2025), for example, propose a task-completion time horizon that relates an agent's success to the time required by a human expert and report an approximately exponential historical increase on their studied software and reasoning tasks. Benchmarks such as SWE-bench have likewise moved evaluation from isolated code completion toward the resolution of real issues drawn from software repositories (Jimenez et al., 2024). These developments expand the scope of implementation work that can be delegated to models and make increasingly autonomous implementation workflows technically plausible.
 
 Evidence for end-to-end productivity is less clear than benchmark progress. In
 a randomized controlled trial, experienced open-source developers worked on
@@ -83,7 +83,8 @@ principle for decisions under insufficient information (Hendrickx et al.,
 
 The task requires a boundary between visible UI behavior and hidden system
 truth. Backend correctness, security guarantees, payment processing, email
-delivery, database persistence, catalog completeness, long-term availability,
+delivery, database persistence, global result-set or data completeness,
+long-term availability,
 and external effects lie outside screenshot evidence unless the requirement
 targets their visible representation. A success message can serve as a visible
 proxy for the message shown to the user, without establishing the underlying
@@ -130,7 +131,7 @@ false fulfillment.
 
 RQ2 varies claim decomposition and screenshot selection independently. A
 controlled matrix compares raw and decomposed requirements under complete-flow
-and top-k input. Label correctness, evidence overlap, runtime, token usage, and
+and shared top-k input. Label correctness, evidence overlap, runtime, token usage, and
 cost are reported separately.
 
 **RQ3: Which requirement and evidence patterns cause verification errors, abstentions, or unsafe `FULFILLED` predictions?**
@@ -181,33 +182,16 @@ conclusions.
 
 ## 2 Foundations and Related Work
 
-The search for the closest cross-artifact verification work was documented
-through a targeted Google Scholar search conducted on 30 July 2026. The query
-combined terms for textual software-engineering artifacts, GUI artifacts,
-relations between those artifacts, and multimodal model families:
-
-    ("software requirements" OR "user stories" OR "bug fixes")
-    ("graphical user interface" OR GUI OR prototype OR screenshot)
-    (verification OR traceability OR consistency OR conformance)
-    ("large language model" OR LLM OR multimodal
-     OR "vision-language model")
-
-The relation block is intentionally broader than the final verification labels.
-`Traceability` covers work that links a requirement to the artifact used to
-justify it. `Consistency` covers cross-artifact agreement, including work that
-compares a textual claim with a prototype or other visual record without using
-the word verification. `Conformance` covers whether observed implementation
-states accord with a stated requirement. Google Scholar reported approximately
-3,920 results. The first 20 relevance-ranked results were screened. Primary
-studies were retained when they connected a textual software-engineering
-artifact to a GUI or screenshot artifact through a verification-like decision
-using an LLM or multimodal model. Studies limited to GUI generation, generic
-requirements work, code-only verification, or non-software visual tasks were
-excluded. The three closest comparison papers used in this thesis occupied
-ranks 1--3: Kretzer et al. (2025), Massenon, Gambo, and Khan (2026), and
-Kolthoff et al. (2025), respectively. The following sections also draw on the
-distinct supporting literatures on requirements quality, traceability, GUI
-testing, UI-agent trajectories, visual grounding, and abstention.
+The closest cross-artifact verification work was identified through a targeted
+Google Scholar search on 30 July 2026. The search combined terms for
+natural-language software artifacts, GUI or screenshot artifacts, and
+multimodal verification. It was exploratory rather than a systematic
+literature review and was supplemented by references from the identified
+studies. The comparison focuses on work that connects textual
+software-engineering artifacts with visual UI artifacts through a verification,
+consistency, or grounding decision. The following sections also draw on the
+supporting literatures on requirements quality, traceability, GUI testing,
+interaction trajectories, visual grounding, and abstention.
 
 ### 2.1 Requirements as Verification Contracts
 
@@ -221,29 +205,22 @@ depends on the implemented system as well as the precision and observability of
 the requirement.
 
 Natural-language requirements are attractive because stakeholders can read and
-write them without committing to a formal notation. The same flexibility makes
-them vulnerable to ambiguity. Berry, Kamsties, and Krieger (2003) describe
-linguistic sources such as vague terms, implicit references, and underspecified
-quantifiers. Gervasi et al. (2019) further emphasize that ambiguity is not one
-uniform defect: it may arise from the wording, the surrounding domain context,
-or different interpretations held by the involved actors. A verifier cannot
-remove this ambiguity by inspecting the implementation. If a requirement asks
-for “all relevant results” without defining relevance, even complete access to
-the UI would not establish a unique expected outcome.
+write them without committing to a formal notation. The requirements studied
+here are natural-language artifacts and therefore retain ambiguities arising
+from wording, domain context, and interpretation. Linguistic sources include
+vague terms, implicit references, and underspecified quantifiers (Berry,
+Kamsties, and Krieger, 2003; Gervasi et al., 2019). Inspecting an implementation
+cannot by itself resolve an underspecified target. If a requirement asks for
+“all relevant results” without defining relevance, even complete access to the
+UI would not establish a unique expected outcome.
 
 Requirements retain their stated scope throughout the evaluation. Quantifiers
-such as “all,” “only,” “always,” and “closest” are interpreted relative to the
-domain defined by the requirement and the visible interface context. Their
-presence does not automatically prevent a `FULFILLED` decision: when the UI
-presents a bounded set as complete and the recorded screenshots establish the
-required coverage or comparison, a quantified claim can be visibly supported.
-If the domain remains open, ambiguous, or only partly observed, the unresolved
-quantifier blocks `FULFILLED`; missing evidence alone does not establish
-`NOT_FULFILLED`. Removing the quantifier or treating observed instances as
-representative would change the target and substitute a model assumption for
-evidence.
+such as “all,” “only,” “always,” and “closest” can be supported when the
+interface presents a bounded set as complete. Open or ambiguous domains require
+uncertainty rather than an assumption that the observed cases are
+representative. The exact decision rules are defined in Section 3.4.
 
-UI requirements occupy a useful but difficult subset of software requirements.
+UI requirements occupy a subset of software requirements.
 They may constrain visible content, available controls, navigation, validation
 feedback, state changes, or the presentation of results. Some are directly
 observable in a single state, while others become observable only through a
@@ -285,15 +262,21 @@ environment, selectors, input data, and expected states are controlled. In
 real-world systems, however, interfaces change, element locators become brittle,
 external services introduce nondeterminism, and visually equivalent states may
 have different internal representations. Nass, Alégroth, and Feldt (2021)
-argue that several challenges of GUI test automation are inherent to the
-complexity and variability of graphical interfaces rather than temporary
-tooling deficiencies.
+identify recurring GUI test-automation challenges that have persisted for many
+years and argue that some are likely to remain.
 
 The evaluation begins after a flow has been recorded and complements executable
 GUI tests. The original application can be unavailable, and no interaction
 script has to be replayed. A shared screenshot representation also permits
-comparison across heterogeneous websites. In exchange, the record omits the
-DOM, backend state, network effects, and paths outside the captured execution.
+comparison across heterogeneous websites. The verifier does not execute the
+application and therefore cannot observe backend state, network effects, or
+paths outside the captured execution. For the Mind2Web benchmark, lexical
+screenshot selection additionally uses visible-text candidates extracted from
+recorded HTML metadata. This metadata ranks screenshots but is not treated as
+fulfillment evidence: the multimodal verdict is based on the selected images
+and image-derived OCR hints. The same selector can operate on OCR-only
+representations, although screenshot-only inputs may provide a weaker retrieval
+signal.
 
 These omissions delimit the claims available from screenshots. A confirmation
 message is evidence for the message, not for email delivery. A selected
@@ -323,7 +306,7 @@ consistency rather than requirement fulfillment, but it motivates treating
 multimodal verification as a software engineering problem rather than generic
 visual question answering.
 
-### 2.4 Multimodal UI Agents and Trajectory Datasets
+### 2.4 Multimodal UI Agents and Interaction Trajectories
 
 Multimodal UI agents receive visual and textual observations and select actions
 in an interface. Their progress is relevant because both UI action selection and
@@ -340,11 +323,6 @@ action-prediction benchmark. The original task description and action sequence
 provide context for reconstructing a flow, while the thesis benchmark adds
 separately reviewed UI requirements, fulfillment labels, and evidence
 annotations.
-
-Android in the Wild provides a related trajectory dataset for mobile-device
-control (Rawles et al., 2023). It illustrates that ordered visual interaction
-data is not limited to the web. The current evaluation remains web-based and
-uses Mind2Web trajectories.
 
 ### 2.5 Visual Grounding and Evidence Localization
 
@@ -366,12 +344,13 @@ SeeAct reports that Set-of-Mark was not its strongest strategy for web-agent
 grounding and benefited from combining visual information with HTML-derived
 candidates (Zheng et al., 2024).
 
-The implemented candidate-mark variant is inspired by Set-of-Mark but uses OCR
-and UI-region detection instead of the original segmentation procedure. It is
-evaluated as evidence localization. Coordinate validity covers only geometry;
-semantic correctness additionally requires a region that is relevant to the
-claim and sufficiently specific for review. No effect on requirement-label
-accuracy is assumed.
+The auxiliary candidate-mark implementation uses OmniParser-derived UI
+proposals together with OCR candidates (Lu et al., 2024). The main
+label-evaluation matrix instead uses direct model-generated regions and does
+not depend on candidate-mark grounding. The auxiliary variant is evaluated as
+evidence localization. Coordinate validity covers only geometry; semantic
+correctness additionally requires a region that is relevant to the claim and
+sufficiently specific for review.
 
 ### 2.6 Abstention and Decision-Making under Incomplete Evidence
 
@@ -388,38 +367,60 @@ decision. This differs from a missing API output, parsing failure, or skipped
 item. Those are coverage failures and must be reported separately. `ABSTAIN`
 also differs from `NOT_FULFILLED`. The latter requires visible counter-evidence,
 whereas abstention may follow from an omitted result state, hidden property, or
-ambiguous requirement.
+unresolved textual or evidence ambiguity.
 
-False positive verification claims can end a review prematurely. The evaluation
-therefore reports false fulfillment alongside accuracy. Abstention is assessed
-with the same caution: abstaining on every item would avoid many errors without
-providing a useful verifier. Coverage, per-class performance, and recorded
-reasons put the abstention rate into context.
+False-positive `FULFILLED` verdicts can end a review prematurely. The evaluation
+therefore reports false fulfillment alongside accuracy. An all-abstain system
+would avoid many positive errors but provide no useful decisions. Coverage,
+per-class performance, and recorded reasons therefore contextualize the
+abstention rate.
 
 ### 2.7 Synthesis of the Research Gap
 
-Prior work establishes the relevance of requirements ambiguity, traceability,
+Taken together, these research strands establish the relevance of requirements ambiguity, traceability,
 GUI automation, multimodal software verification, UI-agent trajectories,
-visual grounding, and abstention. No single line of work directly evaluates the
-following contract: given a textual requirement and an already recorded ordered
+visual grounding, and abstention. The work identified in the targeted search
+does not directly evaluate the following contract: given a textual requirement and an already recorded ordered
 UI flow, assess its fulfillment, identify the supporting or contradicting
 screenshot steps, optionally localize the evidence within those screenshots,
 and preserve uncertainty about hidden or missing states.
 
-Existing multimodal models can describe screenshots, but the reviewed work does
+The reviewed multimodal systems can process screenshots, but the identified work does
 not provide the full verification contract studied here. The missing elements
 are a controlled formulation that separates requirement semantics, flow
 coverage, evidence traces, and label aggregation. Chapter 3 defines this
 formulation.
 
-| Research area | Primary input | Typical output | Ordered evidence | Explicit verification uncertainty |
-|---|---|---|---:|---:|
-| Requirements traceability | Requirements and engineering artifacts | Trace links | Sometimes | Not usually a fulfillment label |
-| GUI test automation | Executable UI and test oracle | Pass/fail and execution trace | Yes | Usually encoded as test outcome |
-| Mind2Web-style UI agents | Task instruction and web trajectory | Next action or task success | Yes | Not the central output |
-| SeeClick/UGround-style grounding | Instruction and UI image | Element or region | Usually no | Localization failure rather than requirement abstention |
-| User-story/prototype support | User story and prototype | Story–prototype consistency | Usually static | Task-specific |
-| This thesis | Requirement and recorded screenshot flow | Four-way label plus evidence | Yes | Explicit `ABSTAIN` and uncertainty reasons |
+Table \ref{tab:research-gap-comparison} makes the boundary to adjacent research
+areas explicit. The central distinction is the combination of an ordered
+evidence trace with a fulfillment decision. Explicit abstention and uncertainty
+reasons add diagnostic context but are not treated as a separate research
+contribution.
+
+\begin{table}[htbp]
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.14\linewidth}>{\raggedright\arraybackslash}p{0.23\linewidth}@{}}
+    \toprule
+    \textbf{Research area} & \textbf{Primary input} & \textbf{Typical output} &
+    \textbf{Ordered evidence} & \textbf{Explicit abstention or uncertainty} \\
+    \midrule
+    \textbf{Requirements traceability} & Requirements and engineering artifacts & Trace links & Sometimes & Not usually a fulfillment label \\
+    \textbf{GUI test automation} & Executable UI and test oracle & Pass/fail and execution trace & Yes & Usually encoded as test outcome \\
+    \textbf{Mind2Web-style UI agents} & Task instruction and web trajectory & Next action or task success & Yes & Not the central output \\
+    \textbf{Visual UI grounding} & Instruction and UI image & Element or region & Usually no & Localization failure rather than requirement abstention \\
+    \textbf{User-story/prototype support} & User story and prototype & Story--prototype consistency & Usually static & Task-specific \\
+    \midrule
+    \rowcolor{TUMLightGray!30}
+    \textbf{This thesis} & \textbf{Requirement and recorded screenshot flow} &
+    \textbf{Four-way label plus evidence} & \textbf{Yes} &
+    \textbf{Explicit \texttt{ABSTAIN} and uncertainty reasons} \\
+    \bottomrule
+  \end{tabular}
+  \caption{Comparison of adjacent research areas with the verification contract studied in this thesis.}
+  \label{tab:research-gap-comparison}
+\end{table}
 
 ## 3 Research Design and Problem Formulation
 
@@ -437,8 +438,9 @@ they affect traceability and the visible scope of the task.
 The central unit of analysis is a verification item: one textual requirement
 paired with one ordered screenshot flow and one reviewed reference decision.
 Items from the same flow are not independent because they share screenshots and
-application context. Statistical comparisons therefore resample complete flows
-rather than individual requirements. With only 13 flow clusters, intervals are
+application context. Statistical comparisons therefore use a cluster bootstrap
+that resamples complete flows rather than individual requirements (Field and
+Welsh, 2007). With only 13 flow clusters, intervals are
 reported as uncertainty summaries and interpreted cautiously.
 
 The main evaluation is retrospective. The system does not control the website
@@ -463,8 +465,8 @@ requirement. The verifier implements a mapping
 V(r, F) \rightarrow (y, a, E, C, U, q),
 \]
 
-where \(y\) is a requirement-level label, \(a\) is a UI-evaluability decision,
-\(E\) is a set or ranking of evidence units, \(C\) is an optional set of
+where \(y\in Y\) is a requirement-level label, \(a\in A\) is a UI-evaluability
+decision, \(E\) is a set of evidence units, \(C\) is an optional set of
 claim-level decisions, \(U\) contains uncertainty reasons, and \(q\) is a
 rationale. The labels belong to
 
@@ -484,10 +486,11 @@ receive `FULFILLED`: the recorded flow may omit evidence for an otherwise
 UI-verifiable requirement, or the requirement may contain obligations that
 screenshots cannot resolve in principle.
 
-An evidence unit minimally identifies a screenshot step. It may additionally
-contain a textual observation and one or more image regions. The ordering of
-the flow is part of the input. Two flows containing the same screenshots in a
-different order do not necessarily express the same interaction history.
+An evidence unit minimally identifies a screenshot step and may additionally
+contain a textual observation and one or more regions, represented by bounding
+boxes and region metadata. The ordering of the flow is part of the input. Two
+flows containing the same screenshots in a different order do not necessarily
+express the same interaction history.
 
 The target is the conclusion supported by the recorded visual evidence. It does
 not cover every possible execution of the implementation. The label therefore
@@ -507,6 +510,9 @@ fulfillment:
   logic, or an external system.
 - `NOT_UI_VERIFIABLE` means that the central property has no stable visual
   manifestation or is too abstract for screenshot-based assessment.
+
+For the complete operational definitions, uncertainty reasons, and consistency
+gates, see Appendix A.
 
 Evaluability is a property of the requirement relative to the observation
 modality, not a synonym for evidence availability in one particular flow. A
@@ -578,17 +584,23 @@ tests the alternative of converting native abstentions to negative labels.
 
 ### 3.6 Evidence Contract
 
-Evidence is represented at two granularities. Screenshot-step evidence links a
-claim or requirement to one or more positions in the flow. Region-level
-evidence localizes the relevant observation within a selected screenshot. These
-levels answer different questions:
+Evidence is represented at two nested granularities. Step-level evidence
+identifies the relevant screenshot or transition. Region-level evidence can
+then refine that trace by localizing an observation within a selected
+screenshot. In the final multimodal runs, step indices, textual observations,
+and optional regions are returned jointly in the same model response, but their
+quality is evaluated separately:
 
 1. Did the system identify the correct state or transition?
 2. Within that state, did it identify a relevant and sufficient visual region?
 
-Step-level traceability is evaluated by ranked-retrieval metrics such as hit@k,
-recall@k, and mean reciprocal rank. Region-level evidence is evaluated by
-coordinate validity, applicability, coverage, relevance, and sufficiency.
+Step-level traceability is evaluated through overlap between returned and
+reviewed evidence steps. The evaluator reports hit@k, recall@k, precision@k,
+and a reciprocal first-hit summary. Requirement-level evidence is normalized
+into chronological step order, so position-based values describe alignment of
+the ordered trace rather than a confidence or lexical-retrieval ranking.
+Region-level evidence is evaluated by coordinate validity, applicability,
+coverage, relevance, and sufficiency.
 Intersection over union is useful when a reference rectangle exists, but it is
 not sufficient because several spatially different boxes may all provide valid
 evidence.
@@ -598,8 +610,8 @@ regions, a transition may need two screenshots, and a screen-wide state may not
 have a meaningful minimal box. The region-evaluation protocol therefore permits
 `SINGLE_REGION`, `MULTI_REGION`, `WHOLE_SCREEN_OR_TRANSITION`, and
 `NO_VISIBLE_REGION`. Returning no region is treated as a localization
-abstention that can be correct when the claim has no visible support in the
-selected screenshot.
+abstention. It can be appropriate when the claim has no localizable visible
+support; otherwise it is a localization failure.
 
 ### 3.7 Operationalization of the Research Questions
 
@@ -607,57 +619,62 @@ Matched full-coverage runs on the 258-item benchmark answer RQ1. Accuracy,
 macro-F1, class-specific scores, confusion matrices, false fulfillment,
 abstention, agreement, cost, and run stability cover different aspects of
 fulfillment assessment. The deterministic and hosted open-weight baselines
-provide reference points.
+provide reference points. RQ1 additionally compares matched configurations
+across different models to assess model sensitivity.
 
 For RQ2, a controlled two-by-two matrix crosses raw versus gated-decomposed
-requirements with complete-flow versus lexical top-4 screenshots. Model, prompt
+requirements with complete-flow versus shared lexical top-4 screenshots. Model, prompt
 family, label schema, aggregation, batching, and benchmark remain fixed.
 Screenshot-step traceability and cost are evaluated alongside labels. The
 separate region-grounding analysis does not enter the accuracy comparison.
 
-RQ3 applies a predefined taxonomy to the frozen predictions. It covers
-over-fulfillment, hidden outcomes, quantifier and completeness errors, missed
-late states, label-boundary disagreements, and evidence-selection failures.
-Where sample sizes permit, counts are stratified by UI evaluability and
-requirement pattern. The analysis is descriptive and assigns no causal safety
-effect to abstention.
+RQ3 applies a predefined taxonomy to frozen predictions. A screenshot-aware
+coding pass assigns one primary outcome and optional pattern tags, while a
+deterministic heuristic serves only as a separate consistency check. Counts are
+descriptive for the reviewed flows and do not support population-level or
+causal claims.
 
 ### 3.8 Scope and Non-Claims
 
-The task includes visible elements and text, navigation outcomes, short state
-transitions, visible validation, and visible interaction results. Layout is in
-scope when the requirement explicitly constrains it. Hidden backend correctness,
-security guarantees, real payment processing, external delivery, global
-availability, long-term persistence, and strict performance properties are out
-of scope unless the requirement asks only for a visible representation.
-
-The study provides neither formal verification nor exhaustive testing. A finite
-flow cannot establish global absence, and a plausible interface is no proof of
-an external effect. The results characterize one reviewed benchmark of 13 web
-flows; broader interface classes require separate evaluation.
+The task covers visible content, controls, navigation outcomes, short state
+transitions, validation, and visible interaction results. It does not establish
+hidden backend correctness, security, external delivery, global availability,
+long-term persistence, or strict performance properties unless a requirement
+concerns only their visible representation. Accordingly, the study provides
+neither formal verification nor exhaustive testing; it evaluates what a finite
+recorded flow supports.
 
 ## 4 Verification Approach and Implementation
 
 ### 4.1 Architecture
 
-The implemented system follows a modular pipeline:
+Figure \ref{fig:evidence-first-architecture} shows the implemented system as a
+UML-style component architecture. Dashed subsystem boundaries separate input
+preparation, evidence reasoning, and decision and trace generation. The
+solid connectors denote verdict-bearing component dependencies. Dashed
+connectors distinguish the localization trace: the region grounder is a
+first-class component, but its coordinates are carried through aggregation as
+evidence metadata rather than used to determine the requirement label.
 
-\[
-\begin{aligned}
-\text{flow ingestion} &\rightarrow \text{screen understanding}
-  \rightarrow \text{requirement understanding} \\
-&\rightarrow \text{evidence selection}
-  \rightarrow \text{claim verification}
-  \rightarrow \text{label aggregation}.
-\end{aligned}
-\]
+\begin{figure}[htbp]
+  \centering
+  \resizebox{\textwidth}{!}{\input{figures/evidence_first_architecture}}
+  \caption{UML-style component view of the evidence-first verifier. Dashed
+  boundaries group related components; solid connectors show verdict-bearing
+  dependencies, while dashed connectors carry region-level trace metadata.}
+  \label{fig:evidence-first-architecture}
+\end{figure}
 
-The stages exchange typed structured records rather than unstructured chat
-transcripts. Inputs preserve flow identifiers, step indices, screenshots, and
-requirements. Outputs preserve labels, claims, evidence units, uncertainty
-reasons, rationales, model metadata, and usage information. Dependency
-injection allows the deterministic and multimodal components to be compared
-without changing the surrounding data contract.
+Each component consumes and emits typed structured records rather than an
+unstructured chat transcript. Inputs preserve flow identifiers, step indices,
+screenshots, and requirements. Outputs preserve labels, claims, evidence
+units, uncertainty reasons, rationales, model metadata, and usage information.
+This record contract is already represented by the component dependencies in
+Figure \ref{fig:evidence-first-architecture}; a second linear data-flow diagram
+would repeat the same transformation at a different level of abstraction.
+
+Dependency injection allows the deterministic and multimodal components to be
+compared without changing this data contract.
 
 The staged architecture exposes four failure locations: claim decomposition,
 screenshot retrieval, visual interpretation, and final aggregation. Its
@@ -715,18 +732,34 @@ because it is deterministic, inexpensive, and easy to reproduce. Alternative
 implementations support TF-IDF, local embeddings, and text-only LLM reranking,
 but they are not mixed into the primary matrix.
 
-For the top-4 condition, the four highest-ranked steps are selected for each
-requirement or claim. Selected screenshots are grouped across several
-requirements to reduce the number of API calls. Consequently, top-4 is a
-retrieval limit at the item level, not necessarily a guarantee that every API
-request contains only four distinct images.
+For the top-4 condition, lexical retrieval first produces item-level candidate
+steps. For each verification batch of up to eight items, these candidates are
+then compressed into a shared set of at most four attached screenshots. The
+condition therefore evaluates retrieval together with batch-level evidence
+compression; it does not guarantee four independently selected screenshots for
+each requirement or claim.
+
+The evaluated flows do not require retrieval to fit within the model input
+limit. The longest flow contains 19 screenshots and remains well within this
+limit. Shared top-k selection instead places a fixed bound on the visual input and
+produces an explicit evidence ranking. The comparison tests whether this
+smaller evidence set preserves labels and traces at lower cost without omitting
+decisive screenshots. These properties may become more important for longer
+flows or models with smaller context windows.
+
+The capacity check used during system design reaches the same conclusion. Even
+a conservative 1,000-line, 20-screenshot stress case fits within the documented
+native context of Qwen3-VL-8B-Instruct and the input limits of Gemini 2.5
+Flash-Lite and Gemini 3.1 Flash-Lite [@qwen3vl8b2025;
+@googlegemini25flashlite2026; @googlegemini31flashlite2026]. Retrieval is
+consequently evaluated as a bounded evidence and efficiency policy, not as a
+necessary workaround for the present benchmark. Section 6.3 reports whether
+that policy preserves decisive evidence and reduces end-to-end cost.
 
 The whole-flow condition attaches every screenshot in its recorded order. It
 avoids retrieval omission but increases image input and irrelevant context. The
-controlled comparison tests whether the smaller evidence set preserves labels
-and traces at lower cost. Late-state failures are especially relevant because
-lexical overlap may favor an early input form over a later result or summary
-screen.
+late-state failures are especially relevant because lexical overlap may favor
+an early input form over a later result or summary screen.
 
 A separate order-unavailable robustness condition keeps the screenshot set,
 requirements, model, chunking, label contract, and aggregation matched to the
@@ -892,28 +925,38 @@ therefore kept distinct throughout the following chapters.
 
 The main evaluation data consists of 13 web interaction flows derived from the Mind2Web dataset. Mind2Web was originally introduced as a benchmark for generalist web agents and contains real website tasks and interaction trajectories (Deng et al., 2023). In this study, ordered screenshots from selected trajectories serve as observations for independently represented UI requirements; the original action-prediction task is not evaluated.
 
-The selected flows cover theme-park purchases, product lookup, careers
-navigation, dining information, cinema support forms, cruise search, book
-search, and business listings. Each flow contains several meaningful states. A
+The 13 flows form a purposive convenience sample from 39 locally processed
+flows. They were selected for complete screenshot sequences and coverage of
+search, navigation, forms, carts, checkout, and result states; they are neither
+random nor representative of web interfaces in general. The sample covers
+theme-park purchases, product lookup, careers navigation, dining information,
+cinema support forms, cruise search, book search, and business listings. Each
+flow contains several meaningful states. A
 cart flow may progress from product selection through quantity changes and
 add-ons to the summary and checkout controls. Search flows contain inputs and
 later results. These sequences support requirements that a single screenshot
 cannot resolve.
 
-The benchmark contains 258 verification items across the 13 flows: 173 reviewed
-source requirements and 85 reviewed contrastive items. Their annotations
-contain 541 claims. All items completed a prediction-independent primary-author
-review workflow.
+The benchmark contains 258 verification items across the 13 flows. Of these,
+187 are reviewed source requirements derived from the recorded flows. The
+remaining 71 are reviewed contrastive requirements: text-only variants proposed
+from the source requirements and broader hypotheses about similar systems, then
+reviewed against the screenshots. Their annotations contain 541 claims. All
+items completed a prediction-independent primary-author review workflow. A
+later qualitative grounding audit exposed one internally inconsistent GameStop
+annotation. The resulting post-hoc author amendment is logged in the item
+metadata; all reported metrics were recomputed against the corrected reference
+while leaving stored model predictions unchanged.
 
-The label distribution is imbalanced: 172 items are `FULFILLED`, 45 are `PARTIALLY_FULFILLED`, 33 are `ABSTAIN`, and 8 are `NOT_FULFILLED`. Approximately two thirds of the items are therefore positive. A classifier that favors `FULFILLED` can obtain a deceptively strong accuracy while failing on the three less frequent labels. This imbalance motivates macro-F1 and per-class reporting.
+The label distribution is imbalanced: 172 items are `FULFILLED`, 44 are `PARTIALLY_FULFILLED`, 33 are `ABSTAIN`, and 9 are `NOT_FULFILLED`. Approximately two thirds of the items are therefore positive. This skew is consistent with deriving requirements from observed, functioning UI flows, but it is not an estimate of label prevalence in production systems. A classifier that favors `FULFILLED` can still obtain a deceptively strong accuracy while failing on the three less frequent labels. This imbalance motivates macro-F1 and per-class reporting.
 
 UI evaluability is annotated separately from fulfillment. The 258 items include
-192 `UI_VERIFIABLE`, 62 `PARTIALLY_UI_VERIFIABLE`, and 4
+220 `UI_VERIFIABLE`, 35 `PARTIALLY_UI_VERIFIABLE`, and 3
 `NOT_UI_VERIFIABLE` cases. Evaluability describes whether screenshots can
 resolve the requirement in principle; the final label describes what the
-recorded flow supports. An incomplete flow can leave a UI-verifiable
-requirement undecidable, while a compound requirement with visible and hidden
-parts can be only partially UI-verifiable.
+recorded flow supports. A requirement may therefore be UI-verifiable in
+principle even when the recorded flow does not contain enough evidence for a
+decision.
 
 ### 5.2 From Candidates to Verification Gold
 
@@ -921,15 +964,40 @@ Because requirements are derived from UI flows, benchmark construction uses
 staged artifacts and prediction-independent human review to separate candidate
 generation from reference annotation.
 
-Harvesting produces a broad set of requirement hypotheses, including redundant,
-ambiguous, hidden, and incompletely supported properties. Filtering and
-rewriting convert selected hypotheses into candidates. A reviewer then rejects,
-edits, or promotes each candidate; candidate status carries no correctness
-claim.
+Harvesting uses the recorded UI flows to produce a broad set of requirement
+hypotheses, including redundant, ambiguous, hidden, and incompletely supported
+properties. Filtering and rewriting convert selected hypotheses into
+candidates. A reviewer then rejects, edits, or promotes each candidate;
+candidate status carries no correctness claim. Because these hypotheses are
+derived from observed UI states, harvesting alone tends to produce requirements
+that the same flows fulfill.
 
-The 13 Mind2Web flows currently contain 100 committed candidate requirements and 173 reviewed source requirements. These counts refer only to the Mind2Web-derived directories; combining them with PURE candidates produces a different total and must be avoided in reporting. Review promotes a text into the source requirement set, but the verification benchmark adds further information: UI evaluability, a requirement-level label, atomic claims, claim statuses, evidence steps, rationale, and uncertainty reasons.
+Items with the explicit `contrastive` tag form the 71 contrastive cases; the
+other 187 items form the source set. Review promotes a text into the benchmark
+and adds UI evaluability, a requirement-level label, atomic claims, claim
+statuses, evidence steps, rationale, and uncertainty reasons.
 
-Contrastive requirements are used to increase difficulty and improve label coverage. A contrastive item may strengthen a visible requirement with a completeness condition, add a hidden persistence obligation, require a comparison that the flow does not show, or request a control that is visibly absent. The automatically proposed contrast and intended label are treated as suggestions. They become benchmark reference data only after review against the requirement wording and the screenshots.
+Contrastive requirements are used to increase difficulty and improve label
+coverage. Their generation receives the reviewed source requirements and task
+context, but no screenshots. A contrastive item may strengthen a visible
+requirement with a completeness condition, add a hidden persistence obligation,
+require a comparison that the flow does not show, or request a control that is
+visibly absent. The proposed contrast and intended label are only suggestions.
+They become benchmark reference data after review against the requirement
+wording and the screenshots.
+
+Figure \ref{fig:benchmark-construction-funnel} summarizes this construction and
+keeps generated proposals separate from reviewed reference data.
+
+\begin{figure}[htbp]
+  \centering
+  \resizebox{\textwidth}{!}{\input{figures/benchmark_construction_funnel}}
+  \caption{Construction of the 258-item verification benchmark. Generated
+  source candidates first enter source review. The resulting reviewed source
+  set then seeds contrastive generation, whose variants undergo a separate
+  evidence review before entering the verification gold.}
+  \label{fig:benchmark-construction-funnel}
+\end{figure}
 
 The resulting set contains more than straightforward positive descriptions, but
 its construction introduces dependencies. Source requirements and verification
@@ -959,42 +1027,138 @@ Region-level grounding is evaluated in a separate evidence-localization
 analysis because a correct box is a different construct from a correct
 requirement label or screenshot-step trace.
 
-### 5.4 Running Example: Public Access to Amtrak Dining Information
+### 5.4 Quantified Counterexample: GameStop Store Synchronization
+
+The following contrastive requirement illustrates why quantifier scope changes
+the label even when most visible UI state is correct:
+
+> The system shall keep the searched location, selected radius, and resulting stores synchronized between the map view and the store list.
+
+Step 4 retains the search location 90028 and a 15-mile radius, and the map is
+centered on Los Angeles. Most visible results are also in the Los Angeles area.
+The first result, however, is the pinned Polaris Fashion Place Mall home store
+in Columbus, Ohio. The core claim states that *all* returned store results must
+match the searched map context. One visible counterexample therefore
+contradicts that universal claim and yields `NOT_FULFILLED`; it is not an
+accepted caveat and does not require inspection of the last list entry.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.96\textwidth]{figures/gamestop_quantifier_counterexample.png}
+  \caption{Two-region evidence for the quantified GameStop counterexample.
+  Region A is the Los Angeles map context selected as OmniParser candidate
+  \texttt{U44}; region B is OCR candidate \texttt{T108}, which contains the
+  conflicting address ``COLUMBUS, OH 43240.'' Together they localize both sides
+  of the contradiction without treating the sixth visible store title as
+  evidence of completeness.}
+  \label{fig:gamestop-quantifier-counterexample}
+\end{figure}
+\clearpage
+
+### 5.5 Running Example: Amtrak Navigation
 
 The following requirement illustrates a clean positive case:
 
-> The system shall make onboard dining information and café menu resources discoverable through public site navigation without requiring the user to sign in.
+> The system shall expose major travel experience categories from the primary site navigation.
 
-The requirement contains two observable claims: public navigation exposes
-onboard dining and café-menu resources, and reaching them requires no sign-in.
-Step 1 establishes the public site context. Step 4 shows the Onboard Dining
-page and its route to Café content; step 5 shows the Café page and menu
-resources. No sign-in wall appears along this path. Steps 1, 4, and 5 support
-both claims.
+This is Amtrak `REQ-01` in the reviewed benchmark. Step 1 shows the
+Experience entry in the primary navigation, and step 2 shows its expanded menu
+with the major travel-experience categories. Both claims are directly visible,
+so the accepted label is `FULFILLED`.
 
-The same screenshots do not resolve a stronger requirement that route-specific
-menus appear only when applicable because no route context is visible. Account
-ownership checks would also introduce hidden access-control behavior. Such
-changes in wording can move the correct label from `FULFILLED` to
-`PARTIALLY_FULFILLED` or `ABSTAIN`; the written scope determines the decision.
+\begin{figure}[htbp]
+  \centering
+  \resizebox{0.94\textwidth}{!}{\input{figures/amtrak_running_example}}
+  \caption{Running verification example. Step 1 exposes the Experience entry in
+  the primary navigation, while step 2 exposes the corresponding travel
+  categories.}
+  \label{fig:amtrak-running-example}
+\end{figure}
 
-### 5.5 PURE as Exploratory External Material
+The same menu would not establish that every experience category has a complete
+detail page or that access-control rules are enforced. Such stronger wording
+would require additional evidence and could justify a partial or abstaining
+decision.
 
-PURE is a corpus of public requirements documents collected from heterogeneous sources and formats (Ferrari, Spagnolo, and Gnesi, 2017). Its documents are useful because their requirements are not generated from the screenshot trajectories used in the main benchmark. They are often longer, more formal, and dependent on headings, surrounding paragraphs, figures, or system context.
+### 5.6 Wording and Temporal Scope: Book Depository
 
-The pipeline extracts and contextualizes selected PURE requirements and
-associates them with UI images from the documents. The Split/Merge subset
-contains 31 accepted verification items and 78 claims, while Mashboot contains
-11 accepted items. Every accepted item received manual review independently of
-the evaluated model predictions. Candidate-generation provenance is stored
-separately from the human acceptance decision and reference annotation.
+A Book Depository pair makes this wording boundary concrete while holding the
+application, screenshots, and visible data constant. Both items use steps 3
+and 4, where the author criterion “Stephen King” remains in the advanced search
+form and “German” is added as a language criterion. The pair is a supplementary
+annotation example, not one of the five prespecified RQ3 cases; its inclusion
+does not change the taxonomy or the reported category counts.
+
+- `REQ-08` — `FULFILLED`: “The system shall keep configured advanced search
+  criteria visibly reflected in the search form before submission.” Both named
+  criteria remain visible in the required pre-submission state.
+- `REQ-12` — `PARTIALLY_FULFILLED`: “The system shall carry active advanced
+  search filters forward into subsequent browsing views so users can understand
+  the basis of the shown results.” The same form state supports the active-filter
+  part, but no later browsing or results view is recorded.
+
+The second item is not an abstention because an important part of its actual
+obligation—the active filters—is visibly supported. It is not fulfilled because
+its temporal scope extends beyond the recorded form state.
+
+### 5.7 Missing, Hidden, and Contradicted: Carnival Search
+
+Three requirements over the Carnival cruise-search flow illustrate why the
+absence of positive evidence does not always imply the same label:
+They were selected during later author review as supplementary calibration
+examples, not as part of the prespecified RQ3 case set.
+
+- `REQ-13` — `PARTIALLY_FULFILLED`: The requirement asks the system to return
+  cruise results reflecting destination, departure port, month, and duration.
+  Step 9 shows all four configured criteria and the submission control, but not
+  the returned results. One core part is supported and the result outcome is
+  missing.
+- `REQ-14` — `ABSTAIN`: The requirement allows only itinerary options that are
+  genuinely searchable or available. The flow shows option values, but their
+  genuine availability depends on hidden inventory and searchability logic.
+  Visible option presentation is only supporting context for the unresolved
+  core property.
+- `CONTR-05` — `NOT_FULFILLED`: The requirement demands a dedicated pre-search
+  review step or summary panel that lists all criteria and permits editing.
+  Steps 1–9 expose the complete pre-submission sequence: criteria remain
+  editable in the ordinary search form, but the required dedicated review stage
+  is absent. Here the observed sequence provides counter-evidence rather than
+  merely stopping too early.
+
+The three labels follow from the relation between the requirement and the
+recorded evidence: supported core plus missing outcome yields partial
+fulfillment; a hidden core property yields abstention; and a visible completed
+sequence incompatible with a required component yields non-fulfillment. This
+distinction was one of the main judgment problems during author review.
+
+### 5.8 PURE as Exploratory External Material
+
+PURE is a corpus of public requirements documents collected from heterogeneous sources and formats (Ferrari, Spagnolo, and Gnesi, 2017). Its documents are useful because their requirements are not generated from the screenshot trajectories used in the main benchmark. The selected documents examined here contain longer, more formal requirements and cases that depend on headings, surrounding paragraphs, figures, or system context.
+
+The pipeline first extracts selected PURE requirements deterministically and
+then uses AI assistance to contextualize fragments that are not self-contained.
+It associates the resulting candidates with UI images from the documents. The
+Split/Merge subset contains 31 accepted verification items and 78 claims, while
+Mashboot contains 11 accepted items. Across both subsets, 25 items are
+fulfilled, nine are partially fulfilled, and eight require abstention. Every
+accepted formulation, label, claim set, and evidence link received
+primary-author review independently of the evaluated model predictions. The
+longer and often compound PURE requirements also motivated the claim
+decomposition stage used in the main approach.
 
 PURE can support qualitative discussion about context dependence, compound
 requirements, and UI verifiability. The analysis treats the associated UI
 images as document artifacts and reports document-to-UI consistency separately
 from implementation conformance over recorded execution flows.
 
-### 5.6 Review Workflow and Quality Controls
+One Split/Merge item illustrates the difference. Its requirement specifies
+exactly two input PDF documents. Step 5 shows one configuration with two
+documents, while step 23 shows the empty input table and its add and remove
+controls. This supports the intended two-document workflow but does not show
+whether the application rejects one or three inputs. The accepted label is
+therefore `PARTIALLY_FULFILLED`, not `FULFILLED`.
+
+### 5.9 Review Workflow and Quality Controls
 
 Review occurs at the candidate and verification stages. Candidate review checks
 whether the text forms a meaningful, self-contained requirement for the
@@ -1021,9 +1185,9 @@ Separate review tasks preserve differences between fulfillment, UI
 evaluability, screenshot selection, and region sufficiency. Agreement at one
 level does not establish agreement at another.
 
-### 5.7 Benchmark Characteristics
+### 5.10 Benchmark Characteristics
 
-The benchmark is organized by flow rather than as an unstructured pool. Items
+The benchmark is organized by flow. Items
 within one flow share application context and screenshot evidence, which
 creates statistical dependence. Flow identifiers are preserved in every
 prediction and metric artifact so that evaluation can resample or diagnose at
@@ -1043,12 +1207,10 @@ reference set is not assumed to enumerate every semantically valid alternative.
 Automated overlap metrics are therefore complemented by qualitative review.
 
 Every frozen run manifest records the expected requirement count and hashes of
-the gold files. Evaluation rejects or reports missing predictions rather than
-silently treating them as abstentions. This guard is necessary because several
-historical repository metrics were produced after the gold set had grown and
-therefore used incompatible denominators.
+the gold files. Evaluation reports missing predictions explicitly and never
+treats them as abstentions.
 
-### 5.8 Data Governance
+### 5.11 Data Governance
 
 The 13 Mind2Web flows belong to the separately distributed `test_task` split.
 Original screenshots, HTML, traces, videos, and unzipped test records remain
@@ -1065,14 +1227,17 @@ results. Section 7.7 discusses the implications for reproducibility.
 
 ## 6 Evaluation
 
-### 6.1 Compared Systems
+### 6.1 Evaluation Design
+
+#### Compared Systems
 
 The primary experiment covers all 258 verification items from flows 01–13.
 Its central comparison is a two-by-two Gemini 3.1 Flash-Lite matrix in which
 claim policy and screenshot policy are varied independently. The raw policy
 treats each requirement as one unit, while gated decomposition splits selected
 compound requirements. The all-screenshot policy supplies the complete flow,
-while top-4 supplies the four screenshots selected by lexical retrieval. All
+while shared top-4 supplies a batch-level set of four screenshots derived from
+lexical item-level candidates. All
 other recorded settings are held constant.
 
 RQ1 additionally uses a matched Gemini 2.5 Flash-Lite raw/all run and a hosted
@@ -1088,13 +1253,12 @@ converted to `ABSTAIN`. Exact model identifiers, dates, prompt versions,
 generation parameters, image preparation, call counts, tokens, cost, failures,
 fallbacks, and repository hashes are attached to the frozen run manifests.
 
-An earlier controlled comparison over flows 01–10 and 201 items is retained as
-development history. Every row in that comparison uses the same denominator,
-which makes it internally interpretable, but the results are superseded by the
-full-benchmark matrix for final RQ answers. Historical files that contain only
-201 predictions must never be evaluated against the 258-item gold set.
+Earlier 201-item runs were used during development, but they are not reported
+as thesis results because the controlled 258-item benchmark supersedes them.
+Historical predictions are kept only as provenance artifacts and are never
+mixed with the final reference set.
 
-### 6.2 Label Metrics
+#### Label Metrics
 
 Accuracy is the fraction of verification items whose predicted label equals the gold label. It is intuitive but insufficient under the current class distribution. A system that predicts `FULFILLED` for every item would already be correct on 66.7% of the full 258-item snapshot.
 
@@ -1102,28 +1266,45 @@ Macro-F1 calculates an F1 score independently for each of the four labels and av
 
 The false-fulfillment rate is defined as the fraction of predicted `FULFILLED` items whose gold label is not `FULFILLED`. This is a precision-oriented safety metric. It answers: when the system makes its strongest positive claim, how often is that claim too strong? The numerator includes gold partial, negative, and abstaining cases. The metric must be interpreted together with the number of predicted fulfilled items; a system could trivially reduce it by never predicting `FULFILLED`.
 
-The abstain rate is the fraction of all predictions labeled `ABSTAIN`. Prediction coverage records the fraction of gold items for which an explicit model prediction exists. Missing predictions are not equivalent to model abstentions and must be reported separately. In the controlled 201-item comparison, coverage is 100% for all configurations.
+The abstain rate is the fraction of all predictions labeled `ABSTAIN`. Prediction coverage records the fraction of gold items for which an explicit model prediction exists. Missing predictions are not equivalent to model abstentions and must be reported separately. All configurations in the final controlled matrix have complete prediction coverage.
 
-### 6.3 Evidence Metrics
+#### Evidence Metrics
 
-Evidence evaluation compares a ranked list of predicted screenshot steps with the human evidence steps. Hit@k is one if at least one gold evidence step occurs in the first k predicted steps and zero otherwise, averaged over items. Recall@k measures the fraction of all gold evidence steps retrieved in the first k positions. Precision@k measures how many predicted steps belong to the reference set. Mean reciprocal rank (MRR) rewards systems that place the first relevant step early.
+Evidence evaluation compares the predicted screenshot steps with the reviewed
+evidence steps. Hit@k is one if at least one reviewed step occurs in the first
+k returned steps and zero otherwise, averaged over items. Recall@k measures the
+fraction of reviewed steps covered within that prefix, while precision@k
+measures how many returned steps belong to the reference set. The evaluator
+also records the reciprocal position of the first relevant step. Because
+requirement-level evidence is normalized into chronological step order, its
+mean is reported as chronological reciprocal rank (chronological RR), not as a
+confidence-ranked retrieval measure.
 
-These metrics capture different properties. A high hit@1 indicates that the system often finds at least one useful screenshot immediately. It does not show that all evidence required for a multi-step claim was retrieved. Recall is important when an action and its result occur on different screens or when a requirement contains several obligations. Evidence overlap also cannot determine whether the model interpreted the screenshot correctly; it measures trace alignment rather than semantic reasoning.
+These metrics capture different properties. A high hit@1 indicates that the
+earliest returned evidence step often matches the reviewed trace. It does not
+show that all evidence required for a multi-step claim was returned. Recall is
+important when an action and its result occur on different screens or when a
+requirement contains several obligations. Evidence overlap also cannot
+determine whether the model interpreted the screenshot correctly; it measures
+trace alignment rather than semantic reasoning.
 
-The historical 201-item files provide directly comparable evidence metrics only for the batched top-k and deterministic outputs. Newer 258-item evaluators normalize screenshot-step evidence for all three current model configurations. Evidence tables must therefore identify the exact run and benchmark rather than mixing the two generations of artifacts.
+The 258-item evaluators normalize screenshot-step evidence across the current
+model configurations. Every reported evidence value therefore names its run
+and uses the same benchmark denominator.
 
-### 6.4 Claim Metrics and Qualitative Analysis
+#### Claim Metrics and Qualitative Analysis
 
 When predicted claims are available, they are matched to gold claims using text similarity before claim statuses are compared. Claim-match recall reports how many gold claims receive an acceptable predicted match. Claim-status macro-F1 then evaluates the status of matched claims. These metrics are sensitive to decomposition quality: a semantically valid split may use different wording or granularity from the gold annotation. Claim evaluation should therefore combine automatic matching with a manually inspected sample.
 
 Qualitative error analysis assigns errors to recurring categories rather than treating them as unrelated mistakes. The main categories are over-fulfillment, anti-abstention, under-calling caused by missed evidence, and label-boundary disagreements. The analysis also records semantic patterns such as universal quantifiers, comparisons, result correctness, persistence, hidden system properties, and late cart or summary states.
 
-### 6.5 Statistical Comparison and Run Stability
+#### Statistical Comparison and Run Stability
 
 The primary comparisons are paired because every configuration predicts the
 same requirements from the same flows. To preserve the dependence among items
-within an application flow, uncertainty intervals are generated by resampling
-the 13 complete flows with replacement. Each bootstrap replicate reconstructs
+within an application flow, uncertainty intervals are generated with a cluster
+bootstrap that resamples the 13 complete flows with replacement (Field and
+Welsh, 2007). Each bootstrap replicate reconstructs
 the compared result sets from the sampled flows and recalculates the metric
 difference. The reported percentile intervals therefore describe variation
 across the observed flow clusters rather than treating 258 correlated items as
@@ -1138,158 +1319,316 @@ leaderboard entries.
 Repeated runs evaluate operational stability. They reuse the frozen benchmark
 and settings but write to independent caches and output directories. Pairwise
 label agreement and Cohen's kappa summarize categorical stability; ranges of
-accuracy, macro-F1, false fulfillment, and evidence MRR show whether headline
+accuracy, macro-F1, false fulfillment, and chronological RR show whether headline
 conclusions change. Repetitions are not additional test samples and are not
 pooled to inflate the denominator.
 
 The order-unavailable comparison is paired in the same way. In addition to the
-full benchmark, it reports the 195 multi-screen items, the 175 items with
-multi-step gold evidence, the 63 single-screen items as a negative control, and
+full benchmark, it reports the 194 multi-screen items, the 175 items with
+multi-step gold evidence, the 64 single-screen items as a negative control, and
 a frozen 59-item lexical subset containing sequence-related formulations such as
 preservation, updates, result states, confirmation, cart, or checkout. Because
 this subset is heuristic and the benchmark has only 13 flows, subgroup
 differences are treated as diagnostics rather than population-level effects.
 
-### 6.6 UI-Evaluability Evaluation
+### 6.2 RQ1: Model Performance
 
-UI evaluability is evaluated separately from fulfillment. The first analysis
-compares the evaluability predicted in the realistic raw-requirement run with
-the reviewed three-class labels. Because the class distribution is highly
-imbalanced, raw agreement is accompanied by macro-F1, balanced accuracy,
-per-class recall, unweighted Cohen's kappa, and ordinal-weighted kappa.
+The matched raw/all comparison provides the main model-sensitivity result.
+Gemini 3.1 Flash-Lite reaches 79.5% accuracy and 0.511 macro-F1, compared with
+73.3% and 0.413 for Gemini 2.5 Flash-Lite. A paired flow-cluster bootstrap
+estimates an accuracy difference of 6.2 percentage points with a 95% interval
+from 1.6 to 10.8. The models assign the same label to 83.3% of items, with
+Cohen's kappa of 0.616.
 
-A deterministic text classifier tests whether simple lexical rules capture the
-visible/hidden boundary at low cost. Majority-class accuracy is insufficient
-when partially and non-verifiable requirements are missed.
+Within the primary raw/all condition, accuracy is 88.8% (166/187) for source
+requirements and 54.9% (39/71) for contrastive requirements. Among `FULFILLED`
+predictions, false fulfillment is 5.3% (9/170) and 57.9% (11/19), respectively.
+Because provenance, label distributions, and visible identifiers differ, this
+split is descriptive rather than a causal comparison.
 
-The UI-evaluability boundary analysis contains all 81 disagreements between the
-stored reference and deterministic classifier across the 300 accepted
-Mind2Web/PURE items. The author sees both labels and the rule-based diagnostic
-information, then records whether to retain the reference, adopt the classifier,
-choose a third label, or mark the boundary as ambiguous. Recommended
-amendments are frozen before any reference update. Mind2Web and PURE results are
-reported separately because the latter contains intended-design figures rather
-than executed trajectories.
+Under the shared raw/top-4 condition, Gemini 3.1 Flash-Lite and
+Qwen3-VL-8B-Instruct both reach 71.3% accuracy and nearly identical
+chronological RR. Their error profiles differ: Qwen has a false-fulfillment rate of 18.5%,
+7.4 percentage points above Flash-Lite, and a lower macro-F1 of 0.356. The
+equal headline accuracy therefore does not imply equivalent verification
+behavior.
 
-The final analysis stratifies requirement-verification performance by
-evaluability. It asks whether `PARTIALLY_UI_VERIFIABLE` and
-`NOT_UI_VERIFIABLE` items produce more abstentions, partial labels, or unsafe
-positive predictions. These strata are descriptive; the four-item
-`NOT_UI_VERIFIABLE` group in the main benchmark is too small for a stable
-standalone performance estimate.
+### 6.3 RQ2: Claim Decomposition and Screenshot Selection
 
-<!-- Pending after disagreement audit:
-Insert the 81-item resolution distribution, recurring boundary categories,
-amendment recommendations, and selected examples. Do not calculate accuracy,
-kappa, agreement, or prevalence from this disagreement-only set. -->
+The primary RQ2 matrix uses the same 258 accepted items from flows 01–13,
+Gemini 3.1 Flash-Lite, prompt version, label schema, aggregation, and execution
+parameters in every cell. Only claim policy and screenshot policy vary. All
+four cells have complete prediction coverage and no recorded fallback or
+failure.
 
-### 6.7 Region-Level Evidence Evaluation
+\begin{table}[htbp]
+  \centering
+  \small
+  \setlength{\tabcolsep}{4.2pt}
+  \begin{tabular}{@{}llrrrrrr@{}}
+    \toprule
+    \textbf{Claims} & \textbf{Screenshots} & \textbf{Acc.} & \textbf{Macro-F1} &
+    \textbf{FF rate} & \textbf{Abstain} & \textbf{Chron. RR} & \textbf{Cost} \\
+    \midrule
+    Raw & All & 0.795 & 0.511 & 0.106 & 0.190 & 0.716 & \$0.2817 \\
+    Gated & All & 0.791 & 0.532 & 0.124 & 0.171 & 0.734 & \$0.3002 \\
+    Raw & Shared top-4 & 0.713 & 0.387 & 0.110 & 0.279 & 0.621 & \$0.2778 \\
+    Gated & Shared top-4 & 0.736 & 0.511 & 0.104 & 0.260 & 0.607 & \$0.2394 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Controlled Gemini 3.1 Flash-Lite comparison over 258 requirements in
+  13 flows. FF rate denotes false fulfillment; cost is the recorded estimated
+  API cost. Chron. RR is the mean reciprocal position of the first matching
+  step in the chronologically ordered returned trace.}
+  \label{tab:controlled-full-benchmark}
+\end{table}
 
-Region grounding is evaluated as a traceability output, not as an intervention
-on label accuracy. The evaluation unit is a claim, selected screenshot, and set
-of predicted regions. For each frozen V7 item, the author assigns one of four
-applicability categories: `SINGLE_REGION`, `MULTI_REGION`,
-`WHOLE_SCREEN_OR_TRANSITION`, or `NO_VISIBLE_REGION`, and then assesses the
-returned region for geometric validity, relevance, and evidential sufficiency.
-This output audit measures the quality of returned regions directly and is
-reported separately from reference-label evaluation.
+The table shows the interaction without a separate chart: decomposition changes
+little with all screenshots, whereas it partly recovers the loss caused by
+shared top-4 selection.
 
-The region analysis reports:
+A paired 10,000-sample percentile bootstrap over the 13 flows gives a 95%
+interval of -12.0 to -3.8 percentage points for raw shared-top-4 versus raw/all
+accuracy difference and -0.226 to -0.043 for macro-F1. The chronological-RR difference is
+also below zero. Restricting each batch to four shared screenshots loses
+measurable information while reducing estimated cost by less than half a cent.
+Repeated screenshots across batches and output and thinking tokens offset much
+of the lower image input.
 
-- coordinate validity and in-bounds rate;
-- whether an acceptable candidate existed for localizable claims;
-- relevance and sufficiency rates;
-- the frequency and correctness of `NO_VISIBLE_REGION`;
-- results by text versus non-text evidence and by single- versus multi-region
-  cases;
-- additional calls, images, tokens, runtime, and cost;
-- error categories such as wrong screenshot, wrong location, semantic error,
-  box too narrow, box too broad, missing proposal, and unnecessary box.
+Automatic gated decomposition does not consistently improve accuracy, false
+fulfillment, or chronological evidence-trace alignment. With all screenshots,
+its accuracy and macro-F1 difference intervals span zero, while false
+fulfillment increases by 1.9 percentage points with a 95% interval from +0.4
+to +3.3. Under top-4 evidence, decomposition improves macro-F1 by 0.123 with an
+interval from +0.021 to +0.183, suggesting an interaction between requirement
+granularity and restricted evidence. With only 13 resampled clusters, these
+intervals must still be interpreted cautiously.
 
-The final 60-item sample is drawn deterministically from the frozen all-flow
-candidate-mark run. It contains four region-bearing claim-step groups per flow
-and all eight non-missing claims for which V7 returned no visible region.
-Sampling favors diversity in claim status, region count, and region source.
-Earlier direct-coordinate, OCR, and single-flow candidate-mark reviews are
-retained as development evidence and are not pooled into one
-localization-accuracy estimate.
+An offline policy counterfactual replaced every native `ABSTAIN` with `NOT_FULFILLED` without making new model calls. Accuracy fell from 0.795 to 0.702 for raw/all and from 0.736 to 0.643 for gated/top-4; macro-F1 fell to 0.332 and 0.306. False fulfillment was unchanged because the policy cannot generate a positive label. The result shows that treating absence of sufficient evidence as a negative verdict is harmful on this benchmark. It does not show that every abstention is calibrated or that abstention causally reduces unsafe positive predictions.
 
-<!-- Pending after region review:
-Insert completion, candidate-existence/relevance/sufficiency results,
-localization-abstention judgments, and two positive plus two failure examples.
-State that this is a single-author quality audit. -->
+### 6.4 Robustness and Run-to-Run Stability
 
-### 6.8 Error-Analysis Protocol
+Two independent repetitions were executed for the raw/all and gated/top-4
+Gemini anchors and for the hosted Qwen raw/shared-top-4 baseline. Every
+repetition covered all 13 flows and 258 items. The new Gemini runs used 160
+first-attempt API calls without cache hits, fallbacks, or failures; the Qwen
+runs used 78 first-attempt calls, were served by Alibaba with provider fallbacks
+disabled, and likewise recorded no failures.
 
-The RQ3 analysis is performed on frozen predictions and a taxonomy fixed before
-final counting. Each incorrect prediction and each unsafe `FULFILLED` decision
-receives a primary error category and may receive secondary requirement-pattern
-tags. Abstentions are coded separately so that a justified hidden-outcome
-abstention is not grouped with a retrieval failure.
+Gemini produced exactly the same requirement label for every item in all three
+executions of both configurations. Raw/all therefore remains at 0.795 accuracy
+and 0.511 macro-F1 in every run, while gated/top-4 remains at 0.736 accuracy and
+0.511 macro-F1. Screenshot-step evidence was not perfectly invariant: raw/all
+chronological RR ranges from 0.712 to 0.716 and gated/top-4 from 0.607 to 0.610.
 
-Model-error categories include schema violation, unsupported inference,
-incorrect visible interpretation, and aggregation inconsistency. Evidence-error
-categories include wrong screenshot, missed late state, incomplete multi-step
-trace, and region-grounding failure. Requirement-pattern tags include
-quantifiers, comparisons, persistence, external effects, result correctness,
-compound obligations, absence claims, and ambiguous scope. Reference-label
-disagreements are flagged rather than automatically counted as model errors.
+Qwen shows small but measurable variation. Across three executions, accuracy
+ranges from 0.705 to 0.713, macro-F1 from 0.345 to 0.356, false fulfillment from
+0.185 to 0.189, and chronological RR from 0.622 to 0.635. Pairwise label agreement
+ranges from 0.965 to 0.988, with Cohen's kappa between 0.906 and 0.969. These
+figures indicate strong descriptive stability without implying determinism or
+treating repeated executions on the same benchmark as independent samples.
 
-The analysis reports denominators explicitly: frequency among all 258 items,
+The six repetitions cost approximately USD 1.1245 in recorded successful
+inference usage. Bounding boxes were not requested in the Qwen runs. The Gemini
+prompt did produce unvalidated free-form visual regions, but the mature
+evaluated evidence contribution remains screenshot-step traceability.
+
+#### Order-Unavailable Robustness Result
+
+The chronology-destroying condition completed all 13 flows and 258 items with
+39 successful API calls, no fallback, and no recorded failure. It used 622,225
+tokens and cost an estimated USD 0.2847. Against the corrected frozen
+reference, the matched ordered condition reaches 79.5% accuracy, 0.511 macro-F1,
+19.0% abstention, 10.6% false fulfillment, and 0.716 chronological RR. When
+trustworthy order is removed, accuracy falls to 74.8%, macro-F1 to 0.425, and
+chronological RR to 0.665, while abstention rises to 24.8%. False fulfillment is
+11.2%.
+
+The paired difference in accuracy is -4.7 percentage points. A 10,000-sample
+percentile bootstrap over complete flows gives a descriptive 95% interval from
+-7.3 to -2.0 percentage points. The abstention difference is +5.8 points, with
+an interval from +1.6 to +10.4. The chronological-RR interval spans zero. Overall,
+28 of 258 labels change. Fourteen change from `FULFILLED` to `ABSTAIN`; the
+remaining flips include changes in both conservative and less conservative
+directions, so the result does not establish that withholding chronology
+uniformly improves safety.
+
+The label-flip rate is 18.6% in the frozen 59-item sequence-sensitive lexical
+subset, 12.4% across all multi-screen items, and 6.3% in the single-screen
+negative control. The sequence-sensitive accuracy difference is -6.8 points,
+but its flow-cluster interval spans zero. The results therefore show that
+removing trustworthy order materially changes model decisions and reduces
+aggregate label performance on this benchmark. They do not isolate a stable
+effect for every temporal requirement category, and part of the change may
+reflect the model's response to the explicit instruction that chronology is
+unavailable.
+
+### 6.5 RQ3: Screenshot-Aware Error Analysis
+
+#### RQ3 Error-Analysis Protocol
+
+The RQ3 protocol uses frozen predictions and a taxonomy fixed before category
+coding. Each incorrect prediction and each unsafe `FULFILLED` decision receives
+one primary error category and may receive secondary requirement- and
+evidence-pattern tags. Abstentions are coded separately so that a justified
+hidden-outcome abstention is not grouped with a retrieval failure.
+
+Model-error categories include unsafe over-fulfillment, unsupported concrete
+negatives, excessive abstention, evidence-interpretation errors, and
+label-boundary disagreements. Evidence errors distinguish selection misses from
+traceability failures. Requirement-pattern tags cover quantifiers, comparisons,
+persistence, external effects, late results, multi-screen composition, and
+ambiguous scope.
+
+The protocol reports denominators explicitly: frequency among all 258 items,
 among incorrect predictions, among model abstentions, and among predicted
-`FULFILLED` items as appropriate. Three to five frozen cases illustrate the
-dominant mechanisms without substituting anecdotes for the coded counts.
+`FULFILLED` items as appropriate. Its condition-blinded review package contains
+653 eligible condition–item rows representing 153 distinct requirements across
+the six prespecified first runs. A screenshot-aware multimodal reviewer applied
+the taxonomy flow by flow. It received the exact screenshot subset, requirement,
+accepted reference, prediction, and trace for each row, but not the category
+proposed by the deterministic heuristic. Model identity was hidden behind
+condition codes. The resulting categories are therefore LLM-assisted visual
+coding, not independent human adjudication.
 
-### 6.9 Development-Stage Label Performance on Flows 01–10
+The first coding prompt also allowed a benchmark-review outcome although all
+258 reference items were already accepted and frozen. This mixed benchmark
+quality control with model-error analysis. A documented repair removed that
+outcome, made the accepted reference explicitly authoritative, and reprocessed
+the 163 flagged rows. The 490 unaffected rows, requirement-level visual
+assessments, identifiers, and screenshot attestations remained unchanged. The
+repaired artifact contains no benchmark-review outcome or unresolved flag.
 
-Table 1 reports the controlled preliminary comparison. Every row uses the same 201 verification items from flows 01–10 and 100% prediction coverage.
+A targeted primary-author consistency review then revisited all 24 rows
+initially assigned label-boundary disagreement. Applying the frozen category
+precedence rule retained 12 genuine boundary cases and reassigned 12 rows to
+excessive abstention because the supplied evidence was already accepted as
+meaningful partial support. Gold labels, stored predictions, row eligibility,
+and all non-boundary category decisions remained unchanged. This targeted
+review is quality control for the final coding, not an independent reliability
+sample.
 
-Table 1: Preliminary label results on 201 items from flows 01–10.
+The following table reports only mechanically observable triggers that can be
+derived without causal judgment. Errors and abstentions use 258 as their
+denominator; the false-fulfillment rate uses predicted `FULFILLED` decisions.
+“Trace miss” counts correct labels whose cited steps have no overlap with
+reviewed evidence. “Input gap” counts items for which the supplied screenshots
+omit at least one reviewed evidence step. The columns overlap and must not be
+interpreted as error-category frequencies.
 
-| System | Evidence strategy | Accuracy | Macro-F1 | False fulfillment | Coverage | Estimated API cost |
-|---|---|---:|---:|---:|---:|---:|
-| Gemini 2.5 Flash Lite whole-flow | Original screenshots, one call per flow | 0.761 | 0.480 | 0.124 | 1.000 | $0.0138 |
-| Gemini 3.1 Pro whole-flow | Original screenshots, one call per flow | 0.811 | 0.573 | 0.099 | 1.000 | $0.8401 |
-| Gemini 2.5 Flash Lite batched top-k | Gated claims, lexical top-3, batched verification | 0.751 | 0.387 | 0.215 | 1.000 | $0.0221 |
-| Deterministic baseline | Gated claims, lexical top-3, deterministic verification | 0.204 | 0.136 | 0.455 | 1.000 | — |
+\begin{table}[htbp]
+  \centering
+  \small
+  \begin{tabular}{@{}lrrr@{\hspace{1.25em}}rrr@{}}
+    \toprule
+    Config. & Errors & Abst. & Unsafe F & FF rate & Trace miss & Input gap \\
+    \midrule
+    FL r/all   & 53 & 49 & 20 & 10.6\% & 41 & 0 \\
+    FL g/all   & 54 & 44 & 24 & 12.4\% & 41 & 0 \\
+    FL r/t4    & 74 & 72 & 19 & 11.0\% & 43 & 135 \\
+    FL g/t4    & 68 & 67 & 18 & 10.4\% & 51 & 138 \\
+    G25 r/all  & 69 & 57 & 25 & 13.7\% & 34 & 0 \\
+    Qwen r/t4  & 74 & 60 & 36 & 18.5\% & 49 & 135 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Automatic RQ3 trigger inventory over 258 requirements. FL denotes
+  Gemini 3.1 Flash-Lite, G25 Gemini 2.5 Flash-Lite, r raw requirements, g gated
+  decomposition, and t4 lexical top-4 input. Counts overlap and are not
+  manually coded causes.}
+  \label{tab:rq3-trigger-inventory}
+\end{table}
+\FloatBarrier
 
-Gemini 3.1 Pro achieves the highest preliminary accuracy and macro-F1. Its advantage over Flash Lite whole-flow is approximately five percentage points in accuracy and 0.093 in macro-F1. It also has the lowest false-fulfillment rate among the four configurations. This gain comes with a substantial cost difference: the recorded estimated cost for Pro is approximately 61 times the whole-flow Flash Lite estimate. The cost calculation depends on the pricing assumptions stored with the run and should be updated for the final experiment.
+Five qualitative cases were fixed with the protocol before the final category
+counts: Amtrak `REQ-01` as a positive observable control; Six Flags flow 10
+`REQ-09` as a late-state selection miss; AMC Theatres `CONTR-03` as unsafe
+fulfillment of hidden authentication enforcement; Amtrak `CONTR-04` as unsafe
+fulfillment of a universal coverage claim; and GameStop `CONTR-01` as unsafe
+fulfillment of cross-visit persistence. The later Book Depository and Carnival
+comparisons are supplementary annotation-boundary examples. The corrected
+GameStop `CONTR-04` is reported as a post-freeze author amendment and grounding
+diagnostic, not as a prespecified case.
 
-The whole-flow Flash Lite baseline slightly outperforms the batched top-k
-variant in accuracy and more clearly in macro-F1 and false fulfillment. The
-tested evidence-first configuration does not reduce unsafe positive decisions.
-It frequently predicts `FULFILLED` when the retrieved screenshots support only
-part of the requirement. Requiring a cited screen prevents unsupported
-evidence fields, but the cited screen may still be interpreted too broadly.
+The completed audit contains 653 condition–item rows from 153 distinct
+requirements. Of these, 392 have a prediction different from the accepted
+reference. Table \ref{tab:rq3-visual-error-categories} reports exactly one
+primary category for each of these label errors. It does not treat repeated
+conditions as independent benchmark items.
 
-The deterministic baseline performs poorly. Its abstain rate is approximately 0.771, yet 45.5% of the items it does label `FULFILLED` are not fulfilled according to gold. This combination shows that conservative aggregation alone is insufficient when claim statuses are weak. The system needs both reliable evidence selection and reliable semantic interpretation.
+\begin{table}[htbp]
+  \centering
+  \small
+  \begin{tabular}{@{}lrrr@{}}
+    \toprule
+    Primary category & Count & Share of 392 errors & Distinct reqs. \\
+    \midrule
+    Unsafe over-fulfillment       & 142 & 36.2\% & 51 \\
+    Excessive abstention          & 138 & 35.2\% & 47 \\
+    Evidence-selection miss       &  57 & 14.5\% & 29 \\
+    Evidence-interpretation error &  35 &  8.9\% & 16 \\
+    Label-boundary disagreement   &  12 &  3.1\% &  3 \\
+    Unsupported concrete negative &   8 &  2.0\% &  4 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Screenshot-aware primary categories among the 392 condition--item
+  rows with a label error. Distinct-requirement counts may overlap across
+  categories when conditions fail differently. The rows originate from six
+  conditions over the same benchmark and are descriptive rather than
+  independent prevalence samples.}
+  \label{tab:rq3-visual-error-categories}
+\end{table}
+\FloatBarrier
 
-The macro-F1 values are considerably lower than the corresponding accuracies because the minority classes remain difficult. In the batched top-k run, for example, the system performs strongly on `FULFILLED` but almost never predicts `NOT_FULFILLED` and has low recall for `PARTIALLY_FULFILLED`. The final thesis must show the full confusion matrix and per-class precision and recall rather than only the four aggregate columns in Table 1.
+The largest category is unsafe over-fulfillment. In all 142 cases, the verifier
+predicts `FULFILLED` although the accepted label is lower. Excessive abstention
+accounts for a further 138 errors: decisive evidence is available in the
+supplied screenshots, but the verifier still abstains. Selection misses are
+concentrated in the top-4 conditions. They account for 24 of 74 errors in the raw
+top-4 run, 21 of 68 in the gated top-4 run, and 12 of 74 in the Qwen top-4 run,
+but none of the label errors in the three complete-flow conditions. This
+separation supports the distinction between retrieval failure and reasoning
+failure.
 
-### 6.10 Development-Stage Evidence Retrieval
+The 349 model abstentions also contain correct conservative decisions. Of these,
+153 (43.8%) are appropriate abstentions, 138 (39.5%) are excessive, 47 (13.5%)
+follow an evidence-selection miss, and 11 (3.2%) reflect the adopted label
+boundary. Abstention is therefore neither uniformly desirable nor uniformly
+erroneous. A correct non-abstaining label can still have a defective trace.
+After screenshot inspection, 92 additional selected rows were coded as
+traceability failures because the cited evidence was incorrect or did not
+support the decision. Zero overlap with the non-exhaustive reviewed evidence
+set was only a mechanical review trigger and was not sufficient for this
+judgment.
 
-Table 2 reports evidence metrics for the two configurations that currently have directly comparable step-level outputs.
+The multi-valued requirement tags describe where errors occur rather than
+forming exclusive causes. Multi-screen composition appears in 202 of 392 label
+errors (51.5%), late result or cart state in 125 (31.9%), hidden backend or
+external behavior in 123 (31.4%), persistence across steps in 108 (27.6%),
+universal or completeness wording in 72 (18.4%), and comparative wording in 53
+(13.5%). At evidence level, partial claim coverage appears in 248 errors
+(63.3%), while 91 (23.2%) expose only an entry point and 59 (15.1%) show an
+action without its result. These overlapping tags support the qualitative
+mechanisms described above but do not identify independent causal effects.
 
-Table 2: Preliminary evidence retrieval results on 201 items from flows 01–10.
+As a post-hoc consistency check, the screenshot-aware categories agree with the
+separate deterministic heuristic on 564 of 653 selected rows (86.4%; Cohen's
+$\kappa=0.836$). The heuristic uses labels, trace metadata, and text rules but no
+screenshot pixels. The agreement checks consistency with the mechanical category
+preconditions; it does not validate the semantic visual judgments, is not human
+inter-rater reliability, and is not included in the reported category counts.
 
-| Configuration | MRR | Hit@1 | Hit@3 | Recall@1 | Recall@3 |
-|---|---:|---:|---:|---:|---:|
-| Gemini Flash Lite batched top-k | 0.582 | 0.473 | 0.657 | 0.260 | 0.485 |
-| Deterministic baseline | 0.159 | 0.159 | 0.159 | 0.076 | 0.076 |
+RQ3 is therefore answered descriptively for the frozen benchmark: the dominant
+failures are over-claiming full support, abstaining despite supplied evidence,
+and losing decisive screenshots under restricted selection. These outcomes are
+associated most often with multi-screen, late-state, hidden, persistent, and
+partially visible obligations. The 13-flow design and LLM-assisted coding do not
+support population-level prevalence or independent-human reliability claims.
 
-The batched top-k pipeline retrieves at least one gold evidence step among its
-first three predictions for 65.7% of the items. Recall@3 is 48.5%; many
-multi-step reference sets remain incomplete even when one relevant screen is
-found. Hit@k counts either a control state or a later result state as a hit,
-whereas complete verification may need both.
+#### RQ3 Error Mechanisms and Illustrative Cases
 
-Retrieval quality can be measured separately from label quality. In this
-comparison, top-k labels are weaker than the whole-flow baseline. The smaller
-input reduces irrelevant screenshots but can omit the decisive state entirely.
-
-### 6.11 Dominant Error Patterns
-
-The historical 13-flow review and the controlled runs reveal several recurring patterns. Exact category counts from the historical reports should not be mixed with the final controlled metrics because the underlying runs and gold snapshot changed. The patterns themselves are stable enough to guide the final analysis.
+Earlier case review informed the frozen taxonomy. The following mechanisms
+define the categories used for the final condition-blinded coding. The
+automatic trigger inventory measures review workload, not causal frequency.
 
 Over-fulfillment occurs when the verifier treats a visible entry point as
 evidence for the complete requirement. A search form becomes proof of correct
@@ -1302,11 +1641,11 @@ payment, security, and backend correctness. The screenshots usually show only a
 UI proxy. Models still infer concrete outcomes in some cases; central hidden
 obligations should retain `HIDDEN` or `AMBIGUOUS` status.
 
-Universal and comparative language raises the required evidence scope. Terms
-such as “all,” “every,” “only,” and “always” refer to a defined domain, while a
-flow often contains one instance. Comparisons require both sides or a visible
-invariant across the relevant states. The model often generalizes beyond the
-recorded example.
+Universal and comparative language is a cross-cutting requirement pattern, not
+an additional primary error category. Terms such as “all,” “every,” “only,” and
+“always” raise the required evidence scope, while a flow often contains only
+one instance. Comparisons require both sides or a visible invariant across the
+relevant states. The model often generalizes beyond the recorded example.
 
 Missing late states affect cart, checkout, result, review, and summary
 requirements. Lexical overlap favors earlier screens that contain the
@@ -1319,121 +1658,69 @@ supports abstention; a supported entry point followed by an unobserved result
 can support partial fulfillment. The annotation guide records examples for
 consistent author re-inspection.
 
-### 6.12 Late-State Failure Example
+The Book Depository pair in Section 5.6 isolates the partial-versus-abstain
+boundary. All four controlled Gemini 3.1 Flash-Lite conditions and the Gemini
+2.5 baseline correctly fulfilled the requirement limited to the current form,
+but abstained on the requirement extending the same filters into later views.
+They therefore discarded visible support that the gold annotation retains for
+a partial label. The primary Qwen run made the opposite error and fulfilled
+both requirements, extending current-form evidence into an unobserved later
+state.
 
-The Six Flags purchase flow (flow 10) provides a representative retrieval failure. Several requirements refer to quantity changes, combined cart contents, fees and totals, the ability to modify the cart, and controls visible before purchase confirmation. The decisive evidence appears in late steps, especially steps 8–10. Earlier evidence-selection variants often retrieved configuration or add-on screens but did not include the final cart summary.
+The Carnival cases in Section 5.7 expose the same calibration problem across
+three labels. Every reported primary condition abstained on `REQ-13`, although
+the visible combined query supports a partial label. The final consistency
+review therefore classifies these six abstentions as excessive rather than as
+boundary disagreements. The five Gemini conditions
+correctly abstained on the hidden availability claim in `REQ-14`, while Qwen
+inferred fulfillment from the displayed options. Only gated/top-4 recovered
+`NOT_FULFILLED` for the visibly absent dedicated review stage in `CONTR-05`;
+the other primary conditions softened the case to partial fulfillment or
+abstention. These paired outcomes show that the errors are not captured by a
+single tendency toward optimism or conservatism.
 
-This case originates in retrieval. Without the final cart screenshot, the
-verifier cannot cite the subtotal, fee, tax, total, or modify-cart control. It
-may return `ABSTAIN` or `PARTIALLY_FULFILLED` even though the full flow contains
-the state. Action/result pairing, late-screen priorities, and a fallback to the
-complete flow directly address this failure.
+#### Late-State Failure Example
 
-Complete-flow input also has costs. Longer flows increase image tokens and
-irrelevant content. The evaluation therefore compares label quality, evidence
-recall, cost, and traceability instead of treating smaller top-k values as an
-inherent improvement.
+The Six Flags purchase flow (flow 10) provides a representative selection miss.
+Requirements about quantities, fees, totals, and cart modification depend on
+the final cart state in steps 8--10, while lexical selection often retained
+earlier configuration screens. Without the late summary, the verifier cannot
+support these decisions even though the complete flow contains the evidence.
+This case motivates action/result pairing, late-state priorities, and a fallback
+to the complete flow. Longer flows still increase image tokens and irrelevant
+content, so retrieval remains a trade-off rather than an inherent improvement.
 
-### 6.13 Current Controlled Full-Benchmark Comparison
+### 6.6 Auxiliary UI-Evaluability Results
 
-The primary RQ2 matrix was completed on 23 July 2026 after the historical analysis above. It uses the same 258 accepted items from flows 01–13, Gemini 3.1 Flash-Lite, prompt version, label schema, aggregation, and execution parameters in every cell. Only claim policy and screenshot policy vary. All four cells have 100% prediction coverage and no recorded fallbacks or failures.
+#### Method
 
-| Claim policy | Screenshot policy | Accuracy | Macro-F1 | False fulfillment | Abstain | Evidence MRR | Estimated cost |
-|---|---|---:|---:|---:|---:|---:|---:|
-| Raw requirements | All screenshots | 0.795 | 0.514 | 0.106 | 0.190 | 0.716 | $0.2817 |
-| Gated automatic decomposition | All screenshots | 0.791 | 0.536 | 0.124 | 0.171 | 0.734 | $0.3002 |
-| Raw requirements | Lexical top-4 | 0.713 | 0.387 | 0.110 | 0.279 | 0.621 | $0.2778 |
-| Gated automatic decomposition | Lexical top-4 | 0.736 | 0.518 | 0.104 | 0.260 | 0.607 | $0.2394 |
+UI evaluability is evaluated separately from fulfillment. The first analysis
+compares the evaluability predicted in the realistic raw-requirement run with
+the reviewed three-class labels. Because the class distribution is highly
+imbalanced, raw agreement is accompanied by macro-F1, balanced accuracy,
+per-class recall, unweighted Cohen's kappa, and ordinal-weighted kappa.
 
-A paired 10,000-sample percentile bootstrap over the 13 flows gives a 95%
-interval of -12.0 to -3.8 percentage points for the raw top-4 versus raw/all
-accuracy difference and -0.244 to -0.043 for macro-F1. The MRR difference is
-also below zero. Restricting raw requirements to four screenshots loses
-measurable information while reducing estimated cost by less than half a cent.
-Repeated screenshots across batches and output and thinking tokens offset much
-of the lower image input.
+A deterministic text classifier tests whether simple lexical rules capture the
+visible/hidden boundary at low cost. Majority-class accuracy is insufficient
+when partially and non-verifiable requirements are missed.
 
-Automatic gated decomposition does not consistently improve accuracy, false fulfillment, or screenshot-step evidence ranking. With all screenshots, its accuracy and macro-F1 difference intervals span zero, while false fulfillment increases by 1.9 percentage points with a 95% interval from +0.4 to +3.3. Under top-4 evidence, decomposition improves macro-F1 by 0.131 with an interval from +0.021 to +0.193, suggesting an interaction between requirement granularity and restricted evidence. With only 13 resampled clusters, these intervals must still be interpreted cautiously.
-
-An offline policy counterfactual replaced every native `ABSTAIN` with `NOT_FULFILLED` without making new model calls. Accuracy fell from 0.795 to 0.702 for raw/all and from 0.736 to 0.643 for gated/top-4; macro-F1 fell to 0.331 and 0.305. False fulfillment was unchanged because the policy cannot generate a positive label. The result shows that treating absence of sufficient evidence as a negative verdict is harmful on this benchmark. It does not show that every abstention is calibrated or that abstention causally reduces unsafe positive predictions.
-
-### 6.14 Run-to-Run Stability
-
-Two independent repetitions were executed for the raw/all and gated/top-4
-Gemini anchors and for the hosted Qwen raw/shared-top-4 baseline. Every
-repetition covered all 13 flows and 258 items. The new Gemini runs used 160
-first-attempt API calls without cache hits, fallbacks, or failures; the Qwen
-runs used 78 first-attempt calls, were served by Alibaba with provider fallbacks
-disabled, and likewise recorded no failures.
-
-Gemini produced exactly the same requirement label for every item in all three
-executions of both configurations. Raw/all therefore remains at 0.795 accuracy
-and 0.514 macro-F1 in every run, while gated/top-4 remains at 0.736 accuracy and
-0.518 macro-F1. Screenshot-step evidence was not perfectly invariant: raw/all
-evidence MRR ranges from 0.712 to 0.716 and gated/top-4 from 0.607 to 0.610.
-
-Qwen shows small but measurable variation. Across three executions, accuracy
-ranges from 0.705 to 0.713, macro-F1 from 0.345 to 0.356, false fulfillment from
-0.185 to 0.189, and evidence MRR from 0.622 to 0.635. Pairwise label agreement
-ranges from 0.965 to 0.988, with Cohen's kappa between 0.906 and 0.969. These
-figures indicate strong descriptive stability without implying determinism or
-treating repeated executions on the same benchmark as independent samples.
-
-The six repetitions cost approximately USD 1.1245 in recorded successful
-inference usage. Bounding boxes were not requested in the Qwen runs. The Gemini
-prompt did produce unvalidated free-form visual regions, but the mature
-evaluated evidence contribution remains screenshot-step traceability.
-
-The matched raw/all comparison also provides a model-sensitivity result for RQ1. Gemini 3.1 Flash-Lite reaches 79.5% accuracy compared with 73.3% for Gemini 2.5 Flash-Lite. The paired flow-cluster bootstrap estimates an accuracy difference of 6.2 percentage points with a 95% interval from 1.6 to 10.8. The models assign the same label to 83.3% of items; Cohen's kappa is 0.616.
-
-A separate hosted open-weight baseline compares Qwen3-VL-8B-Instruct with
-Gemini 3.1 Flash-Lite under the same raw-requirement, shared-top-4 condition.
-Both reach 71.3% accuracy and nearly identical evidence MRR (0.622 and 0.621).
-Their label agreement is 81.0%, with Cohen's kappa of 0.559. Qwen's
-false-fulfillment rate is nevertheless 18.5%, 7.4 percentage points above
-Flash-Lite (flow-cluster bootstrap 95% interval +2.5 to +12.6), and its
-macro-F1 is lower at 0.356. Qwen was accessed through OpenRouter on Alibaba
-infrastructure; the weights are Apache-2.0, while the hosted serving stack and
-quantization remain opaque.
-
-#### Order-Unavailable Robustness Result
-
-The chronology-destroying condition completed all 13 flows and 258 items with
-39 successful API calls, no fallback, and no recorded failure. It used 622,225
-tokens and cost an estimated USD 0.2847. Against the current working gold
-snapshot, the matched ordered condition reaches 79.8% accuracy, 0.516 macro-F1,
-19.0% abstention, 10.1% false fulfillment, and 0.716 evidence MRR. When
-trustworthy order is removed, accuracy falls to 75.2%, macro-F1 to 0.426, and
-evidence MRR to 0.665, while abstention rises to 24.8%. False fulfillment is
-10.6%.
-
-The paired difference in accuracy is -4.7 percentage points. A 10,000-sample
-percentile bootstrap over complete flows gives a descriptive 95% interval from
--7.3 to -2.0 percentage points. The abstention difference is +5.8 points, with
-an interval from +1.6 to +10.4. The evidence-MRR interval spans zero. Overall,
-28 of 258 labels change. Fourteen change from `FULFILLED` to `ABSTAIN`; the
-remaining flips include changes in both conservative and less conservative
-directions, so the result does not establish that withholding chronology
-uniformly improves safety.
-
-The label-flip rate is 18.6% in the frozen 59-item sequence-sensitive lexical
-subset, 12.3% across all multi-screen items, and 6.3% in the single-screen
-negative control. The sequence-sensitive accuracy difference is -6.8 points,
-but its flow-cluster interval spans zero. The results therefore show that
-removing trustworthy order materially changes model decisions and reduces
-aggregate label performance on this benchmark. They do not isolate a stable
-effect for every temporal requirement category, and part of the change may
-reflect the model's response to the explicit instruction that chronology is
-unavailable.
-
-### 6.15 Preliminary UI-Evaluability Results
+The completed diagnostic contains all 81 disagreements between the original
+stored labels and the deterministic classifier across 300 accepted Mind2Web and
+PURE items. The author retained 51 references, adopted 27 classifier labels,
+and chose a different label in three cases. The resulting 30 amendments update
+the stored UI-evaluability records before the auxiliary multimodal result is
+calculated. Because the items were disagreement-selected and the classifier
+output was visible, the review improves reference consistency but cannot yield
+an unbiased estimate of that classifier's accuracy. Mind2Web and PURE remain
+separate, and the three `NOT_UI_VERIFIABLE` items in the main benchmark are too
+few for a stable class-specific estimate.
 
 The realistic raw-requirement run predicts UI evaluability without receiving
 the gold value in the prompt. On the 258 Mind2Web verification items, its raw
-agreement with the current labels is 79.5%, macro-F1 is 0.420, unweighted
-Cohen's kappa is 0.325, and ordinal-weighted kappa is 0.354. The aggregate
-agreement is dominated by `UI_VERIFIABLE`: recall is 99.0% for this class,
-24.2% for `PARTIALLY_UI_VERIFIABLE`, and 0% for the four
+agreement with the current labels is 89.1%, macro-F1 is 0.504, unweighted
+Cohen's kappa is 0.521, and ordinal-weighted kappa is 0.529. The aggregate
+agreement is dominated by `UI_VERIFIABLE`: recall is 96.8% for this class,
+48.6% for `PARTIALLY_UI_VERIFIABLE`, and 0% for the three
 `NOT_UI_VERIFIABLE` items.
 
 The result reveals a systematic tendency to treat a visible interface core as
@@ -1451,46 +1738,54 @@ the majority class for 284 items and does not correctly recover the
 `PARTIALLY_UI_VERIFIABLE` class. Simple keyword rules are therefore
 insufficient for the current three-way construct.
 
-These figures remain preliminary with respect to reference quality. The
-targeted 81-item disagreement audit is prepared but not complete, and the
-300-item baseline mixes the main Mind2Web benchmark with exploratory PURE
-material. Final claims must use the frozen Mind2Web labels, disclose any logged
-author amendments, and report PURE separately. The disagreement audit itself
-cannot be used to recompute an unbiased classifier accuracy.
+The resulting multimodal agreement remains auxiliary because the benchmark has
+only three `NOT_UI_VERIFIABLE` items and the later reference review was neither
+blind nor independent of automated diagnostic information. The deterministic
+classifier therefore describes majority-class behavior rather than an unbiased
+post-amendment accuracy estimate. PURE remains separate from the 258-item
+Mind2Web result.
 
-<!-- Pending final UI-evaluability results and performance stratification. -->
+### 6.7 Auxiliary Region-Grounding Findings
 
-### 6.16 Preliminary Region-Grounding Findings
+#### Method
 
-The grounding experiments establish that the system can produce and display
-claim-specific evidence regions over complete flows. The July candidate-mark
-run generated 588 stored evidence regions for 541 claim decisions. A later
-fact-coverage run returned 697 stored regions and explicitly abstained with
-`NO_VISIBLE_REGION` for claims where the selected screenshot did not contain a
-defensible local region.
+Region grounding is scoped as a traceability output, not as an intervention on
+label accuracy. A frozen 60-item author audit samples four returned-region
+claims per flow and includes all eight explicit no-region outputs from the V7
+run. It records whether a claim needs one region, several regions, a whole
+screen or transition, or no visible region, and separately assesses geometric
+validity, semantic relevance, evidential sufficiency, proposal availability,
+and localization abstention. This targeted single-author sample supports a
+diagnostic result, not a benchmark-wide grounding estimate and not an answer to
+RQ1--RQ3.
 
-The development history also demonstrates why implementation coverage is not a
-localization metric. In an early focused OCR inspection, 13 of 14 reviewed
-proposals were marked `INCORRECT` and one `UNCERTAIN`. The lexical localizer
-often selected a nearby heading or repeated keyword rather than the value,
-range, control, or state that actually supported the claim. Higher image
-resolution alone did not correct the free-form coordinates in a controlled
-flow-01 pilot.
+The system can produce and display claim-specific evidence regions and can
+explicitly return `NO_VISIBLE_REGION`. Implementation coverage is not a quality
+metric, however: an early focused OCR inspection marked 13 of 14 proposals
+incorrect, usually because a nearby keyword was selected instead of the value,
+control, or state that supported the claim. This motivated the frozen audit of
+the later proposal-based method.
 
-Later candidate-mark pilots produced substantially more valid regions on the
-selected flows, indicating that constraining the model to explicit proposals is
-promising. The currently reviewed portion of the all-flow V7 run contains 11
-`VALID` and 2 `INCORRECT` judgments. This subset is too small and not
-representative enough to estimate benchmark-wide grounding quality. Reviews
-from earlier methods are not pooled because their candidate generators,
-prompts, resolutions, flows, and inspection procedures differ.
+The frozen V7 audit contains 60 completed author reviews. Of the 52 items with
+returned regions, 45 have valid geometry and seven have invalid geometry. The
+regions are relevant in 39 cases, partially relevant in nine, and irrelevant in
+four. They are sufficient for the claim in 21 cases, partially sufficient in
+23, and insufficient in eight. The remaining eight items are explicit
+no-region outputs and are not assigned region geometry, relevance, or
+sufficiency scores.
 
-The implemented pipeline produces region-level evidence. The reviewed pilots
-also show that unconstrained or lexical coordinate generation is unreliable.
-Relevance, sufficiency, coverage, and localization abstention will be reported
-after completion of the frozen review sample.
+The applicability review also shows why a single-box metric would be
+misleading: 29 claims require multiple regions, 14 one region, 15 a whole-screen
+state or transition, and two no visible region. Among the eight explicit
+no-region outputs, seven localization abstentions are appropriate and one is
+not. These figures characterize the
+targeted sample only. Reviews from earlier methods are not pooled because their
+candidate generators, prompts, resolutions, flows, and inspection procedures
+differ.
 
-<!-- Pending final region-grounding table and reviewed examples. -->
+A focused GameStop diagnostic further showed that proposal coverage matters:
+extending OCR to the lower page exposed the decisive address regions shown in
+Figure \ref{fig:gamestop-quantifier-counterexample}.
 
 ## 7 Discussion and Threats to Validity
 
@@ -1498,7 +1793,7 @@ after completion of the frozen review sample.
 
 Adding pipeline stages does not consistently improve verification. Raw
 requirements with all screenshots produce the highest accuracy in the primary
-Flash-Lite matrix. Lexical top-4 omits decisive information and saves almost no
+Flash-Lite matrix. Shared lexical top-4 omits decisive information and saves almost no
 money under the implemented batching strategy. Automatic decomposition
 improves macro-F1 under restricted evidence, but all-screenshot accuracy remains
 unchanged and false fulfillment increases. Requirement understanding and
@@ -1510,6 +1805,23 @@ localized evidence. A reviewer can then separate retrieval errors from visual
 interpretation and label-policy disagreements. Direct whole-flow prompting and
 staged verification can therefore differ in label quality and diagnostic
 detail.
+
+This diagnostic structure also suggests a practical improvement cycle. Errors
+can first be assigned to the frozen primary categories and then inspected for
+recurring mechanisms. Over-fulfillment and boundary errors can motivate clearer
+evidence-sufficiency rules; excessive abstention can reveal when visible partial
+support should be retained; and selection misses can guide evidence acquisition.
+The resulting general rules can be added to the label guide, prompt, or
+deterministic gates and evaluated again on held-out flows. Repeating this cycle
+turns the taxonomy into a development tool rather than only a reporting device.
+
+Such refinement is plausible only if the multimodal model can apply the added
+rules and interpret the relevant UI states. The present results show that many
+errors follow recurring policies rather than isolated output failures, but they
+do not establish that prompt refinement will remove them or that visual
+understanding is already sufficient in other interfaces. Each iteration must
+therefore retain abstention, inspect its remaining errors, and be tested on new
+applications instead of the examples used to derive the rules.
 
 For a practical deployment, the results favor an adaptive rather than fixed
 retrieval policy. Complete flows are appropriate while flows remain short
@@ -1533,8 +1845,13 @@ All current Mind2Web verification items were reviewed by the primary author
 independently of the evaluated model predictions. The documented reference
 standard includes requirement labels, claim boundaries, evidence sets, and
 UI-evaluability judgments. Reported model metrics quantify agreement with this
-reviewed reference standard. A separate disagreement-focused author audit
-provides qualitative analysis of recurring boundary interpretations.
+reviewed reference standard. A later author reinspection resolved all 81
+disagreements between the stored UI-evaluability labels and a deterministic
+text classifier, changing 30 labels in the stored records. Because the sample
+was disagreement-selected and the classifier output was visible, this review
+improves internal consistency but does not provide independent validation of
+that classifier. The separately prompted multimodal UI-evaluability result is
+therefore reported as auxiliary evidence rather than a central RQ result.
 
 The requirements are derived from the same flows against which they are
 evaluated. Prediction-independent manual review keeps evaluated outputs
@@ -1543,7 +1860,21 @@ contrastive requirements, flow-level resampling, and the exploratory PURE
 document comparison make the construction and evidence sources visible in the
 analysis.
 
-Model outputs are sensitive to model version, prompt text, image preparation, retries, and aggregation. Historical repository reports combine different current-per-flow runs and are useful for diagnosis but not controlled comparison. Final experiments require an immutable run manifest and exact model identifiers.
+The verifier input excludes intended and accepted labels, but it includes the
+requirement identifier. All contrastive items use a `CONTR-` prefix, so the
+model can infer construction provenance even though it cannot infer the target
+label from that prefix. The experiment is target-label-blind but not
+provenance-blind. This cue may contribute to the source--contrastive difference,
+which is why that comparison is descriptive rather than a causal estimate of
+difficulty.
+
+Model outputs are sensitive to model version, prompt text, image preparation,
+retries, and aggregation. The final comparisons are tied to stored prediction
+files, input hashes, exact model identifiers, and run metadata. Some first
+executions were made from a recorded commit with a dirty worktree; later
+stability runs used clean manifests. This limits byte-for-byte reconstruction
+of those first calls, but stored outputs can still be rescored against the
+matching frozen reference.
 
 ### 7.3 Construct Validity
 
@@ -1575,11 +1906,22 @@ hidden property can depend on the application risk model. This boundary
 therefore requires the same explicit evidence guidance as the fulfillment
 labels.
 
-Claim matching introduces additional uncertainty. Two decompositions can be semantically equivalent while using different granularity. Low claim-status performance may reflect a poor decomposition, poor text matching, or poor status prediction. The final report should separate claim-match recall from status quality on matched claims.
+Claim matching introduces additional uncertainty. Two decompositions can be
+semantically equivalent while using different granularity. Low claim-status
+performance may reflect a poor decomposition, poor text matching, or poor
+status prediction. Where claim metrics are reported, claim-match recall is
+therefore kept separate from status quality on matched claims.
 
 ### 7.4 External Validity
 
 Thirteen web flows are a small sample of the variety of real interfaces and requirements. The selected tasks do not establish generalization to native mobile applications, desktop software, accessibility requirements, or industrial specifications. Mind2Web trajectories reflect one recorded interaction path and may omit alternative states relevant to a requirement.
+
+An error-driven refinement cycle would intensify this limitation if rules were
+derived and evaluated on the same flows. Development examples, validation
+flows, and a held-out test set should therefore be separated. The test set
+should include more varied interfaces and independently authored requirements
+from real applications so that apparent improvements are not benchmark-specific
+prompt tuning.
 
 The primary benchmark also reverses the usual requirements-first development
 order. Its source requirements were reconstructed from already observed web
@@ -1599,21 +1941,21 @@ implementation-conformance results over recorded execution flows.
 
 ### 7.5 Reliability and Reproducibility
 
-Model APIs can return malformed responses, change behavior between versions, or fail transiently. Older flow runs contained API fallbacks, and cached responses may hide differences between repeated executions. Final reporting should include retries, failures, fallbacks, token counts, image counts, runtime, cache policy, and pricing assumptions.
+Model APIs can return malformed responses, change behavior between versions, or fail transiently. Older flow runs contained API fallbacks, and cached responses may hide differences between repeated executions. The frozen manifests therefore record retries, failures, fallbacks, token counts, image counts, runtime, cache policy, and pricing assumptions.
 
 The repository contains stale summary metrics generated against older benchmark snapshots. For example, one stored batched-top-k metric reports 31.8% accuracy because it evaluates 201 predictions against all 258 current gold items and counts the 57 absent predictions as abstentions. Recomputed metrics restricted to the actual 201-item run give 75.1% accuracy. This discrepancy demonstrates why each thesis table must be generated from a frozen manifest with matching prediction and gold sets.
 
 ### 7.6 Current Scope Limitations
 
 The pipeline provides mature step-level evidence and implemented region
-grounding whose final human evaluation is reported separately once complete.
-Bounding boxes are not treated as an accuracy intervention. Screenshots cannot
+grounding, but no benchmark-wide region-quality estimate. Bounding boxes are
+not treated as an accuracy intervention. Screenshots cannot
 establish hidden backend truth, global absence, long-term persistence, external
 delivery, or complete result correctness. The completed 2x2 matrix isolates
 claim and screenshot policy for one model, but it does not show that
 evidence-first design uniformly improves false fulfillment. The reported
 conclusions remain within these limits; evidence grounding alone does not
-establish safer labels.
+establish safer labels, and no benchmark-wide region-quality rate is claimed.
 
 ### 7.7 Dataset Licensing and Artifact Availability
 
@@ -1661,12 +2003,13 @@ being treated as a cause of improved label accuracy.
 For **RQ1**, multimodal models assess requirement fulfillment from ordered
 screenshot flows with useful but incomplete accuracy under the fixed
 four-label operationalization. Gemini 3.1 Flash-Lite reaches 79.5% accuracy and
-0.514 macro-F1 in the matched raw/all configuration, compared with 73.3% and
-0.412 for Gemini 2.5 Flash-Lite. The hosted Qwen baseline shows that equal
+0.511 macro-F1 in the matched raw/all configuration, compared with 73.3% and
+0.413 for Gemini 2.5 Flash-Lite. The hosted Qwen baseline shows that equal
 headline accuracy can conceal substantially different false-fulfillment and
 minority-class behavior. Model choice therefore matters, and accuracy alone
-does not characterize fulfillment-label performance. In the order-unavailable
-robustness condition, 10.9% of labels change and aggregate accuracy decreases
+does not characterize fulfillment-label performance.
+
+In the order-unavailable robustness condition, 10.9% of labels change and aggregate accuracy decreases
 by about 4.7 percentage points. Ordered input is therefore operationally
 relevant to the implemented verifier, although the limited subgroup evidence
 does not support a universal causal claim for every temporal requirement
@@ -1675,8 +2018,8 @@ pattern.
 For **RQ2**, the effects of decomposition and screenshot selection are
 conditional. Gated automatic decomposition does not materially improve
 all-screenshot accuracy and increases false fulfillment in that setting, but it
-improves macro-F1 when evidence is restricted to top-4. Lexical top-4 selection
-reduces raw-requirement accuracy and evidence MRR relative to the complete flow
+improves macro-F1 when evidence is restricted to top-4. Shared top-4 selection
+reduces raw-requirement accuracy and chronological evidence-trace alignment relative to the complete flow
 while providing negligible cost savings in the current batching
 implementation. Explicit evidence remains valuable for traceability even where
 the staged configuration does not improve labels. Region-level evidence is
@@ -1685,11 +2028,22 @@ evaluated as an additional traceability output rather than an accuracy factor.
 For **RQ3**, the main failures are systematic. Models over-generalize from a
 visible entry point to an unobserved outcome, infer hidden or external behavior
 from interface proxies, overstate universal and comparative claims, and miss
-decisive late states when retrieval favors lexical overlap. Native abstentions
-often protect against unsupported closed-world decisions: replacing all
-abstentions with negative labels substantially reduces accuracy. This does not
-prove that every abstention is calibrated, but it confirms that insufficient
-evidence and visible contradiction must remain distinct.
+decisive late states when retrieval favors lexical overlap.
+
+Native abstentions often protect against unsupported closed-world decisions:
+replacing all abstentions with negative labels substantially reduces accuracy.
+This does not prove that every abstention is calibrated, but it confirms that
+insufficient evidence and visible contradiction must remain distinct.
+
+The completed
+screenshot-aware audit assigns 142 of 392 label errors (36.2%) to unsafe
+over-fulfillment, 138 (35.2%) to excessive abstention, and 57 (14.5%) to
+evidence-selection misses. Multi-screen composition, late result states, hidden
+or external behavior, and cross-step persistence are the most frequent
+overlapping requirement patterns. The results answer RQ3 descriptively for the
+frozen 13-flow benchmark; repeated conditions and the LLM-assisted coding with
+targeted primary-author boundary review do not support population-level
+prevalence or independent-human reliability claims.
 
 <!-- After the final audits, add one concise sentence to the RQ2/RQ3 answers
 summarizing region relevance/sufficiency and UI-evaluability stratification. -->
@@ -1713,13 +2067,16 @@ evaluability, abstention, runtime, cost, and stability as distinct outcomes.
 
 ### 8.4 Future Work
 
-The next methodological step is an evidence-sufficiency rubric that
-operationalizes the abstract labels more precisely. A general layer could
-distinguish visible states from downstream effects, bounded UI sets from
-open-world completeness, and strong visible proxies from hidden guarantees.
-Context profiles could then specify which indicators are accepted in a
-particular domain. The model would still interpret requirements and
-screenshots, but less of the decision policy would remain implicit.
+The next methodological step is an error-driven refinement loop for the label
+policy. After each evaluation, the primary error categories can be inspected
+for recurring mechanisms and translated into general evidence-sufficiency
+rules. For example, the rubric could distinguish visible states from downstream
+effects, bounded UI sets from open-world completeness, and strong visible
+proxies from hidden guarantees. The revised guide, prompt, and deterministic
+gates would then be evaluated on held-out flows, and the remaining errors would
+start the next iteration. This process could reduce model-dependent assumptions
+without treating the observed categories as universal causes or assuming that
+each iteration must improve accuracy.
 
 This work requires a larger, requirements-first benchmark. Independent
 requirements should be fixed before collecting corresponding UI drafts,
@@ -1727,15 +2084,20 @@ implementations, and execution flows, ideally with several variants containing
 natural or deliberately introduced deviations. Such data would separate
 requirement ambiguity, design conformance, implementation defects, and
 incomplete execution evidence. The rubric should be developed separately from
-the evaluation applications and tested on held-out contexts. Additional flow
-clusters and reviewers would also strengthen estimates for rare classes.
+the evaluation applications and tested on held-out contexts. More diverse
+interfaces, requirements from real projects, additional flow clusters, and
+several reviewers would also strengthen estimates for rare classes and reveal
+whether refined rules transfer beyond the current benchmark.
 
-Evidence acquisition should become adaptive by pairing actions with result
-states, prioritizing late states, and requesting more screenshots when selected
-evidence is insufficient. Semantic retrieval must be tested against complete
-flows rather than assumed to help. Region grounding should improve proposal
-recall and multi-region or transition evidence, evaluated through reviewer
-effort and auditability.
+For short flows, future systems should retain direct complete-flow verification
+as the baseline because neither mandatory claim decomposition nor shared
+lexical top-k selection improved the strongest configuration here. Adaptive evidence
+acquisition becomes relevant when flows exceed practical context limits. It
+should pair actions with result states, prioritize late states, and request more
+screenshots when evidence is insufficient. Finally, region grounding should
+improve proposal coverage and support multi-region or transition evidence. Its
+success should be measured through relevance, sufficiency, reviewer effort, and
+auditability rather than assumed to improve the verification label.
 
 ## References Used in This Draft
 
@@ -1754,6 +2116,7 @@ effort and auditability.
 - Kwa, T. et al. (2025). *Measuring AI Ability to Complete Long Tasks*. arXiv:2503.14499.
 - Massenon, R., Gambo, I., and Khan, J. A. (2026). *Toward an Automated Cross-Multimodal Verification of Mobile App Bug Fixes*. Information and Software Technology 191, 107996. DOI: 10.1016/j.infsof.2025.107996.
 - Nass, M., Alégroth, E., and Feldt, R. (2021). *Why Many Challenges with GUI Test Automation (Will) Remain*. Information and Software Technology. DOI: 10.1016/j.infsof.2021.106625.
+- Lu, Y., Yang, J., Shen, Y., and Awadallah, A. (2024). *OmniParser for Pure Vision Based GUI Agent*. arXiv:2408.00203.
 - Rawles, C. et al. (2023). *Android in the Wild: A Large-Scale Dataset for Android Device Control*. NeurIPS 2023. arXiv:2307.10088.
 - Wen, B. et al. (2025). *Know Your Limits: A Survey of Abstention in Large Language Models*. Transactions of the Association for Computational Linguistics 13, 529–556. DOI: 10.1162/tacl_a_00754.
 - Yang, J. et al. (2023). *Set-of-Mark Prompting Unleashes Extraordinary Visual Grounding in GPT-4V*. arXiv:2310.11441.

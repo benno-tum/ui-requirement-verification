@@ -147,16 +147,16 @@ The final primary Gemini 3.1 Flash-Lite matrix now covers all 13 flows and produ
 
 | Configuration | Items / flows | Claim and screenshot strategy | Accuracy | Macro-F1 | False fulfillment | Abstain | Evidence MRR | Calls / failures | Tokens | Estimated cost |
 |---|---|---|---:|---:|---:|---:|---:|---|---:|---:|
-| Gemini 3.1 Flash-Lite | 258 / 01–13 | Raw requirements; all screenshots | 79.8% | 0.516 | 10.1% | 19.0% | 0.716 | 39 / 0 | 612,429 | $0.2817 |
-| Gemini 3.1 Flash-Lite | 258 / 01–13 | Gated automatic decomposition; all screenshots | 79.5% | 0.538 | 11.9% | 17.1% | 0.734 | 41 / 0 | 653,388 | $0.3002 |
-| Gemini 3.1 Flash-Lite | 258 / 01–13 | Raw requirements; lexical top-4 | 71.7% | 0.388 | 10.5% | 27.9% | 0.621 | 39 / 0 | 433,519 | $0.2778 |
-| Gemini 3.1 Flash-Lite | 258 / 01–13 | Gated automatic decomposition; lexical top-4 | 74.0% | 0.520 | 9.8% | 26.0% | 0.607 | 41 / 0 | 421,723 | $0.2394 |
+| Gemini 3.1 Flash-Lite | 258 / 01–13 | Raw requirements; all screenshots | 79.5% | 0.511 | 10.6% | 19.0% | 0.716 | 39 / 0 | 612,429 | $0.2817 |
+| Gemini 3.1 Flash-Lite | 258 / 01–13 | Gated automatic decomposition; all screenshots | 79.1% | 0.532 | 12.4% | 17.1% | 0.734 | 41 / 0 | 653,388 | $0.3002 |
+| Gemini 3.1 Flash-Lite | 258 / 01–13 | Raw requirements; lexical top-4 | 71.3% | 0.387 | 11.0% | 27.9% | 0.621 | 39 / 0 | 433,519 | $0.2778 |
+| Gemini 3.1 Flash-Lite | 258 / 01–13 | Gated automatic decomposition; lexical top-4 | 73.6% | 0.511 | 10.4% | 26.0% | 0.607 | 41 / 0 | 421,723 | $0.2394 |
 
-The complete 2x2 matrix used 160 successful API calls, recorded no fallbacks or failures, and cost approximately $1.0991. The result does not support a uniform advantage for the proposed evidence-first configuration. A paired 10,000-sample bootstrap over complete flows finds that raw top-4 is worse than raw/all in accuracy (-8.1 percentage points, 95% CI -12.0 to -3.8), macro-F1 (-0.127, -0.244 to -0.043), and MRR (-0.095, -0.148 to -0.031). Gated top-4 is also worse than gated/all in accuracy (-5.4 percentage points, -10.2 to -1.1) and MRR (-0.128, -0.187 to -0.063), while its macro-F1 interval spans zero. Gated decomposition under all screenshots has mixed differences whose accuracy, macro-F1, and MRR intervals span zero; its false-fulfillment difference is +1.9 percentage points (95% CI +0.4 to +3.3). Under top-4, decomposition improves macro-F1 by 0.131 (95% CI +0.021 to +0.193). Only 13 clusters are available, so the intervals remain descriptive rather than grounds for broad generalization.
+The complete 2x2 matrix used 160 successful API calls, recorded no fallbacks or failures, and cost approximately $1.0991. The result does not support a uniform advantage for the proposed evidence-first configuration. A paired 10,000-sample bootstrap over complete flows finds that raw top-4 is worse than raw/all in accuracy (-8.1 percentage points, 95% CI -12.0 to -3.8), macro-F1 (-0.123, -0.226 to -0.043), and MRR (-0.095, -0.148 to -0.031). Gated top-4 is also worse than gated/all in accuracy (-5.4 percentage points, -10.2 to -1.1) and MRR (-0.128, -0.187 to -0.063), while its macro-F1 interval spans zero. Gated decomposition under all screenshots has mixed differences whose accuracy, macro-F1, and MRR intervals span zero; its false-fulfillment difference is +1.9 percentage points (95% CI +0.4 to +3.3). Under top-4, decomposition improves macro-F1 by 0.123 (95% CI +0.021 to +0.183). Only 13 clusters are available, so the intervals remain descriptive rather than grounds for broad generalization.
 
-For the raw/all cell, forcing all 49 native abstentions to `NOT_FULFILLED` reduces accuracy from 79.8% to 70.5% and macro-F1 from 0.516 to 0.333 while false fulfillment remains 10.1%. For gated/top-4, forcing all 67 abstentions reduces accuracy from 74.0% to 64.7% and macro-F1 from 0.520 to 0.307 while false fulfillment remains 9.8%. These are zero-cost aggregation-policy counterfactuals, not new LLM runs. They show that blanket negative replacement is harmful but cannot establish causal safety improvement from abstention.
+For the raw/all cell, forcing all 49 native abstentions to `NOT_FULFILLED` reduces accuracy from 79.5% to 70.2% and macro-F1 from 0.511 to 0.332 while false fulfillment remains 10.6%. For gated/top-4, forcing all 67 abstentions reduces accuracy from 73.6% to 64.3% and macro-F1 from 0.511 to 0.306 while false fulfillment remains 10.4%. These are zero-cost aggregation-policy counterfactuals, not new LLM runs. They show that blanket negative replacement is harmful but cannot establish causal safety improvement from abstention.
 
-The matched raw/all model comparison supplies current RQ1 sensitivity evidence. Gemini 3.1 Flash-Lite exceeds Gemini 2.5 Flash-Lite by 6.2 percentage points accuracy (paired flow-cluster bootstrap 95% CI 1.6 to 10.8), 0.102 macro-F1 (0.006 to 0.218), and 0.121 evidence MRR (0.010 to 0.241). Their raw label agreement is 83.3% (78.5% to 88.1%) and Cohen's kappa is 0.616 (0.469 to 0.735). Both are commercial Google models, so this is not evidence of cross-provider or open-model generalization.
+The matched raw/all model comparison supplies current RQ1 sensitivity evidence. Gemini 3.1 Flash-Lite exceeds Gemini 2.5 Flash-Lite by 6.2 percentage points accuracy (paired flow-cluster bootstrap 95% CI 1.6 to 10.8), 0.097 macro-F1 (0.006 to 0.202), and 0.121 evidence MRR (0.010 to 0.241). Their raw label agreement is 83.3% (78.5% to 88.1%) and Cohen's kappa is 0.616 (0.469 to 0.735). Both are commercial Google models, so this is not evidence of cross-provider or open-model generalization.
 
 ### 4.1 Run Cleanliness and Necessary Disclosures
 
@@ -172,9 +172,9 @@ Additional disclosures are required:
 - Candidate-mark/OmniParser grounding was disabled (`grounding_candidates = null`). Bounding boxes were not disabled: the common prompt requested free-form visual regions and OCR refinement produced boxes for most cited evidence units. These boxes were neither independently reviewed nor scored. They may not be claimed as a validated contribution and their generation is part of the prompt/output workload.
 - The requirements loader reads the benchmark gold JSON but only sends requirement text, identifiers, predicted claims, and screen evidence to the verifier. Gold labels and gold evidence are not referenced by the verifier code. Nevertheless, a sanitized prediction-input file would provide stronger structural protection against accidental label leakage.
 - Exact commercial serving revisions and system fingerprints are unavailable. The exact model aliases, date, SDK, prompt, parameters, images, outputs, and usage are archived, but provider drift remains possible.
-- The benchmark is strongly imbalanced: 173 of 258 labels are `FULFILLED`, while only eight are `NOT_FULFILLED`. Accuracy must be interpreted with macro-F1 and per-class scores.
+- The benchmark is strongly imbalanced: 172 of 258 labels are `FULFILLED`, while only nine are `NOT_FULFILLED`. Accuracy must be interpreted with macro-F1 and per-class scores.
 
-The strongest cell, Gemini 3.1 raw/all, reaches 79.8% accuracy but only 0.516 macro-F1. Its per-class F1 values are 0.939 for `FULFILLED`, 0.290 for `PARTIALLY_FULFILLED`, 0.200 for `NOT_FULFILLED`, and 0.634 for `ABSTAIN`. It is therefore a useful but not production-ready verifier. The main optimization target is minority-label reasoning and evidence sufficiency, not headline accuracy.
+The strongest cell, Gemini 3.1 raw/all, reaches 79.5% accuracy but only 0.511 macro-F1. Its per-class F1 values are 0.936 for `FULFILLED`, 0.290 for `PARTIALLY_FULFILLED`, 0.182 for `NOT_FULFILLED`, and 0.634 for `ABSTAIN`. It is therefore a useful but not production-ready verifier. The main optimization target is minority-label reasoning and evidence sufficiency, not headline accuracy.
 
 ### 4.2 Completed Open-Weight Baseline
 
@@ -199,9 +199,9 @@ The six prespecified repetitions completed on 23 July 2026 from clean Git commit
 The four new Gemini runs used 160 first-attempt API calls, 2,068,262 tokens, and
 approximately USD 1.0421. They recorded zero cache hits, fallbacks, or failures.
 Across the original run and both repetitions, raw/all has identical accuracy
-(79.8%), macro-F1 (0.516), false fulfillment (10.1%), abstention (19.0%), and
+(79.5%), macro-F1 (0.511), false fulfillment (10.6%), abstention (19.0%), and
 100% pairwise label agreement. Gated/top-4 likewise has identical accuracy
-(74.0%), macro-F1 (0.520), false fulfillment (9.8%), abstention (26.0%), and
+(73.6%), macro-F1 (0.511), false fulfillment (10.4%), abstention (26.0%), and
 100% pairwise label agreement. Evidence MRR changes slightly because evidence
 steps vary even when requirement labels do not: 0.712–0.716 for raw/all and
 0.607–0.610 for gated/top-4.
@@ -242,7 +242,7 @@ Comparable screenshot-step evidence metrics are:
 | Recall@1 | 0.481 | 0.434 | 0.334 |
 | Recall@3 | 0.639 | 0.529 | 0.358 |
 
-The provided-claim runs each match all 541 benchmark claim texts by construction. Their claim-status macro-F1 values are 0.331 for Pro and 0.266 for Flash-Lite. These values assess claim-status prediction given benchmark claims; they do not evaluate automatic claim decomposition.
+The provided-claim runs each match all 541 benchmark claim texts by construction. Rescored against the corrected reference, their claim-status macro-F1 values are 0.338 for Pro and 0.297 for Flash-Lite. These values assess claim-status prediction given benchmark claims; they do not evaluate automatic claim decomposition.
 
 The realistic raw-requirement run independently predicts UI evaluability. Against the author-reinspected labels it reaches 89.1% raw agreement, macro-F1 0.504, unweighted Cohen's kappa 0.521, and ordinal-weighted kappa 0.529. Recall is 96.8% for `UI_VERIFIABLE`, 48.6% for `PARTIALLY_UI_VERIFIABLE`, and 0% for the three `NOT_UI_VERIFIABLE` items. This is useful auxiliary evidence but is strongly influenced by class imbalance.
 
@@ -254,7 +254,7 @@ The current full-benchmark snapshot supports these preliminary statements:
 - The realistic top-4 raw-requirement run abstains far more often and has lower macro-F1 and evidence recall. It has a lower false-fulfillment rate than the current Flash-Lite all-screen joint run, but a higher rate than Pro.
 - The older contextual results do not isolate those effects. The new 2x2 matrix isolates claim and screenshot policy for Gemini 3.1 Flash-Lite, but model scale and candidate grounding remain separate questions.
 - Explicit evidence output makes traceability measurable; it does not by itself prove improved label safety.
-- Accuracy alone remains misleading because 173 of 258 items are `FULFILLED` and only eight are `NOT_FULFILLED`. Macro-F1, per-class results, false fulfillment, and abstention must be reported together.
+- Accuracy alone remains misleading because 172 of 258 items are `FULFILLED` and only nine are `NOT_FULFILLED`. Macro-F1, per-class results, false fulfillment, and abstention must be reported together.
 - The current box outputs show region-generation coverage, not human-validated localization quality.
 
 ## 5. Historical and Inconsistent Artifacts
@@ -267,7 +267,7 @@ The following values are useful as history but must not be copied into the final
 | 258-item deterministic raw/top-4 run prepared on 23 July 2026: 44.6% accuracy, 0.293 macro-F1, 33.3% false fulfillment, 10.1% abstention, evidence MRR 0.467 | Full 258-item coverage with Mind2Web-only strict evaluation. Preliminary until the code worktree is committed and the manifest is frozen. Do not compare the number directly with the historical 201-item deterministic row without explaining the changed denominator and implementation. |
 | 258-item deterministic gated/top-4 run prepared on 23 July 2026: 45.3% accuracy, 0.301 macro-F1, 32.8% false fulfillment, 9.7% abstention, evidence MRR 0.464 | Zero-cost controlled decomposition baseline. The small difference from raw requirements is descriptive; confidence intervals and a paired test remain before interpreting it. |
 | Offline forced-decision smoke test on the deterministic outputs | Converted 26 raw and 25 gated abstentions to `NOT_FULFILLED` with zero API calls. Accuracy dropped to 41.1% and 41.9%; false fulfillment was unchanged. This validates the policy-ablation implementation but is not evidence about LLM abstention until repeated on frozen LLM outputs. |
-| Gemini 2.5 Flash-Lite raw whole-flow baseline, chunked to at most eight requirements per complete-flow call | 258/258 predictions, 73.3% accuracy, 0.412 macro-F1, 13.7% false fulfillment, 22.1% abstention, evidence MRR 0.595. Final valid run used 39 API calls with zero fallbacks/failures and recorded 368,138 tokens for approximately USD 0.0711. Treat as a low-cost commercial model baseline; it does not satisfy the separate open-model recommendation. |
+| Gemini 2.5 Flash-Lite raw whole-flow baseline, chunked to at most eight requirements per complete-flow call | 258/258 predictions, 73.3% accuracy, 0.413 macro-F1, 13.7% false fulfillment, 22.1% abstention, evidence MRR 0.595. Final valid run used 39 API calls with zero fallbacks/failures and recorded 368,138 tokens for approximately USD 0.0711. Treat as a low-cost commercial model baseline; it does not satisfy the separate open-model recommendation. |
 | Offline forced-decision counterfactual on the valid Gemini 2.5 baseline | All 57 native abstentions became `NOT_FULFILLED`; accuracy fell to 66.7%, macro-F1 to 0.332, and false fulfillment remained 13.7%. Suitable as evidence that blanket closed-world replacement is harmful, but not as proof that all native abstentions are calibrated. |
 | 169/259 = 65.3% | Assembled from the then-current run per flow, including API fallbacks and an older 259-item gold snapshot. |
 | 173/258 = 67.1% | Mixed per-flow configurations selected for qualitative error analysis rather than a controlled experiment. |
@@ -322,8 +322,8 @@ A visible search form can establish that the user can enter criteria and submit 
   01–13, 39 successful Gemini 3.1 Flash-Lite calls, zero fallbacks, zero
   failures, 622,225 tokens, and USD 0.2847 recorded estimated cost. Relative to
   both frozen output sets rescored against the corrected reference, accuracy
-  changes from 79.8% to 75.2%, macro-F1 from 0.516 to 0.426, abstention from
-  19.0% to 24.8%, false fulfillment from 10.1% to 10.6%, and evidence MRR from
+  changes from 79.5% to 74.8%, macro-F1 from 0.511 to 0.425, abstention from
+  19.0% to 24.8%, false fulfillment from 10.6% to 11.2%, and evidence MRR from
   0.716 to 0.665. The paired flow-bootstrap accuracy interval is -7.3 to -2.0
   percentage points. Treat this as an order-unavailable robustness result, not
   as a misleading false-chronology experiment.

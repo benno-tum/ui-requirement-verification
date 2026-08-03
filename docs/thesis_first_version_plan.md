@@ -131,10 +131,10 @@ Current factor-controlled full-benchmark RQ2 snapshot (Gemini 3.1 Flash-Lite, 23
 
 | Configuration | Items | Accuracy | Macro-F1 | False fulfillment | Abstain | Evidence MRR |
 |---|---:|---:|---:|---:|---:|---:|
-| Raw requirements, all screenshots | 258 | 79.5% | 0.514 | 10.6% | 19.0% | 0.716 |
-| Gated automatic decomposition, all screenshots | 258 | 79.1% | 0.536 | 12.4% | 17.1% | 0.734 |
+| Raw requirements, all screenshots | 258 | 79.5% | 0.511 | 10.6% | 19.0% | 0.716 |
+| Gated automatic decomposition, all screenshots | 258 | 79.1% | 0.532 | 12.4% | 17.1% | 0.734 |
 | Raw requirements, lexical top-4 | 258 | 71.3% | 0.387 | 11.0% | 27.9% | 0.621 |
-| Gated automatic decomposition, lexical top-4 | 258 | 73.6% | 0.518 | 10.4% | 26.0% | 0.607 |
+| Gated automatic decomposition, lexical top-4 | 258 | 73.6% | 0.511 | 10.4% | 26.0% | 0.607 |
 
 These runs have full coverage, no recorded fallbacks or failures, and differ only in claim and screenshot policy. A paired 10,000-sample bootstrap over complete flows shows a clear loss from top-4 for raw requirements in accuracy, macro-F1, and MRR; decomposition effects are mixed and depend on screenshot policy. The results remain preliminary until the code/benchmark state is cleanly frozen and the statistical method is documented with a citation. The older 201-item comparison is historical and should not remain the headline table.
 

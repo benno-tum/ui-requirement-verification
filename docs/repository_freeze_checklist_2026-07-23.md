@@ -54,4 +54,5 @@ second reviewer.
 - [x] author-conducted V7 region-grounding quality audit completed;
 - [x] conservative Mind2Web/PURE release boundary and dataset notice documented;
 - [ ] written permission obtained for any per-item derived-data release;
-- [ ] repository code license selected before calling the code open source.
+- [x] MIT license selected for the author's original software, with third-party
+  and dataset exclusions documented in `NOTICE.md`.

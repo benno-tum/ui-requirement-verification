@@ -1011,6 +1011,11 @@ textarea {
 .stack-layout {
   display: grid;
   gap: 1rem;
+  min-width: 0;
+}
+
+.stack-layout > * {
+  min-width: 0;
 }
 
 .sticky-card {
@@ -1234,6 +1239,7 @@ textarea {
 
 .selected-verification-run > strong {
   color: #0f172a;
+  overflow-wrap: anywhere;
 }
 
 .verification-runs-disclosure {
@@ -1294,6 +1300,10 @@ textarea {
   border-top: 1px solid #e2e8f0;
 }
 
+.verification-runs-disclosure-content > * {
+  min-width: 0;
+}
+
 .verification-runs-disclosure-content > label {
   margin-top: 0.85rem;
 }
@@ -1301,6 +1311,12 @@ textarea {
 .verification-runs-table .comparison-row-button.selected {
   background: #eff6ff;
   box-shadow: inset 4px 0 0 #2563eb;
+}
+
+.verification-runs-table {
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
 }
 
 .run-metadata {
@@ -1432,6 +1448,11 @@ textarea {
   display: grid;
   gap: 0.35rem;
   color: #475569;
+}
+
+.meta-block > * {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .inline-chips {
@@ -2223,7 +2244,12 @@ textarea {
   grid-template-columns: 1fr;
 }
 
+.uploaded-workspace > * {
+  min-width: 0;
+}
+
 .upload-card {
+  min-width: 0;
   padding: 1.3rem;
   border: 1px solid #dce3ee;
   border-radius: 22px;

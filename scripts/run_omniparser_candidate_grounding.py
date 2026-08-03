@@ -51,6 +51,11 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=Path("/private/tmp/OmniParser/weights/icon_detect_v3/model.pt"),
     )
+    parser.add_argument(
+        "--detector-output",
+        type=Path,
+        help="Reuse an existing omniparser_regions.json instead of rerunning OmniParser.",
+    )
     parser.add_argument("--max-icons", type=int, default=70)
     parser.add_argument("--max-text", type=int, default=70)
     parser.add_argument("--cost-ceiling-usd", type=float, default=1.0)
@@ -486,7 +491,12 @@ def summary(run: dict[str, Any], *, model: str, usage_records: list[dict[str, An
 
 def main() -> None:
     args = parse_args()
-    for required in (args.source_run, args.omniparser_python, args.omniparser_root, args.omniparser_model):
+    required_paths = [args.source_run]
+    if args.detector_output is not None:
+        required_paths.append(args.detector_output)
+    else:
+        required_paths.extend((args.omniparser_python, args.omniparser_root, args.omniparser_model))
+    for required in required_paths:
         if not required.exists():
             raise FileNotFoundError(required)
     args.work_dir.mkdir(parents=True, exist_ok=True)
@@ -496,7 +506,7 @@ def main() -> None:
     run = deepcopy(source_run)
     tasks_by_step, pointers = collect_tasks(run)
     images = original_images(run)
-    detector = run_omniparser(args, images)
+    detector = load_json(args.detector_output) if args.detector_output is not None else run_omniparser(args, images)
 
     candidates_by_step: dict[int, list[CandidateRegion]] = {}
     marked_by_step: dict[int, Path] = {}

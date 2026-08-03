@@ -10,7 +10,7 @@ FLOW_ID = "pure_2010_mashboot"
 
 
 def test_mashboot_candidates_are_document_contextualized() -> None:
-    candidate_path = Path(f"data/generated/candidate_requirements/{FLOW_ID}/candidate_requirements.json")
+    candidate_path = Path(f"data/annotations/requirements_candidate/{FLOW_ID}/candidate_requirements.json")
     candidates = CandidateRequirementFile.load(candidate_path)
 
     assert len(candidates.requirements) == 11

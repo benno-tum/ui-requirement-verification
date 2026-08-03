@@ -42,6 +42,8 @@
 \input{pages/abstract_de}
 \microtypesetup{protrusion=false}
 \tableofcontents{}
+\listoffigures{}
+\listoftables{}
 \microtypesetup{protrusion=true}
 
 \mainmatter{}
@@ -57,24 +59,8 @@
 
 \appendix{}
 
-\microtypesetup{protrusion=false}
+\input{appendices/label_definitions}
 
-\addchap{Abbreviations}
-\begin{acronym}
-	\itemsep-.25\baselineskip
-	\acro{TUM}[TUM]{Technical University of Munich}
-	\acro{CIT}[CIT]{School of Computation, Information and Technology}
-	\acro{GUI}[GUI]{graphical user interface}
-	\acro{LLM}[LLM]{large language model}
-	\acro{MLLM}[MLLM]{multimodal large language model}
-	\acro{MRR}[MRR]{mean reciprocal rank}
-	\acro{OCR}[OCR]{optical character recognition}
-	\acro{PURE}[PURE]{Public Requirements dataset}
-	\acro{RQ}[RQ]{research question}
-	\acro{UI}[UI]{user interface}
-\end{acronym}
-
-\microtypesetup{protrusion=true}
 \printbibliography{}
 
 \backmatter{}

@@ -1,82 +1,87 @@
 \begin{tikzpicture}[
-  stage/.style={
-    draw=TUMSecondaryBlue,
-    fill=TUMAccentLightBlue!28,
-    rounded corners=2pt,
-    minimum height=1.5cm,
+  component/.style={
+    draw=TUMDarkGray,
+    rounded corners=1.5pt,
+    minimum height=0.95cm,
     align=center,
-    inner sep=5pt,
+    inner xsep=7pt,
+    inner ysep=4pt,
     font=\small
   },
-  boundary/.style={
+  external/.style={
+    component,
+    fill=TUMLightGray!18
+  },
+  subsystem/.style={
     draw=TUMGray,
-    fill=TUMLightGray!24,
-    rounded corners=2pt,
-    minimum height=1.5cm,
-    align=center,
-    inner sep=5pt,
-    font=\small
+    dashed,
+    rounded corners=5pt,
+    inner sep=8pt
   },
-  result/.style={
-    draw=TUMSecondaryBlue2,
-    fill=TUMBlue!12,
-    rounded corners=2pt,
-    minimum height=1.5cm,
-    align=center,
-    inner sep=5pt,
-    font=\small
-  },
-  flow/.style={->, >=latex, draw=TUMDarkGray, line width=0.75pt},
-  trace/.style={->, >=latex, draw=TUMGray, line width=0.75pt, dashed}
+  dependency/.style={->, >=latex, draw=TUMDarkGray, line width=0.7pt},
+  trace/.style={->, >=latex, draw=TUMGray, line width=0.7pt, dashed},
+  connectorlabel/.style={font=\scriptsize, fill=\bg, inner sep=1.2pt, text=TUMDarkGray}
 ]
 
-\node[boundary, text width=2.75cm] (input) at (0,0) {
-  \textbf{Pipeline input}\\[2pt]
-  \scriptsize\texttt{ScreenshotStep[]}\\[1pt]
-  \scriptsize\texttt{RequirementInput[]}
+\node[external, text width=2.25cm] (screens) at (0,1.35) {
+  \textbf{Screenshot flow}\\[-1pt]
+  \scriptsize ordered PNG files
+};
+\node[external, text width=2.25cm] (requirements) at (0,-1.35) {
+  \textbf{Requirements}\\[-1pt]
+  \scriptsize reviewed or raw text
 };
 
-\node[stage, text width=3.35cm] (understanding) at (3.65,0) {
-  \textbf{Input understanding}\\[2pt]
-  \scriptsize\texttt{ScreenRepresentation[]}\\[1pt]
-  \scriptsize\texttt{RequirementClaim[]}\\[1pt]
-  \scriptsize\texttt{UIEvaluability}
+\node[component, text width=2.55cm] (ingestion) at (3.65,1.35) {
+  \scriptsize\guillemotleft component\guillemotright\\[-1pt]
+  \textbf{Flow Ingestion}
+};
+\node[component, text width=2.55cm] (understanding) at (3.65,-1.35) {
+  \scriptsize\guillemotleft component\guillemotright\\[-1pt]
+  \textbf{Requirement}\\[-2pt]
+  \textbf{Understanding}
+};
+\node[subsystem, fit=(ingestion)(understanding),
+  label={[font=\small\bfseries, anchor=south west]north west:Input preparation}] (preparation) {};
+
+\node[component, text width=2.55cm] (retrieval) at (7.45,1.35) {
+  \scriptsize\guillemotleft component\guillemotright\\[-1pt]
+  \textbf{Evidence Retriever}
+};
+\node[component, text width=2.55cm] (verifier) at (7.45,-1.35) {
+  \scriptsize\guillemotleft component\guillemotright\\[-1pt]
+  \textbf{Multimodal}\\[-2pt]
+  \textbf{Verifier}
+};
+\node[subsystem, fit=(retrieval)(verifier),
+  label={[font=\small\bfseries, anchor=south west]north west:Evidence reasoning}] (reasoning) {};
+
+\node[component, text width=2.55cm] (aggregation) at (11.25,1.35) {
+  \scriptsize\guillemotleft component\guillemotright\\[-1pt]
+  \textbf{Label Aggregator}
+};
+\node[component, text width=2.55cm] (grounding) at (11.25,-1.35) {
+  \scriptsize\guillemotleft component\guillemotright\\[-1pt]
+  \textbf{Region Grounder}
+};
+\node[subsystem, fit=(aggregation)(grounding),
+  label={[font=\small\bfseries, anchor=south west]north west:Decision and trace}] (decision) {};
+
+\node[external, text width=2.25cm] (result) at (14.85,1.35) {
+  \textbf{Verification result}\\[-1pt]
+  \scriptsize label, evidence, usage
 };
 
-\node[stage, text width=2.6cm] (selection) at (7.25,0) {
-  \textbf{Screenshot selection}\\[2pt]
-  \scriptsize complete flow or ranked top-$k$\\[1pt]
-  \scriptsize\texttt{EvidenceItem[]}
-};
-
-\node[stage, text width=2.8cm] (verification) at (10.7,0) {
-  \textbf{Multimodal verification}\\[2pt]
-  \scriptsize claim status and cited steps\\[1pt]
-  \scriptsize\texttt{ClaimVerification}\\[-2pt]
-  \scriptsize\texttt{Result[]}
-};
-
-\node[result, text width=3.05cm] (output) at (14.5,0) {
-  \textbf{Deterministic aggregation}\\[2pt]
-  \scriptsize conservative label gates\\[1pt]
-  \scriptsize\texttt{Requirement}\\[-2pt]
-  \scriptsize\texttt{VerificationResult[]}\\[-1pt]
-  \scriptsize in \texttt{PipelineOutput}
-};
-
-\node[stage, text width=2.8cm, minimum height=1.05cm] (grounding) at (10.7,-2.45) {
-  \textbf{Region grounding}\\[2pt]
-  \scriptsize optional \texttt{EvidenceItem.bbox}
-};
-
-\draw[flow] (input) -- (understanding);
-\draw[flow] (understanding) -- (selection);
-\draw[flow] (selection) -- (verification);
-\draw[flow] (verification) -- (output);
-
-\draw[trace] (verification) -- (grounding);
-\draw[trace] (grounding.east) -| (output.south);
-\node[font=\scriptsize, text=TUMGray, align=center, fill=\bg, inner sep=1pt] at (14.15,-2.15)
-  {traceability only;\\not used for the label};
+\draw[dependency] (screens) -- node[connectorlabel, above] {ordered flow} (ingestion);
+\draw[dependency] (requirements) -- node[connectorlabel, above] {requirement} (understanding);
+\draw[dependency] (ingestion) -- (retrieval);
+\draw[dependency] (understanding.north east) to[out=35,in=215] (retrieval.south west);
+\draw[dependency] (retrieval.south) -- node[connectorlabel, right] {evidence} (verifier.north);
+\draw[dependency] (understanding.east) -- (verifier.west);
+\draw[dependency] (verifier.north east) -- (aggregation.south west);
+\draw[trace] (verifier.south east) to[out=-25,in=205]
+  node[connectorlabel, below] {regions} (grounding.south west);
+\draw[trace] (grounding.north) -- (aggregation.south);
+\draw[dependency] (aggregation) -- node[connectorlabel, above] {result} (result);
 
 \end{tikzpicture}

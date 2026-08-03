@@ -479,7 +479,7 @@
         {
           "claim_id": "PURE-MB-SCHEDULE-001-C2",
           "claim": "In the Schedule view, content dragged to the calendar receives a default go-live time of 12am on the selected day.",
-          "claim_text": "In the Schedule view, content dragged to the calendar receives a default go-live time of 12am on the selected day.",
+          "claim_text": "In the Schedule view, content dragged to the calendar automatically receives a default go-live time of 12am on the selected day.",
           "claim_kind": "OBSERVABLE_CORE",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",

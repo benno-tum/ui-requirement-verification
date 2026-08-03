@@ -2,6 +2,7 @@ from scripts.run_gemini25_omnimark_grounding import (
     approximate_image_tokens,
     normalize_response,
     resolve_supplemental_box,
+    selection_covers_required_facts,
     validate_normalized_box,
 )
 
@@ -37,3 +38,18 @@ def test_normalize_response_accepts_supported_gemini_shapes() -> None:
     assert normalize_response({"selections": [item]}) == {"selections": [item]}
     assert normalize_response(item) == {"selections": [item]}
     assert normalize_response([item]) == {"selections": [item]}
+
+
+def test_selection_requires_coverage_for_every_named_fact() -> None:
+    complete = {
+        "required_visible_facts": ["left side", "right side"],
+        "region_fact_coverage": {"T01": [1], "T02": [2]},
+        "applicability": "MULTI_REGION",
+    }
+    incomplete = {
+        **complete,
+        "region_fact_coverage": {"T01": [2], "T02": [2]},
+    }
+    assert selection_covers_required_facts(complete)
+    assert not selection_covers_required_facts(incomplete)
+    assert selection_covers_required_facts({"applicability": "NO_VISIBLE_REGION"})

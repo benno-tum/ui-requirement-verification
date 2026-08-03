@@ -1,0 +1,29 @@
+\begin{tikzpicture}
+\begin{axis}[
+  width=12.5cm,
+  height=6.4cm,
+  xmin=-0.12, xmax=1.12,
+  ymin=68, ymax=82,
+  xtick={0,1},
+  xticklabels={All screenshots,Lexical top-4},
+  ylabel={Accuracy (\%)},
+  grid=major,
+  grid style={draw=TUMLightGray!60},
+  tick label style={font=\small},
+  label style={font=\small},
+  legend style={at={(0.5,1.04)}, anchor=south, draw=none,
+    font=\small, legend columns=2},
+  every node near coord/.append style={font=\scriptsize, fill=\bg, inner sep=1.5pt},
+  nodes near coords={\pgfmathprintnumber[fixed,precision=1]{\pgfplotspointmeta}\%},
+  point meta=y
+]
+  \addplot+[TUMSecondaryBlue, mark=*, mark size=3pt, line width=1.1pt,
+    every node near coord/.append style={anchor=south, yshift=2pt}]
+    coordinates {(0,79.5) (1,71.3)};
+  \addlegendentry{Raw requirement}
+  \addplot+[TUMAccentOrange, mark=square*, mark size=3pt, line width=1.1pt,
+    every node near coord/.append style={anchor=north, yshift=-2pt}]
+    coordinates {(0,79.1) (1,73.6)};
+  \addlegendentry{Gated decomposition}
+\end{axis}
+\end{tikzpicture}

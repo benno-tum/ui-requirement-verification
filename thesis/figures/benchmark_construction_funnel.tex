@@ -32,9 +32,8 @@
 \node[generated, text width=2.55cm] (harvest) at (0,0) {
   \textbf{Broad}\\[-1pt]
   \textbf{harvesting}\\[2pt]
-  \scriptsize flow-grounded\\
-  \scriptsize layout-independent\\
-  \scriptsize hypotheses
+  \scriptsize screenshots and\\
+  \scriptsize task context
 };
 
 \node[generated, text width=2.55cm] (candidate) at (3.45,0) {
@@ -44,24 +43,24 @@
 };
 
 \node[review, text width=2.55cm] (source-review) at (6.9,0) {
-  \textbf{Author review}\\[2pt]
+  \textbf{Source review}\\[2pt]
   \scriptsize reject, edit, or promote
 };
 
 \node[result, text width=2.35cm] (source) at (10.25,0) {
-  \textbf{Source set}\\[2pt]
+  \textbf{Reviewed source set}\\[2pt]
   \scriptsize 187 reviewed items
 };
 
-\node[generated, text width=2.65cm] (contrast) at (6.9,-2.2) {
+\node[generated, text width=2.65cm] (contrast) at (8.55,-2.2) {
   \textbf{Contrastive generation}\\[2pt]
-  \scriptsize targeted difficult\\
-  \scriptsize and non-positive\\
-  \scriptsize variants
+  \scriptsize text-only variants;\\
+  \scriptsize no screenshots
 };
 
-\node[review, text width=2.45cm] (contrast-review) at (10.25,-2.2) {
+\node[review, text width=2.45cm] (contrast-review) at (11.65,-2.2) {
   \textbf{Evidence review}\\[2pt]
+  \scriptsize against screenshots;\\
   \scriptsize 71 reviewed items
 };
 
@@ -75,7 +74,7 @@
 \draw[flow] (candidate) -- (source-review);
 \draw[flow] (source-review) -- (source);
 \draw[flow] (source) -- (gold);
-\draw[flow] (source-review) -- (contrast);
+\draw[flow] (source.south) -- (contrast.north);
 \draw[flow] (contrast) -- (contrast-review);
 \draw[flow] (contrast-review) -| (gold.south);
 

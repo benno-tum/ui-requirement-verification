@@ -41,6 +41,7 @@ def test_run_discovery_finds_diagnosis_and_demo_outputs(tmp_path: Path, monkeypa
     _write_json(generated_root / "benchmark_coverage_gemini_flash_lite" / f"{flow_id}.json", payload)
     _write_json(generated_root / "demo_verification" / f"{flow_id}.json", payload)
     _write_json(generated_root / "verification_pipeline_runs" / f"{flow_id}_gemini25_single_call.json", payload)
+    _write_json(generated_root / "custom_submission_runs" / f"{flow_id}__job123.json", payload)
     nested_payload = {
         **payload,
         "results": [
@@ -83,6 +84,7 @@ def test_run_discovery_finds_diagnosis_and_demo_outputs(tmp_path: Path, monkeypa
     assert "benchmark_coverage_gemini_flash_lite" in sources
     assert "demo_verification" in sources
     assert "verification_pipeline_runs" in sources
+    assert "custom_submission_runs" in sources
     assert all(not run["path"].endswith("_invalid.json") for run in runs)
     assert any(run["metrics_available"] for run in runs if run["source"] == "diagnosis_strict_gemini_flash_lite")
     assert all(run["requirements_count"] == 1 for run in runs)

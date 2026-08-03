@@ -6,7 +6,11 @@ The commands below are written to run from this `docs/` directory, because markd
 
 ## External Data Setup
 
-PURE is already present in this repository under `../data/raw/pure`.
+PURE is not committed because the source documents have uncertain
+redistribution rights. Obtain it independently from the official
+[PURE Zenodo record](https://zenodo.org/records/7118517), then extract the XML
+archive so that the actual XML files are under `../data/raw/pure/XMLZIPFile/`.
+The local `../data/raw/` tree is ignored by Git.
 
 PROMISE+ and user-story datasets are not committed. Download public external datasets with:
 
@@ -30,7 +34,7 @@ Prefer raw PURE XML files:
 
 ```bash
 PYTHONPATH=../src python ../scripts/evaluate_claim_decomposition_external.py \
-  --input ../data/raw/pure \
+  --input ../data/raw/pure/XMLZIPFile \
   --source-kind pure \
   --out ../data/generated/claim_decomposition_checks/external_pure_decomp.json \
   --limit 300
@@ -40,6 +44,14 @@ If the raw PURE path is unknown:
 
 ```bash
 find ../data -iname "*.xml" | grep -i pure
+```
+
+To test the context-aware PURE requirement extractor directly:
+
+```bash
+python ../scripts/extract_pure_requirement_candidates.py \
+  --input ../data/raw/pure/XMLZIPFile \
+  --output ../data/generated/pure_requirement_candidates.jsonl
 ```
 
 ## PROMISE / PROMISE_exp

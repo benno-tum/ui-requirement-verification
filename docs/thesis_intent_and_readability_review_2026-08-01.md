@@ -66,13 +66,14 @@ this is a descriptive breakdown rather than a causal difficulty comparison.
 **Passage:** Chapter 6, “Order-Unavailable Robustness Result,” beginning
 “Against the current working gold snapshot…”
 
-The mismatch came from one AMC gold-label correction made between the two run
-manifests: `REQ-05` changed from `PARTIALLY_FULFILLED` to `FULFILLED`. Its text
-did not change, and the verifier input loader does not expose gold labels. Both
-frozen outputs were rescored against the corrected reference. The result is
-79.8% ordered versus 75.2% shuffled. Chapter 6 now calls this the
-“Screenshot-Order Shuffle Test” and explains both the correction and the scope
-of the intervention in plain language.
+The initial mismatch came from one AMC gold-label correction made between the
+two run manifests: `REQ-05` changed from `PARTIALLY_FULFILLED` to `FULFILLED`.
+A later qualitative grounding audit also corrected GameStop `CONTR-04` from
+`FULFILLED` to `NOT_FULFILLED`. Requirement text did not change, and the
+verifier input loader does not expose gold labels. Both frozen outputs were
+rescored against the corrected reference. The current result is 79.5% ordered
+versus 74.8% order-unavailable. Chapter 6 explains the correction history and
+the scope of the intervention in plain language.
 
 ### 5. Report the completed auxiliary reviews
 

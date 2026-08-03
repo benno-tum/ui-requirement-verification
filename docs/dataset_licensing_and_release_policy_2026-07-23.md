@@ -155,7 +155,7 @@ questions.
 
 ## 3. Release classes
 
-### Public candidate after code-license decision
+### Public candidate under the repository's MIT code license
 
 - `src/`, `scripts/`, `tests/`, and frontend source;
 - experiment configuration files;
@@ -164,9 +164,10 @@ questions.
 - methodology and thesis documentation;
 - hashes and counts that do not expose source content.
 
-The repository currently has no root `LICENSE` file. Publishing code on GitHub
-does not by itself grant a reusable open-source license. Select a code license
-with the supervisor or chair before calling the software open source.
+The repository has a root MIT `LICENSE` covering the author's original
+software. `NOTICE.md` excludes the thesis, datasets, derived annotations,
+screenshots, and other third-party material from that license. Publishing code
+under MIT does not grant redistribution rights for those excluded materials.
 
 ### Supervisor-only
 

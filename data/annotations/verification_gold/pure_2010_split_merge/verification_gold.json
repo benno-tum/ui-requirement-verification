@@ -30,7 +30,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 2.5 Design and Implementation Constraints, PDF page(s) [7]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "abstain",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
         "NONTRIVIAL_HIDDEN_PROPERTY"
@@ -110,7 +110,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.2.2 Stimulus/Response Sequences, PDF page(s) [12]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -183,9 +183,9 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.2.2-3.2.3 Stimulus/Response Sequences and Functional Requirements - Merge/Extract, PDF page(s) [12]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
-      "manual_verification_label": "partially_fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "annotated_by": "benno",
+      "manual_verification_label": "abstain",
+      "manual_verification_notes": "Codex-assisted draft reviewed and accepted by the primary author.",
       "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
         "FLOW_COVERAGE_GAP",
@@ -213,7 +213,7 @@
               "evidence_type": "screen"
             }
           ],
-          "note": "pages list single numbers, but not \"All\" or ranges like \"8-15\""
+          "note": "The Page Selection column is visible but empty; no accepted syntax or resulting selection behavior is shown."
         },
         {
           "claim": "In the Merge/Extract Page Selection column, page - to page merges the pages between the two specified page numbers.",
@@ -335,8 +335,8 @@
           "evidence_type": "screen"
         }
       ],
-      "evidence_note": "Steps 4 and 24 show All in the Merge/Extract Page Selection column and show compression/version controls. They do not demonstrate the other accepted page-selection syntaxes or the PDF 1.5 compression dependency.",
-      "rationale": "The screenshot visibly supports the All page-selection value, while the remaining documented selection syntaxes and compression/version dependency are not exercised.",
+      "evidence_note": "Steps 4 and 24 show the Page Selection column and compression/version controls, but the column is empty and no accepted syntax or resulting behavior is demonstrated.",
+      "rationale": "The relevant controls are visible, but the screenshots establish neither the page-selection syntax behavior nor the stated PDF-version dependency. An entry point alone is insufficient for a reliable partial verdict.",
       "review_status": "accepted",
       "created_at": "2026-07-16T11:54:44+00:00",
       "updated_at": "2026-07-16T12:42:22+00:00"
@@ -367,9 +367,9 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.3.2 Stimulus/Response Sequences - Alternate Mix - Mix options, PDF page(s) [13]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "partially_fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Codex-assisted draft reviewed and accepted by the primary author.",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
         "FLOW_COVERAGE_GAP"
@@ -528,10 +528,10 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "VALIDATION_OR_FEEDBACK",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 5.2 Safety Requirements, PDF page(s) [31]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "abstain",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
-      "verification_label": "PARTIALLY_FULFILLED",
+      "manual_verification_notes": "Codex-assisted draft reviewed and accepted by the primary author.",
+      "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
         "FLOW_COVERAGE_GAP",
         "NONTRIVIAL_HIDDEN_PROPERTY",
@@ -542,8 +542,8 @@
       "claims": [
         {
           "claim": "The application must ensure that it leaves untouched the input pdf files.",
-          "status": "SUPPORTED_WITH_CAVEAT",
-          "claim_type": "OBSERVABLE",
+          "status": "HIDDEN",
+          "claim_type": "HIDDEN",
           "importance": "CORE",
           "evidence_steps": [
             19
@@ -554,7 +554,7 @@
               "evidence_type": "screen"
             }
           ],
-          "note": "Inferred by output file directory"
+          "note": "A separate output path does not establish that the application leaves every input file untouched."
         },
         {
           "claim": "Moreover, the application should function even in cases of wrong data insertion or wrong settings.",
@@ -599,7 +599,7 @@
         }
       ],
       "evidence_note": "Step 19 shows ordinary log output, but the flow contains no invalid-input, error-help, or input-file-integrity demonstration.",
-      "rationale": "The relevant screen is present, but the screenshot set does not demonstrate the stated behavioral constraint or outcome; missing evidence is not counter-evidence.",
+      "rationale": "The ordinary log screen demonstrates none of the three safety obligations: input-file integrity, behavior under invalid settings, or appropriate error assistance. Missing evidence is not counter-evidence, so the defensible verdict is abstention.",
       "review_status": "accepted",
       "created_at": "2026-07-13T14:03:51+00:00",
       "updated_at": "2026-07-13T16:20:53+00:00"
@@ -630,9 +630,9 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "NONE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 5.4 Software Quality Attributes, PDF page(s) [31]. Revised after manual reassessment of the cited screenshots.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "partially_fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Codex-assisted draft reviewed and accepted by the primary author.",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
         "TEXTUAL_AMBIGUITY",
@@ -897,7 +897,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3 System Features / 4.1 User Interfaces - GUI, PDF page(s) [9, 26, 27, 28]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1023,7 +1023,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.1.2 Stimulus/Response Sequences, PDF page(s) [9]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1108,7 +1108,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.1.2 Stimulus/Response Sequences, PDF page(s) [10]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1204,7 +1204,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.1.2 Stimulus/Response Sequences, PDF page(s) [10]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1280,7 +1280,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.1.2 Stimulus/Response Sequences, PDF page(s) [10, 11]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1398,7 +1398,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.2.2 Stimulus/Response Sequences, PDF page(s) [11, 12]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1515,7 +1515,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.2.2 Stimulus/Response Sequences, PDF page(s) [12]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1632,7 +1632,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.3.2 Stimulus/Response Sequences, PDF page(s) [13]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1728,7 +1728,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.3.2 Stimulus/Response Sequences, PDF page(s) [13]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1843,9 +1843,9 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.4.2 Stimulus/Response Sequences, PDF page(s) [14]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Codex-assisted draft reviewed and accepted by the primary author.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -1962,7 +1962,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.4.2 Stimulus/Response Sequences, PDF page(s) [15]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -2080,7 +2080,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.5.2 Stimulus/Response Sequences, PDF page(s) [15, 16]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -2158,7 +2158,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.5.2 Stimulus/Response Sequences, PDF page(s) [15, 16]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -2315,7 +2315,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.5.2 Stimulus/Response Sequences, PDF page(s) [17]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -2433,7 +2433,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.6.2 Stimulus/Response Sequences, PDF page(s) [17, 18]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -2509,7 +2509,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.6.2 Stimulus/Response Sequences, PDF page(s) [17, 18]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -2630,7 +2630,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.7.2 Stimulus/Response Sequences, PDF page(s) [18, 19, 22]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -2758,7 +2758,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.8.2 Stimulus/Response Sequences, PDF page(s) [19, 20, 23]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -2856,7 +2856,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.9.2 Stimulus/Response Sequences, PDF page(s) [20, 21, 23]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -2973,7 +2973,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 4.1 User Interfaces - GUI, PDF page(s) [22]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -3066,9 +3066,9 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 4.1 User Interfaces - GUI, PDF page(s) [23]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
-      "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "annotated_by": "benno",
+      "manual_verification_label": "partially_fulfilled",
+      "manual_verification_notes": "Codex-assisted draft reviewed and accepted by the primary author.",
       "verification_label": "PARTIALLY_FULFILLED",
       "uncertainty_reasons": [
         "FLOW_COVERAGE_GAP"
@@ -3077,7 +3077,7 @@
       "claims": [
         {
           "claim": "The About panel displays application and runtime information.",
-          "status": "MISSING",
+          "status": "SUPPORTED",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
@@ -3089,11 +3089,11 @@
               "evidence_type": "screen"
             }
           ],
-          "note": "Visible screenshot support."
+          "note": "The panel visibly lists application, console, Java runtime, memory, and configuration details."
         },
         {
           "claim": "The About panel displays operating-system and translation information.",
-          "status": "MISSING",
+          "status": "AMBIGUOUS",
           "claim_type": "OBSERVABLE",
           "importance": "CORE",
           "evidence_steps": [
@@ -3105,7 +3105,7 @@
               "evidence_type": "screen"
             }
           ],
-          "note": "Visible screenshot support."
+          "note": "Windows paths and a contributor/translators list provide indirect support, but explicit operating-system and translation details are incomplete."
         },
         {
           "claim": "There is an about panel.",
@@ -3132,8 +3132,8 @@
           "evidence_type": "screen"
         }
       ],
-      "evidence_note": "Steps 17 visibly show the required controls or information.",
-      "rationale": "All UI-observable core claims are directly supported by the cited screenshots.",
+      "evidence_note": "Step 17 shows the About panel with application and Java runtime details, Windows paths, and a contributor/translators list, but not complete explicit operating-system and translation information.",
+      "rationale": "The About panel and its application/runtime information are directly visible. Operating-system and translation information is only indirectly or incompletely represented, which supports a partial verdict.",
       "review_status": "accepted",
       "created_at": "2026-07-13T14:03:51+00:00",
       "updated_at": "2026-07-16T12:52:41+00:00"
@@ -3165,7 +3165,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 4.1 User Interfaces - GUI, PDF page(s) [25]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "fulfilled",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "FULFILLED",
       "uncertainty_reasons": [],
       "notes": [],
@@ -3246,7 +3246,7 @@
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.1.3 Functional Requirements, PDF page(s) [11]. The pre-label model verdict was not inspected.",
       "annotated_by": "benno",
       "manual_verification_label": "abstain",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Primary-author annotation reviewed and accepted after the blinded baseline.",
       "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
         "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
@@ -3322,11 +3322,14 @@
       "ui_evaluability": "UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.3.3 Functional Requirements, PDF page(s) [13]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
-      "manual_verification_label": "abstain",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
-      "verification_label": "FULFILLED",
-      "uncertainty_reasons": [],
+      "annotated_by": "benno",
+      "manual_verification_label": "partially_fulfilled",
+      "manual_verification_notes": "Codex-assisted draft reviewed and accepted by the primary author.",
+      "verification_label": "PARTIALLY_FULFILLED",
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
       "notes": [],
       "claims": [
         {
@@ -3365,8 +3368,8 @@
           "evidence_type": "screen"
         }
       ],
-      "evidence_note": "Steps 5, 23 show the relevant UI surface, but not the required constraint, validation, or post-action behavior.",
-      "rationale": "The relevant screen is present, but the screenshot set does not demonstrate the stated behavioral constraint or outcome; missing evidence is not counter-evidence.",
+      "evidence_note": "Step 5 shows one Alternate Mix configuration with exactly two selected PDF documents; step 23 shows the same two-document input surface without selected files. Neither screen demonstrates rejection of fewer or more inputs.",
+      "rationale": "The visible two-document configuration supports the intended two-input workflow, but one successful instance does not prove the exact-cardinality constraint. The supported instance plus unverified exclusivity warrants partial fulfillment.",
       "review_status": "accepted",
       "created_at": "2026-07-16T11:03:00+00:00",
       "updated_at": "2026-07-16T12:46:02+00:00"
@@ -3397,9 +3400,9 @@
       "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
       "visible_subtype": "TEXT_OR_ELEMENT_PRESENCE",
       "annotation_notes": "Draft manual annotation from data/raw/pure/req/2010 - split merge.pdf, section 3.9.2-3.9.3 Stimulus/Response Sequences and Functional Requirements, PDF page(s) [21]. The pre-label model verdict was not inspected.",
-      "annotated_by": "codex_draft",
+      "annotated_by": "benno",
       "manual_verification_label": "abstain",
-      "manual_verification_notes": "Independent draft for human review; generated after the blinded baseline completed.",
+      "manual_verification_notes": "Codex-assisted draft reviewed and accepted by the primary author.",
       "verification_label": "ABSTAIN",
       "uncertainty_reasons": [
         "FLOW_COVERAGE_GAP",

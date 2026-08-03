@@ -1,7 +1,11 @@
 # Python
 __pycache__/
+.pytest_cache/
 *.py[cod]
 *.pyo
+*.egg-info/
+.coverage
+htmlcov/
 
 # Virtual environments
 .venv/
@@ -28,6 +32,9 @@ data_backup_before_cleanup/
 tmp/
 outputs/
 output/
+thesis/build/
+/thesis-latex.zip
+/thesis-latex-source.zip
 
 # Versioned requirement annotations stay in data/annotations/.
 
@@ -58,3 +65,12 @@ frontend/vite.config.d.ts.map
 # not add these machine-generated reference bundles to the replication package.
 data/annotations/evaluation_audits/gemini31flashlite_joint_verification_omnimark_bbox_allflows_01_13_20260721/
 data/annotations/evaluation_audits/gemini31flashlite_realistic_topk4_no_claims_bbox_allflows_01_13_20260721/
+data/annotations/evaluation_audits/rq3_final_20260802/
+
+# Local submission-review packages. These contain per-item screenshots or
+# internal handoff instructions and are intentionally outside the public
+# release allowlist.
+artifacts/claim_decomposition_audit_2026-08-03/
+artifacts/claim_decomposition_audit_2026-08-03.zip
+docs/claim_decomposition_audit_prompt_2026-08-03.md
+docs/thesis_submission_handoff_2026-08-03.md

@@ -2,6 +2,36 @@
 
 Status: frozen before final manual coding on 23 July 2026.
 
+## Post-collection correction (2 August 2026)
+
+The original protocol allowed `GOLD_REVIEW_CANDIDATE` as a primary outcome.
+This mixed benchmark-quality control with model-error coding even though all
+258 reference items were already author-reviewed, accepted, and frozen. The
+category was therefore removed from the quantitative RQ3 outcome set. It may
+only be retained as a non-counted audit note in future work.
+
+The correction did not change a reference label, prediction, substantive error
+category definition, row-selection rule, or unaffected visual judgment. The
+163 rows carrying the obsolete flag were reprocessed with the accepted
+reference made explicitly authoritative. Of these, 102 required a replacement
+primary category and 61 retained their existing primary category while the
+flag was cleared. All category counts were regenerated from the repaired
+653-row artifact. This is a protocol correction, not independent benchmark
+adjudication.
+
+## Author-confirmed boundary consistency review (2 August 2026)
+
+After the repaired visual coding was complete, a targeted consistency review
+revisited all 24 condition--item rows initially assigned
+`LABEL_BOUNDARY_DISAGREEMENT`. The frozen category definitions were applied in
+precedence order. Twelve rows were reassigned to `EXCESSIVE_ABSTENTION` because
+the decisive supplied evidence was explicitly accepted as meaningful partial
+support, while the other twelve retained the boundary category because the
+importance of the visible support remained reasonably contestable. Gold labels,
+stored predictions, eligibility, and all non-boundary category decisions were
+unchanged. This targeted review is primary-author quality control, not an
+independent reliability sample.
+
 Research question:
 
 > Which requirement and evidence patterns cause verification errors, abstentions, or unsafe `FULFILLED` predictions?

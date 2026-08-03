@@ -4,7 +4,7 @@
 
 Adding pipeline stages does not consistently improve verification. Raw
 requirements with all screenshots produce the highest accuracy in the primary
-Flash-Lite matrix. Lexical top-4 omits decisive information and saves almost no
+Flash-Lite matrix. Shared lexical top-4 omits decisive information and saves almost no
 money under the implemented batching strategy. Automatic decomposition
 improves macro-F1 under restricted evidence, but all-screenshot accuracy remains
 unchanged and false fulfillment increases. Requirement understanding and
@@ -16,6 +16,23 @@ localized evidence. A reviewer can then separate retrieval errors from visual
 interpretation and label-policy disagreements. Direct whole-flow prompting and
 staged verification can therefore differ in label quality and diagnostic
 detail.
+
+This diagnostic structure also suggests a practical improvement cycle. Errors
+can first be assigned to the frozen primary categories and then inspected for
+recurring mechanisms. Over-fulfillment and boundary errors can motivate clearer
+evidence-sufficiency rules; excessive abstention can reveal when visible partial
+support should be retained; and selection misses can guide evidence acquisition.
+The resulting general rules can be added to the label guide, prompt, or
+deterministic gates and evaluated again on held-out flows. Repeating this cycle
+turns the taxonomy into a development tool rather than only a reporting device.
+
+Such refinement is plausible only if the multimodal model can apply the added
+rules and interpret the relevant UI states. The present results show that many
+errors follow recurring policies rather than isolated output failures, but they
+do not establish that prompt refinement will remove them or that visual
+understanding is already sufficient in other interfaces. Each iteration must
+therefore retain abstention, inspect its remaining errors, and be tested on new
+applications instead of the examples used to derive the rules.
 
 For a practical deployment, the results favor an adaptive rather than fixed
 retrieval policy. Complete flows are appropriate while flows remain short
@@ -39,8 +56,13 @@ All current Mind2Web verification items were reviewed by the primary author
 independently of the evaluated model predictions. The documented reference
 standard includes requirement labels, claim boundaries, evidence sets, and
 UI-evaluability judgments. Reported model metrics quantify agreement with this
-reviewed reference standard. A separate disagreement-focused author audit
-provides qualitative analysis of recurring boundary interpretations.
+reviewed reference standard. A later author reinspection resolved all 81
+disagreements between the stored UI-evaluability labels and a deterministic
+text classifier, changing 30 labels in the stored records. Because the sample
+was disagreement-selected and the classifier output was visible, this review
+improves internal consistency but does not provide independent validation of
+that classifier. The separately prompted multimodal UI-evaluability result is
+therefore reported as auxiliary evidence rather than a central RQ result.
 
 The requirements are derived from the same flows against which they are
 evaluated. Prediction-independent manual review keeps evaluated outputs
@@ -49,7 +71,21 @@ contrastive requirements, flow-level resampling, and the exploratory PURE
 document comparison make the construction and evidence sources visible in the
 analysis.
 
-Model outputs are sensitive to model version, prompt text, image preparation, retries, and aggregation. Historical repository reports combine different current-per-flow runs and are useful for diagnosis but not controlled comparison. Final experiments require an immutable run manifest and exact model identifiers.
+The verifier input excludes intended and accepted labels, but it includes the
+requirement identifier. All contrastive items use a \texttt{CONTR-} prefix, so the
+model can infer construction provenance even though it cannot infer the target
+label from that prefix. The experiment is target-label-blind but not
+provenance-blind. This cue may contribute to the source--contrastive difference,
+which is why that comparison is descriptive rather than a causal estimate of
+difficulty.
+
+Model outputs are sensitive to model version, prompt text, image preparation,
+retries, and aggregation. The final comparisons are tied to stored prediction
+files, input hashes, exact model identifiers, and run metadata. Some first
+executions were made from a recorded commit with a dirty worktree; later
+stability runs used clean manifests. This limits byte-for-byte reconstruction
+of those first calls, but stored outputs can still be rescored against the
+matching frozen reference.
 
 \section{Construct Validity}\label{construct-validity}
 
@@ -81,11 +117,22 @@ hidden property can depend on the application risk model. This boundary
 therefore requires the same explicit evidence guidance as the fulfillment
 labels.
 
-Claim matching introduces additional uncertainty. Two decompositions can be semantically equivalent while using different granularity. Low claim-status performance may reflect a poor decomposition, poor text matching, or poor status prediction. The final report should separate claim-match recall from status quality on matched claims.
+Claim matching introduces additional uncertainty. Two decompositions can be
+semantically equivalent while using different granularity. Low claim-status
+performance may reflect a poor decomposition, poor text matching, or poor
+status prediction. Where claim metrics are reported, claim-match recall is
+therefore kept separate from status quality on matched claims.
 
 \section{External Validity}\label{external-validity}
 
 Thirteen web flows are a small sample of the variety of real interfaces and requirements. The selected tasks do not establish generalization to native mobile applications, desktop software, accessibility requirements, or industrial specifications. Mind2Web trajectories reflect one recorded interaction path and may omit alternative states relevant to a requirement.
+
+An error-driven refinement cycle would intensify this limitation if rules were
+derived and evaluated on the same flows. Development examples, validation
+flows, and a held-out test set should therefore be separated. The test set
+should include more varied interfaces and independently authored requirements
+from real applications so that apparent improvements are not benchmark-specific
+prompt tuning.
 
 The primary benchmark also reverses the usual requirements-first development
 order. Its source requirements were reconstructed from already observed web
@@ -105,21 +152,21 @@ implementation-conformance results over recorded execution flows.
 
 \section{Reliability and Reproducibility}\label{reliability-and-reproducibility}
 
-Model APIs can return malformed responses, change behavior between versions, or fail transiently. Older flow runs contained API fallbacks, and cached responses may hide differences between repeated executions. Final reporting should include retries, failures, fallbacks, token counts, image counts, runtime, cache policy, and pricing assumptions.
+Model APIs can return malformed responses, change behavior between versions, or fail transiently. Older flow runs contained API fallbacks, and cached responses may hide differences between repeated executions. The frozen manifests therefore record retries, failures, fallbacks, token counts, image counts, runtime, cache policy, and pricing assumptions.
 
 The repository contains stale summary metrics generated against older benchmark snapshots. For example, one stored batched-top-k metric reports 31.8\% accuracy because it evaluates 201 predictions against all 258 current gold items and counts the 57 absent predictions as abstentions. Recomputed metrics restricted to the actual 201-item run give 75.1\% accuracy. This discrepancy demonstrates why each thesis table must be generated from a frozen manifest with matching prediction and gold sets.
 
 \section{Current Scope Limitations}\label{current-scope-limitations}
 
 The pipeline provides mature step-level evidence and implemented region
-grounding whose final human evaluation is reported separately once complete.
-Bounding boxes are not treated as an accuracy intervention. Screenshots cannot
+grounding, but no benchmark-wide region-quality estimate. Bounding boxes are
+not treated as an accuracy intervention. Screenshots cannot
 establish hidden backend truth, global absence, long-term persistence, external
 delivery, or complete result correctness. The completed 2x2 matrix isolates
 claim and screenshot policy for one model, but it does not show that
 evidence-first design uniformly improves false fulfillment. The reported
 conclusions remain within these limits; evidence grounding alone does not
-establish safer labels.
+establish safer labels, and no benchmark-wide region-quality rate is claimed.
 
 \section{Dataset Licensing and Artifact Availability}\label{dataset-licensing-and-artifact-availability}
 
