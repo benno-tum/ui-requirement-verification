@@ -276,34 +276,6 @@ Mind2Web-derived artifacts.
 
 ## Data workflows
 
-Reviewed PURE-derived annotations and the aggregate exploratory summary are
-included in a fresh clone. Install the original PURE 2.0 XML, schema, and source
-documents directly from Zenodo when reproducing extraction or visual-evidence
-experiments:
-
-```bash
-python scripts/setup_external_requirement_data.py --dataset pure
-```
-
-The command verifies Zenodo's published checksums, extracts the archives under
-`data/raw/pure/`, and records source URLs and CC BY 4.0 metadata in
-`data/external/source_manifest.json`. The downloaded archives remain ignored to
-avoid duplicating the 34 MB source corpus in Git; this is a repository-size
-choice, not a requirement for users to locate PURE manually. See
-[`docs/claim_decomposition_external_eval.md`](docs/claim_decomposition_external_eval.md)
-for reproduction commands. The publishable aggregate result is
-[`artifacts/thesis_evaluation/results/pure_exploratory_summary.json`](artifacts/thesis_evaluation/results/pure_exploratory_summary.json);
-its source annotations are under
-`data/annotations/verification_gold/pure_2010_split_merge/` and
-`data/annotations/verification_gold/pure_2010_mashboot/`.
-
-The PURE download does not recreate the thesis's curated screenshot flows or
-per-flow verification runs, which depend on separately prepared visual
-artifacts. PURE therefore does not appear as an interactive flow in a fresh
-clone; the application shows a short notice explaining this. After running the
-Mind2Web export command above, all 13 versioned Mind2Web verification runs are
-available in **Verification run**.
-
 ### Versioned requirement data
 
 - Candidate requirement snapshots are read from `data/annotations/requirements_candidate/` when present.
@@ -322,6 +294,29 @@ Generate harvested and candidate requirements for one flow from the CLI:
 ```bash
 python scripts/generate_candidate_requirements.py --flow-dir data/processed/flows/mind2web/<flow_id> --max-images 6
 ```
+
+### Optional PURE source data
+
+PURE is not required for the web application or its 13 Mind2Web flows. The
+reviewed PURE-derived annotations and aggregate exploratory summary are already
+versioned, but the two curated PURE screenshot flows and their per-flow runs
+cannot be inspected in a fresh-clone web interface.
+
+Install the original PURE 2.0 XML, schema, and source documents only when
+reproducing the separate extraction workflows:
+
+```bash
+python scripts/setup_external_requirement_data.py --dataset pure
+```
+
+The command verifies Zenodo's checksums, extracts the archives under
+`data/raw/pure/`, and records their source and CC BY 4.0 metadata in
+`data/external/source_manifest.json`. Re-running it does not add PURE flows to
+the sidebar. See
+[`docs/claim_decomposition_external_eval.md`](docs/claim_decomposition_external_eval.md)
+for the associated CLI workflows and
+[`artifacts/thesis_evaluation/results/pure_exploratory_summary.json`](artifacts/thesis_evaluation/results/pure_exploratory_summary.json)
+for the versioned aggregate result.
 
 ## Troubleshooting
 
