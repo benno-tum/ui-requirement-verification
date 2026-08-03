@@ -2031,9 +2031,6 @@ frozen 13-flow benchmark; repeated conditions and the LLM-assisted coding with
 targeted primary-author boundary review do not support population-level
 prevalence or independent-human reliability claims.
 
-<!-- After the final audits, add one concise sentence to the RQ2/RQ3 answers
-summarizing region relevance/sufficiency and UI-evaluability stratification. -->
-
 ### 8.3 Contributions
 
 The work defines evidence-bounded UI requirement verification over ordered
