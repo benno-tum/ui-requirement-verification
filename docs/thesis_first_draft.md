@@ -7,8 +7,8 @@ continuous draft text for the parts supported by the current implementation and
 frozen experiments. Final independent-review results for UI evaluability and
 region-level grounding are deliberately not anticipated. Non-rendered comments
 mark the locations at which those results can be inserted after review. The
-quantitative source of truth remains
-[`thesis_evidence_audit.md`](thesis_evidence_audit.md).
+compiled LaTeX thesis and versioned evaluation artifacts are the quantitative
+source of truth.
 
 ## 1 Introduction
 

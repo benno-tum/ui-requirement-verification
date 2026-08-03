@@ -60,7 +60,7 @@ def extract_pdf_pages(path: Path) -> list[PurePdfPage]:
         from pypdf import PdfReader
     except ImportError as exc:  # pragma: no cover - depends on the runtime installation.
         raise RuntimeError(
-            "PURE PDF extraction requires pypdf. Install it or use the bundled Codex PDF runtime."
+            "PURE PDF extraction requires pypdf. Install the project's PDF dependencies first."
         ) from exc
 
     reader = PdfReader(str(path))

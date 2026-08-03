@@ -91,7 +91,7 @@ def _prepare_manual_bundle(
 
 1. Open `prompt.txt`.
 2. Upload all images from `images/` in their natural order.
-3. Run the prompt manually in ChatGPT or another model.
+3. Run the prompt manually in a compatible multimodal model.
 4. Save the raw response to `manual_harvest_raw.txt`.
 5. Parse and copy the final JSON to `manual_harvest_parsed.json`, then move it to `harvested_requirements.json` after review.
 """,

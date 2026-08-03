@@ -86,8 +86,6 @@ Missing evidence alone is not `NOT_FULFILLED`.
 
 ## Suggested Review Order
 
-Use `docs/systematic_error_analysis_and_review_plan_2026-07-02.md` as the current review map.
-
 1. Review `needs_review` items with label mismatches first.
 2. Start with over-fulfilled cases where the prediction is `FULFILLED` but gold is weaker or abstains.
 3. Then review gold-`ABSTAIN` cases where the model predicts a concrete label.

@@ -477,7 +477,7 @@ def prepare_manual_bundle(
         """# Manual contrastive generation bundle
 
 1. Open `prompt.txt`.
-2. Run it manually in ChatGPT / Codex.
+2. Run it manually in a compatible language model.
 3. Paste the raw response into `manual_contrastive_raw.txt`.
 4. Re-run the script with `--parse-existing-response`.
 5. Final output will be saved as `contrastive_candidates.json`.
