@@ -109,7 +109,6 @@ const CLAIM_STATUS_OPTIONS = ['SUPPORTED', 'SUPPORTED_WITH_CAVEAT', 'CONTRADICTE
 const CLAIM_TYPE_OPTIONS = ['OBSERVABLE', 'HIDDEN']
 const CLAIM_IMPORTANCE_OPTIONS = ['CORE', 'SUPPORTING']
 const REVIEW_CATEGORY_OPTIONS: Array<{id: ReviewCategoryId; label: string}> = [
-  {id: 'needs_review', label: 'Needs review'},
   {id: 'evidence_no_overlap', label: 'No evidence overlap'},
   {id: 'over_fulfilled', label: 'Over-fulfilled'},
   {id: 'should_abstain', label: 'Should abstain'},
@@ -147,10 +146,11 @@ function defaultTextModel(provider: 'gemini' | 'deepseek'): string {
 }
 
 type AppRoute = 'workbench' | 'upload' | 'evaluation'
+const HISTORICAL_EVALUATION_INSPECTION_ENABLED = false
 
 function routeFromLocation(): AppRoute {
   if (window.location.pathname.startsWith('/verify/new')) return 'upload'
-  if (window.location.pathname.startsWith('/evaluation')) return 'evaluation'
+  if (HISTORICAL_EVALUATION_INSPECTION_ENABLED && window.location.pathname.startsWith('/evaluation')) return 'evaluation'
   return 'workbench'
 }
 
@@ -176,7 +176,7 @@ function App() {
   if (route === 'upload') {
     return <UploadVerificationPage onBack={() => navigate('workbench')} onProjectCreated={(flowId) => navigate('upload', flowId)} />
   }
-  if (route === 'evaluation') {
+  if (HISTORICAL_EVALUATION_INSPECTION_ENABLED && route === 'evaluation') {
     return <EvaluationAuditPage onBack={() => navigate('workbench')} />
   }
   return <AnnotationWorkbench onOpenUpload={() => navigate('upload')} onOpenEvaluation={() => navigate('evaluation')} />
@@ -605,9 +605,11 @@ function AnnotationWorkbench({onOpenUpload, onOpenEvaluation}: {onOpenUpload: ()
           New screenshot verification
         </button>
 
-        <button className="secondary-button audit-route-button" onClick={onOpenEvaluation}>
-          Historical evaluation inspection (optional)
-        </button>
+        {HISTORICAL_EVALUATION_INSPECTION_ENABLED && (
+          <button className="secondary-button audit-route-button" onClick={onOpenEvaluation}>
+            Historical evaluation inspection (optional)
+          </button>
+        )}
 
         <div className="flow-list">
           {flowsState === 'loading' && <p>Loading flows...</p>}
@@ -2416,7 +2418,7 @@ function VerificationRunPanel({
   const [runJob, setRunJob] = useState<PipelineRunJob | null>(null)
   const [runMessage, setRunMessage] = useState<string>('')
   const [acceptingRequirementId, setAcceptingRequirementId] = useState<string | null>(null)
-  const [reviewCategoryId, setReviewCategoryId] = useState<ReviewCategoryId>('needs_review')
+  const [reviewCategoryId, setReviewCategoryId] = useState<ReviewCategoryId>('all')
   const [runForm, setRunForm] = useState<StartPipelineRunPayload>({
     verifier: 'gemini-image',
     verifier_model: 'gemini-3.1-flash-lite',

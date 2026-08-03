@@ -1,0 +1,286 @@
+{
+  "schema_version": "gemini_candidate_mark_bbox_run_set_v1",
+  "run_id": "bbox_gemini25flash_omnimark_v7_factcoverage_allflows_01_13_20260721",
+  "created_at": "2026-07-20T22:47:24.931045+00:00",
+  "configuration": {
+    "model": "gemini-2.5-flash",
+    "requested_execution_mode": "grouped-candidate-mark-grounding",
+    "image_variant": "preferred-original",
+    "claim_decomposition_policy": "provided/preserved",
+    "aggregation": "preserved from Gemini 3.1 Pro source run",
+    "grounding": "Gemini 2.5 Flash selects OmniParser UI and OCR IDs from clean plus separately marked target screenshots, with normalized supplemental fallback",
+    "estimated_cost_usd": 0.8830509,
+    "prompt_version": "GEMINI25_OMNIMARK_SELECTION_V7_CLAIM_FACT_COVERAGE_MAX2"
+  },
+  "fallback_flows": [],
+  "totals": {
+    "flows": 13,
+    "requirements": 258,
+    "claims": 541,
+    "evidence_records": 697,
+    "bounding_boxes": 697,
+    "bbox_sources": {
+      "gemini_visual_grounding_omnimark_selection": 642,
+      "gemini_visual_grounding_omnimark_supplemental": 55
+    },
+    "estimated_cost_usd": 0.8830509
+  },
+  "flows": [
+    {
+      "flow_id": "01_sixflags_a52fcf7a-50aa-4256-8796-654b3dc3adac",
+      "execution_mode": "grouped-candidate-mark-grounding",
+      "requirements": 23,
+      "claims": 48,
+      "evidence_records": 64,
+      "bounding_boxes": 64,
+      "bbox_sources": {
+        "gemini_visual_grounding_omnimark_selection": 58,
+        "gemini_visual_grounding_omnimark_supplemental": 6
+      },
+      "labels": {
+        "FULFILLED": 13,
+        "PARTIALLY_FULFILLED": 3,
+        "ABSTAIN": 7
+      },
+      "api_calls": 13,
+      "fallbacks": 6,
+      "prompt_version": "GEMINI25_OMNIMARK_SELECTION_V7_CLAIM_FACT_COVERAGE_MAX2"
+    },
+    {
+      "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+      "execution_mode": "grouped-candidate-mark-grounding",
+      "requirements": 9,
+      "claims": 20,
+      "evidence_records": 26,
+      "bounding_boxes": 26,
+      "bbox_sources": {
+        "gemini_visual_grounding_omnimark_selection": 18,
+        "gemini_visual_grounding_omnimark_supplemental": 8
+      },
+      "labels": {
+        "FULFILLED": 7,
+        "PARTIALLY_FULFILLED": 1,
+        "NOT_FULFILLED": 1
+      },
+      "api_calls": 4,
+      "fallbacks": 8,
+      "prompt_version": "GEMINI25_OMNIMARK_SELECTION_V7_CLAIM_FACT_COVERAGE_MAX2"
+    },
+    {
+      "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+      "execution_mode": "grouped-candidate-mark-grounding",
+      "requirements": 23,
+      "claims": 33,
+      "evidence_records": 45,
+      "bounding_boxes": 45,
+      "bbox_sources": {
+        "gemini_visual_grounding_omnimark_selection": 37,
+        "gemini_visual_grounding_omnimark_supplemental": 8
+      },
+      "labels": {
+        "FULFILLED": 17,
+        "ABSTAIN": 2,
+        "PARTIALLY_FULFILLED": 4
+      },
+      "api_calls": 10,
+      "fallbacks": 8,
+      "prompt_version": "GEMINI25_OMNIMARK_SELECTION_V7_CLAIM_FACT_COVERAGE_MAX2"
+    },
+    {
+      "flow_id": "04_underarmour_18fc60d7-aa69-4c07-9bf1-64543eae52c9",
+      "execution_mode": "grouped-candidate-mark-grounding",
+      "requirements": 21,
+      "claims": 47,
+      "evidence_records": 52,
+      "bounding_boxes": 52,
+      "bbox_sources": {
+        "gemini_visual_grounding_omnimark_selection": 45,
+        "gemini_visual_grounding_omnimark_supplemental": 7
+      },
+      "labels": {
+        "FULFILLED": 14,
+        "PARTIALLY_FULFILLED": 6,
+        "NOT_FULFILLED": 1
+      },
+      "api_calls": 6,
+      "fallbacks": 7,
+      "prompt_version": "GEMINI25_OMNIMARK_SELECTION_V7_CLAIM_FACT_COVERAGE_MAX2"
+    },
+    {
+      "flow_id": "05_resy_790ba0ec-4e7d-4df0-ac86-ea52b3a73532",
+      "execution_mode": "grouped-candidate-mark-grounding",
+      "requirements": 20,
+      "claims": 37,
+      "evidence_records": 42,
+      "bounding_boxes": 42,
+      "bbox_sources": {
+        "gemini_visual_grounding_omnimark_selection": 40,
+        "gemini_visual_grounding_omnimark_supplemental": 2
+      },
+      "labels": {
+        "FULFILLED": 12,
+        "PARTIALLY_FULFILLED": 7,
+        "ABSTAIN": 1
+      },
+      "api_calls": 11,
+      "fallbacks": 2,
+      "prompt_version": "GEMINI25_OMNIMARK_SELECTION_V7_CLAIM_FACT_COVERAGE_MAX2"
+    },
+    {
+      "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+      "execution_mode": "grouped-candidate-mark-grounding",
+      "requirements": 22,
+      "claims": 46,
+      "evidence_records": 58,
+      "bounding_boxes": 58,
+      "bbox_sources": {
+        "gemini_visual_grounding_omnimark_selection": 55,
+        "gemini_visual_grounding_omnimark_supplemental": 3
+      },
+      "labels": {
+        "FULFILLED": 17,
+        "PARTIALLY_FULFILLED": 4,
+        "NOT_FULFILLED": 1
+      },
+      "api_calls": 11,
+      "fallbacks": 3,
+      "prompt_version": "GEMINI25_OMNIMARK_SELECTION_V7_CLAIM_FACT_COVERAGE_MAX2"
+    },
+    {
+      "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+      "execution_mode": "grouped-candidate-mark-grounding",
+      "requirements": 18,
+      "claims": 38,
+      "evidence_records": 51,
+      "bounding_boxes": 51,
+      "bbox_sources": {
+        "gemini_visual_grounding_omnimark_selection": 36,
+        "gemini_visual_grounding_omnimark_supplemental": 15
+      },
+      "labels": {
+        "FULFILLED": 11,
+        "PARTIALLY_FULFILLED": 4,
+        "NOT_FULFILLED": 3
+      },
+      "api_calls": 8,
+      "fallbacks": 15,
+      "prompt_version": "GEMINI25_OMNIMARK_SELECTION_V7_CLAIM_FACT_COVERAGE_MAX2"
+    },
+    {
+      "flow_id": "08_amtrak_845fbfa9-1b98-4df4-b7c5-4c71ef3e5b1b",
+      "execution_mode": "grouped-candidate-mark-grounding",
+      "requirements": 20,
+      "claims": 41,
+      "evidence_records": 60,
+      "bounding_boxes": 60,
+      "bbox_sources": {
+        "gemini_visual_grounding_omnimark_selection": 60
+      },
+      "labels": {
+        "FULFILLED": 16,
+        "PARTIALLY_FULFILLED": 3,
+        "NOT_FULFILLED": 1
+      },
+      "api_calls": 5,
+      "fallbacks": 0,
+      "prompt_version": "GEMINI25_OMNIMARK_SELECTION_V7_CLAIM_FACT_COVERAGE_MAX2"
+    },
+    {
+      "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+      "execution_mode": "grouped-candidate-mark-grounding",
+      "requirements": 20,
+      "claims": 47,
+      "evidence_records": 60,
+      "bounding_boxes": 60,
+      "bbox_sources": {
+        "gemini_visual_grounding_omnimark_selection": 60
+      },
+      "labels": {
+        "FULFILLED": 11,
+        "PARTIALLY_FULFILLED": 8,
+        "NOT_FULFILLED": 1
+      },
+      "api_calls": 5,
+      "fallbacks": 0,
+      "prompt_version": "GEMINI25_OMNIMARK_SELECTION_V7_CLAIM_FACT_COVERAGE_MAX2"
+    },
+    {
+      "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+      "execution_mode": "grouped-candidate-mark-grounding",
+      "requirements": 25,
+      "claims": 56,
+      "evidence_records": 66,
+      "bounding_boxes": 66,
+      "bbox_sources": {
+        "gemini_visual_grounding_omnimark_selection": 62,
+        "gemini_visual_grounding_omnimark_supplemental": 4
+      },
+      "labels": {
+        "FULFILLED": 17,
+        "PARTIALLY_FULFILLED": 3,
+        "ABSTAIN": 5
+      },
+      "api_calls": 10,
+      "fallbacks": 4,
+      "prompt_version": "GEMINI25_OMNIMARK_SELECTION_V7_CLAIM_FACT_COVERAGE_MAX2"
+    },
+    {
+      "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+      "execution_mode": "grouped-candidate-mark-grounding",
+      "requirements": 20,
+      "claims": 43,
+      "evidence_records": 80,
+      "bounding_boxes": 80,
+      "bbox_sources": {
+        "gemini_visual_grounding_omnimark_selection": 79,
+        "gemini_visual_grounding_omnimark_supplemental": 1
+      },
+      "labels": {
+        "FULFILLED": 13,
+        "PARTIALLY_FULFILLED": 6,
+        "NOT_FULFILLED": 1
+      },
+      "api_calls": 9,
+      "fallbacks": 1,
+      "prompt_version": "GEMINI25_OMNIMARK_SELECTION_V7_CLAIM_FACT_COVERAGE_MAX2"
+    },
+    {
+      "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+      "execution_mode": "grouped-candidate-mark-grounding",
+      "requirements": 18,
+      "claims": 42,
+      "evidence_records": 44,
+      "bounding_boxes": 44,
+      "bbox_sources": {
+        "gemini_visual_grounding_omnimark_selection": 43,
+        "gemini_visual_grounding_omnimark_supplemental": 1
+      },
+      "labels": {
+        "FULFILLED": 11,
+        "PARTIALLY_FULFILLED": 6,
+        "ABSTAIN": 1
+      },
+      "api_calls": 4,
+      "fallbacks": 1,
+      "prompt_version": "GEMINI25_OMNIMARK_SELECTION_V7_CLAIM_FACT_COVERAGE_MAX2"
+    },
+    {
+      "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+      "execution_mode": "grouped-candidate-mark-grounding",
+      "requirements": 19,
+      "claims": 43,
+      "evidence_records": 49,
+      "bounding_boxes": 49,
+      "bbox_sources": {
+        "gemini_visual_grounding_omnimark_selection": 49
+      },
+      "labels": {
+        "FULFILLED": 12,
+        "PARTIALLY_FULFILLED": 7
+      },
+      "api_calls": 4,
+      "fallbacks": 0,
+      "prompt_version": "GEMINI25_OMNIMARK_SELECTION_V7_CLAIM_FACT_COVERAGE_MAX2"
+    }
+  ]
+}

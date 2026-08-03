@@ -1,7 +1,9 @@
 # Dataset Licensing and Release Policy
 
 Status: conservative release decision based on official source information,
-23 July 2026. This is a research-artifact policy, not legal advice.
+23 July 2026, updated 3 August 2026 after supervisor confirmation of the
+Mind2Web licensing approach. This is a research-artifact policy, not legal
+advice.
 
 ## Decision
 
@@ -10,17 +12,16 @@ Until written permission or an institutional legal review says otherwise:
 - the repository may publish source code, experiment configurations, aggregate
   metrics, statistical summaries, and documentation created by the thesis
   author;
-- the curated thesis package remains **supervisor-only**, because its sanitized
-  launch manifests still contain exact Mind2Web test annotation identifiers and
-  benchmark hashes;
+- the aggregate thesis replication package and the explicitly curated
+  Mind2Web-derived run set may be published with attribution;
 - Mind2Web screenshots, HTML, MHTML, HAR files, videos, traces, `task.json`,
-  `steps.json`, complete test records, and per-item prompts or outputs are not
-  published;
+  `steps.json`, complete test records, raw per-item prompts, and raw provider
+  responses are not published;
 - PURE source PDFs, XML files, extracted figures, embedded screenshots,
   substantial text extracts, and annotations reproducing full requirement text
   are not published;
-- public aggregate results must not enable reconstruction of source text,
-  screenshots, or individual test examples;
+- curated per-item predictions must exclude source-page text and must not
+  enable reconstruction of screenshots or complete test records;
 - no release is described as training data, and Mind2Web test-derived material
   must not be placed in a training corpus.
 
@@ -54,24 +55,13 @@ CC BY might permit more.
 All 13 thesis flows record `"split": "test_task"` in their local `task.json`
 metadata. They are not training-set examples.
 
-The public GitHub repository already contains derived requirement and
-verification annotation files keyed by these test annotation identifiers. It
-does not contain the local screenshots, raw test records, or processed flow
-files. The derived annotations are not byte-for-byte copies of the Mind2Web
-test files, but they disclose test identifiers and content derived from the
-test trajectories. They should not be promoted as a public benchmark release
-without confirmation from the Mind2Web maintainers.
-
-Do not rewrite public Git history as part of the thesis workflow without a
-separate decision. Instead:
-
-1. stop adding further test-derived per-item material to public branches;
-2. ask the maintainers whether the existing derived annotations may remain
-   public with attribution;
-3. if permission is refused, make the repository private while a coordinated
-   removal or history-rewrite plan is agreed;
-4. keep the thesis replication release aggregate-only unless permission
-   explicitly covers per-item derived annotations.
+The public GitHub repository contains author-created requirement and
+verification annotation files keyed by selected test annotation identifiers.
+It does not contain local screenshots, raw test records, or processed flow
+files. Following supervisor confirmation of the Mind2Web licensing approach,
+these derived annotations and explicitly sanitized prediction artifacts are
+published with attribution under the boundary described here. This does not
+authorize redistribution of the source test files.
 
 ### Required attribution if permission is granted
 
@@ -161,6 +151,9 @@ questions.
 - experiment configuration files;
 - aggregate metric JSON files;
 - aggregate bootstrap and stability summaries;
+- curated Mind2Web-derived prediction and bounding-box outputs that exclude
+  screenshots, source-page text, raw provider responses, caches, secrets, and
+  absolute local paths;
 - methodology and thesis documentation;
 - hashes and counts that do not expose source content.
 
@@ -171,12 +164,11 @@ under MIT does not grant redistribution rights for those excluded materials.
 
 ### Supervisor-only
 
-- exact Mind2Web test annotation identifiers and benchmark hashes;
-- all tracked Mind2Web/PURE per-item gold and candidate annotations;
+- unpublished PURE per-item annotations containing source requirement text;
 - the 44-item second-review form;
-- per-item predictions and raw responses;
-- exact evidence descriptions and screenshot paths;
-- clean-commit launch manifests containing test IDs.
+- uncurated per-item predictions and raw responses;
+- uncurated source-derived evidence descriptions and absolute screenshot paths;
+- reviewer working material not included in the public allowlist.
 
 ### Never redistribute without explicit permission
 
@@ -190,7 +182,7 @@ under MIT does not grant redistribution rights for those excluded materials.
 
 A public thesis artifact is allowed only when all of the following are true:
 
-1. the supervisor approves the aggregate-only boundary;
+1. the supervisor approves the curated Mind2Web-derived release boundary;
 2. a root code license is selected;
 3. `DATASET_NOTICE.md` and dataset citations are included;
 4. public files contain no source screenshots, documents, substantial source
@@ -198,7 +190,8 @@ A public thesis artifact is allowed only when all of the following are true:
 5. the path/secret audit passes;
 6. the public package is built from an explicit allowlist rather than by
    publishing the complete working repository;
-7. any broader Mind2Web or PURE release is supported by written permission.
+7. any release of Mind2Web source files or PURE source-derived content is
+   supported by separate explicit permission.
 
 ## 5. Thesis disclosure text
 
@@ -206,11 +199,12 @@ A public thesis artifact is allowed only when all of the following are true:
 > Mind2Web is distributed under CC BY 4.0, while its maintainers additionally
 > request that unzipped test files not be redistributed online and that
 > benchmark data not enter training corpora. Consequently, the released
-> replication material contains code, configurations, hashes, and aggregate
-> results, but no original screenshots, HTML, trajectories, or per-item test
+> replication material contains code, configurations, hashes, aggregate
+> results, reviewed derived annotations, and explicitly sanitized prediction
+> artifacts, but no original screenshots, HTML, trajectories, or complete test
 > records. PURE contains requirements documents collected from third-party Web
 > sources whose individual licensing status is not guaranteed by the dataset
-> curators. PURE source documents, figures, and substantial text extracts are
-> therefore excluded from the public artifact. Full internal artifacts are
-> retained only for examination and reproducibility review under controlled
-> access.
+> curators. PURE source documents, figures, substantial text extracts, and
+> per-item model outputs are therefore excluded from the public artifact. Full
+> internal artifacts are retained only for examination and reproducibility
+> review under controlled access.

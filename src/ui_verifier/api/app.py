@@ -71,6 +71,7 @@ VERIFICATION_PIPELINE_ROOT = Path(__file__).resolve().parents[3] / "data" / "gen
 VERIFICATION_PIPELINE_RUNS_ROOT = Path(__file__).resolve().parents[3] / "data" / "generated" / "verification_pipeline_runs"
 BASE_DIR = Path(__file__).resolve().parents[3]
 GENERATED_ROOT = BASE_DIR / "data" / "generated"
+PUBLISHED_VERIFICATION_PIPELINE_RUNS_ROOT = BASE_DIR / "data" / "published" / "verification_pipeline_runs"
 REQUIREMENTS_GOLD_ROOT = BASE_DIR / "data" / "annotations" / "requirements_gold"
 VERIFICATION_GOLD_ROOT = BASE_DIR / "data" / "annotations" / "verification_gold"
 EVALUATION_AUDIT_ROOT = BASE_DIR / "data" / "annotations" / "evaluation_audits"
@@ -414,7 +415,11 @@ def _path_for_run_id(run_id: str) -> Path:
     if not run_id or "\x00" in run_id:
         raise HTTPException(status_code=400, detail="Invalid run id.")
     path = (BASE_DIR / run_id).resolve()
-    _require_under(path, GENERATED_ROOT)
+    if not any(
+        path.is_relative_to(root.resolve())
+        for root in (GENERATED_ROOT, PUBLISHED_VERIFICATION_PIPELINE_RUNS_ROOT)
+    ):
+        raise HTTPException(status_code=400, detail=f"Path escapes allowed run roots: {_repo_relative(path)}")
     if path.suffix != ".json":
         raise HTTPException(status_code=400, detail="Run id must point to a JSON file.")
     return path
@@ -430,6 +435,7 @@ def _load_json_object(path: Path) -> dict[str, Any] | None:
 
 def _iter_verification_run_paths() -> list[Path]:
     roots = [
+        PUBLISHED_VERIFICATION_PIPELINE_RUNS_ROOT,
         VERIFICATION_PIPELINE_ROOT,
         VERIFICATION_PIPELINE_RUNS_ROOT,
         DEMO_VERIFICATION_ROOT,

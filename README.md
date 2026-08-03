@@ -25,11 +25,12 @@ individual licensing status is not guaranteed by the PURE curators. Do not
 commit PURE PDFs, XML files, extracted figures, substantial source passages, or
 per-item prompts and outputs reproducing them.
 
-The conservative release policy and attribution language are documented in
-`docs/dataset_licensing_and_release_policy_2026-07-23.md`. The curated
-`artifacts/thesis_evaluation/` package is supervisor-only pending written
-permission for broader per-item release. Public releases should be
-aggregate-only and built from an explicit allowlist.
+The release policy and attribution language are documented in
+`docs/dataset_licensing_and_release_policy_2026-07-23.md`. The public
+`artifacts/thesis_evaluation/` package contains aggregate replication results.
+The explicit allowlist under `data/published/` additionally contains one
+sanitized Mind2Web-derived run set; it excludes source screenshots and page
+text, raw provider interactions, caches, secrets, and absolute paths.
 
 ## Repository layout
 
@@ -40,6 +41,7 @@ The repository now separates versioned requirement data from local flow data:
 - `data/annotations/flow_manifests/`: versioned manifests for reproducible flow exports
 - `data/processed/flows/`: local screenshot flows, not committed
 - `data/generated/`: local generated artifacts, prompts, verification runs, and other working files, not committed
+- `data/published/`: curated, sanitized verification outputs included for evaluator inspection
 
 If you clone the repo fresh, the requirements are present, but the screenshot flows are not. You must install or export the flows before the flow browser in the backend can show anything useful.
 The repository therefore defines one canonical local flow set that can be recreated from versioned manifests.
@@ -258,7 +260,10 @@ In the current lexical top-k implementation, `top-4` means a shared four-image
 cap for a batch of up to eight claims. It must not be described as an
 independent per-requirement top-4 condition.
 
-Generated runs remain under `data/generated/` and are not committed wholesale.
+Newly generated runs remain under `data/generated/` and are not committed
+wholesale. A curated sanitized run set is versioned under `data/published/` so
+the web application can display representative predictions and bounding boxes
+in a fresh clone.
 The release-facing replication package is curated under
 `artifacts/thesis_evaluation/`; its README defines the licensing, privacy, and
 path-sanitization gate that must be satisfied before publishing model traces or

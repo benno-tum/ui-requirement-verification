@@ -1,7 +1,7 @@
 {
   "schema_version": "thesis_dataset_release_classification_v1",
-  "status": "supervisor_only_pending_permission_and_code_license",
-  "reviewed_at": "2026-07-23",
+  "status": "public_curated_release",
+  "reviewed_at": "2026-08-03",
   "sources": {
     "mind2web": {
       "official_repository": "https://github.com/OSU-NLP-Group/Mind2Web",
@@ -9,7 +9,8 @@
       "repository_code_license": "MIT",
       "thesis_split": "test_task",
       "additional_instruction": "Do not redistribute unzipped test files online; do not place benchmark data in training corpora.",
-      "written_permission_for_derived_test_annotations": false
+      "written_permission_for_derived_test_annotations": false,
+      "supervisor_confirmation_of_licensing_approach": true
     },
     "pure": {
       "zenodo_record": "https://zenodo.org/records/7118517",
@@ -19,19 +20,19 @@
     }
   },
   "public_candidate": [
-    "author-created source code after a root code license is selected",
+    "author-created source code under the root MIT license",
     "experiment configurations",
     "aggregate metrics",
     "aggregate bootstrap and stability summaries",
-    "documentation without source screenshots or substantial source text"
+    "documentation without source screenshots or substantial source text",
+    "reviewed Mind2Web-derived annotations with attribution",
+    "explicitly sanitized Mind2Web-derived predictions and bounding boxes"
   ],
   "supervisor_only": [
-    "exact Mind2Web test identifiers and benchmark hashes",
-    "Mind2Web-derived per-item requirements and verification annotations",
     "PURE-derived per-item annotations containing full requirement text",
-    "per-item predictions and raw model responses",
+    "uncurated per-item predictions and raw model responses",
     "second-review forms and adjudication material",
-    "sanitized launch manifests containing test identifiers"
+    "unpublished reviewer working material"
   ],
   "excluded_from_public_release": [
     "Mind2Web test archives and unzipped records",
@@ -41,11 +42,11 @@
     "API keys, secrets, account data, and billing identifiers"
   ],
   "required_before_public_release": [
-    "supervisor approval of aggregate-only boundary",
-    "root code license decision",
+    "supervisor approval of the curated Mind2Web-derived boundary",
+    "root MIT code license",
     "dataset notice and citations",
     "allowlist-based public package build",
     "path, secret, personal-data, and source-content audit",
-    "written permission for any broader per-item release"
+    "separate permission for Mind2Web source files or PURE source-derived content"
   ]
 }

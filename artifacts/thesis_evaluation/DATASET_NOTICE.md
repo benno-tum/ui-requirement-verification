@@ -1,6 +1,6 @@
 # Dataset Notice
 
-Release status: **supervisor-only pending permission and code-license decision**.
+Release status: **public aggregate replication package**.
 
 This package contains aggregate research artifacts derived from Mind2Web and
 PURE. It is not a redistribution of either source dataset.
@@ -37,11 +37,12 @@ per-item prompts or outputs reproducing that text.
 
 ## Package boundary
 
-Public-candidate material is limited to author-created code, configurations,
-aggregate metrics, statistical summaries, and documentation that does not
-reproduce protected source content. Exact test identifiers, benchmark hashes,
-per-item annotations, and the second-review form remain supervisor-only until
-written permission or institutional review approves broader release.
+This package is limited to author-created configurations, aggregate metrics,
+statistical summaries, sanitized manifests, and documentation that does not
+reproduce source screenshots or substantial source text. The repository also
+contains reviewed derived annotations and one explicitly sanitized prediction
+set under `data/published/`; raw prompts, raw responses, and reviewer working
+materials remain local.
 
-No repository-wide software license has yet been selected. No file in this
+The repository's MIT license covers original software only. No file in this
 package should be interpreted as relicensing third-party dataset content.

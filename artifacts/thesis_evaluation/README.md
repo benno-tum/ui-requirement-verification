@@ -1,8 +1,9 @@
 # Thesis Evaluation Replication Package
 
-Status: aggregate replication package prepared after the final stability runs;
-classified as supervisor-only pending dataset permission and a repository code
-license decision.
+Status: public aggregate replication package prepared after the final stability
+runs. The repository uses an MIT license for original software and follows the
+Mind2Web attribution and source-file redistribution boundary in
+`DATASET_NOTICE.md`.
 
 This directory is the intended versioned, curated replication package for the
 Bachelor's thesis evaluation. `data/generated/` remains local working state and
@@ -22,8 +23,8 @@ must not be committed wholesale.
 The executed source code, prompt templates, and evaluators correspond to commit
 `cf243be2dd641e4b90e844eccbbe97bd0325f3c6`. Review and packaging tooling was
 added afterward without changing those stored run outputs. Full per-item
-predictions and raw provider responses remain local until redistribution is
-approved.
+predictions and raw provider responses remain local. A separate sanitized
+per-item run set is published under `data/published/`.
 
 ## Excluded contents
 
@@ -34,20 +35,19 @@ approved.
 - unreviewed local bounding-box reference bundles;
 - caches, virtual environments, frontend build output, and temporary PDFs.
 
-## Release gate
+## Release controls
 
-Before publishing this package:
+When updating this package:
 
 1. follow `DATASET_NOTICE.md` and `release_classification.json`;
-2. obtain written permission before releasing per-item Mind2Web test
-   derivatives or PURE text/figure derivatives;
+2. never add Mind2Web source files or PURE text/figure derivatives;
 3. replace absolute repository paths with repository-relative paths;
 4. scan JSON and text files for secrets and personal data;
 5. state the exact model identifier, provider, execution date, parameters,
    prompt version, benchmark hash, item coverage, failures, tokens, and cost;
 6. verify every reported metric against the frozen 258-item Mind2Web gold set;
-7. build a separate public artifact from an explicit allowlist instead of
-   publishing this supervisor package wholesale.
+7. continue using an explicit allowlist instead of copying local generated
+   directories wholesale.
 
 Run the automated path and secret gate before committing:
 

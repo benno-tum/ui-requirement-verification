@@ -112,6 +112,19 @@ def test_selected_run_loader_restricts_to_generated_json(tmp_path: Path, monkeyp
     assert resolved == path.resolve()
 
 
+def test_selected_run_loader_accepts_published_json(tmp_path: Path, monkeypatch) -> None:
+    base_dir = tmp_path
+    published_root = base_dir / "data" / "published" / "verification_pipeline_runs"
+    monkeypatch.setattr(api_app, "BASE_DIR", base_dir)
+    monkeypatch.setattr(api_app, "PUBLISHED_VERIFICATION_PIPELINE_RUNS_ROOT", published_root)
+    path = published_root / "curated" / "flow.json"
+    _write_json(path, {"flow_id": "flow", "results": []})
+
+    resolved = api_app._path_for_run_id("data/published/verification_pipeline_runs/curated/flow.json")
+
+    assert resolved == path.resolve()
+
+
 def test_selected_run_endpoint_loads_requested_run(tmp_path: Path, monkeypatch) -> None:
     base_dir = tmp_path
     generated_root = base_dir / "data" / "generated"

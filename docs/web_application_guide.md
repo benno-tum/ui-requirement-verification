@@ -7,19 +7,20 @@ clone, how to inspect the benchmark, and how to create verification results.
 ## 1. What a Fresh Clone Contains
 
 A fresh clone contains the application, the reviewed requirement annotations,
-and the verification benchmark for the 13 numbered Mind2Web flows. It does not
-contain the following local artifacts:
+the verification benchmark for the 13 numbered Mind2Web flows, and one curated
+published verification run set with bounding boxes. It does not contain the
+following local artifacts:
 
 - Mind2Web screenshots, which must be exported locally;
-- generated verification runs, model responses, caches, and usage logs;
+- additional generated verification runs, raw model responses, caches, and
+  usage logs;
 - uploaded user projects; or
 - PURE source documents and figures.
 
 Consequently, the flow list and reviewed benchmark become available after the
-Mind2Web export, but **Verification runs** initially reports that no generated
-pipeline output exists. This is expected. It is not a license check or an
-application error. Generated runs are reproducible local outputs under
-`data/generated/`, which is intentionally ignored by Git.
+Mind2Web export. **Verification runs** then includes the curated published run
+for each numbered flow. Locally generated runs are additional reproducible
+outputs under `data/generated/`, which remains intentionally ignored by Git.
 
 ## 2. Install and Start
 
@@ -81,18 +82,21 @@ inspect the repository should avoid **Accept**, **Edit benchmark item**, and
 other save actions. Generating a verification run does not change the reviewed
 benchmark; it writes a separate local result under `data/generated/`.
 
-## 4. Why Verification Runs Are Initially Empty
+## 4. Published and Local Verification Runs
 
 Reviewed benchmark items and generated predictions are different artifacts:
 
 - the reviewed reference is versioned under
   `data/annotations/verification_gold/`;
-- pipeline predictions are created locally under `data/generated/`; and
+- the curated publishable predictions are versioned under `data/published/`;
+- new pipeline predictions are created locally under `data/generated/`; and
 - model-response caches and API-usage records are local as well.
 
-The repository does not commit generated runs wholesale. This keeps the public
-repository small, avoids publishing raw model interactions, and makes a fresh
-evaluation start from declared commands rather than hidden cached outputs.
+The repository does not commit generated runs wholesale. The included run set
+was curated to exclude screenshots, source-page text, raw provider responses,
+caches, secrets, personal local paths, and email-like task values. This keeps
+the public repository compact while allowing evaluators to inspect real
+predictions and bounding boxes immediately after exporting the source images.
 
 To create a run, select a flow, open **Verification run**, configure **Run
 pipeline**, and choose one of these modes:
@@ -131,8 +135,10 @@ returned localized regions.
 
 Visual verification sends the selected screenshots and requirement content to
 the configured model provider. Do not use private or confidential material
-without authorization. The `.env` file and generated outputs remain local and
-must not be committed.
+without authorization. The `.env` file, newly generated outputs, raw provider
+responses, and caches remain local and must not be committed. Only the
+explicitly curated artifacts under `data/published/` belong to the public
+repository.
 
 ## 5. Verify Your Own Screenshots
 
@@ -198,8 +204,9 @@ Complete the Mind2Web export, confirm `Exported flows: 13`, and select
 
 ### Flows exist, but **Verification runs** is empty
 
-This is the normal fresh-clone state. Start an offline or visual run from the
-**Run pipeline** section.
+Confirm that `data/published/verification_pipeline_runs/` exists in the clone,
+restart the backend, and select **Refresh runs**. You can also start an offline
+or visual run from the **Run pipeline** section.
 
 ### The frontend reports `Failed to fetch`
 
