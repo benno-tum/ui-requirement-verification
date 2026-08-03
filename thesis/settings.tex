@@ -1,11 +1,18 @@
 \PassOptionsToPackage{table,svgnames,dvipsnames}{xcolor}
 
-\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[sc]{mathpazo}
 \usepackage{amsmath}
 \usepackage[ngerman,american]{babel}
 \usepackage[autostyle]{csquotes}
+\usepackage{silence}
+% Tectonic deliberately uses the template's BibTeX backend. Biblatex 3.17
+% emits these generic advisories even after Tectonic has run BibTeX and all
+% citations and cross-references resolve. Specific missing-reference warnings
+% remain visible and are rejected by the Makefile warning gate.
+\WarningFilter{biblatex}{Using fall-back BibTeX}
+\WarningFilter{biblatex}{Please (re)run BibTeX}
+\WarningFilter{latex}{There were undefined references}
 \usepackage[%
   backend=bibtex,
   style=numeric,

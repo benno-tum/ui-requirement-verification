@@ -203,10 +203,23 @@ evidence.
 Some claims are not reducible to one rectangle. A comparison may need two
 regions, a transition may need two screenshots, and a screen-wide state may not
 have a meaningful minimal box. The region-evaluation protocol therefore permits
-\texttt{SINGLE\_REGION}, \texttt{MULTI\_REGION}, \texttt{WHOLE\_\allowbreak SCREEN\_\allowbreak OR\_\allowbreak TRANSITION}, and
-\texttt{NO\_\allowbreak VISIBLE\_\allowbreak REGION}. Returning no region is treated as a localization
-abstention. It can be appropriate when the claim has no localizable visible
-support; otherwise it is a localization failure.
+four reference types:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{SINGLE\_REGION} for one localized area;
+\item
+  \texttt{MULTI\_REGION} for evidence distributed across several areas;
+\item
+  \texttt{WHOLE\_\allowbreak SCREEN\_\allowbreak OR\_\allowbreak TRANSITION} for screen-wide or temporal evidence; and
+\item
+  \texttt{NO\_\allowbreak VISIBLE\_\allowbreak REGION} when no localizable visible support exists.
+\end{itemize}
+
+The last category records a valid localization abstention because the claim has
+no localizable visible support. Returning no region for any other category is a
+localization failure.
 
 \section{Operationalization of the Research Questions}\label{operationalization-of-the-research-questions}
 

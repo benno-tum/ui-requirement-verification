@@ -14,8 +14,10 @@ lexical item-level candidates. All
 other recorded settings are held constant.
 
 RQ1 additionally uses a matched Gemini 2.5 Flash-Lite raw/all run and a hosted
-Qwen3-VL-8B-Instruct raw/top-4 run. The deterministic raw/top-4 and
-gated/top-4 configurations provide non-LLM reference points. Historical Gemini
+Qwen3-VL-8B-Instruct raw/top-4 run. Here, top-4 denotes only the deterministic
+evidence-selection policy; Qwen remains the multimodal LLM verifier. The separate
+deterministic raw/top-4 and gated/top-4 configurations use no model and provide
+non-LLM reference points. Historical Gemini
 3.1 Pro and provided-claim runs remain useful sensitivity and oracle analyses,
 but they are not inserted into the controlled matrix because their prompt,
 claim, grouping, or grounding settings differ.

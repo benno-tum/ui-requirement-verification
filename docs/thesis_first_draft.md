@@ -401,7 +401,7 @@ contribution.
   \centering
   \footnotesize
   \setlength{\tabcolsep}{4pt}
-  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.14\linewidth}>{\raggedright\arraybackslash}p{0.23\linewidth}@{}}
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.14\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}@{}}
     \toprule
     \textbf{Research area} & \textbf{Primary input} & \textbf{Typical output} &
     \textbf{Ordered evidence} & \textbf{Explicit abstention or uncertainty} \\
@@ -608,10 +608,16 @@ evidence.
 Some claims are not reducible to one rectangle. A comparison may need two
 regions, a transition may need two screenshots, and a screen-wide state may not
 have a meaningful minimal box. The region-evaluation protocol therefore permits
-`SINGLE_REGION`, `MULTI_REGION`, `WHOLE_SCREEN_OR_TRANSITION`, and
-`NO_VISIBLE_REGION`. Returning no region is treated as a localization
-abstention. It can be appropriate when the claim has no localizable visible
-support; otherwise it is a localization failure.
+four reference types:
+
+- `SINGLE_REGION` for one localized area;
+- `MULTI_REGION` for evidence distributed across several areas;
+- `WHOLE_SCREEN_OR_TRANSITION` for screen-wide or temporal evidence; and
+- `NO_VISIBLE_REGION` when no localizable visible support exists.
+
+The last category records a valid localization abstention because the claim has
+no localizable visible support. Returning no region for any other category is a
+localization failure.
 
 ### 3.7 Operationalization of the Research Questions
 
@@ -1241,8 +1247,10 @@ lexical item-level candidates. All
 other recorded settings are held constant.
 
 RQ1 additionally uses a matched Gemini 2.5 Flash-Lite raw/all run and a hosted
-Qwen3-VL-8B-Instruct raw/top-4 run. The deterministic raw/top-4 and
-gated/top-4 configurations provide non-LLM reference points. Historical Gemini
+Qwen3-VL-8B-Instruct raw/top-4 run. Here, top-4 denotes only the deterministic
+evidence-selection policy; Qwen remains the multimodal LLM verifier. The separate
+deterministic raw/top-4 and gated/top-4 configurations use no model and provide
+non-LLM reference points. Historical Gemini
 3.1 Pro and provided-claim runs remain useful sensitivity and oracle analyses,
 but they are not inserted into the controlled matrix because their prompt,
 claim, grouping, or grounding settings differ.

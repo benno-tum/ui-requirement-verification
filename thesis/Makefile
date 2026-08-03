@@ -16,6 +16,11 @@ pdf:
 		echo "Install latexmk with a TeX distribution or install tectonic."; \
 		exit 1; \
 	fi
+	@if grep -Eq '(LaTeX|Package .*|Class .*) Warning:|Overfull \\[hv]box|Underfull \\[hv]box|^!' "$(OUT)/$(FILE).log"; then \
+		echo "TeX warnings or errors remain in $(OUT)/$(FILE).log"; \
+		grep -En '(LaTeX|Package .*|Class .*) Warning:|Overfull \\[hv]box|Underfull \\[hv]box|^!' "$(OUT)/$(FILE).log"; \
+		exit 1; \
+	fi
 
 .PHONY: all
 all: sync pdf
