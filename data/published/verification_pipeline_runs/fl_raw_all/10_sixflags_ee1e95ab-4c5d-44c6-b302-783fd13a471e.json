@@ -1,0 +1,4382 @@
+{
+  "flow_id": "10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+  "screen_representations": [
+    {
+      "step_index": 1,
+      "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_01.png",
+      "image_width": 1280,
+      "image_height": 2971
+    },
+    {
+      "step_index": 2,
+      "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_02.png",
+      "image_width": 1280,
+      "image_height": 3167
+    },
+    {
+      "step_index": 3,
+      "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_03.png",
+      "image_width": 1280,
+      "image_height": 2971
+    },
+    {
+      "step_index": 4,
+      "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_04.png",
+      "image_width": 1298,
+      "image_height": 4429
+    },
+    {
+      "step_index": 5,
+      "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_05.png",
+      "image_width": 1298,
+      "image_height": 4429
+    },
+    {
+      "step_index": 6,
+      "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+      "image_width": 1298,
+      "image_height": 2126
+    },
+    {
+      "step_index": 7,
+      "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_07.png",
+      "image_width": 1298,
+      "image_height": 2126
+    },
+    {
+      "step_index": 8,
+      "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_08.png",
+      "image_width": 1298,
+      "image_height": 2126
+    },
+    {
+      "step_index": 9,
+      "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+      "image_width": 1298,
+      "image_height": 2126
+    },
+    {
+      "step_index": 10,
+      "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+      "image_width": 1298,
+      "image_height": 2126
+    }
+  ],
+  "results": [
+    {
+      "requirement_id": "REQ-01",
+      "requirement_text": "The system shall let the user select a specific park so that subsequent ticketing and add-on content is localized to that park.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-01-C1",
+          "requirement_id": "REQ-01",
+          "claim_text": "The system shall let the user select a specific park so that subsequent ticketing and add-on content is localized to that park.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_01.png",
+              "visible_observation": "Park selection interface",
+              "bbox": [
+                153.6,
+                713.04,
+                1088.0,
+                1039.85
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_01.png",
+                "image_width": 1280,
+                "image_height": 2971,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  240.0,
+                  120.0,
+                  350.0,
+                  850.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  153.6,
+                  713.04,
+                  1088.0,
+                  1039.85
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Park selection interface"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_03.png",
+              "visible_observation": "Selected park indicator",
+              "bbox": [
+                659.2,
+                831.88,
+                1075.2,
+                906.155
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2971,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  280.0,
+                  515.0,
+                  305.0,
+                  840.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  659.2,
+                  831.88,
+                  1075.2,
+                  906.155
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Selected park indicator"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI explicitly allows park selection, and the header confirms the selected park context.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              4,
+              5,
+              6,
+              7
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_01.png",
+          "visible_observation": "Park selection interface",
+          "bbox": [
+            153.6,
+            713.04,
+            1088.0,
+            1039.85
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_01.png",
+            "image_width": 1280,
+            "image_height": 2971,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              240.0,
+              120.0,
+              350.0,
+              850.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              153.6,
+              713.04,
+              1088.0,
+              1039.85
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Park selection interface"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_03.png",
+          "visible_observation": "Selected park indicator",
+          "bbox": [
+            659.2,
+            831.88,
+            1075.2,
+            906.155
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2971,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              280.0,
+              515.0,
+              305.0,
+              840.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              659.2,
+              831.88,
+              1075.2,
+              906.155
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Selected park indicator"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-02",
+      "requirement_text": "The system shall present park-specific passes and in-park purchase options after a park has been selected.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-02-C1",
+          "requirement_id": "REQ-02",
+          "claim_text": "The system shall present park-specific passes and in-park purchase options after a park has been selected.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+              "visible_observation": "Park-specific add-on options",
+              "bbox": [
+                129.8,
+                1169.3,
+                1168.2,
+                2019.7
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  550.0,
+                  100.0,
+                  950.0,
+                  900.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  129.8,
+                  1169.3,
+                  1168.2,
+                  2019.7
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Park-specific add-on options"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The interface presents specific add-on purchase options (Dining, Flash Pass) after the park is selected.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              4,
+              5,
+              6,
+              10
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+          "visible_observation": "Park-specific add-on options",
+          "bbox": [
+            129.8,
+            1169.3,
+            1168.2,
+            2019.7
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              550.0,
+              100.0,
+              950.0,
+              900.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              129.8,
+              1169.3,
+              1168.2,
+              2019.7
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Park-specific add-on options"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-03",
+      "requirement_text": "The system shall support navigation from a park homepage into add-on purchasing sections associated with tickets or passes.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-03-C1",
+          "requirement_id": "REQ-03",
+          "claim_text": "The system shall support navigation from a park homepage into add-on purchasing sections associated with tickets or passes.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+              "visible_observation": "Navigation menu for tickets and add-ons",
+              "bbox": [
+                421.8,
+                696.2,
+                582.2,
+                735.8
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  30.0,
+                  320.0,
+                  50.0,
+                  450.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  415.36,
+                  63.78,
+                  584.1,
+                  106.3
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    421.8,
+                    696.2,
+                    582.2,
+                    735.8
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Navigation menu for tickets and add-ons"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The homepage navigation provides direct access to ticketing and add-on sections.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              6,
+              7,
+              8,
+              10
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+          "visible_observation": "Navigation menu for tickets and add-ons",
+          "bbox": [
+            421.8,
+            696.2,
+            582.2,
+            735.8
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              30.0,
+              320.0,
+              50.0,
+              450.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              415.36,
+              63.78,
+              584.1,
+              106.3
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                421.8,
+                696.2,
+                582.2,
+                735.8
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Navigation menu for tickets and add-ons"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-04",
+      "requirement_text": "The system shall present optional add-on plans with enough descriptive and pricing information for users to compare them before selection.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-04-C1",
+          "requirement_id": "REQ-04",
+          "claim_text": "The system shall present optional add-on plans with enough descriptive and pricing information for users to compare them before selection.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+              "visible_observation": "Add-on plans with pricing and descriptions",
+              "bbox": [
+                421.8,
+                696.2,
+                582.2,
+                735.8
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  600.0,
+                  100.0,
+                  950.0,
+                  900.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  129.8,
+                  1275.6,
+                  1168.2,
+                  2019.7
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    421.8,
+                    696.2,
+                    582.2,
+                    735.8
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Add-on plans with pricing and descriptions"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI presents multiple add-on options with clear pricing and descriptive text.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              4,
+              5
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+          "visible_observation": "Add-on plans with pricing and descriptions",
+          "bbox": [
+            421.8,
+            696.2,
+            582.2,
+            735.8
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              600.0,
+              100.0,
+              950.0,
+              900.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              129.8,
+              1275.6,
+              1168.2,
+              2019.7
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                421.8,
+                696.2,
+                582.2,
+                735.8
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Add-on plans with pricing and descriptions"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-05",
+      "requirement_text": "The system shall support category-based browsing of purchasable items within the ticketing and add-on shopping interface.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-05-C1",
+          "requirement_id": "REQ-05",
+          "claim_text": "The system shall support category-based browsing of purchasable items within the ticketing and add-on shopping interface.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 10,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+              "visible_observation": "Category-based browsing tabs",
+              "bbox": [
+                155.76,
+                201.97,
+                843.7,
+                255.12
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  95.0,
+                  120.0,
+                  120.0,
+                  650.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  155.76,
+                  201.97,
+                  843.7,
+                  255.12
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Category-based browsing tabs"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The shopping cart modal provides category tabs (Daily Tickets, Season Passes, etc.) for browsing.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              7,
+              8,
+              9,
+              10
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 10,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+          "visible_observation": "Category-based browsing tabs",
+          "bbox": [
+            155.76,
+            201.97,
+            843.7,
+            255.12
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              95.0,
+              120.0,
+              120.0,
+              650.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              155.76,
+              201.97,
+              843.7,
+              255.12
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Category-based browsing tabs"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-06",
+      "requirement_text": "The system shall allow the user to choose among multiple add-on variants within the selected park context.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-06-C1",
+          "requirement_id": "REQ-06",
+          "claim_text": "The system shall allow the user to choose among multiple add-on variants within the selected park context.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+              "visible_observation": "Multiple add-on variants",
+              "bbox": [
+                129.8,
+                1275.6,
+                1168.2,
+                2019.7
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  600.0,
+                  100.0,
+                  950.0,
+                  900.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  129.8,
+                  1275.6,
+                  1168.2,
+                  2019.7
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Multiple add-on variants"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The interface displays several distinct add-on options for the user to choose from.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+          "visible_observation": "Multiple add-on variants",
+          "bbox": [
+            129.8,
+            1275.6,
+            1168.2,
+            2019.7
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              600.0,
+              100.0,
+              950.0,
+              900.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              129.8,
+              1275.6,
+              1168.2,
+              2019.7
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Multiple add-on variants"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-15",
+      "requirement_text": "The system shall present an itemized pre-checkout order summary including subtotal, fees, tax, and total.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-15-C1",
+          "requirement_id": "REQ-15",
+          "claim_text": "The system shall present an itemized pre-checkout order summary including subtotal, fees, tax, and total.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 10,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+              "visible_observation": "Itemized order summary",
+              "bbox": [
+                882.64,
+                446.46,
+                1142.24,
+                595.28
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  210.0,
+                  680.0,
+                  280.0,
+                  880.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  882.64,
+                  446.46,
+                  1142.24,
+                  595.28
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Itemized order summary"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The pre-checkout summary clearly lists the required financial components.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              1,
+              8,
+              9,
+              10
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 10,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+          "visible_observation": "Itemized order summary",
+          "bbox": [
+            882.64,
+            446.46,
+            1142.24,
+            595.28
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              210.0,
+              680.0,
+              280.0,
+              880.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              882.64,
+              446.46,
+              1142.24,
+              595.28
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Itemized order summary"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-07",
+      "requirement_text": "The system shall provide a dedicated detail view for a selected add-on before it is added to the cart.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-07-C1",
+          "requirement_id": "REQ-07",
+          "claim_text": "The system shall provide a dedicated detail view for a selected add-on before it is added to the cart.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 9,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+              "visible_observation": "Add-on detail view",
+              "bbox": [
+                155.76,
+                255.12,
+                1142.24,
+                807.88
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  120.0,
+                  120.0,
+                  380.0,
+                  880.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  155.76,
+                  255.12,
+                  1142.24,
+                  807.88
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Add-on detail view"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI displays a dedicated detail modal for the Go-Kart pass, including description and restrictions, before the 'Add to Cart' action.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              1,
+              4,
+              9,
+              10
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+          "visible_observation": "Add-on detail view",
+          "bbox": [
+            155.76,
+            255.12,
+            1142.24,
+            807.88
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              120.0,
+              120.0,
+              380.0,
+              880.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              155.76,
+              255.12,
+              1142.24,
+              807.88
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Add-on detail view"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-08",
+      "requirement_text": "The system shall disclose important product conditions such as eligibility, usage restrictions, or special purchase notes before the user commits to an add-on purchase.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-08-C1",
+          "requirement_id": "REQ-08",
+          "claim_text": "The system shall disclose important product conditions such as eligibility, usage restrictions, or special purchase notes before the user commits to an add-on purchase.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 9,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+              "visible_observation": "Usage restrictions and health warnings displayed in the product modal.",
+              "bbox": [
+                453.0,
+                507.0,
+                584.0,
+                529.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  245.0,
+                  120.0,
+                  315.0,
+                  875.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  155.76,
+                  520.87,
+                  1135.75,
+                  669.69
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    453.0,
+                    507.0,
+                    584.0,
+                    529.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Usage restrictions and health warnings displayed in the product modal."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The system displays specific usage restrictions (height, health, etc.) within the product configuration modal before the user adds the item to the cart.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              4,
+              5,
+              8,
+              9
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+          "visible_observation": "Usage restrictions and health warnings displayed in the product modal.",
+          "bbox": [
+            453.0,
+            507.0,
+            584.0,
+            529.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              245.0,
+              120.0,
+              315.0,
+              875.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              155.76,
+              520.87,
+              1135.75,
+              669.69
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                453.0,
+                507.0,
+                584.0,
+                529.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Usage restrictions and health warnings displayed in the product modal."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-09",
+      "requirement_text": "The system shall allow the user to adjust add-on quantity before adding the selected item to the cart.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-09-C1",
+          "requirement_id": "REQ-09",
+          "claim_text": "The system shall allow the user to adjust add-on quantity before adding the selected item to the cart.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 9,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+              "visible_observation": "Quantity selector controls in the product modal.",
+              "bbox": [
+                1025.42,
+                297.64,
+                1135.75,
+                350.79
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  140.0,
+                  790.0,
+                  165.0,
+                  875.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  1025.42,
+                  297.64,
+                  1135.75,
+                  350.79
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Quantity selector controls in the product modal."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI provides a clear quantity adjustment control within the product modal, allowing the user to change the quantity before adding to the cart.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              1,
+              4,
+              9,
+              10
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+          "visible_observation": "Quantity selector controls in the product modal.",
+          "bbox": [
+            1025.42,
+            297.64,
+            1135.75,
+            350.79
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              140.0,
+              790.0,
+              165.0,
+              875.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              1025.42,
+              297.64,
+              1135.75,
+              350.79
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Quantity selector controls in the product modal."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall let the user cancel an add-on configuration step without losing the broader shopping context.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-11-C1",
+          "requirement_id": "REQ-11",
+          "claim_text": "The system shall let the user cancel an add-on configuration step without losing the broader shopping context.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 9,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+              "visible_observation": "Back button in the modal.",
+              "bbox": [
+                713.9,
+                744.1,
+                882.64,
+                786.62
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  350.0,
+                  550.0,
+                  370.0,
+                  680.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  713.9,
+                  744.1,
+                  882.64,
+                  786.62
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Back button in the modal."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 9,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+              "visible_observation": "Close 'X' icon in the modal.",
+              "bbox": [
+                1148.73,
+                170.08,
+                1181.18,
+                212.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  80.0,
+                  885.0,
+                  100.0,
+                  910.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  1148.73,
+                  170.08,
+                  1181.18,
+                  212.6
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Close 'X' icon in the modal."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The presence of 'Back' and close controls in the modal allows the user to cancel the configuration step and return to the previous context.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              10
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+          "visible_observation": "Back button in the modal.",
+          "bbox": [
+            713.9,
+            744.1,
+            882.64,
+            786.62
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              350.0,
+              550.0,
+              370.0,
+              680.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              713.9,
+              744.1,
+              882.64,
+              786.62
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Back button in the modal."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+          "visible_observation": "Close 'X' icon in the modal.",
+          "bbox": [
+            1148.73,
+            170.08,
+            1181.18,
+            212.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              80.0,
+              885.0,
+              100.0,
+              910.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              1148.73,
+              170.08,
+              1181.18,
+              212.6
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Close 'X' icon in the modal."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-12",
+      "requirement_text": "The system shall add configured add-ons to the shopping cart and reflect the selected quantity in cart line items.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-12-C1",
+          "requirement_id": "REQ-12",
+          "claim_text": "The system shall add configured add-ons to the shopping cart and reflect the selected quantity in cart line items.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 10,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+              "visible_observation": "Cart line item showing the add-on and its quantity.",
+              "bbox": [
+                142.78,
+                308.27,
+                1135.75,
+                372.05
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  145.0,
+                  110.0,
+                  175.0,
+                  875.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  142.78,
+                  308.27,
+                  1135.75,
+                  372.05
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Cart line item showing the add-on and its quantity."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The cart review screen correctly reflects the added item and the specific quantity selected by the user.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              1,
+              7,
+              9,
+              10
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 10,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+          "visible_observation": "Cart line item showing the add-on and its quantity.",
+          "bbox": [
+            142.78,
+            308.27,
+            1135.75,
+            372.05
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              145.0,
+              110.0,
+              175.0,
+              875.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              142.78,
+              308.27,
+              1135.75,
+              372.05
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Cart line item showing the add-on and its quantity."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-13",
+      "requirement_text": "The system shall support carts that combine admission products with optional add-ons in a single order review.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-13-C1",
+          "requirement_id": "REQ-13",
+          "claim_text": "The system shall support carts that combine admission products with optional add-ons in a single order review.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 10,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+              "visible_observation": "Cart list showing both admission and add-on items.",
+              "bbox": [
+                123.60000000000001,
+                252.4,
+                1214.4,
+                309.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  125.0,
+                  110.0,
+                  175.0,
+                  875.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  142.78,
+                  265.75,
+                  1135.75,
+                  372.05
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    123.60000000000001,
+                    252.4,
+                    1214.4,
+                    309.6
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Cart list showing both admission and add-on items."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The cart review screen displays a combined list of admission products and add-ons, confirming the system supports mixed-product carts.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              4,
+              5,
+              8,
+              10
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 10,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+          "visible_observation": "Cart list showing both admission and add-on items.",
+          "bbox": [
+            123.60000000000001,
+            252.4,
+            1214.4,
+            309.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              125.0,
+              110.0,
+              175.0,
+              875.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              142.78,
+              265.75,
+              1135.75,
+              372.05
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                123.60000000000001,
+                252.4,
+                1214.4,
+                309.6
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Cart list showing both admission and add-on items."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-14",
+      "requirement_text": "The system shall preserve the selected park context consistently across discovery, add-on selection, and cart review screens.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-14-C1",
+          "requirement_id": "REQ-14",
+          "claim_text": "The system shall preserve the selected park context consistently across discovery, add-on selection, and cart review screens.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+              "visible_observation": "Park selection in header (Step 6).",
+              "bbox": [
+                207.68,
+                21.26,
+                454.3,
+                63.78
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  10.0,
+                  160.0,
+                  30.0,
+                  350.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  207.68,
+                  21.26,
+                  454.3,
+                  63.78
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Park selection in header (Step 6)."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 10,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+              "visible_observation": "Park selection in header (Step 10).",
+              "bbox": [
+                207.68,
+                21.26,
+                454.3,
+                63.78
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  10.0,
+                  160.0,
+                  30.0,
+                  350.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  207.68,
+                  21.26,
+                  454.3,
+                  63.78
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Park selection in header (Step 10)."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The park context 'Six Flags America' is consistently displayed in the header across the navigation and cart review screens.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              1,
+              4,
+              9,
+              10
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+          "visible_observation": "Park selection in header (Step 6).",
+          "bbox": [
+            207.68,
+            21.26,
+            454.3,
+            63.78
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              10.0,
+              160.0,
+              30.0,
+              350.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              207.68,
+              21.26,
+              454.3,
+              63.78
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Park selection in header (Step 6)."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 10,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+          "visible_observation": "Park selection in header (Step 10).",
+          "bbox": [
+            207.68,
+            21.26,
+            454.3,
+            63.78
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              10.0,
+              160.0,
+              30.0,
+              350.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              207.68,
+              21.26,
+              454.3,
+              63.78
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Park selection in header (Step 10)."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-16",
+      "requirement_text": "The system shall allow cart contents to be reviewed and modified before proceeding to checkout.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-16-C1",
+          "requirement_id": "REQ-16",
+          "claim_text": "The system shall allow cart contents to be reviewed and modified before proceeding to checkout.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 10,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+              "visible_observation": "Modify Cart button.",
+              "bbox": [
+                123.60000000000001,
+                252.4,
+                1214.4,
+                309.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  110.0,
+                  800.0,
+                  125.0,
+                  875.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  1038.4,
+                  233.86,
+                  1135.75,
+                  265.75
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    123.60000000000001,
+                    252.4,
+                    1214.4,
+                    309.6
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Modify Cart button."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 10,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+              "visible_observation": "Cart items list.",
+              "bbox": [
+                123.60000000000001,
+                252.4,
+                1214.4,
+                309.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  120.0,
+                  110.0,
+                  180.0,
+                  875.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  142.78,
+                  255.12,
+                  1135.75,
+                  382.68
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    123.60000000000001,
+                    252.4,
+                    1214.4,
+                    309.6
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Cart items list."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The cart review screen provides a clear summary of items and a 'Modify Cart' affordance, allowing review and modification before checkout.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              1,
+              4,
+              9,
+              10
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 10,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+          "visible_observation": "Modify Cart button.",
+          "bbox": [
+            123.60000000000001,
+            252.4,
+            1214.4,
+            309.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              110.0,
+              800.0,
+              125.0,
+              875.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              1038.4,
+              233.86,
+              1135.75,
+              265.75
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                123.60000000000001,
+                252.4,
+                1214.4,
+                309.6
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Modify Cart button."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 10,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+          "visible_observation": "Cart items list.",
+          "bbox": [
+            123.60000000000001,
+            252.4,
+            1214.4,
+            309.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              120.0,
+              110.0,
+              180.0,
+              875.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              142.78,
+              255.12,
+              1135.75,
+              382.68
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                123.60000000000001,
+                252.4,
+                1214.4,
+                309.6
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Cart items list."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-17",
+      "requirement_text": "The system shall distinguish optional marketing consent from required purchase acknowledgements during the transition to checkout.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-17-C1",
+          "requirement_id": "REQ-17",
+          "claim_text": "The system shall distinguish optional marketing consent from required purchase acknowledgements during the transition to checkout.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 10,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+              "visible_observation": "Marketing consent checkbox.",
+              "bbox": [
+                142.78,
+                627.17,
+                1135.75,
+                669.69
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  295.0,
+                  110.0,
+                  315.0,
+                  875.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  142.78,
+                  627.17,
+                  1135.75,
+                  669.69
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Marketing consent checkbox."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 10,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+              "visible_observation": "Required purchase terms checkbox.",
+              "bbox": [
+                935.8,
+                635.2,
+                1145.2,
+                663.8
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  315.0,
+                  110.0,
+                  335.0,
+                  875.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  142.78,
+                  669.69,
+                  1135.75,
+                  712.21
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    935.8,
+                    635.2,
+                    1145.2,
+                    663.8
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Required purchase terms checkbox."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI clearly separates the optional marketing consent checkbox from the mandatory purchase acknowledgement checkbox, fulfilling the requirement to distinguish them.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              1,
+              4,
+              9,
+              10
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 10,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+          "visible_observation": "Marketing consent checkbox.",
+          "bbox": [
+            142.78,
+            627.17,
+            1135.75,
+            669.69
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              295.0,
+              110.0,
+              315.0,
+              875.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              142.78,
+              627.17,
+              1135.75,
+              669.69
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Marketing consent checkbox."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 10,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+          "visible_observation": "Required purchase terms checkbox.",
+          "bbox": [
+            935.8,
+            635.2,
+            1145.2,
+            663.8
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              315.0,
+              110.0,
+              335.0,
+              875.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              142.78,
+              669.69,
+              1135.75,
+              712.21
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                935.8,
+                635.2,
+                1145.2,
+                663.8
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Required purchase terms checkbox."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-18",
+      "requirement_text": "The system shall provide accessibility support such as a high-contrast viewing mode during the purchase workflow.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-18-C1",
+          "requirement_id": "REQ-18",
+          "claim_text": "The system shall provide accessibility support such as a high-contrast viewing mode during the purchase workflow.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 9,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+              "visible_observation": "High Contrast Mode button",
+              "bbox": [
+                882.64,
+                797.25,
+                1012.44,
+                818.51
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  375.0,
+                  680.0,
+                  385.0,
+                  780.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  882.64,
+                  797.25,
+                  1012.44,
+                  818.51
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "High Contrast Mode button"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 10,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+              "visible_observation": "A 'High Contrast Mode' button is visible in the bottom right corner of the purchase modal.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI explicitly provides a 'High Contrast Mode' toggle in the purchase modal.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              4,
+              5,
+              9,
+              10
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+          "visible_observation": "High Contrast Mode button",
+          "bbox": [
+            882.64,
+            797.25,
+            1012.44,
+            818.51
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              375.0,
+              680.0,
+              385.0,
+              780.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              882.64,
+              797.25,
+              1012.44,
+              818.51
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "High Contrast Mode button"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 10,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+          "visible_observation": "A 'High Contrast Mode' button is visible in the bottom right corner of the purchase modal.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-19",
+      "requirement_text": "The system shall support selection of a digital or mobile ticket fulfillment option as part of the purchase flow.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "REQ-19-C1",
+          "requirement_id": "REQ-19",
+          "claim_text": "The system shall support selection of a digital or mobile ticket fulfillment option as part of the purchase flow.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "While the purchase flow is visible, there is no UI element allowing the user to select a specific ticket fulfillment method (e.g., digital vs. physical).",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              4,
+              5,
+              6,
+              10
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-10",
+      "requirement_text": "The system shall provide visible feedback when the selected quantity changes so the pending purchase configuration remains clear.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-10-C1",
+          "requirement_id": "REQ-10",
+          "claim_text": "The system shall provide visible feedback when the selected quantity changes so the pending purchase configuration remains clear.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 8,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_08.png",
+              "visible_observation": "Quantity selector showing 1",
+              "bbox": [
+                1077.34,
+                297.64,
+                1116.28,
+                340.16
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_08.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  140.0,
+                  830.0,
+                  160.0,
+                  860.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  1077.34,
+                  297.64,
+                  1116.28,
+                  340.16
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Quantity selector showing 1"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 9,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+              "visible_observation": "Quantity selector showing 2",
+              "bbox": [
+                1077.34,
+                297.64,
+                1116.28,
+                340.16
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  140.0,
+                  830.0,
+                  160.0,
+                  860.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  1077.34,
+                  297.64,
+                  1116.28,
+                  340.16
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Quantity selector showing 2"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI provides a clear quantity selector that updates the displayed value.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              1,
+              4,
+              9,
+              10
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 8,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_08.png",
+          "visible_observation": "Quantity selector showing 1",
+          "bbox": [
+            1077.34,
+            297.64,
+            1116.28,
+            340.16
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_08.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              140.0,
+              830.0,
+              160.0,
+              860.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              1077.34,
+              297.64,
+              1116.28,
+              340.16
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Quantity selector showing 1"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+          "visible_observation": "Quantity selector showing 2",
+          "bbox": [
+            1077.34,
+            297.64,
+            1116.28,
+            340.16
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              140.0,
+              830.0,
+              160.0,
+              860.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              1077.34,
+              297.64,
+              1116.28,
+              340.16
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Quantity selector showing 2"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "TEXTUAL_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall preserve a user-selected digital or mobile ticket fulfillment choice across cart review and the transition into checkout unless the user explicitly changes it.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-01-C1",
+          "requirement_id": "CONTR-01",
+          "claim_text": "The system shall preserve a user-selected digital or mobile ticket fulfillment choice across cart review and the transition into checkout unless the user explicitly changes it.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "Since no fulfillment choice is presented or selectable in the UI, its preservation cannot be verified.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              1,
+              4,
+              9,
+              10
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall clearly indicate the downstream delivery destination or channel for digital tickets, such as email or mobile wallet, before the user proceeds to payment.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-02-C1",
+          "requirement_id": "CONTR-02",
+          "claim_text": "The system shall clearly indicate the downstream delivery destination or channel for digital tickets, such as email or mobile wallet, before the user proceeds to payment.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": false,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "There is no visible indication of delivery destination (e.g., email, mobile wallet) in the provided screenshots.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              4,
+              5,
+              9,
+              10
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "UNVERIFIED_SYSTEM_OUTCOME",
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement is dominated by non-visual or hidden system properties: email delivery, payment processing.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall enforce any required pass-ownership or eligibility policy for park add-ons and explain that policy in the purchase flow before checkout.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-03-C1",
+          "requirement_id": "CONTR-03",
+          "claim_text": "The system shall enforce any required pass-ownership or eligibility policy for park add-ons and explain that policy in the purchase flow before checkout.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 9,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+              "visible_observation": "Eligibility and restriction text",
+              "bbox": [
+                155.76,
+                510.24,
+                623.04,
+                637.8
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  240.0,
+                  120.0,
+                  300.0,
+                  480.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  155.76,
+                  510.24,
+                  623.04,
+                  637.8
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Eligibility and restriction text"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI explicitly lists height and health restrictions for the selected add-on before checkout.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              1,
+              4,
+              9,
+              10
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+          "visible_observation": "Eligibility and restriction text",
+          "bbox": [
+            155.76,
+            510.24,
+            623.04,
+            637.8
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              240.0,
+              120.0,
+              300.0,
+              480.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              155.76,
+              510.24,
+              623.04,
+              637.8
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Eligibility and restriction text"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall disclose all monetary components that can affect the final pre-checkout charge for the selected park purchase, including any park-specific surcharges or fulfillment-related fees.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-04-C1",
+          "requirement_id": "CONTR-04",
+          "claim_text": "The system shall disclose all monetary components that can affect the final pre-checkout charge for the selected park purchase, including any park-specific surcharges or fulfillment-related fees.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": false,
+          "evidence": [
+            {
+              "step_index": 10,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+              "visible_observation": "Cart summary with fees",
+              "bbox": [
+                882.64,
+                467.72,
+                1142.24,
+                595.28
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  220.0,
+                  680.0,
+                  280.0,
+                  880.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  882.64,
+                  467.72,
+                  1142.24,
+                  595.28
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Cart summary with fees"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI clearly breaks down the monetary components including subtotal, processing fees, and tax.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              1,
+              4,
+              9,
+              10
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 10,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+          "visible_observation": "Cart summary with fees",
+          "bbox": [
+            882.64,
+            467.72,
+            1142.24,
+            595.28
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              220.0,
+              680.0,
+              280.0,
+              880.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              882.64,
+              467.72,
+              1142.24,
+              595.28
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Cart summary with fees"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "UNVERIFIED_SYSTEM_OUTCOME",
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY"
+      ],
+      "rationale": "Important visible support exists, but material uncertainty blocks a fulfilled verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement is dominated by non-visual or hidden system properties: payment processing.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall provide a dedicated pre-checkout review step where the user can confirm or change the selected ticket fulfillment method before continuing to payment.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-05-C1",
+          "requirement_id": "CONTR-05",
+          "claim_text": "The system shall provide a dedicated pre-checkout review step where the user can confirm or change the selected ticket fulfillment method before continuing to payment.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": false,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "While a cart review exists, it does not include a fulfillment method selection or confirmation step.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              9,
+              10
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "UNVERIFIED_SYSTEM_OUTCOME",
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement is dominated by non-visual or hidden system properties: payment processing.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-06",
+      "requirement_text": "The system shall keep the selected park context, configured add-on quantity, and chosen ticket fulfillment method synchronized between add-on configuration, cart line items, and order summary screens.",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "final_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-06-C1",
+          "requirement_id": "CONTR-06",
+          "claim_text": "The system shall keep the selected park context, configured add-on quantity, and chosen ticket fulfillment method synchronized between add-on configuration, cart line items, and order summary screens.",
+          "status": "PARTIALLY_SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+              "visible_observation": "Selected park context in header",
+              "bbox": [
+                207.68,
+                21.26,
+                454.3,
+                63.78
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  10.0,
+                  160.0,
+                  30.0,
+                  350.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  207.68,
+                  21.26,
+                  454.3,
+                  63.78
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Selected park context in header"
+              },
+              "confidence": 0.6,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 9,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+              "visible_observation": "Configured add-on quantity of 2",
+              "bbox": [
+                1077.34,
+                297.64,
+                1129.26,
+                340.16
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  140.0,
+                  830.0,
+                  160.0,
+                  870.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  1077.34,
+                  297.64,
+                  1129.26,
+                  340.16
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Configured add-on quantity of 2"
+              },
+              "confidence": 0.6,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 10,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+              "visible_observation": "Park context in cart modal",
+              "bbox": [
+                142.78,
+                255.12,
+                584.1,
+                297.64
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  120.0,
+                  110.0,
+                  140.0,
+                  450.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  142.78,
+                  255.12,
+                  584.1,
+                  297.64
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Park context in cart modal"
+              },
+              "confidence": 0.6,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 10,
+              "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+              "visible_observation": "Add-on quantity in cart modal",
+              "bbox": [
+                1077.34,
+                361.42,
+                1129.26,
+                403.94
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+                "image_width": 1298,
+                "image_height": 2126,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  170.0,
+                  830.0,
+                  190.0,
+                  870.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  1077.34,
+                  361.42,
+                  1129.26,
+                  403.94
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Add-on quantity in cart modal"
+              },
+              "confidence": 0.6,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.6,
+          "rationale": "The system successfully synchronizes the park context and add-on quantity between the configuration and cart screens. However, the requirement also specifies the synchronization of a 'chosen ticket fulfillment method,' which is not present or selectable in the provided UI flow, rendering that part of the claim unverifiable.",
+          "metadata": {
+            "prompt_group_id": "G4",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "claim_selected_step_indices": [
+              1,
+              7,
+              9,
+              10
+            ],
+            "raw_model_label": "PARTIALLY_SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+          "visible_observation": "Selected park context in header",
+          "bbox": [
+            207.68,
+            21.26,
+            454.3,
+            63.78
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              10.0,
+              160.0,
+              30.0,
+              350.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              207.68,
+              21.26,
+              454.3,
+              63.78
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Selected park context in header"
+          },
+          "confidence": 0.6,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+          "visible_observation": "Configured add-on quantity of 2",
+          "bbox": [
+            1077.34,
+            297.64,
+            1129.26,
+            340.16
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              140.0,
+              830.0,
+              160.0,
+              870.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              1077.34,
+              297.64,
+              1129.26,
+              340.16
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Configured add-on quantity of 2"
+          },
+          "confidence": 0.6,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 10,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+          "visible_observation": "Park context in cart modal",
+          "bbox": [
+            142.78,
+            255.12,
+            584.1,
+            297.64
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              120.0,
+              110.0,
+              140.0,
+              450.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              142.78,
+              255.12,
+              584.1,
+              297.64
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Park context in cart modal"
+          },
+          "confidence": 0.6,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 10,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+          "visible_observation": "Add-on quantity in cart modal",
+          "bbox": [
+            1077.34,
+            361.42,
+            1129.26,
+            403.94
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+            "image_width": 1298,
+            "image_height": 2126,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              170.0,
+              830.0,
+              190.0,
+              870.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              1077.34,
+              361.42,
+              1129.26,
+              403.94
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Add-on quantity in cart modal"
+          },
+          "confidence": 0.6,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "At least one important claim has partial visible support, but the fulfilled gate was not met.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    }
+  ],
+  "metadata": {
+    "flow_dir": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e",
+    "requirements_path": "data/annotations/verification_gold/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/verification_gold.json",
+    "requirements_source": "benchmark",
+    "requested_retriever": "lexical",
+    "retriever_provider": null,
+    "retriever_model": null,
+    "top_k": 4,
+    "claims_enabled": false,
+    "claim_decomposition_policy": "disabled",
+    "max_claims": 4,
+    "llm_claim_fallback": false,
+    "claim_provider": "deepseek",
+    "claim_model": null,
+    "verifier": "gemini-image",
+    "execution_mode": "single-call",
+    "verifier_model": "gemini-3.1-flash-lite",
+    "max_verifier_images": 4,
+    "max_verifier_group_images": -1,
+    "max_verifier_group_claims": 8,
+    "include_sequence_context": true,
+    "claim_workers": 1,
+    "verifier_thinking_level": "low",
+    "verifier_thinking_budget": null,
+    "verifier_max_output_tokens": 32768,
+    "grounding_candidates": null,
+    "grounding_assets_dir": null,
+    "verifier_predict_ui_evaluability": true,
+    "pipeline": "evidence_first_verification_pipeline",
+    "retriever": "LexicalEvidenceRetriever",
+    "retrieval_batch_claims": 25,
+    "max_claim_workers": 1,
+    "gemini_image_verifier": {
+      "requested": 25,
+      "api_calls": 4,
+      "api_call_attempts": 4,
+      "cache_hits": 0,
+      "fallbacks": 0,
+      "failures": [],
+      "cache_path": "data/generated/thesis_final_experiments/fl_raw_all/cache/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e.json",
+      "model_name": "gemini-3.1-flash-lite",
+      "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+      "max_retries": 2,
+      "max_api_calls": null,
+      "include_sequence_context": true,
+      "thinking_level": "low",
+      "thinking_budget": null,
+      "max_output_tokens": 32768,
+      "grouping_strategy": "single-call",
+      "max_images_per_group": null,
+      "max_claims_per_group": 8,
+      "group_workers": 1,
+      "groups": [
+        {
+          "group_id": "G1",
+          "claim_ids": [
+            "REQ-01-C1",
+            "REQ-02-C1",
+            "REQ-03-C1",
+            "REQ-04-C1",
+            "REQ-05-C1",
+            "REQ-06-C1",
+            "REQ-15-C1",
+            "REQ-07-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "image_count": 10,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 15586,
+            "output_tokens": 1792,
+            "total_tokens": 18258,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 880
+          }
+        },
+        {
+          "group_id": "G2",
+          "claim_ids": [
+            "REQ-08-C1",
+            "REQ-09-C1",
+            "REQ-11-C1",
+            "REQ-12-C1",
+            "REQ-13-C1",
+            "REQ-14-C1",
+            "REQ-16-C1",
+            "REQ-17-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "image_count": 10,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 15570,
+            "output_tokens": 2144,
+            "total_tokens": 18839,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 1125
+          }
+        },
+        {
+          "group_id": "G3",
+          "claim_ids": [
+            "REQ-18-C1",
+            "REQ-19-C1",
+            "REQ-10-C1",
+            "CONTR-01-C1",
+            "CONTR-02-C1",
+            "CONTR-03-C1",
+            "CONTR-04-C1",
+            "CONTR-05-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "image_count": 10,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 15657,
+            "output_tokens": 1645,
+            "total_tokens": 18703,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 1401
+          }
+        },
+        {
+          "group_id": "G4",
+          "claim_ids": [
+            "CONTR-06-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "image_count": 10,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 14733,
+            "output_tokens": 604,
+            "total_tokens": 16518,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 1181
+          }
+        }
+      ],
+      "group_count": 4,
+      "images_attached_total": 40,
+      "unique_images_attached": 10,
+      "cached_content_tokens": 0,
+      "usage": {
+        "request_count": 4,
+        "input_tokens": 61546,
+        "output_tokens": 6185,
+        "thoughts_tokens": 4587,
+        "total_tokens": 72318,
+        "estimated_cost_usd": 0.0315445,
+        "estimated_cost_eur": 0.029020940000000002,
+        "models": {},
+        "updated_at": null
+      },
+      "asset_manifest": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_01.png",
+          "sha256": "5f043b42845b43721ef3e52702cdace9fbb64db248c71a7c29231f3a43ffebeb",
+          "byte_size": 3117804,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2971,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_02.png",
+          "sha256": "c73102b2cd3864ce2495d76340168bac5b651d36b1ba5e3a4e4016261dc7f6a4",
+          "byte_size": 3227151,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 3167,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_03.png",
+          "sha256": "f45da21486e2d09957ca4f816d5a6c7c29a4f9761a236ef826825ec15fa62435",
+          "byte_size": 3188389,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2971,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_04.png",
+          "sha256": "c1b6c3a6ca3e379ef36071db258ba5041311b726ee5c1b4f7a826d809d6c051d",
+          "byte_size": 3867035,
+          "mime_type": "image/png",
+          "image_width": 1298,
+          "image_height": 4429,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 5,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_05.png",
+          "sha256": "8d1fc3b6b58d3dbc97a49ffd63ef662cbffa46f3bfabe7959983ce3507bf8ef5",
+          "byte_size": 3877001,
+          "mime_type": "image/png",
+          "image_width": 1298,
+          "image_height": 4429,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_06.png",
+          "sha256": "11077ac2c30cd51433e2b141eeaa1f7a8cc22a266d2d93cdfc4e0ae4837097ad",
+          "byte_size": 1274031,
+          "mime_type": "image/png",
+          "image_width": 1298,
+          "image_height": 2126,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 7,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_07.png",
+          "sha256": "79415f0e0826e342a6d3082a9282820ac5c0f4b63895b8fab7165e3f51d4bb3d",
+          "byte_size": 1019542,
+          "mime_type": "image/png",
+          "image_width": 1298,
+          "image_height": 2126,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 8,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_08.png",
+          "sha256": "8e65965c083d6b11c5626ebad05a1ea40e12a7443784a309e4a86349b7b2777a",
+          "byte_size": 978076,
+          "mime_type": "image/png",
+          "image_width": 1298,
+          "image_height": 2126,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_09.png",
+          "sha256": "bf497f27d83c0c685bf9a22f2183b8d97fa9955d52e85484ac36ca0c80f2b0f4",
+          "byte_size": 979769,
+          "mime_type": "image/png",
+          "image_width": 1298,
+          "image_height": 2126,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 10,
+          "screenshot_path": "data/processed/flows/mind2web/10_sixflags_ee1e95ab-4c5d-44c6-b302-783fd13a471e/original/step_10.png",
+          "sha256": "a91dd1dc5fd3ce18259c45a3b0ff48b7e1ed06a1d92ce43fd35c27ba57354a99",
+          "byte_size": 936850,
+          "mime_type": "image/png",
+          "image_width": 1298,
+          "image_height": 2126,
+          "has_ocr_text": true
+        }
+      ],
+      "candidate_package": null,
+      "marked_assets_dir": null,
+      "predict_ui_evaluability": true
+    },
+    "gemini_mllm_verifier_used": true,
+    "gemini_mllm_verifier_fallback_used": false
+  }
+}

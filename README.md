@@ -33,8 +33,8 @@ for attribution, changes, provenance, and the takedown boundary.
 The release policy and attribution language are documented in
 `docs/dataset_licensing_and_release_policy_2026-07-23.md`. The public
 `artifacts/thesis_evaluation/` package contains aggregate replication results.
-The explicit allowlist under `data/published/` additionally contains one
-sanitized Mind2Web-derived run set; it excludes source screenshots and page
+The explicit allowlist under `data/published/` additionally contains three
+sanitized Mind2Web-derived run sets; they exclude source screenshots and page
 text, raw provider interactions, caches, secrets, and absolute paths.
 
 ## Repository layout
@@ -266,9 +266,9 @@ cap for a batch of up to eight claims. It must not be described as an
 independent per-requirement top-4 condition.
 
 Newly generated runs remain under `data/generated/` and are not committed
-wholesale. A curated sanitized run set is versioned under `data/published/` so
-the web application can display representative predictions and bounding boxes
-in a fresh clone.
+wholesale. Three curated sanitized run sets are versioned under
+`data/published/` so the web application can compare the primary whole-flow,
+gated top-4, and grounded bounding-box outputs in a fresh clone.
 The release-facing replication package is curated under
 `artifacts/thesis_evaluation/`; its README defines the licensing, privacy, and
 path-sanitization gate that must be satisfied before publishing model traces or

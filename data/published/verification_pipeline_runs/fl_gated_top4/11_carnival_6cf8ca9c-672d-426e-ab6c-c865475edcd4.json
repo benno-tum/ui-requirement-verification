@@ -1,0 +1,2657 @@
+{
+  "flow_id": "11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+  "screen_representations": [
+    {
+      "step_index": 1,
+      "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_01.png",
+      "image_width": 1280,
+      "image_height": 2136
+    },
+    {
+      "step_index": 2,
+      "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_02.png",
+      "image_width": 1280,
+      "image_height": 2366
+    },
+    {
+      "step_index": 3,
+      "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_03.png",
+      "image_width": 1280,
+      "image_height": 2366
+    },
+    {
+      "step_index": 4,
+      "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_04.png",
+      "image_width": 1280,
+      "image_height": 2366
+    },
+    {
+      "step_index": 5,
+      "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_05.png",
+      "image_width": 1280,
+      "image_height": 2366
+    },
+    {
+      "step_index": 6,
+      "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_06.png",
+      "image_width": 1280,
+      "image_height": 2356
+    },
+    {
+      "step_index": 7,
+      "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_07.png",
+      "image_width": 1280,
+      "image_height": 2356
+    },
+    {
+      "step_index": 8,
+      "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_08.png",
+      "image_width": 1280,
+      "image_height": 2231
+    },
+    {
+      "step_index": 9,
+      "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+      "image_width": 1280,
+      "image_height": 2231
+    }
+  ],
+  "results": [
+    {
+      "requirement_id": "REQ-01",
+      "requirement_text": "The system shall support cruise discovery through a single search workflow that combines destination, departure port, departure month, and trip duration criteria.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-01-C1",
+          "requirement_id": "REQ-01",
+          "claim_text": "The system shall support cruise discovery through a single search workflow that combines destination, departure port, departure month, and trip duration criteria.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_01.png",
+              "visible_observation": "Search bar containing all required criteria fields and the search action.",
+              "bbox": [
+                163.84,
+                566.04,
+                1113.6,
+                672.84
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_01.png",
+                "image_width": 1280,
+                "image_height": 2136,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  265.0,
+                  128.0,
+                  315.0,
+                  870.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  163.84,
+                  566.04,
+                  1113.6,
+                  672.84
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Search bar containing all required criteria fields and the search action."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI presents a unified search bar containing all four required criteria fields and the search action in a single component.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              7,
+              9
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_01.png",
+          "visible_observation": "Search bar containing all required criteria fields and the search action.",
+          "bbox": [
+            163.84,
+            566.04,
+            1113.6,
+            672.84
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_01.png",
+            "image_width": 1280,
+            "image_height": 2136,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              265.0,
+              128.0,
+              315.0,
+              870.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              163.84,
+              566.04,
+              1113.6,
+              672.84
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Search bar containing all required criteria fields and the search action."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-02",
+      "requirement_text": "The system shall allow the user to select a cruise destination or region from a browseable set of sailing destinations.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-02-C1",
+          "requirement_id": "REQ-02",
+          "claim_text": "The system shall allow the user to select a cruise destination or region from a browseable set of sailing destinations.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_03.png",
+              "visible_observation": "Dropdown menu displaying a browseable set of sailing destinations.",
+              "bbox": [
+                163.84,
+                728.728,
+                1103.36,
+                863.59
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2366,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  308.0,
+                  128.0,
+                  365.0,
+                  862.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  163.84,
+                  728.728,
+                  1103.36,
+                  863.59
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Dropdown menu displaying a browseable set of sailing destinations."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The 'SAIL TO' dropdown provides a browseable list of destinations.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              7,
+              9
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_03.png",
+          "visible_observation": "Dropdown menu displaying a browseable set of sailing destinations.",
+          "bbox": [
+            163.84,
+            728.728,
+            1103.36,
+            863.59
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2366,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              308.0,
+              128.0,
+              365.0,
+              862.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              163.84,
+              728.728,
+              1103.36,
+              863.59
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Dropdown menu displaying a browseable set of sailing destinations."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-03",
+      "requirement_text": "The system shall retain the selected destination in the search controls while the user configures the rest of the query.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-03-C1",
+          "requirement_id": "REQ-03",
+          "claim_text": "The system retains the selected destination in the search controls while the user configures the rest of the query.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 9,
+              "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+              "visible_observation": "Selected destination 'ALASKA' remains visible in the search control.",
+              "bbox": [
+                100.80000000000001,
+                608.2,
+                1185.2,
+                691.8
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+                "image_width": 1280,
+                "image_height": 2231,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  265.0,
+                  128.0,
+                  305.0,
+                  285.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  163.84,
+                  591.215,
+                  364.8,
+                  680.455
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    100.80000000000001,
+                    608.2,
+                    1185.2,
+                    691.8
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Selected destination 'ALASKA' remains visible in the search control."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI maintains the selected destination in the search bar while other criteria are being configured.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              7,
+              9
+            ],
+            "claim_selected_step_indices": [
+              1,
+              3,
+              8,
+              9
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+          "visible_observation": "Selected destination 'ALASKA' remains visible in the search control.",
+          "bbox": [
+            100.80000000000001,
+            608.2,
+            1185.2,
+            691.8
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+            "image_width": 1280,
+            "image_height": 2231,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              265.0,
+              128.0,
+              305.0,
+              285.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              163.84,
+              591.215,
+              364.8,
+              680.455
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                100.80000000000001,
+                608.2,
+                1185.2,
+                691.8
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Selected destination 'ALASKA' remains visible in the search control."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "heuristic",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-04",
+      "requirement_text": "The system shall allow the user to choose a sail-from location from a list of departure ports.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-04-C1",
+          "requirement_id": "REQ-04",
+          "claim_text": "The system shall allow the user to choose a sail-from location from a list of departure ports.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_01.png",
+              "visible_observation": "Sail from dropdown control.",
+              "bbox": [
+                368.64,
+                566.04,
+                569.6,
+                672.84
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_01.png",
+                "image_width": 1280,
+                "image_height": 2136,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  265.0,
+                  288.0,
+                  315.0,
+                  445.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  368.64,
+                  566.04,
+                  569.6,
+                  672.84
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Sail from dropdown control."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI provides a 'SAIL FROM' control, which functions as a selector for departure ports.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              7,
+              9
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_01.png",
+          "visible_observation": "Sail from dropdown control.",
+          "bbox": [
+            368.64,
+            566.04,
+            569.6,
+            672.84
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_01.png",
+            "image_width": 1280,
+            "image_height": 2136,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              265.0,
+              288.0,
+              315.0,
+              445.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              368.64,
+              566.04,
+              569.6,
+              672.84
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Sail from dropdown control."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-05",
+      "requirement_text": "The system shall preserve the selected departure port while subsequent search criteria are edited.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-05-C1",
+          "requirement_id": "REQ-05",
+          "claim_text": "The system shall preserve the selected departure port while subsequent search criteria are edited.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 9,
+              "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+              "visible_observation": "Selected departure port 'SAN FRANCISCO, CA' remains visible.",
+              "bbox": [
+                369.6,
+                635.4,
+                555.4,
+                659.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+                "image_width": 1280,
+                "image_height": 2231,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  265.0,
+                  288.0,
+                  305.0,
+                  445.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  368.64,
+                  591.215,
+                  569.6,
+                  680.455
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    369.6,
+                    635.4,
+                    555.4,
+                    659.6
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Selected departure port 'SAN FRANCISCO, CA' remains visible."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The selected departure port persists in the search control while other criteria are edited.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              7,
+              9
+            ],
+            "claim_selected_step_indices": [
+              1,
+              3,
+              8,
+              9
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+          "visible_observation": "Selected departure port 'SAN FRANCISCO, CA' remains visible.",
+          "bbox": [
+            369.6,
+            635.4,
+            555.4,
+            659.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+            "image_width": 1280,
+            "image_height": 2231,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              265.0,
+              288.0,
+              305.0,
+              445.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              368.64,
+              591.215,
+              569.6,
+              680.455
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                369.6,
+                635.4,
+                555.4,
+                659.6
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Selected departure port 'SAN FRANCISCO, CA' remains visible."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-07",
+      "requirement_text": "The system shall keep the selected sailing month and year visible as part of the active search query.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-07-C1",
+          "requirement_id": "REQ-07",
+          "claim_text": "The system shall keep the selected sailing month and year visible as part of the active search query.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 9,
+              "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+              "visible_observation": "Selected date 'JUN 2023' remains visible.",
+              "bbox": [
+                582.8,
+                641.2,
+                732.2,
+                669.8
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+                "image_width": 1280,
+                "image_height": 2231,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  265.0,
+                  448.0,
+                  305.0,
+                  588.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  573.44,
+                  591.215,
+                  752.64,
+                  680.455
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    582.8,
+                    641.2,
+                    732.2,
+                    669.8
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Selected date 'JUN 2023' remains visible."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The selected sailing month and year remain visible in the search control.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              7,
+              9
+            ],
+            "claim_selected_step_indices": [
+              3,
+              5,
+              7,
+              9
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+          "visible_observation": "Selected date 'JUN 2023' remains visible.",
+          "bbox": [
+            582.8,
+            641.2,
+            732.2,
+            669.8
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+            "image_width": 1280,
+            "image_height": 2231,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              265.0,
+              448.0,
+              305.0,
+              588.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              573.44,
+              591.215,
+              752.64,
+              680.455
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                582.8,
+                641.2,
+                732.2,
+                669.8
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Selected date 'JUN 2023' remains visible."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-08",
+      "requirement_text": "The system shall allow cruise searches to be filtered by duration bands such as 2 to 5 days, 6 to 9 days, and 10 plus days.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-08-C1",
+          "requirement_id": "REQ-08",
+          "claim_text": "The system shall allow cruise searches to be filtered by duration bands such as 2 to 5 days, 6 to 9 days, and 10 plus days.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 9,
+              "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+              "visible_observation": "Duration filter options.",
+              "bbox": [
+                166.4,
+                713.92,
+                1100.8,
+                769.695
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+                "image_width": 1280,
+                "image_height": 2231,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  320.0,
+                  130.0,
+                  345.0,
+                  860.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  166.4,
+                  713.92,
+                  1100.8,
+                  769.695
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Duration filter options."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI explicitly lists the required duration bands in the duration filter dropdown.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              7,
+              9
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              8,
+              9
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+          "visible_observation": "Duration filter options.",
+          "bbox": [
+            166.4,
+            713.92,
+            1100.8,
+            769.695
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+            "image_width": 1280,
+            "image_height": 2231,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              320.0,
+              130.0,
+              345.0,
+              860.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              166.4,
+              713.92,
+              1100.8,
+              769.695
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Duration filter options."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-09",
+      "requirement_text": "The system shall provide a search action that the user can invoke after configuring cruise criteria.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-09-C1",
+          "requirement_id": "REQ-09",
+          "claim_text": "The system shall provide a search action that the user can invoke after configuring cruise criteria.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_01.png",
+              "visible_observation": "Search action button.",
+              "bbox": [
+                947.2,
+                566.04,
+                1113.6,
+                672.84
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_01.png",
+                "image_width": 1280,
+                "image_height": 2136,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  265.0,
+                  740.0,
+                  315.0,
+                  870.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  947.2,
+                  566.04,
+                  1113.6,
+                  672.84
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Search action button."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI provides a clear 'SEARCH CRUISES' button to invoke the search.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              7,
+              9
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_01.png",
+          "visible_observation": "Search action button.",
+          "bbox": [
+            947.2,
+            566.04,
+            1113.6,
+            672.84
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_01.png",
+            "image_width": 1280,
+            "image_height": 2136,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              265.0,
+              740.0,
+              315.0,
+              870.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              947.2,
+              566.04,
+              1113.6,
+              672.84
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Search action button."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-10",
+      "requirement_text": "The system shall keep the currently configured search criteria visible together before search execution so the user can review the query state.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-10-C1",
+          "requirement_id": "REQ-10",
+          "claim_text": "The system shall keep the currently configured search criteria visible together before search execution so the user can review the query state.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 9,
+              "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+              "visible_observation": "Search bar showing all four configured criteria: Sail To, Sail From, Dates, and Duration.",
+              "bbox": [
+                588.4,
+                622.6,
+                1103.6,
+                653.4
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+                "image_width": 1280,
+                "image_height": 2231,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  260.0,
+                  125.0,
+                  310.0,
+                  740.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  160.0,
+                  580.06,
+                  947.2,
+                  691.61
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    588.4,
+                    622.6,
+                    1103.6,
+                    653.4
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Search bar showing all four configured criteria: Sail To, Sail From, Dates, and Duration."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The screenshot in step 9 clearly shows the search bar populated with all four criteria, allowing the user to review the query state before clicking 'Search Cruises'.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              4,
+              6,
+              9
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+          "visible_observation": "Search bar showing all four configured criteria: Sail To, Sail From, Dates, and Duration.",
+          "bbox": [
+            588.4,
+            622.6,
+            1103.6,
+            653.4
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+            "image_width": 1280,
+            "image_height": 2231,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              260.0,
+              125.0,
+              310.0,
+              740.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              160.0,
+              580.06,
+              947.2,
+              691.61
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                588.4,
+                622.6,
+                1103.6,
+                653.4
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Search bar showing all four configured criteria: Sail To, Sail From, Dates, and Duration."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall provide clear visual feedback when a selector is configured on it's current state.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-11-C1",
+          "requirement_id": "REQ-11",
+          "claim_text": "The system shall provide clear visual feedback when a selector is configured on it's current state.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_04.png",
+              "visible_observation": "Highlighted 'Los Angeles, CA' option in the dropdown menu.",
+              "bbox": [
+                544.0,
+                757.12,
+                716.8,
+                828.1
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_04.png",
+                "image_width": 1280,
+                "image_height": 2366,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  320.0,
+                  425.0,
+                  350.0,
+                  560.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  544.0,
+                  757.12,
+                  716.8,
+                  828.1
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Highlighted 'Los Angeles, CA' option in the dropdown menu."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI provides a distinct highlight state for the selected option within the dropdown menu.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              4,
+              6,
+              9
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_04.png",
+          "visible_observation": "Highlighted 'Los Angeles, CA' option in the dropdown menu.",
+          "bbox": [
+            544.0,
+            757.12,
+            716.8,
+            828.1
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_04.png",
+            "image_width": 1280,
+            "image_height": 2366,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              320.0,
+              425.0,
+              350.0,
+              560.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              544.0,
+              757.12,
+              716.8,
+              828.1
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Highlighted 'Los Angeles, CA' option in the dropdown menu."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "TEXTUAL_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-12",
+      "requirement_text": "The system shall allow the user to revise any individual search criterion before submitting the search.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-12-C1",
+          "requirement_id": "REQ-12",
+          "claim_text": "The system shall allow the user to revise any individual search criterion before submitting the search.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_04.png",
+              "visible_observation": "Sail From dropdown control.",
+              "bbox": [
+                388.0,
+                637.0,
+                527.0,
+                659.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_04.png",
+                "image_width": 1280,
+                "image_height": 2366,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  260.0,
+                  290.0,
+                  310.0,
+                  445.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  371.2,
+                  615.16,
+                  569.6,
+                  733.46
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    388.0,
+                    637.0,
+                    527.0,
+                    659.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Sail From dropdown control."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_06.png",
+              "visible_observation": "Dates dropdown control.",
+              "bbox": [
+                576.0,
+                612.56,
+                755.2,
+                730.36
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 2356,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  260.0,
+                  450.0,
+                  310.0,
+                  590.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  576.0,
+                  612.56,
+                  755.2,
+                  730.36
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Dates dropdown control."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The presence of dropdown controls for each criterion indicates the ability to revise selections before submission.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              4,
+              6,
+              9
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              4,
+              9
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_04.png",
+          "visible_observation": "Sail From dropdown control.",
+          "bbox": [
+            388.0,
+            637.0,
+            527.0,
+            659.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_04.png",
+            "image_width": 1280,
+            "image_height": 2366,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              260.0,
+              290.0,
+              310.0,
+              445.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              371.2,
+              615.16,
+              569.6,
+              733.46
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                388.0,
+                637.0,
+                527.0,
+                659.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Sail From dropdown control."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_06.png",
+          "visible_observation": "Dates dropdown control.",
+          "bbox": [
+            576.0,
+            612.56,
+            755.2,
+            730.36
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 2356,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              260.0,
+              450.0,
+              310.0,
+              590.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              576.0,
+              612.56,
+              755.2,
+              730.36
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Dates dropdown control."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-13",
+      "requirement_text": "The system shall return cruise results that reflect the combined selected destination, departure port, month, and duration after the search is submitted.",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "REQ-13-C1",
+          "requirement_id": "REQ-13",
+          "claim_text": "The system shall return cruise results that reflect the combined selected destination, departure port, month, and duration after the search is submitted.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "The screenshots do not show the results page, so it is impossible to verify if the results reflect the selected criteria.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              4,
+              6,
+              9
+            ],
+            "claim_selected_step_indices": [
+              3,
+              5,
+              8,
+              9
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-06",
+      "requirement_text": "The system shall allow users to select sailing dates at month and year granularity across multiple years.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-06-C1",
+          "requirement_id": "REQ-06",
+          "claim_text": "The system shall allow users to select sailing dates at month and year granularity across multiple years.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_06.png",
+              "visible_observation": "Calendar grid showing months across multiple years.",
+              "bbox": [
+                204.8,
+                730.36,
+                1062.4,
+                895.28
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 2356,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  310.0,
+                  160.0,
+                  380.0,
+                  830.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  204.8,
+                  730.36,
+                  1062.4,
+                  895.28
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Calendar grid showing months across multiple years."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI explicitly presents a multi-year calendar view, allowing selection at month and year granularity.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              4,
+              6,
+              9
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              6,
+              7
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_06.png",
+          "visible_observation": "Calendar grid showing months across multiple years.",
+          "bbox": [
+            204.8,
+            730.36,
+            1062.4,
+            895.28
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 2356,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              310.0,
+              160.0,
+              380.0,
+              830.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              204.8,
+              730.36,
+              1062.4,
+              895.28
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Calendar grid showing months across multiple years."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-14",
+      "requirement_text": "The system shall expose only genuinely searchable or available itinerary options for the user's query context when presenting destination, port, date, and duration choices.",
+      "ui_evaluability": "NOT_UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "REQ-14-C1",
+          "requirement_id": "REQ-14",
+          "claim_text": "The system shall expose only genuinely searchable or available itinerary options for the user's query context when presenting destination, port, date, and duration choices.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "UNVERIFIED_SYSTEM_OUTCOME",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY",
+            "FLOW_COVERAGE_GAP"
+          ],
+          "confidence": 0.0,
+          "rationale": "The availability and searchability of options are backend-dependent properties that cannot be verified through UI screenshots alone.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              4,
+              6,
+              9
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "NOT_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "UNVERIFIED_SYSTEM_OUTCOME",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "rationale": "The requirement is not UI-verifiable from screenshots, so the pipeline abstains.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall preserve already selected cruise search criteria when the user leaves the search flow and returns later in the same browsing session.",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-01-C1",
+          "requirement_id": "CONTR-01",
+          "claim_text": "The system shall preserve already selected cruise search criteria when the user leaves the search flow and returns later in the same browsing session.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "There is no evidence demonstrating the persistence of search criteria across sessions.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              4,
+              6,
+              9
+            ],
+            "claim_selected_step_indices": [
+              1,
+              3,
+              8,
+              9
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall present search results only for sailings that are currently available under the combined selected destination, departure port, sailing month, and duration filters, and shall show user-facing feedback when no matching cruises are available.",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-02-C1",
+          "requirement_id": "CONTR-02",
+          "claim_text": "The system shall present search results only for sailings that are currently available under the combined selected destination, departure port, sailing month, and duration filters, and shall show user-facing feedback when no matching cruises are available.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "The claim requires evidence of search results or error feedback, neither of which is present in the provided screenshots.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              4,
+              6,
+              9
+            ],
+            "claim_selected_step_indices": [
+              3,
+              5,
+              8,
+              9
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall return all cruises that satisfy the configured destination, departure port, sailing month, and duration criteria, without omitting any eligible sailings.",
+      "ui_evaluability": "NOT_UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-03-C1",
+          "requirement_id": "CONTR-03",
+          "claim_text": "The system shall return all cruises that satisfy the configured destination, departure port, sailing month, and duration criteria, without omitting any eligible sailings.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "UNVERIFIED_SYSTEM_OUTCOME",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY",
+            "FLOW_COVERAGE_GAP"
+          ],
+          "confidence": 0.0,
+          "rationale": "The requirement concerns backend search completeness (returning all eligible sailings), which cannot be verified by observing the search input UI.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              9
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "NOT_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
+        "UNVERIFIED_SYSTEM_OUTCOME",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "rationale": "The requirement is not UI-verifiable from screenshots, so the pipeline abstains.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall provide the same cruise search criteria and equivalent search behavior to anonymous users and signed-in users unless a visible policy restriction is communicated.",
+      "ui_evaluability": "NOT_UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-04-C1",
+          "requirement_id": "CONTR-04",
+          "claim_text": "The system shall provide the same cruise search criteria and equivalent search behavior to anonymous users and signed-in users unless a visible policy restriction is communicated.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "Verifying equivalent search behavior between user states requires observing both states, which is not possible with the provided evidence.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              9
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "NOT_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "The requirement is not UI-verifiable from screenshots, so the pipeline abstains.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall provide a dedicated pre-search review step or summary panel that lists all selected cruise criteria together and allows the user to edit any one of them before submitting the search.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "NOT_FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-05-C1",
+          "requirement_id": "CONTR-05",
+          "claim_text": "The system shall provide a dedicated pre-search review step or summary panel that lists all selected cruise criteria together and allows the user to edit any one of them before submitting the search.",
+          "status": "CONTRADICTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 9,
+              "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+              "visible_observation": "Search criteria dropdowns without a summary panel",
+              "bbox": [
+                163.84,
+                568.905,
+                940.8,
+                680.455
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+                "image_width": 1280,
+                "image_height": 2231,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  255.0,
+                  128.0,
+                  305.0,
+                  735.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  163.84,
+                  568.905,
+                  940.8,
+                  680.455
+                ],
+                "ocr_refinement": null,
+                "role": "CONTRADICTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Search criteria dropdowns without a summary panel"
+              },
+              "confidence": 0.75,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.75,
+          "rationale": "The UI provides independent filter controls but does not implement the required pre-search review step or summary panel that aggregates criteria.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              9
+            ],
+            "claim_selected_step_indices": [
+              1,
+              3,
+              8,
+              9
+            ],
+            "raw_model_label": "CONTRADICTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+          "visible_observation": "Search criteria dropdowns without a summary panel",
+          "bbox": [
+            163.84,
+            568.905,
+            940.8,
+            680.455
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+            "image_width": 1280,
+            "image_height": 2231,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              255.0,
+              128.0,
+              305.0,
+              735.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              163.84,
+              568.905,
+              940.8,
+              680.455
+            ],
+            "ocr_refinement": null,
+            "role": "CONTRADICTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Search criteria dropdowns without a summary panel"
+          },
+          "confidence": 0.75,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY"
+      ],
+      "rationale": "A central claim is contradicted by evidence.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-06",
+      "requirement_text": "The system shall allow the user to filter cruises by an exact itinerary length in days in addition to broad duration bands.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "NOT_FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-06-C1",
+          "requirement_id": "CONTR-06",
+          "claim_text": "The system allows the user to filter cruises by an exact itinerary length in days in addition to broad duration bands.",
+          "status": "CONTRADICTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 9,
+              "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+              "visible_observation": "Duration filter options showing only broad bands",
+              "bbox": [
+                166.4,
+                713.92,
+                1100.8,
+                769.695
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+                "image_width": 1280,
+                "image_height": 2231,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  320.0,
+                  130.0,
+                  345.0,
+                  860.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  166.4,
+                  713.92,
+                  1100.8,
+                  769.695
+                ],
+                "ocr_refinement": null,
+                "role": "CONTRADICTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Duration filter options showing only broad bands"
+              },
+              "confidence": 0.75,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.75,
+          "rationale": "The requirement mandates the ability to filter by exact itinerary length in addition to broad bands, but the UI only provides the broad bands.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              9
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              8,
+              9
+            ],
+            "raw_model_label": "CONTRADICTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+          "visible_observation": "Duration filter options showing only broad bands",
+          "bbox": [
+            166.4,
+            713.92,
+            1100.8,
+            769.695
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+            "image_width": 1280,
+            "image_height": 2231,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              320.0,
+              130.0,
+              345.0,
+              860.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              166.4,
+              713.92,
+              1100.8,
+              769.695
+            ],
+            "ocr_refinement": null,
+            "role": "CONTRADICTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Duration filter options showing only broad bands"
+          },
+          "confidence": 0.75,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "A central claim is contradicted by evidence.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "heuristic",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    }
+  ],
+  "metadata": {
+    "flow_dir": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4",
+    "requirements_path": "data/annotations/verification_gold/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/verification_gold.json",
+    "requirements_source": "benchmark",
+    "requested_retriever": "lexical",
+    "retriever_provider": null,
+    "retriever_model": null,
+    "top_k": 4,
+    "claims_enabled": true,
+    "claim_decomposition_policy": "gated",
+    "max_claims": 4,
+    "llm_claim_fallback": false,
+    "claim_provider": "deepseek",
+    "claim_model": null,
+    "verifier": "gemini-image",
+    "execution_mode": "batched-topk",
+    "verifier_model": "gemini-3.1-flash-lite",
+    "max_verifier_images": 4,
+    "max_verifier_group_images": 4,
+    "max_verifier_group_claims": 8,
+    "include_sequence_context": true,
+    "claim_workers": 1,
+    "verifier_thinking_level": "low",
+    "verifier_thinking_budget": null,
+    "verifier_max_output_tokens": 32768,
+    "grounding_candidates": null,
+    "grounding_assets_dir": null,
+    "verifier_predict_ui_evaluability": true,
+    "pipeline": "evidence_first_verification_pipeline",
+    "retriever": "LexicalEvidenceRetriever",
+    "retrieval_batch_claims": 20,
+    "max_claim_workers": 1,
+    "gemini_image_verifier": {
+      "requested": 20,
+      "api_calls": 3,
+      "api_call_attempts": 3,
+      "cache_hits": 0,
+      "fallbacks": 0,
+      "failures": [],
+      "cache_path": "data/generated/thesis_final_experiments/fl_gated_top4/cache/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4.json",
+      "model_name": "gemini-3.1-flash-lite",
+      "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+      "max_retries": 2,
+      "max_api_calls": null,
+      "include_sequence_context": true,
+      "thinking_level": "low",
+      "thinking_budget": null,
+      "max_output_tokens": 32768,
+      "grouping_strategy": "batched-topk",
+      "max_images_per_group": 4,
+      "max_claims_per_group": 8,
+      "group_workers": 1,
+      "groups": [
+        {
+          "group_id": "G1",
+          "claim_ids": [
+            "REQ-01-C1",
+            "REQ-02-C1",
+            "REQ-03-C1",
+            "REQ-04-C1",
+            "REQ-05-C1",
+            "REQ-07-C1",
+            "REQ-08-C1",
+            "REQ-09-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            3,
+            7,
+            9
+          ],
+          "image_count": 4,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 8005,
+            "output_tokens": 1746,
+            "total_tokens": 11139,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 1388
+          }
+        },
+        {
+          "group_id": "G2",
+          "claim_ids": [
+            "REQ-10-C1",
+            "REQ-11-C1",
+            "REQ-12-C1",
+            "REQ-13-C1",
+            "REQ-06-C1",
+            "REQ-14-C1",
+            "CONTR-01-C1",
+            "CONTR-02-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            4,
+            6,
+            9
+          ],
+          "image_count": 4,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 8091,
+            "output_tokens": 1650,
+            "total_tokens": 11182,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 1441
+          }
+        },
+        {
+          "group_id": "G3",
+          "claim_ids": [
+            "CONTR-03-C1",
+            "CONTR-04-C1",
+            "CONTR-05-C1",
+            "CONTR-06-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            3,
+            4,
+            9
+          ],
+          "image_count": 4,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 7560,
+            "output_tokens": 862,
+            "total_tokens": 9589,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 1167
+          }
+        }
+      ],
+      "group_count": 3,
+      "images_attached_total": 12,
+      "unique_images_attached": 6,
+      "cached_content_tokens": 0,
+      "usage": {
+        "request_count": 3,
+        "input_tokens": 23656,
+        "output_tokens": 4258,
+        "thoughts_tokens": 3996,
+        "total_tokens": 31910,
+        "estimated_cost_usd": 0.018295,
+        "estimated_cost_eur": 0.016831400000000003,
+        "models": {},
+        "updated_at": null
+      },
+      "asset_manifest": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_01.png",
+          "sha256": "579c76f801ad7bf7012df5b02d75ff7d8bf84bb5bb6f350ae3b84bc9c9089a72",
+          "byte_size": 1658031,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2136,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_02.png",
+          "sha256": "b480ea9fa3253ce755d588416d72505fd3a4ce64f8be4c0cd613259b1f97c643",
+          "byte_size": 1723480,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2366,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_03.png",
+          "sha256": "05e2ee1c2c14e3e32a26e7b53c6bd94642f9e503440800b75c08dd476802197c",
+          "byte_size": 1730557,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2366,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_04.png",
+          "sha256": "9e319c5dc80f3e66f303dd3d9bd056eece3aa6ad114af3c27dd48f7ac5f974ae",
+          "byte_size": 1722532,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2366,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 5,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_05.png",
+          "sha256": "9fc9b5fd30835bbc7c90ff78d2839700d259d157291cd9bbebb2e15c2d5881f4",
+          "byte_size": 1730562,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2366,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_06.png",
+          "sha256": "a0b66e7ce2d8d5673efef1e9572370e5377764cb582f17b4ee3d230502983531",
+          "byte_size": 1718423,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2356,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 7,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_07.png",
+          "sha256": "10aae337942a2e6dcaef8a5b8c86e501a016958be3ef71fa1df3a38364a9004b",
+          "byte_size": 1726343,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2356,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 8,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_08.png",
+          "sha256": "1f6934f87c0096e72957e6a426865ca9963201326452515a762344d27ccf2013",
+          "byte_size": 1669322,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2231,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/11_carnival_6cf8ca9c-672d-426e-ab6c-c865475edcd4/original/step_09.png",
+          "sha256": "2e9627fb8a6860c4ccb5bb9b5b9dc9429183b4c595fc773d52c5219d3bfe91eb",
+          "byte_size": 1676949,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2231,
+          "has_ocr_text": true
+        }
+      ],
+      "candidate_package": null,
+      "marked_assets_dir": null,
+      "predict_ui_evaluability": true
+    },
+    "gemini_mllm_verifier_used": true,
+    "gemini_mllm_verifier_fallback_used": false
+  }
+}

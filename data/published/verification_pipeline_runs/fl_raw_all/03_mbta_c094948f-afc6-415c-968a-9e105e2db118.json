@@ -1,0 +1,3953 @@
+{
+  "flow_id": "03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+  "screen_representations": [
+    {
+      "step_index": 1,
+      "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_01.png",
+      "image_width": 1280,
+      "image_height": 5769
+    },
+    {
+      "step_index": 2,
+      "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_02.png",
+      "image_width": 1280,
+      "image_height": 5769
+    },
+    {
+      "step_index": 3,
+      "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_03.png",
+      "image_width": 1280,
+      "image_height": 2991
+    },
+    {
+      "step_index": 4,
+      "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_04.png",
+      "image_width": 1280,
+      "image_height": 2991
+    },
+    {
+      "step_index": 5,
+      "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_05.png",
+      "image_width": 1280,
+      "image_height": 2991
+    },
+    {
+      "step_index": 6,
+      "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+      "image_width": 1280,
+      "image_height": 1837
+    },
+    {
+      "step_index": 7,
+      "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_07.png",
+      "image_width": 1280,
+      "image_height": 1837
+    },
+    {
+      "step_index": 8,
+      "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_08.png",
+      "image_width": 1280,
+      "image_height": 1837
+    },
+    {
+      "step_index": 9,
+      "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_09.png",
+      "image_width": 1280,
+      "image_height": 1385
+    },
+    {
+      "step_index": 10,
+      "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_10.png",
+      "image_width": 1280,
+      "image_height": 1385
+    },
+    {
+      "step_index": 11,
+      "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_11.png",
+      "image_width": 1280,
+      "image_height": 1385
+    },
+    {
+      "step_index": 12,
+      "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_12.png",
+      "image_width": 1280,
+      "image_height": 1385
+    },
+    {
+      "step_index": 13,
+      "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+      "image_width": 1280,
+      "image_height": 1385
+    },
+    {
+      "step_index": 14,
+      "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+      "image_width": 1280,
+      "image_height": 1385
+    }
+  ],
+  "results": [
+    {
+      "requirement_id": "REQ-01",
+      "requirement_text": "The system shall provide a dedicated careers area from which users can access job openings and related applicant resources.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-01-C1",
+          "requirement_id": "REQ-01",
+          "claim_text": "The system shall provide a dedicated careers area from which users can access job openings and related applicant resources.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_01.png",
+              "visible_observation": "View MBTA job openings button",
+              "bbox": [
+                152.0,
+                707.0,
+                438.0,
+                740.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_01.png",
+                "image_width": 1280,
+                "image_height": 5769,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  230.0,
+                  120.0,
+                  260.0,
+                  330.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  153.6,
+                  1326.87,
+                  422.4,
+                  1499.94
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    152.0,
+                    707.0,
+                    438.0,
+                    740.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "View MBTA job openings button"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_01.png",
+              "visible_observation": "Helpful Resources section",
+              "bbox": [
+                73.60000000000001,
+                1989.4,
+                493.4,
+                2046.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_01.png",
+                "image_width": 1280,
+                "image_height": 5769,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  350.0,
+                  120.0,
+                  450.0,
+                  620.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  153.6,
+                  2019.15,
+                  793.6,
+                  2596.05
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    73.60000000000001,
+                    1989.4,
+                    493.4,
+                    2046.6
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Helpful Resources section"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The page clearly provides a dedicated area for careers with access to job openings and resources.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_01.png",
+          "visible_observation": "View MBTA job openings button",
+          "bbox": [
+            152.0,
+            707.0,
+            438.0,
+            740.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_01.png",
+            "image_width": 1280,
+            "image_height": 5769,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              230.0,
+              120.0,
+              260.0,
+              330.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              153.6,
+              1326.87,
+              422.4,
+              1499.94
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                152.0,
+                707.0,
+                438.0,
+                740.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "View MBTA job openings button"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_01.png",
+          "visible_observation": "Helpful Resources section",
+          "bbox": [
+            73.60000000000001,
+            1989.4,
+            493.4,
+            2046.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_01.png",
+            "image_width": 1280,
+            "image_height": 5769,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              350.0,
+              120.0,
+              450.0,
+              620.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              153.6,
+              2019.15,
+              793.6,
+              2596.05
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                73.60000000000001,
+                1989.4,
+                493.4,
+                2046.6
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Helpful Resources section"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-02",
+      "requirement_text": "The system shall allow users to browse a catalog of open job postings in a dedicated job listings view.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-02-C1",
+          "requirement_id": "REQ-02",
+          "claim_text": "The system shall allow users to browse a catalog of open job postings in a dedicated job listings view.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+              "visible_observation": "List of job openings",
+              "bbox": [
+                526.2,
+                15.8,
+                751.8,
+                42.2
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1837,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  150.0,
+                  50.0,
+                  900.0,
+                  600.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  64.0,
+                  275.55,
+                  768.0,
+                  1653.3
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    526.2,
+                    15.8,
+                    751.8,
+                    42.2
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "List of job openings"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The system provides a dedicated view for browsing job listings.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+          "visible_observation": "List of job openings",
+          "bbox": [
+            526.2,
+            15.8,
+            751.8,
+            42.2
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1837,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              150.0,
+              50.0,
+              900.0,
+              600.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              64.0,
+              275.55,
+              768.0,
+              1653.3
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                526.2,
+                15.8,
+                751.8,
+                42.2
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "List of job openings"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-03",
+      "requirement_text": "The system shall support discoverability of job postings through keyword search over the listings catalog.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-03-C1",
+          "requirement_id": "REQ-03",
+          "claim_text": "The system shall support discoverability of job postings through keyword search over the listings catalog.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+              "visible_observation": "Search bar",
+              "bbox": [
+                64.0,
+                275.55,
+                384.0,
+                330.66
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1837,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  150.0,
+                  50.0,
+                  180.0,
+                  300.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  64.0,
+                  275.55,
+                  384.0,
+                  330.66
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Search bar"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The search bar allows users to search for job postings.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+          "visible_observation": "Search bar",
+          "bbox": [
+            64.0,
+            275.55,
+            384.0,
+            330.66
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1837,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              150.0,
+              50.0,
+              180.0,
+              300.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              64.0,
+              275.55,
+              384.0,
+              330.66
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Search bar"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-04",
+      "requirement_text": "The system shall allow applicants to filter job openings by department.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-04-C1",
+          "requirement_id": "REQ-04",
+          "claim_text": "The system shall allow applicants to filter job openings by department.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+              "visible_observation": "Filter button",
+              "bbox": [
+                1088.0,
+                275.55,
+                1216.0,
+                330.66
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1837,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  150.0,
+                  850.0,
+                  180.0,
+                  950.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  1088.0,
+                  275.55,
+                  1216.0,
+                  330.66
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Filter button"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 7,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_07.png",
+              "visible_observation": "Department filter list",
+              "bbox": [
+                832.0,
+                275.55,
+                1254.4,
+                826.65
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_07.png",
+                "image_width": 1280,
+                "image_height": 1837,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  150.0,
+                  650.0,
+                  450.0,
+                  980.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  832.0,
+                  275.55,
+                  1254.4,
+                  826.65
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Department filter list"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI provides a filter option specifically for departments.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+          "visible_observation": "Filter button",
+          "bbox": [
+            1088.0,
+            275.55,
+            1216.0,
+            330.66
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1837,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              150.0,
+              850.0,
+              180.0,
+              950.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              1088.0,
+              275.55,
+              1216.0,
+              330.66
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Filter button"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 7,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_07.png",
+          "visible_observation": "Department filter list",
+          "bbox": [
+            832.0,
+            275.55,
+            1254.4,
+            826.65
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_07.png",
+            "image_width": 1280,
+            "image_height": 1837,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              150.0,
+              650.0,
+              450.0,
+              980.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              832.0,
+              275.55,
+              1254.4,
+              826.65
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Department filter list"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-05",
+      "requirement_text": "The system shall allow applicants to filter job openings by estimated annual salary range or threshold.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-05-C1",
+          "requirement_id": "REQ-05",
+          "claim_text": "The system shall allow applicants to filter job openings by estimated annual salary range or threshold.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 8,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_08.png",
+              "visible_observation": "Estimated Annual Salary filter option",
+              "bbox": [
+                818.6,
+                7.4,
+                1217.4,
+                53.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_08.png",
+                "image_width": 1280,
+                "image_height": 1837,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  150.0,
+                  650.0,
+                  200.0,
+                  980.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  832.0,
+                  275.55,
+                  1254.4,
+                  367.4
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    818.6,
+                    7.4,
+                    1217.4,
+                    53.6
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Estimated Annual Salary filter option"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 9,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_09.png",
+              "visible_observation": "Salary range options",
+              "bbox": [
+                832.0,
+                207.75,
+                1254.4,
+                484.75
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_09.png",
+                "image_width": 1280,
+                "image_height": 1385,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  150.0,
+                  650.0,
+                  350.0,
+                  980.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  832.0,
+                  207.75,
+                  1254.4,
+                  484.75
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Salary range options"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI provides a filter option for estimated annual salary ranges.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              4,
+              7,
+              8,
+              9
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 8,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_08.png",
+          "visible_observation": "Estimated Annual Salary filter option",
+          "bbox": [
+            818.6,
+            7.4,
+            1217.4,
+            53.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_08.png",
+            "image_width": 1280,
+            "image_height": 1837,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              150.0,
+              650.0,
+              200.0,
+              980.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              832.0,
+              275.55,
+              1254.4,
+              367.4
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                818.6,
+                7.4,
+                1217.4,
+                53.6
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Estimated Annual Salary filter option"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_09.png",
+          "visible_observation": "Salary range options",
+          "bbox": [
+            832.0,
+            207.75,
+            1254.4,
+            484.75
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_09.png",
+            "image_width": 1280,
+            "image_height": 1385,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              150.0,
+              650.0,
+              350.0,
+              980.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              832.0,
+              207.75,
+              1254.4,
+              484.75
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Salary range options"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-06",
+      "requirement_text": "The system shall support combining multiple filter criteria to narrow job results.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-06-C1",
+          "requirement_id": "REQ-06",
+          "claim_text": "The system shall support combining multiple filter criteria to narrow job results.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 11,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_11.png",
+              "visible_observation": "The filter menu shows multiple active filters (Department and Estimated Annual Salary) with a badge count of 2.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 13,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+              "visible_observation": "Filter button with badge 2",
+              "bbox": [
+                1088.0,
+                457.05,
+                1216.0,
+                498.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+                "image_width": 1280,
+                "image_height": 1385,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  330.0,
+                  850.0,
+                  360.0,
+                  950.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  1088.0,
+                  457.05,
+                  1216.0,
+                  498.6
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Filter button with badge 2"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI indicates that multiple filters can be applied simultaneously.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              13,
+              14
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 11,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_11.png",
+          "visible_observation": "The filter menu shows multiple active filters (Department and Estimated Annual Salary) with a badge count of 2.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 13,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+          "visible_observation": "Filter button with badge 2",
+          "bbox": [
+            1088.0,
+            457.05,
+            1216.0,
+            498.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+            "image_width": 1280,
+            "image_height": 1385,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              330.0,
+              850.0,
+              360.0,
+              950.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              1088.0,
+              457.05,
+              1216.0,
+              498.6
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Filter button with badge 2"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-07",
+      "requirement_text": "The system shall provide visible feedback about how many filters are active and which filter categories currently contain selections.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-07-C1",
+          "requirement_id": "REQ-07",
+          "claim_text": "The system shall provide visible feedback about how many filters are active and which filter categories currently contain selections.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 11,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_11.png",
+              "visible_observation": "Filter menu with active selection badges",
+              "bbox": [
+                832.0,
+                207.75,
+                1254.4,
+                346.25
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_11.png",
+                "image_width": 1280,
+                "image_height": 1385,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  150.0,
+                  650.0,
+                  250.0,
+                  980.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  832.0,
+                  207.75,
+                  1254.4,
+                  346.25
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Filter menu with active selection badges"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI provides clear feedback on which filter categories have active selections.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              6,
+              7,
+              8,
+              11
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 11,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_11.png",
+          "visible_observation": "Filter menu with active selection badges",
+          "bbox": [
+            832.0,
+            207.75,
+            1254.4,
+            346.25
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_11.png",
+            "image_width": 1280,
+            "image_height": 1385,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              150.0,
+              650.0,
+              250.0,
+              980.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              832.0,
+              207.75,
+              1254.4,
+              346.25
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Filter menu with active selection badges"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-08",
+      "requirement_text": "The system shall keep the displayed result set consistent with the selected filter criteria and the reported jobs found count.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-08-C1",
+          "requirement_id": "REQ-08",
+          "claim_text": "The system shall keep the displayed result set consistent with the selected filter criteria and the reported jobs found count.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 13,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+              "visible_observation": "Jobs found count",
+              "bbox": [
+                768.0,
+                457.05,
+                960.0,
+                498.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+                "image_width": 1280,
+                "image_height": 1385,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  330.0,
+                  600.0,
+                  360.0,
+                  750.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  768.0,
+                  457.05,
+                  960.0,
+                  498.6
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Jobs found count"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 13,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+              "visible_observation": "List of 3 jobs",
+              "bbox": [
+                64.0,
+                526.3,
+                768.0,
+                1177.25
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+                "image_width": 1280,
+                "image_height": 1385,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  380.0,
+                  50.0,
+                  850.0,
+                  600.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  64.0,
+                  526.3,
+                  768.0,
+                  1177.25
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "List of 3 jobs"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The displayed results match the reported count and filter state.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              13,
+              14
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 13,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+          "visible_observation": "Jobs found count",
+          "bbox": [
+            768.0,
+            457.05,
+            960.0,
+            498.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+            "image_width": 1280,
+            "image_height": 1385,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              330.0,
+              600.0,
+              360.0,
+              750.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              768.0,
+              457.05,
+              960.0,
+              498.6
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Jobs found count"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 13,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+          "visible_observation": "List of 3 jobs",
+          "bbox": [
+            64.0,
+            526.3,
+            768.0,
+            1177.25
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+            "image_width": 1280,
+            "image_height": 1385,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              380.0,
+              50.0,
+              850.0,
+              600.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              64.0,
+              526.3,
+              768.0,
+              1177.25
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "List of 3 jobs"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-10",
+      "requirement_text": "The system shall expose posting recency and closing-status information in the job results so users can judge which openings are most recent or still open.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-10-C1",
+          "requirement_id": "REQ-10",
+          "claim_text": "The system shall expose posting recency and closing-status information in the job results so users can judge which openings are most recent or still open.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 13,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+              "visible_observation": "Posting recency and closing status indicators",
+              "bbox": [
+                934.4,
+                900.25,
+                1216.0,
+                927.95
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+                "image_width": 1280,
+                "image_height": 1385,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  650.0,
+                  730.0,
+                  670.0,
+                  950.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  934.4,
+                  900.25,
+                  1216.0,
+                  927.95
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Posting recency and closing status indicators"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI explicitly displays both the posting date recency and the closing countdown for job listings.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              13,
+              14
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 13,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+          "visible_observation": "Posting recency and closing status indicators",
+          "bbox": [
+            934.4,
+            900.25,
+            1216.0,
+            927.95
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+            "image_width": 1280,
+            "image_height": 1385,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              650.0,
+              730.0,
+              670.0,
+              950.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              934.4,
+              900.25,
+              1216.0,
+              927.95
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Posting recency and closing status indicators"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall present summary information for each job in list view, including title, compensation, department, and a brief description.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-11-C1",
+          "requirement_id": "REQ-11",
+          "claim_text": "The system shall present summary information for each job in list view, including title, compensation, department, and a brief description.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 11,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_11.png",
+              "visible_observation": "Job summary card containing title, salary, department, and description",
+              "bbox": [
+                64.0,
+                526.3,
+                1216.0,
+                692.5
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_11.png",
+                "image_width": 1280,
+                "image_height": 1385,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  380.0,
+                  50.0,
+                  500.0,
+                  950.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  64.0,
+                  526.3,
+                  1216.0,
+                  692.5
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Job summary card containing title, salary, department, and description"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The list view provides a clear summary of each job, including all required fields.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              13,
+              14
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 11,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_11.png",
+          "visible_observation": "Job summary card containing title, salary, department, and description",
+          "bbox": [
+            64.0,
+            526.3,
+            1216.0,
+            692.5
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_11.png",
+            "image_width": 1280,
+            "image_height": 1385,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              380.0,
+              50.0,
+              500.0,
+              950.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              64.0,
+              526.3,
+              1216.0,
+              692.5
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Job summary card containing title, salary, department, and description"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-12",
+      "requirement_text": "The system shall allow users to navigate from a job listing to a detailed view for an individual opening.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-12-C1",
+          "requirement_id": "REQ-12",
+          "claim_text": "The system shall allow users to navigate from a job listing to a detailed view for an individual opening.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 13,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+              "visible_observation": "Job title link in list view",
+              "bbox": [
+                465.0,
+                237.0,
+                1280.0,
+                303.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+                "image_width": 1280,
+                "image_height": 1385,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  380.0,
+                  50.0,
+                  450.0,
+                  600.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  64.0,
+                  526.3,
+                  768.0,
+                  623.25
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    465.0,
+                    237.0,
+                    1280.0,
+                    303.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Job title link in list view"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 14,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+              "visible_observation": "Detailed job view page",
+              "bbox": [
+                486.4,
+                69.25,
+                1216.0,
+                1108.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+                "image_width": 1280,
+                "image_height": 1385,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  50.0,
+                  380.0,
+                  800.0,
+                  950.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  486.4,
+                  69.25,
+                  1216.0,
+                  1108.0
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Detailed job view page"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The interface provides a clear path from the list of jobs to a dedicated detail page for an individual opening.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 13,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+          "visible_observation": "Job title link in list view",
+          "bbox": [
+            465.0,
+            237.0,
+            1280.0,
+            303.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+            "image_width": 1280,
+            "image_height": 1385,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              380.0,
+              50.0,
+              450.0,
+              600.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              64.0,
+              526.3,
+              768.0,
+              623.25
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                465.0,
+                237.0,
+                1280.0,
+                303.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Job title link in list view"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 14,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+          "visible_observation": "Detailed job view page",
+          "bbox": [
+            486.4,
+            69.25,
+            1216.0,
+            1108.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+            "image_width": 1280,
+            "image_height": 1385,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              50.0,
+              380.0,
+              800.0,
+              950.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              486.4,
+              69.25,
+              1216.0,
+              1108.0
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Detailed job view page"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-16",
+      "requirement_text": "The system shall preserve the applicant's current discovery context while moving between pages, filtering and job detail viewing.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-16-C1",
+          "requirement_id": "REQ-16",
+          "claim_text": "The system shall preserve the applicant's current discovery context while moving between pages, filtering and job detail viewing.",
+          "status": "SUPPORTED_WITH_CAVEAT",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 14,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+              "visible_observation": "Header and navigation elements preserved in detail view",
+              "bbox": [
+                0.0,
+                0.0,
+                1280.0,
+                138.5
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+                "image_width": 1280,
+                "image_height": 1385,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  0.0,
+                  0.0,
+                  100.0,
+                  1000.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  0.0,
+                  0.0,
+                  1280.0,
+                  138.5
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Header and navigation elements preserved in detail view"
+              },
+              "confidence": 0.72,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.72,
+          "rationale": "While 'context preservation' is a backend state, the UI maintains consistent navigation and header elements when transitioning to the detail view, which is a strong proxy for context preservation.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              1,
+              3,
+              13,
+              14
+            ],
+            "raw_model_label": "SUPPORTED_WITH_CAVEAT",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 14,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+          "visible_observation": "Header and navigation elements preserved in detail view",
+          "bbox": [
+            0.0,
+            0.0,
+            1280.0,
+            138.5
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+            "image_width": 1280,
+            "image_height": 1385,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              0.0,
+              0.0,
+              100.0,
+              1000.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              0.0,
+              0.0,
+              1280.0,
+              138.5
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Header and navigation elements preserved in detail view"
+          },
+          "confidence": 0.72,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported, with at least one accepted caveat that does not block fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-17",
+      "requirement_text": "The system shall support sharing job postings through external channels such as social media and email.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-17-C1",
+          "requirement_id": "REQ-17",
+          "claim_text": "The system shall support sharing job postings through external channels such as social media and email.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": false,
+          "evidence": [
+            {
+              "step_index": 14,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+              "visible_observation": "Social media and email sharing icons",
+              "bbox": [
+                576.0,
+                13.85,
+                832.0,
+                55.4
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+                "image_width": 1280,
+                "image_height": 1385,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  10.0,
+                  450.0,
+                  40.0,
+                  650.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  576.0,
+                  13.85,
+                  832.0,
+                  55.4
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Social media and email sharing icons"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI provides direct affordances for sharing job postings via external channels.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 14,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+          "visible_observation": "Social media and email sharing icons",
+          "bbox": [
+            576.0,
+            13.85,
+            832.0,
+            55.4
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+            "image_width": 1280,
+            "image_height": 1385,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              10.0,
+              450.0,
+              40.0,
+              650.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              576.0,
+              13.85,
+              832.0,
+              55.4
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Social media and email sharing icons"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "UNVERIFIED_SYSTEM_OUTCOME"
+      ],
+      "rationale": "Important visible support exists, but material uncertainty blocks a fulfilled verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement is dominated by non-visual or hidden system properties: email delivery.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-18",
+      "requirement_text": "The system shall allow users to subscribe to job posting alerts for future openings.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-18-C1",
+          "requirement_id": "REQ-18",
+          "claim_text": "The system shall allow users to subscribe to job posting alerts for future openings.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_01.png",
+              "visible_observation": "Job Posting Alerts subscription section",
+              "bbox": [
+                748.6,
+                723.4,
+                1169.4,
+                780.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_01.png",
+                "image_width": 1280,
+                "image_height": 5769,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  150.0,
+                  650.0,
+                  250.0,
+                  900.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  832.0,
+                  865.35,
+                  1152.0,
+                  1442.25
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    748.6,
+                    723.4,
+                    1169.4,
+                    780.6
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Job Posting Alerts subscription section"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The interface explicitly supports subscribing to job alerts.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_01.png",
+          "visible_observation": "Job Posting Alerts subscription section",
+          "bbox": [
+            748.6,
+            723.4,
+            1169.4,
+            780.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_01.png",
+            "image_width": 1280,
+            "image_height": 5769,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              150.0,
+              650.0,
+              250.0,
+              900.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              832.0,
+              865.35,
+              1152.0,
+              1442.25
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                748.6,
+                723.4,
+                1169.4,
+                780.6
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Job Posting Alerts subscription section"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-09",
+      "requirement_text": "The system shall allow users to sort job listings by multiple criteria, including posting date, title, and salary.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-09-C1",
+          "requirement_id": "REQ-09",
+          "claim_text": "The system shall allow users to sort job listings by multiple criteria, including posting date, title, and salary.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 12,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_12.png",
+              "visible_observation": "Sort by menu with multiple criteria",
+              "bbox": [
+                0.0,
+                7.4,
+                1022.4,
+                53.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_12.png",
+                "image_width": 1280,
+                "image_height": 1385,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  50.0,
+                  650.0,
+                  300.0,
+                  950.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  832.0,
+                  69.25,
+                  1216.0,
+                  415.5
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    0.0,
+                    7.4,
+                    1022.4,
+                    53.6
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Sort by menu with multiple criteria"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI provides a sort menu that allows sorting by the requested criteria.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 12,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_12.png",
+          "visible_observation": "Sort by menu with multiple criteria",
+          "bbox": [
+            0.0,
+            7.4,
+            1022.4,
+            53.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_12.png",
+            "image_width": 1280,
+            "image_height": 1385,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              50.0,
+              650.0,
+              300.0,
+              950.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              832.0,
+              69.25,
+              1216.0,
+              415.5
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                0.0,
+                7.4,
+                1022.4,
+                53.6
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Sort by menu with multiple criteria"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-13",
+      "requirement_text": "The system shall present comprehensive job details before application, including salary, location, job type, job number, closing information, department, and full descriptive content.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-13-C1",
+          "requirement_id": "REQ-13",
+          "claim_text": "The system shall present comprehensive job details before application, including salary, location, job type, job number, closing information, department, and full descriptive content.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 14,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+              "visible_observation": "Comprehensive job details panel",
+              "bbox": [
+                486.4,
+                69.25,
+                1216.0,
+                554.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+                "image_width": 1280,
+                "image_height": 1385,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  50.0,
+                  380.0,
+                  400.0,
+                  950.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  486.4,
+                  69.25,
+                  1216.0,
+                  554.0
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Comprehensive job details panel"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The detail view presents all the required information fields before the application process.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              5,
+              14
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 14,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+          "visible_observation": "Comprehensive job details panel",
+          "bbox": [
+            486.4,
+            69.25,
+            1216.0,
+            554.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+            "image_width": 1280,
+            "image_height": 1385,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              50.0,
+              380.0,
+              400.0,
+              950.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              486.4,
+              69.25,
+              1216.0,
+              554.0
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Comprehensive job details panel"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-14",
+      "requirement_text": "The system shall provide an explicit action for applicants to begin applying from the detailed job view.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-14-C1",
+          "requirement_id": "REQ-14",
+          "claim_text": "The system shall provide an explicit action for applicants to begin applying from the detailed job view.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 14,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+              "visible_observation": "The 'APPLY' button on the detailed job view.",
+              "bbox": [
+                1130.24,
+                11.08,
+                1222.4,
+                48.475
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+                "image_width": 1280,
+                "image_height": 1385,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  8.0,
+                  883.0,
+                  35.0,
+                  955.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  1130.24,
+                  11.08,
+                  1222.4,
+                  48.475
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "The 'APPLY' button on the detailed job view."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The detailed job view explicitly contains an 'APPLY' button.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 14,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+          "visible_observation": "The 'APPLY' button on the detailed job view.",
+          "bbox": [
+            1130.24,
+            11.08,
+            1222.4,
+            48.475
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+            "image_width": 1280,
+            "image_height": 1385,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              8.0,
+              883.0,
+              35.0,
+              955.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              1130.24,
+              11.08,
+              1222.4,
+              48.475
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "The 'APPLY' button on the detailed job view."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-15",
+      "requirement_text": "The system shall support a downstream application workflow after the applicant selects Apply for a job.",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "REQ-15-C1",
+          "requirement_id": "REQ-15",
+          "claim_text": "The system shall support a downstream application workflow after the applicant selects Apply for a job.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "While the entry point (the 'APPLY' button) is visible, the downstream application workflow itself is not captured in the screenshots.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall allow users to create a job alert directly from their current search and filter context so future matching openings can be delivered without re-entering the criteria.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-01-C1",
+          "requirement_id": "CONTR-01",
+          "claim_text": "The system shall allow users to create a job alert directly from their current search and filter context so future matching openings can be delivered without re-entering the criteria.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "EVIDENCE_INTERPRETATION_AMBIGUITY",
+            "FLOW_COVERAGE_GAP"
+          ],
+          "confidence": 0.0,
+          "rationale": "No control for creating a job alert is visible within the search and filter interface.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "EVIDENCE_INTERPRETATION_AMBIGUITY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall provide visible confirmation that a selected job posting has been handed off to the chosen external sharing channel or compose surface.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-02-C1",
+          "requirement_id": "CONTR-02",
+          "claim_text": "The system shall provide visible confirmation that a selected job posting has been handed off to the chosen external sharing channel or compose surface.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "While sharing options exist, there is no visible confirmation of the handoff to an external channel.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              1,
+              3,
+              13,
+              14
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall ensure that every job shown after search and filtering satisfies all selected criteria across the complete result set, not only the initially visible listings.",
+      "ui_evaluability": "NOT_UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-03-C1",
+          "requirement_id": "CONTR-03",
+          "claim_text": "The system shall ensure that every job shown after search and filtering satisfies all selected criteria across the complete result set, not only the initially visible listings.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "NONTRIVIAL_HIDDEN_PROPERTY",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY",
+            "FLOW_COVERAGE_GAP"
+          ],
+          "confidence": 0.0,
+          "rationale": "This requirement pertains to backend search logic and data completeness, which cannot be verified through UI screenshots.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              13,
+              14
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "NOT_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "rationale": "The requirement is not UI-verifiable from screenshots, so the pipeline abstains.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall allow public browsing of job listings and posting details, while requiring applicant authentication before entering the application workflow.",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "final_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-04-C1",
+          "requirement_id": "CONTR-04",
+          "claim_text": "The system shall allow public browsing of job listings and posting details, while requiring applicant authentication before entering the application workflow.",
+          "status": "PARTIALLY_SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+              "visible_observation": "Publicly accessible job listings.",
+              "bbox": [
+                64.0,
+                183.7,
+                1216.0,
+                1653.3
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1837,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  100.0,
+                  50.0,
+                  900.0,
+                  950.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  64.0,
+                  183.7,
+                  1216.0,
+                  1653.3
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "MULTI_REGION_PART",
+                "description": "Publicly accessible job listings."
+              },
+              "confidence": 0.6,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 14,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+              "visible_observation": "Public browsing of job listings is clearly supported. The authentication requirement is not visible.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.6,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.6,
+          "rationale": "Public browsing is confirmed by the screenshots, but the authentication requirement for the application workflow is not visible.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              1,
+              4,
+              5,
+              14
+            ],
+            "raw_model_label": "PARTIALLY_SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+          "visible_observation": "Publicly accessible job listings.",
+          "bbox": [
+            64.0,
+            183.7,
+            1216.0,
+            1653.3
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1837,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              100.0,
+              50.0,
+              900.0,
+              950.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              64.0,
+              183.7,
+              1216.0,
+              1653.3
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "MULTI_REGION_PART",
+            "description": "Publicly accessible job listings."
+          },
+          "confidence": 0.6,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 14,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+          "visible_observation": "Public browsing of job listings is clearly supported. The authentication requirement is not visible.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.6,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "At least one important claim has partial visible support, but the fulfilled gate was not met.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall provide a visible control on the detailed job view that starts the application workflow for the selected opening.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-05-C1",
+          "requirement_id": "CONTR-05",
+          "claim_text": "The system shall provide a visible control on the detailed job view that starts the application workflow for the selected opening.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 14,
+              "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+              "visible_observation": "The 'APPLY' button on the detailed job view.",
+              "bbox": [
+                1130.24,
+                11.08,
+                1222.4,
+                48.475
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+                "image_width": 1280,
+                "image_height": 1385,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  8.0,
+                  883.0,
+                  35.0,
+                  955.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  1130.24,
+                  11.08,
+                  1222.4,
+                  48.475
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "The 'APPLY' button on the detailed job view."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The 'APPLY' button serves as the visible control to start the application workflow.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "claim_selected_step_indices": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 14,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+          "visible_observation": "The 'APPLY' button on the detailed job view.",
+          "bbox": [
+            1130.24,
+            11.08,
+            1222.4,
+            48.475
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+            "image_width": 1280,
+            "image_height": 1385,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              8.0,
+              883.0,
+              35.0,
+              955.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              1130.24,
+              11.08,
+              1222.4,
+              48.475
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "The 'APPLY' button on the detailed job view."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    }
+  ],
+  "metadata": {
+    "flow_dir": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118",
+    "requirements_path": "data/annotations/verification_gold/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/verification_gold.json",
+    "requirements_source": "benchmark",
+    "requested_retriever": "lexical",
+    "retriever_provider": null,
+    "retriever_model": null,
+    "top_k": 4,
+    "claims_enabled": false,
+    "claim_decomposition_policy": "disabled",
+    "max_claims": 4,
+    "llm_claim_fallback": false,
+    "claim_provider": "deepseek",
+    "claim_model": null,
+    "verifier": "gemini-image",
+    "execution_mode": "single-call",
+    "verifier_model": "gemini-3.1-flash-lite",
+    "max_verifier_images": 4,
+    "max_verifier_group_images": -1,
+    "max_verifier_group_claims": 8,
+    "include_sequence_context": true,
+    "claim_workers": 1,
+    "verifier_thinking_level": "low",
+    "verifier_thinking_budget": null,
+    "verifier_max_output_tokens": 32768,
+    "grounding_candidates": null,
+    "grounding_assets_dir": null,
+    "verifier_predict_ui_evaluability": true,
+    "pipeline": "evidence_first_verification_pipeline",
+    "retriever": "LexicalEvidenceRetriever",
+    "retrieval_batch_claims": 23,
+    "max_claim_workers": 1,
+    "gemini_image_verifier": {
+      "requested": 23,
+      "api_calls": 3,
+      "api_call_attempts": 3,
+      "cache_hits": 0,
+      "fallbacks": 0,
+      "failures": [],
+      "cache_path": "data/generated/thesis_final_experiments/fl_raw_all/cache/03_mbta_c094948f-afc6-415c-968a-9e105e2db118.json",
+      "model_name": "gemini-3.1-flash-lite",
+      "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+      "max_retries": 2,
+      "max_api_calls": null,
+      "include_sequence_context": true,
+      "thinking_level": "low",
+      "thinking_budget": null,
+      "max_output_tokens": 32768,
+      "grouping_strategy": "single-call",
+      "max_images_per_group": null,
+      "max_claims_per_group": 8,
+      "group_workers": 1,
+      "groups": [
+        {
+          "group_id": "G1",
+          "claim_ids": [
+            "REQ-01-C1",
+            "REQ-02-C1",
+            "REQ-03-C1",
+            "REQ-04-C1",
+            "REQ-05-C1",
+            "REQ-06-C1",
+            "REQ-07-C1",
+            "REQ-08-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "image_count": 14,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 22602,
+            "output_tokens": 2011,
+            "total_tokens": 26722,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 2109
+          }
+        },
+        {
+          "group_id": "G2",
+          "claim_ids": [
+            "REQ-10-C1",
+            "REQ-11-C1",
+            "REQ-12-C1",
+            "REQ-16-C1",
+            "REQ-17-C1",
+            "REQ-18-C1",
+            "REQ-09-C1",
+            "REQ-13-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "image_count": 14,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 22686,
+            "output_tokens": 1893,
+            "total_tokens": 25856,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 1277
+          }
+        },
+        {
+          "group_id": "G3",
+          "claim_ids": [
+            "REQ-14-C1",
+            "REQ-15-C1",
+            "CONTR-01-C1",
+            "CONTR-02-C1",
+            "CONTR-03-C1",
+            "CONTR-04-C1",
+            "CONTR-05-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "image_count": 14,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 22583,
+            "output_tokens": 1567,
+            "total_tokens": 25704,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 1554
+          }
+        }
+      ],
+      "group_count": 3,
+      "images_attached_total": 42,
+      "unique_images_attached": 14,
+      "cached_content_tokens": 0,
+      "usage": {
+        "request_count": 3,
+        "input_tokens": 67871,
+        "output_tokens": 5471,
+        "thoughts_tokens": 4940,
+        "total_tokens": 78282,
+        "estimated_cost_usd": 0.03258425,
+        "estimated_cost_eur": 0.029977510000000006,
+        "models": {},
+        "updated_at": null
+      },
+      "asset_manifest": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_01.png",
+          "sha256": "bfd6da02124721db790ece3a2c857d24bef61d9aff769e22691d96c09f172e18",
+          "byte_size": 2659380,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 5769,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_02.png",
+          "sha256": "ae589cc881963f2f3ca918c1d4690c976c41630d51d53c1ba57a1717471550d3",
+          "byte_size": 2659570,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 5769,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_03.png",
+          "sha256": "3eb1ce6858d9f468352c66fc1a385627c230df3c8e90a8293bdb47a666186ecf",
+          "byte_size": 1263721,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2991,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_04.png",
+          "sha256": "3c4e14473ec72207e28ee16934de5d2a8dfc7d5b6d085261844afae0b811bd73",
+          "byte_size": 1209179,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2991,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 5,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_05.png",
+          "sha256": "dd155ce65a90309e55178757c5f41a4be7304a655684bfcb2d17b6032e26368c",
+          "byte_size": 1367403,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2991,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_06.png",
+          "sha256": "9b96290e8c15c0ef7152f0de3903c9eb7f1e8ff0626a139aa432309e701574de",
+          "byte_size": 815711,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1837,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 7,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_07.png",
+          "sha256": "0093f057013271157f4c4de810d3c1a20df1b32996363b65865f0b352ab21756",
+          "byte_size": 665353,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1837,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 8,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_08.png",
+          "sha256": "ba745670d15b2d1ef8bb9be5297d1543a1d142f2ea62ee57c021544b1b02a063",
+          "byte_size": 690027,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1837,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 9,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_09.png",
+          "sha256": "936b2da7af8b14824b58045cf817097586481f08d9fc7589432c4e0836ee4274",
+          "byte_size": 498485,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1385,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 10,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_10.png",
+          "sha256": "d308854d972e1d45aebdbefa0553040886c6f8c2281a23b3a95d03e52f53af0e",
+          "byte_size": 473939,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1385,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 11,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_11.png",
+          "sha256": "6d93fd91b6a38e86f1ed050636e427814bcb4ea012070dee85ddb8de98fcb7c5",
+          "byte_size": 524117,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1385,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 12,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_12.png",
+          "sha256": "646b3a4d7b896667941f9357572a63afb98a7452282f89508513ecb11b5e0625",
+          "byte_size": 495782,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1385,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 13,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_13.png",
+          "sha256": "6ad114c3185587faebdfe3e9f6edf25d97b68c60fc78744455cc4f1ca56d2032",
+          "byte_size": 518411,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1385,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 14,
+          "screenshot_path": "data/processed/flows/mind2web/03_mbta_c094948f-afc6-415c-968a-9e105e2db118/original/step_14.png",
+          "sha256": "06378c4ef6906d1c4069bc518661e5fe89a2743fb61708605cdf553a884cd5f5",
+          "byte_size": 759325,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1385,
+          "has_ocr_text": true
+        }
+      ],
+      "candidate_package": null,
+      "marked_assets_dir": null,
+      "predict_ui_evaluability": true
+    },
+    "gemini_mllm_verifier_used": true,
+    "gemini_mllm_verifier_fallback_used": false
+  }
+}

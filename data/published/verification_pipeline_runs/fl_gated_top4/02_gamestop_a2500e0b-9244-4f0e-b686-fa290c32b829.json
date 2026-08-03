@@ -1,0 +1,2004 @@
+{
+  "flow_id": "02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+  "screen_representations": [
+    {
+      "step_index": 1,
+      "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_01.png",
+      "image_width": 1288,
+      "image_height": 4658
+    },
+    {
+      "step_index": 2,
+      "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+      "image_width": 1280,
+      "image_height": 2088
+    },
+    {
+      "step_index": 3,
+      "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_03.png",
+      "image_width": 1280,
+      "image_height": 2088
+    },
+    {
+      "step_index": 4,
+      "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_04.png",
+      "image_width": 1280,
+      "image_height": 2112
+    }
+  ],
+  "results": [
+    {
+      "requirement_id": "REQ-01",
+      "requirement_text": "The system shall provide a clear mechanism for users to access the store locator functionality.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-01-C1",
+          "requirement_id": "REQ-01",
+          "claim_text": "The system shall provide a clear mechanism for users to access the store locator functionality.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+              "visible_observation": "FIND A STORE header",
+              "bbox": [
+                41.6,
+                185.4,
+                195.4,
+                209.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2088,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  110.0,
+                  15.0,
+                  150.0,
+                  250.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  19.2,
+                  229.68,
+                  320.0,
+                  313.2
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    41.6,
+                    185.4,
+                    195.4,
+                    209.6
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "FIND A STORE header"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The system provides a dedicated 'FIND A STORE' page which serves as the primary mechanism for store locator functionality.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+          "visible_observation": "FIND A STORE header",
+          "bbox": [
+            41.6,
+            185.4,
+            195.4,
+            209.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2088,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              110.0,
+              15.0,
+              150.0,
+              250.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              19.2,
+              229.68,
+              320.0,
+              313.2
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                41.6,
+                185.4,
+                195.4,
+                209.6
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "FIND A STORE header"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "TEXTUAL_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-02",
+      "requirement_text": "The system shall allow users to search for store locations by specifying a geographic identifier such as a zip code, city, or state.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-02-C1",
+          "requirement_id": "REQ-02",
+          "claim_text": "The system shall allow users to search for store locations by specifying a geographic identifier such as a zip code, city, or state.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+              "visible_observation": "Search input field",
+              "bbox": [
+                19.2,
+                313.2,
+                832.0,
+                375.84
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2088,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  150.0,
+                  15.0,
+                  180.0,
+                  650.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  19.2,
+                  313.2,
+                  832.0,
+                  375.84
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Search input field"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI includes a search input field explicitly labeled for city, state, or zip code.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+          "visible_observation": "Search input field",
+          "bbox": [
+            19.2,
+            313.2,
+            832.0,
+            375.84
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2088,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              150.0,
+              15.0,
+              180.0,
+              650.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              19.2,
+              313.2,
+              832.0,
+              375.84
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Search input field"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-03",
+      "requirement_text": "The system shall display relevant store locations on both an interactive map and in a detailed list format, updating based on the user's search query.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-03-C1",
+          "requirement_id": "REQ-03",
+          "claim_text": "The system shall display relevant store locations on both an interactive map and in a detailed list format, updating based on the user's search query.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+              "visible_observation": "Map view",
+              "bbox": [
+                19.2,
+                459.36,
+                1254.4,
+                835.2
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2088,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  220.0,
+                  15.0,
+                  400.0,
+                  980.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  19.2,
+                  459.36,
+                  1254.4,
+                  835.2
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Map view"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+              "visible_observation": "Store list",
+              "bbox": [
+                19.2,
+                856.08,
+                1254.4,
+                1628.64
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2088,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  410.0,
+                  15.0,
+                  780.0,
+                  980.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  19.2,
+                  856.08,
+                  1254.4,
+                  1628.64
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Store list"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The store locator page displays both an interactive map and a detailed list of stores simultaneously.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+          "visible_observation": "Map view",
+          "bbox": [
+            19.2,
+            459.36,
+            1254.4,
+            835.2
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2088,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              220.0,
+              15.0,
+              400.0,
+              980.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              19.2,
+              459.36,
+              1254.4,
+              835.2
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Map view"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+          "visible_observation": "Store list",
+          "bbox": [
+            19.2,
+            856.08,
+            1254.4,
+            1628.64
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2088,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              410.0,
+              15.0,
+              780.0,
+              980.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              19.2,
+              856.08,
+              1254.4,
+              1628.64
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Store list"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "TEXTUAL_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-04",
+      "requirement_text": "The system shall transparently display the operating hours for each listed store, including daily breakdown.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-04-C1",
+          "requirement_id": "REQ-04",
+          "claim_text": "The system shall transparently display the operating hours for each listed store, including daily breakdown.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+              "visible_observation": "Operating hours breakdown",
+              "bbox": [
+                332.8,
+                981.36,
+                576.0,
+                1127.52
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2088,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  470.0,
+                  260.0,
+                  540.0,
+                  450.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  332.8,
+                  981.36,
+                  576.0,
+                  1127.52
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Operating hours breakdown"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "Each store listing includes a clear, daily breakdown of operating hours.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+          "visible_observation": "Operating hours breakdown",
+          "bbox": [
+            332.8,
+            981.36,
+            576.0,
+            1127.52
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2088,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              470.0,
+              260.0,
+              540.0,
+              450.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              332.8,
+              981.36,
+              576.0,
+              1127.52
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Operating hours breakdown"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-05",
+      "requirement_text": "The system shall provide a mechanism for users to select and designate a specific store as their preferred 'home store'.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-05-C1",
+          "requirement_id": "REQ-05",
+          "claim_text": "The system shall provide a mechanism for users to select and designate a specific store as their preferred 'home store'.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+              "visible_observation": "Set as home store button",
+              "bbox": [
+                606.0,
+                512.0,
+                817.0,
+                578.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2088,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  740.0,
+                  550.0,
+                  770.0,
+                  690.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  704.0,
+                  1545.12,
+                  883.2,
+                  1607.76
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    606.0,
+                    512.0,
+                    817.0,
+                    578.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Set as home store button"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI provides a 'SET AS HOME STORE' button for each store listing, allowing users to designate a preferred store.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+          "visible_observation": "Set as home store button",
+          "bbox": [
+            606.0,
+            512.0,
+            817.0,
+            578.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2088,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              740.0,
+              550.0,
+              770.0,
+              690.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              704.0,
+              1545.12,
+              883.2,
+              1607.76
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                606.0,
+                512.0,
+                817.0,
+                578.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Set as home store button"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-06",
+      "requirement_text": "The system shall allow users to refine their store search by selecting a specific radius around the searched location.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-06-C1",
+          "requirement_id": "REQ-06",
+          "claim_text": "The system shall allow users to refine their store search by selecting a specific radius around the searched location.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+              "visible_observation": "Radius dropdown",
+              "bbox": [
+                857.6,
+                313.2,
+                1062.4,
+                375.84
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2088,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  150.0,
+                  670.0,
+                  180.0,
+                  830.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  857.6,
+                  313.2,
+                  1062.4,
+                  375.84
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Radius dropdown"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "A radius selection dropdown is available to refine the search results.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+          "visible_observation": "Radius dropdown",
+          "bbox": [
+            857.6,
+            313.2,
+            1062.4,
+            375.84
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2088,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              150.0,
+              670.0,
+              180.0,
+              830.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              857.6,
+              313.2,
+              1062.4,
+              375.84
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Radius dropdown"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall preserve a user's selected home store as the default store context on all pages and on a subsequent visit.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-01-C1",
+          "requirement_id": "CONTR-01",
+          "claim_text": "The system shall preserve a user's selected home store as the default store context on all pages and on a subsequent visit.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_01.png",
+              "visible_observation": "Home store in header",
+              "bbox": [
+                875.84,
+                0.0,
+                1275.12,
+                69.87
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_01.png",
+                "image_width": 1288,
+                "image_height": 4658,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  0.0,
+                  680.0,
+                  15.0,
+                  990.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  875.84,
+                  0.0,
+                  1275.12,
+                  69.87
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Home store in header"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+              "visible_observation": "Home store indicator",
+              "bbox": [
+                0.0,
+                185.4,
+                195.4,
+                209.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2088,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  420.0,
+                  30.0,
+                  440.0,
+                  130.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  38.4,
+                  876.96,
+                  166.4,
+                  918.72
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    0.0,
+                    185.4,
+                    195.4,
+                    209.6
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Home store indicator"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The presence of the selected store in the global header across pages indicates that the store context is preserved.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_01.png",
+          "visible_observation": "Home store in header",
+          "bbox": [
+            875.84,
+            0.0,
+            1275.12,
+            69.87
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_01.png",
+            "image_width": 1288,
+            "image_height": 4658,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              0.0,
+              680.0,
+              15.0,
+              990.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              875.84,
+              0.0,
+              1275.12,
+              69.87
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Home store in header"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+          "visible_observation": "Home store indicator",
+          "bbox": [
+            0.0,
+            185.4,
+            195.4,
+            209.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2088,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              420.0,
+              30.0,
+              440.0,
+              130.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              38.4,
+              876.96,
+              166.4,
+              918.72
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                0.0,
+                185.4,
+                195.4,
+                209.6
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Home store indicator"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall keep the searched location, selected radius, and resulting stores synchronized between the map view and the store list.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-04-C1",
+          "requirement_id": "CONTR-04",
+          "claim_text": "The system shall keep the searched location, selected radius, and resulting stores synchronized between the map view and the store list.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+              "visible_observation": "Synchronized map and list view",
+              "bbox": [
+                19.2,
+                459.36,
+                1254.4,
+                1628.64
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2088,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  220.0,
+                  15.0,
+                  780.0,
+                  980.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  19.2,
+                  459.36,
+                  1254.4,
+                  1628.64
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Synchronized map and list view"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The map and list are presented together on the same page, ensuring they reflect the same search context.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+          "visible_observation": "Synchronized map and list view",
+          "bbox": [
+            19.2,
+            459.36,
+            1254.4,
+            1628.64
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2088,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              220.0,
+              15.0,
+              780.0,
+              980.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              19.2,
+              459.36,
+              1254.4,
+              1628.64
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Synchronized map and list view"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall show complete store detail coverage for each returned location, including address, phone contact, and operating hours.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-05-C1",
+          "requirement_id": "CONTR-05",
+          "claim_text": "The system shall show complete store detail coverage for each returned location.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+              "visible_observation": "A representative store card showing address, phone number, and operating hours.",
+              "bbox": [
+                606.0,
+                512.0,
+                817.0,
+                578.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2088,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  420.0,
+                  30.0,
+                  600.0,
+                  480.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  38.4,
+                  876.96,
+                  614.4,
+                  1252.8
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    606.0,
+                    512.0,
+                    817.0,
+                    578.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "A representative store card showing address, phone number, and operating hours."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI consistently displays the address, phone number, and operating hours for every store listed in the search results.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        },
+        {
+          "claim_id": "CONTR-05-C2",
+          "requirement_id": "CONTR-05",
+          "claim_text": "The presented complete store detail coverage for each returned location includes address.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+              "visible_observation": "Address displayed on a store card.",
+              "bbox": [
+                606.0,
+                512.0,
+                817.0,
+                578.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2088,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  465.0,
+                  40.0,
+                  505.0,
+                  250.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  51.2,
+                  970.92,
+                  320.0,
+                  1054.44
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    606.0,
+                    512.0,
+                    817.0,
+                    578.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Address displayed on a store card."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The address is explicitly visible for each store location.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        },
+        {
+          "claim_id": "CONTR-05-C3",
+          "requirement_id": "CONTR-05",
+          "claim_text": "The presented complete store detail coverage for each returned location includes phone contact.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+              "visible_observation": "Phone number displayed on a store card.",
+              "bbox": [
+                606.0,
+                512.0,
+                817.0,
+                578.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2088,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  430.0,
+                  40.0,
+                  450.0,
+                  200.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  51.2,
+                  897.84,
+                  256.0,
+                  939.6
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    606.0,
+                    512.0,
+                    817.0,
+                    578.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Phone number displayed on a store card."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The phone contact is explicitly visible for each store location.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        },
+        {
+          "claim_id": "CONTR-05-C4",
+          "requirement_id": "CONTR-05",
+          "claim_text": "The presented complete store detail coverage for each returned location includes operating hours.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+              "visible_observation": "Operating hours displayed on a store card.",
+              "bbox": [
+                606.0,
+                512.0,
+                817.0,
+                578.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2088,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  465.0,
+                  260.0,
+                  600.0,
+                  450.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  332.8,
+                  970.92,
+                  576.0,
+                  1252.8
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    606.0,
+                    512.0,
+                    817.0,
+                    578.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Operating hours displayed on a store card."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The operating hours are explicitly visible for each store location.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+          "visible_observation": "A representative store card showing address, phone number, and operating hours.",
+          "bbox": [
+            606.0,
+            512.0,
+            817.0,
+            578.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2088,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              420.0,
+              30.0,
+              600.0,
+              480.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              38.4,
+              876.96,
+              614.4,
+              1252.8
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                606.0,
+                512.0,
+                817.0,
+                578.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "A representative store card showing address, phone number, and operating hours."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+          "visible_observation": "Address displayed on a store card.",
+          "bbox": [
+            606.0,
+            512.0,
+            817.0,
+            578.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2088,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              465.0,
+              40.0,
+              505.0,
+              250.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              51.2,
+              970.92,
+              320.0,
+              1054.44
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                606.0,
+                512.0,
+                817.0,
+                578.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Address displayed on a store card."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+          "visible_observation": "Phone number displayed on a store card.",
+          "bbox": [
+            606.0,
+            512.0,
+            817.0,
+            578.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2088,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              430.0,
+              40.0,
+              450.0,
+              200.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              51.2,
+              897.84,
+              256.0,
+              939.6
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                606.0,
+                512.0,
+                817.0,
+                578.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Phone number displayed on a store card."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+          "visible_observation": "Operating hours displayed on a store card.",
+          "bbox": [
+            606.0,
+            512.0,
+            817.0,
+            578.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2088,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              465.0,
+              260.0,
+              600.0,
+              450.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              332.8,
+              970.92,
+              576.0,
+              1252.8
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                606.0,
+                512.0,
+                817.0,
+                578.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Operating hours displayed on a store card."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "heuristic",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    }
+  ],
+  "metadata": {
+    "flow_dir": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829",
+    "requirements_path": "data/annotations/verification_gold/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/verification_gold.json",
+    "requirements_source": "benchmark",
+    "requested_retriever": "lexical",
+    "retriever_provider": null,
+    "retriever_model": null,
+    "top_k": 4,
+    "claims_enabled": true,
+    "claim_decomposition_policy": "gated",
+    "max_claims": 4,
+    "llm_claim_fallback": false,
+    "claim_provider": "deepseek",
+    "claim_model": null,
+    "verifier": "gemini-image",
+    "execution_mode": "batched-topk",
+    "verifier_model": "gemini-3.1-flash-lite",
+    "max_verifier_images": 4,
+    "max_verifier_group_images": 4,
+    "max_verifier_group_claims": 8,
+    "include_sequence_context": true,
+    "claim_workers": 1,
+    "verifier_thinking_level": "low",
+    "verifier_thinking_budget": null,
+    "verifier_max_output_tokens": 32768,
+    "grounding_candidates": null,
+    "grounding_assets_dir": null,
+    "verifier_predict_ui_evaluability": true,
+    "pipeline": "evidence_first_verification_pipeline",
+    "retriever": "LexicalEvidenceRetriever",
+    "retrieval_batch_claims": 12,
+    "max_claim_workers": 1,
+    "gemini_image_verifier": {
+      "requested": 12,
+      "api_calls": 2,
+      "api_call_attempts": 2,
+      "cache_hits": 0,
+      "fallbacks": 0,
+      "failures": [],
+      "cache_path": "data/generated/thesis_final_experiments/fl_gated_top4/cache/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829.json",
+      "model_name": "gemini-3.1-flash-lite",
+      "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+      "max_retries": 2,
+      "max_api_calls": null,
+      "include_sequence_context": true,
+      "thinking_level": "low",
+      "thinking_budget": null,
+      "max_output_tokens": 32768,
+      "grouping_strategy": "batched-topk",
+      "max_images_per_group": 4,
+      "max_claims_per_group": 8,
+      "group_workers": 1,
+      "groups": [
+        {
+          "group_id": "G1",
+          "claim_ids": [
+            "REQ-01-C1",
+            "REQ-02-C1",
+            "REQ-03-C1",
+            "REQ-04-C1",
+            "REQ-05-C1",
+            "REQ-06-C1",
+            "CONTR-01-C1",
+            "CONTR-04-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "image_count": 4,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 9194,
+            "output_tokens": 1766,
+            "total_tokens": 12884,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 1924
+          }
+        },
+        {
+          "group_id": "G2",
+          "claim_ids": [
+            "CONTR-05-C1",
+            "CONTR-05-C2",
+            "CONTR-05-C3",
+            "CONTR-05-C4"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "image_count": 4,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 8658,
+            "output_tokens": 907,
+            "total_tokens": 10182,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 617
+          }
+        }
+      ],
+      "group_count": 2,
+      "images_attached_total": 8,
+      "unique_images_attached": 4,
+      "cached_content_tokens": 0,
+      "usage": {
+        "request_count": 2,
+        "input_tokens": 17852,
+        "output_tokens": 2673,
+        "thoughts_tokens": 2541,
+        "total_tokens": 23066,
+        "estimated_cost_usd": 0.012284,
+        "estimated_cost_eur": 0.01130128,
+        "models": {},
+        "updated_at": null
+      },
+      "asset_manifest": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_01.png",
+          "sha256": "8dbfe4bf60bcf0160a459f56f261024ee59e4ee3610bee72d2c072209020fe58",
+          "byte_size": 2290540,
+          "mime_type": "image/png",
+          "image_width": 1288,
+          "image_height": 4658,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_02.png",
+          "sha256": "0660bda13d83dc8ab414955723e286a267f49dc6920056ce5f58ceee53b78ae1",
+          "byte_size": 1255939,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2088,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_03.png",
+          "sha256": "313ff8fe97108a5dd4f39cebd0f93023d9bed6a67264f56b0a6ca45afbf4cef8",
+          "byte_size": 1256801,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2088,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/02_gamestop_a2500e0b-9244-4f0e-b686-fa290c32b829/original/step_04.png",
+          "sha256": "776475c0031247060f292c09eaface18feb784aa7f5f591201ddf306ed53b379",
+          "byte_size": 1022456,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2112,
+          "has_ocr_text": true
+        }
+      ],
+      "candidate_package": null,
+      "marked_assets_dir": null,
+      "predict_ui_evaluability": true
+    },
+    "gemini_mllm_verifier_used": true,
+    "gemini_mllm_verifier_fallback_used": false
+  }
+}

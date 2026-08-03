@@ -1,0 +1,3003 @@
+{
+  "flow_id": "09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+  "screen_representations": [
+    {
+      "step_index": 1,
+      "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_01.png",
+      "image_width": 1280,
+      "image_height": 6683
+    },
+    {
+      "step_index": 2,
+      "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+      "image_width": 1280,
+      "image_height": 2660
+    },
+    {
+      "step_index": 3,
+      "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+      "image_width": 1280,
+      "image_height": 1444
+    },
+    {
+      "step_index": 4,
+      "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_04.png",
+      "image_width": 1280,
+      "image_height": 1444
+    },
+    {
+      "step_index": 5,
+      "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+      "image_width": 1280,
+      "image_height": 1480
+    }
+  ],
+  "results": [
+    {
+      "requirement_id": "REQ-01",
+      "requirement_text": "The system shall allow users to navigate from the main AMC site into a dedicated gift card area.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-01-C1",
+          "requirement_id": "REQ-01",
+          "claim_text": "The system shall allow users to navigate from the main AMC site into a dedicated gift card area.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+              "visible_observation": "Gift Cards link in the main navigation bar",
+              "bbox": [
+                326.0,
+                627.0,
+                545.0,
+                671.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2660,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  30.0,
+                  675.0,
+                  45.0,
+                  740.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  864.0,
+                  79.8,
+                  947.2,
+                  119.7
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    326.0,
+                    627.0,
+                    545.0,
+                    671.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Gift Cards link in the main navigation bar"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The main navigation bar provides a direct link to the gift card section.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+          "visible_observation": "Gift Cards link in the main navigation bar",
+          "bbox": [
+            326.0,
+            627.0,
+            545.0,
+            671.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2660,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              30.0,
+              675.0,
+              45.0,
+              740.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              864.0,
+              79.8,
+              947.2,
+              119.7
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                326.0,
+                627.0,
+                545.0,
+                671.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Gift Cards link in the main navigation bar"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-02",
+      "requirement_text": "The system shall present a centralized gift card service area that groups major gift card related actions, like purchasing gift cards, checking balances, accessing terms and FAQs, and handling membership or corporate gift card options.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-02-C1",
+          "requirement_id": "REQ-02",
+          "claim_text": "The system shall present a centralized gift card service area that groups major gift card related actions, like purchasing gift cards, checking balances, accessing terms and FAQs, and handling membership or corporate gift card options.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+              "visible_observation": "Centralized gift card service area with grouped actions",
+              "bbox": [
+                867.0,
+                1183.0,
+                1077.0,
+                1227.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2660,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  50.0,
+                  240.0,
+                  150.0,
+                  950.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  307.2,
+                  133.0,
+                  1216.0,
+                  399.0
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    867.0,
+                    1183.0,
+                    1077.0,
+                    1227.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Centralized gift card service area with grouped actions"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The page clearly organizes major gift card actions into distinct, accessible sections.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+          "visible_observation": "Centralized gift card service area with grouped actions",
+          "bbox": [
+            867.0,
+            1183.0,
+            1077.0,
+            1227.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2660,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              50.0,
+              240.0,
+              150.0,
+              950.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              307.2,
+              133.0,
+              1216.0,
+              399.0
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                867.0,
+                1183.0,
+                1077.0,
+                1227.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Centralized gift card service area with grouped actions"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-03",
+      "requirement_text": "The system shall provide a dedicated workflow for checking gift card balance from the gift card section.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-03-C1",
+          "requirement_id": "REQ-03",
+          "claim_text": "The system shall provide a dedicated workflow for checking gift card balance from the gift card section.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+              "visible_observation": "Check Gift Card Balance link",
+              "bbox": [
+                867.0,
+                1183.0,
+                1077.0,
+                1227.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2660,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  90.0,
+                  270.0,
+                  110.0,
+                  400.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  345.6,
+                  239.4,
+                  512.0,
+                  292.6
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    867.0,
+                    1183.0,
+                    1077.0,
+                    1227.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Check Gift Card Balance link"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+              "visible_observation": "Dedicated balance check form",
+              "bbox": [
+                25.6,
+                187.72,
+                640.0,
+                505.4
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 1444,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  130.0,
+                  20.0,
+                  350.0,
+                  500.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  25.6,
+                  187.72,
+                  640.0,
+                  505.4
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Dedicated balance check form"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI provides a clear path from the gift card landing page to a dedicated balance check workflow.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+          "visible_observation": "Check Gift Card Balance link",
+          "bbox": [
+            867.0,
+            1183.0,
+            1077.0,
+            1227.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2660,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              90.0,
+              270.0,
+              110.0,
+              400.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              345.6,
+              239.4,
+              512.0,
+              292.6
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                867.0,
+                1183.0,
+                1077.0,
+                1227.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Check Gift Card Balance link"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+          "visible_observation": "Dedicated balance check form",
+          "bbox": [
+            25.6,
+            187.72,
+            640.0,
+            505.4
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 1444,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              130.0,
+              20.0,
+              350.0,
+              500.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              25.6,
+              187.72,
+              640.0,
+              505.4
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Dedicated balance check form"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-04",
+      "requirement_text": "The system shall collect a gift card number and PIN as the core inputs for a balance inquiry.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-04-C1",
+          "requirement_id": "REQ-04",
+          "claim_text": "The system shall collect a gift card number and PIN as the core inputs for a balance inquiry.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+              "visible_observation": "Gift Card Number and PIN input fields",
+              "bbox": [
+                55.0,
+                271.0,
+                414.0,
+                315.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 1444,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  220.0,
+                  20.0,
+                  300.0,
+                  500.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  25.6,
+                  317.68,
+                  640.0,
+                  433.2
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    55.0,
+                    271.0,
+                    414.0,
+                    315.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Gift Card Number and PIN input fields"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The form explicitly requests the card number and PIN as inputs.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              3,
+              4,
+              5
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+          "visible_observation": "Gift Card Number and PIN input fields",
+          "bbox": [
+            55.0,
+            271.0,
+            414.0,
+            315.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 1444,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              220.0,
+              20.0,
+              300.0,
+              500.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              25.6,
+              317.68,
+              640.0,
+              433.2
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                55.0,
+                271.0,
+                414.0,
+                315.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Gift Card Number and PIN input fields"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-05",
+      "requirement_text": "The system shall allow an authenticated user to optionally associate a gift card with their account during the balance check process.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-05-C1",
+          "requirement_id": "REQ-05",
+          "claim_text": "The system shall allow an authenticated user to optionally associate a gift card with their account during the balance check process.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+              "visible_observation": "Add gift card to my account checkbox",
+              "bbox": [
+                46.8,
+                186.2,
+                452.2,
+                258.8
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 1444,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  310.0,
+                  20.0,
+                  330.0,
+                  200.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  25.6,
+                  447.64,
+                  256.0,
+                  476.52
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    46.8,
+                    186.2,
+                    452.2,
+                    258.8
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Add gift card to my account checkbox"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI provides an explicit control to associate the card with the user's account.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+          "visible_observation": "Add gift card to my account checkbox",
+          "bbox": [
+            46.8,
+            186.2,
+            452.2,
+            258.8
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 1444,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              310.0,
+              20.0,
+              330.0,
+              200.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              25.6,
+              447.64,
+              256.0,
+              476.52
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                46.8,
+                186.2,
+                452.2,
+                258.8
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Add gift card to my account checkbox"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-06",
+      "requirement_text": "The system shall preserve user entered balance check inputs across intermediate form interactions and validation states.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-06-C1",
+          "requirement_id": "REQ-06",
+          "claim_text": "The system shall preserve user entered balance check inputs across intermediate form interactions and validation states.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_04.png",
+              "visible_observation": "Input field with value 87654321",
+              "bbox": [
+                25.6,
+                317.68,
+                640.0,
+                361.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_04.png",
+                "image_width": 1280,
+                "image_height": 1444,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  220.0,
+                  20.0,
+                  250.0,
+                  500.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  25.6,
+                  317.68,
+                  640.0,
+                  361.0
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Input field with value 87654321"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 5,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+              "visible_observation": "Input field with value 87654321 preserved after error",
+              "bbox": [
+                25.6,
+                325.6,
+                640.0,
+                370.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+                "image_width": 1280,
+                "image_height": 1480,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  220.0,
+                  20.0,
+                  250.0,
+                  500.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  25.6,
+                  325.6,
+                  640.0,
+                  370.0
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Input field with value 87654321 preserved after error"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI maintains the user's input across the validation state change.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              4,
+              5
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_04.png",
+          "visible_observation": "Input field with value 87654321",
+          "bbox": [
+            25.6,
+            317.68,
+            640.0,
+            361.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_04.png",
+            "image_width": 1280,
+            "image_height": 1444,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              220.0,
+              20.0,
+              250.0,
+              500.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              25.6,
+              317.68,
+              640.0,
+              361.0
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Input field with value 87654321"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 5,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+          "visible_observation": "Input field with value 87654321 preserved after error",
+          "bbox": [
+            25.6,
+            325.6,
+            640.0,
+            370.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+            "image_width": 1280,
+            "image_height": 1480,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              220.0,
+              20.0,
+              250.0,
+              500.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              25.6,
+              325.6,
+              640.0,
+              370.0
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Input field with value 87654321 preserved after error"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-07",
+      "requirement_text": "The system shall validate gift card lookup inputs and provide inline error feedback when the entered card information does not meet format expectations.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-07-C1",
+          "requirement_id": "REQ-07",
+          "claim_text": "The system shall validate gift card lookup inputs and provide inline error feedback when the entered card information does not meet format expectations.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 5,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+              "visible_observation": "Inline validation error message",
+              "bbox": [
+                25.6,
+                377.4,
+                384.0,
+                407.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+                "image_width": 1280,
+                "image_height": 1480,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  255.0,
+                  20.0,
+                  275.0,
+                  300.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  25.6,
+                  377.4,
+                  384.0,
+                  407.0
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Inline validation error message"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The system provides immediate, inline feedback when input requirements are not met.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 5,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+          "visible_observation": "Inline validation error message",
+          "bbox": [
+            25.6,
+            377.4,
+            384.0,
+            407.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+            "image_width": 1280,
+            "image_height": 1480,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              255.0,
+              20.0,
+              275.0,
+              300.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              25.6,
+              377.4,
+              384.0,
+              407.0
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Inline validation error message"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-08",
+      "requirement_text": "The system shall only accept valid gift card actions.",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-08-C1",
+          "requirement_id": "REQ-08",
+          "claim_text": "The system shall only accept valid gift card actions.",
+          "status": "SUPPORTED_WITH_CAVEAT",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 5,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+              "visible_observation": "Validation error preventing invalid action",
+              "bbox": [
+                25.6,
+                377.4,
+                384.0,
+                407.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+                "image_width": 1280,
+                "image_height": 1480,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  255.0,
+                  20.0,
+                  275.0,
+                  300.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  25.6,
+                  377.4,
+                  384.0,
+                  407.0
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Validation error preventing invalid action"
+              },
+              "confidence": 0.72,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.72,
+          "rationale": "While the UI demonstrates rejection of invalid input via validation, 'only accept valid actions' is a broad system-level claim that cannot be fully verified by UI alone, though the visible validation is a strong proxy.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED_WITH_CAVEAT",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 5,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+          "visible_observation": "Validation error preventing invalid action",
+          "bbox": [
+            25.6,
+            377.4,
+            384.0,
+            407.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+            "image_width": 1280,
+            "image_height": 1480,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              255.0,
+              20.0,
+              275.0,
+              300.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              25.6,
+              377.4,
+              384.0,
+              407.0
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Validation error preventing invalid action"
+          },
+          "confidence": 0.72,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "TEXTUAL_AMBIGUITY",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported, with at least one accepted caveat that does not block fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-09",
+      "requirement_text": "The system shall return the remaining gift card balance after the user provides valid card credentials.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "REQ-09-C1",
+          "requirement_id": "REQ-09",
+          "claim_text": "The system shall return the remaining gift card balance after the user provides valid card credentials.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "The UI provides the input fields for a balance check, but the screenshots do not show the result screen after a successful lookup.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              4,
+              5
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "TEXTUAL_AMBIGUITY",
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-10",
+      "requirement_text": "The system shall provide alternative channels for balance inquiries in addition to the self service web form.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-10-C1",
+          "requirement_id": "REQ-10",
+          "claim_text": "The system shall provide alternative channels for balance inquiries in addition to the self service web form.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+              "visible_observation": "Text describing alternative balance inquiry methods.",
+              "bbox": [
+                435.2,
+                1117.2,
+                1254.4,
+                1276.8
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2660,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  420.0,
+                  340.0,
+                  480.0,
+                  980.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  435.2,
+                  1117.2,
+                  1254.4,
+                  1276.8
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Text describing alternative balance inquiry methods."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The page clearly lists alternative channels (visiting a theatre, calling phone numbers) for balance inquiries.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+          "visible_observation": "Text describing alternative balance inquiry methods.",
+          "bbox": [
+            435.2,
+            1117.2,
+            1254.4,
+            1276.8
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2660,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              420.0,
+              340.0,
+              480.0,
+              980.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              435.2,
+              1117.2,
+              1254.4,
+              1276.8
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Text describing alternative balance inquiry methods."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall support adjacent gift card workflows such as gift card purchase and business ordering from the same gift card service area.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-11-C1",
+          "requirement_id": "REQ-11",
+          "claim_text": "The system shall support adjacent gift card workflows such as gift card purchase and business ordering from the same gift card service area.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+              "visible_observation": "Gift card service area menu options.",
+              "bbox": [
+                867.0,
+                1183.0,
+                1077.0,
+                1227.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2660,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  50.0,
+                  240.0,
+                  150.0,
+                  950.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  307.2,
+                  133.0,
+                  1216.0,
+                  399.0
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    867.0,
+                    1183.0,
+                    1077.0,
+                    1227.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Gift card service area menu options."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The 'Gift Cards' navigation area groups purchase, corporate, and balance check workflows together.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+          "visible_observation": "Gift card service area menu options.",
+          "bbox": [
+            867.0,
+            1183.0,
+            1077.0,
+            1227.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2660,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              50.0,
+              240.0,
+              150.0,
+              950.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              307.2,
+              133.0,
+              1216.0,
+              399.0
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                867.0,
+                1183.0,
+                1077.0,
+                1227.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Gift card service area menu options."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-13",
+      "requirement_text": "The system shall provide clear on page guidance about what information is required to perform a gift card balance lookup.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-13-C1",
+          "requirement_id": "REQ-13",
+          "claim_text": "The system shall provide clear on page guidance about what information is required to perform a gift card balance lookup.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+              "visible_observation": "Instruction text for balance lookup.",
+              "bbox": [
+                25.6,
+                274.36,
+                512.0,
+                317.68
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 1444,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  190.0,
+                  20.0,
+                  220.0,
+                  400.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  25.6,
+                  274.36,
+                  512.0,
+                  317.68
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Instruction text for balance lookup."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The page provides clear, explicit instructions on what information (number and PIN) is required.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+          "visible_observation": "Instruction text for balance lookup.",
+          "bbox": [
+            25.6,
+            274.36,
+            512.0,
+            317.68
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 1444,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              190.0,
+              20.0,
+              220.0,
+              400.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              25.6,
+              274.36,
+              512.0,
+              317.68
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Instruction text for balance lookup."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "TEXTUAL_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-14",
+      "requirement_text": "The system shall retain signed in account context while the user navigates gift card related pages.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-14-C1",
+          "requirement_id": "REQ-14",
+          "claim_text": "The system shall retain signed in account context while the user navigates gift card related pages.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+              "visible_observation": "User greeting in the header.",
+              "bbox": [
+                25.6,
+                43.32,
+                192.0,
+                86.64
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 1444,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  30.0,
+                  20.0,
+                  60.0,
+                  150.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  25.6,
+                  43.32,
+                  192.0,
+                  86.64
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "User greeting in the header."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_04.png",
+              "visible_observation": "The 'HELLO JAMES' greeting persists in the header across the gift card pages.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 5,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+              "visible_observation": "The 'HELLO JAMES' greeting persists in the header across the gift card pages.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The user's signed-in state ('HELLO JAMES') is consistently displayed in the header across the gift card pages.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              4,
+              5
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+          "visible_observation": "User greeting in the header.",
+          "bbox": [
+            25.6,
+            43.32,
+            192.0,
+            86.64
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 1444,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              30.0,
+              20.0,
+              60.0,
+              150.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              25.6,
+              43.32,
+              192.0,
+              86.64
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "User greeting in the header."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_04.png",
+          "visible_observation": "The 'HELLO JAMES' greeting persists in the header across the gift card pages.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 5,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+          "visible_observation": "The 'HELLO JAMES' greeting persists in the header across the gift card pages.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-12",
+      "requirement_text": "The system shall maintain consistent global navigation and branding across gift card related pages.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-12-C1",
+          "requirement_id": "REQ-12",
+          "claim_text": "The system shall maintain consistent global navigation and branding across gift card related pages.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+              "visible_observation": "Global header navigation.",
+              "bbox": [
+                25.6,
+                79.8,
+                1024.0,
+                159.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2660,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  30.0,
+                  20.0,
+                  60.0,
+                  800.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  25.6,
+                  79.8,
+                  1024.0,
+                  159.6
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Global header navigation."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+              "visible_observation": "The header navigation and branding are consistent across all gift card related pages.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_04.png",
+              "visible_observation": "The header navigation and branding are consistent across all gift card related pages.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 5,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+              "visible_observation": "The header navigation and branding are consistent across all gift card related pages.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The global navigation bar and branding remain consistent across all viewed pages.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+          "visible_observation": "Global header navigation.",
+          "bbox": [
+            25.6,
+            79.8,
+            1024.0,
+            159.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2660,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              30.0,
+              20.0,
+              60.0,
+              800.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              25.6,
+              79.8,
+              1024.0,
+              159.6
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Global header navigation."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+          "visible_observation": "The header navigation and branding are consistent across all gift card related pages.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_04.png",
+          "visible_observation": "The header navigation and branding are consistent across all gift card related pages.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 5,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+          "visible_observation": "The header navigation and branding are consistent across all gift card related pages.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall preserve a user's decision to associate a gift card with their account through the remainder of the balance inquiry workflow and reflect that choice when the lookup completes.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-01-C1",
+          "requirement_id": "CONTR-01",
+          "claim_text": "The system shall preserve a user's decision to associate a gift card with their account through the remainder of the balance inquiry workflow and reflect that choice when the lookup completes.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "While the option to associate the card is present, the screenshots do not show the completion of the workflow or the reflection of that choice.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              4,
+              5
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall distinguish between input format errors and lookup failures for a well-formed but unrecognized gift card, and present user-facing feedback appropriate to each case.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "PARTIALLY_FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-02-C1",
+          "requirement_id": "CONTR-02",
+          "claim_text": "The system shall distinguish between input format errors and lookup failures for a well-formed but unrecognized gift card, and present user-facing feedback appropriate to each case.",
+          "status": "PARTIALLY_SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 5,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+              "visible_observation": "Input format error message.",
+              "bbox": [
+                25.6,
+                370.0,
+                512.0,
+                414.4
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+                "image_width": 1280,
+                "image_height": 1480,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  250.0,
+                  20.0,
+                  280.0,
+                  400.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  25.6,
+                  370.0,
+                  512.0,
+                  414.4
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Input format error message."
+              },
+              "confidence": 0.6,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.6,
+          "rationale": "The system displays an input format error, but there is no evidence of how it handles a lookup failure for a well-formed card, so the 'distinguish' requirement cannot be fully verified.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "PARTIALLY_SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 5,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+          "visible_observation": "Input format error message.",
+          "bbox": [
+            25.6,
+            370.0,
+            512.0,
+            414.4
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+            "image_width": 1280,
+            "image_height": 1480,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              250.0,
+              20.0,
+              280.0,
+              400.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              25.6,
+              370.0,
+              512.0,
+              414.4
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Input format error message."
+          },
+          "confidence": 0.6,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "TEXTUAL_AMBIGUITY",
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "At least one important claim has partial visible support, but the fulfilled gate was not met.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall require a signed-in account before a gift card can be attached to a user profile, while still allowing balance checks to proceed in guest mode.",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-03-C1",
+          "requirement_id": "CONTR-03",
+          "claim_text": "The system shall require a signed-in account before a gift card can be attached to a user profile, while still allowing balance checks to proceed in guest mode.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "While the UI shows the option to add a gift card to an account, the screenshots do not show the guest mode experience or confirm that the system restricts this action for non-signed-in users.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              4,
+              5
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall make all supported gift card balance inquiry paths and help resources discoverable from the centralized gift card service area.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-04-C1",
+          "requirement_id": "CONTR-04",
+          "claim_text": "The system shall make all supported gift card balance inquiry paths and help resources discoverable from the centralized gift card service area.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+              "visible_observation": "Centralized gift card service links including balance check, terms, and FAQs",
+              "bbox": [
+                472.8,
+                1707.2,
+                716.2,
+                1735.8
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2660,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  60.0,
+                  240.0,
+                  140.0,
+                  500.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  307.2,
+                  159.6,
+                  640.0,
+                  372.4
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    472.8,
+                    1707.2,
+                    716.2,
+                    1735.8
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Centralized gift card service links including balance check, terms, and FAQs"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The Gift Cards landing page provides a centralized area with clear links to balance inquiry and help resources.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+          "visible_observation": "Centralized gift card service links including balance check, terms, and FAQs",
+          "bbox": [
+            472.8,
+            1707.2,
+            716.2,
+            1735.8
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2660,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              60.0,
+              240.0,
+              140.0,
+              500.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              307.2,
+              159.6,
+              640.0,
+              372.4
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                472.8,
+                1707.2,
+                716.2,
+                1735.8
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Centralized gift card service links including balance check, terms, and FAQs"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall provide an explicit balance inquiry result state that confirms which gift card was checked and presents the remaining balance separately from the entry form.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-05-C1",
+          "requirement_id": "CONTR-05",
+          "claim_text": "The system shall provide an explicit balance inquiry result state that confirms which gift card was checked and presents the remaining balance separately from the entry form.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "The provided screenshots only show the entry form for the balance inquiry. There is no evidence of the result state or how the balance is presented.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              4,
+              5
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-06",
+      "requirement_text": "The system shall keep the balance lookup action visibly consistent with the current validation state so users can clearly tell when the entered card information is submittable.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-06-C1",
+          "requirement_id": "CONTR-06",
+          "claim_text": "The system shall keep the balance lookup action visibly consistent with the current validation state so users can clearly tell when the entered card information is submittable.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 5,
+              "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+              "visible_observation": "Validation error message indicating invalid input",
+              "bbox": [
+                25.6,
+                377.4,
+                384.0,
+                407.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+                "image_width": 1280,
+                "image_height": 1480,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  255.0,
+                  20.0,
+                  275.0,
+                  300.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  25.6,
+                  377.4,
+                  384.0,
+                  407.0
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Validation error message indicating invalid input"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The system provides immediate, visible feedback regarding the validation state of the input, allowing the user to understand why the action might not be submittable.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "single-call",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 5,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+          "visible_observation": "Validation error message indicating invalid input",
+          "bbox": [
+            25.6,
+            377.4,
+            384.0,
+            407.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+            "image_width": 1280,
+            "image_height": 1480,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              255.0,
+              20.0,
+              275.0,
+              300.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              25.6,
+              377.4,
+              384.0,
+              407.0
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Validation error message indicating invalid input"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "disabled",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    }
+  ],
+  "metadata": {
+    "flow_dir": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c",
+    "requirements_path": "data/annotations/verification_gold/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/verification_gold.json",
+    "requirements_source": "benchmark",
+    "requested_retriever": "lexical",
+    "retriever_provider": null,
+    "retriever_model": null,
+    "top_k": 4,
+    "claims_enabled": false,
+    "claim_decomposition_policy": "disabled",
+    "max_claims": 4,
+    "llm_claim_fallback": false,
+    "claim_provider": "deepseek",
+    "claim_model": null,
+    "verifier": "gemini-image",
+    "execution_mode": "single-call",
+    "verifier_model": "gemini-3.1-flash-lite",
+    "max_verifier_images": 4,
+    "max_verifier_group_images": -1,
+    "max_verifier_group_claims": 8,
+    "include_sequence_context": true,
+    "claim_workers": 1,
+    "verifier_thinking_level": "low",
+    "verifier_thinking_budget": null,
+    "verifier_max_output_tokens": 32768,
+    "grounding_candidates": null,
+    "grounding_assets_dir": null,
+    "verifier_predict_ui_evaluability": true,
+    "pipeline": "evidence_first_verification_pipeline",
+    "retriever": "LexicalEvidenceRetriever",
+    "retrieval_batch_claims": 20,
+    "max_claim_workers": 1,
+    "gemini_image_verifier": {
+      "requested": 20,
+      "api_calls": 3,
+      "api_call_attempts": 3,
+      "cache_hits": 0,
+      "fallbacks": 0,
+      "failures": [],
+      "cache_path": "data/generated/thesis_final_experiments/fl_raw_all/cache/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c.json",
+      "model_name": "gemini-3.1-flash-lite",
+      "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+      "max_retries": 2,
+      "max_api_calls": null,
+      "include_sequence_context": true,
+      "thinking_level": "low",
+      "thinking_budget": null,
+      "max_output_tokens": 32768,
+      "grouping_strategy": "single-call",
+      "max_images_per_group": null,
+      "max_claims_per_group": 8,
+      "group_workers": 1,
+      "groups": [
+        {
+          "group_id": "G1",
+          "claim_ids": [
+            "REQ-01-C1",
+            "REQ-02-C1",
+            "REQ-03-C1",
+            "REQ-04-C1",
+            "REQ-05-C1",
+            "REQ-06-C1",
+            "REQ-07-C1",
+            "REQ-08-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "image_count": 5,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 9190,
+            "output_tokens": 1976,
+            "total_tokens": 12352,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 1186
+          }
+        },
+        {
+          "group_id": "G2",
+          "claim_ids": [
+            "REQ-09-C1",
+            "REQ-10-C1",
+            "REQ-11-C1",
+            "REQ-13-C1",
+            "REQ-14-C1",
+            "REQ-12-C1",
+            "CONTR-01-C1",
+            "CONTR-02-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "image_count": 5,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 9214,
+            "output_tokens": 1928,
+            "total_tokens": 12266,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 1124
+          }
+        },
+        {
+          "group_id": "G3",
+          "claim_ids": [
+            "CONTR-03-C1",
+            "CONTR-04-C1",
+            "CONTR-05-C1",
+            "CONTR-06-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "image_count": 5,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 8764,
+            "output_tokens": 977,
+            "total_tokens": 10734,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 993
+          }
+        }
+      ],
+      "group_count": 3,
+      "images_attached_total": 15,
+      "unique_images_attached": 5,
+      "cached_content_tokens": 0,
+      "usage": {
+        "request_count": 3,
+        "input_tokens": 27168,
+        "output_tokens": 4881,
+        "thoughts_tokens": 3303,
+        "total_tokens": 35352,
+        "estimated_cost_usd": 0.019068,
+        "estimated_cost_eur": 0.017542560000000002,
+        "models": {},
+        "updated_at": null
+      },
+      "asset_manifest": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_01.png",
+          "sha256": "a227d56f44a61bb9cfbdd4644f0c7e8c12d981f0d38bf9b50d995b0f4c6d1212",
+          "byte_size": 2947437,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 6683,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_02.png",
+          "sha256": "d5c14d839b85ae725c04b5dbea3ba52138b89203a895d64a0da30e3ee0ad969d",
+          "byte_size": 1039439,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2660,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_03.png",
+          "sha256": "e0c3e4577adeb008f2723e92da81151b79c32feb51053db20076f22d27bca781",
+          "byte_size": 358456,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1444,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_04.png",
+          "sha256": "7527d64725fe0721467bf7e4ce9137bb80c1dec8107bc04e7a2985c421f0f5c0",
+          "byte_size": 357561,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1444,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 5,
+          "screenshot_path": "data/processed/flows/mind2web/09_amctheatres_925a2307-b2b7-4189-bf25-e3f463c24e1c/original/step_05.png",
+          "sha256": "5f55aa7b8ff93bd9a3c101990cf1dce7137f297c029e0151c5aa99275da62c58",
+          "byte_size": 380924,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1480,
+          "has_ocr_text": true
+        }
+      ],
+      "candidate_package": null,
+      "marked_assets_dir": null,
+      "predict_ui_evaluability": true
+    },
+    "gemini_mllm_verifier_used": true,
+    "gemini_mllm_verifier_fallback_used": false
+  }
+}

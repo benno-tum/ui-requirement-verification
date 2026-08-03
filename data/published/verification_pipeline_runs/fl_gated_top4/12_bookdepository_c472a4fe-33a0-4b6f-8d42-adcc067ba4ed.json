@@ -1,0 +1,2441 @@
+{
+  "flow_id": "12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+  "screen_representations": [
+    {
+      "step_index": 1,
+      "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_01.png",
+      "image_width": 1280,
+      "image_height": 4275
+    },
+    {
+      "step_index": 2,
+      "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+      "image_width": 1280,
+      "image_height": 1080
+    },
+    {
+      "step_index": 3,
+      "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_03.png",
+      "image_width": 1280,
+      "image_height": 1080
+    },
+    {
+      "step_index": 4,
+      "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_04.png",
+      "image_width": 1280,
+      "image_height": 1080
+    }
+  ],
+  "results": [
+    {
+      "requirement_id": "REQ-01",
+      "requirement_text": "The system shall support discovery of books through homepage browsing sections and category navigation.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-01-C1",
+          "requirement_id": "REQ-01",
+          "claim_text": "The system shall support discovery of books through homepage browsing sections and category navigation.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_01.png",
+              "visible_observation": "Shop by category dropdown",
+              "bbox": [
+                0.0,
+                167.6,
+                181.6,
+                198.4
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_01.png",
+                "image_width": 1280,
+                "image_height": 4275,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  75.0,
+                  20.0,
+                  90.0,
+                  125.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  25.6,
+                  320.625,
+                  160.0,
+                  384.75
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    0.0,
+                    167.6,
+                    181.6,
+                    198.4
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Shop by category dropdown"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_01.png",
+              "visible_observation": "Bestsellers link",
+              "bbox": [
+                192.0,
+                320.625,
+                268.8,
+                384.75
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_01.png",
+                "image_width": 1280,
+                "image_height": 4275,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  75.0,
+                  150.0,
+                  90.0,
+                  210.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  192.0,
+                  320.625,
+                  268.8,
+                  384.75
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Bestsellers link"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The homepage provides clear navigation controls for 'Shop by category' and 'Bestsellers', supporting the requirement for discovery through browsing and category navigation.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_01.png",
+          "visible_observation": "Shop by category dropdown",
+          "bbox": [
+            0.0,
+            167.6,
+            181.6,
+            198.4
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_01.png",
+            "image_width": 1280,
+            "image_height": 4275,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              75.0,
+              20.0,
+              90.0,
+              125.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              25.6,
+              320.625,
+              160.0,
+              384.75
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                0.0,
+                167.6,
+                181.6,
+                198.4
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Shop by category dropdown"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_01.png",
+          "visible_observation": "Bestsellers link",
+          "bbox": [
+            192.0,
+            320.625,
+            268.8,
+            384.75
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_01.png",
+            "image_width": 1280,
+            "image_height": 4275,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              75.0,
+              150.0,
+              90.0,
+              210.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              192.0,
+              320.625,
+              268.8,
+              384.75
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Bestsellers link"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-02",
+      "requirement_text": "The system shall provide a dedicated advanced search workflow for finding books using structured search criteria.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-02-C1",
+          "requirement_id": "REQ-02",
+          "claim_text": "The system shall provide a dedicated advanced search workflow for finding books using structured search criteria.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+              "visible_observation": "Advanced Search form area",
+              "bbox": [
+                0.0,
+                221.6,
+                292.6,
+                263.4
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+                "image_width": 1280,
+                "image_height": 1080,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  200.0,
+                  30.0,
+                  450.0,
+                  970.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  38.4,
+                  216.0,
+                  1241.6,
+                  486.0
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    0.0,
+                    221.6,
+                    292.6,
+                    263.4
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Advanced Search form area"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI explicitly provides an 'Advanced Search' page with a structured form, fulfilling the requirement for a dedicated workflow.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+          "visible_observation": "Advanced Search form area",
+          "bbox": [
+            0.0,
+            221.6,
+            292.6,
+            263.4
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+            "image_width": 1280,
+            "image_height": 1080,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              200.0,
+              30.0,
+              450.0,
+              970.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              38.4,
+              216.0,
+              1241.6,
+              486.0
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                0.0,
+                221.6,
+                292.6,
+                263.4
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Advanced Search form area"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-03",
+      "requirement_text": "The system shall allow users to search for books using multiple bibliographic fields, including keyword, title, author, publisher, and ISBN.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-03-C1",
+          "requirement_id": "REQ-03",
+          "claim_text": "The system allows users to search for books using multiple bibliographic fields, including keyword, title, author, publisher, and ISBN.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+              "visible_observation": "Search fields for Keyword, Title, Author, Publisher, ISBN",
+              "bbox": [
+                38.4,
+                324.0,
+                1241.6,
+                442.8
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+                "image_width": 1280,
+                "image_height": 1080,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  300.0,
+                  30.0,
+                  410.0,
+                  970.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  38.4,
+                  324.0,
+                  1241.6,
+                  442.8
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Search fields for Keyword, Title, Author, Publisher, ISBN"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The Advanced Search form clearly lists and provides input fields for all the specified bibliographic criteria.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+          "visible_observation": "Search fields for Keyword, Title, Author, Publisher, ISBN",
+          "bbox": [
+            38.4,
+            324.0,
+            1241.6,
+            442.8
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+            "image_width": 1280,
+            "image_height": 1080,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              300.0,
+              30.0,
+              410.0,
+              970.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              38.4,
+              324.0,
+              1241.6,
+              442.8
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Search fields for Keyword, Title, Author, Publisher, ISBN"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "heuristic",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-05",
+      "requirement_text": "The system shall allow users to constrain advanced search by language.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-05-C1",
+          "requirement_id": "REQ-05",
+          "claim_text": "The system shall allow users to constrain advanced search by language.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+              "visible_observation": "Language selection dropdown",
+              "bbox": [
+                844.8,
+                399.6,
+                1241.6,
+                442.8
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+                "image_width": 1280,
+                "image_height": 1080,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  370.0,
+                  660.0,
+                  410.0,
+                  970.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  844.8,
+                  399.6,
+                  1241.6,
+                  442.8
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Language selection dropdown"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_04.png",
+              "visible_observation": "The Advanced Search form includes a 'Language' dropdown menu.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The presence of a 'Language' dropdown in the advanced search form allows users to constrain their search by language.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+          "visible_observation": "Language selection dropdown",
+          "bbox": [
+            844.8,
+            399.6,
+            1241.6,
+            442.8
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+            "image_width": 1280,
+            "image_height": 1080,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              370.0,
+              660.0,
+              410.0,
+              970.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              844.8,
+              399.6,
+              1241.6,
+              442.8
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Language selection dropdown"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_04.png",
+          "visible_observation": "The Advanced Search form includes a 'Language' dropdown menu.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-07",
+      "requirement_text": "The system shall provide an explicit action to submit configured advanced search criteria.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-07-C1",
+          "requirement_id": "REQ-07",
+          "claim_text": "The system shall provide an explicit action to submit configured advanced search criteria.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+              "visible_observation": "Search submit button",
+              "bbox": [
+                1094.4,
+                453.6,
+                1241.6,
+                502.2
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+                "image_width": 1280,
+                "image_height": 1080,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  420.0,
+                  855.0,
+                  465.0,
+                  970.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  1094.4,
+                  453.6,
+                  1241.6,
+                  502.2
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Search submit button"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The 'Search' button provides an explicit action to submit the configured criteria.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+          "visible_observation": "Search submit button",
+          "bbox": [
+            1094.4,
+            453.6,
+            1241.6,
+            502.2
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+            "image_width": 1280,
+            "image_height": 1080,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              420.0,
+              855.0,
+              465.0,
+              970.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              1094.4,
+              453.6,
+              1241.6,
+              502.2
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Search submit button"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-08",
+      "requirement_text": "The system shall keep configured advanced search criteria visibly reflected in the search form before submission.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-08-C1",
+          "requirement_id": "REQ-08",
+          "claim_text": "The system shall keep configured advanced search criteria visibly reflected in the search form before submission.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_03.png",
+              "visible_observation": "Author field with 'Stephen King'",
+              "bbox": [
+                822.8,
+                347.2,
+                991.2,
+                375.8
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_03.png",
+                "image_width": 1280,
+                "image_height": 1080,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  315.0,
+                  660.0,
+                  350.0,
+                  970.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  844.8,
+                  340.2,
+                  1241.6,
+                  378.0
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    822.8,
+                    347.2,
+                    991.2,
+                    375.8
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Author field with 'Stephen King'"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_04.png",
+              "visible_observation": "Language field with 'German'",
+              "bbox": [
+                844.8,
+                399.6,
+                1241.6,
+                442.8
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_04.png",
+                "image_width": 1280,
+                "image_height": 1080,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  370.0,
+                  660.0,
+                  410.0,
+                  970.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  844.8,
+                  399.6,
+                  1241.6,
+                  442.8
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Language field with 'German'"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI demonstrates that input values (like 'Stephen King' in Author or 'German' in Language) remain visible in the form fields.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_03.png",
+          "visible_observation": "Author field with 'Stephen King'",
+          "bbox": [
+            822.8,
+            347.2,
+            991.2,
+            375.8
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_03.png",
+            "image_width": 1280,
+            "image_height": 1080,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              315.0,
+              660.0,
+              350.0,
+              970.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              844.8,
+              340.2,
+              1241.6,
+              378.0
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                822.8,
+                347.2,
+                991.2,
+                375.8
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Author field with 'Stephen King'"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_04.png",
+          "visible_observation": "Language field with 'German'",
+          "bbox": [
+            844.8,
+            399.6,
+            1241.6,
+            442.8
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_04.png",
+            "image_width": 1280,
+            "image_height": 1080,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              370.0,
+              660.0,
+              410.0,
+              970.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              844.8,
+              399.6,
+              1241.6,
+              442.8
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Language field with 'German'"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-09",
+      "requirement_text": "The system shall display books matching the submitted advanced search filters so the user can browse filtered results.",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "REQ-09-C1",
+          "requirement_id": "REQ-09",
+          "claim_text": "The system shall display books matching the submitted advanced search filters so the user can browse filtered results.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "While the search form is visible, the screenshots do not show the results page or the display of books matching the filters, so this cannot be verified.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-10",
+      "requirement_text": "The system shall preserve global storefront context such as account access, order status, wishlist, cart, and locale controls while the user performs search tasks.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-10-C1",
+          "requirement_id": "REQ-10",
+          "claim_text": "The system shall preserve global storefront context such as account access, order status, wishlist, cart, and locale controls while the user performs search tasks.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+              "visible_observation": "Global header controls",
+              "bbox": [
+                857.6,
+                43.2,
+                1241.6,
+                86.4
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+                "image_width": 1280,
+                "image_height": 1080,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  40.0,
+                  670.0,
+                  80.0,
+                  970.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  857.6,
+                  43.2,
+                  1241.6,
+                  86.4
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Global header controls"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_03.png",
+              "visible_observation": "The header containing 'Order Status', 'Wishlist', 'My Account', and locale controls remains consistent across the search pages.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_04.png",
+              "visible_observation": "The header containing 'Order Status', 'Wishlist', 'My Account', and locale controls remains consistent across the search pages.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The global header, which includes account access, order status, wishlist, and locale controls, is consistently present while the user is on the Advanced Search page.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+          "visible_observation": "Global header controls",
+          "bbox": [
+            857.6,
+            43.2,
+            1241.6,
+            86.4
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+            "image_width": 1280,
+            "image_height": 1080,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              40.0,
+              670.0,
+              80.0,
+              970.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              857.6,
+              43.2,
+              1241.6,
+              86.4
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Global header controls"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_03.png",
+          "visible_observation": "The header containing 'Order Status', 'Wishlist', 'My Account', and locale controls remains consistent across the search pages.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_04.png",
+          "visible_observation": "The header containing 'Order Status', 'Wishlist', 'My Account', and locale controls remains consistent across the search pages.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall support user-selectable locale settings relevant to shopping, including interface language and currency, alongside product discovery features.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-11-C1",
+          "requirement_id": "REQ-11",
+          "claim_text": "The system supports user-selectable locale settings relevant to shopping, including interface language and currency, alongside product discovery features.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+              "visible_observation": "Language and currency selection dropdowns in the header.",
+              "bbox": [
+                889.6,
+                156.6,
+                1094.4,
+                189.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+                "image_width": 1280,
+                "image_height": 1080,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  145.0,
+                  695.0,
+                  175.0,
+                  855.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  889.6,
+                  156.6,
+                  1094.4,
+                  189.0
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Language and currency selection dropdowns in the header."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI explicitly provides dropdown menus for selecting language and currency in the header, which are standard locale settings for shopping.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+          "visible_observation": "Language and currency selection dropdowns in the header.",
+          "bbox": [
+            889.6,
+            156.6,
+            1094.4,
+            189.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+            "image_width": 1280,
+            "image_height": 1080,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              145.0,
+              695.0,
+              175.0,
+              855.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              889.6,
+              156.6,
+              1094.4,
+              189.0
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Language and currency selection dropdowns in the header."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "TEXTUAL_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "heuristic",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-12",
+      "requirement_text": "The system shall carry active advanced search filters forward into subsequent browsing views so users can understand the basis of the shown results.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "REQ-12-C1",
+          "requirement_id": "REQ-12",
+          "claim_text": "The system shall carry active advanced search filters forward into subsequent browsing views so users can understand the basis of the shown results.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "While the advanced search form is visible, there is no evidence of a subsequent browsing view to verify if the filters are carried forward.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-04",
+      "requirement_text": "The system shall allow users to search for books by author name within the advanced search workflow.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-04-C1",
+          "requirement_id": "REQ-04",
+          "claim_text": "The system shall allow users to search for books by author name within the advanced search workflow.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+              "visible_observation": "Author input field in the advanced search form.",
+              "bbox": [
+                0.0,
+                221.6,
+                292.6,
+                263.4
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+                "image_width": 1280,
+                "image_height": 1080,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  315.0,
+                  665.0,
+                  345.0,
+                  965.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  851.2,
+                  340.2,
+                  1235.2,
+                  372.6
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    0.0,
+                    221.6,
+                    292.6,
+                    263.4
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Author input field in the advanced search form."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The advanced search interface clearly provides an 'Author' field for searching books.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+          "visible_observation": "Author input field in the advanced search form.",
+          "bbox": [
+            0.0,
+            221.6,
+            292.6,
+            263.4
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+            "image_width": 1280,
+            "image_height": 1080,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              315.0,
+              665.0,
+              345.0,
+              965.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              851.2,
+              340.2,
+              1235.2,
+              372.6
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                0.0,
+                221.6,
+                292.6,
+                263.4
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Author input field in the advanced search form."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-06",
+      "requirement_text": "The system shall allow users to combine multiple advanced search criteria in a single search request, including author and language together.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-06-C1",
+          "requirement_id": "REQ-06",
+          "claim_text": "The system allows users to combine multiple advanced search criteria in a single search request, including author and language together.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+              "visible_observation": "Advanced search form with multiple criteria fields including Author and Language.",
+              "bbox": [
+                0.0,
+                221.6,
+                292.6,
+                263.4
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+                "image_width": 1280,
+                "image_height": 1080,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  280.0,
+                  30.0,
+                  410.0,
+                  970.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  38.4,
+                  302.4,
+                  1241.6,
+                  442.8
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    0.0,
+                    221.6,
+                    292.6,
+                    263.4
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Advanced search form with multiple criteria fields including Author and Language."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI presents a form with multiple fields, allowing users to input criteria for Author and Language in a single search request.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+          "visible_observation": "Advanced search form with multiple criteria fields including Author and Language.",
+          "bbox": [
+            0.0,
+            221.6,
+            292.6,
+            263.4
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+            "image_width": 1280,
+            "image_height": 1080,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              280.0,
+              30.0,
+              410.0,
+              970.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              38.4,
+              302.4,
+              1241.6,
+              442.8
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                0.0,
+                221.6,
+                292.6,
+                263.4
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Advanced search form with multiple criteria fields including Author and Language."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "heuristic",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall retain previously entered advanced search criteria when the user returns from a filtered browsing view to the advanced search workflow during the same session.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-01-C1",
+          "requirement_id": "CONTR-01",
+          "claim_text": "The system shall retain previously entered advanced search criteria when the user returns from a filtered browsing view to the advanced search workflow during the same session.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "There is no evidence of the user navigating away from the search page and returning to it to see if the previously entered criteria are retained.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall remember a signed-in user's preferred storefront locale and language-related search context for later visits to the search workflow.",
+      "ui_evaluability": "NOT_UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-02-C1",
+          "requirement_id": "CONTR-02",
+          "claim_text": "The system shall remember a signed-in user's preferred storefront locale and language-related search context for later visits to the search workflow.",
+          "status": "HIDDEN",
+          "is_core": true,
+          "is_observable": false,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "NONTRIVIAL_HIDDEN_PROPERTY"
+          ],
+          "confidence": 0.2,
+          "rationale": "Whether the system remembers preferences for future visits is a backend/persistence behavior that cannot be verified through static screenshots.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "HIDDEN",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "NOT_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "rationale": "The requirement is not UI-verifiable from screenshots, so the pipeline abstains.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall ensure that books shown after advanced search satisfy all submitted visible constraints, including the selected author and language.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-03-C1",
+          "requirement_id": "CONTR-03",
+          "claim_text": "The system shall ensure that books shown after advanced search satisfy all submitted visible constraints, including the selected author and language.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "The claim requires verifying the results of a search, which are not shown in the provided screenshots.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall include all currently available catalog titles that match the configured author and German-language criteria in the resulting browsing view.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-04-C1",
+          "requirement_id": "CONTR-04",
+          "claim_text": "The system shall include all currently available catalog titles that match the configured author and German-language criteria in the resulting browsing view.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "The claim requires verifying the completeness of search results, which are not shown in the provided screenshots.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall provide a dedicated review state before executing advanced search in which the configured bibliographic and language criteria can be checked, edited, or cleared.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "NOT_FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-05-C1",
+          "requirement_id": "CONTR-05",
+          "claim_text": "The system provides a dedicated review state before executing advanced search in which the configured bibliographic and language criteria can be checked, edited, or cleared.",
+          "status": "CONTRADICTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+              "visible_observation": "The 'Search' button in the Advanced Search form, which triggers the search directly without an intermediate review state.",
+              "bbox": [
+                0.0,
+                221.6,
+                292.6,
+                263.4
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+                "image_width": 1280,
+                "image_height": 1080,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  418.0,
+                  858.0,
+                  463.0,
+                  968.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  1098.24,
+                  451.44,
+                  1239.04,
+                  500.04
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    0.0,
+                    221.6,
+                    292.6,
+                    263.4
+                  ]
+                },
+                "role": "CONTRADICTING",
+                "localizability": "LOCAL_REGION",
+                "description": "The 'Search' button in the Advanced Search form, which triggers the search directly without an intermediate review state."
+              },
+              "confidence": 0.75,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_03.png",
+              "visible_observation": "The Advanced Search interface allows direct execution of a search via a 'Search' button immediately after inputting criteria, with no intermediate review state.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.75,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_04.png",
+              "visible_observation": "The Advanced Search interface allows direct execution of a search via a 'Search' button immediately after inputting criteria, with no intermediate review state.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.75,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.75,
+          "rationale": "The system provides a direct input form for advanced search. There is no dedicated review state or summary screen presented to the user after filling in the criteria and before clicking the 'Search' button.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "CONTRADICTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+          "visible_observation": "The 'Search' button in the Advanced Search form, which triggers the search directly without an intermediate review state.",
+          "bbox": [
+            0.0,
+            221.6,
+            292.6,
+            263.4
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+            "image_width": 1280,
+            "image_height": 1080,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              418.0,
+              858.0,
+              463.0,
+              968.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              1098.24,
+              451.44,
+              1239.04,
+              500.04
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                0.0,
+                221.6,
+                292.6,
+                263.4
+              ]
+            },
+            "role": "CONTRADICTING",
+            "localizability": "LOCAL_REGION",
+            "description": "The 'Search' button in the Advanced Search form, which triggers the search directly without an intermediate review state."
+          },
+          "confidence": 0.75,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_03.png",
+          "visible_observation": "The Advanced Search interface allows direct execution of a search via a 'Search' button immediately after inputting criteria, with no intermediate review state.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.75,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_04.png",
+          "visible_observation": "The Advanced Search interface allows direct execution of a search via a 'Search' button immediately after inputting criteria, with no intermediate review state.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.75,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "A central claim is contradicted by evidence.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "heuristic",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-06",
+      "requirement_text": "The system shall expose active author and language filters in the results view as inline, directly editable controls so users can refine the search without reopening the full advanced search form.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-06-C1",
+          "requirement_id": "CONTR-06",
+          "claim_text": "The system shall expose active author and language filters in the results view as inline, directly editable controls so users can refine the search without reopening the full advanced search form.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "The provided screenshots do not include a search results page, so it is impossible to verify if active filters are exposed as inline, directly editable controls in that view.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    }
+  ],
+  "metadata": {
+    "flow_dir": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed",
+    "requirements_path": "data/annotations/verification_gold/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/verification_gold.json",
+    "requirements_source": "benchmark",
+    "requested_retriever": "lexical",
+    "retriever_provider": null,
+    "retriever_model": null,
+    "top_k": 4,
+    "claims_enabled": true,
+    "claim_decomposition_policy": "gated",
+    "max_claims": 4,
+    "llm_claim_fallback": false,
+    "claim_provider": "deepseek",
+    "claim_model": null,
+    "verifier": "gemini-image",
+    "execution_mode": "batched-topk",
+    "verifier_model": "gemini-3.1-flash-lite",
+    "max_verifier_images": 4,
+    "max_verifier_group_images": 4,
+    "max_verifier_group_claims": 8,
+    "include_sequence_context": true,
+    "claim_workers": 1,
+    "verifier_thinking_level": "low",
+    "verifier_thinking_budget": null,
+    "verifier_max_output_tokens": 32768,
+    "grounding_candidates": null,
+    "grounding_assets_dir": null,
+    "verifier_predict_ui_evaluability": true,
+    "pipeline": "evidence_first_verification_pipeline",
+    "retriever": "LexicalEvidenceRetriever",
+    "retrieval_batch_claims": 18,
+    "max_claim_workers": 1,
+    "gemini_image_verifier": {
+      "requested": 18,
+      "api_calls": 3,
+      "api_call_attempts": 3,
+      "cache_hits": 0,
+      "fallbacks": 0,
+      "failures": [],
+      "cache_path": "data/generated/thesis_final_experiments/fl_gated_top4/cache/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed.json",
+      "model_name": "gemini-3.1-flash-lite",
+      "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+      "max_retries": 2,
+      "max_api_calls": null,
+      "include_sequence_context": true,
+      "thinking_level": "low",
+      "thinking_budget": null,
+      "max_output_tokens": 32768,
+      "grouping_strategy": "batched-topk",
+      "max_images_per_group": 4,
+      "max_claims_per_group": 8,
+      "group_workers": 1,
+      "groups": [
+        {
+          "group_id": "G1",
+          "claim_ids": [
+            "REQ-01-C1",
+            "REQ-02-C1",
+            "REQ-03-C1",
+            "REQ-05-C1",
+            "REQ-07-C1",
+            "REQ-08-C1",
+            "REQ-09-C1",
+            "REQ-10-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "image_count": 4,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 7762,
+            "output_tokens": 1882,
+            "total_tokens": 9745,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 101
+          }
+        },
+        {
+          "group_id": "G2",
+          "claim_ids": [
+            "REQ-11-C1",
+            "REQ-12-C1",
+            "REQ-04-C1",
+            "REQ-06-C1",
+            "CONTR-01-C1",
+            "CONTR-02-C1",
+            "CONTR-03-C1",
+            "CONTR-04-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "image_count": 4,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 7857,
+            "output_tokens": 1560,
+            "total_tokens": 9502,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 85
+          }
+        },
+        {
+          "group_id": "G3",
+          "claim_ids": [
+            "CONTR-05-C1",
+            "CONTR-06-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "image_count": 4,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 7106,
+            "output_tokens": 463,
+            "total_tokens": 8335,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 766
+          }
+        }
+      ],
+      "group_count": 3,
+      "images_attached_total": 12,
+      "unique_images_attached": 4,
+      "cached_content_tokens": 0,
+      "usage": {
+        "request_count": 3,
+        "input_tokens": 22725,
+        "output_tokens": 3905,
+        "thoughts_tokens": 952,
+        "total_tokens": 27582,
+        "estimated_cost_usd": 0.01296675,
+        "estimated_cost_eur": 0.011929410000000001,
+        "models": {},
+        "updated_at": null
+      },
+      "asset_manifest": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/original/step_01.png",
+          "sha256": "343538edf650d375ba94d8675f7eb2eddadbc7ed8fe188676faa431aa5859fc2",
+          "byte_size": 3315519,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 4275,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_02.png",
+          "sha256": "9a6a26389011f40abbb86a6a806c440879ac9387168ea4496b5b5dd77be6970a",
+          "byte_size": 277870,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1080,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_03.png",
+          "sha256": "232338866789a36586c0cf42c3d5340b954beba92ef9b7c5d8cd613539f1f5dd",
+          "byte_size": 280237,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1080,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/12_bookdepository_c472a4fe-33a0-4b6f-8d42-adcc067ba4ed/step_04.png",
+          "sha256": "0abe694b4943bb70e37cfb811fec17138e71f8e27f1b1d3ec98b82c1fbdd0240",
+          "byte_size": 281336,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1080,
+          "has_ocr_text": true
+        }
+      ],
+      "candidate_package": null,
+      "marked_assets_dir": null,
+      "predict_ui_evaluability": true
+    },
+    "gemini_mllm_verifier_used": true,
+    "gemini_mllm_verifier_fallback_used": false
+  }
+}

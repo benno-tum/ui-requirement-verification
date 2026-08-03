@@ -47,7 +47,7 @@ This package contains author-created configurations, aggregate metrics,
 statistical summaries, sanitized manifests, and documentation. Its PURE summary
 is derived from the versioned reviewed annotations and is distributed with the
 CC BY 4.0 attribution above. The repository also contains reviewed derived
-annotations and one explicitly sanitized Mind2Web prediction set under
+annotations and three explicitly sanitized Mind2Web prediction sets under
 `data/published/`; raw prompts, raw responses, and reviewer working materials
 remain local.
 

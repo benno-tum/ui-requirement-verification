@@ -1,0 +1,3814 @@
+{
+  "flow_id": "06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+  "screen_representations": [
+    {
+      "step_index": 1,
+      "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_01.png",
+      "image_width": 1280,
+      "image_height": 2942
+    },
+    {
+      "step_index": 2,
+      "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_02.png",
+      "image_width": 1305,
+      "image_height": 1689
+    },
+    {
+      "step_index": 3,
+      "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+      "image_width": 1305,
+      "image_height": 2004
+    },
+    {
+      "step_index": 4,
+      "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+      "image_width": 1305,
+      "image_height": 1689
+    },
+    {
+      "step_index": 5,
+      "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_05.png",
+      "image_width": 1298,
+      "image_height": 6124
+    },
+    {
+      "step_index": 6,
+      "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+      "image_width": 1280,
+      "image_height": 1537
+    }
+  ],
+  "results": [
+    {
+      "requirement_id": "REQ-01",
+      "requirement_text": "The system shall provide visible entry points into the careers experience from both general Six Flags pages and park-specific pages.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-01-C1",
+          "requirement_id": "REQ-01",
+          "claim_text": "The system provides visible entry points into the careers experience from both general Six Flags pages and park-specific pages.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_01.png",
+              "visible_observation": "Jobs link in header on general page",
+              "bbox": [
+                652.8,
+                29.42,
+                704.0,
+                88.26
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_01.png",
+                "image_width": 1280,
+                "image_height": 2942,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  10.0,
+                  510.0,
+                  30.0,
+                  550.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  652.8,
+                  29.42,
+                  704.0,
+                  88.26
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Jobs link in header on general page"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+              "visible_observation": "Jobs link in header on careers page",
+              "bbox": [
+                659.025,
+                390.78,
+                704.7,
+                430.86
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+                "image_width": 1305,
+                "image_height": 2004,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  195.0,
+                  505.0,
+                  215.0,
+                  540.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  659.025,
+                  390.78,
+                  704.7,
+                  430.86
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Jobs link in header on careers page"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The 'Jobs' navigation link is consistently visible in the header across both general and careers-specific pages.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_01.png",
+          "visible_observation": "Jobs link in header on general page",
+          "bbox": [
+            652.8,
+            29.42,
+            704.0,
+            88.26
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_01.png",
+            "image_width": 1280,
+            "image_height": 2942,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              10.0,
+              510.0,
+              30.0,
+              550.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              652.8,
+              29.42,
+              704.0,
+              88.26
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Jobs link in header on general page"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+          "visible_observation": "Jobs link in header on careers page",
+          "bbox": [
+            659.025,
+            390.78,
+            704.7,
+            430.86
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+            "image_width": 1305,
+            "image_height": 2004,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              195.0,
+              505.0,
+              215.0,
+              540.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              659.025,
+              390.78,
+              704.7,
+              430.86
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Jobs link in header on careers page"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "heuristic",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-02",
+      "requirement_text": "The system shall support choosing a specific park to scope job discovery to a particular location.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-02-C1",
+          "requirement_id": "REQ-02",
+          "claim_text": "The system shall support choosing a specific park to scope job discovery to a particular location.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+              "visible_observation": "List of parks for selection",
+              "bbox": [
+                71.8,
+                1615.2,
+                849.2,
+                1676.8
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+                "image_width": 1305,
+                "image_height": 2004,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  310.0,
+                  130.0,
+                  470.0,
+                  250.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  169.65,
+                  621.24,
+                  326.25,
+                  941.88
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    71.8,
+                    1615.2,
+                    849.2,
+                    1676.8
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "List of parks for selection"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+              "visible_observation": "Selected park displayed",
+              "bbox": [
+                169.65,
+                557.37,
+                1109.25,
+                624.93
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+                "image_width": 1305,
+                "image_height": 1689,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  330.0,
+                  130.0,
+                  370.0,
+                  850.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  169.65,
+                  557.37,
+                  1109.25,
+                  624.93
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Selected park displayed"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI provides a clear mechanism to select a park, which then updates the page context.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+          "visible_observation": "List of parks for selection",
+          "bbox": [
+            71.8,
+            1615.2,
+            849.2,
+            1676.8
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+            "image_width": 1305,
+            "image_height": 2004,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              310.0,
+              130.0,
+              470.0,
+              250.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              169.65,
+              621.24,
+              326.25,
+              941.88
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                71.8,
+                1615.2,
+                849.2,
+                1676.8
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "List of parks for selection"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+          "visible_observation": "Selected park displayed",
+          "bbox": [
+            169.65,
+            557.37,
+            1109.25,
+            624.93
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+            "image_width": 1305,
+            "image_height": 1689,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              330.0,
+              130.0,
+              370.0,
+              850.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              169.65,
+              557.37,
+              1109.25,
+              624.93
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Selected park displayed"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-04",
+      "requirement_text": "The system shall carry the selected park context into subsequent recruiting screens and park-specific job content.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-04-C1",
+          "requirement_id": "REQ-04",
+          "claim_text": "The system shall carry the selected park context into subsequent recruiting screens and park-specific job content.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+              "visible_observation": "Selected park context in header",
+              "bbox": [
+                169.65,
+                557.37,
+                1109.25,
+                624.93
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+                "image_width": 1305,
+                "image_height": 1689,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  330.0,
+                  130.0,
+                  370.0,
+                  850.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  169.65,
+                  557.37,
+                  1109.25,
+                  624.93
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Selected park context in header"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+              "visible_observation": "Location context in job details",
+              "bbox": [
+                254.2,
+                320.8,
+                622.8,
+                391.2
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1537,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  250.0,
+                  50.0,
+                  275.0,
+                  200.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  64.0,
+                  384.25,
+                  256.0,
+                  422.675
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    254.2,
+                    320.8,
+                    622.8,
+                    391.2
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Location context in job details"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The selected park context is maintained and displayed across the recruiting and job detail pages.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+          "visible_observation": "Selected park context in header",
+          "bbox": [
+            169.65,
+            557.37,
+            1109.25,
+            624.93
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+            "image_width": 1305,
+            "image_height": 1689,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              330.0,
+              130.0,
+              370.0,
+              850.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              169.65,
+              557.37,
+              1109.25,
+              624.93
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Selected park context in header"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+          "visible_observation": "Location context in job details",
+          "bbox": [
+            254.2,
+            320.8,
+            622.8,
+            391.2
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1537,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              250.0,
+              50.0,
+              275.0,
+              200.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              64.0,
+              384.25,
+              256.0,
+              422.675
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                254.2,
+                320.8,
+                622.8,
+                391.2
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Location context in job details"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-07",
+      "requirement_text": "The system shall provide an individual detail page for a specific job opening.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-07-C1",
+          "requirement_id": "REQ-07",
+          "claim_text": "The system shall provide an individual detail page for a specific job opening.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+              "visible_observation": "Job title and details header",
+              "bbox": [
+                64.0,
+                199.81,
+                448.0,
+                261.29
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1537,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  130.0,
+                  50.0,
+                  170.0,
+                  350.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  64.0,
+                  199.81,
+                  448.0,
+                  261.29
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Job title and details header"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The page provides a dedicated view for a specific job opening with comprehensive details.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+          "visible_observation": "Job title and details header",
+          "bbox": [
+            64.0,
+            199.81,
+            448.0,
+            261.29
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1537,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              130.0,
+              50.0,
+              170.0,
+              350.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              64.0,
+              199.81,
+              448.0,
+              261.29
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Job title and details header"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-05",
+      "requirement_text": "The system shall let applicants browse opportunities by department or specialized team within a selected park.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "REQ-05-C1",
+          "requirement_id": "REQ-05",
+          "claim_text": "The system shall let applicants browse opportunities by department or specialized team within a selected park.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "While departments are mentioned in the descriptive text, there is no UI component (like a filter or category browser) that allows users to browse opportunities by department.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              5,
+              6
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-06",
+      "requirement_text": "The system shall highlight featured or currently hiring roles on park recruiting pages to speed job discovery.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-06-C1",
+          "requirement_id": "REQ-06",
+          "claim_text": "The system shall highlight featured or currently hiring roles on park recruiting pages to speed job discovery.",
+          "status": "SUPPORTED_WITH_CAVEAT",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+              "visible_observation": "The page lists roles that are currently hiring, which serves as a highlight, though it is not explicitly labeled as a 'featured' section.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.72,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+              "visible_observation": "List of roles currently hiring",
+              "bbox": [
+                247.95,
+                388.47,
+                1044.0,
+                439.14
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+                "image_width": 1305,
+                "image_height": 1689,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  230.0,
+                  190.0,
+                  260.0,
+                  800.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  247.95,
+                  388.47,
+                  1044.0,
+                  439.14
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "List of roles currently hiring"
+              },
+              "confidence": 0.72,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.72,
+          "rationale": "The UI explicitly lists roles that are currently hiring, which effectively highlights them for the user, even if not labeled as 'featured'.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "raw_model_label": "SUPPORTED_WITH_CAVEAT",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+          "visible_observation": "The page lists roles that are currently hiring, which serves as a highlight, though it is not explicitly labeled as a 'featured' section.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.72,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+          "visible_observation": "List of roles currently hiring",
+          "bbox": [
+            247.95,
+            388.47,
+            1044.0,
+            439.14
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+            "image_width": 1305,
+            "image_height": 1689,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              230.0,
+              190.0,
+              260.0,
+              800.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              247.95,
+              388.47,
+              1044.0,
+              439.14
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "List of roles currently hiring"
+          },
+          "confidence": 0.72,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported, with at least one accepted caveat that does not block fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-08",
+      "requirement_text": "The system shall present core metadata for each opening, including role title, job category, requisition identifier, employment type, location, and posting information.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-08-C1",
+          "requirement_id": "REQ-08",
+          "claim_text": "The system presents core metadata for each opening.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+              "visible_observation": "Core job metadata block",
+              "bbox": [
+                64.0,
+                199.81,
+                384.0,
+                422.675
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1537,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  130.0,
+                  50.0,
+                  275.0,
+                  300.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  64.0,
+                  199.81,
+                  384.0,
+                  422.675
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Core job metadata block"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "All required metadata fields are clearly visible on the job detail page.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        },
+        {
+          "claim_id": "REQ-08-C2",
+          "requirement_id": "REQ-08",
+          "claim_text": "The presented core metadata for each opening includes role title.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+              "visible_observation": "Role title",
+              "bbox": [
+                64.0,
+                199.81,
+                448.0,
+                245.92
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1537,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  130.0,
+                  50.0,
+                  160.0,
+                  350.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  64.0,
+                  199.81,
+                  448.0,
+                  245.92
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Role title"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The role title is clearly presented at the top of the job detail page.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        },
+        {
+          "claim_id": "REQ-08-C3",
+          "requirement_id": "REQ-08",
+          "claim_text": "The presented core metadata for each opening includes job category.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+              "visible_observation": "Job Category field showing 'In Park'",
+              "bbox": [
+                19.0,
+                251.0,
+                270.0,
+                284.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1537,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  140.0,
+                  50.0,
+                  160.0,
+                  250.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  64.0,
+                  215.18,
+                  320.0,
+                  245.92
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    19.0,
+                    251.0,
+                    270.0,
+                    284.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Job Category field showing 'In Park'"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The job details page displays the job category as part of the metadata.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        },
+        {
+          "claim_id": "REQ-08-C4",
+          "requirement_id": "REQ-08",
+          "claim_text": "The presented core metadata for each opening includes requisition identifier.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+              "visible_observation": "Requisition Number field",
+              "bbox": [
+                23.4,
+                283.6,
+                262.6,
+                314.4
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1537,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  165.0,
+                  50.0,
+                  185.0,
+                  300.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  64.0,
+                  253.605,
+                  384.0,
+                  284.345
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    23.4,
+                    283.6,
+                    262.6,
+                    314.4
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Requisition Number field"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The job details page displays the requisition identifier as part of the metadata.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+          "visible_observation": "Core job metadata block",
+          "bbox": [
+            64.0,
+            199.81,
+            384.0,
+            422.675
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1537,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              130.0,
+              50.0,
+              275.0,
+              300.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              64.0,
+              199.81,
+              384.0,
+              422.675
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Core job metadata block"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+          "visible_observation": "Role title",
+          "bbox": [
+            64.0,
+            199.81,
+            448.0,
+            245.92
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1537,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              130.0,
+              50.0,
+              160.0,
+              350.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              64.0,
+              199.81,
+              448.0,
+              245.92
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Role title"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+          "visible_observation": "Job Category field showing 'In Park'",
+          "bbox": [
+            19.0,
+            251.0,
+            270.0,
+            284.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1537,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              140.0,
+              50.0,
+              160.0,
+              250.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              64.0,
+              215.18,
+              320.0,
+              245.92
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                19.0,
+                251.0,
+                270.0,
+                284.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Job Category field showing 'In Park'"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+          "visible_observation": "Requisition Number field",
+          "bbox": [
+            23.4,
+            283.6,
+            262.6,
+            314.4
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1537,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              165.0,
+              50.0,
+              185.0,
+              300.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              64.0,
+              253.605,
+              384.0,
+              284.345
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                23.4,
+                283.6,
+                262.6,
+                314.4
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Requisition Number field"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "heuristic",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-09",
+      "requirement_text": "The system shall present role responsibilities, qualification criteria, and compensation information to support application decisions.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-09-C1",
+          "requirement_id": "REQ-09",
+          "claim_text": "The system shall present role responsibilities, qualification criteria, and compensation information to support application decisions.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+              "visible_observation": "Responsibilities, qualifications, and compensation details",
+              "bbox": [
+                358.4,
+                691.65,
+                896.0,
+                845.35
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1537,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  450.0,
+                  280.0,
+                  550.0,
+                  700.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  358.4,
+                  691.65,
+                  896.0,
+                  845.35
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "MULTI_REGION_PART",
+                "description": "Responsibilities, qualifications, and compensation details"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The job details page provides comprehensive information regarding responsibilities, qualifications, and compensation.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+          "visible_observation": "Responsibilities, qualifications, and compensation details",
+          "bbox": [
+            358.4,
+            691.65,
+            896.0,
+            845.35
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1537,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              450.0,
+              280.0,
+              550.0,
+              700.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              358.4,
+              691.65,
+              896.0,
+              845.35
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "MULTI_REGION_PART",
+            "description": "Responsibilities, qualifications, and compensation details"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-10",
+      "requirement_text": "The system shall provide a prominent action for starting an application from recruiting content and job-opening pages.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-10-C1",
+          "requirement_id": "REQ-10",
+          "claim_text": "The system shall provide a prominent action for starting an application from recruiting content and job-opening pages.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+              "visible_observation": "Apply now button",
+              "bbox": [
+                578.0,
+                671.0,
+                751.0,
+                704.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1537,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  130.0,
+                  850.0,
+                  155.0,
+                  950.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  1088.0,
+                  199.81,
+                  1216.0,
+                  238.235
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    578.0,
+                    671.0,
+                    751.0,
+                    704.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Apply now button"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The system provides a clear and prominent action to start the application process.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+          "visible_observation": "Apply now button",
+          "bbox": [
+            578.0,
+            671.0,
+            751.0,
+            704.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1537,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              130.0,
+              850.0,
+              155.0,
+              950.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              1088.0,
+              199.81,
+              1216.0,
+              238.235
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                578.0,
+                671.0,
+                751.0,
+                704.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Apply now button"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall support an application workflow that can be launched for a specific opening after the applicant has identified the relevant park and role.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-11-C1",
+          "requirement_id": "REQ-11",
+          "claim_text": "The system supports an application workflow that can be launched for a specific opening after the applicant has identified the relevant park and role.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+              "visible_observation": "Apply now button",
+              "bbox": [
+                578.0,
+                671.0,
+                751.0,
+                704.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1537,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  130.0,
+                  850.0,
+                  155.0,
+                  950.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  1088.0,
+                  199.81,
+                  1216.0,
+                  238.235
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    578.0,
+                    671.0,
+                    751.0,
+                    704.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Apply now button"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI allows launching an application workflow specifically for the identified role and park.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+          "visible_observation": "Apply now button",
+          "bbox": [
+            578.0,
+            671.0,
+            751.0,
+            704.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1537,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              130.0,
+              850.0,
+              155.0,
+              950.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              1088.0,
+              199.81,
+              1216.0,
+              238.235
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                578.0,
+                671.0,
+                751.0,
+                704.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Apply now button"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "TEXTUAL_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "heuristic",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-12",
+      "requirement_text": "The system shall communicate employment perks, benefits, or similar value propositions alongside job discovery content.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-12-C1",
+          "requirement_id": "REQ-12",
+          "claim_text": "The system shall communicate employment perks, benefits, or similar value propositions alongside job discovery content.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+              "visible_observation": "Perks and benefits section",
+              "bbox": [
+                1006.2,
+                650.8,
+                1170.8,
+                677.2
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1537,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  250.0,
+                  280.0,
+                  380.0,
+                  700.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  358.4,
+                  384.25,
+                  896.0,
+                  584.06
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    1006.2,
+                    650.8,
+                    1170.8,
+                    677.2
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Perks and benefits section"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "Employment perks and benefits are clearly communicated alongside the job details.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+          "visible_observation": "Perks and benefits section",
+          "bbox": [
+            1006.2,
+            650.8,
+            1170.8,
+            677.2
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1537,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              250.0,
+              280.0,
+              380.0,
+              700.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              358.4,
+              384.25,
+              896.0,
+              584.06
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                1006.2,
+                650.8,
+                1170.8,
+                677.2
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Perks and benefits section"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-13",
+      "requirement_text": "The system shall provide an alternative discovery path for corporate or non-park-specific careers.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-13-C1",
+          "requirement_id": "REQ-13",
+          "claim_text": "The system shall provide an alternative discovery path for corporate or non-park-specific careers.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+              "visible_observation": "View Corporate Careers button",
+              "bbox": [
+                490.6,
+                1031.4,
+                777.4,
+                1066.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+                "image_width": 1305,
+                "image_height": 2004,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  510.0,
+                  400.0,
+                  535.0,
+                  580.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  522.0,
+                  1022.04,
+                  756.9,
+                  1072.14
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    490.6,
+                    1031.4,
+                    777.4,
+                    1066.6
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "View Corporate Careers button"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+              "visible_observation": "A 'View Corporate Careers' button is present on the job search pages.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The system provides a distinct path for corporate careers separate from park-specific listings.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+          "visible_observation": "View Corporate Careers button",
+          "bbox": [
+            490.6,
+            1031.4,
+            777.4,
+            1066.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+            "image_width": 1305,
+            "image_height": 2004,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              510.0,
+              400.0,
+              535.0,
+              580.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              522.0,
+              1022.04,
+              756.9,
+              1072.14
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                490.6,
+                1031.4,
+                777.4,
+                1066.6
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "View Corporate Careers button"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+          "visible_observation": "A 'View Corporate Careers' button is present on the job search pages.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-15",
+      "requirement_text": "The system shall support narrowing opportunities within a selected park through structured categories or similar organization rather than only a flat undifferentiated job list.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-15-C1",
+          "requirement_id": "REQ-15",
+          "claim_text": "The system shall support narrowing opportunities within a selected park through structured categories or similar organization rather than only a flat undifferentiated job list.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+              "visible_observation": "Job Category field",
+              "bbox": [
+                22.4,
+                252.6,
+                217.6,
+                283.4
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1537,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  140.0,
+                  50.0,
+                  160.0,
+                  250.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  64.0,
+                  215.18,
+                  320.0,
+                  245.92
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    22.4,
+                    252.6,
+                    217.6,
+                    283.4
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Job Category field"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The presence of job categories demonstrates that the system supports structured organization of opportunities.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              5,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+          "visible_observation": "Job Category field",
+          "bbox": [
+            22.4,
+            252.6,
+            217.6,
+            283.4
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1537,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              140.0,
+              50.0,
+              160.0,
+              250.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              64.0,
+              215.18,
+              320.0,
+              245.92
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                22.4,
+                252.6,
+                217.6,
+                283.4
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Job Category field"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-16",
+      "requirement_text": "The system shall surface recruiting campaigns or hiring events associated with a park's employment opportunities.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "REQ-16-C1",
+          "requirement_id": "REQ-16",
+          "claim_text": "The system shall surface recruiting campaigns or hiring events associated with a park's employment opportunities.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "EVIDENCE_INTERPRETATION_AMBIGUITY",
+            "FLOW_COVERAGE_GAP"
+          ],
+          "confidence": 0.0,
+          "rationale": "While the pages mention that Six Flags is hiring, there is no visible evidence of specific recruiting campaigns or hiring events (e.g., job fairs, themed hiring drives) as required.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "EVIDENCE_INTERPRETATION_AMBIGUITY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-03",
+      "requirement_text": "The system shall present available parks in a browsable location list that helps applicants find the correct property.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-03-C1",
+          "requirement_id": "REQ-03",
+          "claim_text": "The system shall present available parks in a browsable location list that helps applicants find the correct property.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+              "visible_observation": "List of available parks for selection.",
+              "bbox": [
+                71.8,
+                1615.2,
+                849.2,
+                1676.8
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+                "image_width": 1305,
+                "image_height": 2004,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  310.0,
+                  60.0,
+                  480.0,
+                  300.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  78.3,
+                  621.24,
+                  391.5,
+                  961.92
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    71.8,
+                    1615.2,
+                    849.2,
+                    1676.8
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "List of available parks for selection."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI provides a clear, browsable list of parks (e.g., Arizona, California) to help applicants select the correct property.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+          "visible_observation": "List of available parks for selection.",
+          "bbox": [
+            71.8,
+            1615.2,
+            849.2,
+            1676.8
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+            "image_width": 1305,
+            "image_height": 2004,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              310.0,
+              60.0,
+              480.0,
+              300.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              78.3,
+              621.24,
+              391.5,
+              961.92
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                71.8,
+                1615.2,
+                849.2,
+                1676.8
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "List of available parks for selection."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "TEXTUAL_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-14",
+      "requirement_text": "The system shall make the recruiting flow understandable through consistent labeling of park, team, and role context across screens.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-14-C1",
+          "requirement_id": "REQ-14",
+          "claim_text": "The system shall make the recruiting flow understandable through consistent labeling of park, team, and role context across screens.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+              "visible_observation": "Selected park context on the job search page.",
+              "bbox": [
+                169.65,
+                557.37,
+                978.75,
+                624.93
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+                "image_width": 1305,
+                "image_height": 1689,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  330.0,
+                  130.0,
+                  370.0,
+                  750.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  169.65,
+                  557.37,
+                  978.75,
+                  624.93
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Selected park context on the job search page."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+              "visible_observation": "Park context on the job details page.",
+              "bbox": [
+                29.200000000000003,
+                252.8,
+                259.8,
+                279.2
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1537,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  250.0,
+                  50.0,
+                  280.0,
+                  200.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  64.0,
+                  384.25,
+                  256.0,
+                  430.36
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    29.200000000000003,
+                    252.8,
+                    259.8,
+                    279.2
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Park context on the job details page."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The system maintains consistent labeling of the park ('Six Flags White Water' / 'White Water Atlanta') as the user moves from the selection screen to the specific job details.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+          "visible_observation": "Selected park context on the job search page.",
+          "bbox": [
+            169.65,
+            557.37,
+            978.75,
+            624.93
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+            "image_width": 1305,
+            "image_height": 1689,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              330.0,
+              130.0,
+              370.0,
+              750.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              169.65,
+              557.37,
+              978.75,
+              624.93
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Selected park context on the job search page."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+          "visible_observation": "Park context on the job details page.",
+          "bbox": [
+            29.200000000000003,
+            252.8,
+            259.8,
+            279.2
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1537,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              250.0,
+              50.0,
+              280.0,
+              200.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              64.0,
+              384.25,
+              256.0,
+              430.36
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                29.200000000000003,
+                252.8,
+                259.8,
+                279.2
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Park context on the job details page."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall keep the selected park context attached when an applicant proceeds from recruiting content into the application-start flow for a specific opening.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-01-C1",
+          "requirement_id": "CONTR-01",
+          "claim_text": "The system shall keep the selected park context attached when an applicant proceeds from recruiting content into the application-start flow for a specific opening.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+              "visible_observation": "Selected park context.",
+              "bbox": [
+                169.65,
+                557.37,
+                978.75,
+                624.93
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+                "image_width": 1305,
+                "image_height": 1689,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  330.0,
+                  130.0,
+                  370.0,
+                  750.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  169.65,
+                  557.37,
+                  978.75,
+                  624.93
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Selected park context."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+              "visible_observation": "Persisted park context on job details page.",
+              "bbox": [
+                29.200000000000003,
+                252.8,
+                259.8,
+                279.2
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1537,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  250.0,
+                  50.0,
+                  280.0,
+                  200.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  64.0,
+                  384.25,
+                  256.0,
+                  430.36
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    29.200000000000003,
+                    252.8,
+                    259.8,
+                    279.2
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Persisted park context on job details page."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The park context is successfully carried over, ensuring the applicant is viewing openings for the correct property.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+          "visible_observation": "Selected park context.",
+          "bbox": [
+            169.65,
+            557.37,
+            978.75,
+            624.93
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+            "image_width": 1305,
+            "image_height": 1689,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              330.0,
+              130.0,
+              370.0,
+              750.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              169.65,
+              557.37,
+              978.75,
+              624.93
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Selected park context."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+          "visible_observation": "Persisted park context on job details page.",
+          "bbox": [
+            29.200000000000003,
+            252.8,
+            259.8,
+            279.2
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1537,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              250.0,
+              50.0,
+              280.0,
+              200.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              64.0,
+              384.25,
+              256.0,
+              430.36
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                29.200000000000003,
+                252.8,
+                259.8,
+                279.2
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Persisted park context on job details page."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall provide a visible handoff into the application process for the chosen role, such as a dedicated application page or explicit confirmation that the selected opening is being applied to.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-02-C1",
+          "requirement_id": "CONTR-02",
+          "claim_text": "The system shall provide a visible handoff into the application process for the chosen role, such as a dedicated application page or explicit confirmation that the selected opening is being applied to.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 6,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+              "visible_observation": "Apply now button.",
+              "bbox": [
+                578.0,
+                671.0,
+                751.0,
+                704.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+                "image_width": 1280,
+                "image_height": 1537,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  130.0,
+                  850.0,
+                  160.0,
+                  950.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  1088.0,
+                  199.81,
+                  1216.0,
+                  245.92
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    578.0,
+                    671.0,
+                    751.0,
+                    704.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Apply now button."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The 'Apply now' button provides a clear, visible handoff into the application process for the selected role.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+          "visible_observation": "Apply now button.",
+          "bbox": [
+            578.0,
+            671.0,
+            751.0,
+            704.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+            "image_width": 1280,
+            "image_height": 1537,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              130.0,
+              850.0,
+              160.0,
+              950.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              1088.0,
+              199.81,
+              1216.0,
+              245.92
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                578.0,
+                671.0,
+                751.0,
+                704.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Apply now button."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall let applicants drill into every visible department or team area on a selected park recruiting page to reach openings or recruiting details for that area.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-03-C1",
+          "requirement_id": "CONTR-03",
+          "claim_text": "The system shall let applicants drill into every visible department or team area on a selected park recruiting page to reach openings or recruiting details for that area.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "EVIDENCE_INTERPRETATION_AMBIGUITY",
+            "FLOW_COVERAGE_GAP"
+          ],
+          "confidence": 0.0,
+          "rationale": "While departments are mentioned in the text, there are no interactive UI elements allowing users to drill into specific department areas to see openings.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              5,
+              6
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall mark roles as featured or hiring only when those openings are still actively accepting applications.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-04-C1",
+          "requirement_id": "CONTR-04",
+          "claim_text": "The system shall mark roles as featured or hiring only when those openings are still actively accepting applications.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "EVIDENCE_INTERPRETATION_AMBIGUITY",
+            "FLOW_COVERAGE_GAP"
+          ],
+          "confidence": 0.0,
+          "rationale": "The UI does not display specific markers or badges indicating if a role is 'featured' or 'hiring' beyond the general context of the page.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "EVIDENCE_INTERPRETATION_AMBIGUITY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall provide a review step that summarizes the selected park and opening before the applicant commits to starting the application.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-05-C1",
+          "requirement_id": "CONTR-05",
+          "claim_text": "The system shall provide a review step that summarizes the selected park and opening before the applicant commits to starting the application.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "EVIDENCE_INTERPRETATION_AMBIGUITY",
+            "FLOW_COVERAGE_GAP"
+          ],
+          "confidence": 0.0,
+          "rationale": "The job details page leads directly to an 'Apply now' action without an intermediate review step summarizing the selection.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "claim_selected_step_indices": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "EVIDENCE_INTERPRETATION_AMBIGUITY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-06",
+      "requirement_text": "The system shall provide direct in-page filtering or refinement within a selected park's opportunities, such as narrowing visible openings by department, job type, or similar criteria instead of relying only on static category entry points.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "NOT_FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-06-C1",
+          "requirement_id": "CONTR-06",
+          "claim_text": "The system shall provide direct in-page filtering or refinement within a selected park's opportunities, such as narrowing visible openings by department, job type, or similar criteria instead of relying only on static category entry points.",
+          "status": "CONTRADICTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 5,
+              "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_05.png",
+              "visible_observation": "Static category entry points for job opportunities, with no visible filtering or refinement controls.",
+              "bbox": [
+                734.8,
+                5398.2,
+                938.2,
+                5426.8
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_05.png",
+                "image_width": 1298,
+                "image_height": 6124,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  605.0,
+                  25.0,
+                  745.0,
+                  975.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  32.45,
+                  3705.02,
+                  1265.55,
+                  4562.38
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    734.8,
+                    5398.2,
+                    938.2,
+                    5426.8
+                  ]
+                },
+                "role": "CONTRADICTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Static category entry points for job opportunities, with no visible filtering or refinement controls."
+              },
+              "confidence": 0.75,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.75,
+          "rationale": "The requirement specifies that the system should provide direct in-page filtering or refinement (e.g., by department or job type) instead of relying only on static category entry points. The provided UI (Screenshot 5) presents job opportunities solely through static category cards, contradicting the requirement for filtering/refinement functionality.",
+          "metadata": {
+            "prompt_group_id": "G4",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              2,
+              3,
+              5,
+              6
+            ],
+            "claim_selected_step_indices": [
+              2,
+              3,
+              5,
+              6
+            ],
+            "raw_model_label": "CONTRADICTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 5,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_05.png",
+          "visible_observation": "Static category entry points for job opportunities, with no visible filtering or refinement controls.",
+          "bbox": [
+            734.8,
+            5398.2,
+            938.2,
+            5426.8
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_05.png",
+            "image_width": 1298,
+            "image_height": 6124,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              605.0,
+              25.0,
+              745.0,
+              975.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              32.45,
+              3705.02,
+              1265.55,
+              4562.38
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                734.8,
+                5398.2,
+                938.2,
+                5426.8
+              ]
+            },
+            "role": "CONTRADICTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Static category entry points for job opportunities, with no visible filtering or refinement controls."
+          },
+          "confidence": 0.75,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "A central claim is contradicted by evidence.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    }
+  ],
+  "metadata": {
+    "flow_dir": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d",
+    "requirements_path": "data/annotations/verification_gold/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/verification_gold.json",
+    "requirements_source": "benchmark",
+    "requested_retriever": "lexical",
+    "retriever_provider": null,
+    "retriever_model": null,
+    "top_k": 4,
+    "claims_enabled": true,
+    "claim_decomposition_policy": "gated",
+    "max_claims": 4,
+    "llm_claim_fallback": false,
+    "claim_provider": "deepseek",
+    "claim_model": null,
+    "verifier": "gemini-image",
+    "execution_mode": "batched-topk",
+    "verifier_model": "gemini-3.1-flash-lite",
+    "max_verifier_images": 4,
+    "max_verifier_group_images": 4,
+    "max_verifier_group_claims": 8,
+    "include_sequence_context": true,
+    "claim_workers": 1,
+    "verifier_thinking_level": "low",
+    "verifier_thinking_budget": null,
+    "verifier_max_output_tokens": 32768,
+    "grounding_candidates": null,
+    "grounding_assets_dir": null,
+    "verifier_predict_ui_evaluability": true,
+    "pipeline": "evidence_first_verification_pipeline",
+    "retriever": "LexicalEvidenceRetriever",
+    "retrieval_batch_claims": 25,
+    "max_claim_workers": 1,
+    "gemini_image_verifier": {
+      "requested": 25,
+      "api_calls": 4,
+      "api_call_attempts": 4,
+      "cache_hits": 0,
+      "fallbacks": 0,
+      "failures": [],
+      "cache_path": "data/generated/thesis_final_experiments/fl_gated_top4/cache/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d.json",
+      "model_name": "gemini-3.1-flash-lite",
+      "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+      "max_retries": 2,
+      "max_api_calls": null,
+      "include_sequence_context": true,
+      "thinking_level": "low",
+      "thinking_budget": null,
+      "max_output_tokens": 32768,
+      "grouping_strategy": "batched-topk",
+      "max_images_per_group": 4,
+      "max_claims_per_group": 8,
+      "group_workers": 1,
+      "groups": [
+        {
+          "group_id": "G1",
+          "claim_ids": [
+            "REQ-01-C1",
+            "REQ-02-C1",
+            "REQ-04-C1",
+            "REQ-07-C1",
+            "REQ-05-C1",
+            "REQ-06-C1",
+            "REQ-08-C1",
+            "REQ-08-C2"
+          ],
+          "attached_step_indices": [
+            1,
+            3,
+            4,
+            6
+          ],
+          "image_count": 4,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 8152,
+            "output_tokens": 1918,
+            "total_tokens": 11678,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 1608
+          }
+        },
+        {
+          "group_id": "G2",
+          "claim_ids": [
+            "REQ-08-C3",
+            "REQ-08-C4",
+            "REQ-09-C1",
+            "REQ-10-C1",
+            "REQ-11-C1",
+            "REQ-12-C1",
+            "REQ-13-C1",
+            "REQ-15-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            3,
+            4,
+            6
+          ],
+          "image_count": 4,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 8192,
+            "output_tokens": 1681,
+            "total_tokens": 10944,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 1071
+          }
+        },
+        {
+          "group_id": "G3",
+          "claim_ids": [
+            "REQ-16-C1",
+            "REQ-03-C1",
+            "REQ-14-C1",
+            "CONTR-01-C1",
+            "CONTR-02-C1",
+            "CONTR-03-C1",
+            "CONTR-04-C1",
+            "CONTR-05-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            3,
+            4,
+            6
+          ],
+          "image_count": 4,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 8255,
+            "output_tokens": 1713,
+            "total_tokens": 11349,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 1381
+          }
+        },
+        {
+          "group_id": "G4",
+          "claim_ids": [
+            "CONTR-06-C1"
+          ],
+          "attached_step_indices": [
+            2,
+            3,
+            5,
+            6
+          ],
+          "image_count": 4,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 7311,
+            "output_tokens": 321,
+            "total_tokens": 8251,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 619
+          }
+        }
+      ],
+      "group_count": 4,
+      "images_attached_total": 16,
+      "unique_images_attached": 6,
+      "cached_content_tokens": 0,
+      "usage": {
+        "request_count": 4,
+        "input_tokens": 31910,
+        "output_tokens": 5633,
+        "thoughts_tokens": 4679,
+        "total_tokens": 42222,
+        "estimated_cost_usd": 0.0234455,
+        "estimated_cost_eur": 0.02156986,
+        "models": {},
+        "updated_at": null
+      },
+      "asset_manifest": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_01.png",
+          "sha256": "78641e32d35885d4e8e65486d85761dc994e7bf2dde92b17a0f09c9283bbffe0",
+          "byte_size": 3122695,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2942,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_02.png",
+          "sha256": "8b9cc2e429515c3e33cb870ee780d85f6a6599519b4dd385a32b49c19ebc1161",
+          "byte_size": 2057965,
+          "mime_type": "image/png",
+          "image_width": 1305,
+          "image_height": 1689,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_03.png",
+          "sha256": "45f4efd534d83a7b0ebefb5f5fa31e3c5f924472051cf0d4696251db69054944",
+          "byte_size": 2059024,
+          "mime_type": "image/png",
+          "image_width": 1305,
+          "image_height": 2004,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_04.png",
+          "sha256": "44514e237315a8dbe77ced64c603120de1822e74216827928cc28da5d0f766ca",
+          "byte_size": 1744106,
+          "mime_type": "image/png",
+          "image_width": 1305,
+          "image_height": 1689,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 5,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_05.png",
+          "sha256": "fed9717d60bdc14592cf61b511d1d74874e4c70fb72bed660f5080af3eac87a8",
+          "byte_size": 5362275,
+          "mime_type": "image/png",
+          "image_width": 1298,
+          "image_height": 6124,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 6,
+          "screenshot_path": "data/processed/flows/mind2web/06_sixflags_19b955ba-fdcd-4345-b33a-fc6a88b5a85d/original/step_06.png",
+          "sha256": "d877ff16ab1da2fcdb861e2a9a9fbede46f0482ad50d7136e44f115b1b5a1ebb",
+          "byte_size": 485278,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1537,
+          "has_ocr_text": true
+        }
+      ],
+      "candidate_package": null,
+      "marked_assets_dir": null,
+      "predict_ui_evaluability": true
+    },
+    "gemini_mllm_verifier_used": true,
+    "gemini_mllm_verifier_fallback_used": false
+  }
+}

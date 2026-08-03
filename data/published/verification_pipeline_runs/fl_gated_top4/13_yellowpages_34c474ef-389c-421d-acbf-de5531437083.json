@@ -1,0 +1,2751 @@
+{
+  "flow_id": "13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+  "screen_representations": [
+    {
+      "step_index": 1,
+      "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+      "image_width": 1280,
+      "image_height": 2078
+    },
+    {
+      "step_index": 2,
+      "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+      "image_width": 1280,
+      "image_height": 2078
+    },
+    {
+      "step_index": 3,
+      "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+      "image_width": 1280,
+      "image_height": 2078
+    },
+    {
+      "step_index": 4,
+      "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png",
+      "image_width": 1280,
+      "image_height": 2078
+    }
+  ],
+  "results": [
+    {
+      "requirement_id": "REQ-01",
+      "requirement_text": "The system shall support discovery of local businesses or services using a searchable query and a geographic location.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-01-C1",
+          "requirement_id": "REQ-01",
+          "claim_text": "The system shall support discovery of local businesses or services using a searchable query and a geographic location.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+              "visible_observation": "Search bar with query and location input fields.",
+              "bbox": [
+                188.16,
+                284.686,
+                849.92,
+                347.026
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+                "image_width": 1280,
+                "image_height": 2078,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  137.0,
+                  147.0,
+                  167.0,
+                  664.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  188.16,
+                  284.686,
+                  849.92,
+                  347.026
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Search bar with query and location input fields."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI explicitly provides input fields for both a business/service query and a geographic location, fulfilling the requirement for discovery.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+          "visible_observation": "Search bar with query and location input fields.",
+          "bbox": [
+            188.16,
+            284.686,
+            849.92,
+            347.026
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+            "image_width": 1280,
+            "image_height": 2078,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              137.0,
+              147.0,
+              167.0,
+              664.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              188.16,
+              284.686,
+              849.92,
+              347.026
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Search bar with query and location input fields."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-03",
+      "requirement_text": "The system shall provide query autocomplete or quick-result suggestions while the user types a business or service term.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-03-C1",
+          "requirement_id": "REQ-03",
+          "claim_text": "The system provides query autocomplete or quick-result suggestions while the user types a business or service term.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+              "visible_observation": "Autocomplete dropdown showing 'hair salon' and 'hair salon perm' suggestions.",
+              "bbox": [
+                153.4,
+                421.6,
+                348.6,
+                452.4
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2078,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  167.0,
+                  147.0,
+                  219.0,
+                  406.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  188.16,
+                  347.026,
+                  519.68,
+                  455.082
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    153.4,
+                    421.6,
+                    348.6,
+                    452.4
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Autocomplete dropdown showing 'hair salon' and 'hair salon perm' suggestions."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The screenshot shows a 'QUICK RESULTS' dropdown appearing while the user types, confirming autocomplete functionality.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+          "visible_observation": "Autocomplete dropdown showing 'hair salon' and 'hair salon perm' suggestions.",
+          "bbox": [
+            153.4,
+            421.6,
+            348.6,
+            452.4
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2078,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              167.0,
+              147.0,
+              219.0,
+              406.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              188.16,
+              347.026,
+              519.68,
+              455.082
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                153.4,
+                421.6,
+                348.6,
+                452.4
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Autocomplete dropdown showing 'hair salon' and 'hair salon perm' suggestions."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "heuristic",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-04",
+      "requirement_text": "The system shall provide location autocomplete or quick-location suggestions while the user edits the location field.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-04-C1",
+          "requirement_id": "REQ-04",
+          "claim_text": "The system provides location autocomplete or quick-location suggestions while the user edits the location field.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+              "visible_observation": "Autocomplete dropdown showing location suggestions for 'San Diego'.",
+              "bbox": [
+                548.4,
+                835.6,
+                710.6,
+                866.4
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2078,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  167.0,
+                  406.0,
+                  453.0,
+                  585.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  519.68,
+                  347.026,
+                  748.8,
+                  941.334
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    548.4,
+                    835.6,
+                    710.6,
+                    866.4
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Autocomplete dropdown showing location suggestions for 'San Diego'."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI displays a 'QUICK LOCATIONS' dropdown with specific location suggestions when the user types in the location field.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+          "visible_observation": "Autocomplete dropdown showing location suggestions for 'San Diego'.",
+          "bbox": [
+            548.4,
+            835.6,
+            710.6,
+            866.4
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2078,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              167.0,
+              406.0,
+              453.0,
+              585.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              519.68,
+              347.026,
+              748.8,
+              941.334
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                548.4,
+                835.6,
+                710.6,
+                866.4
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Autocomplete dropdown showing location suggestions for 'San Diego'."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "heuristic",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-05",
+      "requirement_text": "The system shall resolve a typed location into a more specific canonical place label for search context.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-05-C1",
+          "requirement_id": "REQ-05",
+          "claim_text": "The system shall resolve a typed location into a more specific canonical place label for search context.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png",
+              "visible_observation": "Location field populated with 'San Diego, CA'.",
+              "bbox": [
+                555.8,
+                567.2,
+                740.2,
+                595.8
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png",
+                "image_width": 1280,
+                "image_height": 2078,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  137.0,
+                  406.0,
+                  167.0,
+                  585.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  519.68,
+                  284.686,
+                  748.8,
+                  347.026
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    555.8,
+                    567.2,
+                    740.2,
+                    595.8
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Location field populated with 'San Diego, CA'."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI resolves the input to a specific, canonical format ('San Diego, CA') in the location field.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png",
+          "visible_observation": "Location field populated with 'San Diego, CA'.",
+          "bbox": [
+            555.8,
+            567.2,
+            740.2,
+            595.8
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png",
+            "image_width": 1280,
+            "image_height": 2078,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              137.0,
+              406.0,
+              167.0,
+              585.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              519.68,
+              284.686,
+              748.8,
+              347.026
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                555.8,
+                567.2,
+                740.2,
+                595.8
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Location field populated with 'San Diego, CA'."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-07",
+      "requirement_text": "The system shall provide an explicit action to submit the current search criteria once the user has set the desired query and location.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-07-C1",
+          "requirement_id": "REQ-07",
+          "claim_text": "The system shall provide an explicit action to submit the current search criteria once the user has set the desired query and location.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+              "visible_observation": "'Find' button.",
+              "bbox": [
+                748.8,
+                284.686,
+                849.92,
+                347.026
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+                "image_width": 1280,
+                "image_height": 2078,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  137.0,
+                  585.0,
+                  167.0,
+                  664.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  748.8,
+                  284.686,
+                  849.92,
+                  347.026
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "'Find' button."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The 'Find' button provides a clear, explicit action to submit the search criteria.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+          "visible_observation": "'Find' button.",
+          "bbox": [
+            748.8,
+            284.686,
+            849.92,
+            347.026
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+            "image_width": 1280,
+            "image_height": 2078,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              137.0,
+              585.0,
+              167.0,
+              664.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              748.8,
+              284.686,
+              849.92,
+              347.026
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "'Find' button."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-08",
+      "requirement_text": "The system shall provide signed-in users with access to account-level sections such as favorites, coupons, profile, and settings.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-08-C1",
+          "requirement_id": "REQ-08",
+          "claim_text": "The system shall provide signed-in users with access to account-level sections such as favorites, coupons, profile, and settings.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+              "visible_observation": "User account menu with 'Favorites', 'Coupons', 'Profile', and 'Settings'.",
+              "bbox": [
+                999.68,
+                72.73,
+                1240.32,
+                415.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+                "image_width": 1280,
+                "image_height": 2078,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  35.0,
+                  781.0,
+                  200.0,
+                  969.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  999.68,
+                  72.73,
+                  1240.32,
+                  415.6
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "User account menu with 'Favorites', 'Coupons', 'Profile', and 'Settings'."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI clearly displays account-level sections for a signed-in user.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+          "visible_observation": "User account menu with 'Favorites', 'Coupons', 'Profile', and 'Settings'.",
+          "bbox": [
+            999.68,
+            72.73,
+            1240.32,
+            415.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+            "image_width": 1280,
+            "image_height": 2078,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              35.0,
+              781.0,
+              200.0,
+              969.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              999.68,
+              72.73,
+              1240.32,
+              415.6
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "User account menu with 'Favorites', 'Coupons', 'Profile', and 'Settings'."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-09",
+      "requirement_text": "The system shall expose coupons as a user-facing discovery feature within the service.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-09-C1",
+          "requirement_id": "REQ-09",
+          "claim_text": "The system shall expose coupons as a user-facing discovery feature within the service.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+              "visible_observation": "'Coupons' menu item.",
+              "bbox": [
+                1015.04,
+                197.41,
+                1098.24,
+                238.97
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+                "image_width": 1280,
+                "image_height": 2078,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  95.0,
+                  793.0,
+                  115.0,
+                  858.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  1015.04,
+                  197.41,
+                  1098.24,
+                  238.97
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "'Coupons' menu item."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "Coupons are exposed as a direct, user-facing menu option.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+          "visible_observation": "'Coupons' menu item.",
+          "bbox": [
+            1015.04,
+            197.41,
+            1098.24,
+            238.97
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+            "image_width": 1280,
+            "image_height": 2078,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              95.0,
+              793.0,
+              115.0,
+              858.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              1015.04,
+              197.41,
+              1098.24,
+              238.97
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "'Coupons' menu item."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-10",
+      "requirement_text": "The system shall allow users to pursue coupon discovery for a searched business category within a chosen locality.",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "REQ-10-C1",
+          "requirement_id": "REQ-10",
+          "claim_text": "The system shall allow users to pursue coupon discovery for a searched business category within a chosen locality.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "While the UI supports searching and has a coupon section, there is no evidence in the provided screenshots showing the specific workflow of discovering coupons *for* a searched business category within a locality.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-12",
+      "requirement_text": "The system shall assist geographic disambiguation by presenting multiple matching locations, including city and neighborhood-level options, when a location is ambiguous.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-12-C1",
+          "requirement_id": "REQ-12",
+          "claim_text": "The system shall assist geographic disambiguation by presenting multiple matching locations, including city and neighborhood-level options, when a location is ambiguous.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+              "visible_observation": "Dropdown list showing multiple geographic disambiguation options including city and neighborhood levels.",
+              "bbox": [
+                518.4,
+                286.764,
+                748.8,
+                935.1
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2078,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  138.0,
+                  405.0,
+                  450.0,
+                  585.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  518.4,
+                  286.764,
+                  748.8,
+                  935.1
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Dropdown list showing multiple geographic disambiguation options including city and neighborhood levels."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png",
+              "visible_observation": "The location search input displays a 'QUICK LOCATIONS' dropdown with multiple options including city-level (San Diego, CA; San Diego, TX) and neighborhood-level (Mission Hills, San Diego, CA; Hillcrest, San Diego, CA) results.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI explicitly presents a list of matching locations with varying levels of granularity (city and neighborhood) when a user types a location, fulfilling the disambiguation requirement.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+          "visible_observation": "Dropdown list showing multiple geographic disambiguation options including city and neighborhood levels.",
+          "bbox": [
+            518.4,
+            286.764,
+            748.8,
+            935.1
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2078,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              138.0,
+              405.0,
+              450.0,
+              585.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              518.4,
+              286.764,
+              748.8,
+              935.1
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Dropdown list showing multiple geographic disambiguation options including city and neighborhood levels."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png",
+          "visible_observation": "The location search input displays a 'QUICK LOCATIONS' dropdown with multiple options including city-level (San Diego, CA; San Diego, TX) and neighborhood-level (Mission Hills, San Diego, CA; Hillcrest, San Diego, CA) results.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-13",
+      "requirement_text": "The system shall provide alternative category entry points for common local-business searches from the main discovery page.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-13-C1",
+          "requirement_id": "REQ-13",
+          "claim_text": "The system shall provide alternative category entry points for common local-business searches from the main discovery page.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+              "visible_observation": "Category entry point icons for common local-business searches.",
+              "bbox": [
+                217.6,
+                353.26,
+                806.4,
+                394.82
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+                "image_width": 1280,
+                "image_height": 2078,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  170.0,
+                  170.0,
+                  190.0,
+                  630.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  217.6,
+                  353.26,
+                  806.4,
+                  394.82
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Category entry point icons for common local-business searches."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The main page provides direct, alternative entry points for common business categories, satisfying the requirement.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+          "visible_observation": "Category entry point icons for common local-business searches.",
+          "bbox": [
+            217.6,
+            353.26,
+            806.4,
+            394.82
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+            "image_width": 1280,
+            "image_height": 2078,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              170.0,
+              170.0,
+              190.0,
+              630.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              217.6,
+              353.26,
+              806.4,
+              394.82
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Category entry point icons for common local-business searches."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-02",
+      "requirement_text": "The system shall provide a unified search workflow in which the user can set both service type and location before launching a search.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-02-C1",
+          "requirement_id": "REQ-02",
+          "claim_text": "The system shall provide a unified search workflow in which the user can set both service type and location before launching a search.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+              "visible_observation": "Unified search bar with service type and location inputs.",
+              "bbox": [
+                185.6,
+                280.53,
+                851.2,
+                353.26
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+                "image_width": 1280,
+                "image_height": 2078,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  135.0,
+                  145.0,
+                  170.0,
+                  665.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  185.6,
+                  280.53,
+                  851.2,
+                  353.26
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Unified search bar with service type and location inputs."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI provides a single, unified search interface where both service type and location can be defined before submission.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+          "visible_observation": "Unified search bar with service type and location inputs.",
+          "bbox": [
+            185.6,
+            280.53,
+            851.2,
+            353.26
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+            "image_width": 1280,
+            "image_height": 2078,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              135.0,
+              145.0,
+              170.0,
+              665.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              185.6,
+              280.53,
+              851.2,
+              353.26
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Unified search bar with service type and location inputs."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-06",
+      "requirement_text": "The system shall support searching for service categories such as hair salons within a selected city.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-06-C1",
+          "requirement_id": "REQ-06",
+          "claim_text": "The system shall support searching for service categories such as hair salons within a selected city.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+              "visible_observation": "Search bar populated with a service category and a city location.",
+              "bbox": [
+                185.6,
+                280.53,
+                851.2,
+                353.26
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2078,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  135.0,
+                  145.0,
+                  170.0,
+                  665.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  185.6,
+                  280.53,
+                  851.2,
+                  353.26
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Search bar populated with a service category and a city location."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The interface demonstrates the capability to input a specific service category and a city location simultaneously.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+          "visible_observation": "Search bar populated with a service category and a city location.",
+          "bbox": [
+            185.6,
+            280.53,
+            851.2,
+            353.26
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2078,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              135.0,
+              145.0,
+              170.0,
+              665.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              185.6,
+              280.53,
+              851.2,
+              353.26
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Search bar populated with a service category and a city location."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall maintain consistency of user-entered search context across sequential edits so that the chosen query and location remain visible together before submission.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-11-C1",
+          "requirement_id": "REQ-11",
+          "claim_text": "The system shall maintain consistency of user-entered search context across sequential edits so that the chosen query and location remain visible together before submission.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+              "visible_observation": "Search context visible in inputs.",
+              "bbox": [
+                185.6,
+                280.53,
+                851.2,
+                353.26
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+                "image_width": 1280,
+                "image_height": 2078,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  135.0,
+                  145.0,
+                  170.0,
+                  665.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  185.6,
+                  280.53,
+                  851.2,
+                  353.26
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "MULTI_REGION_PART",
+                "description": "Search context visible in inputs."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+              "visible_observation": "Search context visible in inputs.",
+              "bbox": [
+                185.6,
+                280.53,
+                851.2,
+                353.26
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2078,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  135.0,
+                  145.0,
+                  170.0,
+                  665.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  185.6,
+                  280.53,
+                  851.2,
+                  353.26
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "MULTI_REGION_PART",
+                "description": "Search context visible in inputs."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI consistently displays both the query and the location in the search bar, ensuring the context is visible before submission.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+          "visible_observation": "Search context visible in inputs.",
+          "bbox": [
+            185.6,
+            280.53,
+            851.2,
+            353.26
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+            "image_width": 1280,
+            "image_height": 2078,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              135.0,
+              145.0,
+              170.0,
+              665.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              185.6,
+              280.53,
+              851.2,
+              353.26
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "MULTI_REGION_PART",
+            "description": "Search context visible in inputs."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+          "visible_observation": "Search context visible in inputs.",
+          "bbox": [
+            185.6,
+            280.53,
+            851.2,
+            353.26
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2078,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              135.0,
+              145.0,
+              170.0,
+              665.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              185.6,
+              280.53,
+              851.2,
+              353.26
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "MULTI_REGION_PART",
+            "description": "Search context visible in inputs."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall allow signed-in users to save coupon discoveries to favorites and revisit them from account-level areas in later use.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-01-C1",
+          "requirement_id": "CONTR-01",
+          "claim_text": "The system shall allow signed-in users to save coupon discoveries to favorites and revisit them from account-level areas in later use.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "While a 'Favorites' link exists, the screenshots do not show any coupon discovery or interaction, making it impossible to verify the specific coupon-saving functionality.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall let users open a discovered coupon into a redeemable detail or outbound handoff that provides merchant-facing usage instructions.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-02-C1",
+          "requirement_id": "CONTR-02",
+          "claim_text": "The system shall let users open a discovered coupon into a redeemable detail or outbound handoff that provides merchant-facing usage instructions.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "The screenshots do not display any coupons, so the ability to open them into a detail view or handoff cannot be verified.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall surface only currently valid coupon offers that match the active business category and resolved locality.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-03-C1",
+          "requirement_id": "CONTR-03",
+          "claim_text": "The system shall surface only currently valid coupon offers that match the active business category and resolved locality.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "The screenshots do not display any coupons, so it is impossible to verify if the system surfaces valid offers matching the category and locality.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "TEXTUAL_AMBIGUITY",
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall present complete geographic disambiguation coverage for ambiguous location input, including all relevant city and neighborhood matches before the user commits the search.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-04-C1",
+          "requirement_id": "CONTR-04",
+          "claim_text": "The system presents complete geographic disambiguation coverage for ambiguous location input.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+              "visible_observation": "Dropdown menu showing geographic disambiguation options for 'San Diego'.",
+              "bbox": [
+                548.4,
+                835.6,
+                710.6,
+                866.4
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2078,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  135.0,
+                  405.0,
+                  450.0,
+                  585.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  518.4,
+                  280.53,
+                  748.8,
+                  935.1
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    548.4,
+                    835.6,
+                    710.6,
+                    866.4
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Dropdown menu showing geographic disambiguation options for 'San Diego'."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png",
+              "visible_observation": "The location input field displays a comprehensive dropdown list of geographic disambiguation options when 'San Diego' is entered.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The UI provides a clear, bounded list of location matches (cities and neighborhoods) in response to the ambiguous input 'San Diego' before the search is committed.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        },
+        {
+          "claim_id": "CONTR-04-C2",
+          "requirement_id": "CONTR-04",
+          "claim_text": "The presented complete geographic disambiguation coverage for ambiguous location input includes all relevant city.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+              "visible_observation": "City-level matches in the disambiguation dropdown.",
+              "bbox": [
+                518.4,
+                342.87,
+                748.8,
+                415.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2078,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  165.0,
+                  405.0,
+                  200.0,
+                  585.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  518.4,
+                  342.87,
+                  748.8,
+                  415.6
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "City-level matches in the disambiguation dropdown."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png",
+              "visible_observation": "The disambiguation list includes multiple city-level matches such as 'San Diego, CA' and 'San Diego, TX'.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The dropdown menu explicitly lists multiple city-level geographic matches, fulfilling the requirement for city coverage.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        },
+        {
+          "claim_id": "CONTR-04-C3",
+          "requirement_id": "CONTR-04",
+          "claim_text": "The presented complete geographic disambiguation coverage for ambiguous location input includes neighborhood matches before the user commits the search.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+              "visible_observation": "Neighborhood-level matches in the disambiguation dropdown.",
+              "bbox": [
+                518.4,
+                477.94,
+                748.8,
+                935.1
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2078,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  230.0,
+                  405.0,
+                  450.0,
+                  585.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  518.4,
+                  477.94,
+                  748.8,
+                  935.1
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Neighborhood-level matches in the disambiguation dropdown."
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 4,
+              "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png",
+              "visible_observation": "The disambiguation list includes neighborhood-level matches such as 'Mission Hills, San Diego, CA' and 'Serra Mesa, San Diego, CA'.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The dropdown menu explicitly lists multiple neighborhood-level geographic matches, fulfilling the requirement for neighborhood coverage.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+          "visible_observation": "Dropdown menu showing geographic disambiguation options for 'San Diego'.",
+          "bbox": [
+            548.4,
+            835.6,
+            710.6,
+            866.4
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2078,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              135.0,
+              405.0,
+              450.0,
+              585.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              518.4,
+              280.53,
+              748.8,
+              935.1
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                548.4,
+                835.6,
+                710.6,
+                866.4
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Dropdown menu showing geographic disambiguation options for 'San Diego'."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+          "visible_observation": "City-level matches in the disambiguation dropdown.",
+          "bbox": [
+            518.4,
+            342.87,
+            748.8,
+            415.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2078,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              165.0,
+              405.0,
+              200.0,
+              585.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              518.4,
+              342.87,
+              748.8,
+              415.6
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "City-level matches in the disambiguation dropdown."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+          "visible_observation": "Neighborhood-level matches in the disambiguation dropdown.",
+          "bbox": [
+            518.4,
+            477.94,
+            748.8,
+            935.1
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2078,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              230.0,
+              405.0,
+              450.0,
+              585.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              518.4,
+              477.94,
+              748.8,
+              935.1
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Neighborhood-level matches in the disambiguation dropdown."
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png",
+          "visible_observation": "The location input field displays a comprehensive dropdown list of geographic disambiguation options when 'San Diego' is entered.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png",
+          "visible_observation": "The disambiguation list includes multiple city-level matches such as 'San Diego, CA' and 'San Diego, TX'.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png",
+          "visible_observation": "The disambiguation list includes neighborhood-level matches such as 'Mission Hills, San Diego, CA' and 'Serra Mesa, San Diego, CA'.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "TEXTUAL_AMBIGUITY",
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "heuristic",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall present a dedicated coupon results or review step after search submission that summarizes matching offers for the selected business category and locality.",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-05-C1",
+          "requirement_id": "CONTR-05",
+          "claim_text": "The system presents a dedicated coupon results or review step after search submission that summarizes matching offers for the selected business category and locality.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "The screenshots do not show the state after search submission, so it is impossible to verify the existence of a dedicated coupon results or review step.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "heuristic",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-06",
+      "requirement_text": "The system shall carry the resolved canonical location label and active search term forward onto later coupon discovery views so users can confirm or revise the current search context.",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-06-C1",
+          "requirement_id": "CONTR-06",
+          "claim_text": "The system shall carry the resolved canonical location label and active search term forward onto later coupon discovery views so users can confirm or revise the current search context.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "The screenshots do not show subsequent views, so it is impossible to verify if the search context (location and term) is carried forward.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    }
+  ],
+  "metadata": {
+    "flow_dir": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083",
+    "requirements_path": "data/annotations/verification_gold/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/verification_gold.json",
+    "requirements_source": "benchmark",
+    "requested_retriever": "lexical",
+    "retriever_provider": null,
+    "retriever_model": null,
+    "top_k": 4,
+    "claims_enabled": true,
+    "claim_decomposition_policy": "gated",
+    "max_claims": 4,
+    "llm_claim_fallback": false,
+    "claim_provider": "deepseek",
+    "claim_model": null,
+    "verifier": "gemini-image",
+    "execution_mode": "batched-topk",
+    "verifier_model": "gemini-3.1-flash-lite",
+    "max_verifier_images": 4,
+    "max_verifier_group_images": 4,
+    "max_verifier_group_claims": 8,
+    "include_sequence_context": true,
+    "claim_workers": 1,
+    "verifier_thinking_level": "low",
+    "verifier_thinking_budget": null,
+    "verifier_max_output_tokens": 32768,
+    "grounding_candidates": null,
+    "grounding_assets_dir": null,
+    "verifier_predict_ui_evaluability": true,
+    "pipeline": "evidence_first_verification_pipeline",
+    "retriever": "LexicalEvidenceRetriever",
+    "retrieval_batch_claims": 21,
+    "max_claim_workers": 1,
+    "gemini_image_verifier": {
+      "requested": 21,
+      "api_calls": 3,
+      "api_call_attempts": 3,
+      "cache_hits": 0,
+      "fallbacks": 0,
+      "failures": [],
+      "cache_path": "data/generated/thesis_final_experiments/fl_gated_top4/cache/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083.json",
+      "model_name": "gemini-3.1-flash-lite",
+      "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+      "max_retries": 2,
+      "max_api_calls": null,
+      "include_sequence_context": true,
+      "thinking_level": "low",
+      "thinking_budget": null,
+      "max_output_tokens": 32768,
+      "grouping_strategy": "batched-topk",
+      "max_images_per_group": 4,
+      "max_claims_per_group": 8,
+      "group_workers": 1,
+      "groups": [
+        {
+          "group_id": "G1",
+          "claim_ids": [
+            "REQ-01-C1",
+            "REQ-03-C1",
+            "REQ-04-C1",
+            "REQ-05-C1",
+            "REQ-07-C1",
+            "REQ-08-C1",
+            "REQ-09-C1",
+            "REQ-10-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "image_count": 4,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 8143,
+            "output_tokens": 1734,
+            "total_tokens": 9978,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 101
+          }
+        },
+        {
+          "group_id": "G2",
+          "claim_ids": [
+            "REQ-12-C1",
+            "REQ-13-C1",
+            "REQ-02-C1",
+            "REQ-06-C1",
+            "REQ-11-C1",
+            "CONTR-01-C1",
+            "CONTR-02-C1",
+            "CONTR-03-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "image_count": 4,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 8199,
+            "output_tokens": 1818,
+            "total_tokens": 10886,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 869
+          }
+        },
+        {
+          "group_id": "G3",
+          "claim_ids": [
+            "CONTR-04-C1",
+            "CONTR-04-C2",
+            "CONTR-04-C3",
+            "CONTR-05-C1",
+            "CONTR-06-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "image_count": 4,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 7833,
+            "output_tokens": 1121,
+            "total_tokens": 10454,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 1500
+          }
+        }
+      ],
+      "group_count": 3,
+      "images_attached_total": 12,
+      "unique_images_attached": 4,
+      "cached_content_tokens": 0,
+      "usage": {
+        "request_count": 3,
+        "input_tokens": 24175,
+        "output_tokens": 4673,
+        "thoughts_tokens": 2470,
+        "total_tokens": 31318,
+        "estimated_cost_usd": 0.01675825,
+        "estimated_cost_eur": 0.01541759,
+        "models": {},
+        "updated_at": null
+      },
+      "asset_manifest": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_01.png",
+          "sha256": "f08660f17a0e3680f5845db4fb9a8e158086c73f73a5b0fe99a52412f6d56ae3",
+          "byte_size": 1071215,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2078,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_02.png",
+          "sha256": "e38d8cf93f043bc95dabca8b9c891049675d12a8f26a364775d41a36952ae23c",
+          "byte_size": 1039286,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2078,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_03.png",
+          "sha256": "5969d6820061ea44189ff842630173d238f01858a9562808a960629711ca1017",
+          "byte_size": 1092638,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2078,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 4,
+          "screenshot_path": "data/processed/flows/mind2web/13_yellowpages_34c474ef-389c-421d-acbf-de5531437083/original/step_04.png",
+          "sha256": "f6d945d0606a1805a213e197c0294bb1870871ec2a1077d50fcaad1e8b44c530",
+          "byte_size": 1097441,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2078,
+          "has_ocr_text": true
+        }
+      ],
+      "candidate_package": null,
+      "marked_assets_dir": null,
+      "predict_ui_evaluability": true
+    },
+    "gemini_mllm_verifier_used": true,
+    "gemini_mllm_verifier_fallback_used": false
+  }
+}

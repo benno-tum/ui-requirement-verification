@@ -1,0 +1,2535 @@
+{
+  "flow_id": "07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+  "screen_representations": [
+    {
+      "step_index": 1,
+      "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_01.png",
+      "image_width": 1280,
+      "image_height": 1262
+    },
+    {
+      "step_index": 2,
+      "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+      "image_width": 1280,
+      "image_height": 1262
+    },
+    {
+      "step_index": 3,
+      "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+      "image_width": 1280,
+      "image_height": 2799
+    }
+  ],
+  "results": [
+    {
+      "requirement_id": "REQ-01",
+      "requirement_text": "The system shall expose contribution-related actions through a top-level navigation area.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-01-C1",
+          "requirement_id": "REQ-01",
+          "claim_text": "The system shall expose contribution-related actions through a top-level navigation area.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+              "visible_observation": "Contribute menu in the top navigation bar",
+              "bbox": [
+                595.2,
+                16.406,
+                707.84,
+                44.17
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+                "image_width": 1280,
+                "image_height": 1262,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  13.0,
+                  465.0,
+                  35.0,
+                  553.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  595.2,
+                  16.406,
+                  707.84,
+                  44.17
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Contribute menu in the top navigation bar"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The 'Contribute' menu in the top navigation bar provides access to contribution-related actions.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+          "visible_observation": "Contribute menu in the top navigation bar",
+          "bbox": [
+            595.2,
+            16.406,
+            707.84,
+            44.17
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+            "image_width": 1280,
+            "image_height": 1262,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              13.0,
+              465.0,
+              35.0,
+              553.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              595.2,
+              16.406,
+              707.84,
+              44.17
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Contribute menu in the top navigation bar"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-02",
+      "requirement_text": "The system shall allow users to navigate from the main site navigation to an overview page for release submission guidelines.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-02-C1",
+          "requirement_id": "REQ-02",
+          "claim_text": "The system shall allow users to navigate from the main site navigation to an overview page for release submission guidelines.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+              "visible_observation": "Submission Guidelines link in the Contribute menu",
+              "bbox": [
+                339.2,
+                142.606,
+                465.92,
+                182.99
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+                "image_width": 1280,
+                "image_height": 1262,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  113.0,
+                  265.0,
+                  145.0,
+                  364.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  339.2,
+                  142.606,
+                  465.92,
+                  182.99
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Submission Guidelines link in the Contribute menu"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+              "visible_observation": "Overview Of Submission Guidelines For Releases page title",
+              "bbox": [
+                0.0,
+                223.0,
+                847.0,
+                289.0
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2799,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  125.0,
+                  32.0,
+                  165.0,
+                  580.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  40.96,
+                  349.875,
+                  742.4,
+                  461.835
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    0.0,
+                    223.0,
+                    847.0,
+                    289.0
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Overview Of Submission Guidelines For Releases page title"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The 'Submission Guidelines' link in the main navigation directly leads to the overview page for release submission guidelines.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+          "visible_observation": "Submission Guidelines link in the Contribute menu",
+          "bbox": [
+            339.2,
+            142.606,
+            465.92,
+            182.99
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+            "image_width": 1280,
+            "image_height": 1262,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              113.0,
+              265.0,
+              145.0,
+              364.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              339.2,
+              142.606,
+              465.92,
+              182.99
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Submission Guidelines link in the Contribute menu"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+          "visible_observation": "Overview Of Submission Guidelines For Releases page title",
+          "bbox": [
+            0.0,
+            223.0,
+            847.0,
+            289.0
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2799,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              125.0,
+              32.0,
+              165.0,
+              580.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              40.96,
+              349.875,
+              742.4,
+              461.835
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                0.0,
+                223.0,
+                847.0,
+                289.0
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Overview Of Submission Guidelines For Releases page title"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-03",
+      "requirement_text": "The system shall provide a dedicated overview page that summarizes the rules and process for submitting releases.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-03-C1",
+          "requirement_id": "REQ-03",
+          "claim_text": "The system shall provide a dedicated overview page that summarizes the rules and process for submitting releases.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+              "visible_observation": "Basic Guidelines section",
+              "bbox": [
+                0.0,
+                417.4,
+                254.4,
+                452.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2799,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  195.0,
+                  32.0,
+                  285.0,
+                  465.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  40.96,
+                  545.805,
+                  595.2,
+                  797.715
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    0.0,
+                    417.4,
+                    254.4,
+                    452.6
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Basic Guidelines section"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+              "visible_observation": "Overview Of General Information section",
+              "bbox": [
+                0.0,
+                775.4,
+                297.4,
+                810.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2799,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  325.0,
+                  32.0,
+                  350.0,
+                  285.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  40.96,
+                  909.675,
+                  364.8,
+                  979.65
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    0.0,
+                    775.4,
+                    297.4,
+                    810.6
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Overview Of General Information section"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The page provides a structured summary of rules and processes for submitting releases.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+          "visible_observation": "Basic Guidelines section",
+          "bbox": [
+            0.0,
+            417.4,
+            254.4,
+            452.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2799,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              195.0,
+              32.0,
+              285.0,
+              465.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              40.96,
+              545.805,
+              595.2,
+              797.715
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                0.0,
+                417.4,
+                254.4,
+                452.6
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Basic Guidelines section"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+          "visible_observation": "Overview Of General Information section",
+          "bbox": [
+            0.0,
+            775.4,
+            297.4,
+            810.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2799,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              325.0,
+              32.0,
+              350.0,
+              285.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              40.96,
+              909.675,
+              364.8,
+              979.65
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                0.0,
+                775.4,
+                297.4,
+                810.6
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Overview Of General Information section"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-04",
+      "requirement_text": "The system shall organize release submission guidance into linked topic areas so users can drill down into specific rule sets.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-04-C1",
+          "requirement_id": "REQ-04",
+          "claim_text": "The system shall organize release submission guidance into linked topic areas so users can drill down into specific rule sets.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+              "visible_observation": "Numbered list of specific rule sets",
+              "bbox": [
+                40.96,
+                1105.605,
+                320.0,
+                1749.375
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2799,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  395.0,
+                  32.0,
+                  625.0,
+                  250.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  40.96,
+                  1105.605,
+                  320.0,
+                  1749.375
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Numbered list of specific rule sets"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The page organizes guidance into a numbered list of specific topics, allowing users to drill down.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+          "visible_observation": "Numbered list of specific rule sets",
+          "bbox": [
+            40.96,
+            1105.605,
+            320.0,
+            1749.375
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2799,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              395.0,
+              32.0,
+              625.0,
+              250.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              40.96,
+              1105.605,
+              320.0,
+              1749.375
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Numbered list of specific rule sets"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-05",
+      "requirement_text": "The system shall provide a quick start guide for new contributors who are learning how to submit releases.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-05-C1",
+          "requirement_id": "REQ-05",
+          "claim_text": "The system shall provide a quick start guide for new contributors who are learning how to submit releases.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+              "visible_observation": "Quick Start Guide link in Basic Guidelines",
+              "bbox": [
+                6.600000000000001,
+                862.4,
+                245.4,
+                897.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2799,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  255.0,
+                  32.0,
+                  270.0,
+                  465.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  40.96,
+                  713.745,
+                  595.2,
+                  755.73
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    6.600000000000001,
+                    862.4,
+                    245.4,
+                    897.6
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Quick Start Guide link in Basic Guidelines"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "A 'Quick Start Guide For New Contributors' is explicitly linked within the guidelines page.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+          "visible_observation": "Quick Start Guide link in Basic Guidelines",
+          "bbox": [
+            6.600000000000001,
+            862.4,
+            245.4,
+            897.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2799,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              255.0,
+              32.0,
+              270.0,
+              465.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              40.96,
+              713.745,
+              595.2,
+              755.73
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                6.600000000000001,
+                862.4,
+                245.4,
+                897.6
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Quick Start Guide link in Basic Guidelines"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-06",
+      "requirement_text": "The system shall support discovery of contributor documentation from an authenticated user workspace.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-06-C1",
+          "requirement_id": "REQ-06",
+          "claim_text": "The system shall support discovery of contributor documentation from an authenticated user workspace.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_01.png",
+              "visible_observation": "The user is authenticated (indicated by the dashboard view in screenshots 1 and 2), and the 'Contribute' menu is accessible from this workspace.",
+              "bbox": null,
+              "bbox_metadata": {},
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            },
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+              "visible_observation": "Contribute menu in the authenticated dashboard",
+              "bbox": [
+                595.2,
+                16.406,
+                707.84,
+                44.17
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+                "image_width": 1280,
+                "image_height": 1262,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  13.0,
+                  465.0,
+                  35.0,
+                  553.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  595.2,
+                  16.406,
+                  707.84,
+                  44.17
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Contribute menu in the authenticated dashboard"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The contributor documentation is accessible via the 'Contribute' menu, which is present in the authenticated user's dashboard view.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_01.png",
+          "visible_observation": "The user is authenticated (indicated by the dashboard view in screenshots 1 and 2), and the 'Contribute' menu is accessible from this workspace.",
+          "bbox": null,
+          "bbox_metadata": {},
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        },
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+          "visible_observation": "Contribute menu in the authenticated dashboard",
+          "bbox": [
+            595.2,
+            16.406,
+            707.84,
+            44.17
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+            "image_width": 1280,
+            "image_height": 1262,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              13.0,
+              465.0,
+              35.0,
+              553.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              595.2,
+              16.406,
+              707.84,
+              44.17
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Contribute menu in the authenticated dashboard"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-07",
+      "requirement_text": "The system shall provide a clear separation between learning submission rules and performing a release submission.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-07-C1",
+          "requirement_id": "REQ-07",
+          "claim_text": "The system shall provide a clear separation between learning submission rules and performing a release submission.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+              "visible_observation": "Separation of Submission Guidelines and Submit a Release in the menu",
+              "bbox": [
+                300.2,
+                197.8,
+                506.8,
+                224.2
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+                "image_width": 1280,
+                "image_height": 1262,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  113.0,
+                  265.0,
+                  165.0,
+                  364.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  339.2,
+                  142.606,
+                  465.92,
+                  208.23
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    300.2,
+                    197.8,
+                    506.8,
+                    224.2
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Separation of Submission Guidelines and Submit a Release in the menu"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The menu clearly distinguishes between the learning resource ('Submission Guidelines') and the action ('Submit a Release').",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+          "visible_observation": "Separation of Submission Guidelines and Submit a Release in the menu",
+          "bbox": [
+            300.2,
+            197.8,
+            506.8,
+            224.2
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+            "image_width": 1280,
+            "image_height": 1262,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              113.0,
+              265.0,
+              165.0,
+              364.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              339.2,
+              142.606,
+              465.92,
+              208.23
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                300.2,
+                197.8,
+                506.8,
+                224.2
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Separation of Submission Guidelines and Submit a Release in the menu"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [
+        "TEXTUAL_AMBIGUITY"
+      ],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-08",
+      "requirement_text": "The system shall expose submission-related work areas such as submissions and drafts for authenticated users.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-08-C1",
+          "requirement_id": "REQ-08",
+          "claim_text": "The system shall expose submission-related work areas such as submissions and drafts for authenticated users.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 1,
+              "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_01.png",
+              "visible_observation": "Submissions and Drafts links in the dashboard navigation",
+              "bbox": [
+                306.6,
+                78.4,
+                518.4,
+                102.6
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_01.png",
+                "image_width": 1280,
+                "image_height": 1262,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  65.0,
+                  265.0,
+                  80.0,
+                  375.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  339.2,
+                  82.03,
+                  480.0,
+                  100.96
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    306.6,
+                    78.4,
+                    518.4,
+                    102.6
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Submissions and Drafts links in the dashboard navigation"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The dashboard explicitly exposes 'Submissions' and 'Drafts' as top-level navigation items for the authenticated user.",
+          "metadata": {
+            "prompt_group_id": "G1",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_01.png",
+          "visible_observation": "Submissions and Drafts links in the dashboard navigation",
+          "bbox": [
+            306.6,
+            78.4,
+            518.4,
+            102.6
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_01.png",
+            "image_width": 1280,
+            "image_height": 1262,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              65.0,
+              265.0,
+              80.0,
+              375.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              339.2,
+              82.03,
+              480.0,
+              100.96
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                306.6,
+                78.4,
+                518.4,
+                102.6
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Submissions and Drafts links in the dashboard navigation"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-09",
+      "requirement_text": "The system shall provide contextual location cues on documentation pages so users can understand where they are within the help hierarchy.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-09-C1",
+          "requirement_id": "REQ-09",
+          "claim_text": "The system shall provide contextual location cues on documentation pages so users can understand where they are within the help hierarchy.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+              "visible_observation": "Breadcrumb navigation path",
+              "bbox": [
+                38.4,
+                218.322,
+                537.6,
+                265.905
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2799,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  78.0,
+                  30.0,
+                  95.0,
+                  420.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  38.4,
+                  218.322,
+                  537.6,
+                  265.905
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Breadcrumb navigation path"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The breadcrumb trail 'Discogs > Database & Contributing > Full Submission Guidelines' provides clear contextual location cues.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+          "visible_observation": "Breadcrumb navigation path",
+          "bbox": [
+            38.4,
+            218.322,
+            537.6,
+            265.905
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2799,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              78.0,
+              30.0,
+              95.0,
+              420.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              38.4,
+              218.322,
+              537.6,
+              265.905
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Breadcrumb navigation path"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-10",
+      "requirement_text": "The system shall present submission guidance in a scannable structure that helps contributors review rules efficiently.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-10-C1",
+          "requirement_id": "REQ-10",
+          "claim_text": "The system shall present submission guidance in a scannable structure that helps contributors review rules efficiently.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+              "visible_observation": "Bulleted and numbered list of guidelines",
+              "bbox": [
+                38.4,
+                447.84,
+                832.0,
+                1539.45
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2799,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  160.0,
+                  30.0,
+                  550.0,
+                  650.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  38.4,
+                  447.84,
+                  832.0,
+                  1539.45
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Bulleted and numbered list of guidelines"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The use of structured lists for 'Basic Guidelines' and the numbered list of specific submission rules creates a scannable structure.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+          "visible_observation": "Bulleted and numbered list of guidelines",
+          "bbox": [
+            38.4,
+            447.84,
+            832.0,
+            1539.45
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2799,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              160.0,
+              30.0,
+              550.0,
+              650.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              38.4,
+              447.84,
+              832.0,
+              1539.45
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Bulleted and numbered list of guidelines"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-11",
+      "requirement_text": "The system shall preserve access to broader site navigation while users are exploring contribution help resources.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-11-C1",
+          "requirement_id": "REQ-11",
+          "claim_text": "The system shall preserve access to broader site navigation while users are exploring contribution help resources.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+              "visible_observation": "Top site navigation header",
+              "bbox": [
+                0.0,
+                0.0,
+                1280.0,
+                139.95
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2799,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  0.0,
+                  0.0,
+                  50.0,
+                  1000.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  0.0,
+                  0.0,
+                  1280.0,
+                  139.95
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Top site navigation header"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The top navigation bar, including the Discogs logo and search functionality, is preserved at the top of the page.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+          "visible_observation": "Top site navigation header",
+          "bbox": [
+            0.0,
+            0.0,
+            1280.0,
+            139.95
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2799,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              0.0,
+              0.0,
+              50.0,
+              1000.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              0.0,
+              0.0,
+              1280.0,
+              139.95
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Top site navigation header"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "REQ-12",
+      "requirement_text": "The system shall help users continue from overview documentation into related articles when they need more detailed submission rules.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "REQ-12-C1",
+          "requirement_id": "REQ-12",
+          "claim_text": "The system shall help users continue from overview documentation into related articles when they need more detailed submission rules.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+              "visible_observation": "Related articles list",
+              "bbox": [
+                38.4,
+                2043.27,
+                384.0,
+                2659.05
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2799,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  730.0,
+                  30.0,
+                  950.0,
+                  300.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  38.4,
+                  2043.27,
+                  384.0,
+                  2659.05
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Related articles list"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The 'Articles in this section' component allows users to navigate from the overview to specific, detailed submission rules.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+          "visible_observation": "Related articles list",
+          "bbox": [
+            38.4,
+            2043.27,
+            384.0,
+            2659.05
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2799,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              730.0,
+              30.0,
+              950.0,
+              300.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              38.4,
+              2043.27,
+              384.0,
+              2659.05
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Related articles list"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-01",
+      "requirement_text": "The system shall preserve documentation context when contributors open detailed rule pages from the release submission overview, including a visible path back to the originating overview section.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-01-C1",
+          "requirement_id": "CONTR-01",
+          "claim_text": "The system shall preserve documentation context when contributors open detailed rule pages from the release submission overview, including a visible path back to the originating overview section.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 3,
+              "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+              "visible_observation": "Breadcrumb navigation",
+              "bbox": [
+                38.4,
+                218.322,
+                537.6,
+                265.905
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+                "image_width": 1280,
+                "image_height": 2799,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding",
+                "normalized_box_2d": [
+                  78.0,
+                  30.0,
+                  95.0,
+                  420.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  38.4,
+                  218.322,
+                  537.6,
+                  265.905
+                ],
+                "ocr_refinement": null,
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Breadcrumb navigation"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The breadcrumb trail provides a visible path back to the parent categories, preserving context.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+          "visible_observation": "Breadcrumb navigation",
+          "bbox": [
+            38.4,
+            218.322,
+            537.6,
+            265.905
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+            "image_width": 1280,
+            "image_height": 2799,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding",
+            "normalized_box_2d": [
+              78.0,
+              30.0,
+              95.0,
+              420.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              38.4,
+              218.322,
+              537.6,
+              265.905
+            ],
+            "ocr_refinement": null,
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Breadcrumb navigation"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-02",
+      "requirement_text": "The system shall clearly distinguish which contribution resources are generally browsable and which submission work areas require an authenticated contributor account.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-02-C1",
+          "requirement_id": "CONTR-02",
+          "claim_text": "The system shall clearly distinguish which contribution resources are generally browsable and which submission work areas require an authenticated contributor account.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "EVIDENCE_INTERPRETATION_AMBIGUITY",
+            "FLOW_COVERAGE_GAP"
+          ],
+          "confidence": 0.0,
+          "rationale": "While a 'Sign In' button is present, there is no UI indicator distinguishing access levels for specific contribution resources.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "EVIDENCE_INTERPRETATION_AMBIGUITY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-03",
+      "requirement_text": "The system shall keep the release submission overview aligned with the currently applicable submission policy so contributors see up to date rules.",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-03-C1",
+          "requirement_id": "CONTR-03",
+          "claim_text": "The system shall keep the release submission overview aligned with the currently applicable submission policy so contributors see up to date rules.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "NONTRIVIAL_HIDDEN_PROPERTY",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY",
+            "FLOW_COVERAGE_GAP"
+          ],
+          "confidence": 0.0,
+          "rationale": "The UI shows a date, but cannot verify if the content is aligned with the *currently* applicable policy, as this is a backend/content management property.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "NONTRIVIAL_HIDDEN_PROPERTY",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-04",
+      "requirement_text": "The system shall cover all major release submission rule categories from the overview page so contributors can discover every essential rule area from one starting point.",
+      "ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-04-C1",
+          "requirement_id": "CONTR-04",
+          "claim_text": "The system shall cover all major release submission rule categories from the overview page so contributors can discover every essential rule area from one starting point.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY",
+            "FLOW_COVERAGE_GAP"
+          ],
+          "confidence": 0.0,
+          "rationale": "The UI lists categories, but cannot verify the completeness claim ('all major categories') without external knowledge of the full rule set.",
+          "metadata": {
+            "prompt_group_id": "G2",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "PARTIALLY_UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "QUANTIFIER_OR_COMPLETENESS_AMBIGUITY",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY",
+        "FLOW_COVERAGE_GAP"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-05",
+      "requirement_text": "The system shall provide an explicit transition from the release submission overview into the actual submission workflow so contributors can proceed directly from learning the rules to starting a release submission.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "FULFILLED",
+      "claims": [
+        {
+          "claim_id": "CONTR-05-C1",
+          "requirement_id": "CONTR-05",
+          "claim_text": "The system shall provide an explicit transition from the release submission overview into the actual submission workflow so contributors can proceed directly from learning the rules to starting a release submission.",
+          "status": "SUPPORTED",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [
+            {
+              "step_index": 2,
+              "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+              "visible_observation": "Contribute menu options including Submission Guidelines and Submit a Release",
+              "bbox": [
+                300.2,
+                197.8,
+                506.8,
+                224.2
+              ],
+              "bbox_metadata": {
+                "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+                "image_width": 1280,
+                "image_height": 1262,
+                "coordinate_space": "image_pixels",
+                "source": "gemini_visual_grounding_ocr_refined",
+                "normalized_box_2d": [
+                  105.0,
+                  260.0,
+                  180.0,
+                  370.0
+                ],
+                "normalized_coordinate_space": "0_1000_yxyx",
+                "raw_gemini_pixel_bbox": [
+                  332.8,
+                  132.51,
+                  473.6,
+                  227.16
+                ],
+                "ocr_refinement": {
+                  "bbox": [
+                    300.2,
+                    197.8,
+                    506.8,
+                    224.2
+                  ]
+                },
+                "role": "SUPPORTING",
+                "localizability": "LOCAL_REGION",
+                "description": "Contribute menu options including Submission Guidelines and Submit a Release"
+              },
+              "confidence": 0.85,
+              "source": "gemini_image",
+              "metadata": {
+                "model_name": "gemini-3.1-flash-lite"
+              }
+            }
+          ],
+          "uncertainty_reasons": [],
+          "confidence": 0.85,
+          "rationale": "The navigation menu clearly separates 'Submission Guidelines' and 'Submit a Release' under the 'Contribute' header, providing an explicit and accessible transition between the two workflows.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "SUPPORTED",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+          "visible_observation": "Contribute menu options including Submission Guidelines and Submit a Release",
+          "bbox": [
+            300.2,
+            197.8,
+            506.8,
+            224.2
+          ],
+          "bbox_metadata": {
+            "image_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+            "image_width": 1280,
+            "image_height": 1262,
+            "coordinate_space": "image_pixels",
+            "source": "gemini_visual_grounding_ocr_refined",
+            "normalized_box_2d": [
+              105.0,
+              260.0,
+              180.0,
+              370.0
+            ],
+            "normalized_coordinate_space": "0_1000_yxyx",
+            "raw_gemini_pixel_bbox": [
+              332.8,
+              132.51,
+              473.6,
+              227.16
+            ],
+            "ocr_refinement": {
+              "bbox": [
+                300.2,
+                197.8,
+                506.8,
+                224.2
+              ]
+            },
+            "role": "SUPPORTING",
+            "localizability": "LOCAL_REGION",
+            "description": "Contribute menu options including Submission Guidelines and Submit a Release"
+          },
+          "confidence": 0.85,
+          "source": "gemini_image",
+          "metadata": {
+            "model_name": "gemini-3.1-flash-lite"
+          }
+        }
+      ],
+      "uncertainty_reasons": [],
+      "rationale": "All central claims are supported by visible evidence and no material uncertainty blocks fulfillment.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    },
+    {
+      "requirement_id": "CONTR-06",
+      "requirement_text": "The system shall let authenticated contributors return directly from submission guidance pages to their submissions or drafts work areas without restarting from the main dashboard.",
+      "ui_evaluability": "UI_VERIFIABLE",
+      "final_label": "ABSTAIN",
+      "claims": [
+        {
+          "claim_id": "CONTR-06-C1",
+          "requirement_id": "CONTR-06",
+          "claim_text": "The system shall let authenticated contributors return directly from submission guidance pages to their submissions or drafts work areas without restarting from the main dashboard.",
+          "status": "MISSING",
+          "is_core": true,
+          "is_observable": true,
+          "evidence": [],
+          "uncertainty_reasons": [
+            "FLOW_COVERAGE_GAP",
+            "EVIDENCE_INTERPRETATION_AMBIGUITY"
+          ],
+          "confidence": 0.0,
+          "rationale": "While the 'Submissions' and 'Drafts' links are visible on the main dashboard, the screenshots do not show the navigation experience from within a guidance page (like the one in Screenshot 3) to confirm if these links persist or are accessible without returning to the dashboard.",
+          "metadata": {
+            "prompt_group_id": "G3",
+            "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+            "model_name": "gemini-3.1-flash-lite",
+            "grouping_strategy": "batched-topk",
+            "attached_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "claim_selected_step_indices": [
+              1,
+              2,
+              3
+            ],
+            "raw_model_label": "MISSING",
+            "evidence_step_indices_inferred_from_observation": false,
+            "model_ui_evaluability": "UI_VERIFIABLE",
+            "ui_evaluability_predicted_in_prompt": true
+          }
+        }
+      ],
+      "evidence": [],
+      "uncertainty_reasons": [
+        "FLOW_COVERAGE_GAP",
+        "EVIDENCE_INTERPRETATION_AMBIGUITY"
+      ],
+      "rationale": "No useful visible evidence was retrieved; missing evidence alone is not a negative verdict.",
+      "metadata": {
+        "requirement_understanding_rationale": "The requirement appears checkable from visible UI evidence in the screenshot flow.",
+        "decomposition_source": "single_requirement",
+        "ui_evaluability_source": "model_joint_prompt"
+      }
+    }
+  ],
+  "metadata": {
+    "flow_dir": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf",
+    "requirements_path": "data/annotations/verification_gold/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/verification_gold.json",
+    "requirements_source": "benchmark",
+    "requested_retriever": "lexical",
+    "retriever_provider": null,
+    "retriever_model": null,
+    "top_k": 4,
+    "claims_enabled": true,
+    "claim_decomposition_policy": "gated",
+    "max_claims": 4,
+    "llm_claim_fallback": false,
+    "claim_provider": "deepseek",
+    "claim_model": null,
+    "verifier": "gemini-image",
+    "execution_mode": "batched-topk",
+    "verifier_model": "gemini-3.1-flash-lite",
+    "max_verifier_images": 4,
+    "max_verifier_group_images": 4,
+    "max_verifier_group_claims": 8,
+    "include_sequence_context": true,
+    "claim_workers": 1,
+    "verifier_thinking_level": "low",
+    "verifier_thinking_budget": null,
+    "verifier_max_output_tokens": 32768,
+    "grounding_candidates": null,
+    "grounding_assets_dir": null,
+    "verifier_predict_ui_evaluability": true,
+    "pipeline": "evidence_first_verification_pipeline",
+    "retriever": "LexicalEvidenceRetriever",
+    "retrieval_batch_claims": 18,
+    "max_claim_workers": 1,
+    "gemini_image_verifier": {
+      "requested": 18,
+      "api_calls": 3,
+      "api_call_attempts": 3,
+      "cache_hits": 0,
+      "fallbacks": 0,
+      "failures": [],
+      "cache_path": "data/generated/thesis_final_experiments/fl_gated_top4/cache/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf.json",
+      "model_name": "gemini-3.1-flash-lite",
+      "prompt_version": "GEMINI_BATCHED_IMAGE_CLAIM_VERIFICATION_V2_GROUNDED_REGIONS",
+      "max_retries": 2,
+      "max_api_calls": null,
+      "include_sequence_context": true,
+      "thinking_level": "low",
+      "thinking_budget": null,
+      "max_output_tokens": 32768,
+      "grouping_strategy": "batched-topk",
+      "max_images_per_group": 4,
+      "max_claims_per_group": 8,
+      "group_workers": 1,
+      "groups": [
+        {
+          "group_id": "G1",
+          "claim_ids": [
+            "REQ-01-C1",
+            "REQ-02-C1",
+            "REQ-03-C1",
+            "REQ-04-C1",
+            "REQ-05-C1",
+            "REQ-06-C1",
+            "REQ-07-C1",
+            "REQ-08-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3
+          ],
+          "image_count": 3,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 6403,
+            "output_tokens": 1996,
+            "total_tokens": 8514,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 115
+          }
+        },
+        {
+          "group_id": "G2",
+          "claim_ids": [
+            "REQ-09-C1",
+            "REQ-10-C1",
+            "REQ-11-C1",
+            "REQ-12-C1",
+            "CONTR-01-C1",
+            "CONTR-02-C1",
+            "CONTR-03-C1",
+            "CONTR-04-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3
+          ],
+          "image_count": 3,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 6483,
+            "output_tokens": 1690,
+            "total_tokens": 9482,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 1309
+          }
+        },
+        {
+          "group_id": "G3",
+          "claim_ids": [
+            "CONTR-05-C1",
+            "CONTR-06-C1"
+          ],
+          "attached_step_indices": [
+            1,
+            2,
+            3
+          ],
+          "image_count": 3,
+          "cache_hit": false,
+          "include_sequence_context": true,
+          "usage": {
+            "input_tokens": 5773,
+            "output_tokens": 511,
+            "total_tokens": 6383,
+            "cached_content_tokens": 0,
+            "thoughts_tokens": 99
+          }
+        }
+      ],
+      "group_count": 3,
+      "images_attached_total": 9,
+      "unique_images_attached": 3,
+      "cached_content_tokens": 0,
+      "usage": {
+        "request_count": 3,
+        "input_tokens": 18659,
+        "output_tokens": 4197,
+        "thoughts_tokens": 1523,
+        "total_tokens": 24379,
+        "estimated_cost_usd": 0.01324475,
+        "estimated_cost_eur": 0.01218517,
+        "models": {},
+        "updated_at": null
+      },
+      "asset_manifest": [
+        {
+          "step_index": 1,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_01.png",
+          "sha256": "8c07c6234aae04954309a574551c80d993e684d9d90d52a2de0528dcb4fbcfc9",
+          "byte_size": 417264,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1262,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 2,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/step_02.png",
+          "sha256": "7bf8639d0a9def4ea66a88a5304e96e3e9bf26cd645ea3f2e460e8a11773eed6",
+          "byte_size": 333096,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 1262,
+          "has_ocr_text": true
+        },
+        {
+          "step_index": 3,
+          "screenshot_path": "data/processed/flows/mind2web/07_discogs_8251e820-4b8a-4221-b2d9-8158cada3dcf/original/step_03.png",
+          "sha256": "feda2b5777f6838d369bd252d5cf0e05d7783d1f8619ba92564d6c2a62b5575e",
+          "byte_size": 762570,
+          "mime_type": "image/png",
+          "image_width": 1280,
+          "image_height": 2799,
+          "has_ocr_text": true
+        }
+      ],
+      "candidate_package": null,
+      "marked_assets_dir": null,
+      "predict_ui_evaluability": true
+    },
+    "gemini_mllm_verifier_used": true,
+    "gemini_mllm_verifier_fallback_used": false
+  }
+}

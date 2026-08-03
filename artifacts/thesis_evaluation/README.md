@@ -23,8 +23,8 @@ must not be committed wholesale.
 The executed source code, prompt templates, and evaluators correspond to commit
 `cf243be2dd641e4b90e844eccbbe97bd0325f3c6`. Review and packaging tooling was
 added afterward without changing those stored run outputs. Full per-item
-predictions and raw provider responses remain local. A separate sanitized
-per-item run set is published under `data/published/`.
+predictions and raw provider responses remain local. Three separate sanitized
+per-item run sets are published under `data/published/`.
 
 ## Excluded contents
 

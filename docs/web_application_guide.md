@@ -7,8 +7,8 @@ clone, how to inspect the benchmark, and how to create verification results.
 ## 1. What a Fresh Clone Contains
 
 A fresh clone contains the application, the reviewed requirement annotations,
-the verification benchmark for the 13 numbered Mind2Web flows, one curated
-published Mind2Web verification-run set with bounding boxes, and the reviewed
+the verification benchmark for the 13 numbered Mind2Web flows, three curated
+published Mind2Web verification-run sets, and the reviewed
 PURE-derived annotations and aggregate exploratory summary. It does not contain
 the following local artifacts:
 
@@ -19,8 +19,8 @@ the following local artifacts:
 - PURE source documents, screenshot flows, or per-flow verification runs.
 
 Consequently, the flow list and reviewed benchmark become available after the
-Mind2Web export. **Verification runs** then includes the curated published run
-for each numbered Mind2Web flow. Installing PURE makes its original documents
+Mind2Web export. **Verification runs** then includes the three curated published
+runs for each numbered Mind2Web flow. Installing PURE makes its original documents
 available to the extraction scripts, but does not add PURE flows to the viewer;
 the sidebar states this limitation. Locally generated runs are additional
 reproducible outputs under `data/generated/`, which remains intentionally
@@ -93,8 +93,8 @@ Reviewed benchmark items and generated predictions are different artifacts:
 - new pipeline predictions are created locally under `data/generated/`; and
 - model-response caches and API-usage records are local as well.
 
-The repository does not commit generated runs wholesale. The included run set
-was curated to exclude screenshots, source-page text, raw provider responses,
+The repository does not commit generated runs wholesale. The included run sets
+were curated to exclude screenshots, source-page text, raw provider responses,
 caches, secrets, personal local paths, and email-like task values. This keeps
 the public repository compact while allowing evaluators to inspect real
 predictions and bounding boxes immediately after exporting the source images.
