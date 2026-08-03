@@ -26,13 +26,17 @@ The resulting general rules can be added to the label guide, prompt, or
 deterministic gates and evaluated again on held-out flows. Repeating this cycle
 turns the taxonomy into a development tool rather than only a reporting device.
 
-Such refinement is plausible only if the multimodal model can apply the added
-rules and interpret the relevant UI states. The present results show that many
-errors follow recurring policies rather than isolated output failures, but they
-do not establish that prompt refinement will remove them or that visual
-understanding is already sufficient in other interfaces. Each iteration must
-therefore retain abstention, inspect its remaining errors, and be tested on new
-applications instead of the examples used to derive the rules.
+Iterative correction can also shift rather than eliminate errors. In the current
+setting, a rule designed to retain more visible partial support might reduce
+excessive abstention while weakening the evidential threshold and increasing
+over-fulfillment. Such refinement is plausible only if the multimodal model can
+apply the added rules and interpret the relevant UI states. The present results
+show that many errors follow recurring policies rather than isolated output
+failures, but they do not establish that prompt refinement will remove them or
+that visual understanding is sufficient beyond the predominantly web-based
+benchmark. Each iteration must therefore retain abstention, monitor error
+trade-offs, and be tested on new applications instead of the examples used to
+derive the rules.
 
 For a practical deployment, the results favor an adaptive rather than fixed
 retrieval policy. Complete flows are appropriate while flows remain short
@@ -56,13 +60,9 @@ All current Mind2Web verification items were reviewed by the primary author
 independently of the evaluated model predictions. The documented reference
 standard includes requirement labels, claim boundaries, evidence sets, and
 UI-evaluability judgments. Reported model metrics quantify agreement with this
-reviewed reference standard. A later author reinspection resolved all 81
-disagreements between the stored UI-evaluability labels and a deterministic
-text classifier, changing 30 labels in the stored records. Because the sample
-was disagreement-selected and the classifier output was visible, this review
-improves internal consistency but does not provide independent validation of
-that classifier. The separately prompted multimodal UI-evaluability result is
-therefore reported as auxiliary evidence rather than a central RQ result.
+reviewed reference standard. The separately prompted multimodal UI-evaluability
+result is therefore reported as auxiliary evidence rather than a central RQ
+result.
 
 The requirements are derived from the same flows against which they are
 evaluated. Prediction-independent manual review keeps evaluated outputs
@@ -128,11 +128,13 @@ therefore kept separate from status quality on matched claims.
 Thirteen web flows are a small sample of the variety of real interfaces and requirements. The selected tasks do not establish generalization to native mobile applications, desktop software, accessibility requirements, or industrial specifications. Mind2Web trajectories reflect one recorded interaction path and may omit alternative states relevant to a requirement.
 
 An error-driven refinement cycle would intensify this limitation if rules were
-derived and evaluated on the same flows. Development examples, validation
-flows, and a held-out test set should therefore be separated. The test set
-should include more varied interfaces and independently authored requirements
-from real applications so that apparent improvements are not benchmark-specific
-prompt tuning.
+derived and evaluated on the same flows. Because the benchmark is dominated by
+web UI trajectories and requirements reconstructed from them, repeated tuning
+could overfit both its interface type and its evidence patterns. Development
+examples, validation flows, and a held-out test set should therefore be
+separated. The test set should include native mobile and desktop interfaces as
+well as independently authored requirements drawn from real projects, so that
+apparent improvements are not benchmark-specific prompt tuning.
 
 The primary benchmark also reverses the usual requirements-first development
 order. Its source requirements were reconstructed from already observed web
@@ -146,8 +148,12 @@ unsupported and contradictory cases, but they are constructed deviations
 rather than observed implementation defects. The results therefore do not
 estimate defect-detection performance in requirements-driven development.
 
-PURE broadens the source domain with realistic requirements documents. Its
-results are framed as document-to-UI consistency and reported separately from
+PURE provides a closer approximation to requirements-first practice because its
+requirements were authored independently of the UI evidence selected for this
+study. However, PURE was not created as a visual-verification benchmark: most
+source requirements have no aligned screenshot sequence, and available figures
+often show only a static or partial view. Its curated results are therefore
+framed as document-to-UI consistency and reported separately from
 implementation-conformance results over recorded execution flows.
 
 \section{Reliability and Reproducibility}\label{reliability-and-reproducibility}

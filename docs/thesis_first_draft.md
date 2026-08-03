@@ -1141,6 +1141,15 @@ distinction was one of the main judgment problems during author review.
 
 PURE is a corpus of public requirements documents collected from heterogeneous sources and formats (Ferrari, Spagnolo, and Gnesi, 2017). Its documents are useful because their requirements are not generated from the screenshot trajectories used in the main benchmark. The selected documents examined here contain longer, more formal requirements and cases that depend on headings, surrounding paragraphs, figures, or system context.
 
+This material offers a closer approximation to requirements encountered in
+requirements-first practice than requirements reconstructed from completed UI
+flows. However, PURE was not designed for screenshot-based verification. Most
+source requirements are not accompanied by an aligned screenshot sequence, and
+the available figures often expose only a static or partial state. The accepted
+subset is therefore a curated set of requirements that could be meaningfully
+associated with visual material, not a representative sample of screenshot
+coverage across the source documents.
+
 The pipeline first extracts selected PURE requirements deterministically and
 then uses AI assistance to contextualize fragments that are not self-contained.
 It associates the resulting candidates with UI images from the documents. The
@@ -1475,9 +1484,8 @@ unavailable.
 
 #### RQ3 Error-Analysis Protocol
 
-The RQ3 protocol uses frozen predictions and a taxonomy fixed before category
-coding. Each incorrect prediction and each unsafe `FULFILLED` decision receives
-one primary error category and may receive secondary requirement- and
+The RQ3 analysis uses frozen predictions. Each incorrect prediction receives
+exactly one primary error category and may receive multiple requirement- and
 evidence-pattern tags. Abstentions are coded separately so that a justified
 hidden-outcome abstention is not grouped with a retrieval failure.
 
@@ -1488,41 +1496,17 @@ traceability failures. Requirement-pattern tags cover quantifiers, comparisons,
 persistence, external effects, late results, multi-screen composition, and
 ambiguous scope.
 
-The protocol reports denominators explicitly: frequency among all 258 items,
-among incorrect predictions, among model abstentions, and among predicted
-`FULFILLED` items as appropriate. Its condition-blinded review package contains
-653 eligible condition–item rows representing 153 distinct requirements across
-the six prespecified first runs. A screenshot-aware multimodal reviewer applied
-the taxonomy flow by flow. It received the exact screenshot subset, requirement,
-accepted reference, prediction, and trace for each row, but not the category
-proposed by the deterministic heuristic. Model identity was hidden behind
-condition codes. The resulting categories are therefore LLM-assisted visual
-coding, not independent human adjudication.
-
-The first coding prompt also allowed a benchmark-review outcome although all
-258 reference items were already accepted and frozen. This mixed benchmark
-quality control with model-error analysis. A documented repair removed that
-outcome, made the accepted reference explicitly authoritative, and reprocessed
-the 163 flagged rows. The 490 unaffected rows, requirement-level visual
-assessments, identifiers, and screenshot attestations remained unchanged. The
-repaired artifact contains no benchmark-review outcome or unresolved flag.
-
-A targeted primary-author consistency review then revisited all 24 rows
-initially assigned label-boundary disagreement. Applying the frozen category
-precedence rule retained 12 genuine boundary cases and reassigned 12 rows to
-excessive abstention because the supplied evidence was already accepted as
-meaningful partial support. Gold labels, stored predictions, row eligibility,
-and all non-boundary category decisions remained unchanged. This targeted
-review is quality control for the final coding, not an independent reliability
-sample.
+The categories were produced through LLM-assisted visual coding with targeted
+primary-author review; they are descriptive and do not constitute independent
+human adjudication.
 
 The following table reports only mechanically observable triggers that can be
 derived without causal judgment. Errors and abstentions use 258 as their
 denominator; the false-fulfillment rate uses predicted `FULFILLED` decisions.
 “Trace miss” counts correct labels whose cited steps have no overlap with
 reviewed evidence. “Input gap” counts items for which the supplied screenshots
-omit at least one reviewed evidence step. The columns overlap and must not be
-interpreted as error-category frequencies.
+omit at least one reviewed evidence step. These columns are mechanical triggers,
+not mutually exclusive error categories.
 
 \begin{table}[htbp]
   \centering
@@ -1541,21 +1525,13 @@ interpreted as error-category frequencies.
   \end{tabular}
   \caption{Automatic RQ3 trigger inventory over 258 requirements. FL denotes
   Gemini 3.1 Flash-Lite, G25 Gemini 2.5 Flash-Lite, r raw requirements, g gated
-  decomposition, and t4 lexical top-4 input. Counts overlap and are not
-  manually coded causes.}
+  decomposition, and t4 lexical top-4 input. Counts overlap because the columns
+  test separate properties of the same items; for example, an error may also be
+  an abstention or unsafe fulfillment, and an input gap may coexist with either.
+  They are mechanical triggers, not manually coded causes.}
   \label{tab:rq3-trigger-inventory}
 \end{table}
 \FloatBarrier
-
-Five qualitative cases were fixed with the protocol before the final category
-counts: Amtrak `REQ-01` as a positive observable control; Six Flags flow 10
-`REQ-09` as a late-state selection miss; AMC Theatres `CONTR-03` as unsafe
-fulfillment of hidden authentication enforcement; Amtrak `CONTR-04` as unsafe
-fulfillment of a universal coverage claim; and GameStop `CONTR-01` as unsafe
-fulfillment of cross-visit persistence. The later Book Depository and Carnival
-comparisons are supplementary annotation-boundary examples. The corrected
-GameStop `CONTR-04` is reported as a post-freeze author amendment and grounding
-diagnostic, not as a prespecified case.
 
 The completed audit contains 653 condition–item rows from 153 distinct
 requirements. Of these, 392 have a prediction different from the accepted
@@ -1618,13 +1594,6 @@ universal or completeness wording in 72 (18.4%), and comparative wording in 53
 action without its result. These overlapping tags support the qualitative
 mechanisms described above but do not identify independent causal effects.
 
-As a post-hoc consistency check, the screenshot-aware categories agree with the
-separate deterministic heuristic on 564 of 653 selected rows (86.4%; Cohen's
-$\kappa=0.836$). The heuristic uses labels, trace metadata, and text rules but no
-screenshot pixels. The agreement checks consistency with the mechanical category
-preconditions; it does not validate the semantic visual judgments, is not human
-inter-rater reliability, and is not included in the reported category counts.
-
 RQ3 is therefore answered descriptively for the frozen benchmark: the dominant
 failures are over-claiming full support, abstaining despite supplied evidence,
 and losing decisive screenshots under restricted selection. These outcomes are
@@ -1634,9 +1603,8 @@ support population-level prevalence or independent-human reliability claims.
 
 #### RQ3 Error Mechanisms and Illustrative Cases
 
-Earlier case review informed the frozen taxonomy. The following mechanisms
-define the categories used for the final condition-blinded coding. The
-automatic trigger inventory measures review workload, not causal frequency.
+The following mechanisms characterize the final error categories. The automatic
+trigger inventory measures review workload, not causal frequency.
 
 Over-fulfillment occurs when the verifier treats a visible entry point as
 evidence for the complete requirement. A search form becomes proof of correct
@@ -1823,13 +1791,17 @@ The resulting general rules can be added to the label guide, prompt, or
 deterministic gates and evaluated again on held-out flows. Repeating this cycle
 turns the taxonomy into a development tool rather than only a reporting device.
 
-Such refinement is plausible only if the multimodal model can apply the added
-rules and interpret the relevant UI states. The present results show that many
-errors follow recurring policies rather than isolated output failures, but they
-do not establish that prompt refinement will remove them or that visual
-understanding is already sufficient in other interfaces. Each iteration must
-therefore retain abstention, inspect its remaining errors, and be tested on new
-applications instead of the examples used to derive the rules.
+Iterative correction can also shift rather than eliminate errors. In the current
+setting, a rule designed to retain more visible partial support might reduce
+excessive abstention while weakening the evidential threshold and increasing
+over-fulfillment. Such refinement is plausible only if the multimodal model can
+apply the added rules and interpret the relevant UI states. The present results
+show that many errors follow recurring policies rather than isolated output
+failures, but they do not establish that prompt refinement will remove them or
+that visual understanding is sufficient beyond the predominantly web-based
+benchmark. Each iteration must therefore retain abstention, monitor error
+trade-offs, and be tested on new applications instead of the examples used to
+derive the rules.
 
 For a practical deployment, the results favor an adaptive rather than fixed
 retrieval policy. Complete flows are appropriate while flows remain short
@@ -1853,13 +1825,9 @@ All current Mind2Web verification items were reviewed by the primary author
 independently of the evaluated model predictions. The documented reference
 standard includes requirement labels, claim boundaries, evidence sets, and
 UI-evaluability judgments. Reported model metrics quantify agreement with this
-reviewed reference standard. A later author reinspection resolved all 81
-disagreements between the stored UI-evaluability labels and a deterministic
-text classifier, changing 30 labels in the stored records. Because the sample
-was disagreement-selected and the classifier output was visible, this review
-improves internal consistency but does not provide independent validation of
-that classifier. The separately prompted multimodal UI-evaluability result is
-therefore reported as auxiliary evidence rather than a central RQ result.
+reviewed reference standard. The separately prompted multimodal UI-evaluability
+result is therefore reported as auxiliary evidence rather than a central RQ
+result.
 
 The requirements are derived from the same flows against which they are
 evaluated. Prediction-independent manual review keeps evaluated outputs
@@ -1925,11 +1893,13 @@ therefore kept separate from status quality on matched claims.
 Thirteen web flows are a small sample of the variety of real interfaces and requirements. The selected tasks do not establish generalization to native mobile applications, desktop software, accessibility requirements, or industrial specifications. Mind2Web trajectories reflect one recorded interaction path and may omit alternative states relevant to a requirement.
 
 An error-driven refinement cycle would intensify this limitation if rules were
-derived and evaluated on the same flows. Development examples, validation
-flows, and a held-out test set should therefore be separated. The test set
-should include more varied interfaces and independently authored requirements
-from real applications so that apparent improvements are not benchmark-specific
-prompt tuning.
+derived and evaluated on the same flows. Because the benchmark is dominated by
+web UI trajectories and requirements reconstructed from them, repeated tuning
+could overfit both its interface type and its evidence patterns. Development
+examples, validation flows, and a held-out test set should therefore be
+separated. The test set should include native mobile and desktop interfaces as
+well as independently authored requirements drawn from real projects, so that
+apparent improvements are not benchmark-specific prompt tuning.
 
 The primary benchmark also reverses the usual requirements-first development
 order. Its source requirements were reconstructed from already observed web
@@ -1943,8 +1913,12 @@ unsupported and contradictory cases, but they are constructed deviations
 rather than observed implementation defects. The results therefore do not
 estimate defect-detection performance in requirements-driven development.
 
-PURE broadens the source domain with realistic requirements documents. Its
-results are framed as document-to-UI consistency and reported separately from
+PURE provides a closer approximation to requirements-first practice because its
+requirements were authored independently of the UI evidence selected for this
+study. However, PURE was not created as a visual-verification benchmark: most
+source requirements have no aligned screenshot sequence, and available figures
+often show only a static or partial view. Its curated results are therefore
+framed as document-to-UI consistency and reported separately from
 implementation-conformance results over recorded execution flows.
 
 ### 7.5 Reliability and Reproducibility

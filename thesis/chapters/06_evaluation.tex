@@ -242,9 +242,8 @@ unavailable.
 
 \subsection{RQ3 Error-Analysis Protocol}\label{rq3-error-analysis-protocol}
 
-The RQ3 protocol uses frozen predictions and a taxonomy fixed before category
-coding. Each incorrect prediction and each unsafe \texttt{FULFILLED} decision receives
-one primary error category and may receive secondary requirement- and
+The RQ3 analysis uses frozen predictions. Each incorrect prediction receives
+exactly one primary error category and may receive multiple requirement- and
 evidence-pattern tags. Abstentions are coded separately so that a justified
 hidden-outcome abstention is not grouped with a retrieval failure.
 
@@ -255,41 +254,17 @@ traceability failures. Requirement-pattern tags cover quantifiers, comparisons,
 persistence, external effects, late results, multi-screen composition, and
 ambiguous scope.
 
-The protocol reports denominators explicitly: frequency among all 258 items,
-among incorrect predictions, among model abstentions, and among predicted
-\texttt{FULFILLED} items as appropriate. Its condition-blinded review package contains
-653 eligible condition--item rows representing 153 distinct requirements across
-the six prespecified first runs. A screenshot-aware multimodal reviewer applied
-the taxonomy flow by flow. It received the exact screenshot subset, requirement,
-accepted reference, prediction, and trace for each row, but not the category
-proposed by the deterministic heuristic. Model identity was hidden behind
-condition codes. The resulting categories are therefore LLM-assisted visual
-coding, not independent human adjudication.
-
-The first coding prompt also allowed a benchmark-review outcome although all
-258 reference items were already accepted and frozen. This mixed benchmark
-quality control with model-error analysis. A documented repair removed that
-outcome, made the accepted reference explicitly authoritative, and reprocessed
-the 163 flagged rows. The 490 unaffected rows, requirement-level visual
-assessments, identifiers, and screenshot attestations remained unchanged. The
-repaired artifact contains no benchmark-review outcome or unresolved flag.
-
-A targeted primary-author consistency review then revisited all 24 rows
-initially assigned label-boundary disagreement. Applying the frozen category
-precedence rule retained 12 genuine boundary cases and reassigned 12 rows to
-excessive abstention because the supplied evidence was already accepted as
-meaningful partial support. Gold labels, stored predictions, row eligibility,
-and all non-boundary category decisions remained unchanged. This targeted
-review is quality control for the final coding, not an independent reliability
-sample.
+The categories were produced through LLM-assisted visual coding with targeted
+primary-author review; they are descriptive and do not constitute independent
+human adjudication.
 
 The following table reports only mechanically observable triggers that can be
 derived without causal judgment. Errors and abstentions use 258 as their
 denominator; the false-fulfillment rate uses predicted \texttt{FULFILLED} decisions.
 ``Trace miss'' counts correct labels whose cited steps have no overlap with
 reviewed evidence. ``Input gap'' counts items for which the supplied screenshots
-omit at least one reviewed evidence step. The columns overlap and must not be
-interpreted as error-category frequencies.
+omit at least one reviewed evidence step. These columns are mechanical triggers,
+not mutually exclusive error categories.
 
 \begin{table}[htbp]
   \centering
@@ -308,21 +283,13 @@ interpreted as error-category frequencies.
   \end{tabular}
   \caption{Automatic RQ3 trigger inventory over 258 requirements. FL denotes
   Gemini 3.1 Flash-Lite, G25 Gemini 2.5 Flash-Lite, r raw requirements, g gated
-  decomposition, and t4 lexical top-4 input. Counts overlap and are not
-  manually coded causes.}
+  decomposition, and t4 lexical top-4 input. Counts overlap because the columns
+  test separate properties of the same items; for example, an error may also be
+  an abstention or unsafe fulfillment, and an input gap may coexist with either.
+  They are mechanical triggers, not manually coded causes.}
   \label{tab:rq3-trigger-inventory}
 \end{table}
 \FloatBarrier
-
-Five qualitative cases were fixed with the protocol before the final category
-counts: Amtrak \texttt{REQ-01} as a positive observable control; Six Flags flow 10
-\texttt{REQ-09} as a late-state selection miss; AMC Theatres \texttt{CONTR-03} as unsafe
-fulfillment of hidden authentication enforcement; Amtrak \texttt{CONTR-04} as unsafe
-fulfillment of a universal coverage claim; and GameStop \texttt{CONTR-01} as unsafe
-fulfillment of cross-visit persistence. The later Book Depository and Carnival
-comparisons are supplementary annotation-boundary examples. The corrected
-GameStop \texttt{CONTR-04} is reported as a post-freeze author amendment and grounding
-diagnostic, not as a prespecified case.
 
 The completed audit contains 653 condition--item rows from 153 distinct
 requirements. Of these, 392 have a prediction different from the accepted
@@ -385,13 +352,6 @@ universal or completeness wording in 72 (18.4\%), and comparative wording in 53
 action without its result. These overlapping tags support the qualitative
 mechanisms described above but do not identify independent causal effects.
 
-As a post-hoc consistency check, the screenshot-aware categories agree with the
-separate deterministic heuristic on 564 of 653 selected rows (86.4\%; Cohen's
-\(\kappa=0.836\)). The heuristic uses labels, trace metadata, and text rules but no
-screenshot pixels. The agreement checks consistency with the mechanical category
-preconditions; it does not validate the semantic visual judgments, is not human
-inter-rater reliability, and is not included in the reported category counts.
-
 RQ3 is therefore answered descriptively for the frozen benchmark: the dominant
 failures are over-claiming full support, abstaining despite supplied evidence,
 and losing decisive screenshots under restricted selection. These outcomes are
@@ -401,9 +361,8 @@ support population-level prevalence or independent-human reliability claims.
 
 \subsection{RQ3 Error Mechanisms and Illustrative Cases}\label{rq3-error-mechanisms-and-illustrative-cases}
 
-Earlier case review informed the frozen taxonomy. The following mechanisms
-define the categories used for the final condition-blinded coding. The
-automatic trigger inventory measures review workload, not causal frequency.
+The following mechanisms characterize the final error categories. The automatic
+trigger inventory measures review workload, not causal frequency.
 
 Over-fulfillment occurs when the verifier treats a visible entry point as
 evidence for the complete requirement. A search form becomes proof of correct

@@ -236,6 +236,15 @@ distinction was one of the main judgment problems during author review.
 
 PURE is a corpus of public requirements documents collected from heterogeneous sources and formats \autocite{ferrari2017}. Its documents are useful because their requirements are not generated from the screenshot trajectories used in the main benchmark. The selected documents examined here contain longer, more formal requirements and cases that depend on headings, surrounding paragraphs, figures, or system context.
 
+This material offers a closer approximation to requirements encountered in
+requirements-first practice than requirements reconstructed from completed UI
+flows. However, PURE was not designed for screenshot-based verification. Most
+source requirements are not accompanied by an aligned screenshot sequence, and
+the available figures often expose only a static or partial state. The accepted
+subset is therefore a curated set of requirements that could be meaningfully
+associated with visual material, not a representative sample of screenshot
+coverage across the source documents.
+
 The pipeline first extracts selected PURE requirements deterministically and
 then uses AI assistance to contextualize fragments that are not self-contained.
 It associates the resulting candidates with UI images from the documents. The
